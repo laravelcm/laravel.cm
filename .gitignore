@@ -1,0 +1,55 @@
+# Node.js
+#
+/node_modules
+npm-debug.log
+yarn-error.log
+yarn.lock
+package-lock.json
+
+# Composer
+#
+/vendor
+composer.phar
+
+# IntelliJ/PhpStorm
+#
+/.idea
+
+# Visual Studio Code
+#
+/.vscode
+
+# Netbeans
+#
+/nbproject
+.project
+
+/.vagrant
+
+# Laravel Exclude
+#
+sitemap.xml
+phpunit.xml
+.phpunit.result.cache
+/public/hot
+/public/storage
+/public/shopper
+/public/avatars
+/public/uploads
+/storage/*.key
+.env
+.env.backup
+Homestead.json
+Homestead.yaml
+.phpstorm.meta.php
+_ide_helper.php
+
+# OSX
+#
+.DS_Store
+Thumbs.db
+
+# SublimeText
+#
+*.sublime-project
+*.sublime-workspace
