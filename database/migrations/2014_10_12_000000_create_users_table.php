@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('last_login_at')->nullable();
             $table->string('last_login_ip', 100)->nullable();
             $table->tinyInteger('spam_count')->default(0);
+            $table->string('github_profile')->nullable();
+            $table->string('twitter_profile')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
