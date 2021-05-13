@@ -22,14 +22,14 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('bio', 160)->default('');
             $table->string('location', 50)->default('');
-            $table->string('avatar_type')->default('gravatar');
-            $table->string('avatar_location')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('phone_number')->nullable();
             $table->timestamp('last_login_at')->nullable();
             $table->string('last_login_ip', 100)->nullable();
             $table->tinyInteger('spam_count')->default(0);
             $table->string('github_profile')->nullable();
             $table->string('twitter_profile')->nullable();
+            $table->string('website')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
