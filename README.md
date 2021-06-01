@@ -7,7 +7,7 @@
 Ce dépôt contient le code source du site de [Laravel.cm](https://laravel.cm). Laravel Cameroun est la plus grande communauté de 
 développeurs PHP & Laravel résidant au Cameroun.
 
-Site web : https://laravelcm.com <br />
+Site web : https://laravel.cm <br />
 Facebook: https://www.facebook.com/laravelcm <br />
 Twitter: https://twitter.com/laravelcm <br />
 Groupe Slack: https://laravelcm.slack.com <br />
