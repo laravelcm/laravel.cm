@@ -47,7 +47,7 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-skin-base text-sm font-normal">
-                                    Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
+                                    {{ __("Tous les articles et une newsletter regroupant toutes les dernières et les plus importantes nouvelles de l'écosystème Laravel, y compris les articles sur le design et d'autres topics.") }}
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-skin-base text-sm font-normal">
-                                    Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
+                                    {{ __("Découvrez différents sujets de discussion ouvert à tous pour un meilleur échange sur des thématiques et interrogations qui peuvent faire avancer l'ecosystème Tech au Cameroun.") }}
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-skin-base text-sm font-normal">
-                                    Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
+                                    {{ __("Le podcast vous apporte des nouvelles et des discussions sur le développement Laravel et PHP, Mobile (Android & iOS), l'entrepreuneriat, le Design graphique/UI/UX. La saison 1 consistera en des interviews avec des acteurs majeurs de notre écosystème.") }}
                                 </div>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-skin-base text-sm font-normal">
-                                    Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline">Forge</a>, <a href="https://vapor.laravel.com" class="underline">Vapor</a>, <a href="https://nova.laravel.com" class="underline">Nova</a>, and <a href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and more.
+                                    {{ __("Devenez prémium et ayez accès à des ressources privées, des codes sources des tutoriels et la possibilité d'avoir accés à des promotions sur les formations à venir. Et aussi vous aidez la communauté à maintenir le site en activité et disponible 😊") }}
                                 </div>
                             </div>
                         </div>
