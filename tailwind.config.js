@@ -1,5 +1,14 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(${variableName}), ${opacityValue})`
+    }
+    return `rgb(var(${variableName}))`
+  }
+}
+
 module.exports = {
   purge: [
     './resources/**/*.blade.php',
@@ -7,6 +16,18 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontWeight: {
+      hairline: 100,
+      'extra-light': 100,
+      light: 200,
+      normal: 300,
+      medium: 500,
+      semibold: 600,
+      bold: 700,
+      extrabold: 800,
+      'extra-bold': 800,
+      black: 900,
+    },
     extend: {
       colors: {
         brand: {
@@ -18,6 +39,40 @@ module.exports = {
       fontFamily: {
         sans: ['Operator Mono', ...defaultTheme.fontFamily.sans],
         heading: ['Inter var', ...defaultTheme.fontFamily.mono],
+      },
+      textColor: {
+        skin: {
+          primary: withOpacity('--color-text-primary'),
+          'primary-hover': withOpacity('--color-text-primary-hover'),
+          menu: withOpacity('--color-text-link-menu'),
+          'menu-hover': withOpacity('--color-text-link-menu-hover'),
+          base: withOpacity('--color-text-base'),
+          muted: withOpacity('--color-text-muted'),
+          inverted: withOpacity('--color-text-inverted'),
+          'inverted-muted': withOpacity('--color-text-inverted-muted'),
+        }
+      },
+      backgroundColor: {
+        skin: {
+          link: withOpacity('--color-link-fill'),
+          menu: withOpacity('--color-menu-fill'),
+          body: withOpacity('--color-body-fill'),
+          input: withOpacity('--color-input-fill'),
+          button: withOpacity('--color-button-default'),
+          card: withOpacity('--color-card-fill')
+        }
+      },
+      borderColor: {
+        skin: {
+          default: withOpacity('--color-border'),
+          light: withOpacity('--color-border-light'),
+          input: withOpacity('--color-input-border'),
+        }
+      },
+      divideColor: {
+        skin: {
+          default: withOpacity('--color-divide'),
+        }
       },
       typography: {
         DEFAULT: {
