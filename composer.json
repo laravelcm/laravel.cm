@@ -8,6 +8,7 @@
     "php": "^7.4|^8.0",
     "ext-json": "*",
     "blade-ui-kit/blade-heroicons": "^1.2",
+    "blade-ui-kit/blade-ui-kit": "^0.2.0",
     "fideloper/proxy": "^4.4",
     "fruitcake/laravel-cors": "^2.0",
     "guzzlehttp/guzzle": "^7.0.1",
