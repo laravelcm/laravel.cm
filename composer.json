@@ -6,6 +6,7 @@
   "license": "MIT",
   "require": {
     "php": "^7.4|^8.0",
+    "ext-json": "*",
     "fideloper/proxy": "^4.4",
     "fruitcake/laravel-cors": "^2.0",
     "guzzlehttp/guzzle": "^7.0.1",
@@ -23,6 +24,9 @@
     "spatie/test-time": "^1.2"
   },
   "autoload": {
+    "files": [
+      "app/helpers.php"
+    ],
     "psr-4": {
       "App\\": "app/",
       "Database\\Factories\\": "database/factories/",
