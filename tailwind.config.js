@@ -16,29 +16,20 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    fontWeight: {
-      hairline: 100,
-      'extra-light': 100,
-      light: 200,
-      normal: 300,
-      medium: 500,
-      semibold: 600,
-      bold: 700,
-      extrabold: 800,
-      'extra-bold': 800,
-      black: 900,
-    },
     extend: {
       colors: {
-        brand: {
+        flag: {
           green: '#099170',
           red: '#e21b30',
           yellow: '#ffdc44',
         }
       },
       fontFamily: {
-        sans: ['Operator Mono', ...defaultTheme.fontFamily.sans],
-        heading: ['Inter var', ...defaultTheme.fontFamily.mono],
+        mono: ['Operator Mono', ...defaultTheme.fontFamily.mono],
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
+      fontWeight: {
+        normal: 300
       },
       textColor: {
         skin: {
@@ -59,19 +50,26 @@ module.exports = {
           body: withOpacity('--color-body-fill'),
           input: withOpacity('--color-input-fill'),
           button: withOpacity('--color-button-default'),
-          card: withOpacity('--color-card-fill')
+          card: withOpacity('--color-card-fill'),
+          'card-muted': withOpacity('--color-card-muted-fill'),
         }
       },
       borderColor: {
         skin: {
-          default: withOpacity('--color-border'),
+          DEFAULT: withOpacity('--color-border'),
           light: withOpacity('--color-border-light'),
           input: withOpacity('--color-input-border'),
         }
       },
       divideColor: {
         skin: {
-          default: withOpacity('--color-divide'),
+          DEFAULT: withOpacity('--color-divide'),
+        }
+      },
+      placeholderColor: {
+        skin: {
+          input: withOpacity('--color-text-muted'),
+          'input-focus': withOpacity('--color-text-base'),
         }
       },
       typography: {
