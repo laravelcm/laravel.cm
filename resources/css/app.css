@@ -23,6 +23,7 @@
     --color-input-fill: 255, 255, 255;
     --color-button-default: 255, 255, 255;
     --color-card-fill: 255, 255, 255;
+    --color-card-muted-fill: 249, 250, 251;
 
     --color-input-border: 209, 213, 219;
     --color-divide: 229, 231, 235;
@@ -45,7 +46,8 @@
     --color-body-fill: 13, 17, 23;
     --color-input-fill: 31, 41, 55;
     --color-button-default: 55, 65, 81;
-    --color-card-fill: 17, 24, 39;
+    --color-card-fill: 16, 23, 33;
+    --color-card-muted-fill: 31, 41, 55;
 
     --color-input-border: 31, 41, 55;
     --color-divide: 55, 65, 81;
