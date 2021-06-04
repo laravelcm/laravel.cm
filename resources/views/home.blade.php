@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('body')
-    <div class="relative flex items-top justify-center min-h-screen sm:items-center">
+    <div class="relative flex items-top justify-center min-h-full py-12 sm:py-24 sm:items-center">
         <div>
             <div class="flex justify-center sm:justify-start">
                 <img class="h-16 w-auto sm:h-20 logo-white" src="{{ asset('/images/laravelcm.svg') }}" alt="Laravel.cm">
@@ -119,12 +119,10 @@
             <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                 <div class="text-center text-sm text-skin-base sm:text-left">
                     <div class="flex items-center">
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-5 h-5 text-gray-400">
-                            <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                        </svg>
+                        <x-heroicon-o-heart class="w-5 h-5 text-skin-muted" />
 
                         <a href="https://github.com/sponsors/sense" class="ml-1 underline">
-                            Devenir Sponsor
+                            {{ __('Devenir Sponsor') }}
                         </a>
                     </div>
                 </div>

@@ -3,10 +3,11 @@
         <div class="flex justify-between h-16">
             <div class="flex px-2 lg:px-0">
                 <div class="flex-shrink-0 flex items-center">
-                    <img class="block lg h-8 w-auto sm:h-9" src="{{ asset('/images/laravelcm-icon.svg') }}" alt="Laravel.cm">
+                    <a href="{{ route('home') }}">
+                        <img class="block lg h-8 w-auto sm:h-9" src="{{ asset('/images/laravelcm-icon.svg') }}" alt="Laravel.cm">
+                    </a>
                 </div>
                 <div class="hidden lg:ml-10 lg:flex lg:items-center lg:space-x-6 font-sans">
-                    <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
                     <a href="#" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center px-1 text-sm font-medium {{ active(['forum', 'threads*', 'thread'], 'text-skin-primary hover:text-skin-primary-hover') }}">
                         {{ __('Forum') }}
                     </a>
@@ -33,6 +34,7 @@
                              class="absolute z-10 -ml-4 mt-3 transform w-screen max-w-md lg:max-w-3xl lg:ml-0 lg:left-1/2 lg:-translate-x-1/2"
                              x-ref="panel"
                              @click.away="flyoutMenu = false"
+                             style="display: none;"
                         >
                             <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                 <div class="relative grid gap-6 bg-skin-card px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
@@ -190,10 +192,10 @@
                     </div>
                 @else
                     <div class="relative flex items-center space-x-6 font-sans">
-                        <a href="#" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center text-sm font-medium">
+                        <a href="{{ route('login') }}" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center text-sm font-medium">
                             {{ __('Se connecter') }}
                         </a>
-                        <a href="#" class="text-flag-green inline-flex items-center text-sm font-medium">
+                        <a href="{{ route('register') }}" class="text-flag-green inline-flex items-center text-sm font-medium">
                             {{ __('Créer un compte') }}
                         </a>
                     </div>
@@ -275,8 +277,8 @@
                 </div>
             @else
                 <div class="space-y-1">
-                    <a href="#" class="block px-4 py-2 text-base font-medium text-skin-menu hover:text-skin-menu-hover">{{ __('Se connecter') }}</a>
-                    <a href="#" class="block px-4 py-2 text-base font-medium text-flag-green">{{ __('Créer un compte') }}</a>
+                    <a href="{{ route('login') }}" class="block px-4 py-2 text-base font-medium text-skin-menu hover:text-skin-menu-hover">{{ __('Se connecter') }}</a>
+                    <a href="{{ route('register') }}" class="block px-4 py-2 text-base font-medium text-flag-green">{{ __('Créer un compte') }}</a>
                 </div>
             @endauth
         </div>
