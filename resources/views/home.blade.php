@@ -1,28 +1,14 @@
 @extends('layouts.default')
 
 @section('body')
-    <div class="relative flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0">
-        @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                @auth
-                    <a href="{{ url('/home') }}" class="text-sm text-skin-menu hover:text-skin-menu-hover underline">{{ __('Mon compte') }}</a>
-                @else
-                    <a href="{{ route('login') }}" class="text-sm text-skin-menu hover:text-skin-menu-hover underline">{{ __('Se connecter') }}</a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-skin-menu hover:text-skin-menu-hover underline">{{ __('Créer un compte') }}</a>
-                    @endif
-                @endauth
-            </div>
-        @endif
-
-        <div class="max-w-7xl mx-auto sm:px-4">
-            <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
+    <div class="relative flex items-top justify-center min-h-screen sm:items-center">
+        <div>
+            <div class="flex justify-center sm:justify-start">
                 <img class="h-16 w-auto sm:h-20 logo-white" src="{{ asset('/images/laravelcm.svg') }}" alt="Laravel.cm">
                 <img class="h-16 w-auto sm:h-20 logo-dark" src="{{ asset('/images/laravelcm-white.svg') }}" alt="Laravel.cm">
             </div>
 
-            <div class="mt-8 bg-skin-card overflow-hidden shadow sm:rounded-lg">
+            <div class="mt-8 bg-skin-card overflow-hidden shadow rounded-lg">
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="p-6">
                         <div class="flex items-center">
