@@ -50,6 +50,7 @@ module.exports = {
           body: withOpacity('--color-body-fill'),
           input: withOpacity('--color-input-fill'),
           button: withOpacity('--color-button-default'),
+          'button-hover': withOpacity('--color-card-muted-fill'),
           card: withOpacity('--color-card-fill'),
           'card-muted': withOpacity('--color-card-muted-fill'),
         }
@@ -63,7 +64,8 @@ module.exports = {
       },
       divideColor: {
         skin: {
-          DEFAULT: withOpacity('--color-divide'),
+          DEFAULT: withOpacity('--color-border-input'),
+          light: withOpacity('--color-divide'),
         }
       },
       placeholderColor: {
@@ -80,6 +82,9 @@ module.exports = {
             },
           },
         },
+      },
+      width: {
+        90: '22.5rem'
       }
     },
   },
