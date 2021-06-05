@@ -33,6 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             'username' => [
                 'required',
                 'string',
+                'min:6',
                 'max:20',
                 Rule::unique(User::class, 'username')
             ],
@@ -43,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'username' => $input['username'],
-            'opt_in' => $input['opt_in'],
+            'opt_in' => isset($input['opt_in']),
             'password' => Hash::make($input['password']),
         ]);
     }
