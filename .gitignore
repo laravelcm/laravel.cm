@@ -36,6 +36,7 @@ phpunit.xml
 /public/avatars
 /public/uploads
 /storage/*.key
+/storage/framework/cache
 .env
 .env.backup
 Homestead.json
