@@ -1,3 +1,4 @@
 {
-
+  "The :attribute must be at least :length characters.": "Le champ :attribute doit contenir au moins :length caractères.",
+  "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "Le champ :attribute donné est apparu dans une fuite de données. Veuillez choisir un autre :attribute."
 }
