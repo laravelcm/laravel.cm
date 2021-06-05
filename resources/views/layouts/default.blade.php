@@ -34,7 +34,7 @@
 
     @include('layouts._nav')
 
-    <main class="py-10 relative max-w-7xl mx-auto px-2 sm:px-4">
+    <main class="py-10 relative max-w-7xl mx-auto px-2 sm:px-4 z-0">
         @yield('body')
     </main>
 
