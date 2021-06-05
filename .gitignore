@@ -33,10 +33,10 @@ phpunit.xml
 .phpunit.result.cache
 /public/hot
 /public/storage
-/public/shopper
 /public/avatars
 /public/uploads
 /storage/*.key
+/storage/framework/cache
 .env
 .env.backup
 Homestead.json

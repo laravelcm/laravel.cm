@@ -1,3 +1,4 @@
 {
-
+  "The :attribute must be at least :length characters.": "The :attribute must be at least :length characters.",
+  "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "The given :attribute has appeared in a data leak. Please choose a different :attribute."
 }

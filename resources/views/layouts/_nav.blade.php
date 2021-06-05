@@ -1,12 +1,13 @@
-<nav x-data="{ open: false, flyoutMenu: false }" class="relative bg-skin-menu">
+<nav x-data="{ open: false, flyoutMenu: false }" class="relative z-10 bg-skin-menu">
     <div class="max-w-7xl mx-auto px-2 sm:px-4">
         <div class="flex justify-between h-16">
             <div class="flex px-2 lg:px-0">
                 <div class="flex-shrink-0 flex items-center">
-                    <img class="block lg h-8 w-auto sm:h-9" src="{{ asset('/images/laravelcm-icon.svg') }}" alt="Laravel.cm">
+                    <a href="{{ route('home') }}">
+                        <img class="block lg h-8 w-auto sm:h-9" src="{{ asset('/images/laravelcm-icon.svg') }}" alt="Laravel.cm">
+                    </a>
                 </div>
                 <div class="hidden lg:ml-10 lg:flex lg:items-center lg:space-x-6 font-sans">
-                    <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
                     <a href="#" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center px-1 text-sm font-medium {{ active(['forum', 'threads*', 'thread'], 'text-skin-primary hover:text-skin-primary-hover') }}">
                         {{ __('Forum') }}
                     </a>
@@ -33,6 +34,7 @@
                              class="absolute z-10 -ml-4 mt-3 transform w-screen max-w-md lg:max-w-3xl lg:ml-0 lg:left-1/2 lg:-translate-x-1/2"
                              x-ref="panel"
                              @click.away="flyoutMenu = false"
+                             style="display: none;"
                         >
                             <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                 <div class="relative grid gap-6 bg-skin-card px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
@@ -161,7 +163,7 @@
                     <!-- Profile dropdown -->
                     <div @keydown.escape.stop="open = false;" @click.away="open = false;" class="ml-4 relative flex-shrink-0">
                         <div>
-                            <button type="button" class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" id="user-menu-button" x-ref="button" @click="open =! open"  aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()">
+                            <button type="button" class="bg-skin-menu rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" id="user-menu-button" x-ref="button" @click="open =! open"  aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()">
                                 <span class="sr-only">Open user menu</span>
                                 <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixqx=8uCHNjpfsv&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
                             </button>
@@ -174,7 +176,7 @@
                              x-transition:leave="transition ease-in duration-75"
                              x-transition:leave-start="transform opacity-100 scale-100"
                              x-transition:leave-end="transform opacity-0 scale-95"
-                             class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-skin-card ring-1 ring-black ring-opacity-5 focus:outline-none"
+                             class="origin-top-right absolute right-0 mt-2 w-60 rounded-md shadow-lg py-1 bg-skin-menu divide-y divide-skin-light ring-1 ring-black ring-opacity-5 focus:outline-none"
                              x-ref="menu-items"
                              role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                              tabindex="-1"
@@ -182,18 +184,48 @@
                              @keydown.enter.prevent="open = false;"
                              @keyup.space.prevent="open = false;"
                              style="display: none;">
-                            <a href="#" class="block px-4 py-2 text-sm text-skin-menu" role="menuitem" tabindex="-1" id="user-menu-item-0">{{ __('Mon profil') }}</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-skin-menu" role="menuitem" tabindex="-1" id="user-menu-item-1">{{ __('Paramètres') }}</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-skin-menu" role="menuitem" tabindex="-1" id="user-menu-item-2">{{ __('Se déconnecter') }}</a>
+                            <div class="px-3.5 py-3" role="none">
+                                <p class="text-xs text-skin-base font-normal" role="none">
+                                    {{ __('Connecté en tant que') }}
+                                </p>
+                                <p class="text-sm font-medium text-skin-inverted truncate" role="none">
+                                    {{ Auth::user()->email }}
+                                </p>
+                            </div>
+                            <div class="py-1.5 px-3.5" role="none">
+                                <a href="#" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
+                                    <x-heroicon-o-view-grid class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                                    {{ __('Dashboard') }}
+                                </a>
+                                <a href="#" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-1">
+                                    <x-heroicon-o-user-circle class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                                    {{ __('Mon profil') }}
+                                </a>
+                                <a href="#" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-2">
+                                    <x-heroicon-o-cog class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                                    {{ __('Paramètres') }}
+                                </a>
+                            </div>
+                            <div class="py-1.5 px-3.5" role="none">
+                                <form method="POST" action="{{ route('logout') }}" role="form">
+                                    @csrf
+                                    <button type="submit" class="group flex items-center text-skin-base hover:text-skin-primary font-normal w-full text-left py-1.5 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">
+                                        <svg stroke="currentColor" fill="none" class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" viewBox="0 0 20 20">
+                                            <path d="M10.25 3.75H9A6.25 6.25 0 002.75 10v0A6.25 6.25 0 009 16.25h1.25M10.75 10h6.5M14.75 12.25l2.5-2.25-2.5-2.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        {{ __('Se déconnecter') }}
+                                    </button>
+                                </form>
+                            </div>
                         </div>
 
                     </div>
                 @else
                     <div class="relative flex items-center space-x-6 font-sans">
-                        <a href="#" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center text-sm font-medium">
+                        <a href="{{ route('login') }}" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center text-sm font-medium">
                             {{ __('Se connecter') }}
                         </a>
-                        <a href="#" class="text-flag-green inline-flex items-center text-sm font-medium">
+                        <a href="{{ route('register') }}" class="text-flag-green inline-flex items-center text-sm font-medium">
                             {{ __('Créer un compte') }}
                         </a>
                     </div>
@@ -275,8 +307,8 @@
                 </div>
             @else
                 <div class="space-y-1">
-                    <a href="#" class="block px-4 py-2 text-base font-medium text-skin-menu hover:text-skin-menu-hover">{{ __('Se connecter') }}</a>
-                    <a href="#" class="block px-4 py-2 text-base font-medium text-flag-green">{{ __('Créer un compte') }}</a>
+                    <a href="{{ route('login') }}" class="block px-4 py-2 text-base font-medium text-skin-menu hover:text-skin-menu-hover">{{ __('Se connecter') }}</a>
+                    <a href="{{ route('register') }}" class="block px-4 py-2 text-base font-medium text-flag-green">{{ __('Créer un compte') }}</a>
                 </div>
             @endauth
         </div>

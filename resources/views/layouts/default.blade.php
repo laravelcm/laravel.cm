@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class='theme-dark'>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class=''>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,9 @@
 
     @include('layouts._nav')
 
-    @yield('body')
+    <main class="py-10 relative max-w-7xl mx-auto px-2 sm:px-4 z-0">
+        @yield('body')
+    </main>
 
 </body>
 </html>

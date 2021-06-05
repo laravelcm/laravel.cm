@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('github_profile')->nullable();
             $table->string('twitter_profile')->nullable();
             $table->string('website')->nullable();
+            $table->boolean('opt_in')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
