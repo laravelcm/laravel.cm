@@ -57,15 +57,15 @@ module.exports = {
       },
       borderColor: {
         skin: {
-          DEFAULT: withOpacity('--color-border'),
+          base: withOpacity('--color-border'),
           light: withOpacity('--color-border-light'),
           input: withOpacity('--color-input-border'),
         }
       },
       divideColor: {
         skin: {
-          DEFAULT: withOpacity('--color-border-input'),
-          light: withOpacity('--color-divide'),
+          base: withOpacity('--color-divide'),
+          light: withOpacity('--color-divide-light'),
         }
       },
       placeholderColor: {
