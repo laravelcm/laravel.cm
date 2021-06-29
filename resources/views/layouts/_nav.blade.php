@@ -33,7 +33,7 @@
                              x-transition:leave-end="opacity-0 translate-y-1"
                              class="absolute z-10 -ml-4 mt-3 transform w-screen max-w-md lg:max-w-3xl lg:ml-0 lg:left-1/2 lg:-translate-x-1/2"
                              x-ref="panel"
-                             @click.away="flyoutMenu = false"
+                             @click.outside="flyoutMenu = false"
                              style="display: none;"
                         >
                             <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
@@ -145,10 +145,10 @@
                 <!-- Mobile menu button -->
                 <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-skin-muted hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500" aria-controls="mobile-menu" @click="open = !open" aria-expanded="false" x-bind:aria-expanded="open.toString()">
                     <span class="sr-only">Open main menu</span>
-                    <svg x-state:on="Menu open" x-state:off="Menu closed" class="h-6 w-6 block" :class="{ 'hidden': open, 'block': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <svg class="h-6 w-6 block" :class="{ 'hidden': open, 'block': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                    <svg x-state:on="Menu open" x-state:off="Menu closed" class="h-6 w-6 hidden" :class="{ 'block': open, 'hidden': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <svg class="h-6 w-6 hidden" :class="{ 'block': open, 'hidden': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
@@ -161,7 +161,7 @@
                     </button>
 
                     <!-- Profile dropdown -->
-                    <div @keydown.escape.stop="open = false;" @click.away="open = false;" class="ml-4 relative flex-shrink-0">
+                    <div @keydown.escape.stop="open = false;" @click.outside="open = false;" class="ml-4 relative flex-shrink-0">
                         <div>
                             <button type="button" class="bg-skin-menu rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" id="user-menu-button" x-ref="button" @click="open =! open"  aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()">
                                 <span class="sr-only">Open user menu</span>
@@ -234,7 +234,7 @@
         </div>
     </div>
 
-    <div class="lg:hidden font-sans" id="mobile-menu" x-show="open" style="display: none;">
+    <div x-show="open" class="lg:hidden font-sans" id="mobile-menu" style="display: none;">
         <div class="pt-2 pb-3 space-y-1">
             <a href="#" class="border-transparent text-skin-menu hover:bg-skin-card-muted hover:border-skin hover:text-skin-menu-hover block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['forum', 'threads*', 'thread'], 'bg-green-50 border-green-500 text-green-700') }}">{{ __('Forum') }}</a>
             <a href="#" class="border-transparent text-skin-menu hover:bg-skin-card-muted hover:border-skin hover:text-skin-menu-hover block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['articles', 'articles*'], 'bg-green-50 border-green-500 text-green-700') }}">{{ __('Articles') }}</a>
