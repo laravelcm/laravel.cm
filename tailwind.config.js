@@ -48,6 +48,8 @@ module.exports = {
           link: withOpacity('--color-link-fill'),
           menu: withOpacity('--color-menu-fill'),
           body: withOpacity('--color-body-fill'),
+          footer: withOpacity('--color-footer-fill'),
+          'footer-light': withOpacity('--color-footer-light-fill'),
           input: withOpacity('--color-input-fill'),
           button: withOpacity('--color-button-default'),
           'button-hover': withOpacity('--color-card-muted-fill'),
