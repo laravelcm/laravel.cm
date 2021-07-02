@@ -46,7 +46,7 @@
     --color-link-fill: 55, 65, 81;
     --color-menu-fill: 22, 27, 34;
     --color-body-fill: 13, 17, 23;
-    --color-footer-fill: 0, 0, 0;
+    --color-footer-fill: var(--color-menu-fill);
     --color-footer-light-fill: var(--color-footer-fill);
     --color-input-fill: 31, 41, 55;
     --color-button-default: 55, 65, 81;
