@@ -11,10 +11,15 @@ function withOpacity(variableName) {
 
 module.exports = {
   mode: 'jit',
-  purge: [
-    './resources/**/*.blade.php',
-    './resources/**/*.js',
-  ],
+  purge: {
+    content: [
+      './resources/**/*.blade.php',
+      './resources/**/*.js',
+    ],
+    safelist: [
+
+    ],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {

@@ -1,9 +1,36 @@
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+
+@import 'tailwindcss/utilities';
+
 @import "~highlight.js/styles/atom-one-dark.css";
 @import '~choices.js/public/assets/styles/choices.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tag.css";
+
+:root {
+  --brand-laravel: #FF2D20;
+  --brand-javascript: #F7DF1E;
+  --brand-typesript: #007ACC;
+  --brand-react: #53C1DE;
+  --brand-vue-js: #41B883;
+  --brand-php: #777BB3;
+  --brand-digital-ocean: #0080FF;
+  --brand-forge: #19B69B;
+  --brand-packages: #4F46E5;
+  --brand-outils: #22D3EE;
+  --brand-tailwind: #06B6D4;
+  --brand-design: #8B5CF6;
+  --brand-alpinejs: #37BDD7;
+  --brand-open-source: #F97316;
+  --brand-freelance: #F43F5E;
+  --brand-salaire: #C7D2FE;
+  --brand-projets: #14B8A6;
+  --brand-entrepreneuriat: #0EA5E9;
+  --brand-paiement-en-ligne: #10B981;
+  --brand-branding: #EC4899;
+}
 
 @layer base {
   :root {
@@ -38,7 +65,7 @@
     --color-text-primary-hover: 16, 185, 129;
     --color-text-link-menu: 209, 213, 219;
     --color-text-link-menu-hover: 255, 255, 255;
-    --color-text-base: 209, 213, 219;
+    --color-text-base: 181, 181, 189;
     --color-text-muted: 107, 114, 128;
     --color-text-inverted: 255, 255, 255;
     --color-text-inverted-muted: 156, 163, 175;
@@ -50,8 +77,8 @@
     --color-footer-light-fill: var(--color-footer-fill);
     --color-input-fill: 31, 41, 55;
     --color-button-default: 55, 65, 81;
-    --color-card-fill: 16, 23, 33;
-    --color-card-muted-fill: 31, 41, 55;
+    --color-card-fill: 22, 27, 34;
+    --color-card-muted-fill: 17, 22, 29;
 
     --color-input-border: 31, 41, 55;
     --color-divide: 55, 65, 81;
