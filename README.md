@@ -2,6 +2,12 @@
     <img src="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/logo.svg" height="250" />
 </p>
 
+<p align="center">
+    <a href="https://github.com/laravelcm/laravel.cm/actions?query=workflow%3ATests">
+        <img src="https://github.com/laravelcm/laravel.cm/workflows/Tests/badge.svg" alt="Tests" />
+    </a>
+</p>
+
 ## Laravel.cm
 
 Ce dépôt contient le code source du site de [Laravel.cm](https://laravel.cm). Laravel Cameroun est la plus grande communauté de 
