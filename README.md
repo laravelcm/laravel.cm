@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/laravelcm/laravel.cm/actions?query=workflow%3ATests">
-        <img src="https://github.com/laravelcm/laravel.cm/workflows/Tests/badge.svg" alt="Tests" />
+    <a href="https://github.com/laravelcm/laravel.cm/actions">
+        <img src="https://github.com/laravelcm/laravel.cm/workflows/Tests/badge.svg" alt="Build Status" />
     </a>
 </p>
 
