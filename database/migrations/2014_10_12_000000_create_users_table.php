@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('bio', 160)->default('');
             $table->string('location', 50)->default('');
             $table->string('avatar')->nullable();
+            $table->string('avatar_type')->default('avatar');
             $table->string('phone_number')->nullable();
             $table->timestamp('last_login_at')->nullable();
             $table->string('last_login_ip', 100)->nullable();

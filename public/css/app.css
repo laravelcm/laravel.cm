@@ -2219,6 +2219,11 @@ select {
 	color: rgba(127, 29, 29, var(--tw-text-opacity));
 }
 
+.text-\[\#1E9DEA\] {
+	--tw-text-opacity: 1;
+	color: rgba(30, 157, 234, var(--tw-text-opacity));
+}
+
 .underline {
 	text-decoration: underline;
 }

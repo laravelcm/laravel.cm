@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'email' => 'john@example.com',
             'username' => 'johndoe',
             'github_profile' => 'mckenziearts',
-            'twitter_profile' => 'monneyarthur',
+            'twitter_profile' => 'MonneyArthur',
             'password' => bcrypt('password'),
         ]);
     }
