@@ -16,7 +16,9 @@ trait PasswordValidationRules
         return [
             'required',
             'string',
-            Rules\Password::min(6)->uncompromised(),
+            ! app()->environment('production') ?
+                Rules\Password::min(6) :
+                Rules\Password::min(6)->uncompromised(),
         ];
     }
 }
