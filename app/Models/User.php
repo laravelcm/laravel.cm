@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasProfilePhoto;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasProfilePhoto;
 
     /**
      * The attributes that are mass assignable.
@@ -25,12 +26,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'bio',
         'location',
         'avatar',
+        'avatar_type',
         'phone_number',
         'github_profile',
         'twitter_profile',
         'website',
         'last_login_at',
         'last_login_ip',
+        'email_verified_at',
         'opt_in',
     ];
 
@@ -42,6 +45,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
@@ -52,6 +57,15 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_login_at' => 'datetime',
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'profile_photo_url',
     ];
 
     public function providers(): HasMany
@@ -92,7 +106,9 @@ class User extends Authenticatable implements MustVerifyEmail
                 'email' => $socialEmail,
                 'username' => $socialUser->getNickName() ?? $socialUser->getId(),
                 'github_profile' => $provider === 'github' ? $socialUser->getNickName() : null,
+                'twitter_profile' => $provider === 'twitter' ? $socialUser->getNickName() : null,
                 'email_verified_at' => now(),
+                'avatar_type' => $provider,
             ]);
         }
 

@@ -3,14 +3,14 @@
 namespace App\Traits;
 
 use Illuminate\Http\RedirectResponse;
+use Laravel\Socialite\Contracts\User;
 use Laravel\Socialite\Facades\Socialite;
-use Laravel\Socialite\Two\User;
 
 trait HasSocialite
 {
     public function getAcceptedProviders(): array
     {
-        return ['google', 'github'];
+        return ['github', 'twitter'];
     }
 
     protected function getSocialiteUser(string $provider): User
