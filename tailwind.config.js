@@ -10,10 +10,16 @@ function withOpacity(variableName) {
 }
 
 module.exports = {
-  purge: [
-    './resources/**/*.blade.php',
-    './resources/**/*.js',
-  ],
+  mode: 'jit',
+  purge: {
+    content: [
+      './resources/**/*.blade.php',
+      './resources/**/*.js',
+    ],
+    safelist: [
+
+    ],
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -48,6 +54,8 @@ module.exports = {
           link: withOpacity('--color-link-fill'),
           menu: withOpacity('--color-menu-fill'),
           body: withOpacity('--color-body-fill'),
+          footer: withOpacity('--color-footer-fill'),
+          'footer-light': withOpacity('--color-footer-light-fill'),
           input: withOpacity('--color-input-fill'),
           button: withOpacity('--color-button-default'),
           'button-hover': withOpacity('--color-card-muted-fill'),

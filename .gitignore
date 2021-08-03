@@ -31,6 +31,7 @@ composer.phar
 sitemap.xml
 phpunit.xml
 .phpunit.result.cache
+.php-cs-fixer.cache
 /public/hot
 /public/storage
 /public/avatars

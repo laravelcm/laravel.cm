@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class=''>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class='theme-dark'>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="https://fonts.cdnfonts.com/css/operator-mono" rel="stylesheet">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     @stack('meta')
@@ -37,6 +38,8 @@
     <main class="py-10 relative max-w-7xl mx-auto px-2 sm:px-4 z-0">
         @yield('body')
     </main>
+
+    @include('layouts.footer')
 
 </body>
 </html>

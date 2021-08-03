@@ -1,11 +1,12 @@
-import 'alpinejs';
+import Alpine from 'alpinejs';
 import hljs from 'highlight.js';
 import Choices from 'choices.js';
 
-import 'choices.js/public/assets/styles/choices.css';
-
 require('./bootstrap');
 require('./editor');
+
+// Add Alpine to window object.
+window.Alpine = Alpine;
 
 // Create a multiselect element.
 window.choices = (element) => {
@@ -18,3 +19,5 @@ window.highlightCode = (element) => {
     hljs.highlightBlock(block);
   });
 };
+
+Alpine.start();
