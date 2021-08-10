@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::view('terms', 'terms')->name('terms');
+Route::view('rules', 'rules')->name('rules');
+Route::view('privacy', 'privacy')->name('privacy');
+Route::view('faq', 'faq')->name('faq');
 
 // Social authentication
 Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');
