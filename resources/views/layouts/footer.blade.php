@@ -50,13 +50,7 @@
                             </li>
 
                             <li>
-                                <a href="#" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
-                                    {{ __('Contact') }}
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
+                                <a href="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
                                     {{ __('Branding') }}
                                 </a>
                             </li>
@@ -70,25 +64,25 @@
                         <ul class="mt-4 space-y-4">
 
                             <li>
-                                <a href="#" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
+                                <a href="{{ route('terms') }}" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
                                     {{ __('Conditions d’utilisation') }}
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
+                                <a href="{{ route('privacy') }}" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
                                     {{ __('Confidentialité') }}
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
+                                <a href="{{ route('rules') }}" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
                                     {{ __('Code de conduite') }}
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
+                                <a href="{{ route('faq') }}" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
                                     {{ __('FAQ') }}
                                 </a>
                             </li>
@@ -103,9 +97,10 @@
                     <p class="mt-4 text-base text-skin-base font-normal">
                         {{ __('Rejoignez notre newsletter recevez des tutoriels, articles et podcasts sur le design et la programmation web.') }}
                     </p>
-                    <form class="mt-4 sm:flex">
+                    <form aria-labelledby="newsletter-headline" action="https://laravelcm.us4.list-manage.com/subscribe/post?u=0642d391e4785535c232a8c66&id=6ff87af677" method="POST" id="mc-embedded-subscribe-form" class="mt-4 sm:flex" name="mc-embedded-subscribe-form" target="_blank" novalidate>
                         <div class="w-full">
-                            <x-email id="email" name="email" autocomplete="email" required placeholder="{{ __('Entrer votre adresse email') }}" aria-label="{{ __('Adresse E-mail') }}" class="w-full block" />
+                            <x-email id="mce-EMAIL" name="EMAIL" autocomplete="email" required placeholder="{{ __('Entrer votre adresse email') }}" aria-label="{{ __('Adresse E-mail') }}" class="w-full block" />
+                            <input type="hidden" name="b_0642d391e4785535c232a8c66_6ff87af677" tabindex="-1" value="">
                         </div>
                         <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
                             <x-button type="submit" class="block w-full">
@@ -133,7 +128,7 @@
                             </svg>
                             Slack
                         </a>
-                        <a href="#" class="inline-flex items-center mt-4 sm:mt-0 px-4 py-2 text-base text-skin-base font-medium font-sans bg-skin-body hover:bg-skin-card-muted rounded-md">
+                        <a href="https://t.me/joinchat/UnTRApWa50zoRO0I" class="inline-flex items-center mt-4 sm:mt-0 px-4 py-2 text-base text-skin-base font-medium font-sans bg-skin-body hover:bg-skin-card-muted rounded-md">
                             <svg class="h-5 w-5 mr-2" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path d="M10 20c5.523 0 10-4.477 10-10S15.523 0 10 0 0 4.477 0 10s4.477 10 10 10z" fill="#34AADF"/>
                                 <path d="M4.162 9.913s5-2.052 6.734-2.774c.665-.29 2.919-1.214 2.919-1.214s1.04-.405.954.578c-.03.404-.26 1.82-.492 3.352-.346 2.168-.722 4.538-.722 4.538s-.058.665-.55.78c-.49.116-1.3-.404-1.444-.52-.116-.087-2.168-1.387-2.92-2.023-.202-.173-.433-.52.03-.925 1.04-.954 2.283-2.139 3.034-2.89.347-.347.694-1.156-.751-.173a246.647 246.647 0 01-4.075 2.745s-.463.29-1.33.03-1.879-.608-1.879-.608-.693-.433.492-.896z" fill="#fff"/>
