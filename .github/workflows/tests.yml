@@ -25,4 +25,4 @@ jobs:
         run: yarn install
 
       - name: Compile assets
-        run: npm run production
+        run: yarn run production
