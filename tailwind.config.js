@@ -82,15 +82,27 @@ module.exports = {
           'input-focus': withOpacity('--color-text-base'),
         }
       },
-      typography: {
+      typography: (theme) => ({
         DEFAULT: {
           css: {
+            color: theme('textColor.skin.base'),
             a: {
-              textDecoration: 'none'
+              textDecoration: 'none',
+              color: theme('textColor.skin.primary'),
+              '&:hover': {
+                color: theme('textColor.skin.primary-hover'),
+              },
             },
+            'h1, h2, h3, h4': {
+              color: theme('textColor.skin.inverted'),
+              fontFamily: "'Inter var', serif"
+            },
+            p: {
+              fontWeight: 300
+            }
           },
         },
-      },
+      }),
       width: {
         90: '22.5rem'
       }
