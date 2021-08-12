@@ -1,11 +1,11 @@
-# Code de conduite du Pacte des contributeurs
+# Code de conduite
 
 ## Notre Engagement
 
 Dans l'intérêt de favoriser un environnement ouvert et accueillant, nous, en tant que contributeurs et mainteneurs, nous engageons à faire
 participation à notre projet et à notre communauté une expérience sans harcèlement pour tous, quel que soit l'âge, la taille,
 handicap, origine ethnique, identité et expression de genre, niveau d'expérience, nationalité, apparence personnelle, race,
-religion ou identité et orientation sexuelles.
+religion ou identité.
 
 ## Nos Standards
 
@@ -20,7 +20,7 @@ Voici des exemples de comportements qui contribuent à créer un environnement p
 Voici des exemples de comportements inacceptables de la part des participants:
 
 * L'utilisation d'un langage ou d'images sexualisés et d'attention ou d'avances sexuelles indésirables
-* Trolling, commentaires insultants / désobligeants et attaques personnelles ou politiques
+* Troller, commentaires insultants / désobligeants et attaques personnelles ou politiques
 * Harcèlement public ou privé
 * Publication des informations privées d'autrui, telles qu'une adresse physique ou électronique, sans autorisation explicite
 * Autre conduite qui pourrait raisonnablement être considérée comme inappropriée dans un cadre professionnel
@@ -46,7 +46,7 @@ des répercussions déterminées par les autres membres de la direction du proje
 
 ## Attribution
 
-Ce code de conduite est adapté de la [Convention relative aux contributeurs][page d'accueil], version 1.4, disponible sur
+Ce code de conduite est adapté de la [Convention relative aux contributeurs][homepage], version 1.4, disponible sur
 [http://contributor-covenant.org/version/1/4][version]
 
 [homepage]: http://contributor-covenant.org
