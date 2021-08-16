@@ -14,7 +14,7 @@
     <div id="faq-questions" class="text-base flex -mx-2 -mt-4">
         <div class="flex-none px-2 w-full md:hidden">
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">{{ __("Qui peut publier des articles sur Laravel.cm?") }}</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">{{ __('Qui peut publier des articles/sujets sur Laravel.cm?') }}</h3>
                 <div class="prose prose-sm leading-5">
                     <p>
                         Les modérateurs! Oui, vous avez la permission de publier un nouvel article, quel qu'il soit, du moment qu'il
@@ -37,12 +37,12 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What JS framework does Tailwind UI use?</h3>
-                <div class="prose prose-sm leading-5"><p>All of the examples in Tailwind UI are provided in three formats: React, Vue, and vanilla HTML.</p>
-                    <p>The React and Vue examples are fully functional out-of-the-box, and are powered by <a href="https://headlessui.dev">Headless UI</a> — a library of unstyled components we designed to integrate perfectly with Tailwind CSS.</p>
-                    <p>The vanilla HTML examples <strong>do not include any JavaScript</strong> and are designed for people who prefer to write any necessary JavaScript themselves.</p>
-                    <p>Most of the components do not rely on JS at all, but for the ones that do (dropdowns, modals, etc.) we've provided some simple comments in the HTML to explain things like what classes you need use for different states (like a toggle switch being on or off), or what classes we recommend for transitioning elements on to or off of the screen (like a modal opening).</p>
-                    <p>To get a better idea of how this looks in practice, <a href="/documentation#integrating-with-javascript-frameworks">check out our documentation</a>.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Ou puis-je retrouver la communauté?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>La communauté est présente sur Twitter, Github, LinkedIn, Facebook et YouTube. Tous les liens sont disponibles dans le pied de page.</p>
+                    <p>Mais pour les canneaux de communication, le principal canal de communication et d'échange avec les membres de la communauté reste le groupe <a href="{{ route('slack') }}">Slack</a>. Vous pouvez rejoindre slack en vous rendant sur cette <a href="#">page</a>.</p>
+                    <p>Mais la communauté dispose aussi d'un groupe <a href="{{ route('telegram') }}">Telegram</a> et d'un groupe WhatsApp (limite par les règles de gestion de groupe de WhatsApp) qui sont accessible par tous.</p>
+                    <p>Ceci dit nous recommandons plus de rejoindre le groupe Slack.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
@@ -59,20 +59,23 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What browsers does Tailwind UI support?</h3>
-                <div class="prose prose-sm leading-5"><p>The components in Tailwind UI are designed to work in the latest, stable releases of all major browsers, including Chrome, Firefox, Safari, and Edge.</p>
-                    <p>We don't support Internet Explorer 11.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment changer mon nom d'utilisateur Twitter/GitHub ?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Vous pouvez ajouter ou supprimer des associations Twitter/GitHub de vos paramètres, mais notez que vous ne pouvez le faire que si Twitter et GitHub sont connectés à votre compte. Si vous rencontrez des problèmes avec cela, envoyez un e-mail à <a href="mailto:support@laravel.cm">support@laravel.cm</a> et nous nous en occuperons.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Does Tailwind UI include Figma, Sketch, or Adobe XD files?</h3>
-                <div class="prose prose-sm leading-5"><p>No, Tailwind UI does not include design assets for tools like Figma, Sketch, or Adobe XD.</p>
-                    <p>We don't produce high-quality design artifacts as part of our own design and development process, so building these extra resources means we can't spend as much time creating new examples in code which is where we believe we can provide the most value.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment devenir Premium?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Devenir premium sur Laravel.cm, c'est soutenir la création de nouveaux contenus et accéder à du contenu exclusif pour apprendre et s'améliorer (comme le téléchargement des vidéos des sources, et des designs).</p>
+                    <p>Pour etre premium vous devez aller sur la page pour <a href="#">Devenir premiun</a> et choisir un abonnement.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What does "community access" mean?</h3>
-                <div class="prose prose-sm leading-5"><p>Any purchase of Tailwind UI includes access to our private Discord server where you can suggest new component ideas, ask your peers for help with any problems you run into, and talk with other users about building things with Tailwind UI.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Existe-t-il un guide sur l'utilisation de l'éditeur Markdown?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Oui! Laravel.cm utilise Markdown X réalisé par <a href="https://twitter.com/tnylea">Tony Lea</a> sur la plateforme <a href="https://devdojo.com">DevDojo</a>.</p>
+                    <p>Voici notre <a href="#">guide de l'éditeur</a>, vous pouvez également le trouver en cliquant sur le bouton Aide dans page de l'éditeur.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
@@ -89,9 +92,11 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I use Tailwind UI for my own commercial projects?</h3>
-                <div class="prose prose-sm leading-5"><p>Absolutely! Your license gives you permission to build as many of your own projects as you like, whether those are simple public websites or SaaS applications that end users need to pay to access.</p>
-                    <p>For more information and examples, <a href="/license">read through our license</a>.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment signaler un spam ?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Pour un commentaire spécifique : accédez au commentaire et cliquez sur la flèche déroulante pour signaler un abus.</p>
+                    <p>Pour un article spécifique : accédez à l'article, faites défiler vers le bas et cliquez sur signaler un abus.</p>
+                    <p>En général, vous pouvez remplir le <a href="#">formulaire</a> de signalement d'abus, ou tout simplement faire un mail à <a href="mailto:support@laravel.cm">support@laravel.cm</a> </p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
@@ -122,12 +127,12 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What JS framework does Tailwind UI use?</h3>
-                <div class="prose prose-sm leading-5"><p>All of the examples in Tailwind UI are provided in three formats: React, Vue, and vanilla HTML.</p>
-                    <p>The React and Vue examples are fully functional out-of-the-box, and are powered by <a href="https://headlessui.dev">Headless UI</a> — a library of unstyled components we designed to integrate perfectly with Tailwind CSS.</p>
-                    <p>The vanilla HTML examples <strong>do not include any JavaScript</strong> and are designed for people who prefer to write any necessary JavaScript themselves.</p>
-                    <p>Most of the components do not rely on JS at all, but for the ones that do (dropdowns, modals, etc.) we've provided some simple comments in the HTML to explain things like what classes you need use for different states (like a toggle switch being on or off), or what classes we recommend for transitioning elements on to or off of the screen (like a modal opening).</p>
-                    <p>To get a better idea of how this looks in practice, <a href="/documentation#integrating-with-javascript-frameworks">check out our documentation</a>.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Ou puis-je retrouver la communauté?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>La communauté est présente sur Twitter, Github, LinkedIn, Facebook et YouTube. Tous les liens sont disponibles dans le pied de page.</p>
+                    <p>Mais pour les canneaux de communication, le principal canal de communication et d'échange avec les membres de la communauté reste le groupe <a href="{{ route('slack') }}">Slack</a>. Vous pouvez rejoindre slack en vous rendant sur cette <a href="#">page</a>.</p>
+                    <p>Mais la communauté dispose aussi d'un groupe <a href="{{ route('telegram') }}">Telegram</a>et d'un groupe WhatsApp (limite par les règles de gestion de groupe de WhatsApp) qui sont accessible par tous.</p>
+                    <p>Ceci dit nous recommandons plus de rejoindre le groupe Slack.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
@@ -144,27 +149,30 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What browsers does Tailwind UI support?</h3>
-                <div class="prose prose-sm leading-5"><p>The components in Tailwind UI are designed to work in the latest, stable releases of all major browsers, including Chrome, Firefox, Safari, and Edge.</p>
-                    <p>We don't support Internet Explorer 11.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment changer mon nom d'utilisateur Twitter/GitHub ?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Vous pouvez ajouter ou supprimer des associations Twitter/GitHub de vos paramètres, mais notez que vous ne pouvez le faire que si Twitter et GitHub sont connectés à votre compte. Si vous rencontrez des problèmes avec cela, envoyez un e-mail à <a href="mailto:support@laravel.cm">support@laravel.cm</a> et nous nous en occuperons.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Does Tailwind UI include Figma, Sketch, or Adobe XD files?</h3>
-                <div class="prose prose-sm leading-5"><p>No, Tailwind UI does not include design assets for tools like Figma, Sketch, or Adobe XD.</p>
-                    <p>We don't produce high-quality design artifacts as part of our own design and development process, so building these extra resources means we can't spend as much time creating new examples in code which is where we believe we can provide the most value.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment devenir Premium?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Devenir premium sur Laravel.cm, c'est soutenir la création de nouveaux contenus et accéder à du contenu exclusif pour apprendre et s'améliorer (comme le téléchargement des vidéos des sources, et des designs).</p>
+                    <p>Pour etre premium vous devez aller sur la page pour <a href="#">Devenir premiun</a> et choisir un abonnement.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What does "community access" mean?</h3>
-                <div class="prose prose-sm leading-5"><p>Any purchase of Tailwind UI includes access to our private Discord server where you can suggest new component ideas, ask your peers for help with any problems you run into, and talk with other users about building things with Tailwind UI.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Existe-t-il un guide sur l'utilisation de l'éditeur Markdown?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Oui! Laravel.cm utilise Markdown X réalisé par <a href="https://twitter.com/tnylea">Tony Lea</a> sur la plateforme <a href="https://devdojo.com">DevDojo</a>.</p>
+                    <p>Voici notre <a href="#">guide de l'éditeur</a>, vous pouvez également le trouver en cliquant sur le bouton Aide dans page de l'éditeur.</p>
                 </div>
             </div>
         </div>
 
         <div class="flex-none px-2 w-1/2 hidden md:block lg:hidden">
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">{{ __("Qui peut publier les articles sur Laravel.cm?") }}</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">{{ __('Qui peut publier des articles/sujets sur Laravel.cm?') }}</h3>
                 <div class="prose prose-sm leading-5">
                     <p>
                         Les modérateurs! Oui, vous avez la permission de publier un nouvel article, quel qu'il soit, du moment qu'il
@@ -193,9 +201,11 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I use Tailwind UI for my own commercial projects?</h3>
-                <div class="prose prose-sm leading-5"><p>Absolutely! Your license gives you permission to build as many of your own projects as you like, whether those are simple public websites or SaaS applications that end users need to pay to access.</p>
-                    <p>For more information and examples, <a href="/license">read through our license</a>.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment signaler un spam ?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Pour un commentaire spécifique : accédez au commentaire et cliquez sur la flèche déroulante pour signaler un abus.</p>
+                    <p>Pour un article spécifique : accédez à l'article, faites défiler vers le bas et cliquez sur signaler un abus.</p>
+                    <p>En général, vous pouvez remplir le <a href="#">formulaire</a> de signalement d'abus, ou tout simplement faire un mail à <a href="mailto:support@laravel.cm">support@laravel.cm</a> </p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
@@ -226,12 +236,12 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What JS framework does Tailwind UI use?</h3>
-                <div class="prose prose-sm leading-5"><p>All of the examples in Tailwind UI are provided in three formats: React, Vue, and vanilla HTML.</p>
-                    <p>The React and Vue examples are fully functional out-of-the-box, and are powered by <a href="https://headlessui.dev">Headless UI</a> — a library of unstyled components we designed to integrate perfectly with Tailwind CSS.</p>
-                    <p>The vanilla HTML examples <strong>do not include any JavaScript</strong> and are designed for people who prefer to write any necessary JavaScript themselves.</p>
-                    <p>Most of the components do not rely on JS at all, but for the ones that do (dropdowns, modals, etc.) we've provided some simple comments in the HTML to explain things like what classes you need use for different states (like a toggle switch being on or off), or what classes we recommend for transitioning elements on to or off of the screen (like a modal opening).</p>
-                    <p>To get a better idea of how this looks in practice, <a href="/documentation#integrating-with-javascript-frameworks">check out our documentation</a>.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Ou puis-je retrouver la communauté?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>La communauté est présente sur Twitter, Github, LinkedIn, Facebook et YouTube. Tous les liens sont disponibles dans le pied de page.</p>
+                    <p>Mais pour les canneaux de communication, le principal canal de communication et d'échange avec les membres de la communauté reste le groupe <a href="{{ route('slack') }}">Slack</a>. Vous pouvez rejoindre slack en vous rendant sur cette <a href="#">page</a>.</p>
+                    <p>Mais la communauté dispose aussi d'un groupe <a href="{{ route('telegram') }}">Telegram</a> et d'un groupe WhatsApp (limite par les règles de gestion de groupe de WhatsApp) qui sont accessible par tous.</p>
+                    <p>Ceci dit nous recommandons plus de rejoindre le groupe Slack.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
@@ -251,20 +261,23 @@
 
         <div class="flex-none px-2 w-1/3 hidden lg:block">
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What browsers does Tailwind UI support?</h3>
-                <div class="prose prose-sm leading-5"><p>The components in Tailwind UI are designed to work in the latest, stable releases of all major browsers, including Chrome, Firefox, Safari, and Edge.</p>
-                    <p>We don't support Internet Explorer 11.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment changer mon nom d'utilisateur Twitter/GitHub ?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Vous pouvez ajouter ou supprimer des associations Twitter/GitHub de vos paramètres, mais notez que vous ne pouvez le faire que si Twitter et GitHub sont connectés à votre compte. Si vous rencontrez des problèmes avec cela, envoyez un e-mail à <a href="mailto:support@laravel.cm">support@laravel.cm</a> et nous nous en occuperons.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Does Tailwind UI include Figma, Sketch, or Adobe XD files?</h3>
-                <div class="prose prose-sm leading-5"><p>No, Tailwind UI does not include design assets for tools like Figma, Sketch, or Adobe XD.</p>
-                    <p>We don't produce high-quality design artifacts as part of our own design and development process, so building these extra resources means we can't spend as much time creating new examples in code which is where we believe we can provide the most value.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment devenir Premium?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Devenir premium sur Laravel.cm, c'est soutenir la création de nouveaux contenus et accéder à du contenu exclusif pour apprendre et s'améliorer (comme le téléchargement des vidéos des sources, et des designs).</p>
+                    <p>Pour etre premium vous devez aller sur la page pour <a href="#">Devenir premiun</a> et choisir un abonnement.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What does "community access" mean?</h3>
-                <div class="prose prose-sm leading-5"><p>Any purchase of Tailwind UI includes access to our private Discord server where you can suggest new component ideas, ask your peers for help with any problems you run into, and talk with other users about building things with Tailwind UI.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Existe-t-il un guide sur l'utilisation de l'éditeur Markdown?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Oui! Laravel.cm utilise Markdown X réalisé par <a href="https://twitter.com/tnylea">Tony Lea</a> sur la plateforme <a href="https://devdojo.com">DevDojo</a>.</p>
+                    <p>Voici notre <a href="#">guide de l'éditeur</a>, vous pouvez également le trouver en cliquant sur le bouton Aide dans page de l'éditeur.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
@@ -284,7 +297,7 @@
 
         <div class="flex-none px-2 w-1/3 hidden lg:block">
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">{{ __("Qui peut publier les articles sur Laravel.cm?") }}</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">{{ __('Qui peut publier des articles/sujets sur Laravel.cm?') }}</h3>
                 <div class="prose prose-sm leading-5">
                     <p>Les modérateurs! Oui, vous avez la permission de publier un nouvel article, quel qu'il soit, du moment qu'il respecte les directives de notre communauté et passe par les filtres anti-spam de bon sens.</p>
                     <p>Votre article peut être supprimé à la discrétion des modérateurs s'ils estiment qu'il ne répond pas aux exigences de notre <a href="{{ route('rules') }}">code de conduite</a>.</p>
@@ -292,9 +305,11 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I use Tailwind UI for my own commercial projects?</h3>
-                <div class="prose prose-sm leading-5"><p>Absolutely! Your license gives you permission to build as many of your own projects as you like, whether those are simple public websites or SaaS applications that end users need to pay to access.</p>
-                    <p>For more information and examples, <a href="/license">read through our license</a>.</p>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment signaler un spam ?</h3>
+                <div class="prose prose-sm leading-5">
+                    <p>Pour un commentaire spécifique : accédez au commentaire et cliquez sur la flèche déroulante pour signaler un abus.</p>
+                    <p>Pour un article spécifique : accédez à l'article, faites défiler vers le bas et cliquez sur signaler un abus.</p>
+                    <p>En général, vous pouvez remplir le <a href="#">formulaire</a> de signalement d'abus, ou tout simplement faire un mail à <a href="mailto:support@laravel.cm">support@laravel.cm</a> </p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
