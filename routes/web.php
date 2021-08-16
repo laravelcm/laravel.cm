@@ -24,3 +24,17 @@ Route::view('faq', 'faq')->name('faq');
 // Social authentication
 Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');
 Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderCallback']);
+
+// Redirect Route
+Route::redirectMap([
+    '.env' => 'https://www.youtube.com/watch?v=M8ogFbLP9XQ',
+    'wp-login' => 'https://www.youtube.com/watch?v=M8ogFbLP9XQ',
+    'wp-admin' => 'https://www.youtube.com/watch?v=M8ogFbLP9XQ',
+    'facebook' => 'https://facebook.com/laravelcm',
+    'twitter' => 'https://twitter.com/laravelcm',
+    'telegram' => 'https://t.me/joinchat/UnTRApWa50zoRO0I',
+    'slack' => 'https://laravelcm.slack.com',
+    'linkedin' => 'https://www.linkedin.com/company/laravel-cameroun',
+    'github' => 'https://github.com/laravelcm',
+    'youtube' => 'https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw',
+]);

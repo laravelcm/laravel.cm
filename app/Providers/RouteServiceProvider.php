@@ -47,6 +47,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
+        Route::macro('redirectMap', function ($map, $status = 302) {
+            foreach ($map as $old => $new) {
+                Route::redirect($old, $new, $status)->name($old);
+            }
+        });
     }
 
     /**
