@@ -46,13 +46,13 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What version of Tailwind CSS is used?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment se passe le sponsoring sur Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5"><p>The components in Tailwind UI are authored using Tailwind CSS v2.0.</p>
                     <p>Learn more about this in our <a href="/documentation">getting started documentation</a>.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What does "free updates" include?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je participer a un podcast?</h3>
                 <div class="prose prose-sm leading-5"><p>We regularly add new Marketing and Application UI components whenever we have new ideas and all new components added to those categories will be always be totally free for existing customers.</p>
                     <p>To see what our previous updates have looked like, <a href="/changelog">check out our changelog</a>.</p>
                     <p>We do plan to work on new component kits in the future that will be sold separately (email templates and e-commerce are ideas we've tossed around), but any components we design and build that belong in an existing kit will always be added as a free update.</p>
@@ -79,14 +79,14 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What does "unlimited projects" mean?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment supprimer mon compte ?</h3>
                 <div class="prose prose-sm leading-5"><p>Unlike most other templates/themes, you don't have to buy a new Tailwind UI license every time you want to use it on a new project.</p>
                     <p>As long as what you're building will be owned by the Tailwind UI license holder, you can build as many sites as you want without ever having to buy an additional license.</p>
                     <p>For more information and examples, <a href="/license">read through our license</a>.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I use Tailwind UI for client projects?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Quelles technologies utilises Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5"><p>Yes! You can use Tailwind UI for basically anything — the only thing we disallow is using it to create derivative competing products.</p>
                     <p>For more information and examples, <a href="/license">read through our license</a>.</p>
                 </div>
@@ -100,20 +100,15 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I use Tailwind UI in open source projects?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je suivre les Flux RSS sur Laravel.cm ?</h3>
                 <div class="prose prose-sm leading-5"><p>Yep! As long as what you're building is some sort of actual website and not a derivative component library, theme builder, or other product where the primary purpose is clearly to repackage and redistribute our components, it's totally okay for that project to be open source.</p>
                     <p>For more information and examples of what is and isn't okay, <a href="/license">read through our license</a>.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I sell templates/themes I build with Tailwind UI?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je poster ou trouver un job sur Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5"><p>No, you cannot use Tailwind UI to create derivative products like themes, UI kits, page builders, or anything else where you would be repackaging and redistributing our components for someone else to use to build their own sites.</p>
                     <p>For more information and examples of what is and isn't okay, <a href="/license">read through our license</a>.</p>
-                </div>
-            </div>
-            <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What is your refund policy?</h3>
-                <div class="prose prose-sm leading-5"><p>If you're unhappy with your purchase for any reason, email us at <a href="mailto:support@tailwindui.com">support@tailwindui.com</a> within 90 days and we'll refund you in full, no questions asked.</p>
                 </div>
             </div>
         </div>
@@ -136,13 +131,13 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What version of Tailwind CSS is used?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment se passe le sponsoring sur Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5"><p>The components in Tailwind UI are authored using Tailwind CSS v2.0.</p>
                     <p>Learn more about this in our <a href="/documentation">getting started documentation</a>.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What does "free updates" include?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je participer a un podcast?</h3>
                 <div class="prose prose-sm leading-5"><p>We regularly add new Marketing and Application UI components whenever we have new ideas and all new components added to those categories will be always be totally free for existing customers.</p>
                     <p>To see what our previous updates have looked like, <a href="/changelog">check out our changelog</a>.</p>
                     <p>We do plan to work on new component kits in the future that will be sold separately (email templates and e-commerce are ideas we've tossed around), but any components we design and build that belong in an existing kit will always be added as a free update.</p>
@@ -188,14 +183,14 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What does "unlimited projects" mean?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment supprimer mon compte ?</h3>
                 <div class="prose prose-sm leading-5"><p>Unlike most other templates/themes, you don't have to buy a new Tailwind UI license every time you want to use it on a new project.</p>
                     <p>As long as what you're building will be owned by the Tailwind UI license holder, you can build as many sites as you want without ever having to buy an additional license.</p>
                     <p>For more information and examples, <a href="/license">read through our license</a>.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I use Tailwind UI for client projects?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Quelles technologies utilises Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5"><p>Yes! You can use Tailwind UI for basically anything — the only thing we disallow is using it to create derivative competing products.</p>
                     <p>For more information and examples, <a href="/license">read through our license</a>.</p>
                 </div>
@@ -209,20 +204,15 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I use Tailwind UI in open source projects?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je suivre les Flux RSS sur Laravel.cm ?</h3>
                 <div class="prose prose-sm leading-5"><p>Yep! As long as what you're building is some sort of actual website and not a derivative component library, theme builder, or other product where the primary purpose is clearly to repackage and redistribute our components, it's totally okay for that project to be open source.</p>
                     <p>For more information and examples of what is and isn't okay, <a href="/license">read through our license</a>.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I sell templates/themes I build with Tailwind UI?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je poster ou trouver un job sur Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5"><p>No, you cannot use Tailwind UI to create derivative products like themes, UI kits, page builders, or anything else where you would be repackaging and redistributing our components for someone else to use to build their own sites.</p>
                     <p>For more information and examples of what is and isn't okay, <a href="/license">read through our license</a>.</p>
-                </div>
-            </div>
-            <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What is your refund policy?</h3>
-                <div class="prose prose-sm leading-5"><p>If you're unhappy with your purchase for any reason, email us at <a href="mailto:support@tailwindui.com">support@tailwindui.com</a> within 90 days and we'll refund you in full, no questions asked.</p>
                 </div>
             </div>
         </div>
@@ -245,13 +235,13 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What version of Tailwind CSS is used?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment se passe le sponsoring sur Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5"><p>The components in Tailwind UI are authored using Tailwind CSS v2.0.</p>
                     <p>Learn more about this in our <a href="/documentation">getting started documentation</a>.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What does "free updates" include?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je participer a un podcast?</h3>
                 <div class="prose prose-sm leading-5"><p>We regularly add new Marketing and Application UI components whenever we have new ideas and all new components added to those categories will be always be totally free for existing customers.</p>
                     <p>To see what our previous updates have looked like, <a href="/changelog">check out our changelog</a>.</p>
                     <p>We do plan to work on new component kits in the future that will be sold separately (email templates and e-commerce are ideas we've tossed around), but any components we design and build that belong in an existing kit will always be added as a free update.</p>
@@ -281,14 +271,14 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What does "unlimited projects" mean?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Comment supprimer mon compte ?</h3>
                 <div class="prose prose-sm leading-5"><p>Unlike most other templates/themes, you don't have to buy a new Tailwind UI license every time you want to use it on a new project.</p>
                     <p>As long as what you're building will be owned by the Tailwind UI license holder, you can build as many sites as you want without ever having to buy an additional license.</p>
                     <p>For more information and examples, <a href="/license">read through our license</a>.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I use Tailwind UI for client projects?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Quelles technologies utilises Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5"><p>Yes! You can use Tailwind UI for basically anything — the only thing we disallow is using it to create derivative competing products.</p>
                     <p>For more information and examples, <a href="/license">read through our license</a>.</p>
                 </div>
@@ -313,20 +303,15 @@
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I use Tailwind UI in open source projects?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je suivre les Flux RSS sur Laravel.cm ?</h3>
                 <div class="prose prose-sm leading-5"><p>Yep! As long as what you're building is some sort of actual website and not a derivative component library, theme builder, or other product where the primary purpose is clearly to repackage and redistribute our components, it's totally okay for that project to be open source.</p>
                     <p>For more information and examples of what is and isn't okay, <a href="/license">read through our license</a>.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Can I sell templates/themes I build with Tailwind UI?</h3>
+                <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je poster ou trouver un job sur Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5"><p>No, you cannot use Tailwind UI to create derivative products like themes, UI kits, page builders, or anything else where you would be repackaging and redistributing our components for someone else to use to build their own sites.</p>
                     <p>For more information and examples of what is and isn't okay, <a href="/license">read through our license</a>.</p>
-                </div>
-            </div>
-            <div class="bg-skin-card p-6 rounded-md mt-4">
-                <h3 class="font-semibold text-skin-inverted font-sans mb-2">What is your refund policy?</h3>
-                <div class="prose prose-sm leading-5"><p>If you're unhappy with your purchase for any reason, email us at <a href="mailto:support@tailwindui.com">support@tailwindui.com</a> within 90 days and we'll refund you in full, no questions asked.</p>
                 </div>
             </div>
         </div>
