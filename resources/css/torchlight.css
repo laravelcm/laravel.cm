@@ -1,0 +1,33 @@
+/*
+ Margin and rounding are personal preferences,
+ overflow-x-auto is recommended.
+*/
+pre {
+  @apply my-4 rounded overflow-x-auto;
+}
+
+/*
+ Add some vertical padding and expand the width
+ to fill its container. The horizontal padding
+ comes at the line level so that background
+ colors extend edge to edge.
+*/
+pre code.torchlight {
+  @apply block py-4 min-w-max;
+}
+
+/*
+ Horizontal line padding.
+*/
+pre code.torchlight .line {
+  @apply px-4;
+}
+
+/*
+ Push the code away from the line numbers and
+ summary caret indicators.
+*/
+pre code.torchlight .line-number,
+pre code.torchlight .summary-caret {
+  @apply mr-4;
+}

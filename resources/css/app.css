@@ -8,6 +8,7 @@
 @import '~choices.js/public/assets/styles/choices.css';
 
 @import "tag.css";
+@import "torchlight.css";
 
 :root {
   --brand-laravel: #FF2D20;
