@@ -26,3 +26,6 @@ jobs:
 
       - name: Compile assets
         run: yarn run production
+
+      - name: Execute tests
+        run: vendor/bin/phpunit --verbose
