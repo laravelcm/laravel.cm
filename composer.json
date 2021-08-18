@@ -16,6 +16,7 @@
     "laravel/framework": "^8.12",
     "laravel/socialite": "^5.2",
     "laravel/tinker": "^2.5",
+    "league/commonmark": "^2.0",
     "torchlight/torchlight-laravel": "^0.5.3"
   },
   "require-dev": {
