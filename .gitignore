@@ -29,7 +29,6 @@ composer.phar
 # Laravel Exclude
 #
 sitemap.xml
-phpunit.xml
 .phpunit.result.cache
 .php-cs-fixer.cache
 /public/hot
