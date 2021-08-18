@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OAuthController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,11 @@ Route::view('faq', 'faq')->name('faq');
 // Social authentication
 Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');
 Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderCallback']);
+
+// Articles
+Route::prefix('articles')->group(function () {
+    Route::get('/', [ArticlesController::class, 'index'])->name('articles');
+});
 
 // Redirect Route
 Route::redirectMap([
