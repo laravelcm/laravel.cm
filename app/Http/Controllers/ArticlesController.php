@@ -18,6 +18,5 @@ class ArticlesController extends Controller
 
     public function show(Article $article)
     {
-
     }
 }
