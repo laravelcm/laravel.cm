@@ -29,6 +29,7 @@ Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderC
 // Articles
 Route::prefix('articles')->group(function () {
     Route::get('/', [ArticlesController::class, 'index'])->name('articles');
+    Route::get('/{article}', [ArticlesController::class, 'index'])->name('articles.show');
 });
 
 // Redirect Route
