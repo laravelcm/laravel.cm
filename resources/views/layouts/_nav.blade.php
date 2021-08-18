@@ -11,7 +11,7 @@
                     <a href="#" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center px-1 text-sm font-medium {{ active(['forum', 'threads*', 'thread'], 'text-skin-primary hover:text-skin-primary-hover') }}">
                         {{ __('Forum') }}
                     </a>
-                    <a href="#" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center px-1 text-sm font-medium {{ active(['articles', 'articles*'], 'text-skin-primary hover:text-skin-primary-hover') }}">
+                    <a href="{{ route('articles') }}" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center px-1 text-sm font-medium {{ active(['articles', 'articles*'], 'text-skin-primary hover:text-skin-primary-hover') }}">
                         {{ __('Articles') }}
                     </a>
                     <a href="#" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center px-1 text-sm font-medium {{ active(['tutorials', 'tutorials*'], 'text-skin-primary hover:text-skin-primary-hover') }}">
