@@ -7,6 +7,7 @@
   "require": {
     "php": "^8.0",
     "ext-json": "*",
+    "ext-fileinfo": "*",
     "blade-ui-kit/blade-heroicons": "^1.2",
     "blade-ui-kit/blade-ui-kit": "^0.2.0",
     "fideloper/proxy": "^4.4",
