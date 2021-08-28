@@ -20,6 +20,7 @@
     <link href="https://fonts.cdnfonts.com/css/operator-mono" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @livewireStyles
 
     @stack('meta')
 
@@ -35,5 +36,6 @@
 
     @yield('content')
 
+    @livewireScripts
 </body>
 </html>

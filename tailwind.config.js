@@ -99,6 +99,12 @@ module.exports = {
             },
             p: {
               fontWeight: 300
+            },
+            hr: {
+              borderColor: theme('borderColor.skin.base')
+            },
+            blockquote: {
+              color: theme('textColor.skin.inverted')
             }
           },
         },
