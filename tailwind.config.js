@@ -28,7 +28,8 @@ module.exports = {
           green: '#099170',
           red: '#e21b30',
           yellow: '#ffdc44',
-        }
+        },
+        body: 'rgb(var(--color-body-fill))',
       },
       fontFamily: {
         mono: ['Operator Mono', ...defaultTheme.fontFamily.mono],
