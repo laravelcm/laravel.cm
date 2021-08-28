@@ -8,6 +8,7 @@
 @import '~choices.js/public/assets/styles/choices.css';
 
 @import "tag.css";
+@import "forms.css";
 @import "torchlight.css";
 
 :root {
@@ -89,6 +90,8 @@
     --color-border-light: 55, 65, 81;
   }
 }
+
+[x-cloak] { display: none !important; }
 
 .logo-dark {
   display: none;
