@@ -31,7 +31,7 @@
             </div>
             <div class="mt-12">
                 <h2 class="text-sm font-semibold text-skin-base tracking-wide uppercase font-sans">Pages Populaires</h2>
-                <ul role="list" class="mt-4 border-t border-b border-skin-light divide-y divide-skin-base">
+                <ul role="list" class="mt-4 border-t border-b border-skin-base divide-y divide-skin-base">
                     <li class="relative py-6 flex items-start space-x-4">
                         <div class="flex-shrink-0">
                             <span class="flex items-center justify-center h-12 w-12 rounded-lg bg-green-50">

@@ -59,8 +59,8 @@
     --color-input-border: 209, 213, 219;
     --color-divide: 229, 231, 235;
     --color-divide-light: 243, 244, 246;
-    --color-border: var(--color-input-border);
-    --color-border-light: var(--color-divide);
+    --color-border: var(--color-divide);
+    --color-border-light: var(--color-divide-light);
   }
 
   .theme-dark {
@@ -86,7 +86,7 @@
     --color-input-border: 31, 41, 55;
     --color-divide: 55, 65, 81;
     --color-divide-light: 55, 65, 81;
-    --color-border: 31, 41, 55;
+    --color-border: 55, 65, 81;
     --color-border-light: 55, 65, 81;
   }
 }

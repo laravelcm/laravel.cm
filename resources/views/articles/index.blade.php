@@ -95,7 +95,7 @@
         </div>
         <div class="lg:grid lg:grid-cols-8 lg:gap-8 lg:col-span-7">
             <div class="lg:col-span-6">
-                <div class="pb-5 border-b border-skin-input">
+                <div class="pb-5 border-b border-skin-base">
                     <h1 class="text-3xl leading-8 font-extrabold text-skin-inverted font-sans">
                         Récentes publications
                     </h1>
