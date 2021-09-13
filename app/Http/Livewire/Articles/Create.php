@@ -90,7 +90,6 @@ class Create extends Component
         }
 
         if ($this->submitted) {
-
         }
 
         $this->redirect('/articles/me');
