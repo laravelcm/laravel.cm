@@ -27,7 +27,7 @@
             <div class="text-center">
                 <p class="text-sm font-semibold text-skin-primary uppercase tracking-wide font-sans">Erreur @yield('code')</p>
                 <h1 class="mt-2 text-4xl font-extrabold text-skin-inverted tracking-tight sm:text-5xl font-sans">@yield('message')</h1>
-                <p class="mt-2 text-lg text-skin-base font-normal">Nous rencontrons un problème pour traiter votre demande.</p>
+                <p class="mt-2 text-lg text-skin-base font-normal">Il semble y avoir un problème en ce moment! Veuillez réessayer plus tard.</p>
             </div>
             <div class="mt-12">
                 <h2 class="text-sm font-semibold text-skin-base tracking-wide uppercase font-sans">Pages Populaires</h2>
