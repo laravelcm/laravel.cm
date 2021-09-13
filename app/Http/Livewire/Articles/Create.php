@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Articles;
 
+use App\Models\Article;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -16,7 +17,9 @@ class Create extends Component
     public ?string $body = null;
     public ?string $canonical_url = null;
     public bool $show_toc = true;
+    public bool $submitted = true;
     public array $tags_selected = [];
+    public ?string $submitted_at = null;
     public $file;
 
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
@@ -34,6 +37,7 @@ class Create extends Component
             'tags_selected' => 'array|nullable',
             'tags.*' => 'exists:tags,id',
             'canonical_url' => 'url|nullable',
+            'file' => 'required|image|max:1024', // 1MB Max
         ];
     }
 
@@ -58,15 +62,38 @@ class Create extends Component
 
     public function submit()
     {
-        dd($this->tags_selected);
+        $this->submitted_at = now();
+        $this->store();
     }
 
     public function draft()
     {
+        $this->submitted = false;
+        $this->store();
     }
 
     public function store()
     {
+        $article = Article::create([
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'body' => $this->body,
+            'submitted' => $this->submitted,
+            'submitted_at' => $this->submitted_at,
+            'show_toc' => $this->show_toc,
+            'canonical_url' => $this->canonical_url,
+        ]);
+
+        if (count($this->tags_selected) > 0) {
+            $article->tags()->detach();
+            $article->tags()->attach($this->tags_selected);
+        }
+
+        if ($this->submitted) {
+
+        }
+
+        $this->redirect('/articles/me');
     }
 
     public function render()

@@ -52,6 +52,7 @@ module.exports = {
       },
       backgroundColor: {
         skin: {
+          primary: withOpacity('--color-text-primary'),
           link: withOpacity('--color-link-fill'),
           menu: withOpacity('--color-menu-fill'),
           body: withOpacity('--color-body-fill'),
