@@ -13,6 +13,7 @@ module.exports = {
   mode: 'jit',
   purge: {
     content: [
+      './app/**/*.php',
       './resources/**/*.blade.php',
       './resources/**/*.js',
     ],
