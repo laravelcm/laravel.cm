@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'username' => 'johndoe',
@@ -22,5 +22,7 @@ class UserSeeder extends Seeder
             'twitter_profile' => 'MonneyArthur',
             'password' => bcrypt('password'),
         ]);
+
+        $user->assignRole('admin');
     }
 }

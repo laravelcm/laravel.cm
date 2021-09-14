@@ -14,9 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(TagSeeder::class);
+        $this->call(RoleSeeder::class);
+
         if (! App::environment('production')) {
             $this->call(UserSeeder::class);
-            $this->call(TagSeeder::class);
         }
     }
 }
