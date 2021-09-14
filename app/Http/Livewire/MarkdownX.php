@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Markdown\MarkdownHelper;
 use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -10,12 +11,12 @@ use Livewire\Component;
 
 class MarkdownX extends Component
 {
-    public $content;
-    public $contentPreview;
-    public $name;
-    public $key;
-    public $style;
-    public $section = 'write';
+    public string $content;
+    public string $name;
+    public string $key;
+    public mixed $contentPreview;
+    public mixed $style;
+    public string $section = 'write';
 
     /*
      * Laravel livewire listeners, learn more at https://laravel-livewire.com/docs/events#event-listeners
@@ -79,7 +80,7 @@ class MarkdownX extends Component
      */
     public function updateContentPreview()
     {
-        $this->contentPreview = Str::markdown($this->content);
+        $this->contentPreview = MarkdownHelper::parseLiquidTags(Str::markdown($this->content));
     }
 
     /*

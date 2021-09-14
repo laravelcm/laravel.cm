@@ -8,16 +8,16 @@
                     </a>
                 </div>
                 <div class="hidden lg:ml-10 lg:flex lg:items-center lg:space-x-6 font-sans">
-                    <a href="#" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center px-1 text-sm font-medium {{ active(['forum', 'threads*', 'thread'], 'text-skin-primary hover:text-skin-primary-hover') }}">
+                    <a href="#" class="inline-flex items-center px-1 text-sm font-medium {{ active(['forum', 'threads*', 'thread'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
                         {{ __('Forum') }}
                     </a>
-                    <a href="{{ route('articles') }}" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center px-1 text-sm font-medium {{ active(['articles', 'articles*'], 'text-skin-primary hover:text-skin-primary-hover') }}">
+                    <a href="{{ route('articles') }}" class="inline-flex items-center px-1 text-sm font-medium {{ active(['articles', 'articles*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
                         {{ __('Articles') }}
                     </a>
-                    <a href="#" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center px-1 text-sm font-medium {{ active(['tutorials', 'tutorials*'], 'text-skin-primary hover:text-skin-primary-hover') }}">
+                    <a href="#" class="inline-flex items-center px-1 text-sm font-medium {{ active(['tutorials', 'tutorials*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
                         {{ __('Vidéos') }}
                     </a>
-                    <a href="#" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center px-1 text-sm font-medium {{ active(['discussions', 'discussions*'], 'text-skin-primary hover:text-skin-primary-hover') }}">
+                    <a href="#" class="inline-flex items-center px-1 text-sm font-medium {{ active(['discussions', 'discussions*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
                         {{ __('Discussions') }}
                     </a>
                     <div class="relative px-1 mt-1.5">
@@ -236,10 +236,10 @@
 
     <div x-show="open" class="lg:hidden font-sans" id="mobile-menu" style="display: none;">
         <div class="pt-2 pb-3 space-y-1">
-            <a href="#" class="border-transparent text-skin-menu hover:bg-skin-card-muted hover:border-skin hover:text-skin-menu-hover block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['forum', 'threads*', 'thread'], 'bg-green-50 border-green-500 text-green-700') }}">{{ __('Forum') }}</a>
-            <a href="#" class="border-transparent text-skin-menu hover:bg-skin-card-muted hover:border-skin hover:text-skin-menu-hover block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['articles', 'articles*'], 'bg-green-50 border-green-500 text-green-700') }}">{{ __('Articles') }}</a>
-            <a href="#" class="border-transparent text-skin-menu hover:bg-skin-card-muted hover:border-skin hover:text-skin-menu-hover block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['tutorials', 'tutorials*'], 'bg-green-50 border-green-500 text-green-700') }}">{{ __('Vidéos') }}</a>
-            <a href="#" class="border-transparent text-skin-menu hover:bg-skin-card-muted hover:border-skin hover:text-skin-menu-hover block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['discussions', 'discussions*'], 'bg-green-50 border-green-500 text-green-700') }}">{{ __('Discussions') }}</a>
+            <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['forum', 'threads*', 'thread'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Forum') }}</a>
+            <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['articles', 'articles*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Articles') }}</a>
+            <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['tutorials', 'tutorials*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Vidéos') }}</a>
+            <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['discussions', 'discussions*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Discussions') }}</a>
         </div>
         <div class="py-4 px-3 border-t border-skin-light">
             <h4 class="text-sm leading-5 font-medium uppercase tracking-wide text-skin-muted">{{ __('Autres') }}</h4>
@@ -289,11 +289,11 @@
             @auth
                 <div class="flex items-center px-4">
                     <div class="flex-shrink-0">
-                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixqx=8uCHNjpfsv&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                        <img class="h-10 w-10 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
                     </div>
                     <div class="ml-3">
-                        <div class="text-base font-medium text-gray-800">Tom Cook</div>
-                        <div class="text-sm font-medium text-gray-500">tom@example.com</div>
+                        <div class="text-base font-medium text-skin-inverted">{{ Auth::user()->name }}</div>
+                        <div class="text-sm font-medium text-skin-muted">{{ Auth::user()->email }}</div>
                     </div>
                     <button class="ml-auto flex-shrink-0 bg-skin-card p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                         <span class="sr-only">{{ __('Voir les notifications') }}</span>

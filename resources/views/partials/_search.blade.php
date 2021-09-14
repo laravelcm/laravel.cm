@@ -9,7 +9,7 @@
             id="search"
             type="search"
             name="search"
-            class="block w-full pl-10 pr-3 py-2 border border-skin-input rounded-md leading-5 bg-skin-input font-normal placeholder-skin-input focus:outline-none focus:placeholder-skin-input-focus focus:ring-1 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+            class="block w-full pl-10 pr-3 py-2 border border-skin-input rounded-md text-skin-base leading-5 bg-skin-body font-normal placeholder-skin-input focus:outline-none focus:placeholder-skin-input-focus focus:ring-1 focus:ring-green-500 focus:border-green-500 sm:text-sm"
             placeholder="{{ __('Rechercher un contenu...') }}"
         >
     </div>

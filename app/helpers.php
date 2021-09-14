@@ -4,9 +4,9 @@ if (! function_exists('active')) {
     /**
      * Sets the menu item class for an active route.
      */
-    function active($routes, string $activeClass = 'active', bool $condition = true): string
+    function active($routes, string $activeClass = 'active', string $defaultClass = '', bool $condition = true): string
     {
-        return call_user_func_array([app('router'), 'is'], (array) $routes) && $condition ? $activeClass : '';
+        return call_user_func_array([app('router'), 'is'], (array) $routes) && $condition ? $activeClass : $defaultClass;
     }
 }
 

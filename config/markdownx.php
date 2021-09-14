@@ -61,11 +61,11 @@ return [
         'bulleted_list',
         'numbered_list',
         'quote',
-        // 'giphy',
+        'giphy',
         'codepen',
         'codesandbox',
         'youtube',
-        // "buy_me_a_coffee"
+        'buy_me_a_coffee',
     ],
 
     'integrations' => [
