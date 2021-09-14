@@ -32,7 +32,7 @@ The following tools are required in order to start the installation.
 
 - PHP >=8.0
 - [Composer](https://getcomposer.org/download/)
-- [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Yarn](https://yarnpkg.com/getting-started/install)
 - [Valet](https://laravel.com/docs/valet#installation)
 
 ## Installation
@@ -43,7 +43,7 @@ The following tools are required in order to start the installation.
 2. Exécuter `composer install` pour installer les dépendances PHP
 3. Configurez une base de données locale appelée `laravelcm`
 4. Exécutez `composer setup` pour configurer l'application
-5. Configurer un pilote de messagerie fonctionnel comme [Mailtrap](https://mailtrap.io/)
+5. Configurer un pilote de messagerie fonctionnel comme [Mailtrap](https://mailtrap.io/) ou [Maildev](https://maildev.github.io/maildev/)
 6. Configurez les fonctionnalités (facultatives) ci-dessous
 
 Vous pouvez maintenant visiter l'application dans votre navigateur en visitant [http://laravel.cm.test](http://laravel.cm.test). Si vous avez amorcé la base de données, vous pouvez vous connecter à un compte de test avec ** `johndoe` ** & **` password` **.

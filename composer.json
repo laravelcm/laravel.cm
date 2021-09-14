@@ -62,6 +62,12 @@
     ],
     "lint": [
       "./vendor/bin/php-cs-fixer fix -vvv --show-progress=dots"
+    ],
+    "setup": [
+      "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+      "php artisan key:generate",
+      "php artisan migrate --seed",
+      "php artisan lcm:admin"
     ]
   },
   "extra": {
