@@ -8,7 +8,7 @@
             <a href="#" class="flex items-center pl-3 font-sans text-skin-base text-base font-medium">Mes articles</a>
         </div>
         <div class="flex items-center space-x-2 mt-3 sm:mt-0">
-            @role('admin')
+            @hasanyrole('admin|moderator')
                 <x-button type="button" wire:click="store">
                     <x-loader class="text-white" wire:loading wire:target="store" />
                     Publier
@@ -18,7 +18,7 @@
                     <x-loader class="text-white" wire:loading wire:target="submit" />
                     Soumettre
                 </x-button>
-            @endrole
+            @endhasanyrole
             <x-default-button type="button" wire:click="draft">
                 <x-loader class="text-white" wire:loading wire:target="draft" />
                 Brouillon
@@ -80,7 +80,7 @@
 
                                         <div class="mt-8 standard" wire:ignore>
                                             <x-label for="tags_selected">Tags</x-label>
-                                            <x-forms.select wire:model.debounce.500ms="tags_selected" id="tags_selected" name="tags_selected[]" class="mt-2" x-data="{}" x-init="function () { choices($el) }" multiple>
+                                            <x-forms.select wire:model="tags_selected" id="tags_selected" class="mt-2" x-data="{}" x-init="function () { choices($el) }" multiple>
                                                 @foreach($tags as $tag)
                                                     <option value="{{ $tag->id }}" @if(in_array($tag->id, $tags_selected)) selected @endif>{{ $tag->name }}</option>
                                                 @endforeach

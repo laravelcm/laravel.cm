@@ -2428,6 +2428,10 @@ select {
 	margin-top: 0px;
 }
 
+.mt-10 {
+	margin-top: 2.5rem;
+}
+
 .block {
 	display: block;
 }
@@ -3441,6 +3445,10 @@ select {
 
 .uppercase {
 	text-transform: uppercase;
+}
+
+.lowercase {
+	text-transform: lowercase;
 }
 
 .italic {

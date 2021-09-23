@@ -34,7 +34,8 @@ class Create extends Component
 
     public function mount()
     {
-        $this->submitted = ! auth()->user()->hasRole('admin');
+        $this->submitted = ! auth()->user()->hasAnyRole(['admin', 'moderator']);
+        $this->submitted_at = auth()->user()->hasAnyRole(['admin', 'moderator']) ? now() : null;
     }
 
     public function removeImage()
@@ -76,6 +77,7 @@ class Create extends Component
 
     public function store()
     {
+        dd($this->tags_selected);
         $this->validate();
 
         $article = Article::create([
@@ -90,9 +92,7 @@ class Create extends Component
             'cover_image' => $this->file->store('/', 'public'),
         ]);
 
-        if (collect($this->tags_selected)->isNotEmpty()) {
-            $article->tags()->sync($this->tags_selected);
-        }
+        $article->syncTags($this->tags_selected);
 
         if ($this->submitted) {
             // Envoi du mail a l'admin pour la validation de l'article

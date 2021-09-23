@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Article extends Model
@@ -53,6 +55,35 @@ class Article extends Model
         'is_sponsored' => 'boolean',
     ];
 
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = [
+        'author',
+        'tags',
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'cover_image_url',
+    ];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function excerpt(int $limit = 100): string
     {
         return Str::limit(strip_tags(md_to_html($this->body)), $limit);
@@ -68,6 +99,16 @@ class Article extends Model
         return $this->originalUrl() ?: route('articles.show', $this->slug);
     }
 
+    public function readTime(): int
+    {
+        return Str::readDuration($this->body);
+    }
+
+    public function getCoverImageUrlAttribute(): string
+    {
+        return Storage::disk('public')->url($this->cover_image);
+    }
+
     public function submittedAt(): ?Carbon
     {
         return $this->submitted_at;
@@ -76,6 +117,11 @@ class Article extends Model
     public function approvedAt(): ?Carbon
     {
         return $this->approved_at;
+    }
+
+    public function createdAt(): ?Carbon
+    {
+        return $this->created_at;
     }
 
     public function sponsoredAt(): ?Carbon
@@ -211,6 +257,16 @@ class Article extends Model
             ->orderBy('submitted_at', 'desc');
     }
 
+    public function scopePopular(Builder $query): Builder
+    {
+        return $query->orderBy('submitted_at', 'desc');
+    }
+
+    public function scopeTrending(Builder $query): Builder
+    {
+        return $query->orderBy('submitted_at', 'desc');
+    }
+
     public function markAsShared()
     {
         $this->update(['shared_at' => now()]);
@@ -222,5 +278,15 @@ class Article extends Model
             ->published()
             ->orderBy('submitted_at', 'asc')
             ->first();
+    }
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function isAuthoredBy(User $user): bool
+    {
+        return $this->author()->is($user);
     }
 }

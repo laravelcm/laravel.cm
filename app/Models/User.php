@@ -72,11 +72,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-    public function providers(): HasMany
-    {
-        return $this->hasMany(SocialAccount::class);
-    }
-
     public function hasProvider($provider): bool
     {
         foreach ($this->providers as $p) {
@@ -117,5 +112,25 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return $user;
+    }
+
+    public function providers(): HasMany
+    {
+        return $this->hasMany(SocialAccount::class);
+    }
+
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class, 'user_id');
+    }
+
+    public function latestArticles(int $amount = 10)
+    {
+        return $this->articles()->latest()->limit($amount)->get();
+    }
+
+    public function countArticles(): int
+    {
+        return $this->articles()->count();
     }
 }
