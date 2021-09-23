@@ -24,21 +24,22 @@ class Create extends Component
 
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 
+    protected $rules = [
+        'title' => ['required', 'max:100'],
+        'body' => ['required'],
+        'tags_selected' => 'nullable|array',
+        'canonical_url' => 'nullable|url',
+        'file' => 'required|image|max:1024', // 1MB Max
+    ];
+
+    public function mount()
+    {
+        $this->submitted = ! auth()->user()->hasRole('admin');
+    }
+
     public function removeImage()
     {
         $this->file = null;
-    }
-
-    public function rules(): array
-    {
-        return [
-            'title' => ['required', 'max:100'],
-            'body' => ['required'],
-            'tags_selected' => 'array|nullable',
-            'tags.*' => 'exists:tags,id',
-            'canonical_url' => 'url|nullable',
-            'file' => 'required|image|max:1024', // 1MB Max
-        ];
     }
 
     public function messages(): array
@@ -46,7 +47,8 @@ class Create extends Component
         return [
             'title.required' => 'Le titre de l\'article est requis',
             'title.max' => 'Le titre ne peux pas dépasser 100 caractères',
-            'body.required' => 'Le titre de l\'article est requis',
+            'body.required' => 'Le contenu de l\'article est requis',
+            'file.required' => 'L\'image de couverture est requise (dans les paramètres avancées)',
         ];
     }
 
@@ -74,6 +76,8 @@ class Create extends Component
 
     public function store()
     {
+        $this->validate();
+
         $article = Article::create([
             'title' => $this->title,
             'slug' => $this->slug,
@@ -82,17 +86,21 @@ class Create extends Component
             'submitted_at' => $this->submitted_at,
             'show_toc' => $this->show_toc,
             'canonical_url' => $this->canonical_url,
+            'user_id' => auth()->id(),
+            'cover_image' => $this->file->store('/', 'public'),
         ]);
 
-        if (count($this->tags_selected) > 0) {
-            $article->tags()->detach();
-            $article->tags()->attach($this->tags_selected);
+        if (collect($this->tags_selected)->isNotEmpty()) {
+            $article->tags()->sync($this->tags_selected);
         }
 
         if ($this->submitted) {
+            // Envoi du mail a l'admin pour la validation de l'article
+            session()->flash('success', 'Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.');
+            $this->redirect('/articles/me');
         }
 
-        $this->redirect('/articles/me');
+        $this->redirect('/admin/articles');
     }
 
     public function render()

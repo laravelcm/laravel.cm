@@ -2181,6 +2181,10 @@ select {
 	pointer-events: none;
 }
 
+.pointer-events-auto {
+	pointer-events: auto;
+}
+
 .static {
 	position: static;
 }
@@ -2784,6 +2788,10 @@ select {
 	align-items: flex-start;
 }
 
+.items-end {
+	align-items: flex-end;
+}
+
 .items-center {
 	align-items: center;
 }
@@ -3353,6 +3361,14 @@ select {
 	padding-right: 0.75rem;
 }
 
+.pt-0\.5 {
+	padding-top: 0.125rem;
+}
+
+.pt-0 {
+	padding-top: 0px;
+}
+
 .text-left {
 	text-align: left;
 }
@@ -3608,6 +3624,11 @@ select {
 	color: rgba(127, 29, 29, var(--tw-text-opacity));
 }
 
+.text-gray-400 {
+	--tw-text-opacity: 1;
+	color: rgba(156, 163, 175, var(--tw-text-opacity));
+}
+
 .underline {
 	text-decoration: underline;
 }
@@ -3784,6 +3805,10 @@ select {
 
 .duration-500 {
 	transition-duration: 500ms;
+}
+
+.duration-300 {
+	transition-duration: 300ms;
 }
 
 .ease-out {
@@ -3963,6 +3988,16 @@ select {
 	border-color: rgba(239, 68, 68, var(--tw-border-opacity));
 }
 
+.focus\:text-gray-500:focus {
+	--tw-text-opacity: 1;
+	color: rgba(107, 114, 128, var(--tw-text-opacity));
+}
+
+.focus\:text-skin-base:focus {
+	--tw-text-opacity: 1;
+	color: rgba(var(--color-text-base), var(--tw-text-opacity));
+}
+
 .focus\:underline:focus {
 	text-decoration: underline;
 }
@@ -4132,6 +4167,21 @@ select {
 		flex-shrink: 0;
 	}
 
+	.sm\:translate-y-0 {
+		--tw-translate-y: 0px;
+		transform: var(--tw-transform);
+	}
+
+	.sm\:translate-x-2 {
+		--tw-translate-x: 0.5rem;
+		transform: var(--tw-transform);
+	}
+
+	.sm\:translate-x-0 {
+		--tw-translate-x: 0px;
+		transform: var(--tw-transform);
+	}
+
 	.sm\:flex-row-reverse {
 		flex-direction: row-reverse;
 	}
@@ -4166,6 +4216,10 @@ select {
 
 	.sm\:p-8 {
 		padding: 2rem;
+	}
+
+	.sm\:p-6 {
+		padding: 1.5rem;
 	}
 
 	.sm\:py-24 {
