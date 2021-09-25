@@ -108,6 +108,17 @@ module.exports = {
             },
             blockquote: {
               color: theme('textColor.skin.inverted')
+            },
+            'p > code': {
+              display: 'inline-flex',
+              alignItems: 'center',
+              borderRadius: '.375rem',
+              fontSize: '.875rem',
+              lineHeight: '1.25rem',
+              fontWeight: 500,
+              padding: '.125rem .625rem',
+              color: theme('colors.green.800'),
+              backgroundColor: theme('colors.green.100'),
             }
           },
         },
