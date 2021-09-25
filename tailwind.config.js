@@ -14,6 +14,8 @@ module.exports = {
   purge: {
     content: [
       './app/**/*.php',
+      './vendor/livewire-ui/modal/resources/views/*.blade.php',
+      './storage/framework/views/*.php',
       './resources/**/*.blade.php',
       './resources/**/*.js',
     ],

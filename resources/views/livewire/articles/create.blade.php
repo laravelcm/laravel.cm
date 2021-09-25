@@ -57,6 +57,7 @@
                                         <div class="mt-2">
                                             <x-forms.single-upload id="file" wire:click="removeImage" wire:model="file" :file="$file" :error="$errors->first('file')" />
                                         </div>
+
                                         <div x-data="{ on: @entangle('show_toc') }" class="mt-8 flex-grow flex items-center justify-between">
                                             <div>
                                                 <dt class="text-sm leading-7 font-semibold text-skin-base">Afficher le Sommaire</dt>

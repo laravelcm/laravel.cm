@@ -18,6 +18,7 @@
     "laravel/socialite": "^5.2",
     "laravel/tinker": "^2.5",
     "league/commonmark": "^1.4",
+    "livewire-ui/modal": "^1.0",
     "livewire/livewire": "^2.5",
     "spatie/laravel-permission": "^5.1",
     "torchlight/torchlight-laravel": "^0.5.3"
