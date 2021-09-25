@@ -4,7 +4,7 @@ namespace App\Markdown;
 
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
-use League\CommonMark\Environment\Environment;
+use League\CommonMark\Environment;
 use League\CommonMark\Extension\Mention\MentionExtension;
 
 class MarkdownServiceProvider extends ServiceProvider

@@ -34,14 +34,14 @@ return [
         'label' => Components\Forms\Label::class,
         // 'logout' => Components\Buttons\Logout::class,
         // 'mapbox' => Components\Maps\Mapbox::class,
-        // 'markdown' => Components\Markdown\Markdown::class,
+        'markdown' => Components\Markdown\Markdown::class,
         'password' => Components\Forms\Inputs\Password::class,
         // 'pikaday' => Components\Forms\Inputs\Pikaday::class,
         // 'social-meta' => Components\Layouts\SocialMeta::class,
         'textarea' => Components\Forms\Inputs\Textarea::class,
-        // 'toc' => Components\Markdown\ToC::class,
+        'toc' => Components\Markdown\ToC::class,
         // 'trix' => Components\Editors\Trix::class,
-        // 'unsplash' => Components\Support\Unsplash::class,
+        'unsplash' => Components\Support\Unsplash::class,
     ],
 
     /*
