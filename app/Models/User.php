@@ -133,4 +133,15 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->articles()->count();
     }
+
+    public function githubUsername(): string
+    {
+        return $this->github_profile ?? '';
+    }
+
+    public function twitter(): ?string
+    {
+        return $this->twitter_profile;
+    }
+
 }

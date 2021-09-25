@@ -237,7 +237,7 @@
     <div x-show="open" class="lg:hidden font-sans" id="mobile-menu" style="display: none;">
         <div class="pt-2 pb-3 space-y-1">
             <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['forum', 'threads*', 'thread'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Forum') }}</a>
-            <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['articles', 'articles*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Articles') }}</a>
+            <a href="{{ route('articles') }}" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['articles', 'articles*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Articles') }}</a>
             <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['tutorials', 'tutorials*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Vidéos') }}</a>
             <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['discussions', 'discussions*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Discussions') }}</a>
         </div>

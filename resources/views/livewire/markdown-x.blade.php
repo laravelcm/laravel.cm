@@ -49,26 +49,26 @@
             </div>
             <div id="dropdown-{{ $key }}" x-ref="dropdown" @click="clickItem($event)" wire:ignore class="relative z-40"></div>
             <div wire:ignore x-show="debug" @click="$refs.editor.focus()" :class="{ 'w-full h-full bg-red-100 bg-opacity-50' : debuggerOpen, 'w-0 h-auto' : !debuggerOpen }" class="absolute z-40 cursor-text" x-cloak>
-                    <div x-show="debuggerOpen" x-ref="debugger" class="w-full opacity-75" x-cloak></div>
-                    <div x-ref="debugButton" class="relative opacity-0">
-                        <div @click="debuggerOpen=!debuggerOpen" :class="{ 'text-skin-muted bg-skin-menu hover:text-skin-base' : !debuggerOpen, 'text-red-400 hover:text-red-500 bg-red-50' : debuggerOpen }" class="absolute top-0 flex items-center justify-center rounded-sm cursor-pointer -ml-9 group w-9 h-9">
-                            <svg x-show="debuggerOpen" class="w-5 h-5 transform rotate-90 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0h24v24H0z" stroke="none"/><path d="M9 9V8a3 3 0 016 0v1M8 9h8a6 6 0 011 3v3a5 5 0 01-10 0v-3a6 6 0 011-3M3 13h4M17 13h4M12 20v-6M4 19l3.35-2M20 19l-3.35-2M4 7l3.75 2.4M20 7l-3.75 2.4"/></svg>
-                            <svg
-                                x-show="!debuggerOpen"
-                                x-transition:enter-start="rotate-90"
-                                x-transition:enter-end="rotate-0"
-                                class="w-5 h-5 transition-all duration-500 ease-out transform stroke-current group-hover:rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0h24v24H0z" stroke="none"/><path d="M9 9V8a3 3 0 016 0v1M8 9h8a6 6 0 011 3v3a5 5 0 01-10 0v-3a6 6 0 011-3M3 13h4M17 13h4M12 20v-6M4 19l3.35-2M20 19l-3.35-2M4 7l3.75 2.4M20 7l-3.75 2.4"/></svg>
-                        </div>
-                    </div>
-                    <div x-show="debuggerOpen" class="fixed bottom-0 right-0 px-3 py-2 bg-red-50">
-                        <div class="flex text-sm text-red-500">
-                            <span>Cursor Start:</span>
-                            <span class="mr-2" x-text="currentCaretPos.start"></span>
-                            <span>Cursor End:</span>
-                            <span class="mr-2" x-text="currentCaretPos.end"></span>
-                        </div>
+                <div x-show="debuggerOpen" x-ref="debugger" class="w-full opacity-75" x-cloak></div>
+                <div x-ref="debugButton" class="relative opacity-0">
+                    <div @click="debuggerOpen=!debuggerOpen" :class="{ 'text-skin-muted bg-skin-menu hover:text-skin-base' : !debuggerOpen, 'text-red-400 hover:text-red-500 bg-red-50' : debuggerOpen }" class="absolute top-0 flex items-center justify-center rounded-sm cursor-pointer -ml-9 group w-9 h-9">
+                        <svg x-show="debuggerOpen" class="w-5 h-5 transform rotate-90 stroke-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0h24v24H0z" stroke="none"/><path d="M9 9V8a3 3 0 016 0v1M8 9h8a6 6 0 011 3v3a5 5 0 01-10 0v-3a6 6 0 011-3M3 13h4M17 13h4M12 20v-6M4 19l3.35-2M20 19l-3.35-2M4 7l3.75 2.4M20 7l-3.75 2.4"/></svg>
+                        <svg
+                            x-show="!debuggerOpen"
+                            x-transition:enter-start="rotate-90"
+                            x-transition:enter-end="rotate-0"
+                            class="w-5 h-5 transition-all duration-500 ease-out transform stroke-current group-hover:rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0h24v24H0z" stroke="none"/><path d="M9 9V8a3 3 0 016 0v1M8 9h8a6 6 0 011 3v3a5 5 0 01-10 0v-3a6 6 0 011-3M3 13h4M17 13h4M12 20v-6M4 19l3.35-2M20 19l-3.35-2M4 7l3.75 2.4M20 7l-3.75 2.4"/></svg>
                     </div>
                 </div>
+                <div x-show="debuggerOpen" class="fixed bottom-0 right-0 px-3 py-2 bg-red-50">
+                    <div class="flex text-sm text-red-500">
+                        <span>Cursor Start:</span>
+                        <span class="mr-2" x-text="currentCaretPos.start"></span>
+                        <span>Cursor End:</span>
+                        <span class="mr-2" x-text="currentCaretPos.end"></span>
+                    </div>
+                </div>
+            </div>
             <div class="relative z-30 overflow-hidden @if(isset($style['height'])){{ $style['height'] }}@endif">
 
                 <div wire:ignore x-ref="placeholder" @click="$refs.editor.focus()" id="placeholder-{{ $key }}" x-show="placeholder" class="absolute z-20 text-skin-muted transition-opacity duration-200 ease-out" x-cloak>Type '/' for commands </div>
@@ -85,7 +85,7 @@
         </div>
 
         {{-- MarkdownX Preview Section --}}
-        <div x-show="section === 'preview'" wire:target="updateContentPreview" class="@if(isset($style['preview'])){{ $style['preview'] }}@else{{ 'h-full bg-skin-card min-h-screen relative z-30 px-5 pt-5 prose md:prose-xl lg:prose-2xl max-w-none' }}@endif" x-cloak>
+        <div x-show="section === 'preview'" wire:target="updateContentPreview" class="@if(isset($style['preview'])){{ $style['preview'] }}@else{{ 'h-full bg-skin-card min-h-screen relative z-30 px-5 pt-5 prose md:prose-xl lg:prose-2xl max-w-none' }}@endif" id="preview" x-cloak>
             {!! $contentPreview !!}
         </div>
         {{-- End: MarkdownX Preview Section --}}
@@ -197,18 +197,19 @@
                 debuggerOpen: false,
                 dropFiles: false,
                 dynamicEditorEvents: [], // use this to prevent duplicate dynamic events from being created.
-                init(){
+                init() {
                     let that = this;
+                    highlightCode(this.$el);
 
-                    this.$watch('placeholder', function(value){
-                        if(!value){
+                    this.$watch('placeholder', function (value) {
+                        if(! value) {
                             that.repositionPlaceholder();
                         }
                     });
 
-                    setTimeout(function(){
+                    setTimeout(function() {
                         //that.placeholder = true;
-                        if(that.autofocus){
+                        if(that.autofocus) {
                             that.$refs.editor.focus();
                         }
                     }, 1);

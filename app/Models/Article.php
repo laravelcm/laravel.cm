@@ -84,7 +84,7 @@ class Article extends Model
         return 'slug';
     }
 
-    public function excerpt(int $limit = 100): string
+    public function excerpt(int $limit = 150): string
     {
         return Str::limit(strip_tags(md_to_html($this->body)), $limit);
     }
@@ -99,6 +99,16 @@ class Article extends Model
         return $this->originalUrl() ?: route('articles.show', $this->slug);
     }
 
+    public function nextArticle()
+    {
+        return self::where('id', '>', $this->id)->orderBy('id')->first();
+    }
+
+    public function previousArticle()
+    {
+        return self::where('id', '<', $this->id)->orderByDesc('id')->first();
+    }
+
     public function readTime(): int
     {
         return Str::readDuration($this->body);
@@ -107,6 +117,11 @@ class Article extends Model
     public function getCoverImageUrlAttribute(): string
     {
         return Storage::disk('public')->url($this->cover_image);
+    }
+
+    public function showToc()
+    {
+        return $this->show_toc;
     }
 
     public function submittedAt(): ?Carbon

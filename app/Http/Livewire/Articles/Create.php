@@ -77,7 +77,6 @@ class Create extends Component
 
     public function store()
     {
-        dd($this->tags_selected);
         $this->validate();
 
         $article = Article::create([
