@@ -4,7 +4,7 @@
 
 @section('body')
 
-    <article class="lg:grid lg:grid-cols-9 lg:gap-10">
+    <article class="relative lg:grid lg:grid-cols-9 lg:gap-10">
         <div class="hidden lg:block lg:col-span-2">
             <div class="divide-y divide-skin-base sticky top-4">
                 <div class="pb-6">
@@ -152,6 +152,10 @@
         <div class="hidden lg:block lg:col-span-2">
             <div class="sticky top-4">
                 @if($article->showToc())
+                    <div class="">
+
+                    </div>
+
                     <div class="bg-skin-card px-4 py-6 rounded-lg shadow-lg">
                         <h4 class="text-sm text-skin-inverted font-semibold leading-tight tracking-widest uppercase">Table des matières</h4>
                         <x-toc class="mt-4 toc" id="toc">{!! $article->body !!}</x-toc>
@@ -162,5 +166,70 @@
             </div>
         </div>
     </article>
+
+    @if($article->showToc())
+        <div x-data="{ openTOC: false }" class="relative lg:hidden">
+            <button
+                @click="openTOC =! openTOC"
+                class="fixed z-30 right-0 top-40 flex items-center justify-center block px-1.5 py-1 h-10 w-10 mt-8 -mr-1 text-skin-base border border-skin-light rounded-l-lg shadow hover:text-skin-inverted sm:mt-12 lg:hidden bg-skin-card hover:bg-skin-card-muted md:w-auto">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 21" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="currentColor" fill-rule="nonzero">
+                        <circle cx="2.286" cy="2.286" r="2.286" />
+                        <circle cx="2.286" cy="10.286" r="2.286" />
+                        <circle cx="2.286" cy="18.286" r="2.286" />
+                        <path d="M9.143 4.571h12.571a2.286 2.286 0 000-4.571H9.143a2.286 2.286 0 000 4.571zM21.714 8H9.143a2.286 2.286 0 000 4.571h12.571a2.286 2.286 0 000-4.571zM21.714 16H9.143a2.286 2.286 0 000 4.571h12.571a2.286 2.286 0 100-4.571z" />
+                    </g>
+                </svg>
+                <span class="hidden ml-1 text-sm font-semibold uppercase md:block">Sommaire</span>
+            </button>
+
+            <div
+                @keydown.window.escape="openTOC = false"
+                x-show="openTOC"
+                class="fixed inset-0 z-50 overflow-hidden"
+                aria-labelledby="slide-over-title"
+                x-ref="dialog"
+                aria-modal="true"
+            >
+
+                <div class="absolute inset-0 overflow-hidden">
+                    <div class="absolute inset-0" @click="openTOC = false" aria-hidden="true">
+                        <div class="fixed inset-y-0 right-0 pl-10 mt-16 max-w-full flex">
+                            <div x-show="openTOC"
+                                 x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+                                 x-transition:enter-start="translate-x-full"
+                                 x-transition:enter-end="translate-x-0"
+                                 x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
+                                 x-transition:leave-start="translate-x-0"
+                                 x-transition:leave-end="translate-x-full"
+                                 class="w-screen max-w-xs"
+                            >
+                                <div class="h-[450px] flex flex-col py-6 bg-skin-card shadow-xl rounded-l-lg overflow-y-scroll">
+                                    <div class="px-4 sm:px-6">
+                                        <div class="flex items-start justify-between">
+                                            <h2 class="text-lg font-medium text-skin-inverted" id="slide-over-title">
+                                                Table des Matières
+                                            </h2>
+                                            <div class="ml-3 h-7 flex items-center">
+                                                <button type="button" class="bg-skin-card rounded-md text-skin-muted hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" @click="openTOC = false">
+                                                    <span class="sr-only">Fermer</span>
+                                                    <x-heroicon-o-x class="h-6 w-6" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-6 relative flex-1 px-4 sm:px-6">
+                                        <x-toc class="toc" id="toc">{!! $article->body !!}</x-toc>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    @endif
 
 @endsection

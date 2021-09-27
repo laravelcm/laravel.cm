@@ -22,7 +22,6 @@
                                 <span class="truncate lowercase">{{ $tag->name }}</span>
                             </button>
                         @endforeach
-
                     </div>
                 </div>
 
@@ -36,6 +35,8 @@
                     </h1>
                     <p class="mt-2 max-w-4xl text-sm text-skin-base leading-5 font-sans">Tous les articles récemment publiés.</p>
                 </div>
+
+                <x-articles.filter :selectedSortBy="$selectedSortBy" forMobile/>
 
                 <div class="py-12 space-y-8 sm:space-y-10 max-w-lg mx-auto lg:max-w-none">
                     @foreach ($articles as $article)
