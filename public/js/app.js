@@ -4957,7 +4957,9 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./editor */ "./resources/js/editor.js"); // Add Alpine to window object.
+__webpack_require__(/*! ./editor */ "./resources/js/editor.js");
+
+__webpack_require__(/*! ./scrollspy */ "./resources/js/scrollspy.js"); // Add Alpine to window object.
 
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__.default; // Create a multiselect element.
@@ -5084,6 +5086,49 @@ window.expand = function (element, minHeight) {
 
   element.style.cssText = 'height:' + element.scrollHeight + 'px';
 };
+
+/***/ }),
+
+/***/ "./resources/js/scrollspy.js":
+/*!***********************************!*\
+  !*** ./resources/js/scrollspy.js ***!
+  \***********************************/
+/***/ (() => {
+
+var tableOfContents = document.querySelector('.toc'); // console.log(tableOfContents)
+
+if (tableOfContents) {
+  var headers = [].slice.call(document.querySelectorAll('.anchor')).map(function (_ref) {
+    var name = _ref.name,
+        position = _ref.offsetTop;
+    return {
+      name: name,
+      position: position
+    };
+  }).reverse();
+  highlightLink(headers[headers.length - 1].id);
+  window.addEventListener('scroll', function (event) {
+    var position = (document.documentElement.scrollTop || document.body.scrollTop) + 34;
+    var current = headers.filter(function (header) {
+      return header.position < position;
+    })[0] || headers[headers.length - 1];
+    var active = document.querySelector('.toc .active');
+
+    if (active) {
+      active.classList.remove('active');
+    }
+
+    highlightLink(current.name);
+  });
+}
+
+function highlightLink(name) {
+  var highlight = document.querySelector(".toc a[href=\"#".concat(name, "\"]"));
+
+  if (highlight) {
+    highlight.parentNode.classList.add('active');
+  }
+}
 
 /***/ }),
 

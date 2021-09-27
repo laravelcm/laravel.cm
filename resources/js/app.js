@@ -4,6 +4,7 @@ import Choices from 'choices.js';
 
 require('./bootstrap');
 require('./editor');
+require('./scrollspy');
 
 // Add Alpine to window object.
 window.Alpine = Alpine;
