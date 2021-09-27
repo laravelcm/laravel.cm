@@ -4462,6 +4462,11 @@ select {
 	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
 }
 
+.active\:bg-skin-footer:active {
+	--tw-bg-opacity: 1;
+	background-color: rgba(var(--color-footer-fill), var(--tw-bg-opacity));
+}
+
 .active\:text-gray-700:active {
 	--tw-text-opacity: 1;
 	color: rgba(55, 65, 81, var(--tw-text-opacity));
@@ -4470,6 +4475,11 @@ select {
 .active\:text-gray-500:active {
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
+}
+
+.active\:text-skin-base:active {
+	--tw-text-opacity: 1;
+	color: rgba(var(--color-text-base), var(--tw-text-opacity));
 }
 
 .group:hover .group-hover\:block {
