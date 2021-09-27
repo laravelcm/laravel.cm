@@ -1,0 +1,56 @@
+/** Choices.js **/
+.choices {
+  margin-top: 8px;
+}
+
+.standard .choices__input.choices__input--cloned {
+  @apply hidden;
+}
+
+.standard .choices__inner {
+  @apply rounded border border-skin-input w-full bg-skin-input h-12 p-2 flex items-center !important;
+}
+
+.standard .choices__list--dropdown {
+  @apply border-2 border-skin-input !important;
+}
+
+.standard .choices__list--dropdown .choices__list {
+  @apply bg-skin-input !important;
+}
+
+.standard .choices__list--single {
+  @apply p-0 !important;
+}
+
+.standard .choices__item {
+  @apply text-sm bg-skin-footer text-skin-base cursor-pointer rounded px-2 py-1 my-0 border-0 !important;
+}
+
+.standard .choices__item.choices__item--choice {
+  @apply rounded-none py-2 !important;
+}
+
+.standard .choices__item.choices__item--choice.choices__item--selectable {
+  @apply bg-skin-input rounded-none text-skin-base p-2 !important;
+}
+
+.standard .choices__item.choices__item--choice.choices__item--selectable:hover {
+  @apply bg-skin-card !important;
+}
+
+.standard .choices__item.choices__item--selectable {
+  @apply bg-green-500 border-green-500 text-white !important;
+}
+
+.standard .choices__item.is-highlighted {
+  @apply bg-green-600 border-green-600 text-white !important;
+}
+
+.standard .choices[data-type*='select-one']:after {
+  border-color: var(--color-input-border) transparent transparent transparent !important;
+}
+
+.standard .choices[data-type*='select-one'] .choices__input {
+  @apply rounded-none border-b-2 border-skin-input !important;
+}

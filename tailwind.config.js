@@ -13,6 +13,9 @@ module.exports = {
   mode: 'jit',
   purge: {
     content: [
+      './app/**/*.php',
+      './vendor/livewire-ui/modal/resources/views/*.blade.php',
+      './storage/framework/views/*.php',
       './resources/**/*.blade.php',
       './resources/**/*.js',
     ],
@@ -28,7 +31,8 @@ module.exports = {
           green: '#099170',
           red: '#e21b30',
           yellow: '#ffdc44',
-        }
+        },
+        body: 'rgb(var(--color-body-fill))',
       },
       fontFamily: {
         mono: ['Operator Mono', ...defaultTheme.fontFamily.mono],
@@ -51,6 +55,7 @@ module.exports = {
       },
       backgroundColor: {
         skin: {
+          primary: withOpacity('--color-text-primary'),
           link: withOpacity('--color-link-fill'),
           menu: withOpacity('--color-menu-fill'),
           body: withOpacity('--color-body-fill'),
@@ -99,6 +104,23 @@ module.exports = {
             },
             p: {
               fontWeight: 300
+            },
+            hr: {
+              borderColor: theme('borderColor.skin.base')
+            },
+            blockquote: {
+              color: theme('textColor.skin.inverted')
+            },
+            'p > code': {
+              display: 'inline-flex',
+              alignItems: 'center',
+              borderRadius: '.375rem',
+              fontSize: '.875rem',
+              lineHeight: '1.25rem',
+              fontWeight: 500,
+              padding: '.125rem .625rem',
+              color: theme('colors.green.800'),
+              backgroundColor: theme('colors.green.100'),
             }
           },
         },

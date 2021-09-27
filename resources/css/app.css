@@ -8,7 +8,9 @@
 @import '~choices.js/public/assets/styles/choices.css';
 
 @import "tag.css";
+@import "forms.css";
 @import "torchlight.css";
+@import "toc.css";
 
 :root {
   --brand-laravel: #FF2D20;
@@ -31,6 +33,7 @@
   --brand-entrepreneuriat: #0EA5E9;
   --brand-paiement-en-ligne: #10B981;
   --brand-branding: #EC4899;
+  --brand-applications: #0284C7;
 }
 
 @layer base {
@@ -57,8 +60,8 @@
     --color-input-border: 209, 213, 219;
     --color-divide: 229, 231, 235;
     --color-divide-light: 243, 244, 246;
-    --color-border: var(--color-input-border);
-    --color-border-light: var(--color-divide);
+    --color-border: var(--color-divide);
+    --color-border-light: var(--color-divide-light);
   }
 
   .theme-dark {
@@ -84,10 +87,16 @@
     --color-input-border: 31, 41, 55;
     --color-divide: 55, 65, 81;
     --color-divide-light: 55, 65, 81;
-    --color-border: 31, 41, 55;
+    --color-border: 55, 65, 81;
     --color-border-light: 55, 65, 81;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+[x-cloak] { display: none !important; }
 
 .logo-dark {
   display: none;
@@ -100,3 +109,4 @@
 .theme-dark .logo-dark {
   display: block;
 }
+
