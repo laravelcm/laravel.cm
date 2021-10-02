@@ -16,11 +16,11 @@ class ReactionSeeder extends Seeder
     {
         Reaction::createFromName('clap');
         Reaction::createFromName('fire');
-        Reaction::createFromName('heart');
+        Reaction::createFromName('handshake');
         Reaction::createFromName('joy');
+        Reaction::createFromName('love');
         Reaction::createFromName('money');
         Reaction::createFromName('pray');
         Reaction::createFromName('party');
-        Reaction::createFromName('raised_hands');
     }
 }
