@@ -13,6 +13,7 @@ class Browse extends Component
 
     public string $sortBy = 'recent';
     public ?string $tag = null;
+    public int $perPage = 10;
 
     protected $queryString = [
         'tag' => ['except' => ''],
@@ -22,6 +23,11 @@ class Browse extends Component
     public function toggleTag($tag): void
     {
         $this->tag = $this->tag !== $tag && $this->tagExists($tag) ? $tag : null;
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += 10;
     }
 
     public function sortBy($sort): void
@@ -61,7 +67,7 @@ class Browse extends Component
         $articles->{$this->sortBy}();
 
         return view('livewire.articles.browse', [
-            'articles' => $articles->paginate(10),
+            'articles' => $articles->paginate($this->perPage),
             'tags' => $tags,
             'selectedTag' => $selectedTag,
             'selectedSortBy' => $this->sortBy,

@@ -23,14 +23,14 @@
             </p>
             <div class="mt-3 flex items-center font-sans">
                 <div class="flex-shrink-0">
-                    <a href="/user/{{ $article->author->name }}">
+                    <a href="/user/{{ $article->author->username }}">
                         <span class="sr-only">{{ $article->author->name }}</span>
                         <img class="h-10 w-10 rounded-full" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}">
                     </a>
                 </div>
                 <div class="ml-3">
                     <p class="text-sm font-medium text-skin-inverted">
-                        <a href="/user/{{ $article->author->name }}" class="hover:underline">
+                        <a href="/user/{{ $article->author->username }}" class="hover:underline">
                             {{ $article->author->name }}
                         </a>
                     </p>

@@ -27,7 +27,6 @@ class Reactions extends Component
 
     public function render()
     {
-        // dd($article->getReactionsSummary()->sum('count'));
         return view('livewire.articles.reactions');
     }
 }
