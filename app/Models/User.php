@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasProfilePhoto;
+use App\Traits\Reacts;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +16,8 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory,
         Notifiable,
         HasProfilePhoto,
-        HasRoles;
+        HasRoles,
+        Reacts;
 
     /**
      * The attributes that are mass assignable.

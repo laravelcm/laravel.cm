@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Contracts\ReactableInterface;
 use App\Traits\HasSlug;
 use App\Traits\HasTags;
+use App\Traits\Reactable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,11 +14,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class Article extends Model
+class Article extends Model implements ReactableInterface
 {
-    use HasFactory,
-        HasSlug,
-        HasTags;
+    use HasFactory, HasSlug, HasTags, Reactable;
 
     /**
      * The attributes that are mass assignable.

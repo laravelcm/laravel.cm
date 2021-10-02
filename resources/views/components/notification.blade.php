@@ -1,12 +1,13 @@
 <div
     x-data="{
         title: '',
+        status: 'success',
         messages: [],
         remove(message) {
             this.messages.splice(this.messages.indexOf(message), 1)
         },
     }"
-    x-on:notify.window="let message = $event.detail.message; messages.push(message); title = $event.detail.title; setTimeout(() => { remove(message) }, 5000)"
+    x-on:notify.window="let message = $event.detail.message; messages.push(message); title = $event.detail.title; status = $event.detail.status; setTimeout(() => { remove(message) }, 5000)"
     class="fixed z-30 inset-0 flex flex-col items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:justify-start space-y-4"
 >
     <template x-for="(message, messageIndex) in messages" :key="messageIndex" hidden>
@@ -23,7 +24,8 @@
                 <div class="p-4">
                     <div class="flex items-start">
                         <div class="flex-shrink-0">
-                            <x-heroicon-o-check-circle class="h-6 w-6 text-green-400" />
+                            <x-heroicon-o-check-circle class="h-6 w-6 text-green-400" x-show="status === 'success'" />
+                            <x-heroicon-o-x-circle class="h-6 w-6 text-red-400" x-show="status === 'error'" />
                         </div>
                         <div class="ml-3 w-0 flex-1 pt-0.5">
                             <p x-text="title" class="text-sm leading-5 font-medium text-skin-inverted"></p>
