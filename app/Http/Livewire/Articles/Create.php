@@ -4,13 +4,14 @@ namespace App\Http\Livewire\Articles;
 
 use App\Models\Article;
 use App\Models\Tag;
+use App\Traits\WithTagsAssociation;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class Create extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, WithTagsAssociation;
 
     public ?string $title = null;
     public ?string $slug = null;
@@ -18,7 +19,6 @@ class Create extends Component
     public ?string $canonical_url = null;
     public bool $show_toc = true;
     public bool $submitted = true;
-    public array $tags_selected = [];
     public ?string $submitted_at = null;
     public $file;
 
@@ -91,7 +91,7 @@ class Create extends Component
             'cover_image' => $this->file->store('/', 'public'),
         ]);
 
-        $article->syncTags($this->tags_selected);
+        $article->syncTags($this->associateTags);
 
         if ($this->submitted) {
             // Envoi du mail a l'admin pour la validation de l'article
