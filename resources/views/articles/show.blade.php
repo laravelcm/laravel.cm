@@ -72,7 +72,7 @@
                         </div>
                     @endif
                 </div>
-                <livewire:articles.reactions :article="$article" />
+                <livewire:reactions :model="$article" />
             </div>
         </div>
         <div class="lg:col-span-5">

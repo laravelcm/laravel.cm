@@ -1,5 +1,5 @@
 <div class="pt-6 relative" x-data="{ showReactions: false }">
-    @if($article->getReactionsSummary()->isEmpty())
+    @if($model->getReactionsSummary()->isEmpty())
         <button
             @click="showReactions = ! showReactions"
             class="flex items-center text-skin-base hover:underline text-sm leading-5 focus:outline-none focus:ring-0"
@@ -13,10 +13,10 @@
             class="rounded-md flex relative justify-between items-center py-2 px-3 cursor-pointer h-8 bg-skin-card hover:bg-skin-card-muted rounded-md shadow-md"
         >
             <div class="flex items-center justify-center space-x-2">
-                @foreach($article->getReactionsSummary() as $reaction)
+                @foreach($model->getReactionsSummary() as $reaction)
                     <img class="w-4 h-4" src="{{ asset("/images/reactions/{$reaction->name}.svg") }}" alt="{{ $reaction->name }} emoji">
                 @endforeach
-                <span class="ml-3 text-sm font-medium text-green-500">{{ $article->getReactionsSummary()->sum('count') }}</span>
+                <span class="ml-3 text-sm font-medium text-green-500">{{ $model->getReactionsSummary()->sum('count') }}</span>
             </div>
         </button>
     @endif
