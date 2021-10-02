@@ -109,7 +109,7 @@
                     </div>
                 </a>
             </header>
-            <div class="mt-6 aspect-w-3 aspect-h-2 sm:mt-8 mx-auto">
+            <div class="mt-6 aspect-w-4 aspect-h-2 sm:mt-8 mx-auto">
                 <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->cover_image_url }}" alt="{{ $article->title }}" />
             </div>
             <div

@@ -21,12 +21,10 @@ if (tableOfContents) {
 	});
 }
 
-
 function highlightLink(name) {
 	let highlight = document.querySelector(`.toc a[href="#${name}"]`);
 
 	if (highlight) {
 		highlight.parentNode.classList.add('active');
 	}
-
 }
