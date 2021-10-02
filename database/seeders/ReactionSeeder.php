@@ -17,7 +17,7 @@ class ReactionSeeder extends Seeder
         Reaction::createFromName('clap');
         Reaction::createFromName('fire');
         Reaction::createFromName('heart');
-        Reaction::createFromName('joy_cat');
+        Reaction::createFromName('joy');
         Reaction::createFromName('money');
         Reaction::createFromName('pray');
         Reaction::createFromName('party');
