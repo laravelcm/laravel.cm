@@ -4,10 +4,10 @@
 
 @section('body')
 
-    <article class="relative lg:grid lg:grid-cols-9 lg:gap-10">
+    <article class="relative lg:grid lg:grid-cols-9 lg:gap-10" xmlns:livewire="http://www.w3.org/1999/html">
         <div class="hidden lg:block lg:col-span-2">
-            <div class="divide-y divide-skin-base sticky top-4">
-                <div class="pb-6">
+            <div class="divide-y divide-skin-base sticky space-y-6 top-4">
+                <div>
                     <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase font-sans">A propos de l’auteur</h4>
                     <div class="mt-6 space-y-4">
                         <a href="/user/{{ $article->author->username }}" class="flex-shrink-0 block">
@@ -72,6 +72,7 @@
                         </div>
                     @endif
                 </div>
+                <livewire:articles.reactions :article="$article" />
             </div>
         </div>
         <div class="lg:col-span-5">

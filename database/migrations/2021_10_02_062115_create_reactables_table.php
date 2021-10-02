@@ -18,7 +18,6 @@ class CreateReactablesTable extends Migration
             $table->foreignId('reaction_id')->constrained();
             $table->morphs('reactable');
             $table->morphs('responder');
-            $table->timestamps();
         });
     }
 

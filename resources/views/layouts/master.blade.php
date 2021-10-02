@@ -36,6 +36,7 @@
 
     @yield('content')
 
+    <x-notification />
     @livewireScripts
     @livewire('livewire-ui-modal')
 </body>
