@@ -84,7 +84,7 @@ class Article extends Model implements ReactableInterface
         return 'slug';
     }
 
-    public function excerpt(int $limit = 150): string
+    public function excerpt(int $limit = 110): string
     {
         return Str::limit(strip_tags(md_to_html($this->body)), $limit);
     }
