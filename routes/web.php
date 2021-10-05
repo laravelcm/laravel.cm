@@ -32,6 +32,7 @@ Route::prefix('articles')->group(function () {
     Route::get('/new', [ArticlesController::class, 'create'])->name('articles.new');
     Route::post('/new', [ArticlesController::class, 'store'])->name('articles.store');
     Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
+    Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
 });
 
 // Redirect Route

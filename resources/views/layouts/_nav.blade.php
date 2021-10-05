@@ -155,10 +155,52 @@
             </div>
             <div class="hidden lg:ml-6 lg:flex lg:items-center">
                 @auth
-                    <button class="flex-shrink-0 bg-skin-card p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    <button class="flex-shrink-0 bg-skin-card p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <span class="sr-only">{{ __('Voir les notifications') }}</span>
-                        <x-heroicon-o-bell  class="h-5 w-5"/>
+                        <x-heroicon-o-bell class="h-5 w-5"/>
                     </button>
+
+                    <!-- Add actions dropdown -->
+                    <div x-data="{ open: false }" @keydown.escape.stop="open = false;" @click.outside="open = false;" class="ml-4 relative flex-shrink-0">
+                        <div>
+                            <button type="button" class="flex-shrink-0 bg-skin-card p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500" x-ref="button" @click="open =! open">
+                                <x-heroicon-o-plus class="h-5 w-5" />
+                            </button>
+                        </div>
+
+                        <div x-show="open"
+                             x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="transform opacity-0 scale-95"
+                             x-transition:enter-end="transform opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="transform opacity-100 scale-100"
+                             x-transition:leave-end="transform opacity-0 scale-95"
+                             class="origin-top absolute right-0 mt-2 w-56 rounded-md shadow-lg py-1 bg-skin-menu divide-y divide-skin-light ring-1 ring-black ring-opacity-5 focus:outline-none"
+                             x-ref="menu-items"
+                             role="menu"
+                             aria-orientation="vertical"
+                             aria-labelledby="menu-button"
+                             tabindex="-1"
+                             @keydown.tab="open = false"
+                             @keydown.enter.prevent="open = false;"
+                             @keyup.space.prevent="open = false;"
+                             style="display: none;">
+                            <div class="py-1" role="none">
+                                <a href="{{ route('articles.new') }}" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
+                                    Nouvel article
+                                </a>
+                                <a href="#" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
+                                    Nouvelle discussion
+                                </a>
+                                <a href="#" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
+                                    Nouveau tutoriel
+                                </a>
+                                <a href="#" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
+                                    Nouveau thread
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Profile dropdown -->
                     <div @keydown.escape.stop="open = false;" @click.outside="open = false;" class="ml-4 relative flex-shrink-0">
@@ -218,7 +260,6 @@
                                 </form>
                             </div>
                         </div>
-
                     </div>
                 @else
                     <div class="relative flex items-center space-x-6 font-sans">

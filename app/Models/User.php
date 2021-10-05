@@ -85,6 +85,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return false;
     }
 
+    public function isAdmin(): bool
+    {
+        return $this->hasRole('admin');
+    }
+
+    public function isModerator(): bool
+    {
+        return $this->hasRole('moderator');
+    }
+
     public static function findByUsername(string $username): self
     {
         return static::where('username', $username)->firstOrFail();

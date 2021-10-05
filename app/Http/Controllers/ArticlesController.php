@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Policies\ArticlePolicy;
 use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
@@ -32,5 +33,12 @@ class ArticlesController extends Controller
     public function create()
     {
         return view('articles.new');
+    }
+
+    public function edit(Article $article)
+    {
+        $this->authorize(ArticlePolicy::UPDATE, $article);
+
+        return view('articles.edit', compact('article'));
     }
 }

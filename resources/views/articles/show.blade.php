@@ -120,6 +120,28 @@
                 <x-markdown anchors>{!! $article->body !!}</x-markdown>
             </div>
 
+            @if(auth()->check() && auth()->id() === $article->user_id)
+
+                <div class="relative mt-10">
+                    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                        <div class="w-full border-t border-skin-base"></div>
+                    </div>
+                    <div class="relative flex justify-center">
+                        <span class="relative z-0 inline-flex shadow-sm rounded-md -space-x-px">
+                            <a href="{{ route('articles.edit', $article) }}" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-skin-base bg-skin-card text-sm font-medium text-gray-400 hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
+                                <span class="sr-only">Éditer</span>
+                                <x-heroicon-s-pencil class="h-5 w-5" />
+                            </a>
+                            <a href="#" class="relative inline-flex items-center px-4 py-2 rounded-r-md border border-skin-base bg-skin-card text-sm font-medium text-gray-400 hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
+                                <span class="sr-only">Supprimer</span>
+                                <x-heroicon-s-trash class="h-5 w-5" />
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+            @endif
+
             <footer class="mt-10 border-t border-skin-light lg:hidden">
                 <div class="space-y-8 py-8 sm:flex sm:items-center sm:space-y-0">
                     @if($next = $article->nextArticle())
