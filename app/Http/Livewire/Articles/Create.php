@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Articles;
 
 use App\Models\Article;
 use App\Models\Tag;
-use App\Traits\WithTagsAssociation;
 use App\Traits\WithArticleAttributes;
+use App\Traits\WithTagsAssociation;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
