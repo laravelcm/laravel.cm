@@ -70,7 +70,7 @@
                                                 wire:click="removeImage"
                                                 wire:model="file"
                                                 :file="$file"
-                                                :preview="$preview"
+                                                :preview="isset($preview) ? $preview : null"
                                                 :error="$errors->first('file')"
                                             />
                                         </div>
@@ -117,7 +117,7 @@
     <main class="relative max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8 z-0">
         <x-validation-errors />
 
-        @if(! $article)
+        @if(! isset($article))
             <x-rules-banner />
         @endif
 
