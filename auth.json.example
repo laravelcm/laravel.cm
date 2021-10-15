@@ -1,8 +1,8 @@
 {
   "http-basic": {
     "satis.spatie.be": {
-      "username": "jv.quilichini@gmail.com",
-      "password": "TCSYlGBL30nsmlFHbMajDulKYwqBMI2sutyGnM0gonrBFu1SILqASHTkp220uT0u"
+      "username": "<YOUR-SPATIE.BE-ACCOUNT-EMAIL-ADDRESS-HERE>",
+      "password": "<YOUR-MEDIA-LIBRARY-PRO-LICENSE-KEY-HERE>"
     }
   }
 }

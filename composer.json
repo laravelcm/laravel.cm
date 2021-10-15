@@ -20,6 +20,7 @@
     "league/commonmark": "^1.4",
     "livewire-ui/modal": "^1.0",
     "livewire/livewire": "^2.5",
+    "spatie/laravel-medialibrary-pro": "^1.0.0",
     "spatie/laravel-permission": "^5.1",
     "torchlight/torchlight-laravel": "^0.5.3"
   },
@@ -85,5 +86,11 @@
     "sort-packages": true
   },
   "minimum-stability": "dev",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://satis.spatie.be"
+    }
+  ]
 }
