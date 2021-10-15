@@ -243,7 +243,7 @@
                                     <x-heroicon-o-user-circle class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
                                     {{ __('Mon profil') }}
                                 </a>
-                                <a href="#" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-2">
+                                <a href="{{ route('user.settings') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-2">
                                     <x-heroicon-o-cog class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
                                     {{ __('Paramètres') }}
                                 </a>

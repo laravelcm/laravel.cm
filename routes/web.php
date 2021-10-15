@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,12 @@ Route::prefix('articles')->group(function () {
     Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
 });
 
+// User settings
+Route::prefix('settings')->as('user.')->group(function () {
+    Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
+    Route::put('/', [User\SettingController::class, 'update'])->name('settings.update');
+});
+
 // Redirect Route
 Route::redirectMap([
     '.env' => 'https://www.youtube.com/watch?v=M8ogFbLP9XQ',
@@ -48,3 +55,5 @@ Route::redirectMap([
     'github' => 'https://github.com/laravelcm',
     'youtube' => 'https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw',
 ]);
+
+Route::mediaLibrary();
