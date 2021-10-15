@@ -24,6 +24,7 @@
     "axios": "^0.21.1",
     "choices.js": "^9.0.1",
     "highlight.js": "^10.7.1",
+    "intl-tel-input": "^17.0.13",
     "tailwindcss": "^2.2.4"
   }
 }

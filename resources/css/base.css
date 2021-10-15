@@ -1,0 +1,7 @@
+input {
+  width: 100%;
+}
+
+.hide-scroll::-webkit-scrollbar { display: none; }
+
+[x-cloak] {display: none; }
