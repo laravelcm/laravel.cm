@@ -29,10 +29,12 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
             'username' => 'required|alpha_dash|max:255|unique:users,username,' . Auth::id(),
             'twitter_profile' => 'max:255|nullable|unique:users,twitter_profile,' . Auth::id(),
             'github_profile' => 'max:255|nullable|unique:users,github_profile,' . Auth::id(),
             'bio' => 'max:160',
+            'website' => 'url',
             'avatar' => $this->validateSingleMedia()
                 ->extension(['png', 'jpg', 'jpeg'])
                 ->maxItemSizeInKb(1024),

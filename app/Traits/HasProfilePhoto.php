@@ -14,7 +14,7 @@ trait HasProfilePhoto
     public function getProfilePhotoUrlAttribute(): string
     {
         if ($this->avatar_type === 'storage') {
-            return Storage::disk('avatars')->url($this->avatar);
+            return $this->getFirstMediaUrl('avatar');
         }
 
         $social_avatar = $this->providers()->where('provider', $this->avatar_type)->first();
