@@ -66,6 +66,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_login_at' => 'datetime',
+        'settings' => 'array',
     ];
 
     /**
@@ -164,5 +165,31 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function twitter(): ?string
     {
         return $this->twitter_profile;
+    }
+
+    /**
+     * Retrieve a setting with a given name or fall back to the default.
+     */
+    public function setting(string $name, $default = null)
+    {
+        if ($this->settings && array_key_exists($name, $this->settings)) {
+            return $this->settings[$name];
+        }
+
+        return $default;
+    }
+
+    /**
+     * Update one or more settings and then optionally save the model.
+     */
+    public function settings(array $revisions, bool $save = true): self
+    {
+        $this->settings = array_merge($this->settings ?? [], $revisions);
+
+        if ($save) {
+            $this->save();
+        }
+
+        return $this;
     }
 }

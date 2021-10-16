@@ -40,6 +40,7 @@ Route::prefix('articles')->group(function () {
 Route::prefix('settings')->as('user.')->group(function () {
     Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
     Route::put('/', [User\SettingController::class, 'update'])->name('settings.update');
+    Route::view('/customization', 'user.customization')->name('customization');
 });
 
 // Redirect Route

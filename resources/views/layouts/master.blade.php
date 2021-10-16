@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class='theme-dark'>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="{{ get_current_theme()}}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
