@@ -4,7 +4,7 @@
         id="{{ $id }}"
         rows="{{ $rows }}"
         {{ $attributes->merge([
-            'class' => 'bg-skin-input shadow-sm focus:border-flag-green focus:ring focus:ring-flag-green focus:ring-opacity-50 mt-1 block w-full sm:text-sm font-normal border-skin-input rounded-md' . ($errors->has($name) ? ' border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : '')
+            'class' => 'bg-skin-input shadow-sm focus:border-flag-green focus:ring-flag-green mt-1 block w-full text-skin-base focus:outline-none sm:text-sm font-normal border-skin-input rounded-md' . ($errors->has($name) ? ' border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500' : '')
         ]) }}
     >{{ old($name, $slot) }}</textarea>
 

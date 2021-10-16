@@ -1,14 +1,17 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @import "~highlight.js/styles/atom-one-dark.css";
 @import '~choices.js/public/assets/styles/choices.css';
+@import '~intl-tel-input/build/css/intlTelInput.css';
 
+@import "base.css";
 @import "tag.css";
 @import "forms.css";
 @import "torchlight.css";
 @import "toc.css";
+@import "media-library.css";
 
 :root {
   --brand-laravel: #FF2D20;

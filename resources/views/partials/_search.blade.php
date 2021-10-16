@@ -1,5 +1,5 @@
 <div class="max-w-lg w-full lg:max-w-xs" x-data="{ results: false, threads: [], articles: [] }">
-    <label for="search" class="sr-only">Search</label>
+    <label for="search" class="sr-only">Recherche</label>
     <div class="relative">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <x-heroicon-o-search class="h-5 w-5 text-skin-muted"/>

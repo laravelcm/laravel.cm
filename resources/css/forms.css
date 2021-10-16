@@ -1,3 +1,11 @@
+.iti {
+  display: block;
+}
+
+.iti__selected-flag {
+  padding: 0 10px;
+}
+
 /** Choices.js **/
 .choices {
   margin-top: 8px;

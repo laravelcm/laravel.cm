@@ -13,14 +13,14 @@
             </div>
             <form class="space-y-6" action="{{ route('login') }}" method="POST">
                 @csrf
-                <div class="rounded-md shadow-sm -space-y-px">
+                <div class="rounded-md shadow-sm space-y-4">
                     <div>
                         <label for="email-address" class="sr-only">{{ __('Adresse E-mail') }}</label>
-                        <x-email id="email-address" name="email" autocomplete="email" required class="appearance-none rounded-none rounded-t-md focus:z-10" placeholder="{{ __('Adresse E-mail') }}" />
+                        <x-email id="email-address" name="email" autocomplete="email" required placeholder="{{ __('Adresse E-mail') }}" />
                     </div>
                     <div>
                         <label for="password" class="sr-only">{{ __('Mot de passe') }}</label>
-                        <x-password id="password" name="password" autocomplete="current-password" required class="appearance-none rounded-none rounded-b-md focus:z-10" placeholder="{{ __('Mot de passe') }}" />
+                        <x-password id="password" name="password" autocomplete="current-password" required placeholder="{{ __('Mot de passe') }}" />
                     </div>
                 </div>
 

@@ -2,6 +2,9 @@ import Alpine from 'alpinejs';
 import hljs from 'highlight.js';
 import Choices from 'choices.js';
 
+// Alpine plugins.
+import internationalNumber from "./plugins/internationalNumber";
+
 require('./bootstrap');
 require('./editor');
 require('./scrollspy');
@@ -20,5 +23,7 @@ window.highlightCode = (element) => {
     hljs.highlightBlock(block);
   });
 };
+
+Alpine.data('internationalNumber', internationalNumber)
 
 Alpine.start();

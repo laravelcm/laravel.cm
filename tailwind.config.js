@@ -19,9 +19,9 @@ module.exports = {
       './resources/**/*.blade.php',
       './resources/**/*.js',
     ],
-    safelist: [
-
-    ],
+    options: {
+      safelist: [/^media-library/],
+    },
   },
   darkMode: false, // or 'media' or 'class'
   theme: {

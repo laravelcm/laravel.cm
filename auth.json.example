@@ -1,0 +1,8 @@
+{
+  "http-basic": {
+    "satis.spatie.be": {
+      "username": "<YOUR-SPATIE.BE-ACCOUNT-EMAIL-ADDRESS-HERE>",
+      "password": "<YOUR-MEDIA-LIBRARY-PRO-LICENSE-KEY-HERE>"
+    }
+  }
+}
