@@ -24,7 +24,7 @@
                         {{ __('Mot de passe') }}
                     </x-nav-link>
 
-                    <x-nav-link href="#" :active="request()->routeIs('user.customization')">
+                    <x-nav-link :href="route('user.customization')" :active="request()->routeIs('user.customization')">
                         <x-heroicon-o-template class="flex-shrink-0 -ml-1 mr-3 h-6 w-6 @if(request()->routeIs('user.customization')) text-green-600 @else text-skin-muted  @endif " />
                         {{ __('Apparence') }}
                     </x-nav-link>

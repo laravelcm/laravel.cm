@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('twitter_profile')->nullable();
             $table->string('website')->nullable();
             $table->boolean('opt_in')->default(false);
+            $table->json('settings')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
