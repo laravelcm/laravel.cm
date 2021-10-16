@@ -1,19 +1,21 @@
-<div>
-    <div class="relative">
-        @if ($attributes->get('prefix-icon'))
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                @svg($attributes->get('prefix-icon'), ['class' => 'h-5 w-5 text-skin-muted'])
-            </div>
-        @endif
+<div class="{{ $attributes->get('container-class') }}">
+    <div class="relative {{ $attributes->get('container-input-class') }}">
+        @include('partials._leading-addons')
 
         <input
             name="{{ $name }}"
             type="{{ $type }}"
             id="{{ $id }}"
             @if ($value)value="{{ $value }}"@endif
-            {{ $attributes->merge([
-                'class' => 'bg-skin-input shadow-sm focus:ring-flag-green focus:border-flag-green block w-full placeholder-skin-input focus:outline-none focus:placeholder-skin-input-focus font-normal text-skin-base sm:text-sm border-skin-input rounded-md' . ($attributes->get('prefix-icon') ? ' pl-10' : '') . ($errors->has($name) ? ' border-red-300 text-red-500 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : '')
-            ]) }}
+            @if ($errors->has($name))aria-invalid="true"@endif
+            @class([
+                'bg-skin-input shadow-sm focus:ring-flag-green focus:border-flag-green block w-full placeholder-skin-input focus:outline-none focus:placeholder-skin-input-focus font-normal text-skin-base sm:text-sm border-skin-input rounded-md',
+                'flex-1 block w-full min-w-0 rounded-none rounded-r-md' => $attributes->get('leading-addon'),
+                'pl-16 sm:pl-14' => $attributes->get('inline-addon'),
+                'pl-10' => $attributes->get('leading-icon') || $attributes->get('isPhone'),
+                'border-red-300 text-red-500 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' => $errors->has($name),
+            ])
+            {{ $attributes }}
         />
 
         @if ($errors->has($name))
