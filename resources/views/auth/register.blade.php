@@ -154,11 +154,7 @@
             </div>
             <div class="mt-8">
 
-                @if (session('status'))
-                    <div class="mb-4 font-medium text-sm text-green-600">
-                        {{ session('status') }}
-                    </div>
-                @endif
+                <x-status-message />
 
                 <form class="space-y-6" action="{{ route('register') }}" method="POST">
                     @csrf
