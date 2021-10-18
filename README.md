@@ -48,11 +48,26 @@ The following tools are required in order to start the installation.
 
 Vous pouvez maintenant visiter l'application dans votre navigateur en visitant [http://laravel.cm.test](http://laravel.cm.test). Si vous avez amorcé la base de données, vous pouvez vous connecter à un compte de test avec ** `johndoe` ** & **` password` **.
 
+### Media Library Pro
+
+Pour que l'upload de fichier fonctionne en local (pour les elements qui utilise Media Library Pro comme la modification de la photo de profil) vous devez renseignez la Licence avec votre compte de Spatie. Pour ce projet une licence commune est disponible etant une `single Licence` pour ce projet uniquement. Vous devez copier coller ce code dans le fichier `auth.json` qui a ete cree a la racine et relancer la commande `composer install`
+
+```json
+{
+    "http-basic": {
+        "satis.spatie.be": {
+            "username": "<YOUR-SPATIE.BE-ACCOUNT-EMAIL-ADDRESS-HERE>",
+            "password": "<YOUR-MEDIA-LIBRARY-PRO-LICENSE-KEY-HERE>"
+        }
+    }
+}
+```
+
 ### Github Authentication (optionnel)
 
 Pour que l'authentification Github fonctionne localement, vous devez [enregistrer une nouvelle application OAuth sur Github](https://github.com/settings/applications/new). Utilisez `http://laravel.cm.test` pour l'URL de la page d'accueil et `http://laravel.cm.test/auth/github` pour l'URL de rappel. Lorsque vous avez créé l'application, remplissez l'ID et le secret dans votre fichier `.env` dans les variables d'environnement ci-dessous. Vous devriez maintenant pouvoir vous authentifier avec Github.
 
-```
+```shell
 GITHUB_ID=
 GITHUB_SECRET=
 GITHUB_URL=http://laravel.cm.test/auth/github
@@ -62,7 +77,7 @@ GITHUB_URL=http://laravel.cm.test/auth/github
 
 Pour permettre le partage automatique des articles publiés sur Twitter, vous devez [créer une application Twitter](https://developer.twitter.com/apps/). Une fois l'application créée, mettez à jour les variables ci-dessous dans votre fichier `.env`. La clé et le secret du consommateur ainsi que le jeton et le secret d'accès se trouvent dans la section «Clés et jetons» de l'interface utilisateur des développeurs Twitter.
 
-```
+```shell
 TWITTER_CONSUMER_KEY=
 TWITTER_CONSUMER_SECRET=
 TWITTER_ACCESS_TOKEN=
