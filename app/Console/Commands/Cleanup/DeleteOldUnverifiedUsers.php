@@ -32,7 +32,7 @@ class DeleteOldUnverifiedUsers extends Command
 
         if ($query->get()->isNotEmpty()) {
             foreach ($query->get() as $user) {
-                $user->notify(new SendEMailToDeletedUser());
+                $user->notify((new SendEMailToDeletedUser())->delay(now()->addMinute(5)));
             }
         }
 
