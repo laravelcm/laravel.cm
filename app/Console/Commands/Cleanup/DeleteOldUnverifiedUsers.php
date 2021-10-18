@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Cleanup;
 
 use App\Models\User;
+use App\Notifications\SendEMailToDeletedUser;
 use Illuminate\Console\Command;
 
 class DeleteOldUnverifiedUsers extends Command
@@ -25,10 +26,17 @@ class DeleteOldUnverifiedUsers extends Command
     {
         $this->info('Deleting old unverified users...');
 
-        $count = User::query()
+        $query = User::query()
             ->whereNull('email_verified_at')
-            ->where('created_at', '<', now()->subDays(10))
-            ->delete();
+            ->where('created_at', '<', now()->subDays(10));
+
+        if ($query->get()->isNotEmpty()) {
+            foreach ($query->get() as $user) {
+                $user->notify(new SendEMailToDeletedUser());
+            }
+        }
+
+        $count = $query->delete();
 
         $this->comment("Deleted {$count} unverified users.");
 

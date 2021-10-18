@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('media-library:delete-old-temporary-uploads')->daily();
         $schedule->command('sitemap:generate')->daily();
+        $schedule->command('lcm:delete-old-unverified-users')->daily();
     }
 
     /**
