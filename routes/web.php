@@ -36,12 +36,15 @@ Route::prefix('articles')->group(function () {
     Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
 });
 
-// User settings
-Route::prefix('settings')->as('user.')->group(function () {
+// Settings
+Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {
     Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
     Route::put('/', [User\SettingController::class, 'update'])->name('settings.update');
     Route::view('/customization', 'user.customization')->name('customization');
 });
+
+// User
+Route::redirect('/dashboard', '/user');
 
 // Redirect Route
 Route::redirectMap([

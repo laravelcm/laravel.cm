@@ -4,17 +4,11 @@ namespace App\Http\Controllers\User;
 
 use App\Events\EmailAddressWasChanged;
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\Authenticate;
 use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Support\Facades\Auth;
 
 class SettingController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(Authenticate::class);
-    }
-
     public function profile()
     {
         return view('user.profile');
@@ -24,7 +18,7 @@ class SettingController extends Controller
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
-        $email = $user->email;
+        $emailAddress = $user->email;
 
         $user->update([
             'name' => $request->name,
@@ -44,7 +38,7 @@ class SettingController extends Controller
             $user->save();
         }
 
-        if ($request->email !== $email) {
+        if ($request->email !== $emailAddress) {
             $user->email_verified_at = null;
             $user->save();
 
