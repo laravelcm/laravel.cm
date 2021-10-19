@@ -19,7 +19,7 @@
                         {{ __('Mon profil') }}
                     </x-nav-link>
 
-                    <x-nav-link href="#" :active="request()->routeIs('user.password')">
+                    <x-nav-link :href="route('user.password')" :active="request()->routeIs('user.password')">
                         <x-heroicon-o-lock-closed class="flex-shrink-0 -ml-1 mr-3 h-6 w-6 @if(request()->routeIs('user.password')) text-green-600 @else text-skin-muted  @endif " />
                         {{ __('Mot de passe') }}
                     </x-nav-link>

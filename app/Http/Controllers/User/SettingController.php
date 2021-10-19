@@ -4,8 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Events\EmailAddressWasChanged;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class SettingController extends Controller
 {
@@ -48,5 +50,19 @@ class SettingController extends Controller
         session()->flash('status', 'Paramètres enregistrés avec succès! Si vous avez changé votre adresse e-mail, vous recevrez une adresse e-mail pour la reconfirmer.');
 
         return redirect()->route('user.settings');
+    }
+
+    public function password()
+    {
+        return view('user.password');
+    }
+
+    public function updatePassword(UpdatePasswordRequest $request)
+    {
+        Auth::user()->update(['password' => Hash::make($request->password)]);
+
+        session()->flash('status', 'Votre mot de passe a été changé avec succès.');
+
+        return redirect()->back();
     }
 }
