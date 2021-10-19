@@ -4255,6 +4255,12 @@ select {
 .-ml-px {
 	margin-left: -1px;
 }
+.-ml-0\.5 {
+	margin-left: -0.125rem;
+}
+.-ml-0 {
+	margin-left: 0px;
+}
 .block {
 	display: block;
 }
@@ -4672,6 +4678,11 @@ select {
 	margin-right: calc(1.5rem * var(--tw-space-x-reverse));
 	margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.space-y-5 > :not([hidden]) ~ :not([hidden]) {
+	--tw-space-y-reverse: 0;
+	margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
+	margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+}
 .divide-y > :not([hidden]) ~ :not([hidden]) {
 	--tw-divide-y-reverse: 0;
 	border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
@@ -4906,6 +4917,10 @@ select {
 .bg-gray-700 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(55, 65, 81, var(--tw-bg-opacity));
+}
+.bg-indigo-100 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(224, 231, 255, var(--tw-bg-opacity));
 }
 .bg-opacity-50 {
 	--tw-bg-opacity: 0.5;
@@ -5335,6 +5350,14 @@ select {
 .text-gray-700 {
 	--tw-text-opacity: 1;
 	color: rgba(55, 65, 81, var(--tw-text-opacity));
+}
+.text-indigo-800 {
+	--tw-text-opacity: 1;
+	color: rgba(55, 48, 163, var(--tw-text-opacity));
+}
+.text-indigo-400 {
+	--tw-text-opacity: 1;
+	color: rgba(129, 140, 248, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;
@@ -5835,6 +5858,10 @@ html {
 		grid-column: span 1 / span 1;
 	}
 
+	.sm\:col-span-3 {
+		grid-column: span 3 / span 3;
+	}
+
 	.sm\:my-8 {
 		margin-top: 2rem;
 		margin-bottom: 2rem;
@@ -5965,6 +5992,10 @@ html {
 
 	.sm\:grid-cols-3 {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.sm\:grid-cols-5 {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
 	}
 
 	.sm\:flex-row {
@@ -6938,6 +6969,10 @@ html {
 		grid-column: span 9 / span 9;
 	}
 
+	.lg\:col-span-10 {
+		grid-column: span 10 / span 10;
+	}
+
 	.lg\:mx-0 {
 		margin-left: 0px;
 		margin-right: 0px;
@@ -7038,6 +7073,10 @@ html {
 
 	.lg\:gap-16 {
 		gap: 4rem;
+	}
+
+	.lg\:gap-12 {
+		gap: 3rem;
 	}
 
 	.lg\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
