@@ -343,8 +343,15 @@
                 </div>
                 <div class="mt-3 space-y-1">
                     <a href="#" class="block px-4 py-2 text-base font-medium text-skin-menu hover:text-skin-menu-hover">{{ __('Mon profil') }}</a>
-                    <a href="#" class="block px-4 py-2 text-base font-medium text-skin-menu hover:text-skin-menu-hover">{{ __('Paramètres') }}</a>
-                    <a href="#" class="block px-4 py-2 text-base font-medium text-skin-menu hover:text-skin-menu-hover">{{ __('Se déconnecter') }}</a>
+                    <a href="{{ route('user.settings') }}" class="block px-4 py-2 text-base font-medium text-skin-menu hover:text-skin-menu-hover">{{ __('Paramètres') }}</a>
+                    <div class="px-4 py-2" role="form">
+                        <form method="POST" action="{{ route('logout') }}" role="form">
+                            @csrf
+                            <button type="submit" class="group flex items-center text-skin-base hover:text-skin-menu-hover font-medium w-full text-base" role="menuitem" tabindex="-1" id="menu-item-3">
+                                {{ __('Se déconnecter') }}
+                            </button>
+                        </form>
+                    </div>
                 </div>
             @else
                 <div class="space-y-1">
