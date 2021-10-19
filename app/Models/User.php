@@ -192,4 +192,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
         return $this;
     }
+
+    public function hasPassword(): bool
+    {
+        $password = $this->getAuthPassword();
+
+        return $password !== '' && $password !== null;
+    }
 }

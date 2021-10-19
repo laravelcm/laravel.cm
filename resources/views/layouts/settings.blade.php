@@ -10,8 +10,8 @@
         </h3>
     </div>
 
-    <section class="mt-8 relative lg:grid lg:grid-cols-12 lg:gap-16">
-        <div class="hidden lg:block lg:col-span-3">
+    <section class="mt-8 relative lg:grid lg:grid-cols-12 lg:gap-12">
+        <div class="hidden lg:block lg:col-span-2">
             <nav aria-label="Sidebar" class="sticky top-4 divide-y divide-gray-300">
                 <div class="space-y-2">
                     <x-nav-link :href="route('user.settings')" :active="request()->routeIs('user.settings')">
@@ -19,7 +19,7 @@
                         {{ __('Mon profil') }}
                     </x-nav-link>
 
-                    <x-nav-link href="#" :active="request()->routeIs('user.password')">
+                    <x-nav-link :href="route('user.password')" :active="request()->routeIs('user.password')">
                         <x-heroicon-o-lock-closed class="flex-shrink-0 -ml-1 mr-3 h-6 w-6 @if(request()->routeIs('user.password')) text-green-600 @else text-skin-muted  @endif " />
                         {{ __('Mot de passe') }}
                     </x-nav-link>
@@ -41,7 +41,7 @@
                 </div>
             </nav>
         </div>
-        <main class="lg:col-span-9">
+        <main class="lg:col-span-10">
             {{ $slot }}
         </main>
     </section>
