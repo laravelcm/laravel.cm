@@ -22,6 +22,8 @@ Route::view('terms', 'terms')->name('terms');
 Route::view('rules', 'rules')->name('rules');
 Route::view('privacy', 'privacy')->name('privacy');
 Route::view('faq', 'faq')->name('faq');
+Route::view('slack', 'slack')->name('slack');
+Route::post('slack', [HomeController::class, 'slack'])->name('slack.send');
 
 // Social authentication
 Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');
@@ -56,7 +58,6 @@ Route::redirectMap([
     'facebook' => 'https://facebook.com/laravelcm',
     'twitter' => 'https://twitter.com/laravelcm',
     'telegram' => 'https://t.me/joinchat/UnTRApWa50zoRO0I',
-    'slack' => 'https://laravelcm.slack.com',
     'linkedin' => 'https://www.linkedin.com/company/laravel-cameroun',
     'github' => 'https://github.com/laravelcm',
     'youtube' => 'https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw',

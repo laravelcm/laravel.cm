@@ -199,4 +199,15 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
         return $password !== '' && $password !== null;
     }
+
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForSlack($notification): string
+    {
+        return env('SLACK_WEBHOOK_URL', '');
+    }
 }
