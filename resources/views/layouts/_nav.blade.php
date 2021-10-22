@@ -4,7 +4,7 @@
             <div class="flex px-2 lg:px-0">
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <img class="block lg h-8 w-auto sm:h-9" src="{{ asset('/images/laravelcm-icon.svg') }}" alt="Laravel.cm">
+                        <x-application-icon class="block h-8 w-auto sm:h-9" />
                     </a>
                 </div>
                 <div class="hidden lg:ml-10 lg:flex lg:items-center lg:space-x-6 font-sans">
