@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Jenssegers\Agent\Agent;
@@ -59,20 +60,22 @@ class SettingController extends Controller
     public function password()
     {
         return view('user.password', [
-            'sessions' => collect(
-                DB::table('sessions')
-                    ->where('user_id', auth()->user()->getKey())
-                    ->orderBy('last_activity', 'desc')
-                    ->limit(3)
-                    ->get()
-            )->map(function ($session) {
-                return (object) [
-                    'agent' => $this->createAgent($session),
-                    'ip_address' => $session->ip_address,
-                    'is_current_device' => $session->id === request()->session()->getId(),
-                    'last_active' => Carbon::createFromTimestamp($session->last_activity)->diffForHumans(),
-                    'location' => Location::get($session->ip_address),
-                ];
+            'sessions' => Cache::remember('login-sessions', 60 * 60 * 24 * 5, function () {
+                return collect(
+                    DB::table('sessions')
+                        ->where('user_id', auth()->user()->getKey())
+                        ->orderBy('last_activity', 'desc')
+                        ->limit(3)
+                        ->get()
+                )->map(function ($session) {
+                    return (object) [
+                        'agent' => $this->createAgent($session),
+                        'ip_address' => $session->ip_address,
+                        'is_current_device' => $session->id === request()->session()->getId(),
+                        'last_active' => Carbon::createFromTimestamp($session->last_activity)->diffForHumans(),
+                        'location' => Location::get($session->ip_address),
+                    ];
+                });
             }),
         ]);
     }
