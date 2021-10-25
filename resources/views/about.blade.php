@@ -16,8 +16,7 @@
         <div class="mt-8 sm:text-center lg:col-span-2 lg:text-left">
             <p class="text-base leading-6 font-normal text-skin-base sm:text-lg">
                 <span class="font-medium"><span class="text-skin-primary italic">"</span>Tout le monde enseigne, tout le monde apprend<span class="text-skin-primary italic">"</span></span>.
-                Tel est l'esprit qui est derriere la communauté. Une communauté qui veut se grandissante et qui donne la possibilité à tout le monde de partager ses connaissances
-                et d'apprendre.
+                Tel est l'esprit qui est derrière la communauté. Une communauté qui se veut grandissante et qui donne la possibilité à tout le monde de partager ses connaissances et d'apprendre.
             </p>
         </div>
     </header>
@@ -64,7 +63,7 @@
                 <div>
                     <p>
                         Lancé en Juin 2018, Laravel CM a rapidement commencé à se développer et à démarrer ses activités par un premier
-                        Meetup pour la presentation globale et les objectifs. Ce Meetup a enregistré plus de 100 participants.
+                        Meetup pour sa présentation globale et ses objectifs. Ce Meetup a enregistré plus de 100 participants.
                     </p>
                     <p>
                         Durant cet événement nous avons notamment enregistré la participation des entreprises telles que:
@@ -89,7 +88,7 @@
             </div>
             <p>
                 Laravel Cameroun est une communauté de développeurs et de designers qui se réunissent pour s'entraider. L'industrie du logiciel reposant sur la collaboration et l'apprentissage en réseau.
-                Nous nous sommes donnés comme objectif de pouvoir ressembler le maximum de développeurs et designers évoluant au Cameroun et dans l'Afrique Francophone pour organiser des grands événements et Meetup de part le Cameroun et l'Afrique Francophone.
+                Nous nous sommes donnés comme objectif de pouvoir rassembler le maximum de développeurs et designers évoluant au Cameroun et dans l'Afrique Francophone pour organiser des grands événements et Meetup de part le Cameroun et l'Afrique Francophone.
             </p>
         </div>
 
