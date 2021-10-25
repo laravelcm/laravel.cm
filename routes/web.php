@@ -18,10 +18,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::view('terms', 'terms')->name('terms');
-Route::view('rules', 'rules')->name('rules');
-Route::view('privacy', 'privacy')->name('privacy');
+
+// Static pages
+Route::view('a-propos', 'about')->name('about');
 Route::view('faq', 'faq')->name('faq');
+Route::view('privacy', 'privacy')->name('privacy');
+Route::view('rules', 'rules')->name('rules');
+Route::view('terms', 'terms')->name('terms');
 
 // Social authentication
 Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');
