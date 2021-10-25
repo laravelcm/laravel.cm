@@ -20,7 +20,7 @@
                         <ul class="mt-4 space-y-4">
 
                             <li>
-                                <a href="#" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
+                                <a href="{{ route('about') }}" class="text-base text-skin-base hover:text-skin-menu-hover font-normal">
                                     {{ __('A propos') }}
                                 </a>
                             </li>
