@@ -42,5 +42,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('shareImage', function ($expression) {
             return "<?php \$shareImage = $expression ?>";
         });
+
+        Blade::directive('canonical', function ($expression) {
+            return "<?php \$canonical = $expression ?>";
+        });
     }
 }
