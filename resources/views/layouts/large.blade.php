@@ -4,9 +4,9 @@
 
     @include('layouts._nav')
 
-    <main class="py-10 relative max-w-7xl mx-auto px-4 z-0">
+    <x-container>
         @yield('body')
-    </main>
+    </x-container>
 
     @include('layouts.footer')
 
