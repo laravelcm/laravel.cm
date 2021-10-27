@@ -45,13 +45,14 @@ Route::prefix('articles')->group(function () {
 Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {
     Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
     Route::put('/', [User\SettingController::class, 'update'])->name('settings.update');
-    Route::view('/customization', 'user.customization')->name('customization');
+    Route::view('/customization', 'user.settings.customization')->name('customization');
     Route::get('/password', [User\SettingController::class, 'password'])->name('password');
     Route::put('/password', [User\SettingController::class, 'updatePassword'])->name('password.update');
 });
 
 // User
 Route::redirect('/dashboard', '/user');
+Route::get('/user/{username?}', [User\ProfileController::class, 'show'])->name('profile');
 
 // Redirect Route
 Route::redirectMap([

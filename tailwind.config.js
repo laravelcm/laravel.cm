@@ -33,6 +33,7 @@ module.exports = {
           yellow: '#ffdc44',
         },
         body: 'rgb(var(--color-body-fill))',
+        card: 'rgb(var(--color-card-fill))',
       },
       fontFamily: {
         mono: ['Operator Mono', ...defaultTheme.fontFamily.mono],
