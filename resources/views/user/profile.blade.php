@@ -208,7 +208,7 @@
                                         <div class="min-w-0 flex-1">
                                             <div>
                                                 <div class="text-sm">
-                                                    <a href="{{ route('profile', $user) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
+                                                    <a href="{{ route('profile', ['username' => $user->username]) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
                                                 </div>
                                                 <p class="mt-0.5 text-sm text-skin-base font-sans">
                                                     a commenté il y'a 10min
@@ -237,7 +237,7 @@
                                         </div>
                                         <div class="min-w-0 flex-1 py-1.5">
                                             <div class="text-sm text-skin-base">
-                                                <a href="{{ route('profile', $user) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
+                                                <a href="{{ route('profile', ['username' => $user->username]) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
                                                 a commencé a suivi
                                                 <a href="#" class="font-medium text-skin-inverted font-sans">Fabrice Yopa</a>
                                                 <span class="whitespace-nowrap font-sans">il y'a 3h</span>
@@ -259,7 +259,7 @@
                                         <div class="min-w-0 flex-1">
                                             <div>
                                                 <div class="text-sm">
-                                                    <a href="{{ route('profile', $user) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
+                                                    <a href="{{ route('profile', ['username' => $user->username]) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
                                                 </div>
                                                 <p class="mt-0.5 text-sm text-skin-base font-sans">
                                                     a commenté il y'a 2 jours
