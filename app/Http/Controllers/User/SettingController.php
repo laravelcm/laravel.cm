@@ -35,6 +35,7 @@ class SettingController extends Controller
             'twitter_profile' => $request->twitter_profile,
             'github_profile' => $request->github_profile,
             'phone_number' => $request->phone_number,
+            'location' => $request->location,
             'website' => $request->website,
         ]);
 
