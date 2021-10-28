@@ -59,7 +59,7 @@
     </div>
 
     <x-container class="py-10 max-w-7xl mx-auto px-4">
-        <div class="space-y-6 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0">
+        <div class="space-y-6 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0">
             <div>
                 <h3 class="text-lg leading-6 font-medium font-sans text-skin-inverted">{{ __('Biographie') }}</h3>
                 <p class="mt-2 text-skin-base font-normal">
@@ -105,48 +105,102 @@
             </div>
         </div>
 
-        <div class="relative lg:grid lg:grid-cols-8 lg:gap-12">
-            <div class="lg:col-span-5">
+        <div class="relative border-t border-skin-base mt-6 pt-6 sm:pt-0 sm:border-0 lg:mt-0 lg:grid lg:grid-cols-8 lg:gap-12">
+            <div
+                class="lg:col-span-5"
+                x-data="{
+                    activeTab: 'articles',
+                    tabs: ['articles', 'discussions', 'threads', 'badges']
+                }"
+            >
                 <div>
                     <div class="sm:hidden">
                         <label for="tabs" class="sr-only">Select a tab</label>
-                        <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-                        <select id="tabs" name="tabs" class="block w-full pl-3 pr-10 py-2 text-base border-skin-base focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md">
-                            <option>My Account</option>
-
-                            <option>Company</option>
-
-                            <option selected>Team Members</option>
-
-                            <option>Billing</option>
-                        </select>
+                        <x-forms.select x-model="activeTab" aria-label="Selected tab" class="block w-full pl-3 pr-10 py-2">
+                            <template x-for="tab in tabs" :key="tab">
+                                <option
+                                    x-bind:value="tab"
+                                    x-text="capitalize(tab)"
+                                    x-bind:selected="tab === activeTab"
+                                ></option>
+                            </template>
+                        </x-forms.select>
                     </div>
                     <div class="hidden sm:block">
                         <div class="border-b border-skin-base">
                             <nav class="-mb-px flex space-x-8" aria-label="Tabs">
-                                <!-- Current: "border-green-500 text-green-600", Default: "border-transparent text-skin-base hover:text-skin-inverted-muted hover:border-skin-base" -->
-                                <button type="button" class="border-transparent text-skin-base hover:text-skin-inverted-muted hover:border-skin-base whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                                    Articles
-                                </button>
-
-                                <button type="button" class="border-transparent text-skin-base hover:text-skin-inverted-muted hover:border-skin-base whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                                    Discussions
-                                </button>
-
-                                <button type="button" class="border-green-500 text-green-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" aria-current="page">
-                                    Threads
-                                </button>
-
-                                <button type="button" class="border-transparent text-skin-base hover:text-skin-inverted-muted hover:border-skin-base whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                                    Badges
-                                </button>
+                                <template x-for="tab in tabs" :key="tab">
+                                  <button
+                                      type="button"
+                                      @click="activeTab = tab"
+                                      class="border-transparent text-skin-base hover:text-skin-inverted-muted hover:border-skin-base whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
+                                      :class="{ 'border-green-500 text-green-600 focus:text-green-600 focus:border-green-500': activeTab === tab}"
+                                      x-text="capitalize(tab)"
+                                  ></button>
+                                </template>
                             </nav>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <div x-show="activeTab === 'articles'">
+                            <div class="flex items-center justify-between rounded-md border border-skin-base border-dashed py-8 px-6">
+                                <div class="text-center max-w-sm mx-auto">
+                                    <x-heroicon-o-newspaper class="h-10 w-10 text-skin-primary mx-auto" />
+                                    <p class="mt-1 text-skin-base text-sm leading-5">{{ $user->name }} n'a pas encore posté d'articles</p>
+                                    @if ($user->isLoggedInUser())
+                                        <x-button :link="route('articles.new')" class="mt-4">
+                                            <x-heroicon-s-plus class="-ml-1 mr-2 h-5 w-5" />
+                                            Nouvel Article
+                                        </x-button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div x-cloak x-show="activeTab === 'discussions'">
+                            <div class="flex items-center justify-between rounded-md border border-skin-base border-dashed py-8 px-6">
+                                <div class="text-center max-w-sm mx-auto">
+                                    <x-heroicon-o-chat class="h-10 w-10 text-skin-primary mx-auto" />
+                                    <p class="mt-1 text-skin-base text-sm leading-5">{{ $user->name }} n'a pas encore posté de discussions</p>
+                                    @if ($user->isLoggedInUser())
+                                        <x-button link="#" class="mt-4">
+                                            <x-heroicon-s-plus class="-ml-1 mr-2 h-5 w-5" />
+                                            Nouveau Sujet
+                                        </x-button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div x-cloak x-show="activeTab === 'threads'">
+                            <div class="flex items-center justify-between rounded-md border border-skin-base border-dashed py-8 px-6">
+                                <div class="text-center max-w-sm mx-auto">
+                                    <x-heroicon-o-document-add class="h-10 w-10 text-skin-primary mx-auto" />
+                                    <p class="mt-1 text-skin-base text-sm leading-5">{{ $user->name }} n'a pas encore posté de Thread</p>
+                                    @if ($user->isLoggedInUser())
+                                        <x-button link="#" class="mt-4">
+                                            <x-heroicon-s-plus class="-ml-1 mr-2 h-5 w-5" />
+                                            Nouveau Thread
+                                        </x-button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div x-cloak x-show="activeTab === 'badges'">
+                            <div class="flex items-center justify-between rounded-md border border-skin-base border-dashed py-8 px-6">
+                                <div class="text-center max-w-sm mx-auto">
+                                    <x-heroicon-o-badge-check class="h-10 w-10 text-skin-primary mx-auto" />
+                                    <p class="mt-1 text-skin-base text-sm leading-5">{{ $user->name }} ne possède aucun badge</p>
+                                    <x-button link="#" class="mt-4">
+                                        Voir tous les badges
+                                    </x-button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="hidden lg:block lg:col-span-3">
-                <aside aria-label="Sidebar" class="sticky top-4">
+                <aside aria-label="Sidebar" class="sticky top-4 ml-6">
                     <div class="flow-root">
                         <h3 class="mt-4 text-lg leading-6 font-medium text-skin-inverted font-sans">
                             Dernières activités de {{ $user->name }}
@@ -157,7 +211,7 @@
                                     <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-skin-footer" aria-hidden="true"></span>
                                     <div class="relative flex items-start space-x-3">
                                         <div class="relative">
-                                            <img class="h-10 w-10 rounded-full bg-skin-card flex items-center justify-center ring-8 ring-card" src="https://images.unsplash.com/photo-1520785643438-5bf77931f493?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80" alt="">
+                                            <img class="h-10 w-10 rounded-full bg-skin-card flex items-center justify-center ring-8 ring-card" src="{{ $user->profile_photo_url }}" alt="Avatar de {{ $user->username }}">
                                             <span class="absolute -bottom-0.5 -right-1 bg-skin-card rounded-tl px-0.5 py-px">
                                                 <x-heroicon-s-chat-alt class="h-5 w-5 text-skin-muted" />
                                             </span>
@@ -165,15 +219,15 @@
                                         <div class="min-w-0 flex-1">
                                             <div>
                                                 <div class="text-sm">
-                                                    <a href="#" class="font-medium text-skin-inverted font-sans">Eduardo Benz</a>
+                                                    <a href="{{ route('profile', $user) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
                                                 </div>
                                                 <p class="mt-0.5 text-sm text-skin-base font-sans">
-                                                    Commented 6d ago
+                                                    a commenté il y'a 10min
                                                 </p>
                                             </div>
                                             <div class="mt-2 text-sm text-skin-inverted-muted font-normal">
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt nunc ipsum tempor purus vitae id. Morbi in vestibulum nec varius. Et diam cursus quis sed purus nam.
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt nunc ipsum tempor purus vitae id...
                                                 </p>
                                             </div>
                                         </div>
@@ -188,54 +242,16 @@
                                         <div>
                                             <div class="relative px-1">
                                                 <div class="h-8 w-8 bg-skin-card rounded-full ring-8 ring-card flex items-center justify-center">
-                                                    <x-heroicon-s-user-circle class="h-5 w-5 text-skin-base" />
+                                                    <x-heroicon-s-user-add class="h-6 w-6 text-skin-base" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="min-w-0 flex-1 py-1.5">
                                             <div class="text-sm text-skin-base">
-                                                <a href="#" class="font-medium text-skin-inverted font-sans">Hilary Mahy</a>
-                                                assigned
-                                                <a href="#" class="font-medium text-skin-inverted font-sans">Kristin Watson</a>
-                                                <span class="whitespace-nowrap font-sans">2d ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="relative pb-8">
-                                    <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-skin-footer" aria-hidden="true"></span>
-                                    <div class="relative flex items-start space-x-3">
-                                        <div>
-                                            <div class="relative px-1">
-                                                <div class="h-8 w-8 bg-skin-card rounded-full ring-8 ring-card flex items-center justify-center">
-                                                    <x-heroicon-s-tag class="h-5 w-5 text-skin-base" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="min-w-0 flex-1 py-0">
-                                            <div class="text-sm leading-8 text-skin-base">
-                                                <span class="mr-0.5">
-                                                    <a href="#" class="font-medium text-skin-inverted font-sans">Hilary Mahy</a>
-                                                    added tags
-                                                </span>
-                                                <span class="mr-0.5">
-                                                    <a href="#" class="relative inline-flex items-center rounded-full border border-skin-base px-3 py-0.5 text-sm">
-                                                      <span class="absolute flex-shrink-0 flex items-center justify-center">
-                                                        <span class="h-1.5 w-1.5 rounded-full bg-pink-500" aria-hidden="true"></span>
-                                                      </span>
-                                                      <span class="ml-3.5 font-medium text-skin-inverted font-sans">Bug</span>
-                                                    </a>
-                                                    <a href="#" class="relative inline-flex items-center rounded-full border border-skin-base px-3 py-0.5 text-sm">
-                                                      <span class="absolute flex-shrink-0 flex items-center justify-center">
-                                                        <span class="h-1.5 w-1.5 rounded-full bg-indigo-500" aria-hidden="true"></span>
-                                                      </span>
-                                                      <span class="ml-3.5 font-medium text-skin-inverted font-sans">Accessibility</span>
-                                                    </a>
-                                                  </span>
-                                                <span class="whitespace-nowrap">6h ago</span>
+                                                <a href="{{ route('profile', $user) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
+                                                a commencé a suivi
+                                                <a href="#" class="font-medium text-skin-inverted font-sans">Fabrice Yopa</a>
+                                                <span class="whitespace-nowrap font-sans">il y'a 3h</span>
                                             </div>
                                         </div>
                                     </div>
@@ -246,8 +262,7 @@
                                 <div class="relative pb-8">
                                     <div class="relative flex items-start space-x-3">
                                         <div class="relative">
-                                            <img class="h-10 w-10 rounded-full bg-skin-muted flex items-center justify-center ring-8 ring-card" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80" alt="">
-
+                                            <img class="h-10 w-10 rounded-full bg-skin-card flex items-center justify-center ring-8 ring-card" src="{{ $user->profile_photo_url }}" alt="Avatar de {{ $user->username }}">
                                             <span class="absolute -bottom-0.5 -right-1 bg-skin-card rounded-tl px-0.5 py-px">
                                                 <x-heroicon-s-chat-alt class="h-5 w-5 text-skin-muted" />
                                             </span>
@@ -255,15 +270,15 @@
                                         <div class="min-w-0 flex-1">
                                             <div>
                                                 <div class="text-sm">
-                                                    <a href="#" class="font-medium text-skin-inverted font-sans">Jason Meyers</a>
+                                                    <a href="{{ route('profile', $user) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
                                                 </div>
                                                 <p class="mt-0.5 text-sm text-skin-base font-sans">
-                                                    Commented 2h ago
+                                                    a commenté il y'a 2 jours
                                                 </p>
                                             </div>
                                             <div class="mt-2 text-sm text-skin-inverted-muted font-normal">
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt nunc ipsum tempor purus vitae id. Morbi in vestibulum nec varius. Et diam cursus quis sed purus nam. Scelerisque amet elit non sit ut tincidunt condimentum. Nisl ultrices eu venenatis diam.
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt nunc ipsum tempor purus vitae id. Morbi in vestibulum nec varius...
                                                 </p>
                                             </div>
                                         </div>
