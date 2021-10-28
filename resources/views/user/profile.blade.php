@@ -130,13 +130,13 @@
                         <div class="border-b border-skin-base">
                             <nav class="-mb-px flex space-x-8" aria-label="Tabs">
                                 <template x-for="tab in tabs" :key="tab">
-                                  <button
+                                    <button
                                       type="button"
                                       @click="activeTab = tab"
                                       class="border-transparent text-skin-base hover:text-skin-inverted-muted hover:border-skin-base whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
                                       :class="{ 'border-green-500 text-green-600 focus:text-green-600 focus:border-green-500': activeTab === tab}"
                                       x-text="capitalize(tab)"
-                                  ></button>
+                                    ></button>
                                 </template>
                             </nav>
                         </div>
@@ -144,18 +144,7 @@
 
                     <div class="mt-10">
                         <div x-show="activeTab === 'articles'">
-                            <div class="flex items-center justify-between rounded-md border border-skin-base border-dashed py-8 px-6">
-                                <div class="text-center max-w-sm mx-auto">
-                                    <x-heroicon-o-newspaper class="h-10 w-10 text-skin-primary mx-auto" />
-                                    <p class="mt-1 text-skin-base text-sm leading-5">{{ $user->name }} n'a pas encore posté d'articles</p>
-                                    @if ($user->isLoggedInUser())
-                                        <x-button :link="route('articles.new')" class="mt-4">
-                                            <x-heroicon-s-plus class="-ml-1 mr-2 h-5 w-5" />
-                                            Nouvel Article
-                                        </x-button>
-                                    @endif
-                                </div>
-                            </div>
+                            <livewire:user.articles :user="$user" />
                         </div>
                         <div x-cloak x-show="activeTab === 'discussions'">
                             <div class="flex items-center justify-between rounded-md border border-skin-base border-dashed py-8 px-6">

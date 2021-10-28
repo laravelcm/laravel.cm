@@ -11,9 +11,7 @@ class ProfileController extends Controller
     public function show(Request $request, User $user = null)
     {
         if ($user) {
-            $articles = $user->articles;
-
-            return view('user.profile', compact('user', 'articles'));
+            return view('user.profile', compact('user'));
         }
 
         if ($request->user()) {

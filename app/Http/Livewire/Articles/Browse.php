@@ -4,16 +4,15 @@ namespace App\Http\Livewire\Articles;
 
 use App\Models\Article;
 use App\Models\Tag;
+use App\Traits\WithInfiniteScroll;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Browse extends Component
 {
-    use WithPagination;
+    use WithInfiniteScroll;
 
     public string $sortBy = 'recent';
     public ?string $tag = null;
-    public int $perPage = 10;
 
     protected $queryString = [
         'tag' => ['except' => ''],
@@ -23,11 +22,6 @@ class Browse extends Component
     public function toggleTag($tag): void
     {
         $this->tag = $this->tag !== $tag && $this->tagExists($tag) ? $tag : null;
-    }
-
-    public function loadMore()
-    {
-        $this->perPage += 10;
     }
 
     public function sortBy($sort): void
