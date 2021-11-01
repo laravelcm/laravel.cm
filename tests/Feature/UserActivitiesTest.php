@@ -24,12 +24,12 @@ it('records activity when an article is created', function () {
 it('get feed from any user', function () {
     actingAs();
 
-    Article::factory()->create(['user_id' => auth()->id()]);
+    Article::factory()->count(2)->create(['user_id' => auth()->id()]);
     auth()->user()->activities()->first()->update(['created_at' => Carbon::now()->subWeek()]);
 
     $feed = Activity::feed(auth()->user());
 
-    $this->assertFalse($feed->keys()->contains(
+    $this->assertTrue($feed->keys()->contains(
         Carbon::now()->format('Y-m-d')
     ));
 
