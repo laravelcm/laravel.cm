@@ -6,6 +6,7 @@ use App\Contracts\ReactableInterface;
 use App\Traits\HasSlug;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
+use App\Traits\RecordsActivity;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,7 +17,11 @@ use Illuminate\Support\Str;
 
 class Article extends Model implements ReactableInterface
 {
-    use HasFactory, HasSlug, HasTags, Reactable;
+    use HasFactory,
+        HasSlug,
+        HasTags,
+        Reactable,
+        RecordsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -82,6 +87,20 @@ class Article extends Model implements ReactableInterface
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::bootRecordsActivity();
+    }
+
+    protected function getActivityType($event): string
+    {
+        $type = strtolower((new \ReflectionClass($this))->getShortName());
+
+        return "{$event}_{$type}";
     }
 
     public function excerpt(int $limit = 110): string
