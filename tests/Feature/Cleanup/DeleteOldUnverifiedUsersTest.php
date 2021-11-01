@@ -1,52 +1,34 @@
 <?php
 
-namespace Tests\Feature\Cleanup;
-
 use App\Console\Commands\Cleanup\DeleteOldUnverifiedUsers;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\TestTime\TestTime;
-use Tests\TestCase;
 
-class DeleteOldUnverifiedUsersTest extends TestCase
-{
-    use RefreshDatabase;
+beforeEach(fn () => TestTime::freeze('Y-m-d H:i:s', '2021-05-01 00:00:01'));
 
-    public function setUp(): void
-    {
-        parent::setUp();
+it('will delete unverified users after some days', function () {
+    $user = User::factory()->create([
+        'email_verified_at' => null,
+    ]);
 
-        TestTime::freeze('Y-m-d H:i:s', '2021-05-01 00:00:01');
-    }
+    TestTime::addDays(10);
 
-    /** @test */
-    public function it_will_delete_unverified_users_after_some_days()
-    {
-        $user = User::factory()->create([
-            'email_verified_at' => null,
-        ]);
+    $this->artisan(DeleteOldUnverifiedUsers::class);
+    $this->assertTrue($user->exists());
 
-        TestTime::addDays(10);
+    TestTime::addSecond();
 
-        $this->artisan(DeleteOldUnverifiedUsers::class);
-        $this->assertTrue($user->exists());
+    $this->artisan(DeleteOldUnverifiedUsers::class);
+    $this->assertFalse($user->exists());
+});
 
-        TestTime::addSecond();
+it('will not delete verified users', function () {
+    $user = User::factory()->create([
+        'email_verified_at' => now(),
+    ]);
 
-        $this->artisan(DeleteOldUnverifiedUsers::class);
-        $this->assertFalse($user->exists());
-    }
+    TestTime::addDays(20);
 
-    /** @test */
-    public function it_will_not_delete_verified_users()
-    {
-        $user = User::factory()->create([
-            'email_verified_at' => now(),
-        ]);
-
-        TestTime::addDays(20);
-
-        $this->artisan(DeleteOldUnverifiedUsers::class);
-        $this->assertTrue($user->exists());
-    }
-}
+    $this->artisan(DeleteOldUnverifiedUsers::class);
+    $this->assertTrue($user->exists());
+});
