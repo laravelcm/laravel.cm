@@ -89,20 +89,6 @@ class Article extends Model implements ReactableInterface
         return 'slug';
     }
 
-    public static function boot()
-    {
-        parent::boot();
-
-        self::bootRecordsActivity();
-    }
-
-    protected function getActivityType($event): string
-    {
-        $type = strtolower((new \ReflectionClass($this))->getShortName());
-
-        return "{$event}_{$type}";
-    }
-
     public function excerpt(int $limit = 110): string
     {
         return Str::limit(strip_tags(md_to_html($this->body)), $limit);

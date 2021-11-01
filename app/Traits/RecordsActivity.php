@@ -26,7 +26,7 @@ trait RecordsActivity
 
     protected static function getActivitiesToRecord(): array
     {
-        return ['created', 'updated'];
+        return ['created'];
     }
 
     protected function recordActivity($event, bool $useDefaultEvent = true, array $data = [])
@@ -41,5 +41,12 @@ trait RecordsActivity
     public function activity(): MorphMany
     {
         return $this->morphMany(Activity::class, 'subject');
+    }
+
+    protected function getActivityType($event): string
+    {
+        $type = strtolower((new \ReflectionClass($this))->getShortName());
+
+        return "{$event}_{$type}";
     }
 }
