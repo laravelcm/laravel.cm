@@ -38,6 +38,7 @@
     "mockery/mockery": "^1.4.2",
     "nunomaduro/collision": "^5.0",
     "pestphp/pest-plugin-laravel": "^1.1",
+    "pestphp/pest-plugin-livewire": "^1.0",
     "phpunit/phpunit": "^9.3.3",
     "spatie/test-time": "^1.2"
   },
@@ -72,6 +73,9 @@
     ],
     "lint": [
       "./vendor/bin/php-cs-fixer fix -vvv --show-progress=dots"
+    ],
+    "pest": [
+      "./vendor/bin/pest"
     ],
     "setup": [
       "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
