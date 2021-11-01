@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +15,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 |
 */
 
-uses(Tests\TestCase::class, RefreshDatabase::class)->in('Feature');
+uses(Tests\TestCase::class, RefreshDatabase::class, DatabaseMigrations::class)->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +43,9 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function actingAs(Authenticatable $user = null, string $driver = null)
 {
-    // ..
+    $user = $user ?: App\Models\User::factory()->create();
+
+    return test()->actingAs($user, $driver);
 }
