@@ -41,7 +41,7 @@
                     </div>
                     <div class="px-5 py-3 bg-skin-body sm:flex sm:flex-row-reverse">
                         <span class="flex w-full rounded-md sm:ml-3 sm:w-auto">
-                            <button id="modalClose" @click="cancelModal(); popup = false;" type="button" class="inline-flex justify-center w-full px-4 py-2 mr-2 text-base font-medium leading-6 text-skin-menu transition duration-150 ease-in-out bg-skin-card border border-gray-300 rounded-md shadow-sm hover:text-skin-base focus:outline-none focus:border-green-300 focus:shadow-outline sm:text-sm sm:leading-5">Cancel</button>
+                            <button id="modalClose" @click="cancelModal(); popup = false;" type="button" class="inline-flex justify-center w-full px-4 py-2 mr-2 text-base font-medium leading-6 text-skin-menu transition duration-150 ease-in-out bg-skin-card border border-skin-base rounded-md shadow-sm hover:text-skin-base focus:outline-none focus:border-green-300 focus:shadow-outline sm:text-sm sm:leading-5">Cancel</button>
                             <button type="button" x-ref="modalExecute" id="modal-execute-{{ $key }}" @click="executeAssociatedFunction()" data-suggestion="" @click="popup = false" class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-green-500 border-green-500 rounded-md shadow-sm text-whit hover:border-green-600 hover:bg-green-600 focus:outline-none focus:border-green-300 focus:shadow-outline sm:text-sm sm:leading-5">Insert</button>
                         </span>
                     </div>

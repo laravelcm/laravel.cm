@@ -18,7 +18,7 @@ class SettingController extends Controller
 {
     public function profile()
     {
-        return view('user.profile');
+        return view('user.settings.profile');
     }
 
     public function update(UpdateProfileRequest $request)
@@ -35,6 +35,7 @@ class SettingController extends Controller
             'twitter_profile' => $request->twitter_profile,
             'github_profile' => $request->github_profile,
             'phone_number' => $request->phone_number,
+            'location' => $request->location,
             'website' => $request->website,
         ]);
 
@@ -59,7 +60,7 @@ class SettingController extends Controller
 
     public function password()
     {
-        return view('user.password', [
+        return view('user.settings.password', [
             'sessions' => Cache::remember('login-sessions', 60 * 60 * 24 * 5, function () {
                 return collect(
                     DB::table('sessions')

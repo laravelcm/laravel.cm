@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
@@ -99,6 +100,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasRole('moderator');
     }
 
+    public function isLoggedInUser(): bool
+    {
+        return $this->id === Auth::id();
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('avatar')
@@ -157,9 +163,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->articles()->count();
     }
 
-    public function githubUsername(): string
+    public function githubUsername(): ?string
     {
-        return $this->github_profile ?? '';
+        return $this->github_profile;
     }
 
     public function twitter(): ?string

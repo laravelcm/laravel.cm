@@ -37,6 +37,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiting();
 
+        $this->routeBindings();
+
         $this->routes(function () {
             Route::prefix('api')
                 ->middleware('api')
@@ -64,6 +66,13 @@ class RouteServiceProvider extends ServiceProvider
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
+        });
+    }
+
+    protected function routeBindings()
+    {
+        Route::bind('username', function (string $username) {
+            return \App\Models\User::findByUsername($username);
         });
     }
 }

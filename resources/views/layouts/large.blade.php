@@ -4,7 +4,7 @@
 
     @include('layouts._nav')
 
-    <x-container class="py-10 max-w-7xl mx-auto px-4">
+    <x-container>
         @yield('body')
     </x-container>
 

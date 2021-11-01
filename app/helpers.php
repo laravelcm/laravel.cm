@@ -43,3 +43,18 @@ if (! function_exists('get_current_theme')) {
             'theme-light';
     }
 }
+
+if (! function_exists('canonical')) {
+    /**
+     * Generate a canonical URL to the given route and allowed list of query params.
+     */
+    function canonical(string $route, array $params = []): string
+    {
+        $page = app('request')->get('page');
+        $params = array_merge($params, ['page' => $page != 1 ? $page : null]);
+
+        ksort($params);
+
+        return route($route, $params);
+    }
+}
