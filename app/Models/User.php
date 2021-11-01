@@ -139,6 +139,8 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
                 'email_verified_at' => now(),
                 'avatar_type' => $provider,
             ]);
+
+            $user->assignRole('user');
         }
 
         return $user;
