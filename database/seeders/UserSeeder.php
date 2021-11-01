@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
             'name' => 'Arthur Doe',
             'email' => 'user@laravel.cm',
             'username' => 'johndoe',
-            'github_profile' => 'mckenziearts',
-            'twitter_profile' => 'MonneyArthur',
+            'github_profile' => 'johndoe',
+            'twitter_profile' => 'johndoe',
             'password' => bcrypt('password'),
         ]);
 

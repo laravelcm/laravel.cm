@@ -37,7 +37,7 @@
                         @if ($user->isLoggedInUser())
                             <x-default-button :link="route('user.settings')">
                                 <x-heroicon-o-pencil class="-ml-1 mr-2 h-5 w-5 text-skin-muted" />
-                                Edit
+                                Éditer
                             </x-default-button>
                         @endif
                         <x-default-button type="button">
@@ -63,7 +63,7 @@
             <div>
                 <h3 class="text-lg leading-6 font-medium font-sans text-skin-inverted">{{ __('Biographie') }}</h3>
                 <p class="mt-2 text-skin-base font-normal">
-                    {{ $user->bio }}
+                    {{ $user->bio ?? '...' }}
                 </p>
                 <div class="mt-4 mb-6 flex items-center gap-x-3">
                     @if ($user->githubUsername())
@@ -86,7 +86,7 @@
                             Localisation
                         </dt>
                         <dd class="mt-1 text-skin-inverted-muted font-normal">
-                            {{ $user->location }}
+                            {{ $user->location ?? '...' }}
                         </dd>
                     </div>
                     <div class="sm:col-span-1">
