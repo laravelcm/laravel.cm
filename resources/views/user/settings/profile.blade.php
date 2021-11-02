@@ -161,7 +161,7 @@
                             Entrez votre pseudo Twitter sans le symbole @ en tête.
                         </label>
                         <div class="mt-1 sm:mt-0 sm:col-span-2 space-y-4">
-                            <div class="max-w-lg flex rounded-md shadow-sm">
+                            <div class="max-w-lg flex">
                                 <x-input
                                     type="text"
                                     name="twitter_profile"
@@ -173,7 +173,7 @@
                                     :value="Auth::user()->twitter()"
                                 />
                             </div>
-                            <div class="max-w-lg flex rounded-md shadow-sm">
+                            <div class="max-w-lg flex">
                                 <x-input
                                     type="text"
                                     name="github_profile"

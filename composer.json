@@ -10,6 +10,7 @@
     "ext-json": "*",
     "blade-ui-kit/blade-heroicons": "^1.2",
     "blade-ui-kit/blade-ui-kit": "^0.2.0",
+    "doctrine/dbal": "^3.1",
     "fideloper/proxy": "^4.4",
     "fruitcake/laravel-cors": "^2.0",
     "guzzlehttp/guzzle": "^7.0.1",
@@ -37,6 +38,8 @@
     "laravel/sail": "^1.0.1",
     "mockery/mockery": "^1.4.2",
     "nunomaduro/collision": "^5.0",
+    "pestphp/pest-plugin-laravel": "^1.1",
+    "pestphp/pest-plugin-livewire": "^1.0",
     "phpunit/phpunit": "^9.3.3",
     "spatie/test-time": "^1.2"
   },
@@ -71,6 +74,9 @@
     ],
     "lint": [
       "./vendor/bin/php-cs-fixer fix -vvv --show-progress=dots"
+    ],
+    "pest": [
+      "./vendor/bin/pest"
     ],
     "setup": [
       "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",

@@ -6,6 +6,7 @@ use App\Contracts\ReactableInterface;
 use App\Traits\HasSlug;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
+use App\Traits\RecordsActivity;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,7 +17,11 @@ use Illuminate\Support\Str;
 
 class Article extends Model implements ReactableInterface
 {
-    use HasFactory, HasSlug, HasTags, Reactable;
+    use HasFactory,
+        HasSlug,
+        HasTags,
+        Reactable,
+        RecordsActivity;
 
     /**
      * The attributes that are mass assignable.

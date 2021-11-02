@@ -59,10 +59,11 @@ class Create extends Component
         if ($this->submitted) {
             // Envoi du mail a l'admin pour la validation de l'article
             session()->flash('success', 'Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.');
-            $this->redirect('/articles/me');
         }
 
-        $this->redirect('/admin/articles');
+        auth()->user()->hasRole('user') ?
+            $this->redirect('/articles/me') :
+            $this->redirect('/admin/articles');
     }
 
     public function render()

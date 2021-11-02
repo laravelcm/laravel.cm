@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -138,6 +139,8 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
                 'email_verified_at' => now(),
                 'avatar_type' => $provider,
             ]);
+
+            $user->assignRole('user');
         }
 
         return $user;
@@ -153,7 +156,12 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasMany(Article::class, 'user_id');
     }
 
-    public function latestArticles(int $amount = 10)
+    public function activities(): HasMany
+    {
+        return $this->hasMany(Activity::class);
+    }
+
+    public function latestArticles(int $amount = 10): Collection
     {
         return $this->articles()->latest()->limit($amount)->get();
     }
