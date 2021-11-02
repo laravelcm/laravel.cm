@@ -190,97 +190,10 @@
             </div>
             <div class="hidden lg:block lg:col-span-3">
                 <aside aria-label="Sidebar" class="sticky top-4 ml-6">
-                    <div class="flow-root">
-                        <h3 class="mt-4 text-lg leading-6 font-medium text-skin-inverted font-sans">
-                            Dernières activités de {{ $user->name }}
-                        </h3>
-                        <ul role="list" class="mt-6 -mb-8">
-                            <li>
-                                <div class="relative pb-8">
-                                    <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-skin-footer" aria-hidden="true"></span>
-                                    <div class="relative flex items-start space-x-3">
-                                        <div class="relative">
-                                            <img class="h-10 w-10 rounded-full bg-skin-card flex items-center justify-center ring-8 ring-card" src="{{ $user->profile_photo_url }}" alt="Avatar de {{ $user->username }}">
-                                            <span class="absolute -bottom-0.5 -right-1 bg-skin-card rounded-tl px-0.5 py-px">
-                                                <x-heroicon-s-chat-alt class="h-5 w-5 text-skin-muted" />
-                                            </span>
-                                        </div>
-                                        <div class="min-w-0 flex-1">
-                                            <div>
-                                                <div class="text-sm">
-                                                    <a href="{{ route('profile', ['username' => $user->username]) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
-                                                </div>
-                                                <p class="mt-0.5 text-sm text-skin-base font-sans">
-                                                    a commenté il y'a 10min
-                                                </p>
-                                            </div>
-                                            <div class="mt-2 text-sm text-skin-inverted-muted font-normal">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt nunc ipsum tempor purus vitae id...
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="relative pb-8">
-                                    <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-skin-footer" aria-hidden="true"></span>
-                                    <div class="relative flex items-start space-x-3">
-                                        <div>
-                                            <div class="relative px-1">
-                                                <div class="h-8 w-8 bg-skin-card rounded-full ring-8 ring-card flex items-center justify-center">
-                                                    <x-heroicon-s-user-add class="h-6 w-6 text-skin-base" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="min-w-0 flex-1 py-1.5">
-                                            <div class="text-sm text-skin-base">
-                                                <a href="{{ route('profile', ['username' => $user->username]) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
-                                                a commencé a suivi
-                                                <a href="#" class="font-medium text-skin-inverted font-sans">Fabrice Yopa</a>
-                                                <span class="whitespace-nowrap font-sans">il y'a 3h</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="relative pb-8">
-                                    <div class="relative flex items-start space-x-3">
-                                        <div class="relative">
-                                            <img class="h-10 w-10 rounded-full bg-skin-card flex items-center justify-center ring-8 ring-card" src="{{ $user->profile_photo_url }}" alt="Avatar de {{ $user->username }}">
-                                            <span class="absolute -bottom-0.5 -right-1 bg-skin-card rounded-tl px-0.5 py-px">
-                                                <x-heroicon-s-chat-alt class="h-5 w-5 text-skin-muted" />
-                                            </span>
-                                        </div>
-                                        <div class="min-w-0 flex-1">
-                                            <div>
-                                                <div class="text-sm">
-                                                    <a href="{{ route('profile', ['username' => $user->username]) }}" class="font-medium text-skin-inverted font-sans">{{ $user->name }}</a>
-                                                </div>
-                                                <p class="mt-0.5 text-sm text-skin-base font-sans">
-                                                    a commenté il y'a 2 jours
-                                                </p>
-                                            </div>
-                                            <div class="mt-2 text-sm text-skin-inverted-muted font-normal">
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt nunc ipsum tempor purus vitae id. Morbi in vestibulum nec varius...
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
+                    <livewire:user.activities :user="$user" />
                 </aside>
             </div>
         </div>
-
     </x-container>
 
 @endsection

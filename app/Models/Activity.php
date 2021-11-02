@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Activity extends Model
@@ -37,7 +39,12 @@ class Activity extends Model
         return $this->morphTo();
     }
 
-    public static function feed(User $user, int $take = 10)
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public static function feed(User $user, int $take = 50)
     {
         return static::where('user_id', $user->id)
             ->latest()
@@ -47,5 +54,18 @@ class Activity extends Model
             ->groupBy(function ($activity) {
                 return $activity->created_at->format('Y-m-d');
             });
+    }
+
+    public static function latestFeed(User $user, int $take = 10)
+    {
+        return static::where('user_id', $user->id)
+            ->latest()
+            ->with('subject')
+            ->where(function (Builder $query) {
+
+            })
+            ->take($take)
+            ->orderByDesc('created_at')
+            ->get();
     }
 }
