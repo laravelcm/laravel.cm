@@ -1,9 +1,10 @@
 <x-settings-layout>
 
-    <form class="space-y-8 divide-y divide-skin-base" method="POST" action="{{ route('user.settings.update') }}">
-        <x-validation-errors />
+    <x-validation-errors />
 
-        <x-status-message />
+    <x-status-message class="mb-8" />
+
+    <form class="space-y-8 divide-y divide-skin-base" method="POST" action="{{ route('user.settings.update') }}">
 
         <div class="space-y-8 divide-y divide-skin-base sm:space-y-5">
             <div>
