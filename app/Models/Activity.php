@@ -62,7 +62,6 @@ class Activity extends Model
             ->latest()
             ->with('subject')
             ->where(function (Builder $query) {
-
             })
             ->take($take)
             ->orderByDesc('created_at')
