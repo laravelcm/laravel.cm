@@ -21,11 +21,5 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction
 
-      - name: Install NPM dependencies
-        run: yarn install
-
-      - name: Compile assets
-        run: yarn run production
-
       - name: Execute tests
-        run: vendor/bin/phpunit --verbose
+        run: composer pest
