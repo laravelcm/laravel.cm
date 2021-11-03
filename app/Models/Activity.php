@@ -61,9 +61,6 @@ class Activity extends Model
         return static::where('user_id', $user->id)
             ->latest()
             ->with('subject')
-            ->where(function (Builder $query) {
-
-            })
             ->take($take)
             ->orderByDesc('created_at')
             ->get();

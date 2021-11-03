@@ -14,12 +14,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Article extends Model implements ReactableInterface
+class Article extends Model implements ReactableInterface, HasMedia
 {
     use HasFactory,
         HasSlug,
         HasTags,
+        InteractsWithMedia,
         Reactable,
         RecordsActivity;
 
