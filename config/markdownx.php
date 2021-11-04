@@ -51,7 +51,7 @@ return [
 
     'dropdown_items' => [
         'text',
-        'heading',
+        // 'heading',
         'heading_2',
         'heading_3',
         'image',
