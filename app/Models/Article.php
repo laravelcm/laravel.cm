@@ -74,15 +74,6 @@ class Article extends Model implements ReactableInterface, HasMedia
     ];
 
     /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'cover_image_url',
-    ];
-
-    /**
      * Get the route key for the model.
      *
      * @return string
@@ -109,12 +100,12 @@ class Article extends Model implements ReactableInterface, HasMedia
 
     public function nextArticle()
     {
-        return self::where('id', '>', $this->id)->orderBy('id')->first();
+        return self::published()->where('id', '>', $this->id)->orderBy('id')->first();
     }
 
     public function previousArticle()
     {
-        return self::where('id', '<', $this->id)->orderByDesc('id')->first();
+        return self::published()->where('id', '<', $this->id)->orderByDesc('id')->first();
     }
 
     public function readTime(): int

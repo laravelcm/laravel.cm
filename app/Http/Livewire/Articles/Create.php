@@ -19,6 +19,7 @@ class Create extends Component
     {
         $this->submitted = ! auth()->user()->hasAnyRole(['admin', 'moderator']);
         $this->submitted_at = auth()->user()->hasAnyRole(['admin', 'moderator']) ? now() : null;
+        $this->approved_at = auth()->user()->hasAnyRole(['admin', 'moderator']) ? now() : null;
     }
 
     public function onMarkdownUpdate(string $content)
@@ -48,13 +49,17 @@ class Create extends Component
             'body' => $this->body,
             'submitted' => $this->submitted,
             'submitted_at' => $this->submitted_at,
+            'approved_at' => $this->approved_at,
             'show_toc' => $this->show_toc,
             'canonical_url' => $this->canonical_url,
             'user_id' => auth()->id(),
-            'cover_image' => $this->file?->store('/', 'public'),
         ]);
 
         $article->syncTags($this->associateTags);
+
+        if ($this->file) {
+            $article->addMedia($this->file->getRealPath())->toMediaCollection('media');
+        }
 
         if ($this->submitted) {
             // Envoi du mail a l'admin pour la validation de l'article
