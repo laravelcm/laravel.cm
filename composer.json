@@ -10,6 +10,7 @@
     "ext-json": "*",
     "blade-ui-kit/blade-heroicons": "^1.2",
     "blade-ui-kit/blade-ui-kit": "^0.2.0",
+    "cyrildewit/eloquent-viewable": "^6.0",
     "doctrine/dbal": "^3.1",
     "fideloper/proxy": "^4.4",
     "fruitcake/laravel-cors": "^2.0",
