@@ -22,6 +22,8 @@ class ArticlesController extends Controller
     {
         $user = Auth::user();
 
+        views($article)->record();
+
         abort_unless(
             $article->isPublished() || ($user && $user->hasAnyRole(['admin', 'moderator'])),
             404

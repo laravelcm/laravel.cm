@@ -23,6 +23,7 @@ class Articles extends Component
             'articles' => $this->user
                 ->articles()
                 ->published()
+                ->recent()
                 ->paginate($this->perPage),
         ]);
     }

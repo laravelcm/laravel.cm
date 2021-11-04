@@ -8,21 +8,23 @@ use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Article extends Model implements ReactableInterface, HasMedia
+class Article extends Model implements ReactableInterface, HasMedia, Viewable
 {
     use HasFactory,
         HasSlug,
         HasTags,
         InteractsWithMedia,
+        InteractsWithViews,
         Reactable,
         RecordsActivity;
 
@@ -72,6 +74,8 @@ class Article extends Model implements ReactableInterface, HasMedia
         'author',
         'tags',
     ];
+
+    protected $removeViewsOnDelete = true;
 
     /**
      * Get the route key for the model.
@@ -275,12 +279,18 @@ class Article extends Model implements ReactableInterface, HasMedia
 
     public function scopePopular(Builder $query): Builder
     {
-        return $query->orderBy('submitted_at', 'desc');
+        return $query->withCount('reactions')
+            ->orderBy('reactions_count', 'desc')
+            ->orderBy('submitted_at', 'desc');
     }
 
     public function scopeTrending(Builder $query): Builder
     {
-        return $query->orderBy('submitted_at', 'desc');
+        return $query->withCount(['reactions' => function ($query) {
+                $query->where('created_at', '>=', now()->subWeek());
+            }])
+            ->orderBy('reactions_count', 'desc')
+            ->orderBy('submitted_at', 'desc');
     }
 
     public function markAsShared()
