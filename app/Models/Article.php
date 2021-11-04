@@ -8,8 +8,8 @@ use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -287,8 +287,8 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     public function scopeTrending(Builder $query): Builder
     {
         return $query->withCount(['reactions' => function ($query) {
-                $query->where('created_at', '>=', now()->subWeek());
-            }])
+            $query->where('created_at', '>=', now()->subWeek());
+        }])
             ->orderBy('reactions_count', 'desc')
             ->orderBy('submitted_at', 'desc');
     }

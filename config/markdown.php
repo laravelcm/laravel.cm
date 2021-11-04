@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\Mention\MentionExtension;
-use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
 use Torchlight\Commonmark\V1\TorchlightExtension;
 
 return [
