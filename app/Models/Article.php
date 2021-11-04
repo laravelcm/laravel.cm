@@ -122,9 +122,11 @@ class Article extends Model implements ReactableInterface, HasMedia
         return Str::readDuration($this->body);
     }
 
-    public function getCoverImageUrlAttribute(): string
+    public function registerMediaCollections(): void
     {
-        return Storage::disk('public')->url($this->cover_image);
+        $this->addMediaCollection('media')
+            ->singleFile()
+            ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png']);
     }
 
     public function showToc()
