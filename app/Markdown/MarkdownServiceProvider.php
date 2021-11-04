@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment;
 use League\CommonMark\Extension\Mention\MentionExtension;
+use Torchlight\Commonmark\V1\TorchlightExtension;
 
 class MarkdownServiceProvider extends ServiceProvider
 {
@@ -14,7 +15,8 @@ class MarkdownServiceProvider extends ServiceProvider
         $this->app->bind(Converter::class, function () {
             $environment = Environment::createCommonMarkEnvironment();
 
-            $environment->addExtension(new MentionExtension);
+            $environment->addExtension(new MentionExtension)
+                ->addExtension(new TorchlightExtension());
 
             $environment->mergeConfig([
                 'mentions' => [

@@ -27,7 +27,7 @@
     "spatie/laravel-permission": "^5.1",
     "spatie/laravel-sitemap": "^6.0",
     "stevebauman/location": "^6.2",
-    "torchlight/torchlight-laravel": "^0.5.3"
+    "torchlight/torchlight-commonmark": "^0.5.2"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.6",

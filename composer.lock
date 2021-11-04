@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5a7e6ce7fffa28ff66f6822614997a4",
+    "content-hash": "6eefd9929e54ce465d9c4dd668abe105",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7635,17 +7635,72 @@
             "time": "2020-07-13T06:12:54+00:00"
         },
         {
-            "name": "torchlight/torchlight-laravel",
-            "version": "v0.5.3",
+            "name": "torchlight/torchlight-commonmark",
+            "version": "v0.5.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/torchlight-api/torchlight-laravel.git",
-                "reference": "8fa8743306db27135eaf65942eeda87c0951032a"
+                "url": "https://github.com/torchlight-api/torchlight-commonmark-php.git",
+                "reference": "281360437fd19af8881ffce562c9f88a4f2d0dd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/torchlight-api/torchlight-laravel/zipball/8fa8743306db27135eaf65942eeda87c0951032a",
-                "reference": "8fa8743306db27135eaf65942eeda87c0951032a",
+                "url": "https://api.github.com/repos/torchlight-api/torchlight-commonmark-php/zipball/281360437fd19af8881ffce562c9f88a4f2d0dd4",
+                "reference": "281360437fd19af8881ffce562c9f88a4f2d0dd4",
+                "shasum": ""
+            },
+            "require": {
+                "league/commonmark": "^1.5|^2.0",
+                "php": "^7.2|^8.0",
+                "torchlight/torchlight-laravel": "^0.5.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.3",
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^8.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Torchlight\\Commonmark\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Francis",
+                    "email": "aaron@hammerstone.dev"
+                }
+            ],
+            "description": "A Commonmark extension for Torchlight, the syntax highlighting API.",
+            "homepage": "https://torchlight.dev",
+            "keywords": [
+                "Code highlighting",
+                "commonmark",
+                "laravel",
+                "markdown",
+                "syntax highlighting"
+            ],
+            "support": {
+                "issues": "https://github.com/torchlight-api/torchlight-commonmark-php/issues",
+                "source": "https://github.com/torchlight-api/torchlight-commonmark-php/tree/v0.5.2"
+            },
+            "time": "2021-09-27T02:02:48+00:00"
+        },
+        {
+            "name": "torchlight/torchlight-laravel",
+            "version": "v0.5.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/torchlight-api/torchlight-laravel.git",
+                "reference": "d528caf717a44384a406e778468d058ccbef4391"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/torchlight-api/torchlight-laravel/zipball/d528caf717a44384a406e778468d058ccbef4391",
+                "reference": "d528caf717a44384a406e778468d058ccbef4391",
                 "shasum": ""
             },
             "require": {
@@ -7695,9 +7750,9 @@
             ],
             "support": {
                 "issues": "https://github.com/torchlight-api/torchlight-laravel/issues",
-                "source": "https://github.com/torchlight-api/torchlight-laravel/tree/v0.5.3"
+                "source": "https://github.com/torchlight-api/torchlight-laravel/tree/v0.5.7"
             },
-            "time": "2021-08-14T17:28:33+00:00"
+            "time": "2021-11-02T14:55:01+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
