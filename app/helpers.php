@@ -28,7 +28,7 @@ if (! function_exists('md_to_html')) {
      */
     function md_to_html(string $markdown): string
     {
-        return app(App\Markdown\Converter::class)->toHtml($markdown);
+        return Markdown::convertToHtml($markdown);
     }
 }
 
