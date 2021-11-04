@@ -33,6 +33,7 @@ sitemap.xml
 .php-cs-fixer.cache
 /public/hot
 /public/storage
+/public/media
 /public/sitemap.xml
 /storage/*.key
 /storage/framework/cache
@@ -42,7 +43,6 @@ Homestead.json
 Homestead.yaml
 .phpstorm.meta.php
 _ide_helper.php
-auth.json
 
 # OSX
 #

@@ -8,18 +8,23 @@ use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Article extends Model implements ReactableInterface
+class Article extends Model implements ReactableInterface, HasMedia, Viewable
 {
     use HasFactory,
         HasSlug,
         HasTags,
+        InteractsWithMedia,
+        InteractsWithViews,
         Reactable,
         RecordsActivity;
 
@@ -70,14 +75,7 @@ class Article extends Model implements ReactableInterface
         'tags',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'cover_image_url',
-    ];
+    protected $removeViewsOnDelete = true;
 
     /**
      * Get the route key for the model.
@@ -106,12 +104,12 @@ class Article extends Model implements ReactableInterface
 
     public function nextArticle()
     {
-        return self::where('id', '>', $this->id)->orderBy('id')->first();
+        return self::published()->where('id', '>', $this->id)->orderBy('id')->first();
     }
 
     public function previousArticle()
     {
-        return self::where('id', '<', $this->id)->orderByDesc('id')->first();
+        return self::published()->where('id', '<', $this->id)->orderByDesc('id')->first();
     }
 
     public function readTime(): int
@@ -119,9 +117,11 @@ class Article extends Model implements ReactableInterface
         return Str::readDuration($this->body);
     }
 
-    public function getCoverImageUrlAttribute(): string
+    public function registerMediaCollections(): void
     {
-        return Storage::disk('public')->url($this->cover_image);
+        $this->addMediaCollection('media')
+            ->singleFile()
+            ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png']);
     }
 
     public function showToc()
@@ -279,12 +279,18 @@ class Article extends Model implements ReactableInterface
 
     public function scopePopular(Builder $query): Builder
     {
-        return $query->orderBy('submitted_at', 'desc');
+        return $query->withCount('reactions')
+            ->orderBy('reactions_count', 'desc')
+            ->orderBy('submitted_at', 'desc');
     }
 
     public function scopeTrending(Builder $query): Builder
     {
-        return $query->orderBy('submitted_at', 'desc');
+        return $query->withCount(['reactions' => function ($query) {
+            $query->where('created_at', '>=', now()->subWeek());
+        }])
+            ->orderBy('reactions_count', 'desc')
+            ->orderBy('submitted_at', 'desc');
     }
 
     public function markAsShared()

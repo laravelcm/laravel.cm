@@ -26,7 +26,7 @@ class Edit extends Component
         $this->slug = $article->slug;
         $this->show_toc = $article->show_toc;
         $this->canonical_url = $article->originalUrl();
-        $this->preview = $article->cover_image_url;
+        $this->preview = $article->getFirstMediaUrl('media');
         $this->associateTags = $this->tags_selected = old('tags', $article->tags()->pluck('id')->toArray());
     }
 
@@ -50,11 +50,13 @@ class Edit extends Component
             'body' => $this->body,
             'show_toc' => $this->show_toc,
             'canonical_url' => $this->canonical_url,
-            'user_id' => auth()->id(),
-            'cover_image' => $this->article->cover_image ?? $this->file?->store('/', 'public'),
         ]);
 
         $this->article->syncTags($this->associateTags);
+
+        if ($this->file) {
+            $this->article->addMedia($this->file->getRealPath())->toMediaCollection('media');
+        }
 
         $this->redirectRoute('articles.show', $this->article);
     }

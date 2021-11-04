@@ -5,11 +5,11 @@ namespace App\Models;
 use App\Traits\HasProfilePhoto;
 use App\Traits\Reacts;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -17,11 +17,11 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
-    use InteractsWithMedia,
-        HasFactory,
-        Notifiable,
+    use HasFactory,
         HasProfilePhoto,
         HasRoles,
+        InteractsWithMedia,
+        Notifiable,
         Reacts;
 
     /**

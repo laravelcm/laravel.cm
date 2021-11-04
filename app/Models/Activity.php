@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -61,9 +60,6 @@ class Activity extends Model
         return static::where('user_id', $user->id)
             ->latest()
             ->with('subject')
-            ->where(function (Builder $query) {
-
-            })
             ->take($take)
             ->orderByDesc('created_at')
             ->get();

@@ -18,7 +18,6 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->string('slug')->unique();
-            $table->string('cover_image')->nullable();
             $table->string('canonical_url')->nullable();
             $table->boolean('show_toc')->default(false);
             $table->boolean('is_pinned')->default(false);

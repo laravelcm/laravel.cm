@@ -51,27 +51,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="pt-6 space-y-6">
-                    @if($next = $article->nextArticle())
-                        <div>
-                            <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article suivant</h2>
-                            <a href="{{ route('articles.show', $next) }}" class="mt-3 flex items-start space-x-2">
-                                <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $next->cover_image_url }}" alt="{{ $next->slug }}">
-                                <span class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2">{{ $next->title }}</span>
-                            </a>
-                        </div>
-                    @endif
+                @if($article->nextArticle() || $article->previousArticle())
+                    <div class="pt-6 space-y-6">
+                        @if($next = $article->nextArticle())
+                            <div>
+                                <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article suivant</h2>
+                                <a href="{{ route('articles.show', $next) }}" class="mt-3 flex items-start space-x-2">
+                                    <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $next->getFirstMediaUrl('media') }}" alt="{{ $next->slug }}">
+                                    <span class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2">{{ $next->title }}</span>
+                                </a>
+                            </div>
+                        @endif
 
-                    @if($previous = $article->previousArticle())
-                        <div>
-                            <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article précédent</h2>
-                            <a href="{{ route('articles.show', $previous) }}" class="mt-3 flex items-start space-x-2">
-                                <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $previous->cover_image_url }}" alt="{{ $previous->slug }}">
-                                <span class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2">{{ $previous->title }}</span>
-                            </a>
-                        </div>
-                    @endif
-                </div>
+                        @if($previous = $article->previousArticle())
+                            <div>
+                                <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article précédent</h2>
+                                <a href="{{ route('articles.show', $previous) }}" class="mt-3 flex items-start space-x-2">
+                                    <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $previous->getFirstMediaUrl('media') }}" alt="{{ $previous->slug }}">
+                                    <span class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2">{{ $previous->title }}</span>
+                                </a>
+                            </div>
+                        @endif
+                    </div>
+                @endif
                 <livewire:reactions :model="$article" />
             </div>
         </div>
@@ -110,14 +112,12 @@
                 </a>
             </header>
             <div class="mt-6 aspect-w-4 aspect-h-2 sm:mt-8 mx-auto">
-                <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->cover_image_url }}" alt="{{ $article->title }}" />
+                <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}" />
             </div>
             <div
-                x-data
-                x-init="function () { highlightCode($el); }"
                 class="mt-8 prose prose-lg prose-green text-skin-base mx-auto md:prose-xl lg:max-w-none"
             >
-                <x-markdown anchors>{!! $article->body !!}</x-markdown>
+                <x-markdown-content :content="$article->body" />
             </div>
 
             @if(auth()->check() && auth()->id() === $article->user_id)
@@ -142,43 +142,41 @@
 
             @endif
 
-            <footer class="mt-10 border-t border-skin-light lg:hidden">
-                <div class="space-y-8 py-8 sm:flex sm:items-center sm:space-y-0">
-                    @if($next = $article->nextArticle())
-                        <div>
-                            <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article suivant</h2>
-                            <div class="mt-3 flex items-start space-x-2">
-                                <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $next->cover_image_url }}" alt="{{ $next->slug }}">
-                                <div class="flex flex-col space-y-1">
-                                    <a class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2" href="{{ route('articles.show', $next) }}">{{ $next->title }}</a>
-                                    <span class="text-sm text-skin-muted">{{ $next->readTime() }} min de lecture</span>
+            @if($article->nextArticle() || $article->previousArticle())
+                <footer class="mt-10 border-t border-skin-light lg:hidden">
+                    <div class="space-y-8 py-8 sm:flex sm:items-center sm:space-y-0">
+                        @if($next = $article->nextArticle())
+                            <div>
+                                <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article suivant</h2>
+                                <div class="mt-3 flex items-start space-x-2">
+                                    <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $next->cover_image_url }}" alt="{{ $next->slug }}">
+                                    <div class="flex flex-col space-y-1">
+                                        <a class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2" href="{{ route('articles.show', $next) }}">{{ $next->title }}</a>
+                                        <span class="text-sm text-skin-muted">{{ $next->readTime() }} min de lecture</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
+                        @endif
 
-                    @if($previous = $article->previousArticle())
-                        <div>
-                            <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article précédent</h2>
-                            <div class="mt-3 flex items-start space-x-2">
-                                <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $previous->cover_image_url }}" alt="{{ $previous->slug }}">
-                                <div class="flex flex-col space-y-1">
-                                    <a class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2" href="{{ route('articles.show', $previous) }}">{{ $previous->title }}</a>
-                                    <span class="text-sm text-skin-muted">{{ $previous->readTime() }} min de lecture</span>
+                        @if($previous = $article->previousArticle())
+                            <div>
+                                <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article précédent</h2>
+                                <div class="mt-3 flex items-start space-x-2">
+                                    <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $previous->cover_image_url }}" alt="{{ $previous->slug }}">
+                                    <div class="flex flex-col space-y-1">
+                                        <a class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2" href="{{ route('articles.show', $previous) }}">{{ $previous->title }}</a>
+                                        <span class="text-sm text-skin-muted">{{ $previous->readTime() }} min de lecture</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-                </div>
-            </footer>
+                        @endif
+                    </div>
+                </footer>
+            @endif
         </div>
         <div class="hidden lg:block lg:col-span-2">
             <div class="sticky top-4">
                 @if($article->showToc())
-                    <div class="">
-
-                    </div>
-
                     <div class="bg-skin-card px-4 py-6 rounded-lg shadow-lg">
                         <h4 class="text-sm text-skin-inverted font-semibold leading-tight tracking-widest uppercase">Table des matières</h4>
                         <x-toc class="mt-4 toc" id="toc">{!! $article->body !!}</x-toc>
