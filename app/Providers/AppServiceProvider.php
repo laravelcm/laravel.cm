@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\View\Composers\ChannelsComposer;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
@@ -31,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
 
             return (int) max(1, $minutesToRead);
         });
+
+        View::composer('forum._channels', ChannelsComposer::class);
     }
 
     public function registerBladeDirective()
