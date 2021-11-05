@@ -19,7 +19,7 @@ class ChannelSeeder extends Seeder
             ['name' => 'Breeze', 'slug' => 'breeze'],
             ['name' => 'Fortify', 'slug' => 'fortify'],
             ['name' => 'Jetstream', 'slug' => 'jetstream'],
-            ['name' => 'Passport', 'slug' => 'password'],
+            ['name' => 'Passport', 'slug' => 'passport'],
             ['name' => 'Sanctum', 'slug' => 'sanctum'],
             ['name' => 'UI', 'slug' => 'ui'],
         ]);
@@ -73,7 +73,7 @@ class ChannelSeeder extends Seeder
             ['name' => 'UI/UX', 'slug' => 'ui-ux'],
         ]);
 
-        $divers = Channel::create(['name' => 'Divers', 'slug' => 'divers', 'color' => '#6D28D9']);
+        $divers = Channel::create(['name' => 'Divers', 'slug' => 'divers', 'color' => '#DB2777']);
         $divers->items()->createMany([
             ['name' => 'Laravel.cm', 'slug' => 'laravelcm'],
             ['name' => 'Gaming', 'slug' => 'gaming'],
