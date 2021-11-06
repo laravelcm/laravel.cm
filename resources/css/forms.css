@@ -24,7 +24,7 @@
 }
 
 .standard .choices__list--dropdown .choices__list {
-  @apply bg-skin-input !important;
+  @apply bg-skin-input border border-skin-base !important;
 }
 
 .standard .choices__list--single {
@@ -61,4 +61,9 @@
 
 .standard .choices[data-type*='select-one'] .choices__input {
   @apply rounded-none border-b-2 border-skin-input !important;
+}
+
+.standard .choices__item.choices__item--choice.choices__item--selectable.is-highlighted,
+.standard .choices__item.choices__item--choice.is-selected.choices__item--selectable {
+  @apply bg-green-500 border-green-500 text-white !important;
 }

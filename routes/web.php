@@ -47,6 +47,8 @@ Route::prefix('forum')->as('forum.')->group(function () {
     Route::redirect('/channels', '/forum');
     Route::get('/', [ThreadController::class, 'index'])->name('index');
     Route::get('/channels/{channel}', [ThreadController::class, 'channel'])->name('channels');
+    Route::get('/new-thread', [ThreadController::class, 'create'])->name('new');
+    Route::get('/{thread}', [ThreadController::class, 'show'])->name('show');
 });
 
 // Settings
