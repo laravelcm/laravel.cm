@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Activity;
 use App\Models\Channel;
 use App\Models\Reply;
 use App\Models\Thread;
@@ -30,6 +31,25 @@ it('can have many channels', function () {
     $thread->channels()->attach($channels->modelKeys());
 
     expect($thread->channels->count())->toEqual(3);
+});
+
+it('records activity when a thread is created', function () {
+    actingAs();
+
+    $thread = Thread::factory()->create(['user_id' => auth()->id()]);
+
+    $this->assertDatabaseHas('activities', [
+        'type' => 'created_thread',
+        'user_id' => auth()->id(),
+        'subject_id' => $thread->id,
+        'subject_type' => Thread::class,
+    ]);
+
+    $activity = Activity::first();
+
+    $this->assertEquals($activity->subject->id, $thread->id);
+
+    $this->assertEquals(auth()->user()->activities->count(), 1);
 });
 
 test('its conversation is old when the oldest reply was six months ago', function () {
