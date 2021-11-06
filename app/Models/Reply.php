@@ -28,6 +28,11 @@ class Reply extends Model implements ReactableInterface
         'body',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+    }
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

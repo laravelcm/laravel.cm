@@ -48,6 +48,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         'title',
         'body',
         'slug',
+        'user_id',
     ];
 
     /**
@@ -71,6 +72,11 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
     ];
 
     protected $removeViewsOnDelete = true;
+
+    public static function boot()
+    {
+        parent::boot();
+    }
 
     /**
      * Get the route key for the model.
@@ -284,5 +290,20 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
     public function scopeActive(Builder $query): Builder
     {
         return $query->has('replies');
+    }
+
+    public function syncChannels(array $channels)
+    {
+        $this->save();
+        $this->channels()->sync($channels);
+
+        $this->unsetRelation('channels');
+    }
+
+    public function removeChannels()
+    {
+        $this->channels()->detach();
+
+        $this->unsetRelation('channels');
     }
 }
