@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\Forum\ThreadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\User;
@@ -41,6 +42,13 @@ Route::prefix('articles')->group(function () {
     Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
 });
 
+// Forum
+Route::prefix('forum')->as('forum.')->group(function () {
+    Route::redirect('/channels', '/forum');
+    Route::get('/', [ThreadController::class, 'index'])->name('index');
+    Route::get('/channels/{channel}', [ThreadController::class, 'channel'])->name('channels');
+});
+
 // Settings
 Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {
     Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
@@ -68,3 +76,5 @@ Route::redirectMap([
 ]);
 
 Route::mediaLibrary();
+// In routes/web.php
+Route::feeds();

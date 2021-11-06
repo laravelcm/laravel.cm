@@ -15,6 +15,8 @@
 
 :root {
   --brand-laravel: #FF2D20;
+  --brand-livewire: #fb70a9;
+  --brand-inertia: #8B5CF6;
   --brand-javascript: #F7DF1E;
   --brand-typesript: #007ACC;
   --brand-react: #53C1DE;
@@ -25,7 +27,7 @@
   --brand-packages: #4F46E5;
   --brand-outils: #22D3EE;
   --brand-tailwind: #06B6D4;
-  --brand-design: #8B5CF6;
+  --brand-design: #78350F;
   --brand-alpinejs: #37BDD7;
   --brand-open-source: #F97316;
   --brand-freelance: #F43F5E;

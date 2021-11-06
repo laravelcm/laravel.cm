@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\ReactableInterface;
+use App\Contracts\ReplyInterface;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
@@ -45,6 +46,11 @@ class Reply extends Model implements ReactableInterface
     public function excerpt(int $limit = 100): string
     {
         return Str::limit(strip_tags(md_to_html($this->body)), $limit);
+    }
+
+    public function to(ReplyInterface $replyAble)
+    {
+        $this->replyAble()->associate($replyAble);
     }
 
     /**

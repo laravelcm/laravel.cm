@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Exceptions\CannotAddChannelToChild;
 use App\Traits\HasSlug;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,6 +26,30 @@ class Channel extends Model
         'parent_id',
         'color',
     ];
+
+    /**
+     * The relationship counts that should be eager loaded on every query.
+     *
+     * @var array
+     */
+    protected $withCount = [
+        'threads',
+    ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($channel) {
+            if ($channel->parent_id) {
+                if ($record = self::find($channel->parent_id)) {
+                    if ($record->exists() && $record->parent_id) {
+                        throw CannotAddChannelToChild::childChannelCannotBeParent($channel);
+                    }
+                }
+            }
+        });
+    }
 
     /**
      * Get the route key for the model.
@@ -48,5 +74,10 @@ class Channel extends Model
     public function threads(): BelongsToMany
     {
         return $this->belongsToMany(Thread::class);
+    }
+
+    public function hasItems(): bool
+    {
+        return $this->items->isNotEmpty();
     }
 }
