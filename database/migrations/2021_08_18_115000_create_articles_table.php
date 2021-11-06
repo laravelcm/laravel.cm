@@ -27,6 +27,7 @@ class CreateArticlesTable extends Migration
             $table->timestamp('submitted_at')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->timestamp('shared_at')->nullable();
+            $table->timestamp('declined_at')->nullable();
             $table->timestamp('sponsored_at')->nullable();
             $table->timestamps();
         });

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\HasProfilePhoto;
 use App\Traits\Reacts;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -161,14 +162,23 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasMany(Activity::class);
     }
 
+    public function threads(): HasMany
+    {
+        return $this->hasMany(Thread::class);
+    }
+
+    public function deleteThreads()
+    {
+        // We need to explicitly iterate over the threads and delete them
+        // separately because all related models need to be deleted.
+        foreach ($this->threads as $thread) {
+            $thread->delete();
+        }
+    }
+
     public function latestArticles(int $amount = 10): Collection
     {
         return $this->articles()->latest()->limit($amount)->get();
-    }
-
-    public function countArticles(): int
-    {
-        return $this->articles()->count();
     }
 
     public function githubUsername(): ?string
@@ -179,6 +189,13 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function twitter(): ?string
     {
         return $this->twitter_profile;
+    }
+
+    public function scopeModerators(Builder $query): Builder
+    {
+        return $query->whereHas('roles', function ($query) {
+            $query->where('name', '<>', 'user');
+        });
     }
 
     /**
