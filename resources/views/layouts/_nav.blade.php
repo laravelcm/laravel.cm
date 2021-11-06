@@ -189,14 +189,14 @@
                                 <a href="{{ route('articles.new') }}" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
                                     Nouvel article
                                 </a>
+                                <a href="{{ route('forum.new') }}" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
+                                    Nouveau sujet
+                                </a>
                                 <a href="#" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
                                     Nouvelle discussion
                                 </a>
                                 <a href="#" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
                                     Nouveau tutoriel
-                                </a>
-                                <a href="#" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
-                                    Nouveau thread
                                 </a>
                             </div>
                         </div>
