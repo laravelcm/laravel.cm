@@ -58,6 +58,7 @@
     --color-input-fill: var(--color-menu-fill);
     --color-button-default: var(--color-menu-fill);
     --color-card-fill: var(--color-menu-fill);
+    --color-card-gray: 243, 244, 246;
     --color-card-muted-fill: var(--color-body-fill);
 
     --color-input-border: 209, 213, 219;
@@ -85,6 +86,7 @@
     --color-input-fill: 31, 41, 55;
     --color-button-default: 55, 65, 81;
     --color-card-fill: 22, 27, 34;
+    --color-card-gray: var(--color-menu-fill);
     --color-card-muted-fill: 17, 22, 29;
 
     --color-input-border: 31, 41, 55;

@@ -66,13 +66,13 @@ module.exports = {
           button: withOpacity('--color-button-default'),
           'button-hover': withOpacity('--color-card-muted-fill'),
           card: withOpacity('--color-card-fill'),
+          'card-gray': withOpacity('--color-card-gray'),
           'card-muted': withOpacity('--color-card-muted-fill'),
         }
       },
       borderColor: {
         skin: {
           base: withOpacity('--color-border'),
-          light: withOpacity('--color-border-light'),
           input: withOpacity('--color-input-border'),
         }
       },
