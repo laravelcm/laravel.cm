@@ -139,7 +139,7 @@
                 </div>
             </div>
         </div>
-        <div class="border-t border-skin-light py-6 sm:flex sm:items-center sm:justify-between lg:py-8">
+        <div class="border-t border-skin-base py-6 sm:flex sm:items-center sm:justify-between lg:py-8">
             <p class="text-base leading-6 font-normal text-skin-muted">
                 © 2018 - {{ date('Y') }} Laravel Cameroun. Tous droits réservés.
             </p>

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
 use App\Exceptions\CouldNotMarkReplyAsSolution;
+use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
 use App\Traits\HasSlug;
 use App\Traits\Reactable;
@@ -29,7 +30,8 @@ use Spatie\Feed\FeedItem;
 
 class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, Viewable
 {
-    use HasFactory,
+    use HasAuthor,
+        HasFactory,
         HasSlug,
         HasReplies,
         InteractsWithViews,
@@ -106,11 +108,6 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
     public function excerpt(int $limit = 100): string
     {
         return Str::limit(strip_tags(md_to_html($this->body)), $limit);
-    }
-
-    public function author(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function resolvedBy(): BelongsTo
