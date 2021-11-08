@@ -167,12 +167,26 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasMany(Thread::class);
     }
 
+    public function replyAble(): HasMany
+    {
+        return $this->hasMany(Reply::class, 'author_id');
+    }
+
     public function deleteThreads()
     {
         // We need to explicitly iterate over the threads and delete them
         // separately because all related models need to be deleted.
         foreach ($this->threads as $thread) {
             $thread->delete();
+        }
+    }
+
+    public function deleteReplies()
+    {
+        // We need to explicitly iterate over the replies and delete them
+        // separately because all related models need to be deleted.
+        foreach ($this->replyAble->get() as $reply) {
+            $reply->delete();
         }
     }
 
@@ -231,6 +245,22 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $password !== '' && $password !== null;
     }
 
+    public function delete()
+    {
+        $this->deleteThreads();
+        $this->deleteReplies();
+
+        parent::delete();
+    }
+
+    public function scopeHasActivity(Builder $query)
+    {
+        return $query->where(function ($query) {
+            $query->has('threads')
+                ->orHas('replyAble');
+        });
+    }
+
     /**
      * Route notifications for the Slack channel.
      *
@@ -240,5 +270,67 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function routeNotificationForSlack($notification): string
     {
         return env('SLACK_WEBHOOK_URL', '');
+    }
+
+    public function countReplies(): int
+    {
+        return $this->replyAble()->count();
+    }
+
+    public function replies(): Collection
+    {
+        return $this->replyAble;
+    }
+
+    public function countSolutions(): int
+    {
+        return $this->replyAble()->isSolution()->count();
+    }
+
+    public function scopeMostSolutions(Builder $query, int $inLastDays = null)
+    {
+        return $query->withCount(['replyAble as solutions_count' => function ($query) use ($inLastDays) {
+            $query->where('replyable_type', 'threads')
+                ->join('threads', 'threads.solution_reply_id', '=', 'replies.id');
+
+            if ($inLastDays) {
+                $query->where('replies.created_at', '>', now()->subDays($inLastDays));
+            }
+
+            return $query;
+        }])->orderBy('solutions_count', 'desc');
+    }
+
+    public function scopeMostSubmissions(Builder $query, int $inLastDays = null)
+    {
+        return $query->withCount(['articles as articles_count' => function ($query) use ($inLastDays) {
+            if ($inLastDays) {
+                $query->where('articles.approved_at', '>', now()->subDays($inLastDays));
+            }
+
+            return $query;
+        }])->orderBy('articles_count', 'desc');
+    }
+
+    public function scopeMostSolutionsInLastDays(Builder $query, int $days)
+    {
+        return $query->mostSolutions($days);
+    }
+
+    public function scopeMostSubmissionsInLastDays(Builder $query, int $days)
+    {
+        return $query->mostSubmissions($days);
+    }
+
+    public function scopeWithCounts(Builder $query)
+    {
+        return $query->withCount([
+            'threads as threads_count',
+            'replyAble as replies_count',
+            'replyAble as solutions_count' => function (Builder $query) {
+                return $query->join('threads', 'threads.solution_reply_id', '=', 'replies.id')
+                    ->where('replyable_type', Thread::class);
+            },
+        ]);
     }
 }

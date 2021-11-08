@@ -10,6 +10,7 @@ use Livewire\Component;
 class Reactions extends Component
 {
     public Model $model;
+    public bool $withPlaceHolder = true;
 
     public function userReacted(string $reaction)
     {

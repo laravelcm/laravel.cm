@@ -74,7 +74,9 @@
                         @endif
                     </div>
                 @endif
-                <livewire:reactions :model="$article" />
+                <div class="pt-6">
+                    <livewire:reactions :model="$article" />
+                </div>
             </div>
         </div>
         <div class="lg:col-span-5">

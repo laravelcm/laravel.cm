@@ -1,5 +1,5 @@
 <nav class="space-y-6">
-    <x-button :link="route('forum.new')">
+    <x-button :link="route('forum.new')" class="w-full flex justify-between">
         Nouveau Sujet
         <x-heroicon-o-plus-circle class="h-4 w-4 ml-2.5" />
     </x-button>

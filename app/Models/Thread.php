@@ -193,6 +193,11 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         });
     }
 
+    public function scopeRecent(Builder $query): Builder
+    {
+        return self::feedQuery()->orderByDesc('created_at');
+    }
+
     public function delete()
     {
         $this->channels()->delete();
@@ -247,6 +252,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         return static::with([
             'solutionReply',
             'replies',
+            'reactions',
             'replies.author',
             'channels',
             'author',
