@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Forum;
 use App\Http\Controllers\Controller;
 use App\Models\Channel;
 use App\Models\Thread;
-use App\Models\User;
-use Illuminate\Support\Facades\Cache;
 
 class ThreadController extends Controller
 {
@@ -34,10 +32,6 @@ class ThreadController extends Controller
     {
         views($thread)->record();
 
-        $moderators = Cache::remember('moderators', now()->addMinutes(30), function () {
-            return User::moderators()->get();
-        });
-
-        return view('forum.thread', compact('thread', 'moderators'));
+        return view('forum.thread', compact('thread'));
     }
 }
