@@ -45,4 +45,13 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    public function configure()
+    {
+        return $this->afterMaking(function (User $user) {
+            $user->assignRole('user');
+        })->afterCreating(function (User $user) {
+            $user->assignRole('user');
+        });
+    }
 }
