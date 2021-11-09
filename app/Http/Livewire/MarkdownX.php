@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Markdown\MarkdownHelper;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -28,6 +29,8 @@ class MarkdownX extends Component
         'markdown-x-image-upload' => 'upload',
         'markdown-x-giphy-load' => 'getGiphyTrendingImages',
         'markdown-x-giphy-search' => 'getGiphySearchImages',
+        'markdown-x-people-load' => 'getTrendingPeoples',
+        'markdown-x-people-search' => 'getSearchPeoples',
     ];
 
     /**
@@ -216,6 +219,45 @@ class MarkdownX extends Component
             'message' => 'Successfully returned results.',
             'results' => $parse_giphy_results,
             'key' => $key,
+        ]);
+    }
+
+    public function getTrendingPeoples($payload)
+    {
+        $users = User::orderBy('name')->get()->map(function ($user) {
+            $people['name'] = $user->name;
+            $people['picture'] = $user->profile_photo_url;
+            $people['username'] = $user->username;
+
+            return $people;
+        });
+
+        $this->dispatchBrowserEvent('markdown-x-peoples-results', [
+            'status' => 200,
+            'message' => 'Successfully returned results.',
+            'results' => $users->toArray(),
+            'key' => $payload['key'],
+        ]);
+    }
+
+    public function getSearchPeoples($payload)
+    {
+        $users = User::where('name', 'like', '%'. $payload['search'] .'%')
+                    ->orWhere('username', 'like', '%'. $payload['search'] .'%')
+                    ->get()
+                    ->map(function ($user) {
+                        $people['name'] = $user->name;
+                        $people['picture'] = $user->profile_photo_url;
+                        $people['username'] = $user->username;
+
+                        return $people;
+                    });
+
+        $this->dispatchBrowserEvent('markdown-x-peoples-results', [
+            'status' => 200,
+            'message' => 'Successfully returned results.',
+            'results' => $users->toArray(),
+            'key' => $payload['key'],
         ]);
     }
 

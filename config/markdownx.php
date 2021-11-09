@@ -55,6 +55,7 @@ return [
         'heading_2',
         'heading_3',
         'image',
+        'mention',
         'code',
         'link',
         'divider',

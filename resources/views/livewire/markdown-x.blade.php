@@ -283,7 +283,7 @@
                         }
                     }
                 },
-                cancelModal (){
+                cancelModal () {
                     this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                 },
                 getCursorXY () {
@@ -378,10 +378,16 @@
                             "description" : `Upload or add an image.`,
                             "display" : `block`
                         },
+                        "mention" : {
+                            "icon" : `<span class="p-2 border border-skin-input rounded-lg"><svg class="w-6 h-6 text-gray-800 fill-current" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M91 99.5c0 25.129-20.371 45.5-45.5 45.5S0 124.629 0 99.5 20.371 54 45.5 54 91 74.371 91 99.5ZM56.875 82.437c0 6.283-5.093 11.376-11.375 11.376S34.125 88.72 34.125 82.436c0-6.282 5.093-11.374 11.375-11.374s11.375 5.092 11.375 11.374ZM45.5 105.189c-11.475 0-21.363 6.796-25.857 16.583 6.258 7.259 15.52 11.854 25.857 11.854 10.336 0 19.598-4.595 25.856-11.854-4.494-9.787-14.381-16.583-25.856-16.583Z" fill="#9CA3AF"/><path d="M100 77.984c0-1.648 1.301-2.984 2.907-2.984h94.186c1.605 0 2.907 1.336 2.907 2.984s-1.302 2.984-2.907 2.984h-94.186c-1.606 0-2.907-1.336-2.907-2.984ZM100 93.5c0-1.648 1.301-2.984 2.907-2.984h94.186c1.605 0 2.907 1.336 2.907 2.984s-1.302 2.984-2.907 2.984h-94.186c-1.606 0-2.907-1.336-2.907-2.984ZM100 109.016c0-1.648 1.301-2.984 2.907-2.984H175c1.605 0 2.907 1.336 2.907 2.984S176.605 112 175 112h-72.093c-1.605 0-2.907-1.336-2.907-2.984Z" fill="#D1D5DB"/></svg></span>`,
+                            "title" : `Mention a person`,
+                            "description" : `Ping someone so they get a notification.`,
+                            "display" : `block`
+                        },
                         "code" : {
                             "icon" : `<span class="p-2 border border-skin-input rounded-lg"><svg class="w-6 h-6 text-skin-menu fill-current" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><path fill="#FFF" d="M25 75h250v187H25z"/><path d="M262.5 12h-225C16.819 12 0 28.824 0 49.51v200.066c0 20.687 16.819 37.51 37.5 37.51h225c20.681 0 37.5-16.823 37.5-37.51V49.51C300 28.824 283.181 12 262.5 12zm0 250.067h-225c-6.9 0-12.506-5.608-12.506-12.51V74.512h250.012v175.045c0 6.902-5.606 12.51-12.506 12.51z" fill="#273141"/><g fill="#374151"><path d="M176.378 216.498c-3.2 0-6.383-1.214-8.816-3.643-4.866-4.857-4.866-12.742 0-17.618l28.62-28.566-28.62-28.566c-4.866-4.857-4.866-12.741 0-17.618 4.867-4.857 12.765-4.857 17.65 0l37.436 37.366c4.866 4.858 4.866 12.742 0 17.618l-37.435 37.365a12.472 12.472 0 01-8.835 3.662zM122.584 116.844c3.2 0 6.383 1.215 8.816 3.643 4.866 4.858 4.866 12.742 0 17.618l-28.62 28.566 28.62 28.566c4.866 4.858 4.866 12.742 0 17.618-4.867 4.858-12.765 4.858-17.65 0L76.313 175.49c-4.866-4.858-4.866-12.742 0-17.618l37.435-37.366a12.472 12.472 0 018.835-3.662z"/></g></g></svg></span>`,
                             "title" : `Code`,
-                            "description" : `Insert a peice of code.`,
+                            "description" : `Insert a piece of code.`,
                             "display" : `block`
                         },
                         "link" : {
@@ -506,7 +512,19 @@
                             Insert an animated GIF
                         </label>
                         <input type="text" @keydown="searchGIFModal(event)" id="editor-giphy-search" class="block w-full transition duration-150 ease-in-out bg-skin-input focus:outline-none font-normal text-skin-base focus:ring-flag-green focus:border-flag-green sm:text-sm border-skin-input rounded-md sm:leading-5" placeholder="Search for a GIF">
-                        <div id="giphy-items" class="grid w-full h-64 grid-cols-3 gap-1 p-1 mt-2 overflow-y-scroll border border-skin-input rounded-lg bg-gray-50 grid-cols">
+                        <div id="giphy-items" class="grid w-full h-64 grid-cols-3 gap-1 p-1 mt-2 overflow-y-scroll border border-skin-input rounded-lg bg-skin-card grid-cols">
+                            <div class="absolute inset-0 flex items-center justify-center w-full h-full">
+                                <svg class="w-5 h-5 text-skin-muted animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </div>
+                        </div>`;
+                    modalSuggestionHTML["mention"] = `<label for="text" class="block mb-1.5 text-sm font-medium leading-5 text-skin-menu sm:mt-px">
+                            Mention a person
+                        </label>
+                        <input type="text" @keydown="searchPeopleModal(event)" id="editor-people-search" class="block w-full transition duration-150 ease-in-out bg-skin-input focus:outline-none font-normal text-skin-base focus:ring-flag-green focus:border-flag-green sm:text-sm border-skin-input rounded-md sm:leading-5" placeholder="Search for a person">
+                        <div id="peoples-items" class="w-full h-64 mt-2 overflow-y-scroll border border-skin-input rounded-lg bg-skin-card">
                             <div class="absolute inset-0 flex items-center justify-center w-full h-full">
                                 <svg class="w-5 h-5 text-skin-muted animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -557,18 +575,27 @@
                         this.$refs.modalExecute.click();
                     }
                 },
-                searchGIFModal(event){
+                searchGIFModal(event) {
                     if (event.keyCode === 13) {
                         event.preventDefault();
-                        if(event.target.value.trim() !== ""){
+                        if(event.target.value.trim() !== "") {
                             window.livewire.emit('markdown-x-giphy-search', { search: event.target.value, key: this.$refs.markdownX.dataset.key });
+                        }
+                    }
+                },
+                searchPeopleModal(event) {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                        if(event.target.value.trim() !== "") {
+                            console.log(event.target.value)
+                            window.livewire.emit('markdown-x-people-search', { search: event.target.value, key: this.$refs.markdownX.dataset.key });
                         }
                     }
                 },
                 executeAssociatedFunction () {
                     let type = this.$refs.modalExecute.dataset.suggestion;
                     let editor = this.$refs.editor;
-                    switch(type){
+                    switch(type) {
                         case "link":
                                 editor.setCaretPosition(this.editStart, this.editStart);
                                 let linkText = document.getElementById('editor-link-text').value;
@@ -723,13 +750,23 @@
                         case 'bulleted_list':
                             this.replaceSuggestionText(newLine + ' - ');
                             break;
+                        case 'mention':
+                                this.setModalHTML(selected.dataset.suggestion);
+                                this.$refs.modalExecute.dataset.suggestion="mention";
+                                this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
+                                this.replaceSuggestionText(newLine + '');
+                                window.livewire.emit('markdown-x-people-load', { key: this.$refs.markdownX.dataset.key });
+                                this.showModalPop(function() {
+                                    document.getElementById('editor-people-search').focus();
+                                });
+                            break;
                         case 'giphy':
                                 this.setModalHTML(selected.dataset.suggestion);
                                 this.$refs.modalExecute.dataset.suggestion="giphy";
                                 this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                                 this.replaceSuggestionText(newLine + '');
                                 window.livewire.emit('markdown-x-giphy-load', { key: this.$refs.markdownX.dataset.key });
-                                this.showModalPop(function(){
+                                this.showModalPop(function() {
                                     document.getElementById('editor-giphy-search').focus();
                                 });
                             break;
@@ -738,7 +775,7 @@
                                 this.$refs.modalExecute.dataset.suggestion="codepen";
                                 this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                                 this.replaceSuggestionText(newLine + '');
-                                this.showModalPop(function(){
+                                this.showModalPop(function() {
                                     document.getElementById('editor-codepen-url').focus();
                                 });
                             break;
@@ -747,7 +784,7 @@
                                 this.$refs.modalExecute.dataset.suggestion="codesandbox";
                                 this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                                 this.replaceSuggestionText(newLine + '');
-                                this.showModalPop(function(){
+                                this.showModalPop(function() {
                                     document.getElementById('editor-codesandbox-url').focus();
                                 });
                             break;
@@ -759,7 +796,7 @@
                                 this.$refs.modalExecute.dataset.suggestion="youtube";
                                 this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                                 this.replaceSuggestionText(newLine + '');
-                                this.showModalPop(function(){
+                                this.showModalPop(function() {
                                     document.getElementById('editor-youtube-url').focus();
                                 });
                             break;
@@ -768,7 +805,7 @@
                                 this.$refs.modalExecute.dataset.suggestion="buy_me_a_coffee";
                                 this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                                 this.replaceSuggestionText(newLine + '');
-                                this.showModalPop(function(){
+                                this.showModalPop(function() {
                                     document.getElementById('editor-buy-me-a-coffee-username').focus();
                                 });
                             break;
@@ -856,13 +893,9 @@
                     return !!(this.isNormalInteger(numSplit[0]) && numSplit[1] === " ");
                 },
                 lineIsStartOfBulletedList (line) {
-                    if (line.trim() === '-' || line.trim() === '+' || line.trim() === '*') {
-                        return true;
-                    }
-                    return false;
+                    return line.trim() === '-' || line.trim() === '+' || line.trim() === '*';
                 },
                 lineIsNumberedList (string) {
-
                     let curListItem = string.trim().split(" ");
                     if (typeof curListItem[0] != "undefined" && typeof curListItem[1] != "undefined") {
                         if (this.lineIsStartOfNumberedList(curListItem[0] + " ") && curListItem[1] !== "") {
@@ -915,7 +948,7 @@
                     // detect next line list item
                     let curListItem = string.trim().split(" ");
                     // offset 0 is our list item
-                    if(typeof curListItem[0] != "undefined"){
+                    if(typeof curListItem[0] != "undefined") {
                         let nextItem = curListItem[0];
                         if (type === 'numbered') {
                             // handle numbered list
@@ -950,10 +983,10 @@
                         .toLowerCase();
                     const suggestionHTML = this.getSuggestionsHTML();
                     const suggestions = Object.keys(suggestionHTML);
-                    const filteredSuggestions = suggestions.filter(function(entry){
+                    const filteredSuggestions = suggestions.filter(function(entry) {
                         return entry.replaceAll('_', ' ').includes(filter);
                     });
-                    if (!filteredSuggestions.length){
+                    if (!filteredSuggestions.length) {
                         filteredSuggestions.push('none');
                         suggestionHTML['none'] = '<div class="px-4 py-2 text-sm font-medium text-skin-base">No suggestions found.</div>';
                     }
@@ -1033,7 +1066,7 @@
                     // if we are showing it, we want to tell if this current line is empty or not
                     this.isCurrentLineEmpty = true;
                     let curLine = this.getCurrentLine();
-                    if(curLine.trimRight('/') !== ""){
+                    if(curLine.trimRight('/') !== "") {
                         this.isCurrentLineEmpty = false;
                     }
 
@@ -1043,7 +1076,7 @@
                     // append it to the body
                     this.$refs.dropdown.appendChild(this.dropdownEl);
                     let that = this;
-                    setTimeout(function(){
+                    setTimeout(function() {
                         that.dropdownEl.classList.remove('scale-95');
                         that.dropdownEl.classList.add('scale-100');
                         that.dropdownEl.classList.remove('translate-y-7');
@@ -1058,7 +1091,7 @@
                     }
                     this.dropdownEl = null;
                 },
-                droppingFile(e){
+                droppingFile(e) {
                     e.preventDefault();
                     this.dropFiles = false;
                     let dataTransfer = new DataTransfer();
@@ -1067,7 +1100,6 @@
                     this.$refs.image.dispatchEvent(new Event('change'));
                 },
                 editorEvent (e) {
-
                     let editor = e.target;
                     let which = 0;
                     if(typeof e.which != "undefined" || typeof e.keyCode != "undefined"){
@@ -1102,7 +1134,7 @@
                         this.popup = false;
                     }
 
-                    if (this.getCurrentLine() === "" && (type === "keyup" || type === "focus" || type === 'click')){
+                    if (this.getCurrentLine() === "" && (type === "keyup" || type === "focus" || type === 'click')) {
                         this.repositionPlaceholder();
                         this.placeholder = true;
                     } else {
@@ -1113,7 +1145,6 @@
                         this.toggleSuggestionDropdown();
                     } else if (this.suggestionDropdown) {
                         switch (which) {
-
                             case 35:
                                 break;
                             case 27:
@@ -1161,7 +1192,7 @@
         window.loadDynamicScript = function (url, id) {
             let existingScript = document.getElementById(id);
 
-            if (!existingScript) {
+            if (! existingScript) {
                 const script = document.createElement('script');
                 script.src = url; // URL for the third-party library being loaded.
                 script.id = id; // e.g., googleMaps or stripe
@@ -1193,8 +1224,8 @@
             let giphyResults = event.detail.results;
 
             let giphyContents = `<div class="space-y-1">`;
-            for (var i = 0; i < giphyResults.length; i++) {
-                giphyContents += `<img src="${giphyResults[i]['image']}" onclick="addAnimatedGif('{% giphy ${giphyResults[i]['embed']} %}', '${event.detail.key}')" class="w-full h-auto border-2 border-skin-input rounded cursor-pointer hover:border-green-500" />`;
+            for (let i = 0; i < giphyResults.length; i++) {
+                giphyContents += `<img src="${giphyResults[i]['image']}" onclick="addAdditionalContent('{% giphy ${giphyResults[i]['embed']} %}', '${event.detail.key}')" class="w-full h-auto border-2 border-skin-input rounded cursor-pointer hover:border-green-500" alt="" />`;
                 if (i%10 === 0 && i !== 0) {
                     giphyContents += `</div><div class="space-y-1">`;
                 }
@@ -1203,7 +1234,7 @@
             document.getElementById('giphy-items').innerHTML = giphyContents;
         });
 
-        window.addAnimatedGif = function(content, key) {
+        window.addAdditionalContent = function(content, key) {
             let editor = document.getElementById('editor-' + key);
             let insertionLocationEl = document.getElementById('markdownx-insert-' + key);
             let insertionLocation = parseInt(insertionLocationEl.dataset.insert);
@@ -1218,7 +1249,25 @@
             editor.focus();
         }
 
-        window.replaceEditorText = function(updatedText, editor){
+        window.addEventListener('markdown-x-peoples-results', event => {
+            let peoplesResults = event.detail.results;
+            console.log(peoplesResults);
+            let peopleContents = `<ul role="list" class="divide-y divide-skin-base">`;
+            for (let i = 0; i < peoplesResults.length; i++) {
+                peopleContents += `<li class="group p-3 hover:bg-skin-primary">
+                    <button type="button" onclick="addAdditionalContent('@${peoplesResults[i]['username']}', '${event.detail.key}')" class="w-full flex items-center">
+                        <img class="flex-shrink-0 h-6 w-6 rounded-full" src="${peoplesResults[i]['picture']}" alt="">
+                        <span class="ml-3 block truncate text-sm font-medium text-skin-inverted group-hover:text-white">
+                          ${peoplesResults[i]['name']} <span class="text-sm text-skin-muted font-normal group-hover:text-green-200">@${peoplesResults[i]['username']}</span>
+                        </span>
+                    </button>
+                </li>`;
+            }
+            peopleContents += `</ul>`;
+            document.getElementById('peoples-items').innerHTML = peopleContents;
+        });
+
+        window.replaceEditorText = function(updatedText, editor) {
             // Doing it this way as opposted to setting editor.value of textarea will preserve undo/redo
             editor.focus();
             document.execCommand('selectAll',false);
@@ -1229,7 +1278,7 @@
             document.execCommand('insertHTML', false, tempEl.innerHTML);
         }
 
-        window.showErrorMessage = function(el, message){
+        window.showErrorMessage = function(el, message) {
             el.classList.remove('hidden');
             el.innerText = message;
             setTimeout(function(){
