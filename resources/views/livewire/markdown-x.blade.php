@@ -199,7 +199,7 @@
         window.markdown = function() {
             return {
                 section: @entangle('section'),
-                autofocus: true,
+                autofocus: @entangle('autofocus'),
                 dropdownEl: null,
                 popup: false,
                 popupType: '',
