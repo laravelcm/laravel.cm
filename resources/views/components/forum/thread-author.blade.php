@@ -19,7 +19,7 @@
         @endif
         @if($author->location)
             <div>
-                <dt class="text-[12px] font-medium text-skin-inverted-muted font-sans uppercase tracking-wider">
+                <dt class="text-[12px] font-medium text-skin-muted font-sans uppercase tracking-wider">
                     Localisation
                 </dt>
                 <dd class="text-skin-base font-normal">
@@ -28,7 +28,7 @@
             </div>
         @endif
         <div>
-            <dt class="text-[12px] font-medium text-skin-inverted-muted font-sans uppercase tracking-wider">
+            <dt class="text-[12px] font-medium text-skin-muted font-sans uppercase tracking-wider">
                 Inscrit Depuis
             </dt>
             <dd class="text-skin-base font-normal">

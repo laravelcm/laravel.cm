@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\Forum\ReplyController;
 use App\Http\Controllers\Forum\ThreadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OAuthController;
@@ -50,6 +51,9 @@ Route::prefix('forum')->as('forum.')->group(function () {
     Route::get('/new-thread', [ThreadController::class, 'create'])->name('new');
     Route::get('/{thread}', [ThreadController::class, 'show'])->name('show');
 });
+
+// Replies
+Route::post('replies', [ReplyController::class, 'store'])->name('replies.store');
 
 // Settings
 Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {

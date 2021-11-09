@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
+use App\Traits\HasAuthor;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
@@ -17,7 +18,7 @@ use Illuminate\Support\Str;
 
 class Reply extends Model implements ReactableInterface
 {
-    use HasFactory, Reactable, RecordsActivity;
+    use HasAuthor, HasFactory, Reactable, RecordsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -31,11 +32,6 @@ class Reply extends Model implements ReactableInterface
     public static function boot()
     {
         parent::boot();
-    }
-
-    public function author(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function solutionTo(): HasOne

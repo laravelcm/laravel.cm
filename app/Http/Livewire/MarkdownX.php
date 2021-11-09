@@ -17,6 +17,7 @@ class MarkdownX extends Component
     public mixed $contentPreview;
     public mixed $style;
     public string $section = 'write';
+    public bool $autofocus = true;
 
     /*
      * Laravel livewire listeners, learn more at https://laravel-livewire.com/docs/events#event-listeners

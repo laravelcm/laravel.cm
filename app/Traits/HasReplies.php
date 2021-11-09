@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\Reply;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasReplies
@@ -11,6 +12,11 @@ trait HasReplies
     public function latestReplies(int $amount = 5): Collection
     {
         return $this->replies()->latest()->limit($amount)->get();
+    }
+
+    public function latestReply(): HasOne
+    {
+        return $this->hasOne(Reply::class)->latestOfMany();
     }
 
     public function deleteReplies()
