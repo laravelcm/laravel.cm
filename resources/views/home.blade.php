@@ -27,7 +27,7 @@
                         </div>
                     </div>
 
-                    <div class="p-6 border-t border-skin-light md:border-t-0 md:border-l">
+                    <div class="p-6 border-t border-skin-base md:border-t-0 md:border-l">
                         <div class="flex items-center">
                             <svg fill="none" viewBox="0 0 24 24" class="w-8 h-8">
                                 <path d="M12.14 8.647H.938A.937.937 0 0 0 0 9.584v7.453c0 .518.42.938.938.938h2.484v2.487c0 .402.473.617.776.354l3.267-2.841h4.676c.517 0 .937-.42.937-.938V9.584a.937.937 0 0 0-.937-.937z" fill="#86BEEC"/>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
 
-                    <div class="p-6 border-t border-skin-light">
+                    <div class="p-6 border-t border-skin-base">
                         <div class="flex items-center">
                             <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24">
                                 <g clip-path="url(#clip0)">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
 
-                    <div class="p-6 border-t border-skin-light dark:border-gray-700 md:border-l">
+                    <div class="p-6 border-t border-skin-base dark:border-gray-700 md:border-l">
                         <div class="flex items-center">
                             <svg fill="none" viewBox="0 0 24 24" class="w-8 h-8">
                                 <g clip-path="url(#clip0)">
