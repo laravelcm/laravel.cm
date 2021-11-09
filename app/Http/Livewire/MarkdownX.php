@@ -242,8 +242,8 @@ class MarkdownX extends Component
 
     public function getSearchPeoples($payload)
     {
-        $users = User::where('name', 'like', '%'. $payload['search'] .'%')
-                    ->orWhere('username', 'like', '%'. $payload['search'] .'%')
+        $users = User::where('name', 'like', '%' . $payload['search'] . '%')
+                    ->orWhere('username', 'like', '%' . $payload['search'] . '%')
                     ->get()
                     ->map(function ($user) {
                         $people['name'] = $user->name;

@@ -15,5 +15,4 @@ test('child channel can be a parent', function () {
     $child = Channel::factory()->create(['parent_id' => $channel->id]);
 
     Channel::factory()->create(['parent_id' => $child->id]);
-
 })->throws(CannotAddChannelToChild::class);

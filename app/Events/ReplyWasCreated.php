@@ -3,7 +3,6 @@
 namespace App\Events;
 
 use App\Models\Reply;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Queue\SerializesModels;
 
 class ReplyWasCreated

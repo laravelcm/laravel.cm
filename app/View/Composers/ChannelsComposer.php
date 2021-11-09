@@ -9,7 +9,9 @@ class ChannelsComposer
 {
     public function compose(View $view)
     {
-        $view->with('channels', Channel::with('items')
+        $view->with(
+            'channels',
+            Channel::with('items')
             ->whereNull('parent_id')
             ->get()
         );

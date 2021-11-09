@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use App\Events\ReplyWasCreated;
 use App\Models\User;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendNewReplyNotification
 {
