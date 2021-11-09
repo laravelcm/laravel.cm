@@ -11,8 +11,8 @@ class ThreadFactory extends Factory
     {
         return [
             'title' => $this->faker->text(20),
-            'body' => $this->faker->text,
-            'slug' => $this->faker->unique()->slug,
+            'body' => $this->faker->text(),
+            'slug' => $this->faker->unique()->slug(),
             'user_id' => $attributes['user_id'] ?? User::factory(),
         ];
     }
