@@ -19,7 +19,7 @@
 
     <div class="mt-5">
         <div class="flex justify-end">
-            <x-button type="submit" class="inline-flex" wire:click="save">
+            <x-button type="button" class="inline-flex" wire:click="save">
                 <x-loader class="text-white" wire:loading wire:target="save" />
                 Enregistrer
             </x-button>

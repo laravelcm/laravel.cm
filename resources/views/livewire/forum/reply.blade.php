@@ -1,11 +1,11 @@
 @php $isSolution = $thread->isSolutionReply($reply) @endphp
 
-<li>
+<li x-data="{ open: @entangle('isUpdating') }">
     <div class="flex space-x-3" id="reply-{{ $reply->id }}">
         <div class="flex-shrink-0">
             <img class="h-10 w-10 rounded-full" src="{{ $reply->author->profile_photo_url }}" alt="Avatar de {{ $reply->author->username }}">
         </div>
-        <div class="flex-1">
+        <div x-show="!open" class="flex-1">
             <div class="flex items-start">
                 <div class="flex items-center flex-1 text-sm space-x-2 font-sans">
                     <a href="{{ route('profile', $reply->author->username) }}" class="font-medium text-skin-inverted">{{ $reply->author->name }}</a>
@@ -14,7 +14,7 @@
                     @can(App\Policies\ReplyPolicy::UPDATE, $reply)
                         <span class="text-skin-base font-medium">·</span>
                         <div class="flex items-center divide-x divide-skin-base">
-                            <button type="button" class="pr-2 text-sm leading-5 font-sans text-skin-base focus:outline-none hover:underline">Éditer</button>
+                            <button @click="open = true" type="button" class="pr-2 text-sm leading-5 font-sans text-skin-base focus:outline-none hover:underline">Éditer</button>
                             @if (! $isSolution)
                                 <button wire:click="$emit('openModal', 'modals.delete-reply', {{ json_encode(['id' => $reply->id, 'slug' => $thread->slug()]) }})" type="button" class="pl-2 text-sm leading-5 font-sans text-red-500 focus:outline-none hover:underline">Supprimer</button>
                             @endif
@@ -38,6 +38,28 @@
             </div>
             <div class="mt-1 font-normal prose prose-base prose-green text-skin-base max-w-none">
                 <x-markdown-content :content="$reply->body" />
+            </div>
+        </div>
+        <div x-show="open" class="flex-1" style="display: none">
+            <livewire:markdown-x :content="$body" :autofocus="false" :style="[
+                'textarea' => 'w-full h-full border border-skin-input focus:border-skin-base focus:outline-none p-4 rounded-b-lg',
+                'height' => 'h-[250px]',
+            ]" />
+
+            @error('body')
+                <p class="mt-2 text-sm text-red-500 leading-5 font-normal">{{ $message }}</p>
+            @enderror
+
+            <div class="mt-5">
+                <div class="flex justify-end space-x-3">
+                    <x-default-button type="button" class="inline-flex" x-on:click="open = false">
+                        Annuler
+                    </x-default-button>
+                    <x-button type="button" class="inline-flex" wire:click="edit">
+                        <x-loader class="text-white" wire:loading wire:target="edit" />
+                        Enregistrer
+                    </x-button>
+                </div>
             </div>
         </div>
     </div>
