@@ -192,9 +192,9 @@
     </div>
 
     <script>
-        const suggestionClasses = 'overflow-scroll';
-        const suggestionActiveClasses = 'bg-skin-body text-skin-inverted suggestion-active';
-        const suggestionItemClasses = 'cursor-pointer hover:bg-skin-body';
+        var suggestionClasses = 'overflow-scroll';
+        var suggestionActiveClasses = 'bg-skin-body text-skin-inverted suggestion-active';
+        var suggestionItemClasses = 'cursor-pointer hover:bg-skin-body';
 
         window.markdown = function() {
             return {
@@ -587,7 +587,6 @@
                     if (event.keyCode === 13) {
                         event.preventDefault();
                         if(event.target.value.trim() !== "") {
-                            console.log(event.target.value)
                             window.livewire.emit('markdown-x-people-search', { search: event.target.value, key: this.$refs.markdownX.dataset.key });
                         }
                     }
@@ -1251,7 +1250,7 @@
 
         window.addEventListener('markdown-x-peoples-results', event => {
             let peoplesResults = event.detail.results;
-            console.log(peoplesResults);
+
             let peopleContents = `<ul role="list" class="divide-y divide-skin-base">`;
             for (let i = 0; i < peoplesResults.length; i++) {
                 peopleContents += `<li class="group p-3 hover:bg-skin-primary">

@@ -4,7 +4,6 @@ import Alpine from 'alpinejs';
 import internationalNumber from "./plugins/internationalNumber";
 
 require('./helpers');
-require('./editor');
 require('./scrollspy');
 
 // Add Alpine to window object.

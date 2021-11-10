@@ -3121,92 +3121,12 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__(/*! ./helpers */ "./resources/js/helpers.js");
 
-__webpack_require__(/*! ./editor */ "./resources/js/editor.js");
-
 __webpack_require__(/*! ./scrollspy */ "./resources/js/scrollspy.js"); // Add Alpine to window object.
 
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__.default;
 alpinejs__WEBPACK_IMPORTED_MODULE_0__.default.data('internationalNumber', _plugins_internationalNumber__WEBPACK_IMPORTED_MODULE_1__.default);
 alpinejs__WEBPACK_IMPORTED_MODULE_0__.default.start();
-
-/***/ }),
-
-/***/ "./resources/js/editor.js":
-/*!********************************!*\
-  !*** ./resources/js/editor.js ***!
-  \********************************/
-/***/ (() => {
-
-// Handle the click event of the style buttons inside the editor.
-window.handleClick = function (style, element) {
-  var _editorConfig = editorConfig(),
-      styles = _editorConfig.styles;
-
-  var input = element.querySelectorAll('textarea')[0]; // Get the start and end positions of the current selection.
-
-  var selectionStart = input.selectionStart;
-  var selectionEnd = input.selectionEnd; // Find the style in the configuration.
-
-  var styleFormat = styles[style]; // Get any prefix and/or suffix characters from the selected style.
-
-  var prefix = styleFormat.before ? styleFormat.before : '';
-  var suffix = styleFormat.after ? styleFormat.after : ''; // Insert the prefix at the relevant position.
-
-  input.value = insertCharactersAtPosition(input.value, prefix, selectionStart); // Insert the suffix at the relevant position.
-
-  input.value = insertCharactersAtPosition(input.value, suffix, selectionEnd + prefix.length); // Reselect the selection and focus the input.
-
-  input.setSelectionRange(selectionStart + prefix.length, selectionEnd + prefix.length);
-  input.focus();
-}; // Insert provided characters at the desired place in a string.
-
-
-var insertCharactersAtPosition = function insertCharactersAtPosition(string, character, position) {
-  return [string.slice(0, position), character, string.slice(position)].join('');
-}; // Configuration object for the text editor.
-
-
-window.editorConfig = function () {
-  return {
-    styles: {
-      header: {
-        before: '### '
-      },
-      bold: {
-        before: '**',
-        after: '**'
-      },
-      italic: {
-        before: '_',
-        after: '_'
-      },
-      quote: {
-        before: '> '
-      },
-      code: {
-        before: '`',
-        after: '`'
-      },
-      link: {
-        before: '[](',
-        after: ')'
-      },
-      image: {
-        before: '![](',
-        after: ')'
-      }
-    }
-  };
-};
-
-window.expand = function (element, minHeight) {
-  if (element.scrollHeight < minHeight) {
-    return;
-  }
-
-  element.style.cssText = 'height:' + element.scrollHeight + 'px';
-};
 
 /***/ }),
 
