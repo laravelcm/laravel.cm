@@ -52,7 +52,7 @@
                 <div class="sm:inline-flex sm:items-center text-sm text-skin-inverted-muted font-normal">
                     <div class="flex items-center">
                         <a href="{{ route('profile', $thread->author->username) }}" class="inline-flex items-center hover:underline">
-                            <img class="inline-block rounded-full h-4 w-4 mr-1" src="{{ $thread->author->profile_photo_url }}" alt="Avatar de {{ $thread->author->username }}">
+                            <img class="inline-block rounded-full h-5 w-5 mr-1" src="{{ $thread->author->profile_photo_url }}" alt="Avatar de {{ $thread->author->username }}">
                             <span class="font-sans">{{ '@' . $thread->author->username }}</span>
                         </a>
                         <span class="inline-flex ml-1.5">

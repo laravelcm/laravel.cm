@@ -197,7 +197,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     public function delete()
     {
-        $this->channels()->delete();
+        $this->channels()->detach();
         $this->deleteReplies();
 
         parent::delete();

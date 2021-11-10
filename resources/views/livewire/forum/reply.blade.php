@@ -14,7 +14,7 @@
                     @can(App\Policies\ReplyPolicy::UPDATE, $reply)
                         <span class="text-skin-base font-medium">·</span>
                         <div class="flex items-center divide-x divide-skin-base">
-                            <button type="button" class="pr-2 text-sm leading-5 font-sans text-skin-base focus:outline-none hover:underline">Editer</button>
+                            <button type="button" class="pr-2 text-sm leading-5 font-sans text-skin-base focus:outline-none hover:underline">Éditer</button>
                             <button type="button" class="pl-2 text-sm leading-5 font-sans text-red-500 focus:outline-none hover:underline">Supprimer</button>
                         </div>
                     @endcan

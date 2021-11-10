@@ -37,16 +37,16 @@
                          style="display: none;">
                         <div class="py-1" role="none">
                             @can(App\Policies\ThreadPolicy::UPDATE, $thread)
-                                <a href="#" class="group text-skin-inverted-muted flex px-4 py-2 text-sm hover:text-skin-inverted" role="menuitem" tabindex="-1">
+                                <a href="{{ route('forum.edit', $thread) }}" class="group text-skin-inverted-muted flex px-4 py-2 text-sm hover:text-skin-inverted" role="menuitem" tabindex="-1">
                                     <x-heroicon-s-pencil class="mr-3 h-5 w-5 text-skin-muted group-hover:text-skin-base" />
                                     <span>Éditer</span>
                                 </a>
                             @endcan
                             @can(App\Policies\ThreadPolicy::DELETE, $thread)
-                                <a href="#" class="group text-skin-inverted-muted flex px-4 py-2 text-sm hover:text-skin-inverted" role="menuitem" tabindex="-1">
+                                <button type="button" onclick="Livewire.emit('openModal', 'modals.delete-thread', {{ json_encode([$thread->id]) }})" class="group text-skin-inverted-muted flex px-4 py-2 text-sm hover:text-skin-inverted" role="menuitem" tabindex="-1">
                                     <x-heroicon-s-trash class="mr-3 h-5 w-5 text-skin-muted group-hover:text-skin-base" />
                                     <span>Supprimer</span>
-                                </a>
+                                </button>
                             @endcan
                             <a href="#" class="group text-skin-inverted-muted flex px-4 py-2 text-sm hover:text-skin-inverted" role="menuitem" tabindex="-1">
                                 <x-heroicon-s-flag class="mr-3 h-5 w-5 text-skin-muted group-hover:text-skin-base" />

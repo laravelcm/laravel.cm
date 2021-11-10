@@ -88,10 +88,10 @@ return [
 //            'class' => Components\Inputs\CurrencyInput::class,
 //            'alias' => 'inputs.currency',
 //        ],
-//        'button' => [
-//            'class' => Components\Button::class,
-//            'alias' => 'button',
-//        ],
+        'button' => [
+            'class' => Components\Button::class,
+            'alias' => 'wi-button',
+        ],
 //        'dropdown' => [
 //            'class' => Components\Dropdown::class,
 //            'alias' => 'wi-dropdown',

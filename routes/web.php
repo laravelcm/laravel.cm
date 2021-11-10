@@ -50,6 +50,7 @@ Route::prefix('forum')->as('forum.')->group(function () {
     Route::get('/channels/{channel}', [ThreadController::class, 'channel'])->name('channels');
     Route::get('/new-thread', [ThreadController::class, 'create'])->name('new');
     Route::get('/{thread}', [ThreadController::class, 'show'])->name('show');
+    Route::get('/{thread}/edit', [ThreadController::class, 'edit'])->name('edit');
 });
 
 // Replies

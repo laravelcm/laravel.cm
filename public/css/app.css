@@ -6128,6 +6128,10 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(55, 65, 81, var(--tw-text-opacity));
 }
+.text-gray-900 {
+	--tw-text-opacity: 1;
+	color: rgba(17, 24, 39, var(--tw-text-opacity));
+}
 .underline {
 	text-decoration: underline;
 }
@@ -7185,6 +7189,10 @@ html {
 		margin-top: 3.5rem;
 	}
 
+	.sm\:ml-4 {
+		margin-left: 1rem;
+	}
+
 	.sm\:block {
 		display: block;
 	}
@@ -7279,6 +7287,10 @@ html {
 
 	.sm\:w-6 {
 		width: 1.5rem;
+	}
+
+	.sm\:w-10 {
+		width: 2.5rem;
 	}
 
 	.sm\:min-w-0 {

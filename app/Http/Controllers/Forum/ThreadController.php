@@ -34,4 +34,9 @@ class ThreadController extends Controller
 
         return view('forum.thread', compact('thread'));
     }
+
+    public function edit(Thread $thread)
+    {
+        return view('forum.edit', compact('thread'));
+    }
 }
