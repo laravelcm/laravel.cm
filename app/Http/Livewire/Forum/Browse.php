@@ -4,15 +4,16 @@ namespace App\Http\Livewire\Forum;
 
 use App\Models\Channel;
 use App\Models\Thread;
-use App\Traits\WithInfiniteScroll;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Browse extends Component
 {
-    use WithInfiniteScroll;
+    use WithPagination;
 
     public ?Channel $channel = null;
     public string $sortBy = 'recent';
+    public int $perPage = 10;
 
     protected $queryString = [
         'sortBy' => ['except' => 'recent'],

@@ -39,23 +39,7 @@
             </nav>
         </div>
     </div>
-    <div
-        class="my-10 lg:mb-32 space-y-6 sm:space-y-5"
-        x-data="{
-            init() {
-                let observer = new IntersectionObserver((entries) => {
-                console.log(entries)
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            @this.call('loadMore')
-                        }
-                    })
-                }, { root: null })
-
-                observer.observe(this.$el)
-            }
-        }"
-    >
+    <div class="my-10 lg:mb-32 space-y-6 sm:space-y-5">
         @foreach ($threads as $thread)
             <x-forum.thread-overview :thread="$thread" />
         @endforeach

@@ -56,7 +56,7 @@
                             <span class="font-sans">{{ '@' . $thread->author->username }}</span>
                         </a>
                         <span class="inline-flex ml-1.5">
-                            a posé le <time datetime="{{ $thread->created_at }}" title="{{ $thread->created_at->format('j M, Y \à h:i') }}">{{ $thread->created_at->format('j M, Y \à h:i') }}</time> dans
+                            a posé le <time class="mr-1.5" datetime="{{ $thread->created_at }}" title="{{ $thread->created_at->format('j M, Y \à h:i') }}">{{ $thread->created_at->format('j M, Y \à h:i') }}</time> dans
                         </span>
                     </div>
                     <div class="mt-2 sm:mt-0 sm:ml-2 self-center flex items-center space-x-2">
@@ -90,7 +90,7 @@
                 <div class="mt-10">
                     <ul class="space-y-8 px-4" role="list">
                         @foreach ($thread->replies as $reply)
-                            <x-forum.reply :thread="$thread" :reply="$reply" />
+                            <livewire:forum.reply wire:key="$reply->id" :thread="$thread" :reply="$reply" />
                         @endforeach
                     </ul>
                 </div>

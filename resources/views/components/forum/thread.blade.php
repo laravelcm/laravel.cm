@@ -62,6 +62,6 @@
         <x-markdown-content :content="$thread->body" />
     </div>
     <div class="mt-6">
-        <livewire:reactions :model="$thread" :with-place-holder="false"/>
+        <livewire:reactions wire:key="$thread->id" :model="$thread" :with-place-holder="false"/>
     </div>
 </div>

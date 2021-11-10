@@ -35,9 +35,9 @@ trait HasReplies
      *
      * @return string
      */
-    public function path(): string
+    public function solutionReplyUrl(): string
     {
-        return $this->replyable->getPathUrl() . "#reply-{$this->id}";
+        return $this->getPathUrl() . "#reply-{$this->solution_reply_id}";
     }
 
     /**
