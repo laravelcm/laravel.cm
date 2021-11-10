@@ -22,7 +22,7 @@ class Reply extends Component
 
     protected $listeners = [
         'refresh' => '$refresh',
-        'markdown-x:update' => 'onMarkdownUpdate'
+        'markdown-x:update' => 'onMarkdownUpdate',
     ];
 
     protected $rules = [
