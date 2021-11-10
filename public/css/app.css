@@ -6961,6 +6961,10 @@ html {
 	--tw-ring-color: transparent;
 }
 
+.focus\:ring-body:focus {
+	--tw-ring-color: rgb(var(--color-body-fill));
+}
+
 .focus\:ring-opacity-50:focus {
 	--tw-ring-opacity: 0.5;
 }
@@ -7514,6 +7518,11 @@ html {
 	.sm\:bg-secondary-100 {
 		--tw-bg-opacity: 1;
 		background-color: rgba(244, 244, 245, var(--tw-bg-opacity));
+	}
+
+	.sm\:bg-skin-card-muted {
+		--tw-bg-opacity: 1;
+		background-color: rgba(var(--color-card-muted-fill), var(--tw-bg-opacity));
 	}
 
 	.sm\:p-6 {
