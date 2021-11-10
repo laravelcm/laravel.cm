@@ -20,7 +20,6 @@ class Reply extends Component
 
     public function edit()
     {
-
     }
 
     public function markAsSolution(): void
@@ -34,7 +33,6 @@ class Reply extends Component
 
     public function delete()
     {
-
     }
 
     public function render()

@@ -11,11 +11,17 @@ function withOpacity(variableName) {
 
 module.exports = {
   mode: 'jit',
+  presets: [
+    require('./vendor/ph7jack/wireui/tailwind.config.js')
+  ],
   purge: {
     content: [
       './app/**/*.php',
       './vendor/livewire-ui/modal/resources/views/*.blade.php',
       './storage/framework/views/*.php',
+      './vendor/ph7jack/wireui/resources/**/*.blade.php',
+      './vendor/ph7jack/wireui/ts/**/*.ts',
+      './vendor/ph7jack/wireui/src/View/**/*.php',
       './resources/**/*.blade.php',
       './resources/**/*.js',
     ],
