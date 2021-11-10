@@ -37,7 +37,7 @@
 
     @yield('content')
 
-    <x-notification />
+    <x-notifications z-index="z-50" />
     @livewireScripts
     @livewire('livewire-ui-modal')
     @stack('scripts')

@@ -8,10 +8,11 @@ use App\Policies\ThreadPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use WireUi\Traits\Actions;
 
 class Reply extends Component
 {
-    use AuthorizesRequests;
+    use Actions, AuthorizesRequests;
 
     public ReplyModel $reply;
     public Thread $thread;
@@ -29,6 +30,11 @@ class Reply extends Component
         $this->thread->markSolution($this->reply, Auth::user());
 
         $this->emitSelf('refresh');
+
+        $this->notification()->success(
+            'Réponse acceptée',
+            'Vous avez accepté cette solution pour ce sujet.'
+        );
     }
 
     public function delete()

@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
@@ -40,6 +41,7 @@ module.exports = {
         },
         body: 'rgb(var(--color-body-fill))',
         card: 'rgb(var(--color-card-fill))',
+        primary: colors.green,
       },
       fontFamily: {
         mono: ['Operator Mono', ...defaultTheme.fontFamily.mono],
