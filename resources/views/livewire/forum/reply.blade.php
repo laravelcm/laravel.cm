@@ -21,20 +21,20 @@
                         </div>
                     @endcan
                 </div>
-                @can(App\Policies\ThreadPolicy::UPDATE, $thread)
-                    @if ($isSolution)
-                        <span class="absolute -top-3 z-20 right-3 ml-4 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-500 text-green-900">
-                            <x-heroicon-o-check-circle class="h-4 w-4 mr-1.5" />
-                            Réponse acceptée
-                        </span>
-                    @else
+                @if ($isSolution)
+                    <span class="absolute -top-3 z-20 right-3 ml-4 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-500 text-green-900">
+                        <x-heroicon-o-check-circle class="h-4 w-4 mr-1.5" />
+                        Réponse acceptée
+                    </span>
+                @else
+                    @can(App\Policies\ThreadPolicy::UPDATE, $thread)
                         <div class="ml-4">
                             <button wire:click="markAsSolution" type="button" class="inline-flex items-center justify-center p-2.5 bg-green-500 bg-opacity-10 text-green-600 text-sm leading-5 rounded-full focus:outline-none transform hover:scale-125 transition-all">
                                 <x-heroicon-s-check-circle class="w-6 h-6" />
                             </button>
                         </div>
-                    @endif
-                @endcan
+                    @endcan
+                @endif
             </div>
             <div class="mt-1 font-normal prose prose-base prose-green text-skin-base max-w-none">
                 <x-markdown-content :content="$reply->body" />

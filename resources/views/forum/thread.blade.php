@@ -23,24 +23,9 @@
                     </a>
                 </nav>
 
-                <div class="bg-skin-card-gray px-4 py-5 sm:p-6 rounded-lg">
-                    <h3 class="text-lg leading-6 font-medium text-skin-inverted font-sans">
-                        Notifications
-                    </h3>
-                    <div class="mt-2 max-w-xl text-sm leading-5 text-skin-base font-normal">
-                        <p>
-                            Vous ne recevez pas de notifications de ce sujet.
-                        </p>
-                    </div>
-                    <div class="mt-5">
-                        <span class="inline-flex rounded-md shadow-sm">
-                            <x-button link="#">
-                                <x-heroicon-s-bell class="h-5 w-5 mr-2" />
-                                Subscribe
-                            </x-button>
-                        </span>
-                    </div>
-                </div>
+                @auth
+                    <livewire:forum.subscribe :thread="$thread" />
+                @endauth
 
                 <x-forum.thread-author :author="$thread->author" />
             </div>

@@ -24,11 +24,11 @@ class ThreadPolicy
 
     public function subscribe(User $user, Thread $thread): bool
     {
-        return false;
+        return ! $thread->hasSubscriber($user);
     }
 
     public function unsubscribe(User $user, Thread $thread): bool
     {
-        return false;
+        return $thread->hasSubscriber($user);
     }
 }
