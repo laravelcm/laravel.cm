@@ -10,14 +10,20 @@
             @include('forum._channels')
         </div>
 
-        <div class="lg:col-span-8 space-y-5">
+        <div class="space-y-5 lg:col-span-8 xl:col-span-7">
             <x-status-message />
 
             <livewire:forum.browse :channel="$channel" />
         </div>
 
-        <div class="hidden lg:block lg:col-span-2">
-            <x-ads />
+        <div class="hidden lg:block lg:col-span-2 xl:col-span-3">
+            <aside class="sticky top-4 space-y-10 mt-10">
+                <x-sponsors />
+
+                <x-ads />
+
+                @include('forum._moderators')
+            </aside>
         </div>
     </div>
 
