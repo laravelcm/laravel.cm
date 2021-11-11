@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Markdown\MarkdownHelper;
 use App\Models\User;
 use Exception;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -84,7 +85,7 @@ class MarkdownX extends Component
      */
     public function updateContentPreview()
     {
-        $this->contentPreview = MarkdownHelper::parseLiquidTags(Str::markdown($this->content));
+        $this->contentPreview = MarkdownHelper::parseLiquidTags(Markdown::convertToHtml($this->content));
     }
 
     /*
