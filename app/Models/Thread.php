@@ -4,10 +4,12 @@ namespace App\Models;
 
 use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
+use App\Contracts\SubscribeInterface;
 use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
 use App\Traits\HasSlug;
+use App\Traits\HasSubscribers;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
@@ -28,12 +30,13 @@ use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
-class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, Viewable
+class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
     use HasAuthor,
         HasFactory,
         HasSlug,
         HasReplies,
+        HasSubscribers,
         InteractsWithViews,
         Prunable,
         Reactable,
