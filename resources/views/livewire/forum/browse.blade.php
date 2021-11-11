@@ -44,13 +44,8 @@
             <x-forum.thread-overview :thread="$thread" />
         @endforeach
 
-        <div class="mt-4 flex justify-center">
-            @if($threads->hasMorePages())
-                <button wire:click.prevent="loadMore" class="flex items-center text-skin-base text-sm leading-5">
-                    <x-loader class="text-skin-primary" />
-                    Chargement...
-                </button>
-            @endif
+        <div class="mt-10">
+            {{ $threads->links() }}
         </div>
     </div>
 </div>
