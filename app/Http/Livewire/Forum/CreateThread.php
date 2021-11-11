@@ -4,9 +4,11 @@ namespace App\Http\Livewire\Forum;
 
 use App\Models\Channel;
 use App\Models\Thread;
+use App\Notifications\PostThreadToSlack;
 use App\Traits\WithChannelsAssociation;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Ramsey\Uuid\Uuid;
 
 class CreateThread extends Component
 {
@@ -30,15 +32,27 @@ class CreateThread extends Component
     public function store()
     {
         $this->validate();
+        $author = Auth::user();
 
         $thread = Thread::create([
             'title' => $this->title,
             'body' => $this->body,
             'slug' => $this->title,
-            'user_id' => Auth::id(),
+            'user_id' => $author->id,
         ]);
 
         $thread->syncChannels($this->associateChannels);
+
+        // Subscribe author to the thread.
+        $subscription = new \App\Models\Subscribe();
+        $subscription->uuid = Uuid::uuid4()->toString();
+        $subscription->user()->associate($author);
+        $subscription->subscribeAble()->associate($thread);
+
+        $thread->subscribes()->save($subscription);
+
+        // Send thread to the slack workspace.
+        $author->notify(new PostThreadToSlack($thread));
 
         $this->redirectRoute('forum.show', $thread);
     }
