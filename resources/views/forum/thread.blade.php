@@ -69,6 +69,8 @@
                 </div>
             </div>
 
+            <x-status-message class="mt-5" />
+
             <x-forum.thread :thread="$thread" />
 
             @if($thread->replies->isNotEmpty())

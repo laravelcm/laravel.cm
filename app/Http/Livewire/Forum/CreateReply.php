@@ -39,7 +39,7 @@ class CreateReply extends Component
         $reply->to($this->thread);
         $reply->save();
 
-        // event(new ReplyWasCreated($reply));
+        event(new ReplyWasCreated($reply));
 
         session()->flash('status', 'Réponse ajoutée avec succès!');
 

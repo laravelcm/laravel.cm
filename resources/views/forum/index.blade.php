@@ -10,7 +10,9 @@
             @include('forum._channels')
         </div>
 
-        <div class="lg:col-span-8">
+        <div class="lg:col-span-8 space-y-5">
+            <x-status-message />
+
             <livewire:forum.browse :channel="$channel" />
         </div>
 

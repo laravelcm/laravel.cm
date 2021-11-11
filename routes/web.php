@@ -5,6 +5,7 @@ use App\Http\Controllers\Forum\ReplyController;
 use App\Http\Controllers\Forum\ThreadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +56,10 @@ Route::prefix('forum')->as('forum.')->group(function () {
 
 // Replies
 Route::post('replies', [ReplyController::class, 'store'])->name('replies.store');
+
+// Subscriptions
+Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
+    ->name('subscriptions.unsubscribe');
 
 // Settings
 Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {
