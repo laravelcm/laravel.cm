@@ -120,7 +120,10 @@ module.exports = {
             blockquote: {
               color: theme('textColor.skin.inverted')
             },
-            'p > code': {
+            'li strong, strong' : {
+              color: theme('textColor.skin.inverted-muted'),
+            },
+            'p > code, code': {
               display: 'inline-flex',
               alignItems: 'center',
               borderRadius: '.375rem',
