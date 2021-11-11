@@ -1,6 +1,6 @@
 @php $isSolution = $thread->isSolutionReply($reply) @endphp
 
-<li x-data="{ open: @entangle('isUpdating') }">
+<li x-data="{ open: @entangle('isUpdating') }" @class(['-mx-4 p-4 border border-green-500 rounded-md relative z-10' => $isSolution])>
     <div class="flex space-x-3" id="reply-{{ $reply->id }}">
         <div class="flex-shrink-0">
             <img class="h-10 w-10 rounded-full" src="{{ $reply->author->profile_photo_url }}" alt="Avatar de {{ $reply->author->username }}">
@@ -23,7 +23,7 @@
                 </div>
                 @can(App\Policies\ThreadPolicy::UPDATE, $thread)
                     @if ($isSolution)
-                        <span class="ml-4 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-500 bg-opacity-10 text-green-600">
+                        <span class="absolute -top-3 z-20 right-3 ml-4 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-500 text-green-900">
                             <x-heroicon-o-check-circle class="h-4 w-4 mr-1.5" />
                             Réponse acceptée
                         </span>

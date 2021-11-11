@@ -224,7 +224,7 @@ class MarkdownX extends Component
 
     public function getTrendingPeoples($payload)
     {
-        $users = User::orderBy('name')->get()->map(function ($user) {
+        $users = User::orderBy('name')->limit(30)->get()->map(function ($user) {
             $people['name'] = $user->name;
             $people['picture'] = $user->profile_photo_url;
             $people['username'] = $user->username;
@@ -244,6 +244,8 @@ class MarkdownX extends Component
     {
         $users = User::where('name', 'like', '%' . $payload['search'] . '%')
                     ->orWhere('username', 'like', '%' . $payload['search'] . '%')
+                    ->orderBy('name')
+                    ->limit(30)
                     ->get()
                     ->map(function ($user) {
                         $people['name'] = $user->name;
