@@ -4,7 +4,6 @@ namespace App\Http\Livewire\User;
 
 use App\Models\Activity;
 use App\Models\User;
-use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 class Activities extends Component
