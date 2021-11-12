@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\ReplyWasCreated;
+use App\Listeners\NotifyMentionedUsers;
 use App\Listeners\SendNewReplyNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -21,6 +22,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         ReplyWasCreated::class => [
             SendNewReplyNotification::class,
+            NotifyMentionedUsers::class,
         ],
     ];
 

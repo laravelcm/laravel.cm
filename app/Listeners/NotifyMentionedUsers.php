@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Listeners;
+
+use App\Events\ReplyWasCreated;
+use App\Models\User;
+use App\Notifications\YouWereMentioned;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class NotifyMentionedUsers
+{
+    public function handle(ReplyWasCreated $event)
+    {
+        User::whereIn('username', $event->reply->mentionedUsers())
+            ->get()
+            ->each(fn ($user) => $user->notify(new YouWereMentioned($event->reply)));
+    }
+}

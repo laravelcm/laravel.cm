@@ -48,6 +48,13 @@ class Reply extends Model implements ReactableInterface
         return Str::limit(strip_tags(md_to_html($this->body)), $limit);
     }
 
+    public function mentionedUsers()
+    {
+        preg_match_all('/@([a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}(?!\w))/', $this->body, $matches);
+
+        return $matches[1];
+    }
+
     public function to(ReplyInterface $replyAble)
     {
         $this->replyAble()->associate($replyAble);

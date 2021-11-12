@@ -17,10 +17,6 @@
                         <x-heroicon-s-menu class="h-5 w-5 mr-2" />
                         <span>Tous les sujets</span>
                     </a>
-                    <a href="#" class="w-full inline-flex items-center text-skin-base hover:text-skin-inverted py-3 text-sm font-medium">
-                        <x-heroicon-s-clipboard-list class="h-5 w-5 mr-2" />
-                        <span>Classement</span>
-                    </a>
                 </nav>
 
                 @auth
