@@ -22,7 +22,7 @@ class Reply extends Component
 
     protected $listeners = [
         'refresh' => '$refresh',
-        'markdown-x:update' => 'onMarkdownUpdate',
+        'editor:update' => 'onEditorUpdate',
     ];
 
     protected $rules = [
@@ -36,9 +36,9 @@ class Reply extends Component
         $this->body = $reply->body;
     }
 
-    public function onMarkdownUpdate(string $content)
+    public function onEditorUpdate(string $body)
     {
-        $this->body = $content;
+        $this->body = $body;
     }
 
     public function edit()

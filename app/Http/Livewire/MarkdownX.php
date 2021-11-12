@@ -85,7 +85,7 @@ class MarkdownX extends Component
      */
     public function updateContentPreview()
     {
-        $this->contentPreview = MarkdownHelper::parseLiquidTags(Markdown::convertToHtml($this->content));
+        $this->contentPreview = MarkdownHelper::parseLiquidTags(replace_links(Markdown::convertToHtml($this->content)));
     }
 
     /*

@@ -41,10 +41,7 @@
             </div>
         </div>
         <div x-show="open" class="flex-1" style="display: none">
-            <livewire:markdown-x :content="$body" :autofocus="false" :key="$reply->id" :style="[
-                'textarea' => 'w-full h-full border border-skin-input focus:border-skin-base focus:outline-none p-4 rounded-b-lg',
-                'height' => 'h-[250px]',
-            ]" />
+            <livewire:editor :body="$body" />
 
             @error('body')
                 <p class="mt-2 text-sm text-red-500 leading-5 font-normal">{{ $message }}</p>

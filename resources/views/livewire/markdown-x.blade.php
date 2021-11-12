@@ -5,16 +5,11 @@
         <div class="@if(isset($style['toolbar'])){{ $style['toolbar'] }}@else{{ 'relative flex items-center justify-between w-full h-12 overflow-x-hidden bg-skin-card sm:h-10' }}@endif">
             <div class="flex items-center h-12 sm:h-10">
                 <div class="flex items-center h-full px-4 font-medium text-skin-base cursor-pointer hover:bg-skin-card-muted" @click="section = 'write'" x-bind:class="{ 'text-green-500 border-b border-green-500' : section === 'write' }">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-4 h-4 mr-2">
-                        <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
+                    <x-heroicon-o-pencil class="w-4 h-4 mr-2" />
                     <span>Saisi</span>
                 </div>
                 <div wire:click="updateContentPreview()" class="flex items-center h-full px-4 font-medium text-skin-base cursor-pointer hover:bg-skin-card-muted" @click="section = 'preview'" x-bind:class="{ 'text-green-500 border-b border-green-500' : section === 'preview' }">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-4 h-4 mr-2">
-                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                    </svg>
+                    <x-heroicon-o-eye class="w-4 h-4 mr-2" />
                     <span>Preview</span>
                 </div>
                 <div class="flex items-center h-full px-4 font-medium text-skin-base cursor-pointer hover:bg-skin-card-muted" @click="section = 'help'" x-bind:class="{ 'text-green-500 border-b border-green-500' : section === 'help' }">
@@ -26,7 +21,9 @@
             </div>
             <div class="relative flex items-center h-full px-4 font-medium text-skin-base cursor-pointer hover:bg-skin-card-muted">
                 <input type="file" x-on:change="upload(event, '{{ $key }}')" x-ref="image" id="image-{{ $key }}" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" tabindex="-1">
-                <svg  fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6 cursor-pointer"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" class="cursor-pointer"></path></svg>
+                <svg  fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6 cursor-pointer">
+                    <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" class="cursor-pointer" />
+                </svg>
             </div>
         </div>
 
@@ -101,7 +98,7 @@
         </div>
 
         {{-- MarkdownX Preview Section --}}
-        <div x-show="section === 'preview'" wire:target="updateContentPreview" class="@if(isset($style['preview'])){{ $style['preview'] }}@else{{ 'h-full bg-skin-card min-h-screen relative z-30 px-5 pt-5 prose md:prose-lg lg:prose-xl max-w-none' }}@endif" id="preview" x-cloak>
+        <div x-show="section === 'preview'" wire:target="updateContentPreview" class="@if(isset($style['preview'])){{ $style['preview'] }}@else{{ 'h-full bg-skin-card relative z-30 px-5 pt-5 prose md:prose-lg lg:prose-xl max-w-none' }}@endif" id="preview" x-cloak>
             {!! $contentPreview !!}
         </div>
         {{-- End: MarkdownX Preview Section --}}

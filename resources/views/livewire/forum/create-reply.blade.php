@@ -2,7 +2,7 @@
 
     <h3 class="text-lg sm:text-xl font-sans text-skin-inverted font-medium mb-6">Laissez votre réponse</h3>
 
-    <livewire:markdown-x :content="$body" :autofocus="false" :style="[
+    <livewire:markdown-x :content="$body" :autofocus="false" key="create-reply" :style="[
         'textarea' => 'w-full h-full border border-skin-input focus:border-skin-base focus:outline-none p-4 rounded-b-lg',
         'height' => 'h-[250px]',
     ]" />
