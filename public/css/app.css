@@ -3780,6 +3780,7 @@ select {
 .prose img {
 	margin-top: 2em;
 	margin-bottom: 2em;
+	border-radius: 0.5rem;
 }
 .prose video {
 	margin-top: 2em;

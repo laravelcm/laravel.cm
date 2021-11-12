@@ -107,6 +107,9 @@ module.exports = {
                 color: theme('textColor.skin.primary-hover'),
               },
             },
+            img: {
+              borderRadius: theme('borderRadius.lg')
+            },
             'h1, h2, h3, h4': {
               color: theme('textColor.skin.inverted'),
               fontFamily: "'Inter var', serif"
