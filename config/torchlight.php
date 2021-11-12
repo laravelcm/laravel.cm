@@ -28,7 +28,7 @@ return [
     // https://torchlight.dev/docs/options
     'options' => [
         // Turn line numbers on or off globally.
-        'lineNumbers' => false,
+        'lineNumbers' => true,
 
         // Control the `style` attribute applied to line numbers.
         // 'lineNumbersStyle' => '',
