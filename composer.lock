@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f0024023b588383f42e415dfc88a849",
+    "content-hash": "136977f8026dadbe99d427c826173cfa",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -9117,6 +9117,59 @@
                 "source": "https://github.com/wire-elements/modal/tree/1.0.3"
             },
             "time": "2021-11-05T12:45:43+00:00"
+        },
+        {
+            "name": "yarri/link-finder",
+            "version": "v2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yarri/LinkFinder.git",
+                "reference": "51ba050d1876904e815ebbbdc9cd637d3af7702a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yarri/LinkFinder/zipball/51ba050d1876904e815ebbbdc9cd637d3af7702a",
+                "reference": "51ba050d1876904e815ebbbdc9cd637d3af7702a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "atk14/tester": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaromir Tomek",
+                    "homepage": "https://github.com/yarri"
+                }
+            ],
+            "description": "Converts non-clickable URLs and email addresses in text (plain or HTML) into clickable HTML links",
+            "homepage": "https://github.com/yarri/LinkFinder",
+            "keywords": [
+                "Linkify",
+                "e-mail",
+                "email",
+                "link",
+                "url",
+                "urlize",
+                "urlizer"
+            ],
+            "support": {
+                "issues": "https://github.com/yarri/LinkFinder/issues",
+                "source": "https://github.com/yarri/LinkFinder/tree/v2.7.2"
+            },
+            "time": "2021-09-06T14:41:49+00:00"
         }
     ],
     "packages-dev": [

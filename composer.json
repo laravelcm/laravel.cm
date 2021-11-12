@@ -31,7 +31,8 @@
     "spatie/laravel-sitemap": "^6.0",
     "stevebauman/location": "^6.2",
     "torchlight/torchlight-commonmark": "^0.5.2",
-    "wire-elements/modal": "^1.0"
+    "wire-elements/modal": "^1.0",
+    "yarri/link-finder": "^2.7"
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.6",
