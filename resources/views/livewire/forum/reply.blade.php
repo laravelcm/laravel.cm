@@ -8,7 +8,9 @@
         <div x-show="!open" class="flex-1">
             <div class="flex items-start">
                 <div class="flex items-center flex-1 text-sm space-x-2 font-sans">
-                    <a href="{{ route('profile', $reply->author->username) }}" class="font-medium text-skin-inverted">{{ $reply->author->name }}</a>
+                    <a href="{{ route('profile', $reply->author->username) }}" class="font-medium text-skin-inverted">
+                        {{ $reply->author->name }} <span class="inline-flex text-skin-muted">{{ '@' . $reply->author->username }}</span>
+                    </a>
                     <span class="text-skin-base font-medium">·</span>
                     <time datetime="{{ $reply->created_at }}" title="{{ $thread->created_at->format('j M, Y \à h:i') }}" class="text-skin-muted">{{ $reply->created_at->diffForHumans() }}</time>
                     @can(App\Policies\ReplyPolicy::UPDATE, $reply)
