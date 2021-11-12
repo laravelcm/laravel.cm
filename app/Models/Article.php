@@ -73,7 +73,6 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
      */
     protected $with = [
         'author',
-        'tags',
     ];
 
     protected $removeViewsOnDelete = true;

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use App\Models\Activity;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 class Activities extends Component
@@ -18,7 +19,7 @@ class Activities extends Component
     public function render()
     {
         return view('livewire.user.activities', [
-            'activities' => Activity::latestFeed($this->user),
+            'activities' => Cache::remember('activities', now()->addMinutes(30), fn () => Activity::latestFeed($this->user)),
         ]);
     }
 }

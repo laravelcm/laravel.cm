@@ -5,8 +5,6 @@ namespace App\Listeners;
 use App\Events\ReplyWasCreated;
 use App\Models\User;
 use App\Notifications\YouWereMentioned;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class NotifyMentionedUsers
 {

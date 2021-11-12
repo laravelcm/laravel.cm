@@ -1,31 +1,10 @@
 <div>
     @if($articles->isNotEmpty())
-        <div x-data="{
-            init() {
-                let observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            @this.call('loadMore')
-                        }
-                    })
-                }, { root: null })
-
-                observer.observe(this.$el)
-            }
-        }">
+        <div>
             <div class="space-y-8 sm:space-y-10 max-w-lg mx-auto lg:max-w-none">
                 @foreach ($articles as $article)
                     <x-articles.overview :article="$article" />
                 @endforeach
-            </div>
-
-            <div class="mt-4 flex justify-center">
-                @if($articles->hasMorePages())
-                    <button wire:click.prevent="loadMore" class="flex items-center text-skin-base text-sm leading-5">
-                        <x-loader class="text-skin-primary" />
-                        Chargement...
-                    </button>
-                @endif
             </div>
         </div>
     @else
