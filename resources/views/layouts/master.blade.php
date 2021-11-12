@@ -25,8 +25,9 @@
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
     </script>
 
-    <wireui:scripts />
     <!-- Scripts -->
+    <wireui:scripts />
+    @livewireScripts
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     @include('layouts._favicons')
@@ -39,7 +40,6 @@
 
     <x-notifications z-index="z-50" />
 
-    @livewireScripts
     @livewire('livewire-ui-modal')
     @stack('scripts')
 </body>

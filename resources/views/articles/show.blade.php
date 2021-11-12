@@ -177,7 +177,7 @@
             @endif
         </div>
         <div class="hidden lg:block lg:col-span-2">
-            <div class="sticky top-4">
+            <div class="sticky top-4 space-y-10">
                 @if($article->showToc())
                     <div class="bg-skin-card px-4 py-6 rounded-lg shadow-lg">
                         <h4 class="text-sm text-skin-inverted font-semibold leading-tight tracking-widest uppercase">Table des matières</h4>
