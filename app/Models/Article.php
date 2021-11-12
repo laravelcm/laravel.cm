@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\ReactableInterface;
+use App\Traits\HasAuthor;
 use App\Traits\HasSlug;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
@@ -13,14 +14,14 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Article extends Model implements ReactableInterface, HasMedia, Viewable
 {
-    use HasFactory,
+    use HasAuthor,
+        HasFactory,
         HasSlug,
         HasTags,
         InteractsWithMedia,
@@ -72,7 +73,6 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
      */
     protected $with = [
         'author',
-        'tags',
     ];
 
     protected $removeViewsOnDelete = true;
@@ -304,15 +304,5 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
             ->published()
             ->orderBy('submitted_at', 'asc')
             ->first();
-    }
-
-    public function author(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function isAuthoredBy(User $user): bool
-    {
-        return $this->author()->is($user);
     }
 }

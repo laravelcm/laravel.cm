@@ -13,9 +13,6 @@
         {{ is_active('home') ? '- La plus grande communauté de développeurs Laravel & PHP au Cameroun' : '' }}
     </title>
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
-
     <!-- Styles -->
     <link href="https://fonts.cdnfonts.com/css/operator-mono" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
@@ -28,6 +25,11 @@
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
     </script>
 
+    <!-- Scripts -->
+    <wireui:scripts />
+    @livewireScripts
+    <script src="{{ mix('js/app.js') }}" defer></script>
+
     @include('layouts._favicons')
     @include('layouts._fathom')
     @include('layouts._og')
@@ -36,8 +38,8 @@
 
     @yield('content')
 
-    <x-notification />
-    @livewireScripts
+    <x-notifications z-index="z-50" />
+
     @livewire('livewire-ui-modal')
     @stack('scripts')
 </body>

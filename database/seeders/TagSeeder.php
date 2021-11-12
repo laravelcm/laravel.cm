@@ -16,6 +16,8 @@ class TagSeeder extends Seeder
     {
         $this->createTag('AlpineJS', 'alpinejs', ['post', 'tutorial']);
         $this->createTag('Laravel', 'laravel', ['post', 'tutorial']);
+        $this->createTag('Livewire', 'livewire', ['post', 'tutorial']);
+        $this->createTag('Inertia', 'inertia', ['post', 'tutorial']);
         $this->createTag('Packages', 'packages', ['post', 'tutorial']);
         $this->createTag('Design', 'design', ['post', 'tutorial']);
         $this->createTag('PHP', 'php', ['post', 'tutorial']);
@@ -23,7 +25,7 @@ class TagSeeder extends Seeder
         $this->createTag('JavaScript', 'javascript', ['post', 'tutorial']);
         $this->createTag('Applications', 'applications', ['post', 'tutorial']);
         $this->createTag('React', 'react', ['post', 'tutorial']);
-        $this->createTag('Vue', 'vue-js', ['post', 'tutorial']);
+        $this->createTag('Vue.js', 'vue-js', ['post', 'tutorial']);
         $this->createTag('Digital Ocean', 'digital-ocean', ['post', 'tutorial']);
         $this->createTag('Outils', 'outils', ['post', 'discussion', 'tutorial']);
         $this->createTag('Open Source', 'open-source', ['post', 'discussion', 'tutorial']);

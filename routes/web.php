@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\Forum\ReplyController;
+use App\Http\Controllers\Forum\ThreadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +44,23 @@ Route::prefix('articles')->group(function () {
     Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
 });
 
+// Forum
+Route::prefix('forum')->as('forum.')->group(function () {
+    Route::redirect('/channels', '/forum');
+    Route::get('/', [ThreadController::class, 'index'])->name('index');
+    Route::get('/channels/{channel}', [ThreadController::class, 'channel'])->name('channels');
+    Route::get('/new-thread', [ThreadController::class, 'create'])->name('new');
+    Route::get('/{thread}', [ThreadController::class, 'show'])->name('show');
+    Route::get('/{thread}/edit', [ThreadController::class, 'edit'])->name('edit');
+});
+
+// Replies
+Route::post('replies', [ReplyController::class, 'store'])->name('replies.store');
+
+// Subscriptions
+Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
+    ->name('subscriptions.unsubscribe');
+
 // Settings
 Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {
     Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
@@ -68,3 +88,5 @@ Route::redirectMap([
 ]);
 
 Route::mediaLibrary();
+// In routes/web.php
+Route::feeds();

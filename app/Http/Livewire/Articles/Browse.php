@@ -45,7 +45,7 @@ class Browse extends Component
 
     public function render()
     {
-        $articles = Article::published()
+        $articles = Article::with('tags')->published()
             ->notPinned();
 
         $tags = Tag::whereHas('articles', function ($query) {

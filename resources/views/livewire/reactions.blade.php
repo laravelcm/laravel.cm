@@ -1,10 +1,10 @@
-<div class="pt-6 relative" x-data="{ showReactions: false }">
+<div class="relative" x-data="{ showReactions: false }">
     @if($model->getReactionsSummary()->isEmpty())
         <button
             @click="showReactions = ! showReactions"
             class="flex items-center text-skin-base hover:underline text-sm leading-5 focus:outline-none focus:ring-0"
         >
-            Soyez le premier à réagir
+            @if($withPlaceHolder) Soyez le premier à réagir @endif
             <x-heroicon-o-emoji-happy class="h-5 w-5 ml-1.5" />
         </button>
     @else

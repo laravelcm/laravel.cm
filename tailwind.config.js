@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
@@ -11,11 +12,17 @@ function withOpacity(variableName) {
 
 module.exports = {
   mode: 'jit',
+  presets: [
+    require('./vendor/ph7jack/wireui/tailwind.config.js')
+  ],
   purge: {
     content: [
       './app/**/*.php',
       './vendor/livewire-ui/modal/resources/views/*.blade.php',
       './storage/framework/views/*.php',
+      './vendor/ph7jack/wireui/resources/**/*.blade.php',
+      './vendor/ph7jack/wireui/ts/**/*.ts',
+      './vendor/ph7jack/wireui/src/View/**/*.php',
       './resources/**/*.blade.php',
       './resources/**/*.js',
     ],
@@ -34,6 +41,7 @@ module.exports = {
         },
         body: 'rgb(var(--color-body-fill))',
         card: 'rgb(var(--color-card-fill))',
+        primary: colors.green,
       },
       fontFamily: {
         mono: ['Operator Mono', ...defaultTheme.fontFamily.mono],
@@ -66,13 +74,13 @@ module.exports = {
           button: withOpacity('--color-button-default'),
           'button-hover': withOpacity('--color-card-muted-fill'),
           card: withOpacity('--color-card-fill'),
+          'card-gray': withOpacity('--color-card-gray'),
           'card-muted': withOpacity('--color-card-muted-fill'),
         }
       },
       borderColor: {
         skin: {
           base: withOpacity('--color-border'),
-          light: withOpacity('--color-border-light'),
           input: withOpacity('--color-input-border'),
         }
       },
@@ -99,6 +107,9 @@ module.exports = {
                 color: theme('textColor.skin.primary-hover'),
               },
             },
+            img: {
+              borderRadius: theme('borderRadius.lg')
+            },
             'h1, h2, h3, h4': {
               color: theme('textColor.skin.inverted'),
               fontFamily: "'Inter var', serif"
@@ -112,7 +123,10 @@ module.exports = {
             blockquote: {
               color: theme('textColor.skin.inverted')
             },
-            'p > code': {
+            'li strong, strong' : {
+              color: theme('textColor.skin.inverted-muted'),
+            },
+            'p > code, code': {
               display: 'inline-flex',
               alignItems: 'center',
               borderRadius: '.375rem',

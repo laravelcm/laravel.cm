@@ -8,7 +8,7 @@
                     </a>
                 </div>
                 <div class="hidden lg:ml-10 lg:flex lg:items-center lg:space-x-6 font-sans">
-                    <a href="#" class="inline-flex items-center px-1 text-sm font-medium {{ active(['forum', 'threads*', 'thread'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
+                    <a href="{{ route('forum.index') }}" class="inline-flex items-center px-1 text-sm font-medium {{ active(['forum', 'forum*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
                         {{ __('Forum') }}
                     </a>
                     <a href="{{ route('articles') }}" class="inline-flex items-center px-1 text-sm font-medium {{ active(['articles', 'articles*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
@@ -189,14 +189,14 @@
                                 <a href="{{ route('articles.new') }}" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
                                     Nouvel article
                                 </a>
+                                <a href="{{ route('forum.new') }}" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
+                                    Nouveau sujet
+                                </a>
                                 <a href="#" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
                                     Nouvelle discussion
                                 </a>
                                 <a href="#" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
                                     Nouveau tutoriel
-                                </a>
-                                <a href="#" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
-                                    Nouveau thread
                                 </a>
                             </div>
                         </div>
@@ -235,6 +235,12 @@
                                 </p>
                             </div>
                             <div class="py-1.5 px-3.5" role="none">
+                                @if(Auth::user()->hasRole(['admin', 'moderator']))
+                                    <a href="#" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
+                                        <x-heroicon-o-view-grid class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                                        {{ __('CPanel') }}
+                                    </a>
+                                @endif
                                 <a href="#" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
                                     <x-heroicon-o-view-grid class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
                                     {{ __('Dashboard') }}
@@ -277,7 +283,7 @@
 
     <div x-show="open" class="lg:hidden font-sans" id="mobile-menu" style="display: none;">
         <div class="pt-2 pb-3 space-y-1">
-            <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['forum', 'threads*', 'thread'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Forum') }}</a>
+            <a href="{{ route('forum.index') }}" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['forum', 'forum*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Forum') }}</a>
             <a href="{{ route('articles') }}" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['articles', 'articles*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Articles') }}</a>
             <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['tutorials', 'tutorials*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Vidéos') }}</a>
             <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['discussions', 'discussions*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Discussions') }}</a>
@@ -342,7 +348,7 @@
                     </button>
                 </div>
                 <div class="mt-3 space-y-1">
-                    <a href="#" class="block px-4 py-2 text-base font-medium text-skin-menu hover:text-skin-menu-hover">{{ __('Mon profil') }}</a>
+                    <a href="{{ route('profile') }}" class="block px-4 py-2 text-base font-medium text-skin-menu hover:text-skin-menu-hover">{{ __('Mon profil') }}</a>
                     <a href="{{ route('user.settings') }}" class="block px-4 py-2 text-base font-medium text-skin-menu hover:text-skin-menu-hover">{{ __('Paramètres') }}</a>
                     <div class="px-4 py-2" role="form">
                         <form method="POST" action="{{ route('logout') }}" role="form">

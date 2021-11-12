@@ -4,17 +4,19 @@ namespace App\Traits;
 
 use App\Models\Reaction;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\DB;
 
 trait Reactable
 {
-    public function reactions()
+    public function reactions(): MorphToMany
     {
         return $this->morphToMany(Reaction::class, 'reactable')
             ->withPivot(['responder_id', 'responder_type']);
     }
 
-    public function getReactionsSummary()
+    public function getReactionsSummary(): Collection
     {
         return $this->reactions()
             ->getQuery()

@@ -15,6 +15,8 @@
 
 :root {
   --brand-laravel: #FF2D20;
+  --brand-livewire: #fb70a9;
+  --brand-inertia: #8B5CF6;
   --brand-javascript: #F7DF1E;
   --brand-typesript: #007ACC;
   --brand-react: #53C1DE;
@@ -25,7 +27,7 @@
   --brand-packages: #4F46E5;
   --brand-outils: #22D3EE;
   --brand-tailwind: #06B6D4;
-  --brand-design: #8B5CF6;
+  --brand-design: #78350F;
   --brand-alpinejs: #37BDD7;
   --brand-open-source: #F97316;
   --brand-freelance: #F43F5E;
@@ -56,6 +58,7 @@
     --color-input-fill: var(--color-menu-fill);
     --color-button-default: var(--color-menu-fill);
     --color-card-fill: var(--color-menu-fill);
+    --color-card-gray: 243, 244, 246;
     --color-card-muted-fill: var(--color-body-fill);
 
     --color-input-border: 209, 213, 219;
@@ -83,6 +86,7 @@
     --color-input-fill: 31, 41, 55;
     --color-button-default: 55, 65, 81;
     --color-card-fill: 22, 27, 34;
+    --color-card-gray: var(--color-menu-fill);
     --color-card-muted-fill: 17, 22, 29;
 
     --color-input-border: 31, 41, 55;

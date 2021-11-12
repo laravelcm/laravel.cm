@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Facades\Cache;
+
 trait HasProfilePhoto
 {
     /**
@@ -15,7 +17,7 @@ trait HasProfilePhoto
             return $this->getFirstMediaUrl('avatar');
         }
 
-        $social_avatar = $this->providers()->where('provider', $this->avatar_type)->first();
+        $social_avatar = Cache::remember('social-provider', now()->addWeek(), fn () => $this->providers()->where('provider', $this->avatar_type)->first());
 
         if ($social_avatar && strlen($social_avatar->avatar)) {
             return $social_avatar->avatar;

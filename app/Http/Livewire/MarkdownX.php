@@ -3,7 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\Markdown\MarkdownHelper;
+use App\Models\User;
 use Exception;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -17,6 +19,7 @@ class MarkdownX extends Component
     public mixed $contentPreview;
     public mixed $style;
     public string $section = 'write';
+    public bool $autofocus = true;
 
     /*
      * Laravel livewire listeners, learn more at https://laravel-livewire.com/docs/events#event-listeners
@@ -27,6 +30,8 @@ class MarkdownX extends Component
         'markdown-x-image-upload' => 'upload',
         'markdown-x-giphy-load' => 'getGiphyTrendingImages',
         'markdown-x-giphy-search' => 'getGiphySearchImages',
+        'markdown-x-people-load' => 'getTrendingPeoples',
+        'markdown-x-people-search' => 'getSearchPeoples',
     ];
 
     /**
@@ -80,7 +85,7 @@ class MarkdownX extends Component
      */
     public function updateContentPreview()
     {
-        $this->contentPreview = MarkdownHelper::parseLiquidTags(Str::markdown($this->content));
+        $this->contentPreview = MarkdownHelper::parseLiquidTags(replace_links(Markdown::convertToHtml($this->content)));
     }
 
     /*
@@ -215,6 +220,47 @@ class MarkdownX extends Component
             'message' => 'Successfully returned results.',
             'results' => $parse_giphy_results,
             'key' => $key,
+        ]);
+    }
+
+    public function getTrendingPeoples($payload)
+    {
+        $users = User::orderBy('name')->limit(30)->get()->map(function ($user) {
+            $people['name'] = $user->name;
+            $people['picture'] = $user->profile_photo_url;
+            $people['username'] = $user->username;
+
+            return $people;
+        });
+
+        $this->dispatchBrowserEvent('markdown-x-peoples-results', [
+            'status' => 200,
+            'message' => 'Successfully returned results.',
+            'results' => $users->toArray(),
+            'key' => $payload['key'],
+        ]);
+    }
+
+    public function getSearchPeoples($payload)
+    {
+        $users = User::where('name', 'like', '%' . $payload['search'] . '%')
+                    ->orWhere('username', 'like', '%' . $payload['search'] . '%')
+                    ->orderBy('name')
+                    ->limit(30)
+                    ->get()
+                    ->map(function ($user) {
+                        $people['name'] = $user->name;
+                        $people['picture'] = $user->profile_photo_url;
+                        $people['username'] = $user->username;
+
+                        return $people;
+                    });
+
+        $this->dispatchBrowserEvent('markdown-x-peoples-results', [
+            'status' => 200,
+            'message' => 'Successfully returned results.',
+            'results' => $users->toArray(),
+            'key' => $payload['key'],
         ]);
     }
 

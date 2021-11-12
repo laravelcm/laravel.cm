@@ -3167,7 +3167,7 @@ var insertCharactersAtPosition = function insertCharactersAtPosition(string, cha
 }; // Configuration object for the text editor.
 
 
-window.editorConfig = function () {
+window.editorConfig = function (body) {
   return {
     styles: {
       header: {
@@ -3181,12 +3181,19 @@ window.editorConfig = function () {
         before: '_',
         after: '_'
       },
+      mention: {
+        before: '@'
+      },
       quote: {
         before: '> '
       },
+      codepen: {
+        before: '{% codepen ',
+        after: '%}'
+      },
       code: {
-        before: '`',
-        after: '`'
+        before: '```{langage}',
+        after: '```'
       },
       link: {
         before: '[](',
@@ -3196,16 +3203,13 @@ window.editorConfig = function () {
         before: '![](',
         after: ')'
       }
+    },
+    body: body,
+    mode: 'write',
+    submit: function submit(event) {
+      event.target.closest('form').submit();
     }
   };
-};
-
-window.expand = function (element, minHeight) {
-  if (element.scrollHeight < minHeight) {
-    return;
-  }
-
-  element.style.cssText = 'height:' + element.scrollHeight + 'px';
 };
 
 /***/ }),

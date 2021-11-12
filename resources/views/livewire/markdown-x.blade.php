@@ -5,16 +5,11 @@
         <div class="@if(isset($style['toolbar'])){{ $style['toolbar'] }}@else{{ 'relative flex items-center justify-between w-full h-12 overflow-x-hidden bg-skin-card sm:h-10' }}@endif">
             <div class="flex items-center h-12 sm:h-10">
                 <div class="flex items-center h-full px-4 font-medium text-skin-base cursor-pointer hover:bg-skin-card-muted" @click="section = 'write'" x-bind:class="{ 'text-green-500 border-b border-green-500' : section === 'write' }">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-4 h-4 mr-2">
-                        <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
+                    <x-heroicon-o-pencil class="w-4 h-4 mr-2" />
                     <span>Saisi</span>
                 </div>
                 <div wire:click="updateContentPreview()" class="flex items-center h-full px-4 font-medium text-skin-base cursor-pointer hover:bg-skin-card-muted" @click="section = 'preview'" x-bind:class="{ 'text-green-500 border-b border-green-500' : section === 'preview' }">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-4 h-4 mr-2">
-                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                    </svg>
+                    <x-heroicon-o-eye class="w-4 h-4 mr-2" />
                     <span>Preview</span>
                 </div>
                 <div class="flex items-center h-full px-4 font-medium text-skin-base cursor-pointer hover:bg-skin-card-muted" @click="section = 'help'" x-bind:class="{ 'text-green-500 border-b border-green-500' : section === 'help' }">
@@ -26,7 +21,9 @@
             </div>
             <div class="relative flex items-center h-full px-4 font-medium text-skin-base cursor-pointer hover:bg-skin-card-muted">
                 <input type="file" x-on:change="upload(event, '{{ $key }}')" x-ref="image" id="image-{{ $key }}" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" tabindex="-1">
-                <svg  fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6 cursor-pointer"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" class="cursor-pointer"></path></svg>
+                <svg  fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6 cursor-pointer">
+                    <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" class="cursor-pointer" />
+                </svg>
             </div>
         </div>
 
@@ -73,7 +70,23 @@
 
                 <div wire:ignore x-ref="placeholder" @click="$refs.editor.focus()" id="placeholder-{{ $key }}" x-show="placeholder" class="absolute z-20 text-skin-muted transition-opacity duration-200 ease-out" x-cloak>Type '/' for commands </div>
 
-                <textarea x-ref="editor" id="editor-{{ $key }}" data-key="{{ $key }}" class="editors @if(isset($style['textarea'])){{ $style['textarea'] }}@else{{ 'w-full h-full mx-auto min-h-screen bg-skin-input px-5 md:px-1 pt-5 font-mono leading-loose tracking-tighter border-0 outline-none focus:outline-none sm:x-0 text-lg text-skin-base' }}@endif" placeholder="" data-loaded="false" name="{{ $name }}" x-on:dragenter="$event.preventDefault(); dropFiles=true" wire:model.debounce.150="content" x-on:blur="@this.call('update', { content: $event.target.value });" x-on:focus="editorEvent($event)" x-on:keypress="editorEvent($event)" x-on:keydown="getCursorXY(); editorEvent($event)" x-on:keyup="getCursorXY(); editorEvent($event)" x-on:click="editorEvent($event)" x-cloak></textarea>
+                <textarea
+                    x-ref="editor"
+                    id="editor-{{ $key }}"
+                    data-key="{{ $key }}"
+                    class="editors w-full h-full mx-auto bg-skin-input px-5 md:px-1 pt-5 font-mono leading-loose tracking-tighter text-skin-base @if(isset($style['textarea'])){{ $style['textarea'] }}@else{{ 'min-h-screen border-0 outline-none focus:outline-none sm:x-0 text-lg' }}@endif"
+                    placeholder=""
+                    data-loaded="false"
+                    name="{{ $name }}"
+                    x-on:dragenter="$event.preventDefault(); dropFiles=true"
+                    wire:model.debounce.150="content"
+                    x-on:blur="@this.call('update', { content: $event.target.value });"
+                    x-on:focus="editorEvent($event)"
+                    x-on:keypress="editorEvent($event)"
+                    x-on:keydown="getCursorXY(); editorEvent($event)"
+                    x-on:keyup="getCursorXY(); editorEvent($event)"
+                    x-on:click="editorEvent($event)" x-cloak>
+                </textarea>
 
                 <div x-ref="drop" x-show="dropFiles" x-on:dragleave="$event.preventDefault(); dropFiles=false" x-on:dragover="$event.preventDefault();" x-on:drop="$event.preventDefault(); droppingFile($event)" class="absolute inset-0 flex items-center justify-center w-full h-full bg-green-100 bg-opacity-20" x-cloak>
                     <div class="flex flex-col items-center justify-center w-40 h-32 text-xs text-skin-muted bg-skin-card border-0 border-skin-input border-dashed rounded-lg">
@@ -85,13 +98,13 @@
         </div>
 
         {{-- MarkdownX Preview Section --}}
-        <div x-show="section === 'preview'" wire:target="updateContentPreview" class="@if(isset($style['preview'])){{ $style['preview'] }}@else{{ 'h-full bg-skin-card min-h-screen relative z-30 px-5 pt-5 prose md:prose-xl lg:prose-2xl max-w-none' }}@endif" id="preview" x-cloak>
+        <div x-show="section === 'preview'" wire:target="updateContentPreview" class="@if(isset($style['preview'])){{ $style['preview'] }}@else{{ 'h-full bg-skin-card relative z-30 px-5 pt-5 prose md:prose-lg lg:prose-xl max-w-none' }}@endif" id="preview" x-cloak>
             {!! $contentPreview !!}
         </div>
         {{-- End: MarkdownX Preview Section --}}
 
         {{-- MarkdownX Help Section --}}
-        <div x-show="section === 'help'" class="@if(isset($style['help'])){{ $style['help'] }}@else{{ 'h-full bg-skin-card min-h-screen px-5 pt-10 relative z-30 prose md:prose-xl lg:prose-lg max-w-none' }}@endif" x-cloak>
+        <div x-show="section === 'help'" class="@if(isset($style['help'])){{ $style['help'] }}@else{{ 'h-full bg-skin-card min-h-screen px-5 pt-10 relative z-30 prose md:prose-sm lg:prose-lg max-w-none' }}@endif" x-cloak>
 
             <h2>Markdown Basics</h2>
             <p>Below you will find some common used markdown syntax. For a deeper dive in Markdown check out this <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet" target="_blank">Cheat Sheet</a></p>
@@ -176,14 +189,14 @@
     </div>
 
     <script>
-        const suggestionClasses = 'overflow-scroll';
-        const suggestionActiveClasses = 'bg-skin-body text-skin-inverted suggestion-active';
-        const suggestionItemClasses = 'cursor-pointer hover:bg-skin-body';
+        var suggestionClasses = 'overflow-scroll';
+        var suggestionActiveClasses = 'bg-skin-body text-skin-inverted suggestion-active';
+        var suggestionItemClasses = 'cursor-pointer hover:bg-skin-body';
 
         window.markdown = function() {
             return {
                 section: @entangle('section'),
-                autofocus: true,
+                autofocus: @entangle('autofocus'),
                 dropdownEl: null,
                 popup: false,
                 popupType: '',
@@ -267,7 +280,7 @@
                         }
                     }
                 },
-                cancelModal (){
+                cancelModal () {
                     this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                 },
                 getCursorXY () {
@@ -362,10 +375,16 @@
                             "description" : `Upload or add an image.`,
                             "display" : `block`
                         },
+                        "mention" : {
+                            "icon" : `<span class="p-2 border border-skin-input rounded-lg"><svg class="w-6 h-6 text-gray-800 fill-current" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M91 99.5c0 25.129-20.371 45.5-45.5 45.5S0 124.629 0 99.5 20.371 54 45.5 54 91 74.371 91 99.5ZM56.875 82.437c0 6.283-5.093 11.376-11.375 11.376S34.125 88.72 34.125 82.436c0-6.282 5.093-11.374 11.375-11.374s11.375 5.092 11.375 11.374ZM45.5 105.189c-11.475 0-21.363 6.796-25.857 16.583 6.258 7.259 15.52 11.854 25.857 11.854 10.336 0 19.598-4.595 25.856-11.854-4.494-9.787-14.381-16.583-25.856-16.583Z" fill="#9CA3AF"/><path d="M100 77.984c0-1.648 1.301-2.984 2.907-2.984h94.186c1.605 0 2.907 1.336 2.907 2.984s-1.302 2.984-2.907 2.984h-94.186c-1.606 0-2.907-1.336-2.907-2.984ZM100 93.5c0-1.648 1.301-2.984 2.907-2.984h94.186c1.605 0 2.907 1.336 2.907 2.984s-1.302 2.984-2.907 2.984h-94.186c-1.606 0-2.907-1.336-2.907-2.984ZM100 109.016c0-1.648 1.301-2.984 2.907-2.984H175c1.605 0 2.907 1.336 2.907 2.984S176.605 112 175 112h-72.093c-1.605 0-2.907-1.336-2.907-2.984Z" fill="#D1D5DB"/></svg></span>`,
+                            "title" : `Mention a person`,
+                            "description" : `Ping someone so they get a notification.`,
+                            "display" : `block`
+                        },
                         "code" : {
                             "icon" : `<span class="p-2 border border-skin-input rounded-lg"><svg class="w-6 h-6 text-skin-menu fill-current" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><path fill="#FFF" d="M25 75h250v187H25z"/><path d="M262.5 12h-225C16.819 12 0 28.824 0 49.51v200.066c0 20.687 16.819 37.51 37.5 37.51h225c20.681 0 37.5-16.823 37.5-37.51V49.51C300 28.824 283.181 12 262.5 12zm0 250.067h-225c-6.9 0-12.506-5.608-12.506-12.51V74.512h250.012v175.045c0 6.902-5.606 12.51-12.506 12.51z" fill="#273141"/><g fill="#374151"><path d="M176.378 216.498c-3.2 0-6.383-1.214-8.816-3.643-4.866-4.857-4.866-12.742 0-17.618l28.62-28.566-28.62-28.566c-4.866-4.857-4.866-12.741 0-17.618 4.867-4.857 12.765-4.857 17.65 0l37.436 37.366c4.866 4.858 4.866 12.742 0 17.618l-37.435 37.365a12.472 12.472 0 01-8.835 3.662zM122.584 116.844c3.2 0 6.383 1.215 8.816 3.643 4.866 4.858 4.866 12.742 0 17.618l-28.62 28.566 28.62 28.566c4.866 4.858 4.866 12.742 0 17.618-4.867 4.858-12.765 4.858-17.65 0L76.313 175.49c-4.866-4.858-4.866-12.742 0-17.618l37.435-37.366a12.472 12.472 0 018.835-3.662z"/></g></g></svg></span>`,
                             "title" : `Code`,
-                            "description" : `Insert a peice of code.`,
+                            "description" : `Insert a piece of code.`,
                             "display" : `block`
                         },
                         "link" : {
@@ -490,7 +509,19 @@
                             Insert an animated GIF
                         </label>
                         <input type="text" @keydown="searchGIFModal(event)" id="editor-giphy-search" class="block w-full transition duration-150 ease-in-out bg-skin-input focus:outline-none font-normal text-skin-base focus:ring-flag-green focus:border-flag-green sm:text-sm border-skin-input rounded-md sm:leading-5" placeholder="Search for a GIF">
-                        <div id="giphy-items" class="grid w-full h-64 grid-cols-3 gap-1 p-1 mt-2 overflow-y-scroll border border-skin-input rounded-lg bg-gray-50 grid-cols">
+                        <div id="giphy-items" class="grid w-full h-64 grid-cols-3 gap-1 p-1 mt-2 overflow-y-scroll border border-skin-input rounded-lg bg-skin-card grid-cols">
+                            <div class="absolute inset-0 flex items-center justify-center w-full h-full">
+                                <svg class="w-5 h-5 text-skin-muted animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </div>
+                        </div>`;
+                    modalSuggestionHTML["mention"] = `<label for="text" class="block mb-1.5 text-sm font-medium leading-5 text-skin-menu sm:mt-px">
+                            Mention a person
+                        </label>
+                        <input type="text" @keydown="searchPeopleModal(event)" id="editor-people-search" class="block w-full transition duration-150 ease-in-out bg-skin-input focus:outline-none font-normal text-skin-base focus:ring-flag-green focus:border-flag-green sm:text-sm border-skin-input rounded-md sm:leading-5" placeholder="Search for a person">
+                        <div id="peoples-items" class="w-full h-64 mt-2 overflow-y-scroll border border-skin-input rounded-lg bg-skin-card">
                             <div class="absolute inset-0 flex items-center justify-center w-full h-full">
                                 <svg class="w-5 h-5 text-skin-muted animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -541,18 +572,26 @@
                         this.$refs.modalExecute.click();
                     }
                 },
-                searchGIFModal(event){
+                searchGIFModal(event) {
                     if (event.keyCode === 13) {
                         event.preventDefault();
-                        if(event.target.value.trim() !== ""){
+                        if(event.target.value.trim() !== "") {
                             window.livewire.emit('markdown-x-giphy-search', { search: event.target.value, key: this.$refs.markdownX.dataset.key });
+                        }
+                    }
+                },
+                searchPeopleModal(event) {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                        if(event.target.value.trim() !== "") {
+                            window.livewire.emit('markdown-x-people-search', { search: event.target.value, key: this.$refs.markdownX.dataset.key });
                         }
                     }
                 },
                 executeAssociatedFunction () {
                     let type = this.$refs.modalExecute.dataset.suggestion;
                     let editor = this.$refs.editor;
-                    switch(type){
+                    switch(type) {
                         case "link":
                                 editor.setCaretPosition(this.editStart, this.editStart);
                                 let linkText = document.getElementById('editor-link-text').value;
@@ -707,13 +746,23 @@
                         case 'bulleted_list':
                             this.replaceSuggestionText(newLine + ' - ');
                             break;
+                        case 'mention':
+                                this.setModalHTML(selected.dataset.suggestion);
+                                this.$refs.modalExecute.dataset.suggestion="mention";
+                                this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
+                                this.replaceSuggestionText(newLine + '');
+                                window.livewire.emit('markdown-x-people-load', { key: this.$refs.markdownX.dataset.key });
+                                this.showModalPop(function() {
+                                    document.getElementById('editor-people-search').focus();
+                                });
+                            break;
                         case 'giphy':
                                 this.setModalHTML(selected.dataset.suggestion);
                                 this.$refs.modalExecute.dataset.suggestion="giphy";
                                 this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                                 this.replaceSuggestionText(newLine + '');
                                 window.livewire.emit('markdown-x-giphy-load', { key: this.$refs.markdownX.dataset.key });
-                                this.showModalPop(function(){
+                                this.showModalPop(function() {
                                     document.getElementById('editor-giphy-search').focus();
                                 });
                             break;
@@ -722,7 +771,7 @@
                                 this.$refs.modalExecute.dataset.suggestion="codepen";
                                 this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                                 this.replaceSuggestionText(newLine + '');
-                                this.showModalPop(function(){
+                                this.showModalPop(function() {
                                     document.getElementById('editor-codepen-url').focus();
                                 });
                             break;
@@ -731,7 +780,7 @@
                                 this.$refs.modalExecute.dataset.suggestion="codesandbox";
                                 this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                                 this.replaceSuggestionText(newLine + '');
-                                this.showModalPop(function(){
+                                this.showModalPop(function() {
                                     document.getElementById('editor-codesandbox-url').focus();
                                 });
                             break;
@@ -743,7 +792,7 @@
                                 this.$refs.modalExecute.dataset.suggestion="youtube";
                                 this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                                 this.replaceSuggestionText(newLine + '');
-                                this.showModalPop(function(){
+                                this.showModalPop(function() {
                                     document.getElementById('editor-youtube-url').focus();
                                 });
                             break;
@@ -752,7 +801,7 @@
                                 this.$refs.modalExecute.dataset.suggestion="buy_me_a_coffee";
                                 this.$refs.editor.setCaretPosition(this.currentCaretPos.start, this.currentCaretPos.end);
                                 this.replaceSuggestionText(newLine + '');
-                                this.showModalPop(function(){
+                                this.showModalPop(function() {
                                     document.getElementById('editor-buy-me-a-coffee-username').focus();
                                 });
                             break;
@@ -840,13 +889,9 @@
                     return !!(this.isNormalInteger(numSplit[0]) && numSplit[1] === " ");
                 },
                 lineIsStartOfBulletedList (line) {
-                    if (line.trim() === '-' || line.trim() === '+' || line.trim() === '*') {
-                        return true;
-                    }
-                    return false;
+                    return line.trim() === '-' || line.trim() === '+' || line.trim() === '*';
                 },
                 lineIsNumberedList (string) {
-
                     let curListItem = string.trim().split(" ");
                     if (typeof curListItem[0] != "undefined" && typeof curListItem[1] != "undefined") {
                         if (this.lineIsStartOfNumberedList(curListItem[0] + " ") && curListItem[1] !== "") {
@@ -899,7 +944,7 @@
                     // detect next line list item
                     let curListItem = string.trim().split(" ");
                     // offset 0 is our list item
-                    if(typeof curListItem[0] != "undefined"){
+                    if(typeof curListItem[0] != "undefined") {
                         let nextItem = curListItem[0];
                         if (type === 'numbered') {
                             // handle numbered list
@@ -934,10 +979,10 @@
                         .toLowerCase();
                     const suggestionHTML = this.getSuggestionsHTML();
                     const suggestions = Object.keys(suggestionHTML);
-                    const filteredSuggestions = suggestions.filter(function(entry){
+                    const filteredSuggestions = suggestions.filter(function(entry) {
                         return entry.replaceAll('_', ' ').includes(filter);
                     });
-                    if (!filteredSuggestions.length){
+                    if (!filteredSuggestions.length) {
                         filteredSuggestions.push('none');
                         suggestionHTML['none'] = '<div class="px-4 py-2 text-sm font-medium text-skin-base">No suggestions found.</div>';
                     }
@@ -1017,7 +1062,7 @@
                     // if we are showing it, we want to tell if this current line is empty or not
                     this.isCurrentLineEmpty = true;
                     let curLine = this.getCurrentLine();
-                    if(curLine.trimRight('/') !== ""){
+                    if(curLine.trimRight('/') !== "") {
                         this.isCurrentLineEmpty = false;
                     }
 
@@ -1027,7 +1072,7 @@
                     // append it to the body
                     this.$refs.dropdown.appendChild(this.dropdownEl);
                     let that = this;
-                    setTimeout(function(){
+                    setTimeout(function() {
                         that.dropdownEl.classList.remove('scale-95');
                         that.dropdownEl.classList.add('scale-100');
                         that.dropdownEl.classList.remove('translate-y-7');
@@ -1042,7 +1087,7 @@
                     }
                     this.dropdownEl = null;
                 },
-                droppingFile(e){
+                droppingFile(e) {
                     e.preventDefault();
                     this.dropFiles = false;
                     let dataTransfer = new DataTransfer();
@@ -1051,7 +1096,6 @@
                     this.$refs.image.dispatchEvent(new Event('change'));
                 },
                 editorEvent (e) {
-
                     let editor = e.target;
                     let which = 0;
                     if(typeof e.which != "undefined" || typeof e.keyCode != "undefined"){
@@ -1086,7 +1130,7 @@
                         this.popup = false;
                     }
 
-                    if (this.getCurrentLine() === "" && (type === "keyup" || type === "focus" || type === 'click')){
+                    if (this.getCurrentLine() === "" && (type === "keyup" || type === "focus" || type === 'click')) {
                         this.repositionPlaceholder();
                         this.placeholder = true;
                     } else {
@@ -1097,7 +1141,6 @@
                         this.toggleSuggestionDropdown();
                     } else if (this.suggestionDropdown) {
                         switch (which) {
-
                             case 35:
                                 break;
                             case 27:
@@ -1145,7 +1188,7 @@
         window.loadDynamicScript = function (url, id) {
             let existingScript = document.getElementById(id);
 
-            if (!existingScript) {
+            if (! existingScript) {
                 const script = document.createElement('script');
                 script.src = url; // URL for the third-party library being loaded.
                 script.id = id; // e.g., googleMaps or stripe
@@ -1177,8 +1220,8 @@
             let giphyResults = event.detail.results;
 
             let giphyContents = `<div class="space-y-1">`;
-            for (var i = 0; i < giphyResults.length; i++) {
-                giphyContents += `<img src="${giphyResults[i]['image']}" onclick="addAnimatedGif('{% giphy ${giphyResults[i]['embed']} %}', '${event.detail.key}')" class="w-full h-auto border-2 border-skin-input rounded cursor-pointer hover:border-green-500" />`;
+            for (let i = 0; i < giphyResults.length; i++) {
+                giphyContents += `<img src="${giphyResults[i]['image']}" onclick="addAdditionalContent('{% giphy ${giphyResults[i]['embed']} %}', '${event.detail.key}')" class="w-full h-auto border-2 border-skin-input rounded cursor-pointer hover:border-green-500" alt="" />`;
                 if (i%10 === 0 && i !== 0) {
                     giphyContents += `</div><div class="space-y-1">`;
                 }
@@ -1187,7 +1230,7 @@
             document.getElementById('giphy-items').innerHTML = giphyContents;
         });
 
-        window.addAnimatedGif = function(content, key) {
+        window.addAdditionalContent = function(content, key) {
             let editor = document.getElementById('editor-' + key);
             let insertionLocationEl = document.getElementById('markdownx-insert-' + key);
             let insertionLocation = parseInt(insertionLocationEl.dataset.insert);
@@ -1202,7 +1245,25 @@
             editor.focus();
         }
 
-        window.replaceEditorText = function(updatedText, editor){
+        window.addEventListener('markdown-x-peoples-results', event => {
+            let peoplesResults = event.detail.results;
+
+            let peopleContents = `<ul role="list" class="divide-y divide-skin-base">`;
+            for (let i = 0; i < peoplesResults.length; i++) {
+                peopleContents += `<li class="group p-3 hover:bg-skin-primary">
+                    <button type="button" onclick="addAdditionalContent('@${peoplesResults[i]['username']}', '${event.detail.key}')" class="w-full flex items-center">
+                        <img class="flex-shrink-0 h-6 w-6 rounded-full" src="${peoplesResults[i]['picture']}" alt="">
+                        <span class="ml-3 block truncate text-sm font-medium text-skin-inverted group-hover:text-white">
+                          ${peoplesResults[i]['name']} <span class="text-sm text-skin-muted font-normal group-hover:text-green-200">@${peoplesResults[i]['username']}</span>
+                        </span>
+                    </button>
+                </li>`;
+            }
+            peopleContents += `</ul>`;
+            document.getElementById('peoples-items').innerHTML = peopleContents;
+        });
+
+        window.replaceEditorText = function(updatedText, editor) {
             // Doing it this way as opposted to setting editor.value of textarea will preserve undo/redo
             editor.focus();
             document.execCommand('selectAll',false);
@@ -1213,7 +1274,7 @@
             document.execCommand('insertHTML', false, tempEl.innerHTML);
         }
 
-        window.showErrorMessage = function(el, message){
+        window.showErrorMessage = function(el, message) {
             el.classList.remove('hidden');
             el.innerText = message;
             setTimeout(function(){

@@ -14,14 +14,16 @@ pre {
  colors extend edge to edge.
 */
 pre code.torchlight {
-  @apply block py-4 min-w-max;
+  @apply block p-4 min-w-max;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
 }
 
 /*
  Horizontal line padding.
 */
 pre code.torchlight .line {
-  @apply px-4;
+  @apply px-4 font-normal;
 }
 
 /*

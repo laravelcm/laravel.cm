@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\View\Composers\ChannelsComposer;
+use App\View\Composers\ModeratorsComposer;
+use App\View\Composers\TopMembersComposer;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
@@ -31,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
 
             return (int) max(1, $minutesToRead);
         });
+
+        $this->bootViewsComposer();
     }
 
     public function registerBladeDirective()
@@ -46,5 +52,12 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('canonical', function ($expression) {
             return "<?php \$canonical = $expression ?>";
         });
+    }
+
+    public function bootViewsComposer()
+    {
+        View::composer('forum._channels', ChannelsComposer::class);
+        View::composer('forum._top-members', TopMembersComposer::class);
+        View::composer('forum._moderators', ModeratorsComposer::class);
     }
 }
