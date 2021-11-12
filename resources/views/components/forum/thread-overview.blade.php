@@ -20,9 +20,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="mt-2 lg:mt-0 flex-shrink-0 self-center flex space-x-2">
+                <div class="mt-2 lg:mt-0 flex-shrink-0 self-center">
                     @if (count($channels = $thread->channels->load('parent')))
-                        <div class="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-4">
+                        <div class="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-3">
                             @foreach ($channels as $channel)
                                 <a href="{{ route('forum.channels', $channel) }}" class="flex gap-2">
                                     <x-forum.channel :channel="$channel" />

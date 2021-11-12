@@ -19,7 +19,7 @@ class Activities extends Component
     public function render()
     {
         return view('livewire.user.activities', [
-            'activities' => Cache::remember('activities', now()->addMinutes(30), fn () => Activity::latestFeed($this->user)),
+            'activities' => Activity::latestFeed($this->user, 5),
         ]);
     }
 }

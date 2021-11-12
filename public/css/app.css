@@ -9214,6 +9214,11 @@ html {
 		     column-gap: 2rem;
 	}
 
+	.lg\:gap-x-3 {
+		-moz-column-gap: 0.75rem;
+		     column-gap: 0.75rem;
+	}
+
 	.lg\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
 		--tw-space-y-reverse: 0;
 		margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
