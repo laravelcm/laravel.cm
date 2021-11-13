@@ -2,14 +2,14 @@
 
 namespace App\Events;
 
-use App\Models\Reply;
+use App\Models\Thread;
 use Illuminate\Queue\SerializesModels;
 
-class ReplyWasCreated
+class ThreadWasCreated
 {
     use SerializesModels;
 
-    public function __construct(public Reply $reply)
+    public function __construct(public Thread $thread)
     {
     }
 }
