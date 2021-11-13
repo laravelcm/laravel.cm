@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Forum;
 use App\Events\ThreadWasCreated;
 use App\Models\Channel;
 use App\Models\Thread;
-use App\Notifications\PostThreadToSlack;
 use App\Traits\WithChannelsAssociation;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;

@@ -30,7 +30,7 @@ class EventServiceProvider extends ServiceProvider
         ThreadWasCreated::class => [
             SendNewThreadNotification::class,
             PostNewThreadNotification::class,
-        ]
+        ],
     ];
 
     /**
