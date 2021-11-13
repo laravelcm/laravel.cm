@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Forum;
 
+use App\Events\ThreadWasCreated;
 use App\Models\Channel;
 use App\Models\Thread;
-use App\Notifications\PostThreadToSlack;
 use App\Traits\WithChannelsAssociation;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -51,8 +51,7 @@ class CreateThread extends Component
 
         $thread->subscribes()->save($subscription);
 
-        // Send thread to the slack workspace.
-        $author->notify(new PostThreadToSlack($thread));
+        event(new ThreadWasCreated($thread));
 
         $this->redirectRoute('forum.show', $thread);
     }

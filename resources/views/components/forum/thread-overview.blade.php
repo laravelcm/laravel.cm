@@ -16,7 +16,7 @@
                             </a>
                         </p>
                         <p class="text-sm text-skin-base font-normal">
-                            <time datetime="{{ $thread->created_at }}">{{ $thread->created_at->format('j M, Y \à h:i') }}</time>
+                            <time datetime="{{ $thread->created_at }}">{{ $thread->last_posted_at->format('j M, Y \à H:i') }}</time>
                         </p>
                     </div>
                 </div>

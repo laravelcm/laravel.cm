@@ -21,9 +21,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -38,7 +38,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         HasReplies,
         HasSubscribers,
         InteractsWithViews,
-        Prunable,
+        Notifiable,
         Reactable,
         RecordsActivity;
 
@@ -126,11 +126,6 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
     public function solutionReply(): BelongsTo
     {
         return $this->belongsTo(Reply::class, 'solution_reply_id');
-    }
-
-    public function prunable()
-    {
-        return static::where('created_at', '<=', now()->subMonths(6));
     }
 
     public function isSolutionReply(Reply $reply): bool
