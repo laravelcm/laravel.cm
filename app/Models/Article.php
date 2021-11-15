@@ -330,4 +330,11 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
             ->first();
     }
 
+    public static function nexForSharingToTelegram(): ?self
+    {
+        return self::shared()
+            ->published()
+            ->orderBy('submitted_at', 'asc')
+            ->first();
+    }
 }
