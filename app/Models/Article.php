@@ -47,6 +47,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         'tweet_id',
         'submitted_at',
         'approved_at',
+        'declined_at',
         'shared_at',
         'sponsored_at',
     ];
@@ -59,6 +60,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     protected $casts = [
         'submitted_at' => 'datetime',
         'approved_at' => 'datetime',
+        'declined_at' => 'datetime',
         'shared_at' => 'datetime',
         'sponsored_at' => 'datetime',
         'show_toc' => 'boolean',
@@ -169,6 +171,16 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         return $this->approved_at === null;
     }
 
+    public function isDeclined(): bool
+    {
+        return ! $this->isNotDeclined();
+    }
+
+    public function isNotDeclined(): bool
+    {
+        return $this->declined_at === null;
+    }
+
     public function isPublished(): bool
     {
         return ! $this->isNotPublished();
@@ -201,7 +213,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function isAwaitingApproval(): bool
     {
-        return $this->isSubmitted() && $this->isNotApproved();
+        return $this->isSubmitted() && $this->isNotApproved() && $this->isNotDeclined();
     }
 
     public function isNotAwaitingApproval(): bool
@@ -227,7 +239,8 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     public function scopeAwaitingApproval(Builder $query): Builder
     {
         return $query->submitted()
-            ->notApproved();
+            ->notApproved()
+            ->notDeclined();
     }
 
     public function scopePublished(Builder $query): Builder
@@ -240,7 +253,8 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     {
         return $query->where(function ($query) {
             $query->whereNull('submitted_at')
-                ->orWhereNull('approved_at');
+                ->orWhereNull('approved_at')
+                ->orWhereNotNull('declined_at');
         });
     }
 
@@ -262,6 +276,16 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     public function scopeNotShared(Builder $query): Builder
     {
         return $query->whereNull('shared_at');
+    }
+
+    public function scopeDeclined(Builder $query): Builder
+    {
+        return $query->whereNotNull('declined_at');
+    }
+
+    public function scopeNotDeclined(Builder $query): Builder
+    {
+        return $query->whereNull('declined_at');
     }
 
     public function scopeForTag(Builder $query, string $tag): Builder
@@ -304,5 +328,19 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
             ->published()
             ->orderBy('submitted_at', 'asc')
             ->first();
+    }
+
+    public static function nexForSharingToTelegram(): ?self
+    {
+        return self::shared()
+            ->published()
+            ->whereNull('tweet_id')
+            ->orderBy('submitted_at', 'asc')
+            ->first();
+    }
+
+    public function markAsPublish()
+    {
+        $this->update(['tweet_id' => $this->author->id]);
     }
 }

@@ -7,8 +7,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <x-seo::meta />
+
     <title>
-        {{ isset($title) ? $title.' | ' : '' }}
+        {{ isset($title) ? $title . ' | ' : '' }}
         {{ config('app.name') }}
         {{ is_active('home') ? '- La plus grande communauté de développeurs Laravel & PHP au Cameroun' : '' }}
     </title>
@@ -18,8 +20,6 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @livewireStyles
-
-    @stack('meta')
 
     <script>
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};

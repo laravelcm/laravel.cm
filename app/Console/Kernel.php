@@ -25,8 +25,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('media-library:delete-old-temporary-uploads')->daily();
-        $schedule->command('sitemap:generate')->daily();
         $schedule->command('lcm:delete-old-unverified-users')->daily();
+        $schedule->command('lcm:post-article-to-twitter')->twiceDaily(12, 16);
+        $schedule->command('lcm:post-article-to-telegram')->twiceDaily(13, 17);
+        $schedule->command('sitemap:generate')->daily();
     }
 
     /**

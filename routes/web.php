@@ -81,7 +81,7 @@ Route::redirectMap([
     'wp-admin' => 'https://www.youtube.com/watch?v=M8ogFbLP9XQ',
     'facebook' => 'https://facebook.com/laravelcm',
     'twitter' => 'https://twitter.com/laravelcm',
-    'telegram' => 'https://t.me/joinchat/UnTRApWa50zoRO0I',
+    'telegram' => 'https://t.me/laravelcameroun',
     'linkedin' => 'https://www.linkedin.com/company/laravel-cameroun',
     'github' => 'https://github.com/laravelcm',
     'youtube' => 'https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw',

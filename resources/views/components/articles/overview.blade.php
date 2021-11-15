@@ -16,9 +16,9 @@
         @endif
         <div class="mt-2">
             <a href="{{ route('articles.show', $article) }}" class="group">
-                <h4 class="font-xl leading-7 font-bold font-sans text-skin-inverted group-hover:text-skin-primary">{{ $article->title }}</h4>
+                <h4 class="text-xl leading-7 font-bold font-sans text-skin-inverted group-hover:text-skin-primary">{{ $article->title }}</h4>
             </a>
-            <p class="mt-1 text-sm font-normal text-skin-base leading-5">
+            <p class="mt-1 text-base font-normal text-skin-base leading-6">
                 {!! $article->excerpt() !!}
             </p>
             <div class="mt-3 flex items-center font-sans">
