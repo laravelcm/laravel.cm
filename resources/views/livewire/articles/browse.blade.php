@@ -5,21 +5,27 @@
                 <x-articles.filter :selectedSortBy="$selectedSortBy" />
 
                 <div class="pt-8">
-                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-skin-link text-skin-base font-sans">
+                    <span class="inline-flex items-center px-2 py-1 rounded text-sm font-medium bg-skin-link text-skin-base font-sans">
                         <svg class="mr-1.5 h-2 w-2 text-skin-base" fill="currentColor" viewBox="0 0 8 8">
                             <circle cx="4" cy="4" r="3" />
                         </svg>
                         Tous les tags
                     </span>
 
-                    <div class="mt-4" aria-labelledby="posts-tags">
+                    <div x-data="{ selectedTag: '{{ $selectedTag ? $selectedTag->id() : null }}' }"
+                         class="mt-4"
+                         aria-labelledby="posts-tags"
+                    >
                         @foreach($tags as $tag)
-                            <button type="button" class="mb-1.5 group inline-flex items-center px-3 py-1 text-sm font-medium text-skin-inverted rounded-full border border-skin-input font-sans">
+                            <button wire:click="toggleTag('{{ $tag->slug() }}')" type="button" class="mb-1.5 group inline-flex items-center px-3 py-1 text-sm font-medium text-skin-inverted rounded-full border border-skin-input font-sans">
                                 <span class="text-skin-muted group-hover:hidden">#</span>
-                                <svg class="mr-1.5 h-2 w-2 brand-{{ $tag->slug }} hidden group-hover:block" fill="currentColor" viewBox="0 0 8 8">
+                                <svg class="mr-1.5 h-2 w-2 brand-{{ $tag->slug }} hidden group-hover:block" :class="{ 'block' : '{{ $tag->id() }}' === selectedTag }" fill="currentColor" viewBox="0 0 8 8">
                                     <circle cx="4" cy="4" r="3" />
                                 </svg>
                                 <span class="truncate lowercase">{{ $tag->name }}</span>
+                                @if($selectedTag && $selectedTag->id() === $tag->id())
+                                    <x-heroicon-o-x-circle class="ml-1.5 w-4 h-4 text-green-500"/>
+                                @endif
                             </button>
                         @endforeach
                     </div>

@@ -5323,6 +5323,10 @@ select {
 	--tw-border-opacity: 1;
 	border-color: rgba(228, 228, 231, var(--tw-border-opacity));
 }
+.border-gray-300 {
+	--tw-border-opacity: 1;
+	border-color: rgba(209, 213, 219, var(--tw-border-opacity));
+}
 .border-primary-600 {
 	--tw-border-opacity: 1;
 	border-color: rgba(22, 163, 74, var(--tw-border-opacity));
@@ -5470,6 +5474,10 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(212, 212, 216, var(--tw-bg-opacity));
 }
+.bg-white {
+	--tw-bg-opacity: 1;
+	background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
 .bg-secondary-50 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(250, 250, 250, var(--tw-bg-opacity));
@@ -5477,10 +5485,6 @@ select {
 .bg-secondary-400 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(161, 161, 170, var(--tw-bg-opacity));
-}
-.bg-white {
-	--tw-bg-opacity: 1;
-	background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
 }
 .bg-secondary-100 {
 	--tw-bg-opacity: 1;
@@ -6312,6 +6316,10 @@ select {
 	--tw-ring-opacity: 1;
 	--tw-ring-color: rgba(228, 228, 231, var(--tw-ring-opacity));
 }
+.ring-gray-300 {
+	--tw-ring-opacity: 1;
+	--tw-ring-color: rgba(209, 213, 219, var(--tw-ring-opacity));
+}
 .ring-secondary-600 {
 	--tw-ring-opacity: 1;
 	--tw-ring-color: rgba(82, 82, 91, var(--tw-ring-opacity));
@@ -6775,6 +6783,16 @@ html {
 	color: rgba(34, 197, 94, var(--tw-text-opacity));
 }
 
+.hover\:text-gray-500:hover {
+	--tw-text-opacity: 1;
+	color: rgba(107, 114, 128, var(--tw-text-opacity));
+}
+
+.hover\:text-gray-400:hover {
+	--tw-text-opacity: 1;
+	color: rgba(156, 163, 175, var(--tw-text-opacity));
+}
+
 .hover\:text-green-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(16, 185, 129, var(--tw-text-opacity));
@@ -6854,6 +6872,11 @@ html {
 .focus\:border-red-500:focus {
 	--tw-border-opacity: 1;
 	border-color: rgba(239, 68, 68, var(--tw-border-opacity));
+}
+
+.focus\:border-blue-300:focus {
+	--tw-border-opacity: 1;
+	border-color: rgba(147, 197, 253, var(--tw-border-opacity));
 }
 
 .focus\:border-primary-600:focus {
@@ -7031,9 +7054,24 @@ html {
 	background-color: rgba(var(--color-footer-fill), var(--tw-bg-opacity));
 }
 
+.active\:bg-gray-100:active {
+	--tw-bg-opacity: 1;
+	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+}
+
 .active\:text-skin-base:active {
 	--tw-text-opacity: 1;
 	color: rgba(var(--color-text-base), var(--tw-text-opacity));
+}
+
+.active\:text-gray-700:active {
+	--tw-text-opacity: 1;
+	color: rgba(55, 65, 81, var(--tw-text-opacity));
+}
+
+.active\:text-gray-500:active {
+	--tw-text-opacity: 1;
+	color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
 
 .disabled\:cursor-not-allowed:disabled {

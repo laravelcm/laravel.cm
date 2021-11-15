@@ -29,6 +29,16 @@ class ArticlesController extends Controller
             404
         );
 
+        seo()
+            ->title($article->title)
+            ->description($article->excerpt(100))
+            ->image($article->getFirstMediaUrl('media'))
+            ->twitterTitle($article->title)
+            ->twitterDescription($article->excerpt(100))
+            ->twitterImage($article->getFirstMediaUrl('media'))
+            ->twitterSite('laravelcm')
+            ->withUrl();
+
         return view('articles.show', compact('article'));
     }
 

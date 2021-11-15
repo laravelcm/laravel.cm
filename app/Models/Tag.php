@@ -40,11 +40,6 @@ class Tag extends Model
         return $this->name;
     }
 
-    public function slug(): string
-    {
-        return $this->slug;
-    }
-
     public function articles(): MorphToMany
     {
         return $this->morphedByMany(Article::class, 'taggable');
