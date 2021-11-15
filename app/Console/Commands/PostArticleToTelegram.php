@@ -11,7 +11,7 @@ class PostArticleToTelegram extends Command
 {
     protected $signature = 'lcm:post-article-to-telegram';
 
-    protected $description = 'Posts the latest unshared article to Telegram';
+    protected $description = 'Posts the latest shared article to Telegram';
 
     public function handle(AnonymousNotifiable $notifiable): void
     {
