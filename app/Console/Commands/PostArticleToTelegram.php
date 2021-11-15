@@ -17,6 +17,8 @@ class PostArticleToTelegram extends Command
     {
         if ($article = Article::nexForSharingToTelegram()) {
             $notifiable->notify(new PostArticleToTelegramNotification($article));
+
+            $article->markAsPublish();
         }
     }
 }

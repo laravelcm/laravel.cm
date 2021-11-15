@@ -334,7 +334,13 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     {
         return self::shared()
             ->published()
+            ->whereNull('tweet_id')
             ->orderBy('submitted_at', 'asc')
             ->first();
+    }
+
+    public function markAsPublish()
+    {
+        $this->update(['tweet_id' => $this->author->id]);
     }
 }
