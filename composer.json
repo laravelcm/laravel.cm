@@ -8,6 +8,7 @@
     "php": "^8.0",
     "ext-fileinfo": "*",
     "ext-json": "*",
+    "archtechx/laravel-seo": "^0.2.2",
     "blade-ui-kit/blade-heroicons": "^1.2",
     "blade-ui-kit/blade-ui-kit": "^0.2.0",
     "cyrildewit/eloquent-viewable": "^6.0",
