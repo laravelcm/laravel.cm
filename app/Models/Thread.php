@@ -6,6 +6,7 @@ use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
 use App\Contracts\SubscribeInterface;
 use App\Exceptions\CouldNotMarkReplyAsSolution;
+use App\Filters\Thread\ThreadFilters;
 use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
 use App\Traits\HasSlug;
@@ -171,26 +172,37 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         $this->save();
     }
 
-    public function scopeResolved(Builder $query): Builder
-    {
-        return $query->whereNotNull('solution_reply_id');
-    }
-
-    public function scopeUnresolved(Builder $query): Builder
-    {
-        return $query->whereNull('solution_reply_id');
-    }
-
-    public function scopeForChannel(Builder $query, string $channel): Builder
+    public function scopeForChannel(Builder $query, Channel $channel): Builder
     {
         return $query->whereHas('channels', function ($query) use ($channel) {
-            $query->where('channels.slug', $channel);
+            if ($channel->hasItems()) {
+                $query->whereIn('channels.id', array_merge([$channel->id], $channel->items->modelKeys()));
+            } else {
+                $query->where('channels.slug', $channel->slug());
+            }
         });
     }
 
     public function scopeRecent(Builder $query): Builder
     {
-        return self::feedQuery()->orderByDesc('created_at');
+        return $query->feedQuery()->orderByDesc('last_posted_at');
+    }
+
+    public function scopeResolved(Builder $query): Builder
+    {
+        return $query->feedQuery()
+            ->whereNotNull('solution_reply_id');
+    }
+
+    public function scopeUnresolved(Builder $query): Builder
+    {
+        return $query->feedQuery()
+            ->whereNull('solution_reply_id');
+    }
+
+    public function scopeFilter(Builder $builder, $request, array $filters = []): Builder
+    {
+        return (new ThreadFilters($request))->add($filters)->filter($builder);
     }
 
     public function delete()
@@ -214,37 +226,12 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
             ->authorName($this->user->name);
     }
 
-    public static function feed(int $limit = 20): Collection
-    {
-        return static::feedQuery()->limit($limit)->get();
-    }
-
-    public static function feedPaginated(int $perPage = 20): Paginator
-    {
-        return static::feedQuery()->paginate($perPage);
-    }
-
-    public static function feedByChannelPaginated(Channel $channel, int $perPage = 20): Paginator
-    {
-        return static::feedByChannelQuery($channel)
-            ->paginate($perPage);
-    }
-
-    public static function feedByChannelQuery(Channel $channel): Builder
-    {
-        return static::feedQuery()
-            ->join('channel_thread', function ($join) {
-                $join->on('threads.id', 'channel_thread.thread_id');
-            })
-            ->where('channel_thread.channel_id', $channel->id);
-    }
-
     /**
      * This will order the threads by creation date and latest reply.
      */
-    public static function feedQuery(): Builder
+    public function scopeFeedQuery(Builder $query): Builder
     {
-        return static::with([
+        return $query->with([
             'solutionReply',
             'replies',
             'reactions',
@@ -283,7 +270,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     public static function getFeedItems(): SupportCollection
     {
-        return static::feedQuery()
+        return static::with(['reactions'])->feedQuery()
             ->paginate(static::FEED_PAGE_SIZE)
             ->getCollection();
     }

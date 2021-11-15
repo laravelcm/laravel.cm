@@ -70,3 +70,12 @@ if (! function_exists('canonical')) {
         return route($route, $params);
     }
 }
+
+if (! function_exists('getFilter')) {
+    function getFilter(string $key, array $filters = [], string $default = 'recent'): string
+    {
+        $filter = (string) request($key);
+
+        return in_array($filter, $filters) ? $filter : $default;
+    }
+}
