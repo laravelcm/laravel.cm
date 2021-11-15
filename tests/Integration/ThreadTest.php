@@ -100,7 +100,7 @@ it('can retrieve the latest threads in a correct order', function () {
     $threadFromToday = createThreadFromToday();
     $threadFromTwoDaysAgo = createThreadFromTwoDaysAgo();
 
-    $threads = Thread::feed();
+    $threads = Thread::feedQuery()->limit(10)->get();
 
     $this->assertTrue($threadFromToday->is($threads->first()), 'First thread is incorrect');
     $this->assertTrue($threadUpdatedYesterday->is($threads->slice(1)->first()), 'Second thread is incorrect');
@@ -111,7 +111,7 @@ it('can retrieve only resolved threads', function () {
     createThreadFromToday();
     $resolvedThread = createResolvedThread();
 
-    $threads = Thread::feedQuery()->resolved()->get();
+    $threads = Thread::resolved()->get();
 
     expect($threads)->toHaveCount(1);
     expect($resolvedThread->is($threads->first()))->toBeTrue();
