@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Forum;
 use App\Http\Controllers\Controller;
 use App\Models\Channel;
 use App\Models\Thread;
+use Illuminate\Http\Request;
 
 class ThreadController extends Controller
 {
@@ -13,14 +14,24 @@ class ThreadController extends Controller
         $this->middleware(['auth', 'verified'], ['only' => ['create']]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('forum.index', ['channel' => null]);
+        $filter = getFilter('sortBy', ['recent', 'resolved', 'unresolved']);
+        $threads = Thread::filter($request)->withviewscount()->paginate(10);
+
+        return view('forum.index', [
+            'channel' => null,
+            'threads' => $threads,
+            'filter' => $filter,
+        ]);
     }
 
-    public function channel(Channel $channel)
+    public function channel(Request $request, Channel $channel)
     {
-        return view('forum.index', compact('channel'));
+        $filter = getFilter('sortBy', ['recent', 'resolved', 'unresolved']);
+        $threads = Thread::forChannel($channel)->filter($request)->withviewscount()->paginate(10);
+
+        return view('forum.index', compact('channel', 'threads', 'filter'));
     }
 
     public function create()

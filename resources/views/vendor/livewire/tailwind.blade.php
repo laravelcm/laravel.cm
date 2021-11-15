@@ -8,7 +8,7 @@
                             {!! __('pagination.previous') !!}
                         </span>
                     @else
-                        <button wire:click="previousPage" wire:loading.attr="disabled" dusk="previousPage.before" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-skin-card border border-skin-input leading-5 rounded-md hover:text-skin-base focus:outline-none focus:shadow-outline-green focus:border-green-300 active:bg-skin-footer  transition ease-in-out duration-150">
+                        <button wire:click="previousPage" wire:loading.attr="disabled" dusk="previousPage.before" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-skin-card border border-skin-input leading-5 rounded-md hover:text-skin-base focus:outline-none focus:shadow-outline-green focus:border-green-300 active:bg-skin-footer transition ease-in-out duration-150">
                             {!! __('pagination.previous') !!}
                         </button>
                     @endif
@@ -16,7 +16,7 @@
 
                 <span>
                     @if ($paginator->hasMorePages())
-                        <button wire:click="nextPage" wire:loading.attr="disabled" dusk="nextPage.before" class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-skin-card border border-skin-input leading-5 rounded-md hover:text-skin-base focus:outline-none focus:shadow-outline-green focus:border-green-300 active:bg-skin-footer  transition ease-in-out duration-150">
+                        <button wire:click="nextPage" wire:loading.attr="disabled" dusk="nextPage.before" class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-skin-card border border-skin-input leading-5 rounded-md hover:text-skin-base focus:outline-none focus:shadow-outline-green focus:border-green-300 active:bg-skin-footer transition ease-in-out duration-150">
                             {!! __('pagination.next') !!}
                         </button>
                     @else
@@ -79,7 +79,7 @@
                                                 <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-skin-base bg-skin-card border border-skin-input cursor-default leading-5">{{ $page }}</span>
                                             </span>
                                         @else
-                                            <button wire:click="gotoPage({{ $page }})" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-skin-card border border-skin-input leading-5 hover:text-skin-base focus:z-10 focus:outline-none focus:border-green-300 focus:shadow-outline-green active:bg-skin-footer  transition ease-in-out duration-150" aria-label="{{ __('Aller à la page :page', ['page' => $page]) }}">
+                                            <button wire:click="gotoPage({{ $page }})" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-skin-card border border-skin-input leading-5 hover:text-skin-base focus:z-10 focus:outline-none focus:border-green-300 focus:shadow-outline-green active:bg-skin-footer transition ease-in-out duration-150" aria-label="{{ __('Aller à la page :page', ['page' => $page]) }}">
                                                 {{ $page }}
                                             </button>
                                         @endif
