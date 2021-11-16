@@ -1,0 +1,146 @@
+<?php
+
+namespace App\Models;
+
+use App\Contracts\ReactableInterface;
+use App\Contracts\ReplyInterface;
+use App\Traits\HasAuthor;
+use App\Traits\HasReplies;
+use App\Traits\HasSlug;
+use App\Traits\HasTags;
+use App\Traits\Reactable;
+use App\Traits\RecordsActivity;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
+class Discussion extends Model implements ReactableInterface, ReplyInterface, Viewable
+{
+    use HasAuthor,
+        HasFactory,
+        HasReplies,
+        HasSlug,
+        HasTags,
+        InteractsWithViews,
+        Reactable,
+        RecordsActivity;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'title',
+        'body',
+        'slug',
+        'user_id',
+        'is_pinned',
+        'locked',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'locked' => 'boolean',
+        'is_pinned' => 'boolean',
+    ];
+
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = [
+        'tags',
+        'author',
+    ];
+
+    protected $removeViewsOnDelete = true;
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    public function subject(): string
+    {
+        return $this->title;
+    }
+
+    public function replyAbleSubject(): string
+    {
+        return $this->title;
+    }
+
+    public function getPathUrl(): string
+    {
+        return "/discussions/{$this->slug()}";
+    }
+
+    public function excerpt(int $limit = 110): string
+    {
+        return Str::limit(strip_tags(md_to_html($this->body)), $limit);
+    }
+
+    public function isPinned(): bool
+    {
+        return (bool) $this->is_pinned;
+    }
+
+    public function isLocked(): bool
+    {
+        return (bool) $this->locked;
+    }
+
+    public function scopePinned(Builder $query): Builder
+    {
+        return $query->where('is_pinned', true);
+    }
+
+    public function scopeNotPinned(Builder $query): Builder
+    {
+        return $query->where('is_pinned', false);
+    }
+
+    public function scopeRecent(Builder $query): Builder
+    {
+        return $query->orderBy('is_pinned', 'desc')
+            ->orderBy('created_at', 'desc');
+    }
+
+    public function scopePopular(Builder $query): Builder
+    {
+        return $query->withCount('reactions')
+            ->orderBy('reactions_count', 'desc');
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->withCount(['replies' => function ($query) {
+            $query->where('created_at', '>=', now()->subWeek());
+        }])
+            ->orderBy('replies_count', 'desc');
+    }
+
+    public function lockedDiscussion()
+    {
+        $this->update(['locked' => true]);
+    }
+}

@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait HasTags
@@ -20,6 +21,13 @@ trait HasTags
         $this->tags()->detach();
 
         $this->unsetRelation('tags');
+    }
+
+    public function scopeForTag(Builder $query, string $tag): Builder
+    {
+        return $query->whereHas('tags', function ($query) use ($tag) {
+            $query->where('tags.slug', $tag);
+        });
     }
 
     public function tags(): MorphToMany
