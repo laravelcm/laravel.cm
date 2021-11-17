@@ -1,3 +1,3 @@
 <div>
-    {{-- Stop trying to control. --}}
+    @include('livewire.discussions._form')
 </div>

@@ -6,7 +6,7 @@ use App\Models\Discussion;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
-class InactiveDiscussions
+class InactiveDiscussionsComposer
 {
     public function compose(View $view)
     {

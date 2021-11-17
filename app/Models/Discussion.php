@@ -152,7 +152,8 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
 
     public function scopeNoComments(Builder $query): Builder
     {
-        return $query->whereDoesntHave('replies');
+        return $query->whereDoesntHave('replies')
+            ->orderByDesc('created_at');
     }
 
     public function lockedDiscussion()
