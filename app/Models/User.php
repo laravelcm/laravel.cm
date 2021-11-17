@@ -154,7 +154,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public function articles(): HasMany
     {
-        return $this->hasMany(Article::class, 'user_id');
+        return $this->hasMany(Article::class);
     }
 
     public function activities(): HasMany
@@ -169,7 +169,12 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public function replyAble(): HasMany
     {
-        return $this->hasMany(Reply::class, 'author_id');
+        return $this->hasMany(Reply::class);
+    }
+
+    public function discussions(): HasMany
+    {
+        return $this->hasMany(Discussion::class);
     }
 
     public function deleteThreads()
@@ -309,7 +314,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
             }
 
             return $query;
-        }])->orderBy('articles_count', 'desc');
+        }])->orderByDesc('articles_count');
     }
 
     public function scopeMostSolutionsInLastDays(Builder $query, int $days)
@@ -332,5 +337,10 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
                     ->where('replyable_type', Thread::class);
             },
         ]);
+    }
+
+    public function scopeTopContributors(Builder $query): Builder
+    {
+        return $query->withCount(['discussions'])->orderByDesc('discussions_count');
     }
 }

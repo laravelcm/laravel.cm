@@ -4,9 +4,11 @@ namespace App\Models;
 
 use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
+use App\Contracts\SubscribeInterface;
 use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
 use App\Traits\HasSlug;
+use App\Traits\HasSubscribers;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
@@ -17,11 +19,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Discussion extends Model implements ReactableInterface, ReplyInterface, Viewable
+class Discussion extends Model implements ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
     use HasAuthor,
         HasFactory,
         HasReplies,
+        HasSubscribers,
         HasSlug,
         HasTags,
         InteractsWithViews,
@@ -60,6 +63,15 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Vi
     protected $with = [
         'tags',
         'author',
+    ];
+
+    /**
+     * The relationship counts that should be eager loaded on every query.
+     *
+     * @var array
+     */
+    protected $withCount = [
+        'replies',
     ];
 
     protected $removeViewsOnDelete = true;
@@ -139,8 +151,21 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Vi
             ->orderBy('replies_count', 'desc');
     }
 
+    public function scopeNoComments(Builder $query): Builder
+    {
+        return $query->whereDoesntHave('replies');
+    }
+
     public function lockedDiscussion()
     {
         $this->update(['locked' => true]);
+    }
+
+    public function delete()
+    {
+        $this->removeTags();
+        $this->deleteReplies();
+
+        parent::delete();
     }
 }

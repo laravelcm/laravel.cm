@@ -23,11 +23,11 @@
                         <x-loader class="text-white mx-0" wire:loading wire:target="unsubscribe" />
                     </x-button>
                 @elsecan(App\Policies\ThreadPolicy::SUBSCRIBE, $thread)
-                    <x-button type="button" wire:click="subscribe" wire:loading.attr="disabled">
+                    <x-default-button type="button" wire:click="subscribe" wire:loading.attr="disabled">
                         <x-heroicon-s-bell class="h-5 w-5" />
                         <span class="mx-2">S'abonner</span>
                         <x-loader class="text-white mx-0" wire:loading wire:target="subscribe" />
-                    </x-button>
+                    </x-default-button>
                 @endcan
             </span>
         </div>

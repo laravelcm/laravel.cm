@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\View\Composers\ChannelsComposer;
+use App\View\Composers\InactiveDiscussions;
 use App\View\Composers\ModeratorsComposer;
+use App\View\Composers\TopContributorsComposer;
 use App\View\Composers\TopMembersComposer;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
@@ -59,5 +61,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('forum._channels', ChannelsComposer::class);
         View::composer('forum._top-members', TopMembersComposer::class);
         View::composer('forum._moderators', ModeratorsComposer::class);
+        View::composer('discussions._contributions', TopContributorsComposer::class);
+        View::composer('discussions._contributions', InactiveDiscussions::class);
     }
 }

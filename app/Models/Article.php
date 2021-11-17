@@ -336,4 +336,11 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     {
         $this->update(['tweet_id' => $this->author->id]);
     }
+
+    public function delete()
+    {
+        $this->removeTags();
+
+        parent::delete();
+    }
 }
