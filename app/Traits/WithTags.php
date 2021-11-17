@@ -4,7 +4,8 @@ namespace App\Traits;
 
 use App\Models\Tag;
 
-trait WithTags {
+trait WithTags
+{
     public ?string $tag = null;
     public string $sortBy = 'recent';
 
