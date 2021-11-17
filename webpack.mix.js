@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -19,11 +20,22 @@ mix.js('resources/js/app.js', 'public/js')
       require('tailwindcss'),
       require('autoprefixer'),
     ],
+  })
+  .webpackConfig({
+  output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+    alias: {
+      '@': path.resolve('./resources/js'),
+      '@components': path.resolve('./resources/js/components'),
+    },
+    modules: [
+      'node_modules',
+      __dirname + '/vendor/spatie/laravel-medialibrary-pro/resources/js',
+    ]
+  }
 });
 
-mix.override((webpackConfig) => {
-  webpackConfig.resolve.modules = [
-    "node_modules",
-    __dirname + "/vendor/spatie/laravel-medialibrary-pro/resources/js",
-  ];
-});
+if (mix.inProduction()) {
+  mix.version();
+}
