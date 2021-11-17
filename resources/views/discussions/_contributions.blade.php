@@ -1,4 +1,4 @@
-<div class="sticky space-y-16 top-4">
+<aside class="sticky space-y-16 top-4">
     <div>
         <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">Top Contributeurs</h4>
         <p class="mt-3 font-normal text-skin-base text-sm">Les personnes qui ont lancé le plus de discussions sur le site.</p>
@@ -45,7 +45,7 @@
                                     <h3 class="text-sm font-medium text-skin-inverted font-sans">{{ $discussion->author->name }}</h3>
                                     <p class="text-xs text-skin-muted font-normal truncate">{{ $discussion->created_at->diffForHumans() }}</p>
                                 </div>
-                                <p class="text-sm text-skin-base font-normal">{{ $discussion->title }}</p>
+                                <a href="{{ route('discussions.show', $discussion) }}" class="inline-flex text-sm text-skin-base font-normal hover:text-skin-primary leading-5">{{ $discussion->title }}</a>
                             </div>
                         </div>
                     </li>
@@ -54,4 +54,4 @@
         </div>
 
     </div>
-</div>
+</aside>

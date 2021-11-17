@@ -4331,6 +4331,9 @@ select {
 .bottom-0 {
 	bottom: 0px;
 }
+.-right-1 {
+	right: -0.25rem;
+}
 .-top-3 {
 	top: -0.75rem;
 }
@@ -4345,9 +4348,6 @@ select {
 }
 .-bottom-0\.5 {
 	bottom: -0.125rem;
-}
-.-right-1 {
-	right: -0.25rem;
 }
 .-bottom-0 {
 	bottom: 0px;
@@ -4389,6 +4389,14 @@ select {
 	margin-left: auto;
 	margin-right: auto;
 }
+.mx-2 {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
+.mx-0 {
+	margin-left: 0px;
+	margin-right: 0px;
+}
 .mx-1\.5 {
 	margin-left: 0.375rem;
 	margin-right: 0.375rem;
@@ -4396,10 +4404,6 @@ select {
 .mx-1 {
 	margin-left: 0.25rem;
 	margin-right: 0.25rem;
-}
-.mx-2 {
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
 }
 .my-8 {
 	margin-top: 2rem;
@@ -4416,10 +4420,6 @@ select {
 .my-10 {
 	margin-top: 2.5rem;
 	margin-bottom: 2.5rem;
-}
-.mx-0 {
-	margin-left: 0px;
-	margin-right: 0px;
 }
 .-mx-4 {
 	margin-left: -1rem;
@@ -4486,6 +4486,9 @@ select {
 .-ml-1 {
 	margin-left: -0.25rem;
 }
+.mr-1 {
+	margin-right: 0.25rem;
+}
 .ml-1\.5 {
 	margin-left: 0.375rem;
 }
@@ -4494,9 +4497,6 @@ select {
 }
 .mr-1\.5 {
 	margin-right: 0.375rem;
-}
-.mr-1 {
-	margin-right: 0.25rem;
 }
 .mt-4 {
 	margin-top: 1rem;
@@ -5117,15 +5117,15 @@ select {
 	margin-right: calc(2rem * var(--tw-space-x-reverse));
 	margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
 }
-.space-y-5 > :not([hidden]) ~ :not([hidden]) {
-	--tw-space-y-reverse: 0;
-	margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
-	margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
-}
 .space-y-16 > :not([hidden]) ~ :not([hidden]) {
 	--tw-space-y-reverse: 0;
 	margin-top: calc(4rem * calc(1 - var(--tw-space-y-reverse)));
 	margin-bottom: calc(4rem * var(--tw-space-y-reverse));
+}
+.space-y-5 > :not([hidden]) ~ :not([hidden]) {
+	--tw-space-y-reverse: 0;
+	margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
+	margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
 }
 .space-x-6 > :not([hidden]) ~ :not([hidden]) {
 	--tw-space-x-reverse: 0;
@@ -5163,10 +5163,6 @@ select {
 .divide-secondary-200 > :not([hidden]) ~ :not([hidden]) {
 	--tw-divide-opacity: 1;
 	border-color: rgba(228, 228, 231, var(--tw-divide-opacity));
-}
-.divide-gray-200 > :not([hidden]) ~ :not([hidden]) {
-	--tw-divide-opacity: 1;
-	border-color: rgba(229, 231, 235, var(--tw-divide-opacity));
 }
 .self-start {
 	align-self: flex-start;
@@ -5267,14 +5263,14 @@ select {
 .rounded-tl-sm {
 	border-top-left-radius: 0.125rem;
 }
+.rounded-tl {
+	border-top-left-radius: 0.25rem;
+}
 .rounded-tr-lg {
 	border-top-right-radius: 0.5rem;
 }
 .rounded-br-lg {
 	border-bottom-right-radius: 0.5rem;
-}
-.rounded-tl {
-	border-top-left-radius: 0.25rem;
 }
 .border {
 	border-width: 1px;
@@ -5701,6 +5697,14 @@ select {
 	padding-left: 0px;
 	padding-right: 0px;
 }
+.px-0\.5 {
+	padding-left: 0.125rem;
+	padding-right: 0.125rem;
+}
+.py-px {
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
 .px-3\.5 {
 	padding-left: 0.875rem;
 	padding-right: 0.875rem;
@@ -5712,14 +5716,6 @@ select {
 .py-2\.5 {
 	padding-top: 0.625rem;
 	padding-bottom: 0.625rem;
-}
-.px-0\.5 {
-	padding-left: 0.125rem;
-	padding-right: 0.125rem;
-}
-.py-px {
-	padding-top: 1px;
-	padding-bottom: 1px;
 }
 .pr-2 {
 	padding-right: 0.5rem;
@@ -5831,6 +5827,9 @@ select {
 }
 .pt-12 {
 	padding-top: 3rem;
+}
+.pb-6 {
+	padding-bottom: 1.5rem;
 }
 .text-left {
 	text-align: left;
@@ -6175,10 +6174,6 @@ select {
 .text-negative-900 {
 	--tw-text-opacity: 1;
 	color: rgba(127, 29, 29, var(--tw-text-opacity));
-}
-.text-gray-900 {
-	--tw-text-opacity: 1;
-	color: rgba(17, 24, 39, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;
@@ -6729,11 +6724,6 @@ html {
 .hover\:bg-secondary-900:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(24, 24, 27, var(--tw-bg-opacity));
-}
-
-.hover\:bg-gray-50:hover {
-	--tw-bg-opacity: 1;
-	background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
 
 .hover\:text-skin-inverted-muted:hover {
@@ -9093,28 +9083,8 @@ html {
 		grid-column: span 10 / span 10;
 	}
 
-	.lg\:col-start-9 {
-		grid-column-start: 9;
-	}
-
-	.lg\:col-start-8 {
-		grid-column-start: 8;
-	}
-
 	.lg\:col-start-10 {
 		grid-column-start: 10;
-	}
-
-	.lg\:col-end-12 {
-		grid-column-end: 12;
-	}
-
-	.lg\:col-end-13 {
-		grid-column-end: 13;
-	}
-
-	.lg\:col-end-auto {
-		grid-column-end: auto;
 	}
 
 	.lg\:mx-0 {
@@ -9233,6 +9203,10 @@ html {
 
 	.lg\:justify-end {
 		justify-content: flex-end;
+	}
+
+	.lg\:justify-between {
+		justify-content: space-between;
 	}
 
 	.lg\:gap-6 {

@@ -13,7 +13,7 @@
                 <path clip-rule="evenodd" d="M3.61 12c0 6.937 2.098 9.25 8.391 9.25 6.294 0 8.391-2.313 8.391-9.25 0-6.937-2.097-9.25-8.391-9.25C5.708 2.75 3.61 5.063 3.61 12z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <span class="truncate">
-                Récents
+                Récent
             </span>
         </button>
 

@@ -31,7 +31,7 @@ class DiscussionController extends Controller
             ->twitterSite('laravelcm')
             ->withUrl();
 
-        return view('discussions.show', compact('discussion'));
+        return view('discussions.show', ['discussion' => $discussion->load('tags')]);
     }
 
     public function create()

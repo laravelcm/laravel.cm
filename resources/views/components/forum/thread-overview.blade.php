@@ -1,6 +1,6 @@
 @props(['thread'])
 
-<div class="bg-skin-card px-4 py-6 shadow sm:p-6 sm:rounded-lg">
+<div class="bg-skin-card px-4 py-6 rounded-lg shadow sm:p-6">
     <article aria-labelledby="question-title-{{ $thread->id }}">
         <div>
             <div class="lg:flex lg:space-x-3">

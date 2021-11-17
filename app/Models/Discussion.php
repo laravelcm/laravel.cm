@@ -61,7 +61,6 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
      * @var array
      */
     protected $with = [
-        'tags',
         'author',
     ];
 

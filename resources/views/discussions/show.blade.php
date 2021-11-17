@@ -4,7 +4,7 @@
 
 @section('body')
 
-    <div class="relative lg:grid lg:grid-cols-12 lg:gap-10">
+    <div class="relative lg:grid lg:grid-cols-12 lg:gap-8">
         <div class="lg:col-span-8">
             <header class="space-y-5 border-b border-skin-base">
                 <div>
@@ -16,7 +16,7 @@
                         @if ($discussion->tags->isNotEmpty())
                             <div class="flex items-center space-x-2">
                                 @foreach ($discussion->tags as $tag)
-                                    <x-articles.tag :tag="$tag" />
+                                    <x-tag :tag="$tag" />
                                 @endforeach
                             </div>
                         @endif
