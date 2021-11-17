@@ -5,17 +5,16 @@ namespace App\Http\Livewire\User;
 use App\Models\User;
 use Livewire\Component;
 
-class Articles extends Component
+class Discussions extends Component
 {
     public User $user;
 
     public function render()
     {
-        return view('livewire.user.articles', [
-            'articles' => $this->user->articles()
+        return view('livewire.user.discussions', [
+            'discussions' => $this->user->discussions()
                 ->with('tags')
-                ->published()
-                ->recent()
+                ->withCount('replies')
                 ->limit(5)
                 ->get(),
         ]);
