@@ -25,7 +25,7 @@
                             @endif
                         </h1>
                         <p class="text-sm font-medium text-skin-base font-normal">
-                            {{ __('Inscrit depuis') }} <time datetime="{{ $user->created_at->format('Y-m-d') }}">{{ $user->created_at->toFormattedDateString() }}</time>
+                            {{ __('Inscrit') }} <time-ago time="{{ $user->created_at->getTimestamp() }}"/>
                         </p>
                     </div>
                     <div class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
@@ -47,7 +47,7 @@
                     {{ $user->name }}
                 </h1>
                 <p class="text-sm font-medium text-skin-base font-normal">
-                    {{ __('Inscrit depuis') }} <time datetime="{{ $user->created_at->format('Y-m-d') }}">{{ $user->created_at->toFormattedDateString() }}</time>
+                    {{ __('Inscrit') }} <time-ago time="{{ $user->created_at->getTimestamp() }}"/>
                 </p>
             </div>
         </x-container>

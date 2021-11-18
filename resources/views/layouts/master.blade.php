@@ -14,6 +14,9 @@
         {{ config('app.name') }}
         {{ is_active('home') ? '- La plus grande communauté de développeurs Laravel & PHP au Cameroun' : '' }}
     </title>
+    <meta property="og:site_name" content="Laravel.cm"/>
+    <meta property="og:language" content="fr"/>
+    <meta name="twitter:author" content="@laravelcm"/>
 
     <!-- Styles -->
     <link href="https://fonts.cdnfonts.com/css/operator-mono" rel="stylesheet">
@@ -22,7 +25,12 @@
     @livewireStyles
 
     <script>
-        window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
+        window.csrfToken = {!! json_encode(['csrfToken' => csrf_token()]) !!};
+        window.laravel = {
+            ...(window.laravel || {}),
+            isModerator: {{ auth()->user() && auth()->user()->hasAnyRole('admin', 'moderator') ? 'true' : 'false' }},
+            user: {{ auth()->user() ? auth()->id() : 'null' }},
+        }
     </script>
 
     <!-- Scripts -->

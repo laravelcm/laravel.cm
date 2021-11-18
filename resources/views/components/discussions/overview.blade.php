@@ -29,7 +29,7 @@
             <div class="flex items-center space-x-1">
                 <a href="/user/{{ $discussion->author->username }}" class="text-skin-inverted hover:underline">{{ $discussion->author->name }}</a>
                 <span aria-hidden="true">&middot;</span>
-                <time datetime="{{ $discussion->created_at->format('Y-m-d') }}">{{ $discussion->created_at->diffForHumans() }}</time>
+                <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
             </div>
         </div>
         <div class="flex items-center space-x-4">

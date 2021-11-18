@@ -38,7 +38,9 @@
                                     </p>
                                 </div>
                                 <div class="mt-1 text-sm whitespace-nowrap text-skin-muted font-normal">
-                                    <time datetime="{{ $discussion->created_at->format('Y-m-d') }}">Crée {{ $discussion->created_at->diffForHumans() }}</time>
+                                    <time class="sr-only" datetime="{{ $discussion->created_at->format('Y-m-d') }}">{{ $discussion->created_at->diffForHumans() }}</time>
+                                    Crée
+                                    <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
                                 </div>
                             </div>
                             <div class="text-sm prose md:prose-lg prose-green text-skin-base mx-auto max-w-none">
@@ -69,6 +71,7 @@
                     <livewire:discussions.subscribe :discussion="$discussion" />
                 @endauth
             </div>
+
             <div class="mt-8" id="discussions-replies"></div>
         </div>
         <div class="hidden lg:block lg:col-start-10 lg:col-span-3">
