@@ -5,7 +5,9 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["resources/js/*"],
-      "@components/*": ["resources/js/components/*"]
+      "@api/*": ["resources/js/api/*"],
+      "@components/*": ["resources/js/components/*"],
+      "@helpers/*": ["resources/js/helpers/*"]
     }
   },
   "exclude": ["node_modules", "public"]
