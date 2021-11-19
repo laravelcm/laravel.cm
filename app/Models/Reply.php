@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
 use App\Traits\HasAuthor;
+use App\Traits\HasReplies;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
@@ -15,9 +16,13 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
-class Reply extends Model implements ReactableInterface
+class Reply extends Model implements ReactableInterface, ReplyInterface
 {
-    use HasAuthor, HasFactory, Reactable, RecordsActivity;
+    use HasAuthor,
+        HasFactory,
+        HasReplies,
+        Reactable,
+        RecordsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +36,21 @@ class Reply extends Model implements ReactableInterface
     public static function boot()
     {
         parent::boot();
+    }
+
+    public function subject(): string
+    {
+        return $this->id;
+    }
+
+    public function replyAbleSubject(): string
+    {
+        return $this->id;
+    }
+
+    public function getPathUrl(): string
+    {
+        return "#reply-{$this->id}";
     }
 
     public function solutionTo(): HasOne

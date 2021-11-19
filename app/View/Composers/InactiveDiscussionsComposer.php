@@ -10,7 +10,7 @@ class InactiveDiscussionsComposer
 {
     public function compose(View $view)
     {
-        $discussions = Cache::remember('inactive-discussions', 60 * 60 * 24, function () {
+        $discussions = Cache::remember('inactive-discussions', 60 * 30, function () {
             return Discussion::noComments()->limit(5)->get();
         });
 
