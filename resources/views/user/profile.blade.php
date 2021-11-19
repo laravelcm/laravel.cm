@@ -19,9 +19,7 @@
                         <h1 class="inline-flex items-center text-2xl font-bold text-skin-inverted truncate font-sans">
                             {{ $user->name }}
                             @if($user->hasAnyRole('admin', 'moderator'))
-                                <span class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-green-100 text-green-800">
-                                    Modérateur
-                                </span>
+                                <x-user-status />
                             @endif
                         </h1>
                         <p class="text-sm font-medium text-skin-base font-normal">

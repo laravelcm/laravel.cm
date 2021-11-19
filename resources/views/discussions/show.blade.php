@@ -33,8 +33,11 @@
                         <div class="min-w-0 flex-1">
                             <div>
                                 <div>
-                                    <p class="text-sm text-skin-inverted font-medium">
+                                    <p class="inline-flex items-center text-sm text-skin-inverted font-medium">
                                         {{ $discussion->author->name }}
+                                        @if($discussion->author->hasAnyRole('admin', 'moderator'))
+                                            <x-user-status />
+                                        @endif
                                     </p>
                                 </div>
                                 <div class="mt-1 text-sm whitespace-nowrap text-skin-muted font-normal">
@@ -72,7 +75,7 @@
                 @endauth
             </div>
 
-            <div class="mt-8" id="discussions-replies"></div>
+            <comments-area target="{{ $discussion->id }}" />
         </div>
         <div class="hidden lg:block lg:col-start-10 lg:col-span-3">
             @include('discussions._contributions')
