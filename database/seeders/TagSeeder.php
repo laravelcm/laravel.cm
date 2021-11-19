@@ -21,7 +21,7 @@ class TagSeeder extends Seeder
         $this->createTag('Packages', 'packages', ['post', 'tutorial']);
         $this->createTag('Design', 'design', ['post', 'tutorial']);
         $this->createTag('PHP', 'php', ['post', 'tutorial']);
-        $this->createTag('Tailwind', 'tailwind', ['post', 'tutorial']);
+        $this->createTag('TailwindCSS', 'tailwindcss', ['post', 'tutorial']);
         $this->createTag('JavaScript', 'javascript', ['post', 'tutorial']);
         $this->createTag('Applications', 'applications', ['post', 'tutorial']);
         $this->createTag('React', 'react', ['post', 'tutorial']);
@@ -35,6 +35,7 @@ class TagSeeder extends Seeder
         $this->createTag('Branding', 'branding', ['discussion']);
         $this->createTag('Projets', 'projets', ['discussion']);
         $this->createTag('Paiement en ligne', 'paiement-en-ligne', ['discussion']);
+        $this->createTag('Développement', 'developpement', ['discussion']);
     }
 
     private function createTag(string $name, string $slug, array $concerns = []): void
