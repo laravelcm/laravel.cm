@@ -69,7 +69,7 @@
                 </div>
             </header>
             <div class="py-6 flex items-center justify-between">
-                <p class="text-skin-inverted font-semibold font-sans" id="comments-count">Commentaires ({{ $discussion->replies_count }})</p>
+                <p class="text-skin-inverted font-semibold font-sans" id="comments-count">Commentaires ({{ $discussion->count_all_replies_with_child }})</p>
                 @auth
                     <livewire:discussions.subscribe :discussion="$discussion" />
                 @endauth

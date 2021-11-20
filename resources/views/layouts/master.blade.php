@@ -28,8 +28,9 @@
         window.csrfToken = {!! json_encode(['csrfToken' => csrf_token()]) !!};
         window.laravel = {
             ...(window.laravel || {}),
-            isModerator: {{ auth()->user() && auth()->user()->hasAnyRole('admin', 'moderator') ? 'true' : 'false' }},
-            user: {{ auth()->user() ? auth()->id() : 'null' }},
+            isModerator: {{ auth()->check() && auth()->user()->hasAnyRole('admin', 'moderator') ? 'true' : 'false' }},
+            user: {{ auth()->check() ? auth()->id() : 'null' }},
+            currentUser: {!! auth()->check() ? json_encode(auth()->user()->profile()) : 'null'  !!}
         }
     </script>
 

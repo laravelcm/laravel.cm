@@ -42,7 +42,7 @@
             />
             <p class="inline-flex text-sm space-x-2 text-skin-base">
                 <x-heroicon-o-chat-alt-2 class="h-5 w-5" />
-                <span class="font-normal text-skin-inverted-muted">{{ $discussion->replies_count }}</span>
+                <span class="font-normal text-skin-inverted-muted">{{ $discussion->count_all_replies_with_child }}</span>
                 <span class="sr-only">réponses</span>
             </p>
         </div>
