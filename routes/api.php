@@ -18,4 +18,4 @@ Route::get('replies/{target}', [ReplyController::class, 'all']);
 Route::post('replies', [ReplyController::class, 'store']);
 Route::put('replies/{id}', [ReplyController::class, 'update']);
 Route::post('like/{id}', [ReplyController::class, 'like']);
-Route::delete('replies/{id}', [ReplyController::class, 'update']);
+Route::delete('replies/{id}', [ReplyController::class, 'delete']);

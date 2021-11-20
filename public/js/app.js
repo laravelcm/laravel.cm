@@ -3396,10 +3396,19 @@ function Comments(_ref) {
   }, []); // On supprime un commentaire
 
   const handleDelete = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useCallback)(async comment => {
+    const isReply = comment.model_type === 'reply';
     await (0,_api_comments__WEBPACK_IMPORTED_MODULE_4__.deleteReply)(comment.id);
-    setState(s => _objectSpread(_objectSpread({}, s), {}, {
-      comments: s.comments.filter(c => c !== comment)
-    }));
+
+    if (isReply) {
+      const comments = await (0,_api_comments__WEBPACK_IMPORTED_MODULE_4__.findAllReplies)(target);
+      setState(s => _objectSpread(_objectSpread({}, s), {}, {
+        comments
+      }));
+    } else {
+      setState(s => _objectSpread(_objectSpread({}, s), {}, {
+        comments: s.comments.filter(c => c !== comment)
+      }));
+    }
   }, []); // On répond à un commentaire
 
   const handleReply = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useCallback)(comment => {

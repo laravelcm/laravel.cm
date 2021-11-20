@@ -6373,14 +6373,6 @@ select {
 	--tw-blur: blur(8px);
 	filter: var(--tw-filter);
 }
-.blur-lg {
-	--tw-blur: blur(16px);
-	filter: var(--tw-filter);
-}
-.blur-md {
-	--tw-blur: blur(12px);
-	filter: var(--tw-filter);
-}
 .blur-sm {
 	--tw-blur: blur(4px);
 	filter: var(--tw-filter);

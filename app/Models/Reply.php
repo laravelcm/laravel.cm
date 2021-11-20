@@ -101,4 +101,11 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
     {
         return $builder->has('solutionTo');
     }
+
+    public function delete()
+    {
+        $this->deleteReplies();
+
+        parent::delete();
+    }
 }

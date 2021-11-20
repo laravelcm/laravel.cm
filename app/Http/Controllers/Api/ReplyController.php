@@ -8,6 +8,7 @@ use App\Models\Discussion;
 use App\Models\Reaction;
 use App\Models\Reply;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
@@ -44,8 +45,12 @@ class ReplyController extends Controller
         return new ReplyResource($reply);
     }
 
-    public function delete()
+    public function delete(int $id): JsonResponse
     {
+        /** @var Reply $reply */
+        $reply = Reply::findOrFail($id);
+        $reply->delete();
 
+        return response()->json(['message' => 'Commentaire supprimé avec succès']);
     }
 }
