@@ -1,11 +1,10 @@
-import Alpine from 'alpinejs';
+import Alpine from 'alpinejs'
 
-// Alpine plugins.
-import internationalNumber from "./plugins/internationalNumber";
-
-require('./helpers');
-require('./editor');
-require('./scrollspy');
+import internationalNumber from './plugins/internationalNumber'
+import './elements'
+import './helpers'
+import './editor'
+import './scrollspy'
 
 // Add Alpine to window object.
 window.Alpine = Alpine;
