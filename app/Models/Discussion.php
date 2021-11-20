@@ -73,6 +73,15 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
         'replies',
     ];
 
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'count_all_replies_with_child',
+    ];
+
     protected $removeViewsOnDelete = true;
 
     public static function boot()
@@ -118,6 +127,17 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
     public function isLocked(): bool
     {
         return (bool) $this->locked;
+    }
+
+    public function getCountAllRepliesWithChildAttribute(): int
+    {
+        $count = $this->replies()->count();
+
+        foreach ($this->replies()->withCount('allChildReplies')->get() as $reply) {
+            $count += $reply->all_child_replies_count;
+        }
+
+        return $count;
     }
 
     public function scopePinned(Builder $query): Builder

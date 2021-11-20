@@ -107,6 +107,15 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->id === Auth::id();
     }
 
+    public function profile(): array
+    {
+        return [
+            'name' => $this->name,
+            'username' => $this->username,
+            'picture' => $this->profile_photo_url,
+        ];
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('avatar')

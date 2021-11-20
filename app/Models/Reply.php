@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
@@ -78,6 +79,11 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
     public function to(ReplyInterface $replyAble)
     {
         $this->replyAble()->associate($replyAble);
+    }
+
+    public function allChildReplies(): MorphMany
+    {
+        return $this->replies()->with('allChildReplies')->where('replyable_type', 'reply');
     }
 
     /**
