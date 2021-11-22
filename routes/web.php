@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\DiscussionController;
-use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
 

@@ -22,12 +22,12 @@ abstract class FormRequest extends LaravelFormRequest
         foreach ($validator->errors() as $field => $message) {
             $transformed[] = [
                 'field' => $field,
-                'message' => $message[0]
+                'message' => $message[0],
             ];
         }
 
         return response()->json([
-            'errors' => $transformed
+            'errors' => $transformed,
         ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
     }
 }
