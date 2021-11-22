@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\ReplyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('replies/{target}', [ReplyController::class, 'all']);
+Route::post('replies', [ReplyController::class, 'store']);
+Route::put('replies/{id}', [ReplyController::class, 'update']);
+Route::post('like/{id}', [ReplyController::class, 'like']);
+Route::delete('replies/{id}', [ReplyController::class, 'delete']);

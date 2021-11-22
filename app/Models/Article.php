@@ -288,13 +288,6 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         return $query->whereNull('declined_at');
     }
 
-    public function scopeForTag(Builder $query, string $tag): Builder
-    {
-        return $query->whereHas('tags', function ($query) use ($tag) {
-            $query->where('tags.slug', $tag);
-        });
-    }
-
     public function scopeRecent(Builder $query): Builder
     {
         return $query->orderBy('is_pinned', 'desc')
@@ -342,5 +335,12 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     public function markAsPublish()
     {
         $this->update(['tweet_id' => $this->author->id]);
+    }
+
+    public function delete()
+    {
+        $this->removeTags();
+
+        parent::delete();
     }
 }

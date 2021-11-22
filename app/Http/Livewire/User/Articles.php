@@ -9,15 +9,15 @@ class Articles extends Component
 {
     public User $user;
 
-    public function mount(User $user)
-    {
-        $this->user = $user;
-    }
-
     public function render()
     {
         return view('livewire.user.articles', [
-            'articles' => $this->user->articles()->with('tags')->published()->recent()->limit(5)->get(),
+            'articles' => $this->user->articles()
+                ->with('tags')
+                ->published()
+                ->recent()
+                ->limit(5)
+                ->get(),
         ]);
     }
 }

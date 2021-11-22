@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Traits\WithArticleAttributes;
 use App\Traits\WithTagsAssociation;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -17,9 +18,11 @@ class Create extends Component
 
     public function mount()
     {
-        $this->submitted = ! auth()->user()->hasAnyRole(['admin', 'moderator']);
-        $this->submitted_at = auth()->user()->hasAnyRole(['admin', 'moderator']) ? now() : null;
-        $this->approved_at = auth()->user()->hasAnyRole(['admin', 'moderator']) ? now() : null;
+        $user = Auth::user();
+
+        $this->submitted = ! $user->hasAnyRole(['admin', 'moderator']);
+        $this->submitted_at = $user->hasAnyRole(['admin', 'moderator']) ? now() : null;
+        $this->approved_at = $user->hasAnyRole(['admin', 'moderator']) ? now() : null;
     }
 
     public function onMarkdownUpdate(string $content)
@@ -43,6 +46,8 @@ class Create extends Component
     {
         $this->validate();
 
+        $user = Auth::user();
+
         $article = Article::create([
             'title' => $this->title,
             'slug' => $this->slug,
@@ -52,10 +57,12 @@ class Create extends Component
             'approved_at' => $this->approved_at,
             'show_toc' => $this->show_toc,
             'canonical_url' => $this->canonical_url,
-            'user_id' => auth()->id(),
+            'user_id' => $user->id,
         ]);
 
-        $article->syncTags($this->associateTags);
+        if (collect($this->associateTags)->isNotEmpty()) {
+            $article->syncTags($this->associateTags);
+        }
 
         if ($this->file) {
             $article->addMedia($this->file->getRealPath())->toMediaCollection('media');
@@ -66,7 +73,7 @@ class Create extends Component
             session()->flash('success', 'Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.');
         }
 
-        auth()->user()->hasRole('user') ?
+        $user->hasRole('user') ?
             $this->redirect('/articles/me') :
             $this->redirect('/admin/articles');
     }

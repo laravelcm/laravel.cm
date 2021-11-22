@@ -10,15 +10,15 @@
         @if ($article->tags->isNotEmpty())
             <div class="flex items-center space-x-2">
                 @foreach ($article->tags as $tag)
-                    <x-articles.tag :tag="$tag" />
+                    <x-tag :tag="$tag" />
                 @endforeach
             </div>
         @endif
         <div class="mt-2">
             <a href="{{ route('articles.show', $article) }}" class="group">
-                <h4 class="text-xl leading-7 font-bold font-sans text-skin-inverted group-hover:text-skin-primary">{{ $article->title }}</h4>
+                <h4 class="text-lg leading-6 font-semibold font-sans text-skin-inverted group-hover:text-skin-primary">{{ $article->title }}</h4>
             </a>
-            <p class="mt-1 text-base font-normal text-skin-base leading-6">
+            <p class="mt-1 text-sm font-normal text-skin-base leading-5">
                 {!! $article->excerpt() !!}
             </p>
             <div class="mt-3 flex items-center font-sans">
@@ -35,7 +35,7 @@
                         </a>
                     </p>
                     <div class="flex space-x-1 text-sm text-skin-muted">
-                        <time datetime="{{ $article->createdAt()->format('Y-m-d') }}">{{ $article->createdAt()->format('j M, Y') }}</time>
+                        <time datetime="{{ $article->created_at->format('Y-m-d') }}">{{ $article->created_at->format('j M, Y') }}</time>
                         <span aria-hidden="true">&middot;</span>
                         <span>{{ $article->readTime() }} min de lecture</span>
                     </div>

@@ -9,15 +9,14 @@ class Threads extends Component
 {
     public User $user;
 
-    public function mount(User $user)
-    {
-        $this->user = $user;
-    }
-
     public function render()
     {
         return view('livewire.user.threads', [
-            'threads' => $this->user->threads()->with(['solutionReply', 'channels', 'reactions'])->orderByDesc('created_at')->limit(5)->get(),
+            'threads' => $this->user->threads()
+                ->with(['solutionReply', 'channels', 'reactions'])
+                ->orderByDesc('created_at')
+                ->limit(5)
+                ->get(),
         ]);
     }
 }

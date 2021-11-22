@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\ArticlesController;
-use App\Http\Controllers\Forum\ReplyController;
-use App\Http\Controllers\Forum\ThreadController;
+use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
 
@@ -39,9 +39,16 @@ Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderC
 Route::prefix('articles')->group(function () {
     Route::get('/', [ArticlesController::class, 'index'])->name('articles');
     Route::get('/new', [ArticlesController::class, 'create'])->name('articles.new');
-    Route::post('/new', [ArticlesController::class, 'store'])->name('articles.store');
     Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
     Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
+});
+
+// Discussions
+Route::prefix('discussions')->as('discussions.')->group(function () {
+    Route::get('/', [DiscussionController::class, 'index'])->name('index');
+    Route::get('/new', [DiscussionController::class, 'create'])->name('new');
+    Route::get('/{discussion}', [DiscussionController::class, 'show'])->name('show');
+    Route::get('/{discussion}/edit', [DiscussionController::class, 'edit'])->name('edit');
 });
 
 // Forum
@@ -53,9 +60,6 @@ Route::prefix('forum')->as('forum.')->group(function () {
     Route::get('/{thread}', [ThreadController::class, 'show'])->name('show');
     Route::get('/{thread}/edit', [ThreadController::class, 'edit'])->name('edit');
 });
-
-// Replies
-Route::post('replies', [ReplyController::class, 'store'])->name('replies.store');
 
 // Subscriptions
 Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])

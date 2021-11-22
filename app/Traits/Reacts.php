@@ -7,7 +7,7 @@ use App\Models\Reaction;
 
 trait Reacts
 {
-    public function reactTo(ReactableInterface $reactable, Reaction $reaction)
+    public function reactTo(ReactableInterface $reactable, Reaction $reaction): ?Reaction
     {
         $reactedToReaction = $reactable->reactions()
             ->where('responder_id', $this->getKey())

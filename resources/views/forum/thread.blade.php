@@ -36,9 +36,12 @@
                             <img class="inline-block rounded-full h-5 w-5 mr-1" src="{{ $thread->author->profile_photo_url }}" alt="Avatar de {{ $thread->author->username }}">
                             <span class="font-sans">{{ '@' . $thread->author->username }}</span>
                         </a>
-                        <span class="inline-flex ml-1.5">
-                            a posé le <time class="mx-1.5" datetime="{{ $thread->created_at }}" title="{{ $thread->last_posted_at->format('j M, Y \à H:i') }}">{{ $thread->last_posted_at->format('j M, Y \à H:i') }}</time> dans
+                        <span class="inline-flex mx-1.5 space-x-1">
+                            <span>a posé</span>
+                            <time-ago time="{{ $thread->created_at->getTimestamp() }}"/>
+                            <time class="sr-only" datetime="{{ $thread->created_at }}" title="{{ $thread->last_posted_at->format('j M, Y \à H:i') }}">{{ $thread->last_posted_at->format('j M, Y \à H:i') }}</time>
                         </span>
+                        <span>dans</span>
                     </div>
                     <div class="mt-2 sm:mt-0 sm:ml-2 self-center flex items-center space-x-2">
                         <div class="flex-shrink-0">

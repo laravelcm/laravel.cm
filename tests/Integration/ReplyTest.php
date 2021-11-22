@@ -16,7 +16,7 @@ it('records activity when a reply is send', function () {
         'type' => 'created_reply',
         'user_id' => auth()->id(),
         'subject_id' => $reply->id,
-        'subject_type' => Reply::class,
+        'subject_type' => 'reply',
     ]);
 
     $activity = Activity::first();

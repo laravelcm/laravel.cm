@@ -26,7 +26,7 @@ class EditThread extends Component
     {
         $this->title = $thread->title;
         $this->body = $thread->body;
-        $this->associateChannels = $this->channels_selected = old('tags', $thread->channels()->pluck('id')->toArray());
+        $this->associateChannels = $this->channels_selected = old('channels', $thread->channels()->pluck('id')->toArray());
     }
 
     public function onMarkdownUpdate(string $content)

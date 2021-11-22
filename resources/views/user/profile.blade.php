@@ -19,13 +19,11 @@
                         <h1 class="inline-flex items-center text-2xl font-bold text-skin-inverted truncate font-sans">
                             {{ $user->name }}
                             @if($user->hasAnyRole('admin', 'moderator'))
-                                <span class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-green-100 text-green-800">
-                                    Modérateur
-                                </span>
+                                <x-user-status />
                             @endif
                         </h1>
                         <p class="text-sm font-medium text-skin-base font-normal">
-                            {{ __('Inscrit depuis') }} <time datetime="{{ $user->created_at->format('Y-m-d') }}">{{ $user->created_at->toFormattedDateString() }}</time>
+                            {{ __('Inscrit') }} <time-ago time="{{ $user->created_at->getTimestamp() }}"/>
                         </p>
                     </div>
                     <div class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
@@ -47,7 +45,7 @@
                     {{ $user->name }}
                 </h1>
                 <p class="text-sm font-medium text-skin-base font-normal">
-                    {{ __('Inscrit depuis') }} <time datetime="{{ $user->created_at->format('Y-m-d') }}">{{ $user->created_at->toFormattedDateString() }}</time>
+                    {{ __('Inscrit') }} <time-ago time="{{ $user->created_at->getTimestamp() }}"/>
                 </p>
             </div>
         </x-container>
@@ -142,18 +140,7 @@
                             <livewire:user.articles :user="$user" />
                         </div>
                         <div x-cloak x-show="activeTab === 'discussions'">
-                            <div class="flex items-center justify-between rounded-md border border-skin-base border-dashed py-8 px-6">
-                                <div class="text-center max-w-sm mx-auto">
-                                    <x-heroicon-o-chat class="h-10 w-10 text-skin-primary mx-auto" />
-                                    <p class="mt-1 text-skin-base text-sm leading-5">{{ $user->name }} n'a pas encore posté de discussions</p>
-                                    @if ($user->isLoggedInUser())
-                                        <x-button link="#" class="mt-4">
-                                            <x-heroicon-s-plus class="-ml-1 mr-2 h-5 w-5" />
-                                            Nouvelle discussion
-                                        </x-button>
-                                    @endif
-                                </div>
-                            </div>
+                            <livewire:user.discussions :user="$user" />
                         </div>
                         <div x-cloak x-show="activeTab === 'questions'">
                             <livewire:user.threads :user="$user" />

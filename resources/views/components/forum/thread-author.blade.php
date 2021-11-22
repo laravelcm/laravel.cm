@@ -6,9 +6,6 @@
         <div class="flex-1 truncate">
             <div class="flex items-center space-x-3">
                 <a href="{{ route('profile', $author->username) }}" class="text-skin-inverted text-sm font-medium truncate">{{ $author->name }}</a>
-                @if($author->hasAnyRole('admin', 'moderator'))
-                    <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">Admin</span>
-                @endif
             </div>
             <p class="text-skin-base text-sm truncate font-normal">{{ '@'. $author->username }}</p>
         </div>

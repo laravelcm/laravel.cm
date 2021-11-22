@@ -85,7 +85,7 @@
                         <div class="min-w-0 flex-1">
                             <h3 class="text-base font-medium text-skin-inverted font-sans">
                                 <span class="rounded-sm focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500">
-                                    <a href="#" class="focus:outline-none">
+                                    <a href="{{ route('rules') }}" class="focus:outline-none">
                                         <span class="absolute inset-0" aria-hidden="true"></span>
                                         Guides
                                     </a>

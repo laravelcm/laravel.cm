@@ -26,7 +26,7 @@
   --brand-forge: #19B69B;
   --brand-packages: #4F46E5;
   --brand-outils: #22D3EE;
-  --brand-tailwind: #06B6D4;
+  --brand-tailwindcss: #06B6D4;
   --brand-design: #78350F;
   --brand-alpinejs: #37BDD7;
   --brand-open-source: #F97316;
@@ -37,6 +37,7 @@
   --brand-paiement-en-ligne: #10B981;
   --brand-branding: #EC4899;
   --brand-applications: #0284C7;
+  --brand-developpement: #4d7c0f;
 }
 
 @layer base {

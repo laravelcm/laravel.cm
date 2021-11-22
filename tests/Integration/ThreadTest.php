@@ -42,7 +42,7 @@ it('records activity when a thread is created', function () {
         'type' => 'created_thread',
         'user_id' => auth()->id(),
         'subject_id' => $thread->id,
-        'subject_type' => Thread::class,
+        'subject_type' => 'thread',
     ]);
 
     $activity = Activity::first();

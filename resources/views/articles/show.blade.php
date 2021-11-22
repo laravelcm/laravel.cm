@@ -85,7 +85,7 @@
                     @if ($article->tags->isNotEmpty())
                         <div class="flex items-center space-x-2">
                             @foreach ($article->tags as $tag)
-                                <x-articles.tag :tag="$tag" />
+                                <x-tag :tag="$tag" />
                             @endforeach
                         </div>
                     @endif

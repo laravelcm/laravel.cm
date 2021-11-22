@@ -10,7 +10,10 @@
     @else
         <button
             @click="showReactions = ! showReactions"
-            class="rounded-md flex relative justify-between items-center py-2 px-3 cursor-pointer h-8 bg-skin-card hover:bg-skin-card-muted rounded-md shadow-md"
+            @class([
+                'flex relative justify-between items-center cursor-pointer h-8',
+                'py-2 px-3 rounded-md bg-skin-card hover:bg-skin-card-muted rounded-md shadow' => $withBackground
+            ])
         >
             <div class="flex items-center justify-center space-x-2">
                 @foreach($model->getReactionsSummary() as $reaction)
@@ -30,7 +33,11 @@
         x-transition:leave="transition ease-in duration-75"
         x-transition:leave-start="transform opacity-100 scale-100"
         x-transition:leave-end="transform opacity-0 scale-95"
-        class="origin-top absolute left-0 mt-4 w-56 rounded-md shadow-lg"
+        @class([
+            'origin-top absolute mt-4 w-56 rounded-md shadow-lg',
+            'left-0' => $direction === 'right',
+            'right-0' => $direction !== 'right',
+        ])
         style="display: none;"
     >
         <div class="p-3 pt-4 bg-skin-card rounded-md shadow-lg">

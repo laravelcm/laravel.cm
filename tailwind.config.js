@@ -25,6 +25,7 @@ module.exports = {
       './vendor/ph7jack/wireui/src/View/**/*.php',
       './resources/**/*.blade.php',
       './resources/**/*.js',
+      './resources/**/*.jsx',
     ],
     options: {
       safelist: [/^media-library/],
@@ -42,6 +43,7 @@ module.exports = {
         body: 'rgb(var(--color-body-fill))',
         card: 'rgb(var(--color-card-fill))',
         primary: colors.green,
+        rose: colors.rose,
       },
       fontFamily: {
         mono: ['Operator Mono', ...defaultTheme.fontFamily.mono],

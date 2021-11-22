@@ -104,7 +104,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     public function getPathUrl(): string
     {
-        return "/forum/{$this->slug}";
+        return "/forum/{$this->slug()}";
     }
 
     public function excerpt(int $limit = 100): string

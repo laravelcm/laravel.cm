@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\CommentWasAdded;
 use App\Events\ReplyWasCreated;
 use App\Events\ThreadWasCreated;
 use App\Listeners\NotifyMentionedUsers;
 use App\Listeners\PostNewThreadNotification;
+use App\Listeners\SendNewCommentNotification;
 use App\Listeners\SendNewReplyNotification;
 use App\Listeners\SendNewThreadNotification;
 use Illuminate\Auth\Events\Registered;
@@ -30,6 +32,9 @@ class EventServiceProvider extends ServiceProvider
         ThreadWasCreated::class => [
             SendNewThreadNotification::class,
             PostNewThreadNotification::class,
+        ],
+        CommentWasAdded::class => [
+            SendNewCommentNotification::class,
         ],
     ];
 

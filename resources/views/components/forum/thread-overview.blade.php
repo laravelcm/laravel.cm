@@ -1,6 +1,6 @@
 @props(['thread'])
 
-<div class="bg-skin-card px-4 py-6 shadow sm:p-6 sm:rounded-lg">
+<div class="bg-skin-card px-4 py-6 rounded-lg shadow sm:p-6">
     <article aria-labelledby="question-title-{{ $thread->id }}">
         <div>
             <div class="lg:flex lg:space-x-3">
@@ -16,7 +16,7 @@
                             </a>
                         </p>
                         <p class="text-sm text-skin-base font-normal">
-                            <time datetime="{{ $thread->created_at }}">{{ $thread->last_posted_at->format('j M, Y \à H:i') }}</time>
+                            <time-ago time="{{ $thread->created_at->getTimestamp() }}"/>
                         </p>
                     </div>
                 </div>

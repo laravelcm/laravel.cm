@@ -14,11 +14,11 @@
                     <a href="{{ route('articles') }}" class="inline-flex items-center px-1 text-sm font-medium {{ active(['articles', 'articles*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
                         {{ __('Articles') }}
                     </a>
+                    <a href="{{ route('discussions.index') }}" class="inline-flex items-center px-1 text-sm font-medium {{ active(['discussions', 'discussions*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
+                        {{ __('Discussions') }}
+                    </a>
                     <a href="#" class="inline-flex items-center px-1 text-sm font-medium {{ active(['tutorials', 'tutorials*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
                         {{ __('Vidéos') }}
-                    </a>
-                    <a href="#" class="inline-flex items-center px-1 text-sm font-medium {{ active(['discussions', 'discussions*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
-                        {{ __('Discussions') }}
                     </a>
                     <div class="relative px-1 mt-1.5">
                         <button @click="flyoutMenu =! flyoutMenu" type="button" class="group rounded-md inline-flex items-center font-medium text-skin-menu hover:text-skin-menu-hover focus:outline-none focus:ring-0" :class="{ 'text-skin-menu-hover': flyoutMenu, 'text-skin-menu': !(flyoutMenu) }">
@@ -56,7 +56,7 @@
                                         </div>
                                     </a>
 
-                                    <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
+                                    <a href="{{ route('rules') }}" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
                                         <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
                                             <x-heroicon-o-bookmark-alt class="h-6 w-6" />
                                         </div>
@@ -192,7 +192,7 @@
                                 <a href="{{ route('forum.new') }}" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
                                     Nouveau sujet
                                 </a>
-                                <a href="#" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
+                                <a href="{{ route('discussions.new') }}" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
                                     Nouvelle discussion
                                 </a>
                                 <a href="#" class="flex items-center py-1.5 px-3 text-sm text-skin-base hover:bg-skin-primary hover:text-white font-normal" role="menuitem" tabindex="-1">
@@ -285,8 +285,8 @@
         <div class="pt-2 pb-3 space-y-1">
             <a href="{{ route('forum.index') }}" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['forum', 'forum*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Forum') }}</a>
             <a href="{{ route('articles') }}" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['articles', 'articles*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Articles') }}</a>
+            <a href="{{ route('discussions.index') }}" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['discussions', 'discussions*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Discussions') }}</a>
             <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['tutorials', 'tutorials*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Vidéos') }}</a>
-            <a href="#" class="border-transparent hover:bg-skin-card-muted hover:border-skin block pl-3 pr-4 py-2 border-l-4 text-base font-medium {{ active(['discussions', 'discussions*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }}">{{ __('Discussions') }}</a>
         </div>
         <div class="py-4 px-3 border-t border-skin-light">
             <h4 class="text-sm leading-5 font-medium uppercase tracking-wide text-skin-muted">{{ __('Autres') }}</h4>
@@ -299,7 +299,7 @@
                     {{ __('Snippets') }}
                 </a>
 
-                <a href="#" class="flex items-center text-skin-base">
+                <a href="{{ route('rules') }}" class="flex items-center text-skin-base">
                     <x-heroicon-o-bookmark-alt class="h-6 w-6 mr-3 -ml-1" />
                     {{ __('Guides') }}
                 </a>

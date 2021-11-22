@@ -5,34 +5,17 @@ namespace App\Http\Livewire\Articles;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Traits\WithInfiniteScroll;
+use App\Traits\WithTags;
 use Livewire\Component;
 
 class Browse extends Component
 {
-    use WithInfiniteScroll;
-
-    public string $sortBy = 'recent';
-    public ?string $tag = null;
+    use WithInfiniteScroll, WithTags;
 
     protected $queryString = [
         'tag' => ['except' => ''],
         'sortBy' => ['except' => 'recent'],
     ];
-
-    public function toggleTag($tag): void
-    {
-        $this->tag = $this->tag !== $tag && $this->tagExists($tag) ? $tag : null;
-    }
-
-    public function sortBy($sort): void
-    {
-        $this->sortBy = $this->validSort($sort) ? $sort : 'recent';
-    }
-
-    public function tagExists($tag): bool
-    {
-        return Tag::where('slug', $tag)->exists();
-    }
 
     public function validSort($sort): bool
     {
