@@ -13,7 +13,7 @@ it('records activity when an article is created', function () {
         'type' => 'created_article',
         'user_id' => auth()->id(),
         'subject_id' => $article->id,
-        'subject_type' => Article::class,
+        'subject_type' => 'article',
     ]);
 
     $activity = Activity::first();

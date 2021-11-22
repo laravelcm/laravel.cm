@@ -39,7 +39,7 @@ it('records activity when a discussion is created', function () {
         'type' => 'created_discussion',
         'user_id' => auth()->id(),
         'subject_id' => $discussion->id,
-        'subject_type' => Discussion::class,
+        'subject_type' => 'discussion',
     ]);
 
     $activity = Activity::first();
