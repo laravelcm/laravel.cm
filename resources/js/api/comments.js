@@ -10,11 +10,11 @@ import { jsonFetch } from '@helpers/api.js'
  * @return {Promise<ReplyResource[]>}
  */
 export async function findAllReplies (target) {
-  return await jsonFetch(`/api/replies/${target}`)
+  return jsonFetch(`/api/replies/${target}`)
 }
 
 /**
- * @param {{target: number, username: ?string, email: ?string, content: string}} data
+ * @param {{target: number, user_id: int, body: string}} body
  * @return {Promise<Object>}
  */
 export async function addReply (body) {
@@ -27,7 +27,7 @@ export async function addReply (body) {
 /**
  * @param {int} id
  * @param {int} userId
- * @return {Promise<Object>}
+ * @return {Promise<ReplyResource>}
  */
 export async function likeReply(id, userId) {
   return jsonFetch(`/api/like/${id}`, {

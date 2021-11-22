@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'preact/hooks'
 import ContentLoader from 'react-content-loader'
 import { ChatAltIcon } from '@heroicons/react/solid'
 import { findAllReplies, addReply, updateReply, deleteReply, likeReply } from '@api/comments';
-import { PrimaryButton } from '@components/Button';
+import { DefaultButton, PrimaryButton } from '@components/Button';
 import { Field } from '@components/Form'
 import { Markdown } from '@components/Markdown'
 import { ChatIcon, HeartIcon } from '@components/Icon'
@@ -33,12 +33,12 @@ export function Comments ({ target, parent }) {
     if (state.comments === null) {
       return null
     }
-    return state.comments.filter(c => c.model_type === 'discussion').sort((a, b) => b.created_at - a.created_at)
+    return state.comments.filter(c => c.model_type === 'discussion')
   }, [state.comments])
 
   // Trouve les commentaire enfant d'un commentaire
   function repliesFor (comment) {
-    return comment.replies.filter(c => c.model_type === 'reply').sort((a, b) => b.created_at - a.created_at)
+    return state.comments.filter(c => c.model_type === 'reply' && c.model_id === comment.id)
   }
 
   // On commence l'édition d'un commentaire
@@ -58,25 +58,17 @@ export function Comments ({ target, parent }) {
 
   // On supprime un commentaire
   const handleDelete = useCallback(async comment => {
-    const isReply = comment.model_type === 'reply'
-
     await deleteReply(comment.id)
-    if (isReply) {
-      const comments = await findAllReplies(target)
-      setState(s => ({ ...s, comments }))
-    } else {
-      setState(s => ({
-        ...s,
-        comments: s.comments.filter(c => c !== comment)
-      }))
-    }
+    setState(s => ({
+      ...s,
+      comments: s.comments.filter(c => c !== comment)
+    }))
   }, [])
 
   // On répond à un commentaire
   const handleReply = useCallback(comment => {
-    setState(s => ({ ...s, reply: comment.model_id || comment.id }))
+    setState(s => ({ ...s, reply: comment.id }))
   }, [])
-
   const handleCancelReply = useCallback(() => {
     setState(s => ({ ...s, reply: null }))
   }, [])
@@ -84,7 +76,7 @@ export function Comments ({ target, parent }) {
   // On crée un nouveau commentaire
   const handleCreate = useCallback(
     async (data, parent) => {
-      data = { ...data, target, parent }
+      data = { ...data, target, parent, user_id: getUserId() }
       const newComment = await addReply(data)
       setState(s => ({
         ...s,
@@ -98,9 +90,12 @@ export function Comments ({ target, parent }) {
 
   // On like un commentaire
   const handleLike = useCallback(async (comment) => {
-    await likeReply(comment.id, getUserId())
-    const comments = await findAllReplies(target)
-    setState(s => ({ ...s, comments }))
+    const likeComment = await likeReply(comment.id, getUserId())
+    setState(s => ({
+      ...s,
+      editing: null,
+      comments: s.comments.map(c => (c === comment ? likeComment : c))
+    }))
   }, [])
 
   // On scroll jusqu'à l'élément si l'ancre commence par un "c"
@@ -135,7 +130,7 @@ export function Comments ({ target, parent }) {
     <div className="mt-6" ref={element}>
       <div>
         {isAuthenticated() ? (
-          <CommentForm onSubmit={handleCreate} />
+          <CommentForm onSubmit={handleCreate} isRoot />
         ) : (
           <div className="relative">
             <div className="min-w-0 flex-1 filter blur-sm">
@@ -191,7 +186,11 @@ export function Comments ({ target, parent }) {
                         onReply={handleReply}
                         onLike={handleLike}
                         isReply
-                      />
+                      >
+                        {state.reply === comment.id && (
+                          <CommentForm onSubmit={handleCreate} parent={comment.id} onCancel={handleCancelReply} />
+                        )}
+                      </Comment>
                     ))}
                   </ul>
                 </Comment>
@@ -207,7 +206,6 @@ export function Comments ({ target, parent }) {
       </div>
     </div>
   );
-
 }
 
 const FakeComment = memo(() => {
@@ -302,17 +300,44 @@ const Comment = memo(({ comment, editing, onEdit, onUpdate, onDelete, onReply, o
           {comment.likes_count > 0 && <span className="mr-1.5">{comment.likes_count}</span>}
           Like{comment.likes_count > 1 ? 's' : ''}
         </button>
-        {!isReply && (
-          <button type="button" onClick={handleReply} className="inline-flex items-center justify-center text-sm text-skin-base font-normal hover:text-skin-inverted-muted">
+        {/*{!isReply && (
+          <a href={anchor} onClick={handleReply} className="inline-flex items-center justify-center text-sm text-skin-base font-normal hover:text-skin-inverted-muted">
             <ChatIcon className="-ml-1 mr-2 h-5 w-5 fill-current" aria-hidden="true"/>
             Répondre
-          </button>
-        )}
+          </a>
+        )}*/}
       </div>
     </>
   )
+
   if (editing) {
-    content = (<p>Formulaire d'edition</p>)
+    content = (
+      <form onSubmit={handleUpdate} className='min-w-0 flex-1'>
+        <label htmlFor="body" className="sr-only">
+          Commentaire
+        </label>
+        <textarea
+          name='body'
+          className="bg-skin-input shadow-sm focus:border-flag-green focus:ring-flag-green mt-1 block w-full text-skin-base focus:outline-none sm:text-sm font-normal border-skin-input rounded-md"
+          ref={textarea}
+          defaultValue={comment.body}
+          rows={4}
+          required
+        />
+        <div className="mt-3 flex items-center justify-end space-x-3">
+          <DefaultButton type='reset' onClick={handleEdit}>
+            Annuler
+          </DefaultButton>
+          <PrimaryButton type='submit' loading={loading}>
+            Modifier
+          </PrimaryButton>
+        </div>
+      </form>
+    )
+  }
+
+  if (loading) {
+    className.push('is-loading')
   }
 
   return (
@@ -332,7 +357,7 @@ const Comment = memo(({ comment, editing, onEdit, onUpdate, onDelete, onReply, o
               alt=""
             />
           </div>
-          <div>
+          <div className="flex-1">
             <div className="flex items-center text-sm space-x-2">
               <a href={`/user/${comment.author.username}`} className="font-medium text-skin-primary font-sans hover:text-skin-primary-hover">
                 {comment.author.name}
@@ -361,7 +386,7 @@ const Comment = memo(({ comment, editing, onEdit, onUpdate, onDelete, onReply, o
   )
 })
 
-function CommentForm ({ onSubmit, parent, onCancel = null }) {
+function CommentForm ({ onSubmit, parent, isRoot = false, onCancel = null }) {
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState({})
   const ref = useRef(null)
@@ -373,6 +398,7 @@ function CommentForm ({ onSubmit, parent, onCancel = null }) {
       setLoading(true)
       const errors = (await catchViolations(onSubmit(Object.fromEntries(new FormData(form)), parent)))[1]
       if (errors) {
+        console.log(errors)
         setErrors(errors)
       } else {
         form.reset()
@@ -427,12 +453,17 @@ function CommentForm ({ onSubmit, parent, onCancel = null }) {
             required
           />
           <div className="mt-6 flex items-center justify-between space-x-4">
-            <p className="text-sm text-skin-base max-w-xl font-normal">
-              Veuillez vous assurer d'avoir lu nos <a href="/rules" className="font-medium text-skin-primary hover:text-skin-primary-hover">règles de conduite</a> avant de répondre à ce fil de conversation.
-            </p>
-            <PrimaryButton type="submit" loading={loading}>
-              Commenter
-            </PrimaryButton>
+            {isRoot && (
+              <p className="text-sm text-skin-base max-w-xl font-normal">
+                Veuillez vous assurer d'avoir lu nos <a href="/rules" className="font-medium text-skin-primary hover:text-skin-primary-hover">règles de conduite</a> avant de répondre à ce fil de conversation.
+              </p>
+            )}
+            <div className="flex items-center justify-end space-x-3">
+              {onCancel && <DefaultButton type="reset" onClick={handleCancel}>Annuler</DefaultButton>}
+              <PrimaryButton type="submit" loading={loading}>
+                Commenter
+              </PrimaryButton>
+            </div>
           </div>
         </form>
       </div>

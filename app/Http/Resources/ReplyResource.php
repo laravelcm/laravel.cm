@@ -16,7 +16,6 @@ class ReplyResource extends JsonResource
             'created_at' => $this->created_at->getTimestamp(),
             'author' => new UserResource($this->author),
             'has_replies' => $this->allChildReplies->isNotEmpty(),
-            'replies' => $this->replyable_type === 'discussion' ? self::collection($this->replies) : null,
             'likes_count' => $this->getReactionsSummary()->sum('count'),
         ];
     }

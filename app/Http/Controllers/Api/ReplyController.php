@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\CommentWasAdded;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\CreateReplyRequest;
+use App\Http\Requests\Api\UpdateReplyRequest;
 use App\Http\Resources\ReplyResource;
 use App\Models\Discussion;
 use App\Models\Reaction;
@@ -11,7 +14,6 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller
 {
@@ -19,18 +21,45 @@ class ReplyController extends Controller
     {
         /** @var Discussion $discussion */
         $discussion = Discussion::findOrFail($target);
+        $replies = collect();
 
-        return ReplyResource::collection($discussion->replies);
+        foreach ($discussion->replies as $reply) {
+            if ($reply->allChildReplies->isNotEmpty()) {
+                foreach ($reply->allChildReplies as $childReply) {
+                    $replies->add($childReply);
+                }
+            }
+
+            $replies->add($reply);
+        }
+
+        return ReplyResource::collection($replies);
     }
 
-    public function store()
+    public function store(CreateReplyRequest $request): ReplyResource
     {
+        // dd($request->all());
+        // if ($request->parent) {}
+        $reply = new Reply(['body' => $request->body]);
+        $author = User::find($request->user_id);
 
+        $target = Discussion::find($request->target);
+        $reply->authoredBy($author);
+        $reply->to($target);
+        $reply->save();
+
+        // On envoie un event pour une nouvelle réponse à tous les abonnés de la discussion
+        event(new CommentWasAdded($reply, $target));
+
+        return new ReplyResource($reply);
     }
 
-    public function update()
+    public function update(UpdateReplyRequest $request, int $id): ReplyResource
     {
+        $reply = Reply::find($id);
+        $reply->update(['body' => $request->body]);
 
+        return new ReplyResource($reply);
     }
 
     public function like(Request $request, int $id): ReplyResource

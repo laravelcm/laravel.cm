@@ -3133,10 +3133,10 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 async function findAllReplies(target) {
-  return await (0,_helpers_api_js__WEBPACK_IMPORTED_MODULE_0__.jsonFetch)(`/api/replies/${target}`);
+  return (0,_helpers_api_js__WEBPACK_IMPORTED_MODULE_0__.jsonFetch)(`/api/replies/${target}`);
 }
 /**
- * @param {{target: number, username: ?string, email: ?string, content: string}} data
+ * @param {{target: number, user_id: int, body: string}} body
  * @return {Promise<Object>}
  */
 
@@ -3149,7 +3149,7 @@ async function addReply(body) {
 /**
  * @param {int} id
  * @param {int} userId
- * @return {Promise<Object>}
+ * @return {Promise<ReplyResource>}
  */
 
 async function likeReply(id, userId) {
@@ -3370,11 +3370,11 @@ function Comments(_ref) {
       return null;
     }
 
-    return state.comments.filter(c => c.model_type === 'discussion').sort((a, b) => b.created_at - a.created_at);
+    return state.comments.filter(c => c.model_type === 'discussion');
   }, [state.comments]); // Trouve les commentaire enfant d'un commentaire
 
   function repliesFor(comment) {
-    return comment.replies.filter(c => c.model_type === 'reply').sort((a, b) => b.created_at - a.created_at);
+    return state.comments.filter(c => c.model_type === 'reply' && c.model_id === comment.id);
   } // On commence l'édition d'un commentaire
 
 
@@ -3396,24 +3396,15 @@ function Comments(_ref) {
   }, []); // On supprime un commentaire
 
   const handleDelete = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useCallback)(async comment => {
-    const isReply = comment.model_type === 'reply';
     await (0,_api_comments__WEBPACK_IMPORTED_MODULE_4__.deleteReply)(comment.id);
-
-    if (isReply) {
-      const comments = await (0,_api_comments__WEBPACK_IMPORTED_MODULE_4__.findAllReplies)(target);
-      setState(s => _objectSpread(_objectSpread({}, s), {}, {
-        comments
-      }));
-    } else {
-      setState(s => _objectSpread(_objectSpread({}, s), {}, {
-        comments: s.comments.filter(c => c !== comment)
-      }));
-    }
+    setState(s => _objectSpread(_objectSpread({}, s), {}, {
+      comments: s.comments.filter(c => c !== comment)
+    }));
   }, []); // On répond à un commentaire
 
   const handleReply = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useCallback)(comment => {
     setState(s => _objectSpread(_objectSpread({}, s), {}, {
-      reply: comment.model_id || comment.id
+      reply: comment.id
     }));
   }, []);
   const handleCancelReply = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useCallback)(() => {
@@ -3425,7 +3416,8 @@ function Comments(_ref) {
   const handleCreate = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useCallback)(async (data, parent) => {
     data = _objectSpread(_objectSpread({}, data), {}, {
       target,
-      parent
+      parent,
+      user_id: (0,_helpers_auth__WEBPACK_IMPORTED_MODULE_9__.getUserId)()
     });
     const newComment = await (0,_api_comments__WEBPACK_IMPORTED_MODULE_4__.addReply)(data);
     setState(s => _objectSpread(_objectSpread({}, s), {}, {
@@ -3436,10 +3428,10 @@ function Comments(_ref) {
   }, [target]); // On like un commentaire
 
   const handleLike = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useCallback)(async comment => {
-    await (0,_api_comments__WEBPACK_IMPORTED_MODULE_4__.likeReply)(comment.id, (0,_helpers_auth__WEBPACK_IMPORTED_MODULE_9__.getUserId)());
-    const comments = await (0,_api_comments__WEBPACK_IMPORTED_MODULE_4__.findAllReplies)(target);
+    const likeComment = await (0,_api_comments__WEBPACK_IMPORTED_MODULE_4__.likeReply)(comment.id, (0,_helpers_auth__WEBPACK_IMPORTED_MODULE_9__.getUserId)());
     setState(s => _objectSpread(_objectSpread({}, s), {}, {
-      comments
+      editing: null,
+      comments: s.comments.map(c => c === comment ? likeComment : c)
     }));
   }, []); // On scroll jusqu'à l'élément si l'ancre commence par un "c"
 
@@ -3474,7 +3466,8 @@ function Comments(_ref) {
     className: "mt-6",
     ref: element
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,_helpers_auth__WEBPACK_IMPORTED_MODULE_9__.isAuthenticated)() ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(CommentForm, {
-    onSubmit: handleCreate
+    onSubmit: handleCreate,
+    isRoot: true
   }) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "relative"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -3530,7 +3523,11 @@ function Comments(_ref) {
     onReply: handleReply,
     onLike: handleLike,
     isReply: true
-  })))))) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(FakeComment, null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(FakeComment, null))));
+  }, state.reply === comment.id && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(CommentForm, {
+    onSubmit: handleCreate,
+    parent: comment.id,
+    onCancel: handleCancelReply
+  }))))))) : (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(FakeComment, null), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(FakeComment, null))));
 }
 const FakeComment = (0,preact_compat__WEBPACK_IMPORTED_MODULE_1__.memo)(() => {
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(react_content_loader__WEBPACK_IMPORTED_MODULE_14__["default"], {
@@ -3664,17 +3661,35 @@ const Comment = (0,preact_compat__WEBPACK_IMPORTED_MODULE_1__.memo)(_ref2 => {
     "aria-hidden": "true"
   }), comment.likes_count > 0 && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     className: "mr-1.5"
-  }, comment.likes_count), "Like", comment.likes_count > 1 ? 's' : ''), !isReply && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
-    type: "button",
-    onClick: handleReply,
-    className: "inline-flex items-center justify-center text-sm text-skin-base font-normal hover:text-skin-inverted-muted"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Icon__WEBPACK_IMPORTED_MODULE_8__.ChatIcon, {
-    className: "-ml-1 mr-2 h-5 w-5 fill-current",
-    "aria-hidden": "true"
-  }), "R\xE9pondre")));
+  }, comment.likes_count), "Like", comment.likes_count > 1 ? 's' : '')));
 
   if (editing) {
-    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", null, "Formulaire d'edition");
+    content = (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("form", {
+      onSubmit: handleUpdate,
+      className: "min-w-0 flex-1"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("label", {
+      htmlFor: "body",
+      className: "sr-only"
+    }, "Commentaire"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("textarea", {
+      name: "body",
+      className: "bg-skin-input shadow-sm focus:border-flag-green focus:ring-flag-green mt-1 block w-full text-skin-base focus:outline-none sm:text-sm font-normal border-skin-input rounded-md",
+      ref: textarea,
+      defaultValue: comment.body,
+      rows: 4,
+      required: true
+    }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+      className: "mt-3 flex items-center justify-end space-x-3"
+    }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Button__WEBPACK_IMPORTED_MODULE_5__.DefaultButton, {
+      type: "reset",
+      onClick: handleEdit
+    }, "Annuler"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Button__WEBPACK_IMPORTED_MODULE_5__.PrimaryButton, {
+      type: "submit",
+      loading: loading
+    }, "Modifier")));
+  }
+
+  if (loading) {
+    className.push('is-loading');
   }
 
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("li", {
@@ -3693,7 +3708,9 @@ const Comment = (0,preact_compat__WEBPACK_IMPORTED_MODULE_1__.memo)(_ref2 => {
     className: "h-10 w-10 rounded-full",
     src: comment.author.profile_photo_url,
     alt: ""
-  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+  })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex-1"
+  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex items-center text-sm space-x-2"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: `/user/${comment.author.username}`,
@@ -3725,6 +3742,7 @@ function CommentForm(_ref3) {
   let {
     onSubmit,
     parent,
+    isRoot = false,
     onCancel = null
   } = _ref3;
   const [loading, setLoading] = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
@@ -3737,6 +3755,7 @@ function CommentForm(_ref3) {
     const errors = (await (0,_helpers_api__WEBPACK_IMPORTED_MODULE_11__.catchViolations)(onSubmit(Object.fromEntries(new FormData(form)), parent)))[1];
 
     if (errors) {
+      console.log(errors);
       setErrors(errors);
     } else {
       form.reset();
@@ -3788,15 +3807,20 @@ function CommentForm(_ref3) {
     required: true
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "mt-6 flex items-center justify-between space-x-4"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+  }, isRoot && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "text-sm text-skin-base max-w-xl font-normal"
   }, "Veuillez vous assurer d'avoir lu nos ", (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: "/rules",
     className: "font-medium text-skin-primary hover:text-skin-primary-hover"
-  }, "r\xE8gles de conduite"), " avant de r\xE9pondre \xE0 ce fil de conversation."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Button__WEBPACK_IMPORTED_MODULE_5__.PrimaryButton, {
+  }, "r\xE8gles de conduite"), " avant de r\xE9pondre \xE0 ce fil de conversation."), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "flex items-center justify-end space-x-3"
+  }, onCancel && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Button__WEBPACK_IMPORTED_MODULE_5__.DefaultButton, {
+    type: "reset",
+    onClick: handleCancel
+  }, "Annuler"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(_components_Button__WEBPACK_IMPORTED_MODULE_5__.PrimaryButton, {
     type: "submit",
     loading: loading
-  }, "Commenter")))));
+  }, "Commenter"))))));
 }
 
 /***/ }),
