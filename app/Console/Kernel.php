@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Spatie\SiteSearch\Commands\CrawlCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -29,6 +30,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('lcm:post-article-to-twitter')->twiceDaily(12, 16);
         $schedule->command('lcm:post-article-to-telegram')->twiceDaily(13, 17);
         $schedule->command('sitemap:generate')->daily();
+        $schedule->command(CrawlCommand::class)->everyThreeHours();
     }
 
     /**
