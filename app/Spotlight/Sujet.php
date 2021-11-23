@@ -35,7 +35,7 @@ class Sujet extends SpotlightCommand
     {
         return Thread::where('title', 'like', "%$query%")
             ->get()
-            ->map(function(Thread $thread) {
+            ->map(function (Thread $thread) {
                 // You must map your search result into SpotlightSearchResult objects
                 return new SpotlightSearchResult(
                     $thread->slug(),

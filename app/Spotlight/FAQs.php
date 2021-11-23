@@ -4,9 +4,6 @@ namespace App\Spotlight;
 
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
-use LivewireUI\Spotlight\SpotlightCommandDependencies;
-use LivewireUI\Spotlight\SpotlightCommandDependency;
-use LivewireUI\Spotlight\SpotlightSearchResult;
 
 class FAQs extends SpotlightCommand
 {
@@ -17,7 +14,7 @@ class FAQs extends SpotlightCommand
     protected array $synonyms = [
         'faq',
         'question',
-        'foire'
+        'foire',
     ];
 
     /**

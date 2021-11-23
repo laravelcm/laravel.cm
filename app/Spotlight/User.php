@@ -31,7 +31,7 @@ class User extends SpotlightCommand
         return UserModel::where('name', 'like', "%$query%")
             ->orWhere('username', 'like', "%$query%")
             ->get()
-            ->map(function(UserModel $user) {
+            ->map(function (UserModel $user) {
                 return new SpotlightSearchResult(
                     $user->id,
                     $user->name,

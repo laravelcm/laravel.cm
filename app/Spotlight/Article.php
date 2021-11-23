@@ -30,7 +30,7 @@ class Article extends SpotlightCommand
     {
         return ArticleModel::published()->where('title', 'like', "%$query%")
             ->get()
-            ->map(function(ArticleModel $article) {
+            ->map(function (ArticleModel $article) {
                 return new SpotlightSearchResult(
                     $article->slug(),
                     $article->title,

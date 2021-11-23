@@ -30,7 +30,7 @@ class Discussion extends SpotlightCommand
     {
         return DiscussionModel::where('title', 'like', "%$query%")
             ->get()
-            ->map(function(DiscussionModel $discussion) {
+            ->map(function (DiscussionModel $discussion) {
                 return new SpotlightSearchResult(
                     $discussion->slug(),
                     $discussion->title,
