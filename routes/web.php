@@ -92,5 +92,5 @@ Route::redirectMap([
 ]);
 
 Route::mediaLibrary();
-// In routes/web.php
+
 Route::feeds();
