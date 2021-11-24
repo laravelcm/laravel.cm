@@ -325,8 +325,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public static function nexForSharingToTelegram(): ?self
     {
-        return self::shared()
-            ->published()
+        return self::published()
             ->whereNull('tweet_id')
             ->orderBy('submitted_at', 'asc')
             ->first();
