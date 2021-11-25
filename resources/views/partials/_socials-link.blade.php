@@ -20,10 +20,10 @@
         </div>
 
         <div>
-            <x-default-button :link="route('social.auth', ['provider' => 'twitter'])" class="w-full font-normal">
+            <x-default-button link="#" class="w-full font-normal">
                 <span class="sr-only">{{ __('Continuer avec Twitter') }}</span>
                 <x-icon.twitter class="w-5 h-5 mr-2 -ml-1 text-[#1E9DEA]" />
-                Twitter
+                Twitter (en review)
             </x-default-button>
         </div>
     </div>
