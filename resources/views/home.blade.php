@@ -67,7 +67,7 @@
 
             <div class="py-12 lg:py-20">
                 <x-section-header title="Articles Populaires" content="Découvrez les articles les plus appréciés et partagés par les membres de la communauté" />
-                <div class="mt-8 grid gap-6 max-w-xl mx-auto lg:grid-rows-2 lg:grid-flow-col lg:grid-cols-2 lg:gap-y-0 lg:mt-10 lg:gap-x-8 lg:max-w-none">
+                <div class="mt-8 grid gap-6 max-w-xl mx-auto lg:grid-rows-2 lg:grid-flow-col lg:grid-cols-2 lg:mt-10 lg:gap-x-8 lg:max-w-none">
                     @foreach($latestArticles as $article)
                         @if($loop->first)
                             <div class="lg:row-span-2">

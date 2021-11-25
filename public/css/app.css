@@ -9513,6 +9513,14 @@ html {
 		     column-gap: 0.5rem;
 	}
 
+	.lg\:gap-y-2 {
+		row-gap: 0.5rem;
+	}
+
+	.lg\:gap-y-4 {
+		row-gap: 1rem;
+	}
+
 	.lg\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
 		--tw-space-y-reverse: 0;
 		margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));

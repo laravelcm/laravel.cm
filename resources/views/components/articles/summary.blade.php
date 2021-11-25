@@ -19,7 +19,7 @@
             </p>
         </div>
         @if ($article->tags->isNotEmpty())
-            <div class="mt-4 flex items-center space-x-2">
+            <div class="mt-2 flex items-center space-x-2">
                 @foreach ($article->tags as $tag)
                     <x-tag :tag="$tag" />
                 @endforeach
