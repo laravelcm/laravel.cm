@@ -13,6 +13,7 @@ use App\View\Composers\InactiveDiscussionsComposer;
 use App\View\Composers\ModeratorsComposer;
 use App\View\Composers\TopContributorsComposer;
 use App\View\Composers\TopMembersComposer;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
@@ -39,6 +40,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         date_default_timezone_set('Africa/Douala');
+        setlocale(LC_TIME, 'fr_FR', 'fr', 'FR', 'French', 'fr_FR.UTF-8');
+        Carbon::setLocale('fr_FR');
 
         $this->bootMacros();
         $this->bootViewsComposer();

@@ -40,6 +40,7 @@ module.exports = {
           red: '#e21b30',
           yellow: '#ffdc44',
         },
+        black: '#161B22',
         body: 'rgb(var(--color-body-fill))',
         card: 'rgb(var(--color-card-fill))',
         primary: colors.green,

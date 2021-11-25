@@ -2,15 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Thread;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $latestArticles = Cache::remember('latestArticles', now()->addHour(), function () {
+            return Article::with('tags')
+                ->orderByViews()
+                ->published()
+                ->trending()
+                ->limit(3)
+                ->get();
+        });
+
+        $latestThreads = Cache::remember('latestThreads', now()->addHour(), function () {
+            return Thread::whereNull('solution_reply_id')
+                ->whereBetween('threads.created_at', [now()->subMonth(), now()])
+                ->inRandomOrder()
+                ->limit(4)
+                ->get();
+        });
+
+        return view('home', [
+            'latestArticles' => $latestArticles,
+            'latestThreads' => $latestThreads,
+        ]);
     }
 
     public function slack(Request $request)
