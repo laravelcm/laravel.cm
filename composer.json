@@ -28,6 +28,7 @@
     "livewire/livewire": "^2.5",
     "ph7jack/wireui": "^0.14.0",
     "ramsey/uuid": "^4.2",
+    "sentry/sentry-laravel": "^2.10",
     "spatie/laravel-feed": "^4.0",
     "spatie/laravel-medialibrary-pro": "^1.0.0",
     "spatie/laravel-permission": "^5.1",
