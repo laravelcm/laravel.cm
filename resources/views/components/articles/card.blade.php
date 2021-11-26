@@ -16,7 +16,7 @@
                 <x-heroicon-o-external-link class="ml-2.5 h-5 w-5 text-skin-base" />
             </a>
             <p class="mt-1 font-normal text-skin-base leading-6">
-                {!! $article->excerpt(120) !!}
+                {!! $article->excerpt(150) !!}
             </p>
         </div>
         @if ($article->tags->isNotEmpty())

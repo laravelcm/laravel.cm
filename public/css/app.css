@@ -4454,9 +4454,6 @@ select {
 .mt-1 {
 	margin-top: 0.25rem;
 }
-.mt-4 {
-	margin-top: 1rem;
-}
 .mt-3 {
 	margin-top: 0.75rem;
 }
@@ -4471,6 +4468,9 @@ select {
 }
 .-mt-6 {
 	margin-top: -1.5rem;
+}
+.mt-4 {
+	margin-top: 1rem;
 }
 .-ml-1 {
 	margin-left: -0.25rem;
@@ -9490,10 +9490,6 @@ html {
 		     column-gap: 0.75rem;
 	}
 
-	.lg\:gap-y-0 {
-		row-gap: 0px;
-	}
-
 	.lg\:gap-x-8 {
 		-moz-column-gap: 2rem;
 		     column-gap: 2rem;
@@ -9511,14 +9507,6 @@ html {
 	.lg\:gap-x-2 {
 		-moz-column-gap: 0.5rem;
 		     column-gap: 0.5rem;
-	}
-
-	.lg\:gap-y-2 {
-		row-gap: 0.5rem;
-	}
-
-	.lg\:gap-y-4 {
-		row-gap: 1rem;
 	}
 
 	.lg\:space-y-0 > :not([hidden]) ~ :not([hidden]) {

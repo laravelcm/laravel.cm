@@ -19,15 +19,15 @@
                 <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                     <div class="mt-3 sm:flex">
                         @auth
-                            <x-button :link="route('forum.new')" class="w-full sm:w-auto">
+                            <x-button :link="route('forum.new')" class="w-full sm:w-auto text-base font-normal">
                                 Lancer un thread
                             </x-button>
                         @else
-                            <x-button :link="route('login')" class="w-full sm:w-auto">
+                            <x-button :link="route('login')" class="w-full sm:w-auto text-base font-normal">
                                 Rejoindre la communauté
                             </x-button>
                         @endauth
-                        <x-default-button :link="route('forum.index')" class="mt-3 w-full sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto">
+                        <x-default-button :link="route('forum.index')" class="mt-3 w-full sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto text-base font-normal">
                             Visiter le Forum
                         </x-default-button>
                     </div>
