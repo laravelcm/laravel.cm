@@ -30,6 +30,11 @@ class HomeController extends Controller
                 ->get();
         });
 
+        seo()
+            ->description('Laravel Cameroun est le portail de la communauté de développeurs PHP & Laravel au Cameroun, On partage, on apprend, on découvre et on construit une grande communauté.')
+            ->twitterDescription('Laravel Cameroun est le portail de la communauté de développeurs PHP & Laravel au Cameroun, On partage, on apprend, on découvre et on construit une grande communauté.')
+            ->withUrl();
+
         return view('home', [
             'latestArticles' => $latestArticles,
             'latestThreads' => $latestThreads,
