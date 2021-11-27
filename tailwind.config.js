@@ -128,6 +128,7 @@ module.exports = {
             },
             'li strong, strong' : {
               color: theme('textColor.skin.inverted-muted'),
+              fontWeight: 400
             },
             'p > code, code': {
               display: 'inline-flex',
