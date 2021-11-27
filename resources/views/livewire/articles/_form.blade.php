@@ -27,7 +27,7 @@
                 @endif
             @endhasanyrole
 
-            @if(! isset($article))
+            @if(! isset($article) && ! Auth::user()->hasAnyRole(['admin', 'moderator']))
                 <x-default-button type="button" wire:click="draft">
                     Brouillon
                 </x-default-button>
