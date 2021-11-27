@@ -75,7 +75,7 @@ class Create extends Component
 
         $user->hasRole('user') ?
             $this->redirect('/articles/me') :
-            $this->redirect('/admin/articles');
+            $this->redirectRoute('articles.show', $article);
     }
 
     public function render()

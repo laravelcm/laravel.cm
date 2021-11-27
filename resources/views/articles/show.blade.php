@@ -125,14 +125,17 @@
             <div class="py-6">
                 <p class="text-base text-skin-base font-normal">Vous aimez cet article ? Faite le savoir en partageant</p>
                 <div class="mt-4 flex items-center space-x-3">
-                    <button type="button" data-url="{{ route('articles.show', $article) }}" class="share_twitter inline-flex items-center p-2 border border-skin-base rounded-full shadow-sm bg-skin-button rounded-full shadow-sm text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
-                        <x-icon.twitter class="h-5 w-5" />
+                    <button type="button" data-url="{{ route('articles.show', $article) }}" class="share_twitter inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
+                        <x-icon.twitter class="h-5 w-5 mr-1.5" />
+                        Twitter
                     </button>
-                    <button type="button" data-url="{{ route('articles.show', $article) }}" class="share_facebook inline-flex items-center p-2 border border-skin-base rounded-full shadow-sm bg-skin-button rounded-full shadow-sm text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
-                        <x-icon.facebook class="h-5 w-5" />
+                    <button type="button" data-url="{{ route('articles.show', $article) }}" class="share_facebook inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
+                        <x-icon.facebook class="h-5 w-5 mr-1.5" />
+                        Facebook
                     </button>
-                    <button type="button" data-url="{{ route('articles.show', $article) }}" class="share_linkedin inline-flex items-center p-2 border border-skin-base rounded-full shadow-sm bg-skin-button rounded-full shadow-sm text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
-                        <x-icon.linkedin class="h-5 w-5" />
+                    <button type="button" data-url="{{ route('articles.show', $article) }}" class="share_linkedin inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
+                        <x-icon.linkedin class="h-5 w-5 mr-1.5" />
+                        LinkedIn
                     </button>
                 </div>
             </div>

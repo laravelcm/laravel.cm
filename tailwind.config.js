@@ -18,14 +18,14 @@ module.exports = {
   purge: {
     content: [
       './app/**/*.php',
-      './vendor/livewire-ui/modal/resources/views/*.blade.php',
+      './resources/**/*.blade.php',
+      './resources/**/*.{js,jsx}',
       './storage/framework/views/*.php',
+
+      './vendor/livewire-ui/modal/resources/views/*.blade.php',
       './vendor/ph7jack/wireui/resources/**/*.blade.php',
       './vendor/ph7jack/wireui/ts/**/*.ts',
       './vendor/ph7jack/wireui/src/View/**/*.php',
-      './resources/**/*.blade.php',
-      './resources/**/*.js',
-      './resources/**/*.jsx',
     ],
     options: {
       safelist: [/^media-library/],
