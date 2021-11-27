@@ -10,7 +10,7 @@ class TopContributorsComposer
 {
     public function compose(View $view)
     {
-        $topContributors = Cache::remember('contributors', 60 * 60 * 24, function () {
+        $topContributors = Cache::remember('contributors', 60 * 30, function () {
             return User::topContributors()
                 ->get()
                 ->filter(fn ($contributor) => $contributor->discussions_count >= 1)
