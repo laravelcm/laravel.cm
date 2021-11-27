@@ -38,7 +38,7 @@ const share = function () {
     twitter.addEventListener('click', function (e) {
       e.preventDefault()
       let url = this.getAttribute('data-url')
-      let shareUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + '&via=johns_corp' + '&url=' + encodeURIComponent(url)
+      let shareUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + '&via=laravelcm' + '&url=' + encodeURIComponent(url)
       popupCenter(shareUrl, 'Partager sur Twitter')
     })
   }
