@@ -33,10 +33,12 @@
                                 Éditer
                             </x-default-button>
                         @endif
-                        <x-default-button type="button">
-                            <x-heroicon-o-user-add class="-ml-1 mr-2 h-5 w-5 text-skin-muted" />
-                            <span>{{ __('Suivre') }}</span>
-                        </x-default-button>
+                        @if (! $user->isLoggedInUser())
+                            <x-default-button type="button">
+                                <x-heroicon-o-user-add class="-ml-1 mr-2 h-5 w-5 text-skin-muted" />
+                                <span>{{ __('Suivre') }}</span>
+                            </x-default-button>
+                        @endif
                     </div>
                 </div>
             </div>
