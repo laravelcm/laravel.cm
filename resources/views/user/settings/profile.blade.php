@@ -186,6 +186,18 @@
                                     :value="Auth::user()->githubUsername()"
                                 />
                             </div>
+                            <div class="max-w-lg flex">
+                                <x-input
+                                    type="text"
+                                    name="linkedin_profile"
+                                    id="linkedin_profile"
+                                    aria-label="Profil LinkedIn"
+                                    leading-addon="linkedin.com/in/"
+                                    container-class="flex-1"
+                                    container-input-class="flex"
+                                    :value="Auth::user()->linkedin()"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

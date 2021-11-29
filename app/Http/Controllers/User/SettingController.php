@@ -34,6 +34,7 @@ class SettingController extends Controller
             'bio' => trim(strip_tags($request->bio)),
             'twitter_profile' => $request->twitter_profile,
             'github_profile' => $request->github_profile,
+            'linkedin_profile' => $request->linkedin_profile,
             'phone_number' => $request->phone_number,
             'location' => $request->location,
             'website' => $request->website,

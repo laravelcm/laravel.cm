@@ -42,6 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'phone_number',
         'github_profile',
         'twitter_profile',
+        'linkedin_profile',
         'website',
         'last_login_at',
         'last_login_ip',
@@ -217,6 +218,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function twitter(): ?string
     {
         return $this->twitter_profile;
+    }
+
+    public function linkedin(): ?string
+    {
+        return $this->linkedin_profile;
     }
 
     public function scopeModerators(Builder $query): Builder
