@@ -19,7 +19,7 @@
                         <h1 class="inline-flex items-center text-2xl font-bold text-skin-inverted truncate font-sans">
                             {{ $user->name }}
                             @if($user->hasAnyRole('admin', 'moderator'))
-                                <x-user-status />
+                                <x-user.status />
                             @endif
                         </h1>
                         <p class="text-sm font-medium text-skin-base font-normal">

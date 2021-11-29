@@ -75,7 +75,11 @@ Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {
 });
 
 // User
-Route::redirect('/dashboard', '/user');
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [User\DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/threads', [User\DashboardController::class, 'threads'])->name('threads.me');
+    Route::get('/discussions', [User\DashboardController::class, 'discussions'])->name('discussions.me');
+});
 Route::get('/user/{username?}', [User\ProfileController::class, 'show'])->name('profile');
 
 // Redirect Route

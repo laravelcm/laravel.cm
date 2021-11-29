@@ -5039,6 +5039,9 @@ select {
 .gap-3 {
 	gap: 0.75rem;
 }
+.gap-5 {
+	gap: 1.25rem;
+}
 .gap-y-12 {
 	row-gap: 3rem;
 }
@@ -6271,6 +6274,10 @@ select {
 .text-negative-900 {
 	--tw-text-opacity: 1;
 	color: rgba(127, 29, 29, var(--tw-text-opacity));
+}
+.text-gray-900 {
+	--tw-text-opacity: 1;
+	color: rgba(17, 24, 39, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;
@@ -7640,6 +7647,10 @@ html {
 		grid-template-columns: none;
 	}
 
+	.sm\:grid-cols-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
 	.sm\:flex-row {
 		flex-direction: row;
 	}
@@ -7744,6 +7755,12 @@ html {
 		--tw-space-y-reverse: 0;
 		margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
 		margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
+	}
+
+	.sm\:truncate {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	.sm\:rounded-lg {
@@ -9318,6 +9335,10 @@ html {
 		grid-column: span 10 / span 10;
 	}
 
+	.lg\:col-span-9 {
+		grid-column: span 9 / span 9;
+	}
+
 	.lg\:col-start-10 {
 		grid-column-start: 10;
 	}
@@ -9450,6 +9471,10 @@ html {
 
 	.lg\:grid-cols-8 {
 		grid-template-columns: repeat(8, minmax(0, 1fr));
+	}
+
+	.lg\:grid-cols-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 
 	.lg\:grid-rows-2 {
@@ -9621,6 +9646,11 @@ html {
 	.lg\:text-lg {
 		font-size: 1.125rem;
 		line-height: 1.75rem;
+	}
+
+	.lg\:text-3xl {
+		font-size: 1.875rem;
+		line-height: 2.25rem;
 	}
 
 	.lg\:leading-\[3\.5rem\] {
