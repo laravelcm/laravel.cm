@@ -12,7 +12,10 @@ class DashboardController extends Controller
     {
         return view('user.dashboard', [
             'user' => $user = Auth::user(),
-            'articles' => $user->articles()->latest()->paginate(10),
+            'articles' => $user->articles()
+                ->orderByDesc('submitted_at')
+                ->orderByDesc('created_at')
+                ->paginate(5),
         ]);
     }
 

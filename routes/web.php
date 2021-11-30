@@ -69,13 +69,13 @@ Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::
 Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {
     Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
     Route::put('/', [User\SettingController::class, 'update'])->name('settings.update');
-    Route::view('/customization', 'user.settings.customization')->name('customization');
-    Route::get('/password', [User\SettingController::class, 'password'])->name('password');
+    Route::view('/customization', 'user.settings.customization')->name('customization')->middleware('verified');
+    Route::get('/password', [User\SettingController::class, 'password'])->name('password')->middleware('verified');
     Route::put('/password', [User\SettingController::class, 'updatePassword'])->name('password.update');
 });
 
 // User
-Route::prefix('dashboard')->group(function () {
+Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [User\DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/threads', [User\DashboardController::class, 'threads'])->name('threads.me');
     Route::get('/discussions', [User\DashboardController::class, 'discussions'])->name('discussions.me');

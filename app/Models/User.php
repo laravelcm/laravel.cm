@@ -221,6 +221,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->twitter_profile;
     }
 
+    public function hasTwitterAccount(): bool
+    {
+        return ! empty($this->twitter());
+    }
+
     public function linkedin(): ?string
     {
         return $this->linkedin_profile;
