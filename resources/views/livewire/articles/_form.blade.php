@@ -5,7 +5,7 @@
                 <x-heroicon-o-chevron-left class="h-5 w-5 mr-1.5" />
                 Tous les articles
             </a>
-            <a href="#" class="flex items-center pl-3 font-sans text-skin-base text-base font-medium">Mes articles</a>
+            <a href="{{ route('dashboard') }}" class="flex items-center pl-3 font-sans text-skin-base text-base font-medium">Mes articles</a>
         </div>
         <div class="flex items-center space-x-2 mt-3 sm:mt-0">
             @hasanyrole('admin|moderator')

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
@@ -42,6 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'phone_number',
         'github_profile',
         'twitter_profile',
+        'linkedin_profile',
         'website',
         'last_login_at',
         'last_login_ip',
@@ -219,6 +221,16 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->twitter_profile;
     }
 
+    public function hasTwitterAccount(): bool
+    {
+        return ! empty($this->twitter());
+    }
+
+    public function linkedin(): ?string
+    {
+        return $this->linkedin_profile;
+    }
+
     public function scopeModerators(Builder $query): Builder
     {
         return $query->whereHas('roles', function ($query) {
@@ -286,19 +298,34 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return env('SLACK_WEBHOOK_URL', '');
     }
 
-    public function countReplies(): int
-    {
-        return $this->replyAble()->count();
-    }
-
     public function replies(): Collection
     {
         return $this->replyAble;
     }
 
+    public function countReplies(): int
+    {
+        return Cache::remember('replies_count', now()->addHours(2), fn () => $this->replyAble()->count());
+    }
+
     public function countSolutions(): int
     {
-        return $this->replyAble()->isSolution()->count();
+        return Cache::remember('solutions_count', now()->addHours(2), fn () => $this->replyAble()->isSolution()->count());
+    }
+
+    public function countArticles(): int
+    {
+        return Cache::remember('articles_count', now()->addHours(2), fn () => $this->articles()->approved()->count());
+    }
+
+    public function countDiscussions(): int
+    {
+        return Cache::remember('discussions_count', now()->addHours(2), fn () => $this->discussions()->count());
+    }
+
+    public function countThreads(): int
+    {
+        return Cache::remember('threads_count', now()->addHours(2), fn () => $this->threads()->count());
     }
 
     public function scopeMostSolutions(Builder $query, int $inLastDays = null)
@@ -339,6 +366,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function scopeWithCounts(Builder $query)
     {
         return $query->withCount([
+            'articles as articles_count',
             'threads as threads_count',
             'replyAble as replies_count',
             'replyAble as solutions_count' => function (Builder $query) {

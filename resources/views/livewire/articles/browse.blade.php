@@ -17,19 +17,8 @@
             </div>
         </div>
         <div
-            x-data="{
-                init() {
-                    let observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                @this.call('loadMore')
-                            }
-                        })
-                    }, { root: null })
-
-                    observer.observe(this.$el)
-                }
-            }"
+            x-data
+            x-intersect="@this.call('loadMore')"
             class="lg:grid lg:grid-cols-8 lg:gap-8 lg:col-span-7"
         >
             <div class="lg:col-span-6">
@@ -48,14 +37,18 @@
                     @endforeach
                 </div>
 
-                <div class="mt-4 flex justify-center">
-                    @if($articles->hasMorePages())
-                        <button wire:click.prevent="loadMore" class="flex items-center text-skin-base text-sm leading-5">
+                @if($articles->hasMorePages())
+                    <div
+                        x-data
+                        x-intersect="@this.call('loadMore')"
+                        class="mt-5 flex justify-center"
+                    >
+                        <p class="flex items-center">
                             <x-loader class="text-skin-primary" />
                             Chargement...
-                        </button>
-                    @endif
-                </div>
+                        </p>
+                    </div>
+                @endif
             </div>
 
             <div class="hidden lg:block lg:col-span-2">

@@ -36,7 +36,7 @@
                                     <p class="inline-flex items-center text-sm text-skin-inverted font-medium">
                                         {{ $discussion->author->name }}
                                         @if($discussion->author->hasAnyRole('admin', 'moderator'))
-                                            <x-user-status />
+                                            <x-user.status />
                                         @endif
                                     </p>
                                 </div>

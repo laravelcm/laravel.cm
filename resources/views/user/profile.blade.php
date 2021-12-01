@@ -19,7 +19,7 @@
                         <h1 class="inline-flex items-center text-2xl font-bold text-skin-inverted truncate font-sans">
                             {{ $user->name }}
                             @if($user->hasAnyRole('admin', 'moderator'))
-                                <x-user-status />
+                                <x-user.status />
                             @endif
                         </h1>
                         <p class="text-sm font-medium text-skin-base font-normal">
@@ -60,7 +60,7 @@
                 <p class="mt-2 text-skin-base font-normal">
                     {{ $user->bio ?? '...' }}
                 </p>
-                <div class="mt-4 mb-6 flex items-center gap-x-3">
+                <div class="mt-4 mb-6 flex items-center gap-x-4">
                     @if ($user->githubUsername())
                         <a href="https://github.com/{{ $user->githubUsername() }}" class="text-skin-base hover:text-skin-inverted">
                             <x-icon.github class="w-6 h-6" />
@@ -70,6 +70,12 @@
                     @if ($user->twitter())
                         <a href="https://twitter.com/{{ $user->twitter() }}" class="text-skin-base hover:text-[#29aaec]">
                             <x-icon.twitter class="w-6 h-6" />
+                        </a>
+                    @endif
+
+                    @if ($user->linkedin())
+                        <a href="https://www.linkedin.com/in/{{ $user->linkedin() }}" class="text-skin-base hover:text-[#004182]">
+                            <x-icon.linkedin class="w-6 h-6" />
                         </a>
                     @endif
                 </div>
