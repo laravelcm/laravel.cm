@@ -23,6 +23,9 @@ class DashboardController extends Controller
     {
         return view('user.threads', [
             'user' => $user = Auth::user(),
+            'threads' => $user->threads()
+                ->recent()
+                ->paginate(5),
         ]);
     }
 
@@ -30,6 +33,9 @@ class DashboardController extends Controller
     {
         return view('user.discussions', [
             'user' => $user = Auth::user(),
+            'discussions' => $user->discussions()
+                ->orderByDesc('created_at')
+                ->paginate(5),
         ]);
     }
 }

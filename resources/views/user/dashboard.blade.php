@@ -20,18 +20,7 @@
             <x-user.sidebar :user="$user" />
         </div>
         <main class="lg:col-span-9">
-            <div class="md:flex md:items-center md:justify-between">
-                <div class="flex-1 min-w-0">
-                    <h2 class="text-lg font-bold leading-7 text-skin-inverted sm:text-xl sm:truncate font-sans">
-                        Vos articles
-                    </h2>
-                </div>
-                <div class="mt-4 flex md:mt-0 md:ml-4">
-                    <x-button :link="route('articles.new')" class="ml-3">
-                        Nouvel article
-                    </x-button>
-                </div>
-            </div>
+            <x-user.page-heading title="Vos articles" :url="route('articles.new')" button="Nouvel article" />
 
             <div class="mt-5">
                 @unless(Auth::user()->hasTwitterAccount())
@@ -62,12 +51,14 @@
                                 </h3>
 
                                 <div class="flex items-center text-skin-muted font-sans">
-                                    <a href="{{ route('articles.show', $article->slug()) }}" class="hover:text-skin-base hover:underline">
-                                        Voir
-                                    </a>
-                                    <span class="mx-1">
-                                        &middot;
-                                    </span>
+                                    @if($article->isPublished())
+                                        <a href="{{ route('articles.show', $article->slug()) }}" class="hover:text-skin-base hover:underline">
+                                            Voir
+                                        </a>
+                                        <span class="mx-1">
+                                            &middot;
+                                        </span>
+                                    @endif
                                     <a href="{{ route('articles.edit', $article->slug()) }}" class="hover:text-skin-base hover:underline">
                                         Éditer
                                     </a>
@@ -96,8 +87,8 @@
 
                                     <div class="flex text-sm leading-5 text-skin-base">
                                         @if ($article->isPublished())
-                                            <time datetime="{{ $article->submitted_at->format('Y-m-d') }}">
-                                                Publié le {{ $article->submitted_at->format('j M, Y') }}
+                                            <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
+                                                Publié le {{ $article->submittedAt()->format('j M, Y') }}
                                             </time>
                                         @else
                                             @if ($article->isAwaitingApproval())

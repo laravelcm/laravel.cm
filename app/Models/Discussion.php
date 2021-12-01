@@ -121,12 +121,12 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
 
     public function isPinned(): bool
     {
-        return (bool) $this->is_pinned;
+        return $this->is_pinned;
     }
 
     public function isLocked(): bool
     {
-        return (bool) $this->locked;
+        return $this->locked;
     }
 
     public function getCountAllRepliesWithChildAttribute(): int

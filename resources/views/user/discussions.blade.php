@@ -20,7 +20,21 @@
             <x-user.sidebar :user="$user" />
         </div>
         <main class="lg:col-span-9">
+            <x-user.page-heading title="Vos discussions" :url="route('discussions.new')" button="Nouvelle discussion" />
 
+            <div class="mt-5">
+                @forelse($discussions as $discussion)
+                    <x-discussions.summary :discussion="$discussion" />
+                @empty
+                    <p class="text-skin-base text-base">
+                        Vous n'avez pas encore créé de discussions.
+                    </p>
+                @endforelse
+
+                <div class="pt-5">
+                    {{ $discussions->links() }}
+                </div>
+            </div>
         </main>
     </section>
 
