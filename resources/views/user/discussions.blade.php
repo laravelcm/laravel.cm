@@ -1,5 +1,5 @@
 @title("Discussions ~ {$user->username} ({$user->name})")
-@canonical(route('dashboard'))
+@canonical(route('discussions.me'))
 
 @extends('layouts.default')
 

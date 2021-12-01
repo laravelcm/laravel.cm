@@ -113,7 +113,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex items-center text-gray-500">
+                            <div class="flex items-center text-skin-base">
                                 <span class="text-xl mr-2">👏</span>
                                 {{ count($article->reactions) }}
                             </div>
