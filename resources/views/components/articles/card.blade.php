@@ -2,7 +2,7 @@
 
 <div class="space-y-6">
     <a href="{{ route('articles.show', $article) }}" class="group">
-        <div class="aspect-w-3 aspect-h-2 lg:aspect-w-3 lg:aspect-h-1">
+        <div class="aspect-w-3 aspect-h-2">
             <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}" />
         </div>
     </a>

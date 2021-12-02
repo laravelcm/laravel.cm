@@ -16,7 +16,7 @@ class PostArticleToTwitter extends Notification
     {
     }
 
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return [TwitterChannel::class];
     }
@@ -26,13 +26,13 @@ class PostArticleToTwitter extends Notification
         return new TwitterStatusUpdate($this->generateTweet());
     }
 
-    public function generateTweet()
+    public function generateTweet(): string
     {
         $title = $this->article->title;
         $url = route('articles.show', $this->article->slug());
         $author = $this->article->author;
         $author = $author->twitter() ? "@{$author->twitter()}" : $author->name;
 
-        return "{$title} by {$author}\n\n{$url}";
+        return "{$title} par {$author}\n\n{$url}";
     }
 }

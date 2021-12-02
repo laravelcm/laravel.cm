@@ -18,7 +18,7 @@ class HomeController extends Controller
                 ->orderByViews()
                 ->published()
                 ->trending()
-                ->limit(3)
+                ->limit(4)
                 ->get();
         });
 

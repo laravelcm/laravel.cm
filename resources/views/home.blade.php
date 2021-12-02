@@ -67,10 +67,10 @@
 
             <div class="py-12 lg:py-20">
                 <x-section-header title="Articles Populaires" content="Découvrez les articles les plus appréciés et partagés par les membres de la communauté" />
-                <div class="mt-8 grid gap-6 max-w-xl mx-auto lg:grid-rows-2 lg:grid-flow-col lg:grid-cols-2 lg:mt-10 lg:gap-x-8 lg:max-w-none">
+                <div class="mt-8 grid gap-6 max-w-xl mx-auto lg:grid-rows-3 lg:grid-flow-col lg:grid-cols-2 lg:mt-10 lg:gap-x-8 lg:max-w-none">
                     @foreach($latestArticles as $article)
                         @if($loop->first)
-                            <div class="lg:row-span-2">
+                            <div class="lg:row-span-3">
                                 <x-articles.card :article="$article" />
                             </div>
                         @else
@@ -79,6 +79,13 @@
                             </div>
                         @endif
                     @endforeach
+                </div>
+
+                <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
+                    <x-button :link="route('articles')">
+                        Voir tous les articles
+                        <x-heroicon-o-arrow-narrow-right class="h-5 w-5 ml-1.5" />
+                    </x-button>
                 </div>
             </div>
 
@@ -114,6 +121,13 @@
                                 </div>
                             </div>
                         @endforeach
+                    </div>
+
+                    <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
+                        <x-button :link="route('forum.index')">
+                            Voir tous les sujets
+                            <x-heroicon-o-arrow-narrow-right class="h-5 w-5 ml-1.5" />
+                        </x-button>
                     </div>
                 </div>
             @endif

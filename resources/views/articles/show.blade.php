@@ -125,18 +125,21 @@
             <div class="py-6">
                 <p class="text-base text-skin-base font-normal">Vous aimez cet article ? Faite le savoir en partageant</p>
                 <div class="mt-4 flex items-center space-x-3">
-                    <button type="button" data-url="{{ route('articles.show', $article) }}" class="share_twitter inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
+                    <a href="https://twitter.com/share?text={{ urlencode('"'.$article->title.'" par '. ($article->author->twitter() ? '@'.$article->author->twitter() : $article->author->name) . ' - ') }}&url={{ urlencode(route('articles.show', $article)) }}"
+                       class="inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <x-icon.twitter class="h-5 w-5 mr-1.5" />
                         Twitter
-                    </button>
-                    <button type="button" data-url="{{ route('articles.show', $article) }}" class="share_facebook inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('articles.show', $article)) }}&quote={{ urlencode('"'.$article->title.'" par '.$article->author->name.' - ') }}"
+                       class="inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <x-icon.facebook class="h-5 w-5 mr-1.5" />
                         Facebook
-                    </button>
-                    <button type="button" data-url="{{ route('articles.show', $article) }}" class="share_linkedin inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
+                    </a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(route('articles.show', $article)) }}&title={{ urlencode('"'.$article->title.'" par '.$article->author->name.' - ') }}"
+                       class="inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <x-icon.linkedin class="h-5 w-5 mr-1.5" />
                         LinkedIn
-                    </button>
+                    </a>
                 </div>
             </div>
 
