@@ -81,3 +81,19 @@
 .brand-applications {
   color: var(--brand-applications);
 }
+
+.brand-event {
+  color: var(--brand-event);
+}
+
+.brand-tutoriel {
+  color: var(--brand-tutoriel);
+}
+
+.brand-communaute {
+  color: var(--brand-communaute);
+}
+
+.brand-astuces {
+  color: var(--brand-astuces);
+}

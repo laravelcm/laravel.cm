@@ -38,6 +38,10 @@
   --brand-branding: #EC4899;
   --brand-applications: #0284C7;
   --brand-developpement: #4d7c0f;
+  --brand-event: #36BFFA;
+  --brand-tutoriel: #164E63;
+  --brand-communaute: #DD2590;
+  --brand-astuces: #D6BBFB;
 }
 
 @layer base {
