@@ -7,11 +7,4 @@
 <!-- Facebook sharing -->
 <meta property="og:url" content="{{ url()->current() }}" />
 <meta property="og:title" content="{{ isset($title) ? $title.' | ' : '' }}{{ config('app.name') }}" />
-
-@if (isset($shareImage))
-    <meta property="og:image" content="{{ $shareImage }}" />
-@else
-    <meta property="og:image" content="{{ asset('images/socialcard.png') }}" />
-@endif
-
 <!-- /Facebook sharing -->
