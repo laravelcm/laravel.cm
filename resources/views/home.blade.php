@@ -6,7 +6,7 @@
         <div class="relative py-10 lg:grid lg:grid-cols-12 lg:gap-8">
             <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:self-center">
                 <a href="{{ route('discussions.index') }}" class="inline-flex items-center text-white bg-green-700 rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base font-sans">
-                    <span class="px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-flag-green rounded-full">Discussions</span>
+                    <span class="hidden sm:block px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-flag-green rounded-full">Discussions</span>
                     <span class="ml-4 text-sm">Nouvelle section disponible sur le site</span>
                     <x-heroicon-s-chevron-right class="ml-2 w-5 h-5 text-white" />
                 </a>
