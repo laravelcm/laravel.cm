@@ -11,6 +11,7 @@ use App\Models\User;
 use App\View\Composers\ChannelsComposer;
 use App\View\Composers\InactiveDiscussionsComposer;
 use App\View\Composers\ModeratorsComposer;
+use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
 use App\View\Composers\TopMembersComposer;
 use Carbon\Carbon;
@@ -82,6 +83,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('forum._moderators', ModeratorsComposer::class);
         View::composer('discussions._contributions', TopContributorsComposer::class);
         View::composer('discussions._contributions', InactiveDiscussionsComposer::class);
+        View::composer('components.profile-users', ProfileUsersComposer::class);
     }
 
     public function bootEloquentMorphs()

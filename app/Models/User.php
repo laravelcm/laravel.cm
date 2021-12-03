@@ -238,6 +238,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         });
     }
 
+    public function scopeVerifiedUsers(Builder $query): Builder
+    {
+        return $query->whereNotNull('email_verified_at');
+    }
+
     /**
      * Retrieve a setting with a given name or fall back to the default.
      */
