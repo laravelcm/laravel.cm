@@ -73,8 +73,8 @@ return [
     ],
 
     'heading_permalink' => [
-        'html_class' => 'anchor mr-2 !text-skin-primary !no-underline hover:!text-skin-primary-hover focus:!text-skin-primary-hover focus:outline-none',
-        'inner_contents' => '#',
+        'html_class' => 'anchor !text-skin-primary !no-underline hover:!text-skin-primary-hover focus:!text-skin-primary-hover focus:outline-none',
+        'inner_contents' => '',
     ],
 
     'mentions' => [
