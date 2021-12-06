@@ -59,6 +59,20 @@ class Reply extends Component
         $this->emitSelf('refresh');
     }
 
+    public function UnMarkAsSolution(): void
+    {
+        $this->authorize(ThreadPolicy::UPDATE, $this->thread);
+
+        $this->thread->unmarkSolution();
+
+        $this->emitSelf('refresh');
+
+        $this->notification()->success(
+            'Réponse acceptée',
+            'Vous avez retiré cette réponse comme solution pour ce sujet.'
+        );
+    }
+
     public function markAsSolution(): void
     {
         $this->authorize(ThreadPolicy::UPDATE, $this->thread);
