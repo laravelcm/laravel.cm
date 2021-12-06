@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -10,7 +11,7 @@ class DashboardController extends Controller
     public function dashboard()
     {
         return view('user.dashboard', [
-            'user' => $user = Auth::user(),
+            'user' => $user = User::scopes('withCounts')->find(Auth::id()),
             'articles' => $user->articles()
                 ->orderByDesc('submitted_at')
                 ->orderByDesc('created_at')
@@ -21,7 +22,7 @@ class DashboardController extends Controller
     public function threads()
     {
         return view('user.threads', [
-            'user' => $user = Auth::user(),
+            'user' => $user = User::scopes('withCounts')->find(Auth::id()),
             'threads' => $user->threads()
                 ->recent()
                 ->paginate(5),
@@ -31,7 +32,7 @@ class DashboardController extends Controller
     public function discussions()
     {
         return view('user.discussions', [
-            'user' => $user = Auth::user(),
+            'user' => $user = User::scopes('withCounts')->find(Auth::id()),
             'discussions' => $user->discussions()
                 ->orderByDesc('created_at')
                 ->paginate(5),

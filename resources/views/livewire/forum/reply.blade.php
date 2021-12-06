@@ -13,7 +13,7 @@
                 <time datetime="{{ $reply->created_at }}" title="{{ $thread->created_at->format('j M, Y \à h:i') }}" class="text-skin-muted">{{ $reply->created_at->diffForHumans() }}</time>
             </div>
         </div>
-        <div x-show="!open" class="flex-1">
+        <div x-show="!open" class="flex-1 overflow-hidden">
             <div class="flex items-start">
                 <div class="hidden sm:flex sm:items-center flex-1 text-sm space-x-2 font-sans">
                     <a href="{{ route('profile', $reply->author->username) }}" class="font-medium text-skin-inverted">
@@ -33,14 +33,14 @@
                 </div>
                 @can(App\Policies\ThreadPolicy::UPDATE, $thread)
                     @if ($isSolution)
-                        <div class="mt-2 flex items-center sm:mt-0 sm:ml-4 sm:-mt-3">
+                        <div class="mt-2 flex items-center sm:mt-0 sm:ml-4">
                             <button wire:click="UnMarkAsSolution" type="button" class="inline-flex items-center justify-center p-2.5 bg-red-500 bg-opacity-10 text-red-600 text-sm leading-5 rounded-full focus:outline-none transform hover:scale-125 transition-all">
                                 <x-heroicon-s-x-circle class="w-6 h-6" />
                             </button>
                             <span class="ml-2 text-sm font-sans text-red-500 sm:hidden">Retirer comme solution</span>
                         </div>
                     @else
-                        <div class="mt-2 flex items-center sm:mt-0 sm:ml-4 sm:-mt-3">
+                        <div class="mt-2 flex items-center sm:mt-0 sm:ml-4">
                             <button wire:click="markAsSolution" type="button" class="inline-flex items-center justify-center p-2.5 bg-green-500 bg-opacity-10 text-green-600 text-sm leading-5 rounded-full focus:outline-none transform hover:scale-125 transition-all">
                                 <x-heroicon-s-check-circle class="w-6 h-6" />
                             </button>

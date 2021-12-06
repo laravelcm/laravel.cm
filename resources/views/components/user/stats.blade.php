@@ -6,7 +6,7 @@
             Total Articles/Discussions
         </dt>
         <dd class="mt-1 text-3xl font-semibold text-skin-inverted">
-            {{ number_format($user->countArticles() + $user->countDiscussions()) }}
+            {{ number_format($user->articles_count + $user->discussions_count) }}
         </dd>
     </div>
 
@@ -15,7 +15,7 @@
             Total Réponses
         </dt>
         <dd class="mt-1 text-3xl font-semibold text-skin-inverted">
-            {{ number_format($user->countReplies()) }}
+            {{ number_format($user->replies_count) }}
         </dd>
     </div>
 
@@ -24,7 +24,7 @@
             Sujets Résolus
         </dt>
         <dd class="mt-1 text-3xl font-semibold text-skin-inverted">
-            {{ number_format($user->countSolutions()) }}
+            {{ number_format($user->solutions_count) }}
         </dd>
     </div>
 
