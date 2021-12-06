@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Policies\ArticlePolicy;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class ArticlesController extends Controller
 {
@@ -23,6 +24,8 @@ class ArticlesController extends Controller
         $user = Auth::user();
 
         views($article)->record();
+
+        $article = Cache::remember('post-' . $article->id, now()->addDays(2), fn () => $article);
 
         abort_unless(
             $article->isPublished() || ($user && $user->hasAnyRole(['admin', 'moderator'])),

@@ -52,7 +52,7 @@
                 type="button"
                 wire:click="sortBy('recent')"
                 aria-current="{{ $selectedSortBy === 'recent' ? 'page' : 'false' }}"
-                class="w-full {{ $selectedSortBy === 'recent' ? 'text-skin-inverted': 'text-skin-base hover:text-skin-inverted' }} rounded-l-lg group relative min-w-0 flex-1 overflow-hidden bg-skin-card py-4 px-6 text-sm font-medium text-center hover:bg-skin-card-muted focus:z-10"
+                class="w-full {{ $selectedSortBy === 'recent' ? 'text-skin-inverted': 'text-skin-base hover:text-skin-inverted' }} rounded-l-lg group relative min-w-0 flex-1 overflow-hidden bg-skin-card p-4 sm:px-6 text-sm font-medium text-center hover:bg-skin-card-muted focus:z-10"
             >
                 <span>Récents</span>
                 <span aria-hidden="true" class="{{ $selectedSortBy === 'recent' ? 'bg-skin-primary': 'bg-transparent' }} absolute inset-x-0 bottom-0 h-0.5"></span>
@@ -62,7 +62,7 @@
                 type="button"
                 wire:click="sortBy('popular')"
                 aria-current="{{ $selectedSortBy === 'popular' ? 'page' : 'false' }}"
-                class="w-full {{ $selectedSortBy === 'popular' ? 'text-skin-inverted': 'text-skin-base hover:text-skin-inverted' }} group relative min-w-0 flex-1 overflow-hidden bg-skin-card py-4 px-6 text-sm font-medium text-center hover:bg-skin-card-muted focus:z-10"
+                class="w-full {{ $selectedSortBy === 'popular' ? 'text-skin-inverted': 'text-skin-base hover:text-skin-inverted' }} group relative min-w-0 flex-1 overflow-hidden bg-skin-card p-4 sm:px-6 text-sm font-medium text-center hover:bg-skin-card-muted focus:z-10"
             >
                 <span>Populaire</span>
                 <span aria-hidden="true" class="{{ $selectedSortBy === 'popular' ? 'bg-skin-primary': 'bg-transparent' }} absolute inset-x-0 bottom-0 h-0.5"></span>
@@ -72,7 +72,7 @@
                 type="button"
                 wire:click="sortBy('trending')"
                 aria-current="{{ $selectedSortBy === 'trending' ? 'page' : 'false' }}"
-                class="w-full {{ $selectedSortBy === 'trending' ? 'text-skin-inverted': 'text-skin-base hover:text-skin-inverted' }} rounded-r-lg group relative min-w-0 flex-1 overflow-hidden bg-skin-card py-4 px-6 text-sm font-medium text-center hover:bg-skin-card-muted focus:z-10"
+                class="w-full {{ $selectedSortBy === 'trending' ? 'text-skin-inverted': 'text-skin-base hover:text-skin-inverted' }} rounded-r-lg group relative min-w-0 flex-1 overflow-hidden bg-skin-card p-4 sm:px-6 text-sm font-medium text-center hover:bg-skin-card-muted focus:z-10"
             >
                 <span>Tendance</span>
                 <span aria-hidden="true" class="{{ $selectedSortBy === 'trending' ? 'bg-skin-primary': 'bg-transparent' }} absolute inset-x-0 bottom-0 h-0.5"></span>

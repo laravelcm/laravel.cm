@@ -65,15 +65,6 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
     ];
 
     /**
-     * The relationship counts that should be eager loaded on every query.
-     *
-     * @var array
-     */
-    protected $withCount = [
-        'replies',
-    ];
-
-    /**
      * The accessors to append to the model's array form.
      *
      * @var array

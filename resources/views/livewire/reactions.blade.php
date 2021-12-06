@@ -34,7 +34,7 @@
         x-transition:leave-start="transform opacity-100 scale-100"
         x-transition:leave-end="transform opacity-0 scale-95"
         @class([
-            'origin-top absolute mt-4 w-56 rounded-md shadow-lg',
+            'origin-top absolute mt-4 w-56 rounded-md shadow-lg z-30',
             'left-0' => $direction === 'right',
             'right-0' => $direction !== 'right',
         ])

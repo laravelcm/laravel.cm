@@ -3,7 +3,20 @@
         Nouveau Sujet
         <x-heroicon-o-plus-circle class="h-4 w-4 ml-2.5" />
     </x-button>
-    <ul class="space-y-3">
+    <div class="sm:hidden">
+        <x-forms.select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+            <option value="">Filtrer par channel</option>
+            @foreach($channels as $channel)
+                <option value="{{ route('forum.channels', $channel) }}" @if(request()->fullUrlIs(route('forum.channels', $channel))) selected @endif>{{ $channel->name }}</option>
+                @if($channel->items->isNotEmpty())
+                    @foreach($channel->items as $item)
+                        <option value="{{ route('forum.channels', $item) }}" @if(request()->fullUrlIs(route('forum.channels', $item))) selected @endif>{{ $item->name }}</option>
+                    @endforeach
+                @endif
+            @endforeach
+        </x-forms.select>
+    </div>
+    <ul class="hidden sm:block sm:space-y-3">
         <li>
             <a href="{{ route('forum.index') }}" class="truncate text-skin-base hover:text-skin-primary">
                 Tous les sujets

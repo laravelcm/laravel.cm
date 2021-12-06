@@ -10,7 +10,7 @@ class ThreadController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified'], ['only' => ['create']]);
+        $this->middleware(['auth', 'verified'], ['only' => ['create', 'edit']]);
     }
 
     public function index(Request $request)

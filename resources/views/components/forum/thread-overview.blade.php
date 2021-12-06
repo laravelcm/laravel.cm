@@ -41,7 +41,7 @@
         </div>
         <div class="mt-6 flex justify-between space-x-8">
             <div class="flex items-center space-x-4">
-                <livewire:reactions :model="$thread" :with-place-holder="false"/>
+                <livewire:reactions :model="$thread" :with-place-holder="false" :with-background="false"/>
                 <p class="inline-flex text-sm space-x-2 text-skin-base">
                     <x-heroicon-o-chat-alt class="h-5 w-5" />
                     <span class="font-normal text-skin-inverted-muted">{{ count($thread->replies) }}</span>

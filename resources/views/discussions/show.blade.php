@@ -23,24 +23,37 @@
                     </div>
                 </div>
                 <div class="relative pb-8">
-                    <div class="relative flex space-x-3">
-                        <div class="relative">
-                            <img class="h-10 w-10 rounded-full bg-skin-card-gray flex items-center justify-center ring-8 ring-body" src="{{ $discussion->author->profile_photo_url }}" alt="">
-                            <span class="absolute top-5 -right-1 bg-skin-body rounded-tl px-0.5 py-px">
-                                <x-heroicon-s-chat-alt class="h-5 w-5 text-skin-muted" />
-                            </span>
+                    <div class="relative sm:flex sm:space-x-3">
+                        <div class="flex items-center sm:items-start">
+                            <div class="relative">
+                                <img class="h-10 w-10 rounded-full bg-skin-card-gray flex items-center justify-center ring-8 ring-body" src="{{ $discussion->author->profile_photo_url }}" alt="">
+                                <span class="absolute top-5 -right-1 bg-skin-body rounded-tl px-0.5 py-px">
+                                    <x-heroicon-s-chat-alt class="h-5 w-5 text-skin-muted" />
+                                </span>
+                            </div>
+                            <div class="ml-4 sm:hidden">
+                                <h4 class="inline-flex items-center text-sm text-skin-inverted font-medium">
+                                    {{ $discussion->author->name }}
+                                    @if($discussion->author->hasAnyRole('admin', 'moderator'))
+                                        <x-user.status />
+                                    @endif
+                                </h4>
+                                <div class="text-sm whitespace-nowrap text-skin-muted font-normal">
+                                    <time class="sr-only" datetime="{{ $discussion->created_at->format('Y-m-d') }}">{{ $discussion->created_at->diffForHumans() }}</time>
+                                    Crée
+                                    <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
+                                </div>
+                            </div>
                         </div>
                         <div class="min-w-0 flex-1">
-                            <div>
-                                <div>
-                                    <p class="inline-flex items-center text-sm text-skin-inverted font-medium">
-                                        {{ $discussion->author->name }}
-                                        @if($discussion->author->hasAnyRole('admin', 'moderator'))
-                                            <x-user.status />
-                                        @endif
-                                    </p>
-                                </div>
-                                <div class="mt-1 text-sm whitespace-nowrap text-skin-muted font-normal">
+                            <div class="hidden sm:block">
+                                <h4 class="inline-flex items-center text-sm text-skin-inverted font-medium">
+                                    {{ $discussion->author->name }}
+                                    @if($discussion->author->hasAnyRole('admin', 'moderator'))
+                                        <x-user.status />
+                                    @endif
+                                </h4>
+                                <div class="text-sm whitespace-nowrap text-skin-muted font-normal">
                                     <time class="sr-only" datetime="{{ $discussion->created_at->format('Y-m-d') }}">{{ $discussion->created_at->diffForHumans() }}</time>
                                     Crée
                                     <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>

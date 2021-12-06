@@ -3,6 +3,7 @@
 namespace App\View\Composers;
 
 use App\Models\Channel;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class ChannelsComposer
@@ -11,9 +12,8 @@ class ChannelsComposer
     {
         $view->with(
             'channels',
-            Channel::with('items')
-            ->whereNull('parent_id')
-            ->get()
+            Cache::remember('channels', now()->addDay(),
+                fn () => Channel::with('items')->whereNull('parent_id')->get())
         );
     }
 }

@@ -1,12 +1,20 @@
 @php $isSolution = $thread->isSolutionReply($reply) @endphp
 
-<li x-data="{ open: @entangle('isUpdating') }" @class(['-mx-4 p-4 border border-green-500 rounded-md relative z-10' => $isSolution])>
-    <div class="flex space-x-3" id="reply-{{ $reply->id }}">
-        <div class="flex-shrink-0">
-            <img class="h-10 w-10 rounded-full" src="{{ $reply->author->profile_photo_url }}" alt="Avatar de {{ $reply->author->username }}">
+<li x-data="{ open: @entangle('isUpdating') }" @class(['sm:-mx-4 p-4 border border-green-500 rounded-md relative z-10' => $isSolution])>
+    <div class="sm:flex sm:space-x-3" id="reply-{{ $reply->id }}">
+        <div class="flex items-center font-sans">
+            <div class="flex-shrink-0">
+                <img class="h-10 w-10 rounded-full" src="{{ $reply->author->profile_photo_url }}" alt="Avatar de {{ $reply->author->username }}">
+            </div>
+            <div class="ml-4 text-sm space-y-1 sm:hidden">
+                <a href="{{ route('profile', $reply->author->username) }}" class="block font-medium text-skin-inverted">
+                    {{ $reply->author->name }} <span class="inline-flex text-skin-muted">{{ '@' . $reply->author->username }}</span>
+                </a>
+                <time datetime="{{ $reply->created_at }}" title="{{ $thread->created_at->format('j M, Y \à h:i') }}" class="text-skin-muted">{{ $reply->created_at->diffForHumans() }}</time>
+            </div>
         </div>
         <div x-show="!open" class="flex-1">
-            <div class="flex items-start">
+            <div class="hidden sm:flex sm:items-start">
                 <div class="flex items-center flex-1 text-sm space-x-2 font-sans">
                     <a href="{{ route('profile', $reply->author->username) }}" class="font-medium text-skin-inverted">
                         {{ $reply->author->name }} <span class="inline-flex text-skin-muted">{{ '@' . $reply->author->username }}</span>
@@ -38,7 +46,7 @@
                     @endcan
                 @endif
             </div>
-            <div class="mt-1 font-normal prose prose-base prose-green text-skin-base max-w-none">
+            <div class="mt-1 font-normal prose sm:prose-base prose-green text-skin-base overflow-x-auto sm:max-w-none">
                 <x-markdown-content :content="$reply->body" />
             </div>
         </div>
