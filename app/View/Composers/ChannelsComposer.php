@@ -12,8 +12,11 @@ class ChannelsComposer
     {
         $view->with(
             'channels',
-            Cache::remember('channels', now()->addDay(),
-                fn () => Channel::with('items')->whereNull('parent_id')->get())
+            Cache::remember(
+                'channels',
+                now()->addDay(),
+                fn () => Channel::with('items')->whereNull('parent_id')->get()
+            )
         );
     }
 }
