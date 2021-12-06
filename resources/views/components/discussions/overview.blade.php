@@ -20,19 +20,19 @@
     <p class="mt-1 text-sm font-normal text-skin-base leading-5">
         {!! $discussion->excerpt(175) !!}
     </p>
-    <div class="mt-3 flex justify-between">
+    <div class="mt-3 sm:flex sm:justify-between">
         <div class="flex items-center text-sm font-sans text-skin-muted">
             <a class="flex-shrink-0" href="/user/{{ $discussion->author->username }}">
                 <img class="h-6 w-6 rounded-full" src="{{ $discussion->author->profile_photo_url }}" alt="{{ $discussion->author->name }}">
             </a>
             <span class="ml-2 pr-1">Posté par</span>
             <div class="flex items-center space-x-1">
-                <a href="/user/{{ $discussion->author->username }}" class="text-skin-inverted hover:underline">{{ $discussion->author->name }}</a>
+                <a href="{{ route('profile', $discussion->author->username) }}" class="text-skin-inverted hover:underline">{{ $discussion->author->name }}</a>
                 <span aria-hidden="true">&middot;</span>
                 <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
             </div>
         </div>
-        <div class="flex items-center space-x-4">
+        <div class="hidden sm:flex sm:items-center space-x-3">
             <livewire:reactions
                 wire:key="{{ $discussion->id }}"
                 :model="$discussion"

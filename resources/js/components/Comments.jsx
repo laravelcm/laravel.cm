@@ -358,15 +358,15 @@ const Comment = memo(({ comment, editing, onEdit, onUpdate, onDelete, onReply, o
             />
           </div>
           <div className="flex-1">
-            <div className="flex items-center text-sm space-x-2">
+            <div className="text-sm sm:flex sm:items-center sm:space-x-2">
               <a href={`/user/${comment.author.username}`} className="font-medium text-skin-primary font-sans hover:text-skin-primary-hover">
                 {comment.author.name}
               </a>
               <span className="text-skin-base font-normal"><time-ago time={comment.created_at} /></span>
               {canEdit && (
-                <div className="flex">
-                  <span className="text-skin-base font-medium">·</span>
-                  <div className="pl-2 flex items-center divide-x divide-skin-base">
+                <div className="mt-1 flex sm:mt-0">
+                  <span className="hidden sm:inline-block text-skin-base font-medium">·</span>
+                  <div className="sm:pl-2 flex items-center divide-x divide-skin-base">
                     <button type="button" onClick={handleEdit} className="pr-2 text-sm leading-5 font-sans text-skin-base focus:outline-none hover:underline">Éditer</button>
                     <button type="button" onClick={handleDelete} className="pl-2 text-sm leading-5 font-sans text-red-500 focus:outline-none hover:underline">Supprimer</button>
                   </div>
@@ -452,13 +452,13 @@ function CommentForm ({ onSubmit, parent, isRoot = false, onCancel = null }) {
             rows={4}
             required
           />
-          <div className="mt-6 flex items-center justify-between space-x-4">
+          <div className="mt-4 sm:flex sm:items-center sm:justify-between sm:space-x-4">
             {isRoot && (
               <p className="text-sm text-skin-base max-w-xl font-normal">
                 Veuillez vous assurer d'avoir lu nos <a href="/rules" className="font-medium text-skin-primary hover:text-skin-primary-hover">règles de conduite</a> avant de répondre à ce fil de conversation.
               </p>
             )}
-            <div className="flex items-center justify-end space-x-3">
+            <div className="mt-3 flex items-center justify-end space-x-3 sm:mt-0">
               {onCancel && <DefaultButton type="reset" onClick={handleCancel}>Annuler</DefaultButton>}
               <PrimaryButton type="submit" loading={loading}>
                 Commenter

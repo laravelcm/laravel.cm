@@ -1,5 +1,5 @@
 <div class="relative flex items-center h-full px-4 font-medium text-skin-base space-x-4">
-    <button x-data="{}" title="Codepen" type="button" class="text-skin-base hover:text-skin-inverted-muted cursor-pointer focus:outline-none" @click="$dispatch('editor-control-clicked', 'codepen')">
+    <button x-data title="Codepen" type="button" class="text-skin-base hover:text-skin-inverted-muted cursor-pointer focus:outline-none" @click="$dispatch('editor-control-clicked', 'codepen')">
         <svg class="text-skin-menu fill-current w-5 h-5" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <g fill="none" fill-rule="evenodd">
                 <circle fill="#374151" cx="100" cy="100" r="100"/>
@@ -7,13 +7,13 @@
             </g>
         </svg>
     </button>
-    <button x-data="{}" title="Code sample" type="button" class="text-skin-base hover:text-skin-inverted-muted cursor-pointer focus:outline-none" @click="$dispatch('editor-control-clicked', 'code')">
+    <button x-data title="Code sample" type="button" class="text-skin-base hover:text-skin-inverted-muted cursor-pointer focus:outline-none" @click="$dispatch('editor-control-clicked', 'code')">
         <x-heroicon-o-code class="w-5 h-5" />
     </button>
-    <button x-data="{}" title="Link" type="button" class="text-skin-base hover:text-skin-inverted-muted cursor-pointer focus:outline-none" @click="$dispatch('editor-control-clicked', 'link')">
+    <button x-data title="Link" type="button" class="text-skin-base hover:text-skin-inverted-muted cursor-pointer focus:outline-none" @click="$dispatch('editor-control-clicked', 'link')">
         <x-heroicon-o-link class="w-5 h-5" />
     </button>
-    <button x-data="{}" title="Image" type="button" class="text-skin-base hover:text-skin-inverted-muted cursor-pointer focus:outline-none" @click="$dispatch('editor-control-clicked', 'image')">
+    <button x-data title="Image" type="button" class="text-skin-base hover:text-skin-inverted-muted cursor-pointer focus:outline-none" @click="$dispatch('editor-control-clicked', 'image')">
         <x-heroicon-o-photograph class="w-5 h-5" />
     </button>
 </div>

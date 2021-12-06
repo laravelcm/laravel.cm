@@ -6,11 +6,11 @@
 @section('body')
 
     <div class="lg:grid lg:grid-cols-12 lg:gap-8">
-        <div class="hidden lg:block lg:col-span-2">
+        <div class="lg:block lg:col-span-2">
             @include('forum._channels')
         </div>
 
-        <div class="space-y-5 lg:col-span-8 xl:col-span-7">
+        <div class="mt-6 space-y-5 sm:mt-0 lg:col-span-8 xl:col-span-7">
             <x-status-message />
 
             <div class="lg:grid lg:grid-cols-3 lg:gap-10">

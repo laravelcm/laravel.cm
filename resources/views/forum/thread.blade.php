@@ -74,7 +74,7 @@
 
             @if($thread->replies->isNotEmpty())
                 <div class="mt-10">
-                    <ul class="space-y-8 px-4" role="list">
+                    <ul class="space-y-8 sm:px-4" role="list">
                         @foreach ($thread->replies as $reply)
                             <livewire:forum.reply wire:key="$reply->id" :thread="$thread" :reply="$reply" />
                         @endforeach
