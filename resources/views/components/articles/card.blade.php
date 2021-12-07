@@ -6,7 +6,7 @@
             <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}" />
         </div>
     </a>
-    <div>
+    <div class="space-y-4">
         <div>
             <time datetime="{{ $article->created_at->format('Y-m-d') }}" class="font-sans text-sm leading-5 text-skin-base capitalize">
                 {{ $article->created_at->isoFormat('LL') }}
@@ -19,12 +19,15 @@
                 {!! $article->excerpt(150) !!}
             </p>
         </div>
-        @if ($article->tags->isNotEmpty())
-            <div class="mt-4 flex items-center space-x-2">
-                @foreach ($article->tags as $tag)
-                    <x-tag :tag="$tag" />
-                @endforeach
-            </div>
-        @endif
+        <div class="flex items-center space-x-3">
+            @if ($article->tags->isNotEmpty())
+                <div class="flex items-center space-x-2">
+                    @foreach ($article->tags as $tag)
+                        <x-tag :tag="$tag" />
+                    @endforeach
+                </div>
+            @endif
+            <x-articles.sponsored :isSponsored="$article->isSponsored()" />
+        </div>
     </div>
 </div>

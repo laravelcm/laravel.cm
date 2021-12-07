@@ -93,13 +93,16 @@
         <div class="lg:col-span-5">
             <header class="space-y-4">
                 <div class="sm:flex sm:items-center sm:flex-row sm:justify-between">
-                    @if ($article->tags->isNotEmpty())
-                        <div class="flex items-center space-x-2">
-                            @foreach ($article->tags as $tag)
-                                <x-tag :tag="$tag" />
-                            @endforeach
-                        </div>
-                    @endif
+                    <div class="flex items-center space-x-3">
+                        @if ($article->tags->isNotEmpty())
+                            <div class="flex items-center space-x-2">
+                                @foreach ($article->tags as $tag)
+                                    <x-tag :tag="$tag" />
+                                @endforeach
+                            </div>
+                        @endif
+                        <x-articles.sponsored :isSponsored="$article->isSponsored()" />
+                    </div>
 
                     <div class="mt-2 flex space-x-1 text-sm text-skin-base sm:mt-0">
                         <time datetime="{{ $article->createdAt()->format('Y-m-d') }}">{{ $article->createdAt()->format('j M, Y') }}</time>
