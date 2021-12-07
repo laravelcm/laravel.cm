@@ -25,7 +25,7 @@ class ArticlesController extends Controller
 
         views($article)->record();
 
-        $article = Cache::remember('post-' . $article->id, now()->addDays(2), fn () => $article);
+        $article = Cache::remember('post-' . $article->id, now()->addHour(), fn () => $article);
 
         abort_unless(
             $article->isPublished() || ($user && $user->hasAnyRole(['admin', 'moderator'])),

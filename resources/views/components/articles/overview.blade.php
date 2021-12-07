@@ -7,13 +7,17 @@
         </div>
     </a>
     <div class="sm:col-span-2">
-        @if ($article->tags->isNotEmpty())
-            <div class="flex items-center space-x-2">
-                @foreach ($article->tags as $tag)
-                    <x-tag :tag="$tag" />
-                @endforeach
-            </div>
-        @endif
+        <div class="flex items-center space-x-3">
+            @if ($article->tags->isNotEmpty())
+                <div class="flex items-center space-x-2">
+                    @foreach ($article->tags as $tag)
+                        <x-tag :tag="$tag" />
+                    @endforeach
+                </div>
+            @endif
+
+            <x-articles.sponsored :isSponsored="$article->isSponsored()" />
+        </div>
         <div class="mt-2">
             <a href="{{ route('articles.show', $article) }}" class="group">
                 <h4 class="text-lg leading-6 font-semibold font-sans text-skin-inverted group-hover:text-skin-primary">{{ $article->title }}</h4>
@@ -23,14 +27,14 @@
             </p>
             <div class="mt-3 flex items-center font-sans">
                 <div class="flex-shrink-0">
-                    <a href="/user/{{ $article->author->username }}">
+                    <a href="{{ route('profile', $article->author->username) }}">
                         <span class="sr-only">{{ $article->author->name }}</span>
                         <img class="h-10 w-10 rounded-full" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}">
                     </a>
                 </div>
                 <div class="ml-3">
                     <p class="text-sm font-medium text-skin-inverted">
-                        <a href="/user/{{ $article->author->username }}" class="hover:underline">
+                        <a href="{{ route('profile', $article->author->username) }}" class="hover:underline">
                             {{ $article->author->name }}
                         </a>
                     </p>

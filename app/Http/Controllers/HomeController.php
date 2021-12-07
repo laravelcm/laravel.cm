@@ -15,6 +15,8 @@ class HomeController extends Controller
     {
         $latestArticles = Cache::remember('latestArticles', now()->addHour(), function () {
             return Article::with('tags')
+                ->orderByDesc('sponsored_at')
+                ->orderByDesc('submitted_at')
                 ->orderByViews()
                 ->published()
                 ->trending()

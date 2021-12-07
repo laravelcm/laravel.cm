@@ -42,7 +42,6 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         'cover_image',
         'show_toc',
         'is_pinned',
-        'is_sponsored',
         'user_id',
         'tweet_id',
         'submitted_at',
@@ -65,7 +64,6 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         'sponsored_at' => 'datetime',
         'show_toc' => 'boolean',
         'is_pinned' => 'boolean',
-        'is_sponsored' => 'boolean',
     ];
 
     /**
@@ -171,6 +169,16 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         return $this->approved_at === null;
     }
 
+    public function isSponsored(): bool
+    {
+        return ! $this->isNotSponsored();
+    }
+
+    public function isNotSponsored(): bool
+    {
+        return $this->sponsored_at === null;
+    }
+
     public function isDeclined(): bool
     {
         return ! $this->isNotDeclined();
@@ -194,11 +202,6 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     public function isPinned(): bool
     {
         return (bool) $this->is_pinned;
-    }
-
-    public function isSponsored(): bool
-    {
-        return (bool) $this->is_sponsored;
     }
 
     public function isNotShared(): bool
@@ -281,6 +284,11 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     public function scopeDeclined(Builder $query): Builder
     {
         return $query->whereNotNull('declined_at');
+    }
+
+    public function scopeSponsored(Builder $query): Builder
+    {
+        return $query->whereNotNull('sponsored_at');
     }
 
     public function scopeNotDeclined(Builder $query): Builder
