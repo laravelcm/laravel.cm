@@ -16,7 +16,10 @@ class ThreadController extends Controller
     public function index(Request $request)
     {
         $filter = getFilter('sortBy', ['recent', 'resolved', 'unresolved']);
-        $threads = Thread::filter($request)->withviewscount()->paginate(10);
+        $threads = Thread::filter($request)
+            ->withviewscount()
+            ->orderByDesc('created_at')
+            ->paginate(10);
 
         return view('forum.index', [
             'channel' => null,
@@ -28,7 +31,11 @@ class ThreadController extends Controller
     public function channel(Request $request, Channel $channel)
     {
         $filter = getFilter('sortBy', ['recent', 'resolved', 'unresolved']);
-        $threads = Thread::forChannel($channel)->filter($request)->withviewscount()->paginate(10);
+        $threads = Thread::forChannel($channel)
+            ->filter($request)
+            ->withviewscount()
+            ->orderByDesc('created_at')
+            ->paginate(10);
 
         return view('forum.index', compact('channel', 'threads', 'filter'));
     }
