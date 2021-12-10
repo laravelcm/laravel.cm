@@ -8,9 +8,11 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Policies\ArticlePolicy;
 use App\Policies\DiscussionPolicy;
+use App\Policies\NotificationPolicy;
 use App\Policies\ReplyPolicy;
 use App\Policies\ThreadPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Notifications\DatabaseNotification as Notification;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         Thread::class => ThreadPolicy::class,
         Reply::class => ReplyPolicy::class,
         Discussion::class => DiscussionPolicy::class,
+        Notification::class => NotificationPolicy::class,
     ];
 
     /**

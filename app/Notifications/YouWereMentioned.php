@@ -39,6 +39,7 @@ class YouWereMentioned extends Notification
             'author_name' => $this->reply->author->name,
             'author_username' => $this->reply->author->username,
             'author_photo' => $this->reply->author->profile_photo_url,
+            'replyable_id' => $this->reply->replyable_id,
             'replyable_type' => $this->reply->replyable_type,
             'replyable_subject' => $this->reply->replyAble->replyAbleSubject(),
         ];

@@ -79,3 +79,19 @@ if (! function_exists('getFilter')) {
         return in_array($filter, $filters) ? $filter : $default;
     }
 }
+
+if (! function_exists('route_to_reply_able')) {
+    /**
+     * Returns the route for the replyAble.
+     */
+    function route_to_reply_able(mixed $replyAble)
+    {
+        if ($replyAble instanceof App\Models\Thread) {
+            return route('forum.show', $replyAble->slug());
+        }
+
+        if ($replyAble instanceof App\Models\Discussion) {
+            return route('discussions.show', $replyAble->slug());
+        }
+    }
+}
