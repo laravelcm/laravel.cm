@@ -68,12 +68,14 @@ Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->n
 // Subscriptions
 Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
     ->name('subscriptions.unsubscribe');
+Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
 
 // Settings
 Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {
     Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
     Route::put('/', [User\SettingController::class, 'update'])->name('settings.update');
     Route::view('/customization', 'user.settings.customization')->name('customization')->middleware('verified');
+    Route::view('/notifications', 'user.settings.notifications')->name('notifications')->middleware('verified');
     Route::get('/password', [User\SettingController::class, 'password'])->name('password')->middleware('verified');
     Route::put('/password', [User\SettingController::class, 'updatePassword'])->name('password.update');
 });
