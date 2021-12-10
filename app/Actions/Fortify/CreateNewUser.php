@@ -5,6 +5,7 @@ namespace App\Actions\Fortify;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
@@ -35,6 +36,7 @@ class CreateNewUser implements CreatesNewUsers
                 'string',
                 'min:6',
                 'max:20',
+                'alpha_dash',
                 Rule::unique(User::class, 'username'),
             ],
             'password' => $this->passwordRules(),
@@ -43,9 +45,9 @@ class CreateNewUser implements CreatesNewUsers
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
-            'username' => $input['username'],
-            'opt_in' => isset($input['opt_in']),
+            'username' => Str::lower($input['username']),
             'password' => Hash::make($input['password']),
+            'opt_in' => isset($input['opt_in']),
         ]);
     }
 }

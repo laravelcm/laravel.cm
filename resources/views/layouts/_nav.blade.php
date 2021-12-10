@@ -155,10 +155,11 @@
             </div>
             <div class="hidden lg:ml-6 lg:flex lg:items-center">
                 @auth
-                    <button class="flex-shrink-0 bg-skin-card p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
+                    <a href="{{ route('notifications') }}" class="relative flex-shrink-0 hover:bg-skin-body p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <span class="sr-only">{{ __('Voir les notifications') }}</span>
                         <x-heroicon-o-bell class="h-5 w-5"/>
-                    </button>
+                        <livewire:notification-indicator />
+                    </a>
 
                     <!-- Add actions dropdown -->
                     <div x-data="{ open: false }" @keydown.escape.stop="open = false;" @click.outside="open = false;" class="ml-4 relative flex-shrink-0">

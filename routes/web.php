@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\User;
@@ -61,15 +62,20 @@ Route::prefix('forum')->as('forum.')->group(function () {
     Route::get('/{thread}/edit', [ThreadController::class, 'edit'])->name('edit');
 });
 
+// Replies
+Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->name('replyable');
+
 // Subscriptions
 Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
     ->name('subscriptions.unsubscribe');
+Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
 
 // Settings
 Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {
     Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
     Route::put('/', [User\SettingController::class, 'update'])->name('settings.update');
     Route::view('/customization', 'user.settings.customization')->name('customization')->middleware('verified');
+    Route::view('/notifications', 'user.settings.notifications')->name('notifications')->middleware('verified');
     Route::get('/password', [User\SettingController::class, 'password'])->name('password')->middleware('verified');
     Route::put('/password', [User\SettingController::class, 'updatePassword'])->name('password.update');
 });
@@ -81,6 +87,9 @@ Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () 
     Route::get('/discussions', [User\DashboardController::class, 'discussions'])->name('discussions.me');
 });
 Route::get('/user/{username?}', [User\ProfileController::class, 'show'])->name('profile');
+
+// Notifications
+Route::view('notifications', 'user.notifications')->name('notifications')->middleware('auth');
 
 // Redirect Route
 Route::redirectMap([

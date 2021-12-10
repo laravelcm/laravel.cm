@@ -187,6 +187,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasMany(Discussion::class);
     }
 
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(Subscribe::class);
+    }
+
     public function deleteThreads()
     {
         // We need to explicitly iterate over the threads and delete them
