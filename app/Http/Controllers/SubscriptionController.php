@@ -20,7 +20,7 @@ class SubscriptionController extends Controller
 
     public function redirect($id, $type)
     {
-        $subscribe =  Subscribe::where('subscribeable_id', $id)->where('subscribeable_type', $type)->firstOrFail();
+        $subscribe = Subscribe::where('subscribeable_id', $id)->where('subscribeable_type', $type)->firstOrFail();
 
         return redirect(route_to_reply_able($subscribe->subscribeAble));
     }

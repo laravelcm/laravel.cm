@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\User\Settings;
 
 use App\Models\Subscribe;
-use App\Policies\DiscussionPolicy;
-use App\Policies\ThreadPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;

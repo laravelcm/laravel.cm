@@ -25,7 +25,7 @@ class NotificationIndicator extends Component
         );
 
         return view('livewire.notification-indicator', [
-            'hasNotification' => $this->hasNotification
+            'hasNotification' => $this->hasNotification,
         ]);
     }
 }
