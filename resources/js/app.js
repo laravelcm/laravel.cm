@@ -6,6 +6,7 @@ import './elements'
 import './helpers'
 import './editor'
 import './scrollspy'
+// import './rain'
 
 // Add Alpine to window object.
 window.Alpine = Alpine;
