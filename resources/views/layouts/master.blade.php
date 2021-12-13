@@ -48,11 +48,20 @@
 <body class="antialiased font-mono bg-skin-body">
 
     <div class="relative overflow-hidden min-h-full">
-        <div class="snow"></div>
+        <div class="winter-is-coming">
+
+            <div class="snow snow--near"></div>
+            <div class="snow snow--near snow--alt"></div>
+
+            <div class="snow snow--mid"></div>
+            <div class="snow snow--mid snow--alt"></div>
+
+            <div class="snow snow--far"></div>
+            <div class="snow snow--far snow--alt"></div>
+        </div>
 
         @yield('content')
     </div>
-
 
     <div class="guirlande h-[120px] -top-8" style="background: url('{{ asset('/images/guirlande1.png') }}') repeat-x 300% top"></div>
     <div class="guirlande top-[-75px]" style="background: url('{{ asset('/images/guirlande2.png') }}') repeat-x 70% top"></div>

@@ -44,7 +44,7 @@
 
         <h2>{{ __('Mise en vigueur') }}</h2>
 
-        <p>{!! __("Les cas de comportement abusif, harcelant ou autrement inacceptable peuvent être signalés en contactant le responsable du projet à <a href='mailto:monneylobe@gmail.com'>monneylobe@gmail.com</a>. L'équipe du projet examinera et enquêtera sur toutes les plaintes, et répondra de manière à ce qu'elle juge approprié aux circonstances. L'équipe de projet est tenue de maintenir la confidentialité en ce qui concerne les journalistes d'un incident. De plus amples détails sur les politiques d'application spécifiques peuvent être publiés séparément.") !!}</p>
+        <p>{!! __("Les cas de comportement abusif, harcelant ou autrement inacceptable peuvent être signalés en contactant le responsable du projet via l'adresse <a href='mailto:arthur@laravel.cm'>arthur@laravel.cm</a>. L'équipe du projet examinera et enquêtera sur toutes les plaintes, et répondra de manière à ce qu'elle juge approprié aux circonstances. L'équipe de projet est tenue de maintenir la confidentialité en ce qui concerne les journalistes d'un incident. De plus amples détails sur les politiques d'application spécifiques peuvent être publiés séparément.") !!}</p>
 
         <p>{{ __("Les responsables du projet qui ne respectent pas ou n'appliquent pas le Code de conduite de bonne foi peuvent être confrontés à  des répercussions déterminées par les autres membres de la direction du projet.") }}</p>
 
