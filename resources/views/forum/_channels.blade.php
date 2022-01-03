@@ -27,7 +27,7 @@
                 <div class="-ml-px absolute mt-0.5 top-4 left-1 w-0.5 h-full bg-skin-card" aria-hidden="true"></div>
                 <div class="flex items-center space-x-3">
                     <div class="shrink-0 w-2 h-2 rounded-full" aria-hidden="true" style="background-color: {{ $channel->color }}"></div>
-                    <a href="{{ route('forum.channels', $channel) }}" class="truncate {{ url()->route('forum.channels', $channel) === request()->fullUrl() ? 'text-skin-primary hover:text-skin-primary-hover' : 'text-skin-base hover:text-skin-inverted' }}">
+                    <a href="{{ route('forum.channels', $channel) }}" class="truncate font-medium {{ url()->route('forum.channels', $channel) === request()->fullUrl() ? 'text-skin-primary hover:text-skin-primary-hover' : 'text-skin-inverted-muted hover:text-skin-inverted' }}">
                         {{ $channel->name }}
                     </a>
                 </div>
@@ -36,7 +36,7 @@
                     <ul class="mt-3 ml-8 space-y-2">
                         @foreach($channel->items as $item)
                             <li>
-                                <a href="{{ route('forum.channels', $item) }}" class="truncate {{ url()->route('forum.channels', $item) === request()->fullUrl() ? 'text-skin-primary hover:text-skin-primary-hover' : 'text-skin-base hover:text-skin-inverted font-normal' }}">
+                                <a href="{{ route('forum.channels', $item) }}" class="truncate {{ url()->route('forum.channels', $item) === request()->fullUrl() ? 'text-skin-primary hover:text-skin-primary-hover' : 'text-skin-base hover:text-skin-inverted' }}">
                                     {{ $item->name }}
                                 </a>
                             </li>

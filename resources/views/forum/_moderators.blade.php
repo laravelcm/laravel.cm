@@ -11,10 +11,10 @@
                                     <img class="h-8 w-8 rounded-full" src="{{ $moderator->profile_photo_url }}" alt="">
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-skin-inverted truncate font-sans">
+                                    <p class="text-sm font-medium text-skin-inverted truncate">
                                         {{ $moderator->name }}
                                     </p>
-                                    <p class="text-sm text-skin-base truncate font-normal">
+                                    <p class="text-sm text-skin-base truncate">
                                         {{ '@' . $moderator->username }}
                                     </p>
                                 </div>
