@@ -11,6 +11,7 @@ function withOpacity(variableName) {
 }
 
 module.exports = {
+  darkMode: 'class',
   presets: [
     require('./vendor/wireui/wireui/tailwind.config.js')
   ],
