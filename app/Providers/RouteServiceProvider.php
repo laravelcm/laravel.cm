@@ -48,6 +48,12 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+            Route::middleware(['web', 'auth', 'role:moderator|admin'])
+                ->namespace($this->namespace)
+                ->prefix('cpanel')
+                ->as('cpanel.')
+                ->group(base_path('routes/cpanel.php'));
         });
 
         Route::macro('redirectMap', function ($map, $status = 302) {
