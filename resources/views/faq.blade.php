@@ -104,7 +104,7 @@
             <div class="bg-skin-card p-6 rounded-md mt-4">
                 <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je suivre les Flux RSS sur Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5">
-                    <p>Oui, vous pouvez. Le lien de notre flux principal se trouve ici : <a href="https://laravel.cm/feed">https://laravel.cm/feed</a>. Pour les flux spécifiques aux utilisateurs, vous pouvez les trouver via https://laravel.cm/feed/username.</p>
+                    <p>Oui, vous pouvez. Le lien de notre flux principal se trouve ici : <a href="{{ config('app.url') }}/feed">{{ config('app.url') }}/feed</a>. Pour les flux spécifiques aux utilisateurs, vous pouvez les trouver via https://laravel.cm/feed/username.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
@@ -211,7 +211,7 @@
             <div class="bg-skin-card p-6 rounded-md mt-4">
                 <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je suivre les Flux RSS sur Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5">
-                    <p>Oui, vous pouvez. Le lien de notre flux principal se trouve ici : <a href="https://laravel.cm/feed">https://laravel.cm/feed</a>. Pour les flux spécifiques aux utilisateurs, vous pouvez les trouver via https://laravel.cm/feed/username.</p>
+                    <p>Oui, vous pouvez. Le lien de notre flux principal se trouve ici : <a href="{{ config('app.url') }}/feed">{{ config('app.url') }}/feed</a>. Pour les flux spécifiques aux utilisateurs, vous pouvez les trouver via https://laravel.cm/feed/username.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">
@@ -313,7 +313,7 @@
             <div class="bg-skin-card p-6 rounded-md mt-4">
                 <h3 class="font-semibold text-skin-inverted font-sans mb-2">Puis-je suivre les Flux RSS sur Laravel.cm?</h3>
                 <div class="prose prose-sm leading-5">
-                    <p>Oui, vous pouvez. Le lien de notre flux principal se trouve ici : <a href="https://laravel.cm/feed">https://laravel.cm/feed</a>. Pour les flux spécifiques aux utilisateurs, vous pouvez les trouver via https://laravel.cm/feed/username.</p>
+                    <p>Oui, vous pouvez. Le lien de notre flux principal se trouve ici : <a href="{{ config('app.url') }}/feed">{{ config('app.url') }}/feed</a>. Pour les flux spécifiques aux utilisateurs, vous pouvez les trouver via https://laravel.cm/feed/username.</p>
                 </div>
             </div>
             <div class="bg-skin-card p-6 rounded-md mt-4">

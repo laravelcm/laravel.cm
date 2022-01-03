@@ -220,8 +220,8 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
             ->title($this->title)
             ->summary($this->body)
             ->updated($updatedAt)
-            ->link(route('thread', $this->slug))
-            ->authorName($this->user->name);
+            ->link(route('forum.show', $this->slug))
+            ->authorName($this->author->name);
     }
 
     /**
