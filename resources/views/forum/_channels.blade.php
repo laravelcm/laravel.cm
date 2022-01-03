@@ -26,7 +26,7 @@
             <li class="relative {{ $loop->last ?: 'pb-4' }}">
                 <div class="-ml-px absolute mt-0.5 top-4 left-1 w-0.5 h-full bg-skin-card" aria-hidden="true"></div>
                 <div class="flex items-center space-x-3">
-                    <div class="flex-shrink-0 w-2 h-2 rounded-full" aria-hidden="true" style="background-color: {{ $channel->color }}"></div>
+                    <div class="shrink-0 w-2 h-2 rounded-full" aria-hidden="true" style="background-color: {{ $channel->color }}"></div>
                     <a href="{{ route('forum.channels', $channel) }}" class="truncate {{ url()->route('forum.channels', $channel) === request()->fullUrl() ? 'text-skin-primary hover:text-skin-primary-hover' : 'text-skin-base hover:text-skin-inverted' }}">
                         {{ $channel->name }}
                     </a>

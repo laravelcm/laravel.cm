@@ -117,7 +117,7 @@
                     <div class="flex items-center justify-between">
                         <x-dynamic-component
                             :component="WireUiComponent::resolve('button')"
-                            class="rounded-lg flex-shrink-0"
+                            class="rounded-lg shrink-0"
                             x-show="!monthsPicker"
                             x-on:click="previousMonth"
                             icon="chevron-left"
@@ -140,7 +140,7 @@
 
                         <x-dynamic-component
                             :component="WireUiComponent::resolve('button')"
-                            class="rounded-lg flex-shrink-0"
+                            class="rounded-lg shrink-0"
                             x-show="!monthsPicker"
                             x-on:click="nextMonth"
                             icon="chevron-right"

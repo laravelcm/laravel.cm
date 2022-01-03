@@ -5,7 +5,7 @@
         <div>
             <div class="lg:flex lg:space-x-3">
                 <div class="flex-1 flex items-center space-x-3">
-                    <div class="flex-shrink-0">
+                    <div class="shrink-0">
                         <img class="h-8 w-8 rounded-full" src="{{ $thread->author->profile_photo_url }}" alt="">
                     </div>
                     <div class="min-w-0 flex-1">
@@ -20,7 +20,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="mt-2 lg:mt-0 flex-shrink-0 self-center">
+                <div class="mt-2 lg:mt-0 shrink-0 self-center">
                     @if (count($channels = $thread->channels->load('parent')))
                         <div class="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-3">
                             @foreach ($channels as $channel)

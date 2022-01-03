@@ -47,7 +47,7 @@
                                          dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
                                 ">
                                 <span style="max-width: 5rem" class="truncate" x-text="selected.label"></span>
-                                <button class="flex-shrink-0 h-4 w-4 flex items-center text-secondary-400
+                                <button class="shrink-0 h-4 w-4 flex items-center text-secondary-400
                                                justify-center hover:text-secondary-500 focus:outline-none"
                                         x-on:click.stop="unSelect(selected.value)"
                                         type="button">

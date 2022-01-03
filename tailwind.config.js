@@ -11,27 +11,21 @@ function withOpacity(variableName) {
 }
 
 module.exports = {
-  mode: 'jit',
   presets: [
-    require('./vendor/ph7jack/wireui/tailwind.config.js')
+    require('./vendor/wireui/wireui/tailwind.config.js')
   ],
-  purge: {
-    content: [
-      './app/**/*.php',
-      './resources/**/*.blade.php',
-      './resources/**/*.{js,jsx}',
-      './storage/framework/views/*.php',
+  content: [
+    './app/**/*.php',
+    './resources/**/*.blade.php',
+    './resources/**/*.{js,jsx}',
+    './storage/framework/views/*.php',
 
-      './vendor/livewire-ui/modal/resources/views/*.blade.php',
-      './vendor/ph7jack/wireui/resources/**/*.blade.php',
-      './vendor/ph7jack/wireui/ts/**/*.ts',
-      './vendor/ph7jack/wireui/src/View/**/*.php',
-    ],
-    options: {
-      safelist: [/^media-library/],
-    },
-  },
-  darkMode: false, // or 'media' or 'class'
+    './vendor/wire-elements/modal/resources/views/*.blade.php',
+    './vendor/wireui/wireui/resources/**/*.blade.php',
+    './vendor/wireui/wireui/ts/**/*.ts',
+    './vendor/wireui/wireui/src/View/**/*.php',
+  ],
+  safelist: [/^media-library/],
   theme: {
     extend: {
       colors: {
@@ -43,8 +37,8 @@ module.exports = {
         black: '#161B22',
         body: 'rgb(var(--color-body-fill))',
         card: 'rgb(var(--color-card-fill))',
-        primary: colors.green,
-        rose: colors.rose,
+        primary: colors.emerald,
+        green: colors.emerald,
       },
       fontFamily: {
         mono: ['Operator Mono', ...defaultTheme.fontFamily.mono],
@@ -148,9 +142,6 @@ module.exports = {
         90: '22.5rem'
       }
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),

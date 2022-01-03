@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto px-2 sm:px-4">
         <div class="flex justify-between h-16">
             <div class="flex px-2 lg:px-0">
-                <div class="flex-shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
                         <x-application-icon class="block h-8 w-auto sm:h-9" />
                     </a>
@@ -40,7 +40,7 @@
                                 <div class="relative grid gap-6 bg-skin-card px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
 
                                     <a href="https://snippets.laravel.cm" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
+                                        <div class="shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
                                             <svg class="h-6 w-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M20.228 5.202l-6.46-3.73a3.547 3.547 0 0 0-3.537 0l-6.46 3.73A3.555 3.555 0 0 0 2 8.273v7.454c0 1.263.679 2.44 1.772 3.07l6.46 3.73c1.09.63 2.446.63 3.537 0l6.46-3.73A3.555 3.555 0 0 0 22 15.728V8.273c0-1.263-.679-2.44-1.772-3.07zm.055 10.525c0 .65-.35 1.257-.912 1.582l-6.46 3.73a1.827 1.827 0 0 1-1.822 0l-6.46-3.73a1.831 1.831 0 0 1-.912-1.582V8.273c0-.65.35-1.257.912-1.582l6.46-3.73a1.827 1.827 0 0 1 1.822 0l6.46 3.73c.563.325.912.931.912 1.582v7.454z" />
                                                 <path d="M11.184 11.344L7.996 8.643a.858.858 0 0 0-1.21.1.86.86 0 0 0 .101 1.212L9.301 12l-2.414 2.045a.86.86 0 0 0-.1 1.211.858.858 0 0 0 1.21.101l3.187-2.7a.86.86 0 0 0 0-1.313zm5.374 2.498h-3.862a.859.859 0 0 0 0 1.719h3.862a.859.859 0 0 0 0-1.72z" />
@@ -57,7 +57,7 @@
                                     </a>
 
                                     <a href="{{ route('rules') }}" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
+                                        <div class="shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
                                             <x-heroicon-o-bookmark-alt class="h-6 w-6" />
                                         </div>
                                         <div class="ml-4">
@@ -71,7 +71,7 @@
                                     </a>
 
                                     <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
+                                        <div class="shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
                                             <svg class="h-6 w-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M13.656 21.714a9.954 9.954 0 0 1-3.178.022c-.334-1.438-.975-5.224-.66-6.366.28-1.02 1.894-1.161 2.246-1.161.352 0 1.966.14 2.248 1.161.313 1.136-.32 4.89-.656 6.344zM12 13.39a2.148 2.148 0 1 0 0-4.295 2.148 2.148 0 0 0 0 4.295z" />
                                                 <path d="M12 6.055A5.952 5.952 0 0 0 6.055 12a5.945 5.945 0 0 0 2.697 4.977c-.032-.575-.03-1.1.027-1.516A4.715 4.715 0 0 1 7.27 12 4.736 4.736 0 0 1 12 7.27 4.736 4.736 0 0 1 16.73 12a4.716 4.716 0 0 1-1.396 3.353c.069.409.078.943.048 1.533A5.94 5.94 0 0 0 17.945 12 5.952 5.952 0 0 0 12 6.055z" />
@@ -89,7 +89,7 @@
                                     </a>
 
                                     <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
+                                        <div class="shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
                                             <x-heroicon-o-badge-check class="h-6 w-6" />
                                         </div>
                                         <div class="ml-4">
@@ -103,7 +103,7 @@
                                     </a>
 
                                     <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-br from-flag-yellow to-flag-red text-white sm:h-12 sm:w-12">
+                                        <div class="shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-br from-flag-yellow to-flag-red text-white sm:h-12 sm:w-12">
                                             <svg class="h-6 w-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M23 9.04c0-1.249-1.051-2.27-2.335-2.27-1.285 0-2.336 1.021-2.336 2.27 0 .703.35 1.36.888 1.77l-3.083 2.29-2.99-3.857c.724-.386 1.215-1.135 1.215-1.975C14.359 6.021 13.308 5 12.023 5 10.74 5 9.688 6.021 9.688 7.27c0 .839.467 1.588 1.191 1.974L7.633 13.1 4.76 10.832c.537-.408.91-1.066.91-1.793 0-1.248-1.05-2.269-2.335-2.269C2.051 6.77 1 7.791 1 9.04c0 1.111.817 2.042 1.915 2.223l1.121 5.696v2.36c0 .386.304.681.7.681h14.527c.397 0 .7-.295.7-.68v-2.36l1.122-5.697C22.183 11.082 23 10.151 23 9.04zm-2.335-.908c.513 0 .934.408.934.907 0 .5-.42.908-.934.908s-.935-.408-.935-.908c0-.499.42-.907.934-.907zM12 6.339c.514 0 .934.408.934.908 0 .499-.42.907-.934.907s-.934-.408-.934-.907c0-.5.42-.908.934-.908zm-4.18 8.396a.727.727 0 0 0 .467-.25l3.69-4.47 3.456 4.448c.117.136.28.25.467.272a.683.683 0 0 0 .514-.136l3.036-2.247-.77 3.858H5.32l-.747-3.79 2.733 2.156c.14.114.327.182.514.16zM2.4 9.04c0-.499.42-.907.934-.907s.935.408.935.907c0 .5-.42.908-.935.908-.513 0-.934-.408-.934-.908zm3.036 9.6v-1.067h13.126v1.066H5.437z" />
                                             </svg>
@@ -119,7 +119,7 @@
                                     </a>
 
                                     <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
+                                        <div class="shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
                                             <x-heroicon-o-briefcase class="h-6 w-6" />
                                         </div>
                                         <div class="ml-4">
@@ -155,16 +155,16 @@
             </div>
             <div class="hidden lg:ml-6 lg:flex lg:items-center">
                 @auth
-                    <a href="{{ route('notifications') }}" class="relative flex-shrink-0 hover:bg-skin-body p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
+                    <a href="{{ route('notifications') }}" class="relative shrink-0 hover:bg-skin-body p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <span class="sr-only">{{ __('Voir les notifications') }}</span>
                         <x-heroicon-o-bell class="h-5 w-5"/>
                         <livewire:notification-indicator />
                     </a>
 
                     <!-- Add actions dropdown -->
-                    <div x-data="{ open: false }" @keydown.escape.stop="open = false;" @click.outside="open = false;" class="ml-4 relative flex-shrink-0">
+                    <div x-data="{ open: false }" @keydown.escape.stop="open = false;" @click.outside="open = false;" class="ml-4 relative shrink-0">
                         <div>
-                            <button type="button" class="flex-shrink-0 bg-skin-card p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500" x-ref="button" @click="open =! open">
+                            <button type="button" class="shrink-0 bg-skin-card p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500" x-ref="button" @click="open =! open">
                                 <x-heroicon-o-plus class="h-5 w-5" />
                             </button>
                         </div>
@@ -204,7 +204,7 @@
                     </div>
 
                     <!-- Profile dropdown -->
-                    <div @keydown.escape.stop="open = false;" @click.outside="open = false;" class="ml-4 relative flex-shrink-0">
+                    <div @keydown.escape.stop="open = false;" @click.outside="open = false;" class="ml-4 relative shrink-0">
                         <div>
                             <button type="button" class="bg-skin-menu rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" id="user-menu-button" x-ref="button" @click="open =! open"  aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()">
                                 <span class="sr-only">Open user menu</span>
@@ -336,14 +336,14 @@
         <div class="pt-4 pb-3 border-t border-skin-light">
             @auth
                 <div class="flex items-center px-4">
-                    <div class="flex-shrink-0">
+                    <div class="shrink-0">
                         <img class="h-10 w-10 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
                     </div>
                     <div class="ml-3">
                         <div class="text-base font-medium text-skin-inverted">{{ Auth::user()->name }}</div>
                         <div class="text-sm font-medium text-skin-muted">{{ Auth::user()->email }}</div>
                     </div>
-                    <button class="ml-auto flex-shrink-0 bg-skin-card p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    <button class="ml-auto shrink-0 bg-skin-card p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                         <span class="sr-only">{{ __('Voir les notifications') }}</span>
                         <x-heroicon-o-bell  class="h-6 w-6"/>
                     </button>

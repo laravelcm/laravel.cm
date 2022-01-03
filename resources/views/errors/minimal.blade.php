@@ -19,7 +19,7 @@
 <body class="antialiased font-mono bg-skin-body">
 
     <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex-shrink-0 pt-16">
+        <div class="shrink-0 pt-16">
             <img class="mx-auto h-12 w-auto sm:h-16 logo-white" src="{{ asset('/images/laravelcm.svg') }}" alt="Laravel.cm">
             <img class="mx-auto h-12 w-auto sm:h-16 logo-dark" src="{{ asset('/images/laravelcm-white.svg') }}" alt="Laravel.cm">
         </div>
@@ -33,7 +33,7 @@
                 <h2 class="text-sm font-semibold text-skin-base tracking-wide uppercase font-sans">Pages Populaires</h2>
                 <ul role="list" class="mt-4 border-t border-b border-skin-base divide-y divide-skin-base">
                     <li class="relative py-6 flex items-start space-x-4">
-                        <div class="flex-shrink-0">
+                        <div class="shrink-0">
                             <span class="flex items-center justify-center h-12 w-12 rounded-lg bg-green-50">
                                 <x-heroicon-o-book-open class="h-6 w-6 text-green-700" />
                             </span>
@@ -49,13 +49,13 @@
                             </h3>
                             <p class="text-base text-skin-base font-normal">Apprenez, découvrez, partagez dans le Forum.</p>
                         </div>
-                        <div class="flex-shrink-0 self-center">
+                        <div class="shrink-0 self-center">
                             <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />
                         </div>
                     </li>
 
                     <li class="relative py-6 flex items-start space-x-4">
-                        <div class="flex-shrink-0">
+                        <div class="shrink-0">
                             <span class="flex items-center justify-center h-12 w-12 rounded-lg bg-green-50">
                                 <x-heroicon-o-microphone class="h-6 w-6 text-green-700" />
                             </span>
@@ -71,13 +71,13 @@
                             </h3>
                             <p class="text-base text-skin-base font-normal">Des émissions radios pour la culture.</p>
                         </div>
-                        <div class="flex-shrink-0 self-center">
+                        <div class="shrink-0 self-center">
                             <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />
                         </div>
                     </li>
 
                     <li class="relative py-6 flex items-start space-x-4">
-                        <div class="flex-shrink-0">
+                        <div class="shrink-0">
                           <span class="flex items-center justify-center h-12 w-12 rounded-lg bg-green-50">
                               <x-heroicon-o-bookmark-alt class="h-6 w-6 text-green-700" />
                           </span>
@@ -93,13 +93,13 @@
                             </h3>
                             <p class="text-base text-skin-base font-normal">Guide d'utilisation et paramétrage du site.</p>
                         </div>
-                        <div class="flex-shrink-0 self-center">
+                        <div class="shrink-0 self-center">
                             <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />
                         </div>
                     </li>
 
                     <li class="relative py-6 flex items-start space-x-4">
-                        <div class="flex-shrink-0">
+                        <div class="shrink-0">
                             <span class="flex items-center justify-center h-12 w-12 rounded-lg bg-green-50">
                                 <x-heroicon-o-rss class="h-6 w-6 text-green-700" />
                             </span>
@@ -115,7 +115,7 @@
                             </h3>
                             <p class="text-base text-skin-base font-normal">Lisez les dernières nouvelles et articles.</p>
                         </div>
-                        <div class="flex-shrink-0 self-center">
+                        <div class="shrink-0 self-center">
                             <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />
                         </div>
                     </li>

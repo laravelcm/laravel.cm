@@ -16,7 +16,7 @@
                 <div>
                     <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase font-sans">A propos de l’auteur</h4>
                     <div class="mt-6 space-y-4">
-                        <a href="{{ route('profile', $author->username) }}" class="flex-shrink-0 block">
+                        <a href="{{ route('profile', $author->username) }}" class="shrink-0 block">
                             <div class="flex items-center">
                                 <div>
                                     <img class="inline-block h-9 w-9 rounded-full" src="{{ $author->profile_photo_url }}" alt="{{ $author->username }}">
@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 <h1 class="text-2xl font-extrabold text-skin-inverted tracking-tight font-sans sm:text-3xl sm:leading-10 md:text-4xl lg:text-5xl lg:leading-[3.5rem]">{{ $article->title }}</h1>
-                <a href="/user/{{ $article->author->username }}" class="mt-3 flex-shrink-0 group block lg:hidden">
+                <a href="/user/{{ $article->author->username }}" class="mt-3 shrink-0 group block lg:hidden">
                     <div class="flex items-center">
                         <div>
                             <img class="inline-block h-8 w-8 rounded-full" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->username }}">
@@ -138,7 +138,7 @@
 
             <div class="mt-6 pt-5 border-t border-skin-base sm:hidden">
                 <div class="space-y-4">
-                    <a href="{{ route('profile', $author->username) }}" class="flex-shrink-0 block">
+                    <a href="{{ route('profile', $author->username) }}" class="shrink-0 block">
                         <div class="flex items-center">
                             <div>
                                 <img class="inline-block h-9 w-9 rounded-full" src="{{ $author->profile_photo_url }}" alt="{{ $author->username }}">

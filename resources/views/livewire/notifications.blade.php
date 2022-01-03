@@ -30,7 +30,7 @@
             <ul role="list" class="mt-6 border-t border-b border-skin-base divide-y divide-skin-base">
                 <li>
                     <div class="relative group py-4 flex items-start space-x-3">
-                        <div class="flex-shrink-0">
+                        <div class="shrink-0">
                             <span class="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-flag-green">
                                 <x-heroicon-o-rss class="h-6 w-6 text-white"/>
                             </span>
@@ -44,7 +44,7 @@
                             </div>
                             <p class="text-sm text-skin-base font-normal">Partager un tutoriel ou une information importante.</p>
                         </div>
-                        <div class="flex-shrink-0 self-center">
+                        <div class="shrink-0 self-center">
                             <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted group-hover:text-skin-base" />
                         </div>
                     </div>
@@ -52,7 +52,7 @@
 
                 <li>
                     <div class="relative group py-4 flex items-start space-x-3">
-                        <div class="flex-shrink-0">
+                        <div class="shrink-0">
                             <span class="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-flag-red">
                                 <x-heroicon-o-chat-alt class="h-6 w-6 text-white"/>
                             </span>
@@ -66,7 +66,7 @@
                             </div>
                             <p class="text-sm text-skin-base font-normal">Vous souhaitez apporter une pierre à l'édifice.</p>
                         </div>
-                        <div class="flex-shrink-0 self-center">
+                        <div class="shrink-0 self-center">
                             <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted group-hover:text-skin-base" />
                         </div>
                     </div>
@@ -74,7 +74,7 @@
 
                 <li>
                     <div class="relative group py-4 flex items-start space-x-3">
-                        <div class="flex-shrink-0">
+                        <div class="shrink-0">
                             <span class="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-yellow-500">
                                 <x-heroicon-s-question-mark-circle class="h-6 w-6 text-white"/>
                             </span>
@@ -88,7 +88,7 @@
                             </div>
                             <p class="text-sm text-skin-base font-normal">Vous avez un problème? Trouvons ensemble une solution.</p>
                         </div>
-                        <div class="flex-shrink-0 self-center">
+                        <div class="shrink-0 self-center">
                             <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted group-hover:text-skin-base" />
                         </div>
                     </div>

@@ -27,7 +27,7 @@
                                 Rejoindre la communauté
                             </x-button>
                         @endauth
-                        <x-default-button :link="route('forum.index')" class="mt-3 w-full sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto text-base font-normal">
+                        <x-default-button :link="route('forum.index')" class="mt-3 w-full sm:mt-0 sm:ml-3 sm:shrink-0 sm:inline-flex sm:items-center sm:w-auto text-base font-normal">
                             Visiter le Forum
                         </x-default-button>
                     </div>

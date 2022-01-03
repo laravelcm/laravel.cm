@@ -7,7 +7,7 @@
                     @foreach($moderators as $moderator)
                         <li class="py-4">
                             <div class="flex items-center space-x-4">
-                                <div class="flex-shrink-0">
+                                <div class="shrink-0">
                                     <img class="h-8 w-8 rounded-full" src="{{ $moderator->profile_photo_url }}" alt="">
                                 </div>
                                 <div class="flex-1 min-w-0">

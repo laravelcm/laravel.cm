@@ -44,7 +44,7 @@
                         <span>dans</span>
                     </div>
                     <div class="mt-2 sm:mt-0 sm:ml-2 self-center flex items-center space-x-2">
-                        <div class="flex-shrink-0">
+                        <div class="shrink-0">
                             @if (count($channels = $thread->channels->load('parent')))
                                 <div class="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-2">
                                     @foreach ($channels as $channel)

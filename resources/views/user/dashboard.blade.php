@@ -72,7 +72,7 @@
 
                         <div class="flex items-center justify-between mt-6">
                             <div class="flex items-center">
-                                <a href="{{ route('profile', $article->author->username) }}" class="flex-shrink-0">
+                                <a href="{{ route('profile', $article->author->username) }}" class="shrink-0">
                                     <img class="h-10 w-10 rounded-full"
                                          src="{{ $article->author->profile_photo_url }}"
                                          alt="{{ $article->author->username }}">

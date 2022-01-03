@@ -1252,7 +1252,7 @@
             for (let i = 0; i < peoplesResults.length; i++) {
                 peopleContents += `<li class="group p-3 hover:bg-skin-primary">
                     <button type="button" onclick="addAdditionalContent('@${peoplesResults[i]['username']}', '${event.detail.key}')" class="w-full flex items-center">
-                        <img class="flex-shrink-0 h-6 w-6 rounded-full" src="${peoplesResults[i]['picture']}" alt="">
+                        <img class="shrink-0 h-6 w-6 rounded-full" src="${peoplesResults[i]['picture']}" alt="">
                         <span class="ml-3 block truncate text-sm font-medium text-skin-inverted group-hover:text-white">
                           ${peoplesResults[i]['name']} <span class="text-sm text-skin-muted font-normal group-hover:text-green-200">@${peoplesResults[i]['username']}</span>
                         </span>

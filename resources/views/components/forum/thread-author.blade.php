@@ -2,7 +2,7 @@
 
 <div class="bg-skin-card rounded-lg shadow">
     <div class="w-full flex items-center justify-between pt-4 px-4 space-x-3">
-        <img class="w-8 h-8 bg-skin-card-gray rounded-full flex-shrink-0" src="{{ $author->profile_photo_url }}" alt="">
+        <img class="w-8 h-8 bg-skin-card-gray rounded-full shrink-0" src="{{ $author->profile_photo_url }}" alt="">
         <div class="flex-1 truncate">
             <div class="flex items-center space-x-3">
                 <a href="{{ route('profile', $author->username) }}" class="text-skin-inverted text-sm font-medium truncate">{{ $author->name }}</a>

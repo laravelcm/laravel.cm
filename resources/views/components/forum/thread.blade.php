@@ -3,7 +3,7 @@
 <div class="mt-5 thread bg-skin-card shadow rounded-md p-3 sm:p-4">
     @canany([App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE], $thread)
         <div class="flex items-center justify-end mb-4">
-            <div class="flex-shrink-0 self-center flex">
+            <div class="shrink-0 self-center flex">
                 <div x-data="{ open: false }"  @keydown.escape.stop="open = false;" @click.away="open = false" class="relative inline-block text-left">
                     <div>
                         <button type="button"

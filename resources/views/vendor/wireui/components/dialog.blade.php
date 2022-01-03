@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="space-y-4" :class="{ 'sm:space-x-4 sm:flex sm:items-center sm:space-y-0 sm:px-5 sm:py-2': style === 'inline' }">
-                    <div class="mx-auto flex items-center self-start justify-center flex-shrink-0"
+                    <div class="mx-auto flex items-center self-start justify-center shrink-0"
                          :class="{ 'sm:items-start sm:mx-0': style === 'inline' }"
                          x-show="dialog && dialog.icon">
                         <div x-ref="iconContainer"></div>

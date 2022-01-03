@@ -6,14 +6,14 @@
 
 <div x-data="{ focused: false }" class="relative w-full h-56 overflow-hidden">
     @if($preview && ! $file)
-        <div class="relative flex-shrink-0 rounded-md overflow-hidden">
+        <div class="relative shrink-0 rounded-md overflow-hidden">
             <img class="h-56 w-full object-cover rounded-md" src="{{ $preview }}" alt="" />
             <div class="absolute top-0 right-0 z-20 flex justify-center w-5 h-5 mt-2 mr-2 text-sm leading-tight text-white bg-gray-700 rounded-full opacity-25 cursor-pointer hover:opacity-50" wire:click="$set('preview', '')">×</div>
         </div>
     @endif
 
     @if($file)
-        <div class="relative flex-shrink-0 rounded-md overflow-hidden">
+        <div class="relative shrink-0 rounded-md overflow-hidden">
             <img class="h-56 w-full object-cover rounded-md" src="{{ $file->temporaryUrl() }}" alt="" />
             <div class="absolute top-0 right-0 z-20 flex justify-center w-5 h-5 mt-2 mr-2 text-sm leading-tight text-white bg-gray-700 rounded-full opacity-25 cursor-pointer hover:opacity-50" wire:click="$set('file', '')">×</div>
         </div>

@@ -32,7 +32,7 @@
             @empty
                 <div class="grid sm:col-span-2 lg:col-span-3 max-w-4xl">
                     <div class="bg-skin-card-gray px-4 py-3 flex rounded-md">
-                        <div class="flex-shrink-0">
+                        <div class="shrink-0">
                             <x-heroicon-o-information-circle class="h-5 w-5 text-blue-500"/>
                         </div>
                         <div class="ml-3 flex-1 text-skin-base font-normal">

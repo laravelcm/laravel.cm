@@ -7,7 +7,7 @@
                 <a href="{{ route('discussions.show', $discussion) }}" class="hover:text-skin-primary">{{ $discussion->title }}</a>
             </h2>
         </div>
-        <div class="mt-2 lg:mt-0 flex-shrink-0 self-start">
+        <div class="mt-2 lg:mt-0 shrink-0 self-start">
             @if (count($tags = $discussion->tags))
                 <div class="flex flex-wrap gap-2 lg:gap-x-3">
                     @foreach ($tags as $tag)
@@ -22,7 +22,7 @@
     </p>
     <div class="mt-3 sm:flex sm:justify-between">
         <div class="flex items-center text-sm font-sans text-skin-muted">
-            <a class="flex-shrink-0" href="/user/{{ $discussion->author->username }}">
+            <a class="shrink-0" href="/user/{{ $discussion->author->username }}">
                 <img class="h-6 w-6 rounded-full" src="{{ $discussion->author->profile_photo_url }}" alt="{{ $discussion->author->name }}">
             </a>
             <span class="ml-2 pr-1">Posté par</span>

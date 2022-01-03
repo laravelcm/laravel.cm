@@ -102,7 +102,7 @@
                             <x-email id="mce-EMAIL" name="EMAIL" autocomplete="email" required placeholder="{{ __('Entrer votre adresse email') }}" aria-label="{{ __('Adresse E-mail') }}" class="w-full block" />
                             <input type="hidden" name="b_0642d391e4785535c232a8c66_6ff87af677" tabindex="-1" value="">
                         </div>
-                        <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                        <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:shrink-0">
                             <x-button type="submit" class="block w-full">
                                 {{__('S\'inscrire')}}
                             </x-button>
