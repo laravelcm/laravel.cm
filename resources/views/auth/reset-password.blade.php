@@ -7,7 +7,7 @@
     <div class="flex items-center justify-center min-h-full py-16 sm:py-24">
         <div class="max-w-md w-full">
             <div>
-                <h2 class="text-center text-3xl font-extrabold text-skin-inverted font-sans sm:text-left">
+                <h2 class="text-center text-3xl font-extrabold text-skin-inverted font-mono sm:text-left">
                     {{ __('Réinitialiser votre mot de passe') }}
                 </h2>
             </div>

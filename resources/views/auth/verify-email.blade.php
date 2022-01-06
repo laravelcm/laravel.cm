@@ -11,7 +11,7 @@
         </div>
 
         <div class="w-full sm:max-w-md lg:max-w-xl mt-6 lg:mt-10">
-            <div class="mb-4 text-sm text-skin-base font-normal text-center">
+            <div class="mb-4 text-sm text-skin-base text-center">
                 {{ __('Merci pour votre inscription! Avant de commencer, pourriez-vous vérifier votre adresse e-mail en cliquant sur le lien que nous venons de vous envoyer par e-mail? Si vous n\'avez pas reçu l\'e-mail, nous nous ferons un plaisir de vous en envoyer un autre.') }}
             </div>
 

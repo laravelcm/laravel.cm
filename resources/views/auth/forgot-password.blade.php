@@ -9,7 +9,7 @@
             <div>
                 <x-status-message class="mb-5" />
 
-                <h2 class="text-center text-3xl font-extrabold text-skin-inverted font-sans sm:text-left">
+                <h2 class="text-center text-3xl font-extrabold text-skin-inverted font-sans sm:text-left font-mono">
                     {{ __('Réinitialisation du mot de passe') }}
                 </h2>
                 <div class="mt-4 text-sm text-skin-base font-normal">

@@ -15,8 +15,8 @@
                         <x-icon.podcast class="absolute h-6 w-6"/>
                     </dt>
                     <dd class="mt-2 ml-9 text-base text-skin-base">
-                        <span class="text-skin-inverted">{{ __('Podcast') }}.</span>
-                        <span class="font-normal">
+                        <span class="text-skin-inverted font-medium">{{ __('Podcast') }}.</span>
+                        <span>
                             {{ __('Suivez des podcasts sur différentes thématiques avec des freelances, développeurs, entrepreneurs etc.') }}
                         </span>
                     </dd>
@@ -26,8 +26,8 @@
                         <x-icon.discussion class="absolute h-6 w-6"/>
                     </dt>
                     <dd class="mt-2 ml-9 text-base text-skin-base">
-                        <span class="text-skin-inverted">{{ __('Discussions') }}.</span>
-                        <span class="font-normal">
+                        <span class="text-skin-inverted font-medium">{{ __('Discussions') }}.</span>
+                        <span>
                             {{ __('Participez a des discussions et débats ouverts avec plusieurs autres participants.') }}
                         </span>
                     </dd>
@@ -37,8 +37,8 @@
                         <x-icon.code-snippet class="absolute h-6 w-6" />
                     </dt>
                     <dd class="mt-2 ml-9 text-base text-skin-base">
-                        <span class="text-skin-inverted">{{ __('Code Snippets') }}.</span>
-                        <span class="font-normal">
+                        <span class="text-skin-inverted font-medium">{{ __('Code Snippets') }}.</span>
+                        <span>
                             {{ __("Partagez des codes sources de différents langages pour venir en aide a d’autres développeurs.") }}
                         </span>
                     </dd>
@@ -48,8 +48,8 @@
                         <x-icon.premium class="absolute h-6 w-6"/>
                     </dt>
                     <dd class="mt-2 ml-9 text-base text-skin-base">
-                        <span class="text-skin-inverted">{{ __('Premium') }}.</span>
-                        <span class="font-normal">
+                        <span class="text-skin-inverted font-medium">{{ __('Premium') }}.</span>
+                        <span>
                             {{ __('Devenez premium, supporter la communauté et accéder à des contenus et codes sources privés.') }}
                         </span>
                     </dd>
@@ -58,7 +58,7 @@
         </div>
         <div class="mx-auto max-w-md lg:mx-0 space-y-8">
             <div class="space-y-3">
-                <h2 class="text-center text-3xl font-extrabold text-skin-inverted font-sans">
+                <h2 class="text-center text-3xl font-extrabold text-skin-inverted font-mono">
                     {{ __('Rejoindre Laravel Cameroun') }}
                 </h2>
                 <x-profile-users />

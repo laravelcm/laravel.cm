@@ -14,7 +14,7 @@
         <div class="hidden lg:block lg:col-span-2">
             <div class="divide-y divide-skin-base sticky space-y-6 top-4">
                 <div>
-                    <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase font-sans">A propos de l’auteur</h4>
+                    <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase">A propos de l’auteur</h4>
                     <div class="mt-6 space-y-4">
                         <a href="{{ route('profile', $author->username) }}" class="shrink-0 block">
                             <div class="flex items-center">
@@ -22,17 +22,17 @@
                                     <img class="inline-block h-9 w-9 rounded-full" src="{{ $author->profile_photo_url }}" alt="{{ $author->username }}">
                                 </div>
                                 <div class="ml-3">
-                                    <p class="text-sm font-medium text-skin-inverted font-sans">
+                                    <p class="text-sm font-medium text-skin-inverted">
                                         {{ $author->name }}
                                     </p>
-                                    <p class="text-xs font-medium text-skin-muted font-sans">
+                                    <p class="text-xs font-medium text-skin-muted">
                                         {{ '@' . $author->username }}
                                     </p>
                                 </div>
                             </div>
                         </a>
                         @if($author->bio)
-                            <p class="text-sm text-skin-base leading-5 font-normal">{{ $author->bio }}</p>
+                            <p class="text-sm text-skin-base leading-5">{{ $author->bio }}</p>
                         @endif
                         <div class="flex space-x-3">
 
@@ -111,16 +111,16 @@
                     </div>
                 </div>
                 <h1 class="text-2xl font-extrabold text-skin-inverted tracking-tight font-sans sm:text-3xl sm:leading-10 md:text-4xl lg:text-5xl lg:leading-[3.5rem]">{{ $article->title }}</h1>
-                <a href="/user/{{ $article->author->username }}" class="mt-3 shrink-0 group block lg:hidden">
+                <a href="{{ route('profile', $article->author->username) }}" class="mt-3 shrink-0 group block lg:hidden">
                     <div class="flex items-center">
                         <div>
                             <img class="inline-block h-8 w-8 rounded-full" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->username }}">
                         </div>
                         <div class="ml-3">
-                            <p class="text-sm font-medium text-skin-base">
+                            <p class="text-sm font-medium text-skin-inverted">
                                 {{ $article->author->name }}
                             </p>
-                            <p class="text-xs font-medium text-green-500 group-hover:text-skin-primary">
+                            <p class="text-xs text-skin-muted">
                                 {{ '@' . $article->author->username }}
                             </p>
                         </div>
@@ -144,17 +144,17 @@
                                 <img class="inline-block h-9 w-9 rounded-full" src="{{ $author->profile_photo_url }}" alt="{{ $author->username }}">
                             </div>
                             <div class="ml-3">
-                                <p class="text-sm font-medium text-skin-inverted font-sans">
+                                <p class="text-sm font-medium text-skin-inverted">
                                     {{ $author->name }}
                                 </p>
-                                <p class="text-xs font-medium text-skin-muted font-sans">
+                                <p class="text-xs font-medium text-skin-muted font-mono">
                                     {{ '@' . $author->username }}
                                 </p>
                             </div>
                         </div>
                     </a>
                     @if($author->bio)
-                        <p class="text-sm text-skin-base leading-5 font-normal">{{ $author->bio }}</p>
+                        <p class="text-sm text-skin-base leading-5">{{ $author->bio }}</p>
                     @endif
                     <div class="flex space-x-3">
 
@@ -186,7 +186,7 @@
             <div class="py-6">
                 <p class="text-base text-skin-base font-normal">Vous aimez cet article ? Faite le savoir en partageant</p>
                 <div class="mt-4 space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-4">
-                    <a href="https://twitter.com/share?text={{ urlencode('"'.$article->title.'" par '. ($article->author->twitter() ? '@'.$article->author->twitter() : $article->author->name) . ' - ') }}&url={{ urlencode(route('articles.show', $article)) }}"
+                    <a href="https://twitter.com/share?text={{ urlencode('"'.$article->title.'" par '. ($article->author->twitter() ? '@'.$article->author->twitter() : $article->author->name) . ' #caparledev - ') }}&url={{ urlencode(route('articles.show', $article)) }}"
                        class="inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <x-icon.twitter class="h-5 w-5 mr-1.5" />
                         Twitter

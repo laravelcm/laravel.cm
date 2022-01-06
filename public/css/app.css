@@ -3557,18 +3557,6 @@ select {
 }
 .prose :where(p > code, code):not(:where([class~="not-prose"] *)) {
   display: inline-flex;
-  align-items: center;
-  border-radius: .375rem;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  font-weight: 400;
-  padding: .125rem .625rem;
-  color: #065f46;
-  background-color: #d1fae5;
-  font-family: 'Operator Mono', monospace;
-}
-.prose :where(p > code, code, pre):not(:where([class~="not-prose"] *)) {
-  display: inline-flex;
   font-family: 'Operator Mono', monospace;
   align-items: center;
   border-radius: .375rem;
