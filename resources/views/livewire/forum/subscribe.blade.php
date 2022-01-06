@@ -1,9 +1,9 @@
 <div>
     <div class="bg-skin-card-gray px-4 py-5 sm:p-6 rounded-lg">
-        <h3 class="text-lg leading-6 font-medium text-skin-inverted font-sans">
+        <h3 class="text-lg leading-6 font-medium text-skin-inverted">
             Notifications
         </h3>
-        <div class="mt-2 max-w-xl text-sm leading-5 text-skin-base font-normal">
+        <div class="mt-2 max-w-xl text-sm leading-5 text-skin-base">
             @can(App\Policies\ThreadPolicy::UNSUBSCRIBE, $thread)
                 <p>
                     Vous recevez actuellement des notifications de mises à jour de ce sujet.

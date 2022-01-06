@@ -11,6 +11,7 @@ function withOpacity(variableName) {
 }
 
 module.exports = {
+  darkMode: 'class',
   presets: [
     require('./vendor/wireui/wireui/tailwind.config.js')
   ],
@@ -126,11 +127,12 @@ module.exports = {
             },
             'p > code, code': {
               display: 'inline-flex',
+              fontFamily: "'Operator Mono', monospace",
               alignItems: 'center',
               borderRadius: '.375rem',
-              fontSize: '.875rem',
+              fontSize: '1rem',
               lineHeight: '1.25rem',
-              fontWeight: 500,
+              fontWeight: 400,
               padding: '.125rem .625rem',
               color: theme('colors.green.800'),
               backgroundColor: theme('colors.green.100'),

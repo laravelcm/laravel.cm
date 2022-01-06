@@ -27,10 +27,10 @@
             </div>
         </div>
         <div class="lg:col-span-7 lg:pl-8 lg:border-l lg:border-skin-base">
-            <h1 class="text-xl sm:text-3xl text-skin-inverted">{{ $thread->subject() }}</h1>
+            <h1 class="text-xl text-skin-inverted font-medium tracking-tight sm:text-3xl">{{ $thread->subject() }}</h1>
 
             <div class="border-b pt-2 pb-4 border-skin-base">
-                <div class="sm:inline-flex sm:items-center text-sm text-skin-inverted-muted font-normal">
+                <div class="sm:inline-flex sm:items-center text-sm text-skin-inverted-muted">
                     <div class="flex items-center">
                         <a href="{{ route('profile', $thread->author->username) }}" class="inline-flex items-center hover:underline">
                             <img class="inline-block rounded-full h-5 w-5 mr-1" src="{{ $thread->author->profile_photo_url }}" alt="Avatar de {{ $thread->author->username }}">
@@ -105,7 +105,7 @@
                         Veuillez vous <a href="{{ route('login') }}" class="text-skin-primary hover:text-skin-primary-hover hover:underline">connecter</a> ou <a href="{{ route('register') }}" class="text-skin-primary hover:text-skin-primary-hover hover:underline">créer un compte</a> pour participer à cette conversation.
                     </p>
                 @else
-                    <div class="mt-10 flex justify-between items-center gap-x-12 text-skin-base font-normal">
+                    <div class="mt-10 flex justify-between items-center gap-x-12 text-skin-base">
                         <p>Vous devrez vérifier votre compte avant de participer à cette conversation.</p>
 
                         <form action="{{ route('verification.send') }}" method="POST" class="block">

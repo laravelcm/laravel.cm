@@ -7,28 +7,28 @@
             <div class="flex items-center space-x-3">
                 <a href="{{ route('profile', $author->username) }}" class="text-skin-inverted text-sm font-medium truncate">{{ $author->name }}</a>
             </div>
-            <p class="text-skin-base text-sm truncate font-normal">{{ '@'. $author->username }}</p>
+            <p class="text-skin-base text-sm truncate">{{ '@'. $author->username }}</p>
         </div>
     </div>
     <div class="space-y-4 p-4">
         @if($author->bio)
-            <p class="text-skin-inverted-muted text-sm leading-5 font-normal">{{ $author->bio }}</p>
+            <p class="text-skin-base text-sm leading-5">{{ $author->bio }}</p>
         @endif
         @if($author->location)
             <div>
-                <dt class="text-[12px] font-medium text-skin-muted font-sans uppercase tracking-wider">
+                <dt class="text-[12px] font-medium text-skin-muted uppercase tracking-wider">
                     Localisation
                 </dt>
-                <dd class="text-skin-base font-normal">
+                <dd class="text-skin-base">
                     {{ $author->location }}
                 </dd>
             </div>
         @endif
         <div>
-            <dt class="text-[12px] font-medium text-skin-muted font-sans uppercase tracking-wider">
+            <dt class="text-[12px] font-medium text-skin-muted uppercase tracking-wider">
                 Inscrit Depuis
             </dt>
-            <dd class="text-skin-base font-normal">
+            <dd class="text-skin-base">
                 {{ $author->created_at->toFormattedDateString() }}
             </dd>
         </div>

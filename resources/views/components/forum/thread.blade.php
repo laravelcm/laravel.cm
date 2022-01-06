@@ -4,7 +4,7 @@
     @canany([App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE], $thread)
         <div class="flex items-center justify-end mb-4">
             <div class="shrink-0 self-center flex">
-                <div x-data="{ open: false }"  @keydown.escape.stop="open = false;" @click.away="open = false" class="relative inline-block text-left">
+                <div x-data="{ open: false }" @keydown.escape.stop="open = false;" @click.away="open = false" class="relative inline-block text-left">
                     <div>
                         <button type="button"
                                 class="-m-2 p-2 rounded-full flex items-center text-skin-muted hover:text-skin-base"

@@ -237,9 +237,9 @@
                             </div>
                             <div class="py-1.5 px-3.5" role="none">
                                 @if(Auth::user()->hasRole(['admin', 'moderator']))
-                                    <a href="#" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
+                                    <a href="{{ route('cpanel.home') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
                                         <x-heroicon-o-chart-square-bar class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
-                                        {{ __('CPanel') }}
+                                        {{ __('Cpanel') }}
                                     </a>
                                 @endif
                                 <a href="{{ route('dashboard') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">

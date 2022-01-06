@@ -3,7 +3,7 @@
  overflow-x-auto is recommended.
 */
 pre {
-  @apply my-4 rounded overflow-x-auto;
+  @apply my-4 rounded overflow-x-auto font-mono text-lg;
   padding: 0 !important;
 }
 
@@ -14,7 +14,7 @@ pre {
  colors extend edge to edge.
 */
 pre code.torchlight {
-  @apply block p-4 min-w-max;
+  @apply block p-4 min-w-max font-mono;
   padding-top: 1rem !important;
   padding-bottom: 1rem !important;
 }

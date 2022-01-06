@@ -1,7 +1,7 @@
 <section aria-labelledby="moderators-title">
     <div class="rounded-lg bg-skin-card overflow-hidden shadow">
         <div class="p-6">
-            <h2 class="text-base font-medium text-skin-inverted" id="moderators-title">Modérateurs</h2>
+            <h2 class="text-base font-medium text-skin-inverted font-mono" id="moderators-title">Modérateurs</h2>
             <div class="flow-root mt-6">
                 <ul role="list" class="-my-5 divide-y divide-skin-base">
                     @foreach($moderators as $moderator)
@@ -11,10 +11,10 @@
                                     <img class="h-8 w-8 rounded-full" src="{{ $moderator->profile_photo_url }}" alt="">
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-skin-inverted truncate font-sans">
+                                    <p class="text-sm font-medium text-skin-inverted truncate">
                                         {{ $moderator->name }}
                                     </p>
-                                    <p class="text-sm text-skin-base truncate font-normal">
+                                    <p class="text-sm text-skin-base truncate">
                                         {{ '@' . $moderator->username }}
                                     </p>
                                 </div>

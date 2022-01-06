@@ -15,7 +15,7 @@
                                 <span class="text-skin-muted">{{ '@'. $thread->author->username }}</span>
                             </a>
                         </p>
-                        <p class="text-sm text-skin-base font-normal">
+                        <p class="text-sm text-skin-base">
                             <time-ago time="{{ $thread->created_at->getTimestamp() }}"/>
                         </p>
                     </div>
@@ -32,11 +32,11 @@
                     @endif
                 </div>
             </div>
-            <h2 id="question-title-{{ $thread->id }}" class="mt-4 text-base font-medium text-skin-inverted font-sans">
+            <h2 id="question-title-{{ $thread->id }}" class="mt-4 text-base font-medium text-skin-inverted">
                 <a href="{{ route('forum.show', $thread) }}" class="hover:underline">{{ $thread->subject() }}</a>
             </h2>
         </div>
-        <div class="mt-2 text-sm text-skin-inverted-muted font-normal">
+        <div class="mt-2 text-sm text-skin-inverted-muted">
             <a href="{{ route('forum.show', $thread) }}">{!! $thread->excerpt() !!}</a>
         </div>
         <div class="mt-6 flex justify-between space-x-8">
@@ -44,12 +44,12 @@
                 <livewire:reactions :model="$thread" :with-place-holder="false" :with-background="false"/>
                 <p class="inline-flex text-sm space-x-2 text-skin-base">
                     <x-heroicon-o-chat-alt class="h-5 w-5" />
-                    <span class="font-normal text-skin-inverted-muted">{{ count($thread->replies) }}</span>
+                    <span class="font-mono text-skin-inverted-muted">{{ count($thread->replies) }}</span>
                     <span class="sr-only">réponses</span>
                 </p>
                 <p class="inline-flex text-sm space-x-2 text-skin-base">
                     <x-heroicon-o-eye class="h-5 w-5" />
-                    <span class="font-normal text-skin-inverted-muted">{{ $thread->views_count }}</span>
+                    <span class="font-mono text-skin-inverted-muted">{{ $thread->views_count }}</span>
                     <span class="sr-only">vues</span>
                 </p>
             </div>
