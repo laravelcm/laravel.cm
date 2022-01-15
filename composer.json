@@ -26,7 +26,7 @@
     "laravel/socialite": "^5.2",
     "laravel/tinker": "^2.5",
     "livewire/livewire": "^2.8",
-    "wireui/wireui": "^0.14.0",
+    "qcod/laravel-gamify": "^1.0",
     "ramsey/uuid": "^4.2",
     "sentry/sentry-laravel": "^2.10",
     "spatie/laravel-feed": "^4.0",
@@ -37,6 +37,7 @@
     "torchlight/torchlight-commonmark": "^0.5.2",
     "wire-elements/modal": "^1.0",
     "wire-elements/spotlight": "^1.0",
+    "wireui/wireui": "^0.14.0",
     "yarri/link-finder": "^2.7"
   },
   "require-dev": {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Articles;
 
+use App\Gamify\Points\PostCreated;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Traits\WithArticleAttributes;
@@ -59,6 +60,8 @@ class Create extends Component
             'canonical_url' => $this->canonical_url,
             'user_id' => $user->id,
         ]);
+
+        givePoint(new PostCreated($article));
 
         if (collect($this->associateTags)->isNotEmpty()) {
             $article->syncTags($this->associateTags);

@@ -8,18 +8,8 @@ use Illuminate\Console\Command;
 
 class DeleteOldUnverifiedUsers extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'lcm:delete-old-unverified-users';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Removed all unverified users.';
 
     public function handle()
