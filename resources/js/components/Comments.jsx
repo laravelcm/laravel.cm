@@ -358,15 +358,18 @@ const Comment = memo(({ comment, editing, onEdit, onUpdate, onDelete, onReply, o
             />
           </div>
           <div className="flex-1">
-            <div className="text-sm sm:flex sm:items-center sm:space-x-2">
+            <div className="text-sm sm:flex sm:items-center">
               <a href={`/user/${comment.author.username}`} className="font-medium text-skin-primary font-sans hover:text-skin-primary-hover">
                 {comment.author.name}
               </a>
-              <span className="text-skin-base font-normal"><time-ago time={comment.created_at} /></span>
+              <span className="mx-1.5 inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-skin-card-gray text-skin-inverted-muted">
+                {comment.experience} XP
+              </span>
+              <span className="text-skin-base font-normal mx-2"><time-ago time={comment.created_at} /></span>
               {canEdit && (
                 <div className="mt-1 flex sm:mt-0">
                   <span className="hidden sm:inline-block text-skin-base font-medium">·</span>
-                  <div className="sm:pl-2 flex items-center divide-x divide-skin-base">
+                  <div className="pl-2 flex items-center divide-x divide-skin-base">
                     <button type="button" onClick={handleEdit} className="pr-2 text-sm leading-5 font-sans text-skin-base focus:outline-none hover:underline">Éditer</button>
                     <button type="button" onClick={handleDelete} className="pl-2 text-sm leading-5 font-sans text-red-500 focus:outline-none hover:underline">Supprimer</button>
                   </div>

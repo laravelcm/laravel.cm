@@ -15,6 +15,7 @@ class ReplyResource extends JsonResource
             'model_id' => $this->replyable_id,
             'created_at' => $this->created_at->getTimestamp(),
             'author' => new UserResource($this->author),
+            'experience' => $this->author->getPoints(),
             'has_replies' => $this->allChildReplies->isNotEmpty(),
             'likes_count' => $this->getReactionsSummary()->sum('count'),
         ];

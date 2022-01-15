@@ -18,6 +18,9 @@
                     <div class="sm:hidden md:block mt-6 min-w-0 flex-1">
                         <h1 class="inline-flex items-center text-2xl font-bold text-skin-inverted truncate font-sans">
                             {{ $user->name }}
+                            <span class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-skin-card-gray text-skin-inverted-muted">
+                                {{ $user->getPoints() }} XP
+                            </span>
                             @if($user->hasAnyRole('admin', 'moderator'))
                                 <x-user.status />
                             @endif

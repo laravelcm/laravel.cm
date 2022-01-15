@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forum;
 
 use App\Events\ThreadWasCreated;
+use App\Gamify\Points\ThreadCreated;
 use App\Models\Channel;
 use App\Models\Thread;
 use App\Traits\WithChannelsAssociation;
@@ -50,6 +51,8 @@ class CreateThread extends Component
         $subscription->subscribeAble()->associate($thread);
 
         $thread->subscribes()->save($subscription);
+
+        givePoint(new ThreadCreated($thread));
 
         event(new ThreadWasCreated($thread));
 

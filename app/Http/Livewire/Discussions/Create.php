@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Discussions;
 
+use App\Gamify\Points\DiscussionCreated;
 use App\Models\Discussion;
 use App\Models\Tag;
 use App\Notifications\PostDiscussionToTelegram;
@@ -42,6 +43,8 @@ class Create extends Component
         if (collect($this->associateTags)->isNotEmpty()) {
             $discussion->syncTags($this->associateTags);
         }
+
+        givePoint(new DiscussionCreated($discussion));
 
         Auth::user()->notify(new PostDiscussionToTelegram($discussion));
 

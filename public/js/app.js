@@ -3762,12 +3762,14 @@ const Comment = (0,preact_compat__WEBPACK_IMPORTED_MODULE_1__.memo)(_ref2 => {
   })), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "flex-1"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "text-sm sm:flex sm:items-center sm:space-x-2"
+    className: "text-sm sm:flex sm:items-center"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("a", {
     href: `/user/${comment.author.username}`,
     className: "font-medium text-skin-primary font-sans hover:text-skin-primary-hover"
   }, comment.author.name), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
-    className: "text-skin-base font-normal"
+    className: "mx-1.5 inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-skin-card-gray text-skin-inverted-muted"
+  }, comment.experience, " XP"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
+    className: "text-skin-base font-normal mx-2"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("time-ago", {
     time: comment.created_at
   })), canEdit && (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
@@ -3775,7 +3777,7 @@ const Comment = (0,preact_compat__WEBPACK_IMPORTED_MODULE_1__.memo)(_ref2 => {
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("span", {
     className: "hidden sm:inline-block text-skin-base font-medium"
   }, "\xB7"), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "sm:pl-2 flex items-center divide-x divide-skin-base"
+    className: "pl-2 flex items-center divide-x divide-skin-base"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("button", {
     type: "button",
     onClick: handleEdit,
