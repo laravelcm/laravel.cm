@@ -7,14 +7,14 @@ use QCod\Gamify\PointType;
 class AddSocialLinks extends PointType
 {
     /**
-     * Number of points
+     * Number of points.
      *
      * @var int
      */
     public $points = 20;
 
     /**
-     * Point constructor
+     * Point constructor.
      *
      * @param $subject
      */
@@ -24,7 +24,7 @@ class AddSocialLinks extends PointType
     }
 
     /**
-     * User who will be receive points
+     * User who will be receive points.
      *
      * @return mixed
      */
