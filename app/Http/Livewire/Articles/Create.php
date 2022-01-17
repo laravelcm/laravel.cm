@@ -61,8 +61,6 @@ class Create extends Component
             'user_id' => $user->id,
         ]);
 
-        givePoint(new PostCreated($article));
-
         if (collect($this->associateTags)->isNotEmpty()) {
             $article->syncTags($this->associateTags);
         }
@@ -74,6 +72,10 @@ class Create extends Component
         if ($this->submitted) {
             // Envoi du mail a l'admin pour la validation de l'article
             session()->flash('status', 'Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.');
+        }
+
+        if ($user->hasAnyRole(['admin', 'moderator'])) {
+            givePoint(new PostCreated($article));
         }
 
         $user->hasRole('user') ?

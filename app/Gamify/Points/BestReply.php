@@ -6,30 +6,12 @@ use QCod\Gamify\PointType;
 
 class BestReply extends PointType
 {
-    /**
-     * Number of points.
-     *
-     * @var int
-     */
-    public $points = 20;
+    public int $points = 10;
 
-    /**
-     * Point constructor.
-     *
-     * @param $subject
-     */
+    protected string $payee = 'author';
+
     public function __construct($subject)
     {
         $this->subject = $subject;
-    }
-
-    /**
-     * User who will be receive points.
-     *
-     * @return mixed
-     */
-    public function payee()
-    {
-        return $this->getSubject()->user;
     }
 }

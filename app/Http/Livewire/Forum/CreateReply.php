@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forum;
 
 use App\Events\ReplyWasCreated;
+use App\Gamify\Points\ReplyCreated;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Policies\ReplyPolicy;
@@ -40,6 +41,8 @@ class CreateReply extends Component
         $reply->save();
 
         event(new ReplyWasCreated($reply));
+
+        givePoint(new ReplyCreated($this->thread));
 
         session()->flash('status', 'Réponse ajoutée avec succès!');
 

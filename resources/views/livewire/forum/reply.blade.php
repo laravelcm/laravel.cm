@@ -19,11 +19,12 @@
                     <a href="{{ route('profile', $reply->author->username) }}" class="font-medium text-skin-inverted">
                         {{ $reply->author->name }} <span class="inline-flex text-skin-muted">{{ '@' . $reply->author->username }}</span>
                     </a>
-                    <span class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-skin-card-gray text-skin-inverted-muted">
-                        {{ $reply->author->getPoints() }} XP
-                    </span>
+
+                    <x-user.points :author="$reply->author" />
+
                     <span class="text-skin-base font-medium">·</span>
                     <time datetime="{{ $reply->created_at }}" title="{{ $thread->created_at->format('j M, Y \à h:i') }}" class="text-skin-muted">{{ $reply->created_at->diffForHumans() }}</time>
+
                     @can(App\Policies\ReplyPolicy::UPDATE, $reply)
                         <span class="text-skin-base font-medium">·</span>
                         <div class="flex items-center divide-x divide-skin-base">
@@ -33,6 +34,7 @@
                             @endif
                         </div>
                     @endcan
+
                 </div>
                 @can(App\Policies\ThreadPolicy::UPDATE, $thread)
                     @if ($isSolution)

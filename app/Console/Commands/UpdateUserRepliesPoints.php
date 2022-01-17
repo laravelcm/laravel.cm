@@ -2,41 +2,24 @@
 
 namespace App\Console\Commands;
 
+use App\Gamify\Points\ReplyCreated;
+use App\Models\Reply;
 use Illuminate\Console\Command;
 
 class UpdateUserRepliesPoints extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'command:name';
+    protected $signature = 'lcm:update-users-replies-points';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
+    protected $description = 'Updating users replies reputation points';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
-        return 0;
+        $this->info('Updating users bests replies reputations...');
+
+        foreach (Reply::all() as $reply) {
+            givePoint(new ReplyCreated($reply->replyAble));
+        }
+
+        $this->info('All done!');
     }
 }
