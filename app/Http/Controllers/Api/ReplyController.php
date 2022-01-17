@@ -47,10 +47,10 @@ class ReplyController extends Controller
         $reply->to($target);
         $reply->save();
 
+        givePoint(new ReplyCreated($target), $author);
+
         // On envoie un event pour une nouvelle réponse à tous les abonnés de la discussion
         event(new CommentWasAdded($reply, $target));
-
-        givePoint(new ReplyCreated($target));
 
         return new ReplyResource($reply);
     }
