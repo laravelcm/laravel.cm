@@ -15,6 +15,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller
 {
@@ -47,7 +48,7 @@ class ReplyController extends Controller
         $reply->to($target);
         $reply->save();
 
-        givePoint(new ReplyCreated($target), $author);
+        givePoint(new ReplyCreated($target), Auth::user());
 
         // On envoie un event pour une nouvelle réponse à tous les abonnés de la discussion
         event(new CommentWasAdded($reply, $target));
