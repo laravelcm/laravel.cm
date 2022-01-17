@@ -47,7 +47,7 @@ class ReplyController extends Controller
         $reply->to($target);
         $reply->save();
 
-        givePoint(new ReplyCreated($target), $author);
+        $author->givePoint(new ReplyCreated($target, $author));
 
         // On envoie un event pour une nouvelle réponse à tous les abonnés de la discussion
         event(new CommentWasAdded($reply, $target));
@@ -79,6 +79,9 @@ class ReplyController extends Controller
     {
         /** @var Reply $reply */
         $reply = Reply::findOrFail($id);
+
+        undoPoint(new ReplyCreated($reply->replyAble, $reply->author));
+
         $reply->delete();
 
         return response()->json(['message' => 'Commentaire supprimé avec succès']);
