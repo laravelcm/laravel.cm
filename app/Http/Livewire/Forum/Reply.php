@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Forum;
 
+use App\Gamify\Points\BestReply;
 use App\Models\Reply as ReplyModel;
 use App\Models\Thread;
 use App\Policies\ReplyPolicy;
@@ -63,6 +64,8 @@ class Reply extends Component
     {
         $this->authorize(ThreadPolicy::UPDATE, $this->thread);
 
+        undoPoint(new BestReply($this->reply));
+
         $this->thread->unmarkSolution();
 
         $this->emitSelf('refresh');
@@ -77,7 +80,13 @@ class Reply extends Component
     {
         $this->authorize(ThreadPolicy::UPDATE, $this->thread);
 
+        if ($this->thread->isSolved()) {
+            undoPoint(new BestReply($this->thread->solutionReply));
+        }
+
         $this->thread->markSolution($this->reply, Auth::user());
+
+        givePoint(new BestReply($this->reply));
 
         $this->emitSelf('refresh');
 

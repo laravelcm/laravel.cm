@@ -36,9 +36,7 @@
                             <img class="inline-block rounded-full h-5 w-5 mr-1" src="{{ $thread->author->profile_photo_url }}" alt="Avatar de {{ $thread->author->username }}">
                             <span class="font-sans">{{ '@' . $thread->author->username }}</span>
                         </a>
-                        <span class="mx-1.5 inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-skin-card-gray text-skin-inverted-muted">
-                            {{ $thread->author->getPoints() }} XP
-                        </span>
+                        <x-user.points :author="$thread->author" />
                         <span class="inline-flex mx-1.5 space-x-1">
                             <span>a posé</span>
                             <time-ago time="{{ $thread->created_at->getTimestamp() }}"/>

@@ -6,28 +6,13 @@ use QCod\Gamify\PointType;
 
 class AddSocialLinks extends PointType
 {
-    /**
-     * Number of points.
-     *
-     * @var int
-     */
-    public $points = 20;
+    public int $points = 6;
 
-    /**
-     * Point constructor.
-     *
-     * @param $subject
-     */
     public function __construct($subject)
     {
         $this->subject = $subject;
     }
 
-    /**
-     * User who will be receive points.
-     *
-     * @return mixed
-     */
     public function payee()
     {
         return $this->getSubject()->user;

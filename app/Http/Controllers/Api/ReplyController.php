@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Events\CommentWasAdded;
+use App\Gamify\Points\ReplyCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CreateReplyRequest;
 use App\Http\Requests\Api\UpdateReplyRequest;
@@ -38,8 +39,6 @@ class ReplyController extends Controller
 
     public function store(CreateReplyRequest $request): ReplyResource
     {
-        // dd($request->all());
-        // if ($request->parent) {}
         $reply = new Reply(['body' => $request->body]);
         $author = User::find($request->user_id);
 
@@ -50,6 +49,8 @@ class ReplyController extends Controller
 
         // On envoie un event pour une nouvelle réponse à tous les abonnés de la discussion
         event(new CommentWasAdded($reply, $target));
+
+        givePoint(new ReplyCreated($target));
 
         return new ReplyResource($reply);
     }
