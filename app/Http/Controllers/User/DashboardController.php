@@ -13,8 +13,8 @@ class DashboardController extends Controller
         return view('user.dashboard', [
             'user' => $user = User::scopes('withCounts')->find(Auth::id()),
             'articles' => $user->articles()
-                ->orderByDesc('submitted_at')
                 ->orderByDesc('created_at')
+                ->orderBy('submitted_at')
                 ->paginate(5),
         ]);
     }
