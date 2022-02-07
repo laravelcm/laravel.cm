@@ -35,6 +35,6 @@ class SendEMailToDeletedUser extends Notification implements ShouldQueue
                     ->line('Pour des raisons de validité et d\'authenticité de votre adresse email')
                     ->line('Nous avons supprimé votre compte après 10 jours d\'inscription sans validation de votre adresse email.')
                     ->line('Nous ne pouvons donc pas authentifier que cette adresse email est belle et bien utilisée.')
-                    ->line('Merci d\'avoir utilise Laravel Cameroun!');
+                    ->line('Merci d\'avoir utilisé Laravel Cameroun!');
     }
 }
