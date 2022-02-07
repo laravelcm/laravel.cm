@@ -15,7 +15,7 @@ trait HasProfilePhoto
             return $this->getFirstMediaUrl('avatar');
         }
 
-        $social_avatar = $this->providers()->where('provider', $this->avatar_type)->first();
+        $social_avatar = $this->providers->where('provider', $this->avatar_type)->first();
 
         if ($social_avatar && strlen($social_avatar->avatar)) {
             return $social_avatar->avatar;
