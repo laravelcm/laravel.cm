@@ -1,5 +1,5 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
@@ -26,7 +26,19 @@ module.exports = {
     './vendor/wireui/wireui/ts/**/*.ts',
     './vendor/wireui/wireui/src/View/**/*.php',
   ],
-  safelist: [/^media-library/],
+  safelist: [
+    'sm:max-w-xl',
+    'sm:max-w-2xl',
+    'sm:max-w-3xl',
+    'sm:max-w-4xl',
+    'md:max-w-xl',
+    'lg:max-w-2xl',
+    'lg:max-w-3xl',
+    'lg:max-w-4xl',
+    {
+      pattern: /^media-library/
+    }
+  ],
   theme: {
     extend: {
       colors: {
