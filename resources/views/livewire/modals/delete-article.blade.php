@@ -19,7 +19,10 @@
 
     <x-slot name="buttons">
         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-            <x-wi-button wire:click="delete" spinner type="button" negative :label="__('Confirmer')" />
+            <x-danger-button wire:click="delete" type="button">
+                <x-loader class="text-white" wire:loading wire:target="delete" />
+                {{ __('Confirmer') }}
+            </x-danger-button>
         </span>
         <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
             <x-default-button wire:click="$emit('closeModal')" type="button">
