@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\User;
 use App\Policies\ArticlePolicy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -21,6 +22,7 @@ class ArticlesController extends Controller
 
     public function show(Article $article)
     {
+        /** @var User $user */
         $user = Auth::user();
 
         views($article)->record();

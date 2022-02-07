@@ -10,15 +10,14 @@ trait WithArticleAttributes
     public ?string $slug = null;
     public string $body = '';
     public ?string $canonical_url = null;
-    public bool $show_toc = true;
-    public bool $submitted = true;
+    public bool $show_toc = false;
     public ?string $submitted_at = null;
     public ?string $approved_at = null;
     public $file;
 
     protected $rules = [
-        'title' => ['required', 'max:150'],
-        'body' => ['required'],
+        'title' => 'required|max:150',
+        'body' => 'required',
         'tags_selected' => 'nullable|array',
         'canonical_url' => 'nullable|url',
         'file' => 'nullable|image|max:2048', // 1MB Max

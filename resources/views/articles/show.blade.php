@@ -211,11 +211,18 @@
                     </div>
                     <div class="relative flex justify-center">
                         <span class="relative z-0 inline-flex shadow-sm rounded-md -space-x-px">
-                            <a href="{{ route('articles.edit', $article) }}" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-skin-base bg-skin-card text-sm font-medium text-gray-400 hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
+                            <a href="{{ route('articles.edit', $article) }}" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-skin-base bg-skin-card text-sm font-medium text-skin-inverted-muted hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
                                 <span class="sr-only">Éditer</span>
                                 <x-heroicon-s-pencil class="h-5 w-5" />
                             </a>
-                            <button onclick="Livewire.emit('openModal', 'modals.delete-article', {{ json_encode([$article->id]) }})" type="button" class="relative inline-flex items-center px-4 py-2 rounded-r-md border border-skin-base bg-skin-card text-sm font-medium text-gray-400 hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
+                            @if($article->isNotApproved())
+                                @hasanyrole('admin|moderator')
+                                    <button onclick="Livewire.emit('openModal', 'modals.approved-article', {{ json_encode([$article->id]) }})" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-skin-base bg-skin-card text-sm font-medium text-green-500 hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:border-green-500 focus:ring-offset-body">
+                                        <x-heroicon-s-badge-check class="h-5 w-5" />
+                                    </button>
+                                @endhasanyrole
+                            @endif
+                            <button onclick="Livewire.emit('openModal', 'modals.delete-article', {{ json_encode([$article->id]) }})" type="button" class="relative inline-flex items-center px-4 py-2 rounded-r-md border border-skin-base bg-skin-card text-sm font-medium text-skin-inverted-muted hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
                                 <span class="sr-only">Supprimer</span>
                                 <x-heroicon-s-trash class="h-5 w-5" />
                             </button>

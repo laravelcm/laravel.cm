@@ -15,10 +15,44 @@
                 </x-button>
             @else
                 @if(isset($article))
-                    <x-button type="button" wire:click="save">
-                        <x-loader class="text-white" wire:loading wire:target="save" />
-                        Enregistrer
-                    </x-button>
+                    <span class="relative z-20 inline-flex shadow-sm rounded-md">
+                        <button type="button" class="button inline-flex items-center justify-center py-2 px-4 text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500 rounded-l-md border-r border-white" disabled>
+                            Enregistrer les modifications
+                        </button>
+                        <span x-data="{ open: false }" @keydown.escape.stop="open = false;" @click.away="open = false" class="-ml-px relative block">
+                            <button type="button" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-transparent text-sm font-medium text-white text-white bg-green-600 hover:bg-green-700 focus:z-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500"
+                                    id="option-menu-button"
+                                    x-ref="button"
+                                    @click="open = !open"
+                                    aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()">
+                                <span class="sr-only">Ouvrir les options</span>
+                                <x-heroicon-s-chevron-down class="h-5 w-5" />
+                            </button>
+
+                            <div x-show="open"
+                                 x-transition:enter="transition ease-out duration-100"
+                                 x-transition:enter-start="transform opacity-0 scale-95"
+                                 x-transition:enter-end="transform opacity-100 scale-100"
+                                 x-transition:leave="transition ease-in duration-75"
+                                 x-transition:leave-start="transform opacity-100 scale-100"
+                                 x-transition:leave-end="transform opacity-0 scale-95"
+                                 class="origin-top-right absolute right-0 mt-2 -mr-1 w-56 rounded-md shadow-lg bg-skin-card ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                 x-ref="menu-items"
+                                 role="menu" aria-orientation="vertical" aria-labelledby="option-menu-button" tabindex="-1"
+                                 @keydown.tab="open = false" @keydown.enter.prevent="open = false;" @keyup.space.prevent="open = false;" style="display: none;">
+                                <div class="py-1" role="none">
+                                    <button type="button" wire:click="submit" class="block px-4 py-2 text-sm text-skin-inverted-muted hover:text-skin-inverted" role="menuitem" tabindex="-1" id="option-menu-item-0">
+                                        <x-loader class="text-white" wire:loading wire:target="submit" />
+                                        Enregistrer et soumettre
+                                    </button>
+                                    <button type="button" wire:click="save" class="block px-4 py-2 text-sm text-skin-inverted-muted hover:text-skin-inverted" role="menuitem" tabindex="-1" id="option-menu-item-1">
+                                        <x-loader class="text-white" wire:loading wire:target="save" />
+                                        Enregistrer en brouillon
+                                    </button>
+                                </div>
+                            </div>
+                        </span>
+                    </span>
                 @else
                     <x-button type="button" wire:click="submit">
                         <x-loader class="text-white" wire:loading wire:target="submit" />

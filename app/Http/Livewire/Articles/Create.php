@@ -5,9 +5,12 @@ namespace App\Http\Livewire\Articles;
 use App\Gamify\Points\PostCreated;
 use App\Models\Article;
 use App\Models\Tag;
+use App\Models\User;
+use App\Notifications\SendSubmittedArticle;
 use App\Traits\WithArticleAttributes;
 use App\Traits\WithTagsAssociation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -19,9 +22,9 @@ class Create extends Component
 
     public function mount()
     {
+        /** @var User $user */
         $user = Auth::user();
 
-        $this->submitted = ! $user->hasAnyRole(['admin', 'moderator']);
         $this->submitted_at = $user->hasAnyRole(['admin', 'moderator']) ? now() : null;
         $this->approved_at = $user->hasAnyRole(['admin', 'moderator']) ? now() : null;
     }
@@ -37,23 +40,18 @@ class Create extends Component
         $this->store();
     }
 
-    public function draft()
-    {
-        $this->submitted = false;
-        $this->store();
-    }
-
     public function store()
     {
         $this->validate();
 
+        /** @var User $user */
         $user = Auth::user();
 
+        /** @var Article $article */
         $article = Article::create([
             'title' => $this->title,
             'slug' => $this->slug,
             'body' => $this->body,
-            'submitted' => $this->submitted,
             'submitted_at' => $this->submitted_at,
             'approved_at' => $this->approved_at,
             'show_toc' => $this->show_toc,
@@ -69,8 +67,11 @@ class Create extends Component
             $article->addMedia($this->file->getRealPath())->toMediaCollection('media');
         }
 
-        if ($this->submitted) {
-            // Envoi du mail a l'admin pour la validation de l'article
+        if ($article->submitted_at) {
+            // Envoi du mail à l'admin pour la validation de l'article.
+            $admin = User::findByEmailAddress('monneylobe@gmail.com');
+            Notification::send($admin, new SendSubmittedArticle($article));
+
             session()->flash('status', 'Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.');
         }
 
