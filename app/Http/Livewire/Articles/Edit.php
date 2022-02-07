@@ -31,7 +31,7 @@ class Edit extends Component
         $this->body = $article->body;
         $this->slug = $article->slug;
         $this->show_toc = $article->show_toc;
-        $this->submitted_at =  $article->submitted_at;
+        $this->submitted_at = $article->submitted_at;
         $this->canonical_url = $article->originalUrl();
         $this->preview = $article->getFirstMediaUrl('media');
         $this->associateTags = $this->tags_selected = old('tags', $article->tags()->pluck('id')->toArray());
@@ -45,7 +45,7 @@ class Edit extends Component
     public function submit()
     {
         $this->alreadySubmitted = $this->article->submitted_at !== null;
-        $this->submitted_at =  $this->article->submitted_at ?? now();
+        $this->submitted_at = $this->article->submitted_at ?? now();
         $this->store();
     }
 
