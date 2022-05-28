@@ -11,18 +11,18 @@
                 @csrf
                 @method('PUT')
                 <div>
-                    <h3 class="text-lg leading-6 font-medium text-skin-inverted">
+                    <h3 class="text-lg font-medium leading-6 text-skin-inverted">
                         Profil
                     </h3>
-                    <p class="mt-1 max-w-2xl text-sm text-skin-base font-normal">
+                    <p class="max-w-2xl mt-1 text-sm font-normal text-skin-base">
                         Vous trouverez ci-dessous les informations de votre profil pour votre compte.
                     </p>
                 </div>
-                <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
+                <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-skin-base sm:pt-5">
-                        <x-label for="username" class="sm:mt-px sm:pt-2">Pseudo</x-label>
+                        <x-label for="username" class="sm:mt-px sm:pt-2 text-skin-inverted-muted">Pseudo</x-label>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
-                            <div class="max-w-lg flex rounded-md shadow-sm">
+                            <div class="flex max-w-lg rounded-md shadow-sm">
                                 <x-input
                                     type="text"
                                     name="username"
@@ -39,23 +39,23 @@
                    </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-skin-base sm:pt-5">
-                        <x-label for="about" class="sm:mt-px sm:pt-2">Bio</x-label>
+                        <x-label for="about" class="sm:mt-px sm:pt-2 text-skin-inverted-muted">Bio</x-label>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                             <x-textarea id="about" name="bio" rows="3" class="max-w-lg" maxlength="160">
                                 {{ Auth::user()->bio }}
                             </x-textarea>
-                            <p class="mt-2 text-sm text-skin-muted font-normal">Écrivez quelques phrases sur vous-même.</p>
+                            <p class="mt-2 text-sm font-normal text-skin-muted">Écrivez quelques phrases sur vous-même.</p>
                         </div>
                     </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-skin-base sm:pt-5">
                         <div class="sm:mt-px sm:pt-2">
-                            <x-label for="photo">Photo</x-label>
-                            <p class="hidden sm:block text-skin-muted text-sm font-normal">Celle-ci sera affiché sur votre profil.</p>
+                            <x-label for="photo" class="text-skin-inverted-muted">Photo</x-label>
+                            <p class="hidden text-sm font-normal sm:block text-skin-muted">Celle-ci sera affiché sur votre profil.</p>
                         </div>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
-                            <div class="max-w-lg w-full">
-                                <x-media-library-attachment name="avatar" rules="mimes:png,jpg,jpeg|max:1024"/>
+                            <div class="w-full max-w-lg">
+                                
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                                 name="website"
                                 type="url"
                                 autocomplete="email"
-                                container-input-class="max-w-lg w-full"
+                                container-input-class="w-full max-w-lg"
                                 placeholder="https://www.example.com"
                                 :value="Auth::user()->website"
                             />
@@ -80,10 +80,10 @@
             </div>
             <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                 <div>
-                    <h3 class="text-lg leading-6 font-medium text-skin-inverted">
+                    <h3 class="text-lg font-medium leading-6 text-skin-inverted">
                         Informations personnelles
                     </h3>
-                    <p class="mt-1 text-sm text-skin-base font-normal">
+                    <p class="mt-1 text-sm font-normal text-skin-base">
                         Mettez à jour vos informations personnelles. Votre adresse ne sera jamais accessible au public.
                     </p>
                 </div>
@@ -92,8 +92,8 @@
                         <label for="name" class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
                             Nom
                         </label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2 relative">
-                            <x-input type="text" name="name" id="name" container-input-class="max-w-lg w-full" :value="Auth::user()->name" required />
+                        <div class="relative mt-1 sm:mt-0 sm:col-span-2">
+                            <x-input type="text" name="name" id="name" container-input-class="w-full max-w-lg" :value="Auth::user()->name" required />
                         </div>
                     </div>
 
@@ -101,7 +101,7 @@
                         <label for="email" class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
                             Adresse E-mail
                         </label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2 relative">
+                        <div class="relative mt-1 sm:mt-0 sm:col-span-2">
                             <div class="flex items-center space-x-3">
                                 <x-email
                                     name="email"
@@ -113,14 +113,14 @@
                                 />
 
                                 @unless(Auth::user()->hasVerifiedEmail())
-                                    <x-heroicon-o-exclamation class="h-6 w-6 text-yellow-500" />
+                                    <x-heroicon-o-exclamation class="w-6 h-6 text-yellow-500" />
                                 @endunless
                             </div>
                             @unless(Auth::user()->hasVerifiedEmail())
-                                <p class="mt-2 text-sm text-skin-base font-sans">
+                                <p class="mt-2 font-sans text-sm text-skin-base">
                                     Cette adresse mail n'est pas vérifiée.
 
-                                    <a href="{{ route('verification.notice') }}" class="text-skin-primary underline hover:text-skin-primary-hover">
+                                    <a href="{{ route('verification.notice') }}" class="underline text-skin-primary hover:text-skin-primary-hover">
                                         Renvoyer l'e-mail de vérification.
                                     </a>
                                 </p>
@@ -132,7 +132,7 @@
                         <label for="location" class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
                             Localisation
                         </label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2 relative">
+                        <div class="relative mt-1 sm:mt-0 sm:col-span-2">
                             <x-input id="location" name="location" type="text" autocomplete="email" container-input-class="max-w-lg" :value="Auth::user()->location" />
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                         <label for="phone_number" class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
                             Numéro de téléphone
                         </label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2 relative">
+                        <div class="relative mt-1 sm:mt-0 sm:col-span-2">
                             <x-input type="tel" name="phone_number" id="phone_number" container-input-class="block max-w-lg" :value="Auth::user()->phone_number" isPhone />
                         </div>
                     </div>
@@ -149,20 +149,20 @@
             </div>
             <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                 <div>
-                    <h3 class="text-lg leading-6 font-medium text-skin-inverted">
+                    <h3 class="text-lg font-medium leading-6 text-skin-inverted">
                         Réseaux sociaux
                     </h3>
-                    <p class="mt-1 max-w-2xl text-sm text-skin-base font-normal">
+                    <p class="max-w-2xl mt-1 text-sm font-normal text-skin-base">
                         Faites savoir à tout le monde où ils peuvent vous trouver.
                     </p>
                 </div>
-                <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
+                <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-skin-base sm:pt-5">
                         <label class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
                             Entrez votre pseudo Twitter sans le symbole @ en tête.
                         </label>
-                        <div class="mt-1 sm:mt-0 sm:col-span-2 space-y-4">
-                            <div class="max-w-lg flex">
+                        <div class="mt-1 space-y-4 sm:mt-0 sm:col-span-2">
+                            <div class="flex max-w-lg">
                                 <x-input
                                     type="text"
                                     name="twitter_profile"
@@ -174,7 +174,7 @@
                                     :value="Auth::user()->twitter()"
                                 />
                             </div>
-                            <div class="max-w-lg flex">
+                            <div class="flex max-w-lg">
                                 <x-input
                                     type="text"
                                     name="github_profile"
@@ -186,7 +186,7 @@
                                     :value="Auth::user()->githubUsername()"
                                 />
                             </div>
-                            <div class="max-w-lg flex">
+                            <div class="flex max-w-lg">
                                 <x-input
                                     type="text"
                                     name="linkedin_profile"

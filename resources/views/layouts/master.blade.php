@@ -45,9 +45,9 @@
     @include('layouts._favicons')
     @include('layouts._fathom')
 </head>
-<body class="antialiased font-sans bg-skin-body">
+<body class="font-sans antialiased bg-skin-body text-skin-base">
 
-    <div class="relative overflow-hidden min-h-full">
+    <div class="relative min-h-full overflow-hidden">
         @yield('content')
     </div>
 
