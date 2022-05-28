@@ -41,7 +41,7 @@ class SettingController extends Controller
         ]);
 
         if ($request->avatar) {
-            $user->addFromMediaLibraryRequest($request->avatar)
+            $user->addMediaFromRequest('avatar')
                 ->toMediaCollection('avatar');
             $user->avatar_type = 'storage';
             $user->save();
@@ -65,7 +65,7 @@ class SettingController extends Controller
             'sessions' => Cache::remember('login-sessions', 60 * 60 * 24 * 5, function () {
                 return collect(
                     DB::table('sessions')
-                        ->where('user_id', auth()->user()->getKey())
+                        ->where('user_id', auth()->id())
                         ->orderBy('last_activity', 'desc')
                         ->limit(3)
                         ->get()

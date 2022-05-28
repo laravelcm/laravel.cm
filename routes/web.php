@@ -104,6 +104,4 @@ Route::redirectMap([
     'youtube' => 'https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw',
 ]);
 
-Route::mediaLibrary();
-
 Route::feeds();
