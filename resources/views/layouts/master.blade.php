@@ -25,6 +25,7 @@
     <link href="https://fonts.cdnfonts.com/css/operator-mono" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @include('layouts._favicons')
     @livewireStyles
 
     <script>
@@ -42,7 +43,6 @@
     @livewireScripts
     <script src="{{ mix('js/app.js') }}" defer></script>
 
-    @include('layouts._favicons')
     @include('layouts._fathom')
 </head>
 <body class="font-sans antialiased bg-skin-body text-skin-base">
