@@ -42,8 +42,8 @@ class ArticleSubmitted extends Notification implements ShouldQueue
     private function content(): string
     {
         $content = "*Nouvel Article Soumis!*\n\n";
-        $content .= 'Titre: '.$this->article->title."\n";
-        $content .= 'Par: [@'.$this->article->author->username.']('.route('profile', $this->article->author->username).')';
+        $content .= 'Titre: ' . $this->article->title . "\n";
+        $content .= 'Par: [@' . $this->article->author->username . '](' . route('profile', $this->article->author->username) . ')';
 
         return $content;
     }
