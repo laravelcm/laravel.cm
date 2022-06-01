@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Events\ArticleWasSubmittedForApproval;
 use App\Events\CommentWasAdded;
 use App\Events\ReplyWasCreated;
 use App\Events\ThreadWasCreated;
 use App\Listeners\NotifyMentionedUsers;
 use App\Listeners\PostNewThreadNotification;
+use App\Listeners\SendNewArticleNotification;
 use App\Listeners\SendNewCommentNotification;
 use App\Listeners\SendNewReplyNotification;
 use App\Listeners\SendNewThreadNotification;
@@ -32,6 +34,9 @@ class EventServiceProvider extends ServiceProvider
         ThreadWasCreated::class => [
             SendNewThreadNotification::class,
             PostNewThreadNotification::class,
+        ],
+        ArticleWasSubmittedForApproval::class => [
+            SendNewArticleNotification::class,
         ],
         CommentWasAdded::class => [
             SendNewCommentNotification::class,

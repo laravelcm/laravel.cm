@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Articles;
 
+use App\Events\ArticleWasSubmittedForApproval;
 use App\Gamify\Points\PostCreated;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
-use App\Notifications\SendSubmittedArticle;
 use App\Traits\WithArticleAttributes;
 use App\Traits\WithTagsAssociation;
 use Illuminate\Support\Facades\Auth;
@@ -67,10 +67,9 @@ class Create extends Component
             $article->addMedia($this->file->getRealPath())->toMediaCollection('media');
         }
 
-        if ($article->submitted_at) {
-            // Envoi du mail à l'admin pour la validation de l'article.
-            $admin = User::findByEmailAddress('monneylobe@gmail.com');
-            Notification::send($admin, new SendSubmittedArticle($article));
+        if ($article->isAwaitingApproval()) {
+            // Envoi de la notification sur le channel Telegram pour la validation de l'article.
+            event(new ArticleWasSubmittedForApproval($article));
 
             session()->flash('status', 'Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.');
         }
