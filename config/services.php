@@ -42,8 +42,8 @@ return [
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
         'redirect' => env('TWITTER_REDIRECT'),
-        'consumer_key'    => env('TWITTER_CONSUMER_KEY'),
-        'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
+        'consumer_key'    => env('TWITTER_CLIENT_ID'),
+        'consumer_secret' => env('TWITTER_CLIENT_SECRET'),
         'access_token'    => env('TWITTER_ACCESS_TOKEN'),
         'access_secret'   => env('TWITTER_ACCESS_SECRET'),
         'scopes' => [],
@@ -56,6 +56,7 @@ return [
 
     'telegram-bot-api' => [
         'token' => env('TELEGRAM_BOT_TOKEN'),
+        'channel' => env('TELEGRAM_CHANNEL'),
     ],
 
 ];
