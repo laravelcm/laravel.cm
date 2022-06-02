@@ -9,6 +9,12 @@ return [
             'alt' => 'Laravel Notify',
             'description' => 'Découvrez la nouvelle version de Laravel Notify pour vos projets Laravel.',
         ],
+        [
+            'url' => 'https://laravelshopper.dev?utm_source=laravelcm&amp;utm_medium=sidebar-widget',
+            'image' => 'shopper',
+            'alt' => 'Laravel Shopper',
+            'description' => 'Créez votre boutique en ligne aujourd\'hui avec Laravel Shopper.',
+        ],
     ],
 
 ];
