@@ -5,7 +5,7 @@
 
 @section('body')
 
-    <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+    <div class="relative lg:grid lg:grid-cols-12 lg:gap-8">
         <div class="lg:block lg:col-span-2">
             @include('forum._channels')
         </div>
@@ -34,8 +34,8 @@
             </div>
         </div>
 
-        <div class="hidden lg:block lg:col-span-2 xl:col-span-3">
-            <aside class="sticky top-4 space-y-10 mt-10">
+        <div class="hidden relative mt-10 lg:block lg:col-span-2 xl:col-span-3">
+            <aside class="sticky block top-4 space-y-10">
                 <x-sponsors />
 
                 <x-ads />
