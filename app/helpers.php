@@ -1,5 +1,6 @@
 <?php
 
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Auth;
 
 if (! function_exists('active')) {
@@ -28,7 +29,7 @@ if (! function_exists('md_to_html')) {
      */
     function md_to_html(string $markdown): string
     {
-        return Markdown::convertToHtml($markdown);
+        return Markdown::convert($markdown);
     }
 }
 
