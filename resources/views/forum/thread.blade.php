@@ -5,8 +5,8 @@
 
 @section('body')
 
-    <div class="lg:grid lg:grid-cols-9 lg:gap-10">
-        <div class="hidden lg:block lg:col-span-2">
+    <div class="relative lg:grid lg:grid-cols-9 lg:gap-10">
+        <div class="hidden relative lg:block lg:col-span-2">
             <div class="sticky top-4 space-y-6">
                 <x-button :link="route('forum.new')" class="w-full flex justify-center">
                     Nouveau Sujet

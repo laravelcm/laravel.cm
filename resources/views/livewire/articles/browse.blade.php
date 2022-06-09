@@ -1,5 +1,5 @@
-<div class="lg:grid lg:grid-cols-9 lg:gap-10">
-    <div class="hidden lg:block lg:col-span-2">
+<div class="relative lg:grid lg:grid-cols-9 lg:gap-10">
+    <div class="hidden relative lg:block lg:col-span-2">
         <div class="sticky top-4 divide-y divide-skin-base">
             <x-articles.filter :selectedSortBy="$selectedSortBy" />
 

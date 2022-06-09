@@ -1,4 +1,4 @@
-<nav x-data="{ open: false, flyoutMenu: false }" class="relative z-10 bg-skin-menu">
+<nav x-data="{ open: false, flyoutMenu: false }" class="relative z-10 bg-skin-menu header">
     <div class="max-w-7xl mx-auto px-2 sm:px-4">
         <div class="flex justify-between h-16">
             <div class="flex px-2 lg:px-0">
