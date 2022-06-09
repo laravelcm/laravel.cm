@@ -65,7 +65,7 @@ const autoHideHeader = function () {
 }
 
 /**
- * Enregistre le comportement du header (fixed au scoll)
+ * Enregistre le comportement du header (fixed au scroll)
  * @return {function(): void}
  */
 export function registerHeader () {

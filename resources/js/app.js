@@ -7,7 +7,6 @@ import './elements'
 import './helpers'
 import './editor'
 import './scrollspy'
-// import './rain'
 
 registerHeader()
 

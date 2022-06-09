@@ -6,7 +6,7 @@ export function throttle(callback, delay) {
   let timer;
   return function () {
     let context = this;
-    let now = new Date();
+    let now = + new Date();
     let args = arguments;
     if (last && now < last + delay) {
       // le délai n'est pas écoulé on reset le timer
