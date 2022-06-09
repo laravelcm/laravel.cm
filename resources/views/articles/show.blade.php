@@ -11,7 +11,7 @@
     @endphp
 
     <article class="relative lg:grid lg:grid-cols-9 lg:gap-10" xmlns:livewire="http://www.w3.org/1999/html">
-        <div class="hidden lg:block lg:col-span-2">
+        <div class="hidden relative lg:block lg:col-span-2">
             <div class="divide-y divide-skin-base sticky space-y-6 top-4">
                 <div>
                     <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase">A propos de l’auteur</h4>
@@ -263,7 +263,7 @@
                 </footer>
             @endif
         </div>
-        <div class="hidden lg:block lg:col-span-2">
+        <div class="hidden relative lg:block lg:col-span-2">
             <div class="sticky top-4 space-y-10">
                 @if($article->showToc())
                     <div class="bg-skin-card px-4 py-6 rounded-lg shadow-lg">

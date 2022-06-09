@@ -1,5 +1,5 @@
 <div class="relative lg:grid lg:grid-cols-12 lg:gap-8">
-    <div class="hidden lg:block lg:col-span-2">
+    <div class="hidden relative lg:block lg:col-span-2">
         <aside class="sticky top-4 divide-y divide-skin-base">
             <div class="pb-6">
                 <span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-skin-link text-skin-base font-sans">
@@ -59,7 +59,7 @@
             @endforeach
         </div>
     </div>
-    <div class="hidden lg:block lg:col-span-3">
+    <div class="hidden relative lg:block lg:col-span-3">
         @include('discussions._contributions')
     </div>
 </div>

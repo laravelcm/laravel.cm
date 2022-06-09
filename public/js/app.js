@@ -3091,7 +3091,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import './rain'
 
 (0,_header__WEBPACK_IMPORTED_MODULE_3__.registerHeader)(); // Add Alpine to window object.
 
@@ -4466,7 +4465,7 @@ const autoHideHeader = function () {
   scrolling = false;
 };
 /**
- * Enregistre le comportement du header (fixed au scoll)
+ * Enregistre le comportement du header (fixed au scroll)
  * @return {function(): void}
  */
 
@@ -5566,7 +5565,7 @@ function throttle(callback, delay) {
   let timer;
   return function () {
     let context = this;
-    let now = new Date();
+    let now = +new Date();
     let args = arguments;
 
     if (last && now < last + delay) {
