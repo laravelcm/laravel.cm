@@ -51,7 +51,7 @@
                                                 {{ __('Snippets') }}
                                             </p>
                                             <p class="mt-1 text-sm font-mono text-skin-base font-normal">
-                                                {{ __('Créer et partagez des codes sources publiquement accéssible par tous.') }}
+                                                {{ __('Créer et partagez des codes sources publiquement accessible par tous.') }}
                                             </p>
                                         </div>
                                     </a>
@@ -79,8 +79,9 @@
                                             </svg>
                                         </div>
                                         <div class="ml-4">
-                                            <p class="text-base font-sans font-medium text-skin-inverted">
+                                            <p class="inline-flex items-center text-base font-sans font-medium text-skin-inverted">
                                                 {{ __('Podcasts') }}
+                                                <span class="inline-flex ml-2 text-xs leading-4 text-green-800 bg-green-100 py-0.5 px-1.5 rounded-full">Bientôt</span>
                                             </p>
                                             <p class="mt-1 text-sm font-mono text-skin-base font-normal">
                                                 {{ __('Toutes les discussions sur le développement de Laravel et PHP.') }}
@@ -123,8 +124,9 @@
                                             <x-heroicon-o-briefcase class="h-6 w-6" />
                                         </div>
                                         <div class="ml-4">
-                                            <p class="text-base font-sans font-medium text-skin-inverted">
+                                            <p class="inline-flex items-center text-base font-sans font-medium text-skin-inverted">
                                                 {{ __('Jobs') }}
+                                                <span class="inline-flex ml-2 text-xs leading-4 text-green-800 bg-green-100 py-0.5 px-1.5 rounded-full">Bientôt</span>
                                             </p>
                                             <p class="mt-1 text-sm font-mono text-skin-base font-normal">
                                                 {{ __('Les offres pour développeurs Laravel dans la zone CEMAC.') }}
@@ -312,6 +314,7 @@
                         <path d="M12 3c-4.963 0-9 4.037-9 9 0 3.993 2.614 7.387 6.221 8.561a42.41 42.41 0 0 1-.228-1.38C6.189 18.003 4.214 15.227 4.214 12c0-4.293 3.493-7.785 7.786-7.785 4.293 0 7.785 3.492 7.785 7.785 0 3.174-1.909 5.91-4.64 7.122-.071.492-.152.968-.229 1.393C18.452 19.3 21 15.942 21 12c0-4.963-4.038-9-9-9z" />
                     </svg>
                     {{ __('Podcasts') }}
+                    <span class="inline-flex ml-2 text-xs leading-4 text-green-800 bg-green-100 py-0.5 px-1.5 rounded-full">Bientôt</span>
                 </a>
 
                 <a href="#" class="flex items-center text-skin-base">
@@ -329,6 +332,7 @@
                 <a href="#" class="flex items-center text-skin-base">
                     <x-heroicon-o-briefcase class="h-6 w-6 mr-3 -ml-1" />
                     {{ __('Jobs') }}
+                    <span class="inline-flex ml-2 text-xs leading-4 text-green-800 bg-green-100 py-0.5 px-1.5 rounded-full">Bientôt</span>
                 </a>
 
             </div>
