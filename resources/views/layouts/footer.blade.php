@@ -18,41 +18,15 @@
                     </h3>
                     <ul class="mt-4 space-y-4">
 
-                        <li>
-                            <a href="{{ route('about') }}" class="text-base text-skin-base hover:text-skin-menu-hover">
-                                {{ __('A propos') }}
-                            </a>
-                        </li>
+                        <x-footer-link title="A propos" :url="route('about')" />
 
-                        <li>
-                            <a href="#" class="text-base text-skin-base hover:text-skin-menu-hover">
-                                {{ __('Podcasts') }}
-                            </a>
-                        </li>
+                        <x-footer-link title="Podcasts" url="#" soon />
 
-                        <li>
-                            <a href="#" class="text-base text-skin-base hover:text-skin-menu-hover">
-                                {{ __('Tags') }}
-                            </a>
-                        </li>
+                        <x-footer-link title="Jobs" url="#" soon />
 
-                        <li>
-                            <a href="#" class="text-base text-skin-base hover:text-skin-menu-hover">
-                                {{ __('Jobs') }}
-                            </a>
-                        </li>
+                        <x-footer-link title="Sponsors" url="#" />
 
-                        <li>
-                            <a href="#" class="text-base text-skin-base hover:text-skin-menu-hover">
-                                {{ __('Sponsors') }}
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md" class="text-base text-skin-base hover:text-skin-menu-hover">
-                                {{ __('Branding') }}
-                            </a>
-                        </li>
+                        <x-footer-link title="Branding" url="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md" />
 
                     </ul>
                 </div>
@@ -62,29 +36,13 @@
                     </h3>
                     <ul class="mt-4 space-y-4">
 
-                        <li>
-                            <a href="{{ route('terms') }}" class="text-base text-skin-base hover:text-skin-menu-hover">
-                                {{ __('Conditions d’utilisation') }}
-                            </a>
-                        </li>
+                        <x-footer-link title="Conditions d’utilisation" :url="route('terms')" />
 
-                        <li>
-                            <a href="{{ route('privacy') }}" class="text-base text-skin-base hover:text-skin-menu-hover">
-                                {{ __('Confidentialité') }}
-                            </a>
-                        </li>
+                        <x-footer-link title="Confidentialité" :url="route('privacy')" />
 
-                        <li>
-                            <a href="{{ route('rules') }}" class="text-base text-skin-base hover:text-skin-menu-hover">
-                                {{ __('Code de conduite') }}
-                            </a>
-                        </li>
+                        <x-footer-link title="Code de conduite" :url="route('rules')" />
 
-                        <li>
-                            <a href="{{ route('faq') }}" class="text-base text-skin-base hover:text-skin-menu-hover">
-                                {{ __('FAQ') }}
-                            </a>
-                        </li>
+                        <x-footer-link title="FAQ" :url="route('faq')" />
 
                     </ul>
                 </div>
