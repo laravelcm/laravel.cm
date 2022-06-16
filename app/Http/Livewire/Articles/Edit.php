@@ -5,12 +5,10 @@ namespace App\Http\Livewire\Articles;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
-use App\Notifications\SendSubmittedArticle;
 use App\Traits\WithArticleAttributes;
 use App\Traits\WithTagsAssociation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -74,14 +72,6 @@ class Edit extends Component
 
         if ($this->file) {
             $this->article->addMedia($this->file->getRealPath())->toMediaCollection('media');
-        }
-
-        if (! $this->alreadySubmitted) {
-            // Envoi du mail a l'admin pour la validation de l'article
-            $admin = User::findByEmailAddress('monneylobe@gmail.com');
-            Notification::send($admin, new SendSubmittedArticle($this->article));
-
-            session()->flash('status', 'Merci d\'avoir soumis votre article. Vous aurez des nouvelles uniquement quand nous accepterons votre article.');
         }
 
         Cache::forget('post-' . $this->article->id);
