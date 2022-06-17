@@ -49,6 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'last_login_at',
         'last_login_ip',
         'email_verified_at',
+        'published_at',
         'opt_in',
     ];
 
@@ -295,7 +296,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         parent::delete();
     }
 
-    public function scopeHasActivity(Builder $query)
+    public function scopeHasActivity(Builder $query): Builder
     {
         return $query->where(function ($query) {
             $query->has('threads')
