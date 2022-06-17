@@ -5,20 +5,23 @@
             is12H:    @boolean($timeFormat == '12'),
             readonly: @boolean($readonly),
             disabled: @boolean($disabled),
+            min: @js($min ? $min->format('Y-m-d\TH:i') : null),
+            max: @js($max ? $max->format('Y-m-d\TH:i') : null),
         },
         withoutTimezone: @boolean($withoutTimezone),
-        timezone: '{{ $timezone }}',
-        userTimezone: '{{ $userTimezone }}',
-        parseFormat: '{{ $parseFormat }}',
+        timezone:      '{{ $timezone }}',
+        userTimezone:  '{{ $userTimezone }}',
+        parseFormat:   '{{ $parseFormat }}',
         displayFormat: '{{ $displayFormat }}',
         weekDays:   @lang('wireui::messages.datePicker.days'),
         monthNames: @lang('wireui::messages.datePicker.months'),
         withoutTime: @boolean($withoutTime),
     })"
-     class="relative">
+     class="relative"
+    {{ $attributes->only('wire:key') }}>
     <x-dynamic-component
-        :component="WireUiComponent::resolve('input')"
-        {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
+        :component="WireUi::component('input')"
+        {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key']) }}
         :borderless="$borderless"
         :shadowless="$shadowless"
         :label="$label"
@@ -29,23 +32,26 @@
         :prepend="$prepend"
         readonly
         x-on:click="togglePicker"
-        ::value="getInputValue()">
+        x-bind:value="model ? getDisplayValue(): null">
         @if (!$readonly && !$disabled)
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
                     <div class="flex items-center gap-x-2 my-auto
                         {{ $errors->has($name) ? 'text-negative-400 dark:text-negative-600' : 'text-secondary-400' }}">
-                        <x-dynamic-component
-                            :component="WireUiComponent::resolve('icon')"
-                            class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
-                            x-cloak
-                            name="x"
-                            x-show="model"
-                            x-on:click="clearDate()"
-                        />
+
+                        @if ($clearable)
+                            <x-dynamic-component
+                                :component="WireUi::component('icon')"
+                                class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
+                                x-cloak
+                                name="x"
+                                x-show="model"
+                                x-on:click="clearDate()"
+                            />
+                        @endif
 
                         <x-dynamic-component
-                            :component="WireUiComponent::resolve('icon')"
+                            :component="WireUi::component('icon')"
                             class="cursor-pointer w-5 h-5"
                             :name="$rightIcon"
                             x-on:click="togglePicker"
@@ -77,7 +83,7 @@
                  aria-hidden="true">
             </div>
 
-            <div class="w-full rounded-t-md border border-secondary-200 bg-white transform shadow-lg
+            <div class="w-full rounded-t-md border border-secondary-200 bg-white shadow-lg
                         dark:bg-secondary-800 dark:border-secondary-600 transition-all relative
                         max-h-96 overflow-y-auto p-3 sm:w-72 sm:rounded-xl"
                  x-show="popover"
@@ -92,31 +98,31 @@
                     @unless ($withoutTips)
                         <div class="grid grid-cols-3 gap-x-2 text-center text-secondary-600">
                             <x-dynamic-component
-                                :component="WireUiComponent::resolve('button')"
+                                :component="WireUi::component('button')"
                                 class="bg-secondary-100 border-none dark:bg-secondary-800"
                                 x-on:click="selectYesterday"
-                                label="{{ __('wireui::messages.datePicker.yesterday') }}"
+                                :label="__('wireui::messages.datePicker.yesterday')"
                             />
 
                             <x-dynamic-component
-                                :component="WireUiComponent::resolve('button')"
+                                :component="WireUi::component('button')"
                                 class="bg-secondary-100 border-none dark:bg-secondary-800"
                                 x-on:click="selectToday"
-                                label="{{ __('wireui::messages.datePicker.today') }}"
+                                :label="__('wireui::messages.datePicker.today')"
                             />
 
                             <x-dynamic-component
-                                :component="WireUiComponent::resolve('button')"
+                                :component="WireUi::component('button')"
                                 class="bg-secondary-100 border-none dark:bg-secondary-800"
                                 x-on:click="selectTomorrow"
-                                label="{{ __('wireui::messages.datePicker.tomorrow') }}"
+                                :label="__('wireui::messages.datePicker.tomorrow')"
                             />
                         </div>
                     @endunless
 
                     <div class="flex items-center justify-between">
                         <x-dynamic-component
-                            :component="WireUiComponent::resolve('button')"
+                            :component="WireUi::component('button')"
                             class="rounded-lg shrink-0"
                             x-show="!monthsPicker"
                             x-on:click="previousMonth"
@@ -139,7 +145,7 @@
 
 
                         <x-dynamic-component
-                            :component="WireUiComponent::resolve('button')"
+                            :component="WireUi::component('button')"
                             class="rounded-lg shrink-0"
                             x-show="!monthsPicker"
                             x-on:click="nextMonth"
@@ -154,7 +160,7 @@
                              x-transition>
                             <template x-for="(monthName, index) in monthNames" :key="`month.${monthName}`">
                                 <x-dynamic-component
-                                    :component="WireUiComponent::resolve('button')"
+                                    :component="WireUi::component('button')"
                                     class="text-secondary-400 dark:border-0 dark:hover:bg-secondary-700 uppercase"
                                     x-on:click="selectMonth(index)"
                                     xs
@@ -165,21 +171,28 @@
 
                         <div class="grid grid-cols-7 gap-2">
                             <template x-for="day in weekDays" :key="`week-day.${day}`">
-                                <span class="text-secondary-400 text-2xs text-center uppercase pointer-events-none"
-                                      x-text="day"></span>
+                                <span class="text-secondary-400 text-3xs text-center uppercase pointer-events-none"
+                                      x-text="day">
+                                </span>
                             </template>
 
-                            <template x-for="date in dates" :key="`week-date.${date.day}.${date.month}`">
+                            <template
+                                x-for="date in dates"
+                                :key="`week-date.${date.day}.${date.month}`">
                                 <div class="flex justify-center picker-days">
                                     <button class="text-sm w-7 h-6 focus:outline-none rounded-md focus:ring-2 focus:ring-ofsset-2 focus:ring-primary-600
-                                                 hover:bg-primary-100 dark:hover:bg-secondary-700 dark:focus:ring-secondary-400"
+                                                 hover:bg-primary-100 dark:hover:bg-secondary-700 dark:focus:ring-secondary-400
+                                                  disabled:cursor-not-allowed"
                                             :class="{
-                                            'text-secondary-600 dark:text-secondary-400': date.month === month && !isSelected(date),
-                                            'text-secondary-400 dark:text-secondary-600': date.month !== month,
-                                            'text-primary-600 border border-primary-600 dark:border-gray-400': date.isToday && !isSelected(date),
-                                            'text-white bg-primary-600 font-semibold border border-primary-600': isSelected(date),
-                                            'hover:bg-primary-600 dark:bg-secondary-700 dark:border-secondary-400': isSelected(date),
+                                            'text-secondary-600 dark:text-secondary-400': !date.isDisabled && !date.isSelected && date.month === month,
+                                            'text-secondary-400 dark:text-secondary-600': date.isDisabled || date.month !== month,
+                                            'text-primary-600 border border-primary-600 dark:border-gray-400': date.isToday && !date.isSelected,
+                                            'disabled:text-primary-400 disabled:border-primary-400': date.isToday && !date.isSelected,
+                                            '!text-white bg-primary-600 font-semibold border border-primary-600': date.isSelected,
+                                            'disabled:bg-primary-400 disabled:border-primary-400': date.isSelected,
+                                            'hover:bg-primary-600 dark:bg-secondary-700 dark:border-secondary-400': date.isSelected,
                                         }"
+                                            :disabled="date.isDisabled"
                                             x-on:click="selectDate(date)"
                                             x-text="date.day"
                                             type="button">
@@ -192,17 +205,17 @@
 
                 <div x-show="tab === 'time'" x-transition>
                     <x-dynamic-component
-                        :component="WireUiComponent::resolve('input')"
+                        :component="WireUi::component('input')"
                         id="search.{{ $attributes->wire('model')->value() }}"
                         label="Select time"
                         x-model="searchTime"
-                        ::placeholder="modelTime ? modelTime : '12:00'"
+                        x-bind:placeholder="getSearchPlaceholder"
                         x-ref="searchTime"
                         x-on:input.debounce.150ms="onSearchTime($event.target.value)"
                     />
 
                     <div x-ref="timesContainer"
-                         class="mt-1 w-full h-52 pb-1 pt-2 overflow-y-auto flex flex-col picker-times">
+                         class="mt-1 w-full max-h-52 pb-1 pt-2 overflow-y-auto flex flex-col picker-times">
                         <template x-for="time in filteredTimes">
                             <button class="group rounded-md focus:outline-none focus:bg-primary-100 dark:focus:bg-secondary-700
                                            relative py-2 pl-2 pr-9 text-left transition-colors ease-in-out duration-100 cursor-pointer select-none
@@ -211,7 +224,7 @@
                                     'text-primary-600': modelTime === time.value,
                                     'text-secondary-700': modelTime !== time.value,
                                 }"
-                                    :name="`time.${time.value}`"
+                                    :name="`times.${time.value}`"
                                     type="button"
                                     x-on:click="selectTime(time)">
                                 <span x-text="time.label"></span>
@@ -219,7 +232,7 @@
                                              absolute inset-y-0 right-0 flex items-center pr-4"
                                       x-show="modelTime === time.value">
                                     <x-dynamic-component
-                                        :component="WireUiComponent::resolve('icon')"
+                                        :component="WireUi::component('icon')"
                                         name="check"
                                         class="h-5 w-5"
                                     />

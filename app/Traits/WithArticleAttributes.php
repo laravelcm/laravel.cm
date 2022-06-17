@@ -13,6 +13,7 @@ trait WithArticleAttributes
     public bool $show_toc = false;
     public ?string $submitted_at = null;
     public ?string $approved_at = null;
+    public ?string $published_at = null;
     public $file;
 
     protected $rules = [
@@ -23,7 +24,7 @@ trait WithArticleAttributes
         'file' => 'nullable|image|max:2048', // 1MB Max
     ];
 
-    public function removeImage()
+    public function removeImage(): void
     {
         $this->file = null;
     }
@@ -38,7 +39,7 @@ trait WithArticleAttributes
         ];
     }
 
-    public function updatedTitle(string $value)
+    public function updatedTitle(string $value): void
     {
         $this->slug = Str::slug($value);
     }
