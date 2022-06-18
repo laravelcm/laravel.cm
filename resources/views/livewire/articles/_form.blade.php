@@ -77,7 +77,16 @@
         <div class="absolute inset-0 z-30 overflow-hidden">
             <div class="absolute inset-0" aria-hidden="true">
                 <div class="fixed inset-y-0 right-0 pl-10 max-w-full flex">
-                    <div @click.away="open = false;" x-show="open" x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="w-screen max-w-md">
+                    <div @click.away="open = false;"
+                         x-show="open"
+                         x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+                         x-transition:enter-start="translate-x-full"
+                         x-transition:enter-end="translate-x-0"
+                         x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
+                         x-transition:leave-start="translate-x-0"
+                         x-transition:leave-end="translate-x-full"
+                         class="w-screen max-w-md"
+                    >
                         <div class="h-full flex flex-col py-6 bg-skin-card shadow-xl overflow-y-scroll">
                             <div class="px-4 sm:px-6">
                                 <div class="flex items-start justify-between">
@@ -113,11 +122,28 @@
                                             <div>
                                                 <dt class="text-sm leading-7 font-semibold text-skin-base">Afficher le Sommaire</dt>
                                             </div>
-                                            <button type="button" class="relative inline-flex shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 bg-skin-card-muted" aria-pressed="false" x-ref="switch" x-state:on="Enabled" x-state:off="Not Enabled" :class="{ 'bg-green-600': on, 'bg-skin-card-muted': !(on) }" aria-labelledby="availability-label" :aria-pressed="on.toString()" @click="on = !on">
+                                            <button type="button"
+                                                    class="relative inline-flex shrink-0 h-6 w-11 border border-skin-base rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 bg-skin-card-muted"
+                                                    :class="{ 'bg-green-600': on, 'bg-skin-card-muted': !(on) }"
+                                                    aria-pressed="false"
+                                                    x-ref="switch"
+                                                    x-state:on="Enabled"
+                                                    x-state:off="Not Enabled"
+                                                    aria-labelledby="availability-label"
+                                                    :aria-pressed="on.toString()"
+                                                    @click="on = !on"
+                                            >
                                                 <span class="sr-only">{{ __('Afficher le sommaire') }}</span>
                                                 <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 rounded-full bg-skin-menu shadow transform ring-0 transition ease-in-out duration-200 translate-x-0" x-state:on="Enabled" x-state:off="Not Enabled" :class="{ 'translate-x-5': on, 'translate-x-0': !(on) }"></span>
                                             </button>
                                         </div>
+
+                                        @if(Auth::user()->hasAnyRole(['admin', 'moderator']))
+                                            <div class="mt-8">
+                                                <x-label for="published_at">Date de publication</x-label>
+                                                <x-input wire:model.defer="published_at" id="published_at" name="published_at" class="mt-1" type="date" />
+                                            </div>
+                                        @endif
 
                                         <div class="mt-8">
                                             <x-label for="slug">URL Slug</x-label>

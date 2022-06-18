@@ -52,6 +52,7 @@ class Create extends Component
             'title' => $this->title,
             'slug' => $this->slug,
             'body' => $this->body,
+            'published_at' => $this->published_at,
             'submitted_at' => $this->submitted_at,
             'approved_at' => $this->approved_at,
             'show_toc' => $this->show_toc,

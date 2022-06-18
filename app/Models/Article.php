@@ -49,6 +49,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         'declined_at',
         'shared_at',
         'sponsored_at',
+        'published_at',
     ];
 
     /**
@@ -62,6 +63,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         'declined_at' => 'datetime',
         'shared_at' => 'datetime',
         'sponsored_at' => 'datetime',
+        'published_at' => 'datetime',
         'show_toc' => 'boolean',
         'is_pinned' => 'boolean',
     ];
@@ -150,6 +152,11 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         return $this->sponsored_at;
     }
 
+    public function publishedAt(): ?Carbon
+    {
+        return $this->published_at;
+    }
+
     public function isSubmitted(): bool
     {
         return ! $this->isNotSubmitted();
@@ -192,12 +199,12 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function isPublished(): bool
     {
-        return ! $this->isNotPublished();
+        return ! $this->isNotPublished() && ($this->publishedAt() && $this->publishedAt()->lessThanOrEqualTo(now()));
     }
 
     public function isNotPublished(): bool
     {
-        return $this->isNotSubmitted() || $this->isNotApproved();
+        return ($this->isNotSubmitted() || $this->isNotApproved()) && $this->published_at === null;
     }
 
     public function isPinned(): bool
@@ -249,7 +256,8 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function scopePublished(Builder $query): Builder
     {
-        return $query->submitted()
+        return $query->whereDate('published_at', '<=', now())
+            ->submitted()
             ->approved();
     }
 
@@ -258,6 +266,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         return $query->where(function ($query) {
             $query->whereNull('submitted_at')
                 ->orWhereNull('approved_at')
+                ->orWhereNull('published_at')
                 ->orWhereNotNull('declined_at');
         });
     }
@@ -300,14 +309,14 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     public function scopeRecent(Builder $query): Builder
     {
         return $query->orderBy('is_pinned', 'desc')
-            ->orderBy('submitted_at', 'desc');
+            ->orderBy('published_at', 'desc');
     }
 
     public function scopePopular(Builder $query): Builder
     {
         return $query->withCount('reactions')
             ->orderBy('reactions_count', 'desc')
-            ->orderBy('submitted_at', 'desc');
+            ->orderBy('published_at', 'desc');
     }
 
     public function scopeTrending(Builder $query): Builder
@@ -316,7 +325,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
             $query->where('created_at', '>=', now()->subWeek());
         }])
             ->orderBy('reactions_count', 'desc')
-            ->orderBy('submitted_at', 'desc');
+            ->orderBy('published_at', 'desc');
     }
 
     public function markAsShared()
@@ -328,7 +337,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     {
         return self::notShared()
             ->published()
-            ->orderBy('submitted_at', 'asc')
+            ->orderBy('published_at', 'asc')
             ->first();
     }
 
@@ -336,7 +345,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     {
         return self::published()
             ->whereNull('tweet_id')
-            ->orderBy('submitted_at', 'asc')
+            ->orderBy('published_at', 'asc')
             ->first();
     }
 
