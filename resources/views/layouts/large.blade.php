@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @include('layouts._nav')
+    <x-layouts.header class="header" />
 
     <x-container>
         @yield('body')

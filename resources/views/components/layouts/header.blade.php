@@ -1,4 +1,4 @@
-<nav x-data="{ open: false, flyoutMenu: false }" class="relative z-10 bg-skin-menu header">
+<nav x-data="{ open: false, flyoutMenu: false }" {{ $attributes->merge(['class' => 'relative z-10 bg-skin-menu']) }}>
     <div class="max-w-7xl mx-auto px-2 sm:px-4">
         <div class="flex justify-between h-16">
             <div class="flex px-2 lg:px-0">
@@ -237,13 +237,17 @@
                                     {{ Auth::user()->email }}
                                 </p>
                             </div>
-                            <div class="py-1.5 px-3.5" role="none">
-                                @if(Auth::user()->hasRole(['admin', 'moderator']))
+                            @if(Auth::user()->hasRole(['admin', 'moderator']))
+                                <div class="py-1.5 px-3.5" role="none">
                                     <a href="{{ route('cpanel.home') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
-                                        <x-heroicon-o-chart-square-bar class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
-                                        {{ __('Cpanel') }}
+                                        <svg class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" fill="none" viewBox="0 0 24 24">
+                                            <path d="M15 17v4H9v-4m-3.8 0h13.6c1.12 0 1.68 0 2.108-.218a2 2 0 0 0 .874-.874C22 15.48 22 14.92 22 13.8V6.2c0-1.12 0-1.68-.218-2.108a2 2 0 0 0-.874-.874C20.48 3 19.92 3 18.8 3H5.2c-1.12 0-1.68 0-2.108.218a2 2 0 0 0-.874.874C2 4.52 2 5.08 2 6.2v7.6c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874C3.52 17 4.08 17 5.2 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        {{ __('Administration') }}
                                     </a>
-                                @endif
+                                </div>
+                            @endif
+                            <div class="py-1.5 px-3.5" role="none">
                                 <a href="{{ route('dashboard') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
                                     <x-heroicon-o-view-grid class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
                                     {{ __('Dashboard') }}
