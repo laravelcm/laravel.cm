@@ -44,7 +44,11 @@
 <body class="font-sans antialiased bg-skin-body text-skin-base">
 
     <div class="relative overflow-hidden min-h-full">
-        {{ $slot }}
+        <x-layouts.admin-menu />
+
+        <div class="py-12 lg:pb-20">
+            {{ $slot }}
+        </div>
     </div>
 
     <x-notifications z-index="z-50" />
