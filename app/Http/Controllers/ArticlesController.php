@@ -30,7 +30,7 @@ class ArticlesController extends Controller
         $article = Cache::remember('post-' . $article->id, now()->addHour(), fn () => $article);
 
         abort_unless(
-            $article->isPublished() || ($user && $user->hasAnyRole(['admin', 'moderator'])),
+            $article->isPublished() || ($user && $article->isAuthoredBy($user)) || ($user && $user->hasAnyRole(['admin', 'moderator'])),
             404
         );
 
