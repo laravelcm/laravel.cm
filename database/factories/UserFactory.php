@@ -45,4 +45,18 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    /**
+     * Indicate that the model's created_at should be last month.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function lastMonth()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'created_at' => now()->subMonth(),
+            ];
+        });
+    }
 }
