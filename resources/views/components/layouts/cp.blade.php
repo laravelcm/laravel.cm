@@ -1,5 +1,7 @@
+@props(['title'])
+
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth {{ get_current_theme() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,15 +41,22 @@
 
     @include('layouts._favicons')
 </head>
-<body class="antialiased font-sans bg-white dark:bg-gray-900">
+<body class="font-sans antialiased bg-skin-body text-skin-base">
 
     <div class="relative overflow-hidden min-h-full">
-        @yield('content')
+        <x-layouts.admin-menu />
+
+        <div class="py-12 lg:pb-20">
+            {{ $slot }}
+        </div>
+
+        <x-layouts.footer />
     </div>
 
     <x-notifications z-index="z-50" />
 
     @livewire('livewire-ui-modal')
+    @livewire('livewire-ui-spotlight')
     @stack('scripts')
 </body>
 </html>
