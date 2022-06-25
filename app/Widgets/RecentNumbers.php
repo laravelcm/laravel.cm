@@ -41,7 +41,7 @@ class RecentNumbers extends AbstractWidget
         $countUsers = User::count();
         $lastMonthRegistered = User::query()->whereBetween('created_at', [
             $lastMonth->startOfMonth()->format('Y-m-d'),
-            $lastMonth->endOfMonth()->format('Y-m-d')
+            $lastMonth->endOfMonth()->format('Y-m-d'),
         ])->count();
         $currentMonthRegistered = User::query()->where('created_at', '>=', now()->startOfMonth())->count();
         $difference = $currentMonthRegistered - $lastMonthRegistered;
@@ -49,7 +49,7 @@ class RecentNumbers extends AbstractWidget
         $countArticles = Article::count();
         $lastMonthArticles = Article::query()->whereBetween('created_at', [
             $lastMonth->startOfMonth()->format('Y-m-d'),
-            $lastMonth->endOfMonth()->format('Y-m-d')
+            $lastMonth->endOfMonth()->format('Y-m-d'),
         ])->count();
         $currentMonthArticles = Article::query()->where('created_at', '>=', now()->startOfMonth())->count();
         $differenceArticle = $currentMonthArticles - $lastMonthArticles;
