@@ -1,6 +1,6 @@
 <div>
     <dl class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="relative bg-white py-5 px-4 sm:py-6 sm:px-6 shadow rounded-lg overflow-hidden">
+        <div class="relative bg-skin-card py-5 px-4 sm:py-6 sm:px-6 shadow rounded-lg overflow-hidden">
             <dt>
                 <div class="flex items-center">
                     <x-heroicon-o-users class="h-5 w-5 text-green-600" />
@@ -18,7 +18,7 @@
             </dd>
         </div>
 
-        <div class="relative bg-white py-5 px-4 sm:py-6 sm:px-6 shadow rounded-lg overflow-hidden">
+        <div class="relative bg-skin-card py-5 px-4 sm:py-6 sm:px-6 shadow rounded-lg overflow-hidden">
             <dt>
                 <div class="flex items-center">
                     <x-heroicon-o-newspaper class="h-5 w-5 text-green-600" />
@@ -36,7 +36,7 @@
             </dd>
         </div>
 
-        <div class="relative bg-white py-5 px-4 sm:py-6 sm:px-6 shadow rounded-lg overflow-hidden">
+        <div class="relative bg-skin-card py-5 px-4 sm:py-6 sm:px-6 shadow rounded-lg overflow-hidden">
             <dt>
                 <div class="flex items-center">
                     <x-heroicon-o-eye class="h-5 w-5 text-green-600" />
