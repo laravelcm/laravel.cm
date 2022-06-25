@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
     public function home()
     {
-        $users = Cache::remember('new-members', now()->addHour(), fn () => User::verifiedUsers()->latest()->limit(10)->get());
+        $users = Cache::remember('new-members', now()->addHour(), fn () => User::verifiedUsers()->latest()->limit(15)->get());
         $latestArticles = Cache::remember('last-posts', now()->addHour(), fn () => Article::latest()->limit(2)->get());
 
         return view('cpanel.dashboard', [
