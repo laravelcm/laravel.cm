@@ -29,7 +29,7 @@ class RecentNumbers extends AbstractWidget
      *
      * @var int|float|bool
      */
-    // public $cacheTime = 90;
+    public $cacheTime = 90;
 
     /**
      * Treat this method as a controller action.
