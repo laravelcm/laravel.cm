@@ -12,7 +12,7 @@
                 {{ __('Catégories') }}
             </a>
             <a href="#" class="inline-flex text-sm font-medium rounded-md py-2 px-3 inline-flex items-center {{ active(['submissions*'], 'bg-green-50 text-green-800', 'text-skin-base hover:bg-skin-card-muted hover:text-skin-inverted') }}">
-                {{ __('Soumissions') }} <span class="ml-2 text-sm leading-5 text-skin-inverted-muted">4</span>
+                {{ __('Soumissions') }} {{--<span class="ml-2 text-sm leading-5 text-skin-inverted-muted">0</span>--}}
             </a>
             <a href="#" class="inline-flex text-sm font-medium rounded-md py-2 px-3 inline-flex items-center {{ active(['analytics*'], 'bg-green-50 text-green-800', 'text-skin-base hover:bg-skin-card-muted hover:text-skin-inverted') }}">
                 {{ __('Analytics') }}

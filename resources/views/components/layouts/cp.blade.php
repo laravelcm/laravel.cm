@@ -49,6 +49,8 @@
         <div class="py-12 lg:pb-20">
             {{ $slot }}
         </div>
+
+        <x-layouts.footer />
     </div>
 
     <x-notifications z-index="z-50" />
