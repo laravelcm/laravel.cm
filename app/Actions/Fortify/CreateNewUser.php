@@ -42,12 +42,17 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
+        /** @var User $user */
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'username' => Str::lower($input['username']),
             'password' => Hash::make($input['password']),
             'opt_in' => isset($input['opt_in']),
         ]);
+
+        $user->assignRole('user');
+
+        return $user;
     }
 }
