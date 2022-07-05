@@ -77,7 +77,7 @@ class RecentNumbers extends AbstractWidget
                 'count' => $totalViews,
                 'increase' => $difference > 0,
                 'decreased' => $difference < 0,
-                'current' => $differenceViews,
+                'current' => max($differenceViews, 0),
             ],
         ]);
     }

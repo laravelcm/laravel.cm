@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Cache;
 
 class DashboardController extends Controller
 {
-    public function home()
+    public function __invoke()
     {
         $users = Cache::remember('new-members', now()->addHour(), fn () => User::verifiedUsers()->latest()->limit(15)->get());
         $latestArticles = Cache::remember('last-posts', now()->addHour(), fn () => Article::latest()->limit(2)->get());
