@@ -83,6 +83,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
      */
     protected $appends = [
         'profile_photo_url',
+        'roles_label',
     ];
 
     public function hasProvider($provider): bool
@@ -95,6 +96,20 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
         return false;
     }
+
+    public function getRolesLabelAttribute(): string
+    {
+        $roles = $this->getRoleNames()->toArray();
+
+        if (count($roles)) {
+            return implode(', ', array_map(function ($item) {
+                return ucwords($item);
+            }, $roles));
+        }
+
+        return 'N/A';
+    }
+
 
     public function isAdmin(): bool
     {

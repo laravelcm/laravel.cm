@@ -5,7 +5,7 @@
             <a href="{{ route('cpanel.home') }}" class="text-sm font-medium rounded-md py-2 px-3 inline-flex items-center {{ active(['cpanel.home'], 'bg-green-50 text-green-800', 'text-skin-base hover:bg-skin-card-muted hover:text-skin-inverted') }}" aria-current="page" x-state:on="Current" x-state:off="Default">
                 {{ __('Tableau de bord') }}
             </a>
-            <a href="#" class="text-sm font-medium rounded-md py-2 px-3 inline-flex items-center {{ active(['users*'], 'bg-green-50 text-green-800', 'text-skin-base hover:bg-skin-card-muted hover:text-skin-inverted') }}">
+            <a href="{{ route('cpanel.users.browse') }}" class="text-sm font-medium rounded-md py-2 px-3 inline-flex items-center {{ active(['cpanel.users*'], 'bg-green-50 text-green-800', 'text-skin-base hover:bg-skin-card-muted hover:text-skin-inverted') }}">
                 {{ __('Utilisateurs') }}
             </a>
             <a href="#" class="text-sm font-medium rounded-md py-2 px-3 inline-flex items-center {{ active(['categories*'], 'bg-green-50 text-green-800', 'text-skin-base hover:bg-skin-card-muted hover:text-skin-inverted') }}">
