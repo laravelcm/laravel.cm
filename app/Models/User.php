@@ -110,7 +110,6 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return 'N/A';
     }
 
-
     public function isAdmin(): bool
     {
         return $this->hasRole('admin');
