@@ -259,6 +259,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         });
     }
 
+    public function scopeWithoutRole(Builder $query): Builder
+    {
+        return $query->whereDoesntHave('roles');
+    }
+
     public function scopeVerifiedUsers(Builder $query): Builder
     {
         return $query->whereNotNull('email_verified_at');
