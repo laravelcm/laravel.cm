@@ -65,19 +65,19 @@ class RecentNumbers extends AbstractWidget
                 'count' => $countUsers,
                 'increase' => $difference > 0,
                 'decreased' => $difference < 0,
-                'current' => max($difference, 0),
+                'current' => $currentMonthRegistered,
             ],
             'articles' => [
                 'count' => $countArticles,
                 'increase' => $differenceArticle > 0,
                 'decreased' => $differenceArticle < 0,
-                'current' => max($differenceArticle, 0),
+                'current' => $currentMonthArticles,
             ],
             'views' => [
                 'count' => $totalViews,
-                'increase' => $difference > 0,
-                'decreased' => $difference < 0,
-                'current' => max($differenceViews, 0),
+                'increase' => $differenceViews > 0,
+                'decreased' => $differenceViews < 0,
+                'current' => $currentViews,
             ],
         ]);
     }
