@@ -114,7 +114,6 @@ class AppServiceProvider extends ServiceProvider
             UsedDiskSpaceCheck::new(),
             DatabaseCheck::new(),
             CacheCheck::new(),
-            ScheduleCheck::new(),
         ]);
     }
 }
