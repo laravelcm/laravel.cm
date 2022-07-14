@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/logo.svg" height="250" />
+    <img src="./art/logo.svg" height="250" />
 </p>
 
 <p align="center">
@@ -48,7 +48,7 @@ The following tools are required in order to start the installation.
 
 Vous pouvez maintenant visiter l'application dans votre navigateur en visitant [http://laravel.cm.test](http://laravel.cm.test). Si vous avez amorcé la base de données, vous pouvez vous connecter à un compte de test avec ** `johndoe` ** & **` password` **.
 
-### Media Library Pro
+### Media Library Pro (optionnel)
 
 Pour que l'upload de fichier fonctionne en local (pour les elements qui utilise Media Library Pro comme la modification de la photo de profil) vous devez renseignez la Licence avec votre compte de Spatie. Pour ce projet une licence commune est disponible etant une `single Licence` pour ce projet uniquement. Vous devez copier coller ce code dans le fichier `auth.json` qui a ete cree a la racine et relancer la commande `composer install`
 
