@@ -39,26 +39,38 @@
         </div>
 
         <div class="divide-y divide-skin-base">
-            <div class="py-8 lg:py-10 xl:pb-14">
-                <p class="text-center text-lg font-medium text-skin-base tracking-wider leading-6 font-sans">
-                    Nous travaillons avec d’autres communautés et grandes startups
+            <div class="py-10 lg:py-12 xl:pb-14">
+                <p class="text-center text-base uppercase tracking-tight text-skin-base tracking-wider leading-6 font-sans">
+                    Nous travaillons avec d’autres communautés et startups
                 </p>
-                <div class="mt-5 space-y-5 lg:flex lg:items-center lg:justify-around lg:space-y-0 lg:mt-6">
-                    <a href="https://twitter.com/DarkCodeCompany" class="flex items-center justify-center">
-                        <x-icon.darkcode class="h-8 text-skin-inverted" />
-                    </a>
-                    <a href="https://laravelshopper.io" class="flex items-center justify-center">
-                        <img class="h-12 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
-                        <img class="h-12 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
-                    </a>
-                    <a href="https://gdg.community.dev/gdg-douala" class="flex items-center justify-center">
-                        <x-icon.gdg class="h-8 text-skin-inverted" />
-                    </a>
+                <div class="mt-8 grid grid-cols-2 gap-y-8 lg:grid-cols-3 lg:mt-12">
+                    <div class="col-span-2 flex justify-center lg:col-span-1">
+                        <a href="https://cosna-afrique.com" target="_blank" class="flex items-center">
+                            <x-icon.cosna class="h-14 w-auto"/>
+                        </a>
+                    </div>
+                    <div class="col-span-2 flex justify-center lg:col-span-1">
+                        <a href="https://laravelshopper.io" target="_blank" class="flex items-center">
+                            <img class="h-12 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
+                            <img class="h-12 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
+                        </a>
+                    </div>
+                    <div class="col-span-2 flex justify-center lg:col-span-1">
+                        <a href="https://gdg.community.dev/gdg-douala" target="_blank" class="flex items-center">
+                            <x-icon.gdg class="h-8 text-skin-inverted" />
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-6 text-center lg:mt-10">
+                    <a class="text-sm leading-5 text-flag-green hover:text-green-600 hover:underline" href="mailto:arthur@laravel.cm">Votre logo ici ?</a>
                 </div>
             </div>
 
             <div class="py-12 lg:py-20">
-                <x-section-header title="Articles Populaires" content="Découvrez les articles les plus appréciés et partagés par les membres de la communauté" />
+                <x-section-header
+                    title="Articles Populaires"
+                    content="Découvrez les articles les plus appréciés et partagés par les membres de la communauté"
+                />
                 <div class="mt-8 grid gap-10 max-w-xl mx-auto lg:grid-rows-3 lg:grid-flow-col lg:grid-cols-2 lg:mt-10 lg:gap-x-8 lg:max-w-none">
                     @foreach($latestArticles as $article)
                         @if($loop->first)
@@ -83,8 +95,11 @@
 
             @if($latestThreads->isNotEmpty())
                 <div class="py-12 lg:py-20">
-                    <x-section-header title="On apprend aussi en aidant les autres" content="En rejoignant la communauté, vous pouvez consulter les dernières questions non résolues et apporter votre pierre à l’édifice." />
-                    <div class="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-12 lg:mt-12">
+                    <x-section-header
+                        title="On apprend aussi en aidant les autres"
+                        content="En rejoignant la communauté, vous pouvez consulter les dernières questions non résolues et apporter votre pierre à l’édifice."
+                    />
+                    <div class="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-12 lg:mt-12">
                         @foreach($latestThreads as $thread)
                             <div>
                                 <div class="flex items-center font-sans text-skin-base">
@@ -123,6 +138,45 @@
                     </div>
                 </div>
             @endif
+
+            <div class="py-12 lg:py-20">
+                <x-section-header
+                    title="Ou venez juste discuter"
+                    content="Dans la communauté on partage aussi des sujets de discussions dans divers domaines, pour nous édifier tous ensemble. Rejoins nous en participant"
+                />
+
+                <div class="mt-8 grid gap-8 md:grid-cols-3 md:gap-x-10 lg:mt-12">
+                    @foreach($latestDiscussions as $discussion)
+                        <div>
+                            <div class="flex items-center text-sm font-sans text-skin-muted">
+                                <a class="shrink-0" href="/user/{{ $discussion->author->username }}">
+                                    <img class="h-6 w-6 rounded-full" src="{{ $discussion->author->profile_photo_url }}" alt="{{ $discussion->author->name }}">
+                                </a>
+                                <span class="ml-2 pr-1">Posté par</span>
+                                <div class="flex items-center space-x-1">
+                                    <a href="{{ route('profile', $discussion->author->username) }}" class="text-skin-inverted hover:underline">{{ $discussion->author->name }}</a>
+                                    <span aria-hidden="true">&middot;</span>
+                                    <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
+                                </div>
+                            </div>
+                            <a href="{{ route('discussions.show', $discussion) }}" class="mt-2 block">
+                                <p class="text-xl font-semibold text-skin-inverted">{{ $discussion->title }}</p>
+                                <p class="mt-3 text-base text-skin-base">{!! $discussion->excerpt() !!}</p>
+                            </a>
+                            <div class="mt-3">
+                                <a href="{{ route('discussions.show', $discussion) }}" class="text-base font-medium text-flag-green hover:text-green-500"> Lire la discussion </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
+                    <x-button :link="route('discussions.index')">
+                        Voir toutes les discussions
+                        <x-heroicon-o-arrow-narrow-right class="h-5 w-5 ml-1.5" />
+                    </x-button>
+                </div>
+            </div>
         </div>
     </x-container>
 
