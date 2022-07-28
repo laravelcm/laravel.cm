@@ -39,21 +39,30 @@
         </div>
 
         <div class="divide-y divide-skin-base">
-            <div class="py-8 lg:py-10 xl:pb-14">
-                <p class="text-center text-lg font-medium text-skin-base tracking-wider leading-6 font-sans">
-                    Nous travaillons avec d’autres communautés et grandes startups
+            <div class="py-10 lg:py-12 xl:pb-14">
+                <p class="text-center text-base uppercase tracking-tight text-skin-base tracking-wider leading-6 font-sans">
+                    Nous travaillons avec d’autres communautés et startups
                 </p>
-                <div class="mt-5 space-y-5 lg:flex lg:items-center lg:justify-around lg:space-y-0 lg:mt-6">
-                    <a href="https://twitter.com/DarkCodeCompany" class="flex items-center justify-center">
-                        <x-icon.darkcode class="h-8 text-skin-inverted" />
-                    </a>
-                    <a href="https://laravelshopper.io" class="flex items-center justify-center">
-                        <img class="h-12 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
-                        <img class="h-12 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
-                    </a>
-                    <a href="https://gdg.community.dev/gdg-douala" class="flex items-center justify-center">
-                        <x-icon.gdg class="h-8 text-skin-inverted" />
-                    </a>
+                <div class="mt-8 grid grid-cols-2 gap-y-8 lg:grid-cols-3 lg:mt-12">
+                    <div class="col-span-2 flex justify-center lg:col-span-1">
+                        <a href="https://cosna-afrique.com" class="flex items-center">
+                            <x-icon.cosna class="h-14 w-auto"/>
+                        </a>
+                    </div>
+                    <div class="col-span-2 flex justify-center lg:col-span-1">
+                        <a href="https://laravelshopper.io" class="flex items-center">
+                            <img class="h-12 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
+                            <img class="h-12 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
+                        </a>
+                    </div>
+                    <div class="col-span-2 flex justify-center lg:col-span-1">
+                        <a href="https://gdg.community.dev/gdg-douala" class="flex items-center">
+                            <x-icon.gdg class="h-8 text-skin-inverted" />
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-6 text-center lg:mt-10">
+                    <a class="text-sm leading-5 text-flag-green hover:text-green-600 hover:underline" href="mailto:arthur@laravel.cm">Votre logo ici ?</a>
                 </div>
             </div>
 
