@@ -2,7 +2,7 @@
     <h4 class="text-skin-inverted text-sm leading-5 font-semibold uppercase tracking-wide font-sans">Sponsors</h4>
     <div class="mt-5 space-y-6">
         <a href="https://cosna-afrique.com" class="flex items-center justify-end">
-            <x-icon.cosna class="h-5 w-auto"/>
+            <x-icon.cosna class="h-12 w-auto"/>
         </a>
         <a href="https://laravelshopper.io" class="flex items-center justify-end">
             <img class="h-10 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">

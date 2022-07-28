@@ -55,7 +55,7 @@ module.exports = {
       },
       fontFamily: {
         mono: ['Operator Mono', ...defaultTheme.fontFamily.mono],
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter var', 'DM Sans', ...defaultTheme.fontFamily.sans],
       },
       fontWeight: {
         normal: 300
