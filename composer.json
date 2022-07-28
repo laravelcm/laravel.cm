@@ -32,6 +32,7 @@
     "socialiteproviders/twitter": "^4.1",
     "spatie/laravel-feed": "^4.1",
     "spatie/laravel-health": "^1.11",
+    "spatie/laravel-mail-preview": "^6.0",
     "spatie/laravel-medialibrary": "^9.0.0",
     "spatie/laravel-permission": "^5.1",
     "spatie/laravel-sitemap": "^6.1",

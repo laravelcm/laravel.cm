@@ -105,3 +105,5 @@ Route::redirectMap([
 ]);
 
 Route::feeds();
+
+Route::mailPreview();
