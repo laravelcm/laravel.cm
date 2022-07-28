@@ -8,6 +8,8 @@ use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\User;
+use App\Models\User as ModelsUser;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -105,5 +107,3 @@ Route::redirectMap([
 ]);
 
 Route::feeds();
-
-Route::mailPreview();
