@@ -12,7 +12,7 @@
 
     @component('mail::subcopy')
         Vous recevez ceci parce que vous êtes abonné à ce sujet.
-        [Se désabonner]({{ route('subscriptions.unsubscribe', $subscription->uuid()->toString()) }}) from this thread.
+        [Se désabonner]({{ route('subscriptions.unsubscribe', $subscription->uuid()->toString()) }}) de ce sujet.
     @endcomponent
 
 @endcomponent

@@ -4,10 +4,14 @@ namespace App\Mail;
 
 use App\Models\Reply;
 use App\Models\Subscribe;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 
-class NewReplyEmail extends Mailable
+class NewReplyEmail extends Mailable implements ShouldQueue
 {
+    use Queueable;
+
     /**
      * Create a new message instance.
      *

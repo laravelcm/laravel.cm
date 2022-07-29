@@ -12,6 +12,7 @@ use App\Listeners\SendNewArticleNotification;
 use App\Listeners\SendNewCommentNotification;
 use App\Listeners\SendNewReplyNotification;
 use App\Listeners\SendNewThreadNotification;
+use App\Listeners\SendWelcomeMailNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -26,6 +27,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            SendWelcomeMailNotification::class,
         ],
         ReplyWasCreated::class => [
             SendNewReplyNotification::class,

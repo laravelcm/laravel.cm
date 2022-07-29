@@ -6,9 +6,10 @@ use App\Mail\NewReplyEmail;
 use App\Models\Reply;
 use App\Models\Subscribe;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 
-class NewReplyNotification extends Notification
+class NewReplyNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendMailToUnVerifiedUsers extends Mailable implements ShouldQueue
+class Welcome extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -23,7 +23,8 @@ class SendMailToUnVerifiedUsers extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject('Vérification Email')
-            ->markdown('emails.send-mail-to-un-verified-users');
+        return $this->from('arthur@laravel.cm', 'Arthur Monney')
+            ->subject(__('Bienvenue sur Laravel Cameroun ✨'))
+            ->markdown('emails.welcome');
     }
 }
