@@ -5,9 +5,13 @@ namespace App\Listeners;
 use App\Events\ReplyWasCreated;
 use App\Models\User;
 use App\Notifications\NewReplyNotification;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
-class SendNewReplyNotification
+class SendNewReplyNotification implements ShouldQueue
 {
+    use InteractsWithQueue;
+
     public function handle(ReplyWasCreated $event)
     {
         /** @var \App\Models\Thread $thread */

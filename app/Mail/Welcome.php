@@ -8,18 +8,12 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Welcome extends Mailable
+class Welcome extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
     public function __construct(public User $user)
     {
-        //
     }
 
     /**
@@ -30,7 +24,7 @@ class Welcome extends Mailable
     public function build()
     {
         return $this->from('arthur@laravel.cm', 'Arthur Monney')
-            ->subject(__('Bienvenue sur Laravel Cameroun'))
+            ->subject(__('Bienvenue sur Laravel Cameroun ✨'))
             ->markdown('emails.welcome');
     }
 }
