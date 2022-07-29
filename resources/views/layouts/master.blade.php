@@ -31,7 +31,7 @@
     @include('layouts._favicons')
     @livewireStyles
 
-    <script>
+    <script defer>
         window.csrfToken = {!! json_encode(['csrfToken' => csrf_token()]) !!};
         window.laravel = {
             ...(window.laravel || {}),

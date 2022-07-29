@@ -184,7 +184,7 @@
         <div class="h-80 w-full absolute bottom-0 xl:inset-0 xl:h-full">
             <div class="h-full w-full xl:grid xl:grid-cols-2">
                 <div class="h-full xl:relative xl:col-start-2">
-                    <img class="h-full w-full object-cover opacity-25 xl:absolute xl:inset-0" src="{{ asset('/images/developer.png') }}" alt="Developer working on laptop">
+                    <img class="h-full w-full object-cover opacity-25 xl:absolute xl:inset-0" src="{{ asset('/images/developer.jpg') }}" alt="Developer working on laptop"/>
                     <div aria-hidden="true" class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
                 </div>
             </div>
@@ -201,7 +201,7 @@
                     <p>
                         <span class="block text-2xl font-mono text-white">600+</span>
                         <span class="mt-1 block text-base text-gray-400">
-                            <span class="font-medium text-white">Membres</span> qui ont rejoins les différents groupes de la communauté
+                            <span class="font-medium text-white">Membres</span> qui ont rejoint les différents groupes de la communauté
                         </span>
                     </p>
 

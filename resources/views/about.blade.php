@@ -106,7 +106,7 @@
                                 <img class="ow-16 h-16 rounded-full lg:w-20 lg:h-20" src="https://avatars.githubusercontent.com/u/14105989?v=4" alt="Arthur Monney Profile">
                                 <div class="text-lg leading-6 text-skin-inverted font-medium space-y-1">
                                     <h3>Arthur Monney</h3>
-                                    <p class="text-base text-green-600 font-sans">UI/UX Designer & Co-Founder Laravel Shopper</p>
+                                    <p class="text-base text-green-600 font-sans">UI/UX Designer & Créateur de Laravel Shopper</p>
                                 </div>
                                 <div class="text-lg">
                                     <p class="text-skin-base font-normal">
