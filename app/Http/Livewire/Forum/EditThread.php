@@ -12,7 +12,9 @@ class EditThread extends Component
     use WithChannelsAssociation;
 
     public Thread $thread;
+
     public string $title = '';
+
     public string $body = '';
 
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];

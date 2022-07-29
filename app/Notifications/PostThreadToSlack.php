@@ -24,6 +24,6 @@ class PostThreadToSlack extends Notification
     {
         return (new SlackMessage)
             ->to('#forum')
-            ->content('[Nouveau sujet] ' . $this->thread->author->name . ' a crée un nouveau sujet : ' . $this->thread->subject() . '. ' . url($this->thread->getPathUrl()));
+            ->content('[Nouveau sujet] '.$this->thread->author->name.' a crée un nouveau sujet : '.$this->thread->subject().'. '.url($this->thread->getPathUrl()));
     }
 }

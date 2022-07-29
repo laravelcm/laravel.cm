@@ -60,9 +60,9 @@ class HomeController extends Controller
         try {
             $client->request(
                 'POST',
-                env('SLACK_TEAM_URL') . '/api/users.admin.invite?t='
-                . time() . '&email=' . $email . '&token=' . env('SLACK_API_TOKEN')
-                . '&set_active=true&_attempts=1'
+                env('SLACK_TEAM_URL').'/api/users.admin.invite?t='
+                .time().'&email='.$email.'&token='.env('SLACK_API_TOKEN')
+                .'&set_active=true&_attempts=1'
             );
 
             session()->flash('status', "Une invitation vous a été envoyé à votre courrier pour rejoindre l'espace de travail {$team}.");

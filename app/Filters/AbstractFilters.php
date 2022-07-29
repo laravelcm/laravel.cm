@@ -18,7 +18,7 @@ abstract class AbstractFilters
     /**
      * Get all filters and make a new instance.
      *
-     * @param  Builder $builder
+     * @param  Builder  $builder
      * @return Builder
      */
     public function filter(Builder $builder): Builder
@@ -33,7 +33,7 @@ abstract class AbstractFilters
     /**
      * Add Filters to current filter class.
      *
-     * @param  array $filters
+     * @param  array  $filters
      * @return $this
      */
     public function add(array $filters): self
@@ -46,7 +46,7 @@ abstract class AbstractFilters
     /**
      * Get the Filter instance Class.
      *
-     * @param  $filter
+     * @param    $filter
      * @return mixed
      */
     public function resolverFilter($filter)

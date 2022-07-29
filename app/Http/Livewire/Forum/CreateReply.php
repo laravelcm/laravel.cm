@@ -16,6 +16,7 @@ class CreateReply extends Component
     use AuthorizesRequests;
 
     public Thread $thread;
+
     public string $body = '';
 
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];

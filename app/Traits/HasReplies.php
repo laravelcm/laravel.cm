@@ -37,7 +37,7 @@ trait HasReplies
      */
     public function solutionReplyUrl(): string
     {
-        return $this->getPathUrl() . "#reply-{$this->solution_reply_id}";
+        return $this->getPathUrl()."#reply-{$this->solution_reply_id}";
     }
 
     /**

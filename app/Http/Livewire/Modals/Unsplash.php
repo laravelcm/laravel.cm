@@ -7,6 +7,7 @@ use LivewireUI\Modal\ModalComponent;
 class Unsplash extends ModalComponent
 {
     public ?string $query = null;
+
     public ?string $username = null;
 
     public static function modalMaxWidth(): string

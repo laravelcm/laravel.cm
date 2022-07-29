@@ -17,8 +17,11 @@ class Reply extends Component
     use Actions, AuthorizesRequests;
 
     public ReplyModel $reply;
+
     public Thread $thread;
+
     public string $body = '';
+
     public bool $isUpdating = false;
 
     protected $listeners = [

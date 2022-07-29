@@ -16,8 +16,9 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param array $input
+     * @param  array  $input
      * @return \App\Models\User
+     *
      * @throws \Illuminate\Validation\ValidationException
      */
     public function create(array $input): User

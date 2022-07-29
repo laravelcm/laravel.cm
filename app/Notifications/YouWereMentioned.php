@@ -31,8 +31,8 @@ class YouWereMentioned extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                     ->subject("Nouvelle mention: {$this->reply->replyAble->subject()}")
-                    ->line($this->reply->author->name . ' vous a mentionné dans le sujet ' . $this->reply->replyAble->subject())
-                    ->action('Afficher', url($this->reply->replyAble->getPathUrl() . "#reply-{$this->reply->id}"))
+                    ->line($this->reply->author->name.' vous a mentionné dans le sujet '.$this->reply->replyAble->subject())
+                    ->action('Afficher', url($this->reply->replyAble->getPathUrl()."#reply-{$this->reply->id}"))
                     ->line("Merci d'utiliser Laravel Cameroun!");
     }
 

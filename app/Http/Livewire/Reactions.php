@@ -13,8 +13,11 @@ class Reactions extends Component
     use Actions;
 
     public Model $model;
+
     public bool $withPlaceHolder = true;
+
     public bool $withBackground = true;
+
     public string $direction = 'right';
 
     public function userReacted(string $reaction)

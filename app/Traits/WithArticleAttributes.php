@@ -7,13 +7,21 @@ use Illuminate\Support\Str;
 trait WithArticleAttributes
 {
     public ?string $title = null;
+
     public ?string $slug = null;
+
     public string $body = '';
+
     public ?string $canonical_url = null;
+
     public bool $show_toc = false;
+
     public ?string $submitted_at = null;
+
     public ?string $approved_at = null;
+
     public ?string $published_at = null;
+
     public $file;
 
     protected $rules = [

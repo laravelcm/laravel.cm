@@ -7,6 +7,7 @@ use App\Models\Tag;
 trait WithTags
 {
     public ?string $tag = null;
+
     public string $sortBy = 'recent';
 
     public function toggleTag($tag): void

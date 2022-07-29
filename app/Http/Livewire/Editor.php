@@ -8,11 +8,17 @@ use Livewire\Component;
 class Editor extends Component
 {
     public string $placeholder = 'laisser une réponse...';
+
     public ?string $label = null;
+
     public ?string $body = null;
+
     public bool $hasButton = false;
+
     public bool $hasCancelButton = false;
+
     public string $buttonType = 'submit';
+
     public string $buttonLabel = 'Enregistrer';
 
     public function getPreviewProperty()

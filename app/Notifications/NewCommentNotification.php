@@ -27,7 +27,7 @@ class NewCommentNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                     ->subject("Re: {$this->discussion->subject()}")
-                    ->line('@' . $this->reply->author->username . ' a répondu à ce sujet.')
+                    ->line('@'.$this->reply->author->username.' a répondu à ce sujet.')
                     ->line($this->reply->excerpt(150))
                     ->action('Voir la discussion', route('discussions.show', $this->discussion))
                     ->line('Vous recevez ceci parce que vous êtes abonné à cette discussion.');

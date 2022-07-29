@@ -28,11 +28,11 @@ return [
     */
 
     'modal' => [
-        'zIndex'   => env('WIREUI_MODAL_Z_INDEX', 'z-50'),
+        'zIndex' => env('WIREUI_MODAL_Z_INDEX', 'z-50'),
         'maxWidth' => env('WIREUI_MODAL_MAX_WIDTH', '2xl'),
-        'spacing'  => env('WIREUI_MODAL_SPACING', 'p-4'),
-        'align'    => env('WIREUI_MODAL_ALIGN', 'start'),
-        'blur'     => env('WIREUI_MODAL_BLUR', false),
+        'spacing' => env('WIREUI_MODAL_SPACING', 'p-4'),
+        'align' => env('WIREUI_MODAL_ALIGN', 'start'),
+        'blur' => env('WIREUI_MODAL_BLUR', false),
     ],
 
     /*
@@ -56,54 +56,54 @@ return [
             'class' => Components\Icons\Spinner::class,
             'alias' => 'icon.spinner',
         ],
-//        'input' => [
-//            'class' => Components\Input::class,
-//            'alias' => 'input',
-//        ],
-//        'textarea' => [
-//            'class' => Components\Textarea::class,
-//            'alias' => 'textarea',
-//        ],
-//        'label' => [
-//            'class' => Components\Label::class,
-//            'alias' => 'label',
-//        ],
-//        'error' => [
-//            'class' => Components\Error::class,
-//            'alias' => 'error',
-//        ],
-//        'errors' => [
-//            'class' => Components\Errors::class,
-//            'alias' => 'errors',
-//        ],
-//        'inputs.maskable' => [
-//            'class' => Components\Inputs\MaskableInput::class,
-//            'alias' => 'inputs.maskable',
-//        ],
-//        'inputs.phone' => [
-//            'class' => Components\Inputs\PhoneInput::class,
-//            'alias' => 'inputs.phone',
-//        ],
-//        'inputs.currency' => [
-//            'class' => Components\Inputs\CurrencyInput::class,
-//            'alias' => 'inputs.currency',
-//        ],
+        //        'input' => [
+        //            'class' => Components\Input::class,
+        //            'alias' => 'input',
+        //        ],
+        //        'textarea' => [
+        //            'class' => Components\Textarea::class,
+        //            'alias' => 'textarea',
+        //        ],
+        //        'label' => [
+        //            'class' => Components\Label::class,
+        //            'alias' => 'label',
+        //        ],
+        //        'error' => [
+        //            'class' => Components\Error::class,
+        //            'alias' => 'error',
+        //        ],
+        //        'errors' => [
+        //            'class' => Components\Errors::class,
+        //            'alias' => 'errors',
+        //        ],
+        //        'inputs.maskable' => [
+        //            'class' => Components\Inputs\MaskableInput::class,
+        //            'alias' => 'inputs.maskable',
+        //        ],
+        //        'inputs.phone' => [
+        //            'class' => Components\Inputs\PhoneInput::class,
+        //            'alias' => 'inputs.phone',
+        //        ],
+        //        'inputs.currency' => [
+        //            'class' => Components\Inputs\CurrencyInput::class,
+        //            'alias' => 'inputs.currency',
+        //        ],
         'button' => [
             'class' => Components\Button::class,
             'alias' => 'wi-button',
         ],
-//        'dropdown' => [
-//            'class' => Components\Dropdown::class,
-//            'alias' => 'wi-dropdown',
-//        ],
-//        'dropdown.item' => [
-//            'class' => Components\Dropdown\DropdownItem::class,
-//            'alias' => 'wi-dropdown.item',
-//        ],
-//        'dropdown.header' => [
-//            'class' => Components\Dropdown\DropdownHeader::class,
-//            'alias' => 'dropdown.header',
-//        ],
+        //        'dropdown' => [
+        //            'class' => Components\Dropdown::class,
+        //            'alias' => 'wi-dropdown',
+        //        ],
+        //        'dropdown.item' => [
+        //            'class' => Components\Dropdown\DropdownItem::class,
+        //            'alias' => 'wi-dropdown.item',
+        //        ],
+        //        'dropdown.header' => [
+        //            'class' => Components\Dropdown\DropdownHeader::class,
+        //            'alias' => 'dropdown.header',
+        //        ],
         'notifications' => [
             'class' => Components\Notifications::class,
             'alias' => 'notifications',
@@ -140,22 +140,22 @@ return [
             'class' => Components\Toggle::class,
             'alias' => 'toggle',
         ],
-//        'checkbox' => [
-//            'class' => Components\Checkbox::class,
-//            'alias' => 'wi-checkbox',
-//        ],
-//        'radio' => [
-//            'class' => Components\Radio::class,
-//            'alias' => 'wi-radio',
-//        ],
-//        'modal' => [
-//            'class' => Components\Modal::class,
-//            'alias' => 'wi-modal',
-//        ],
-//        'modal.card' => [
-//            'class' => Components\ModalCard::class,
-//            'alias' => 'wi-modal.card',
-//        ],
+        //        'checkbox' => [
+        //            'class' => Components\Checkbox::class,
+        //            'alias' => 'wi-checkbox',
+        //        ],
+        //        'radio' => [
+        //            'class' => Components\Radio::class,
+        //            'alias' => 'wi-radio',
+        //        ],
+        //        'modal' => [
+        //            'class' => Components\Modal::class,
+        //            'alias' => 'wi-modal',
+        //        ],
+        //        'modal.card' => [
+        //            'class' => Components\ModalCard::class,
+        //            'alias' => 'wi-modal.card',
+        //        ],
         'dialog' => [
             'class' => Components\Dialog::class,
             'alias' => 'dialog',
