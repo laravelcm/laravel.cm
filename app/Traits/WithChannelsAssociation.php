@@ -5,6 +5,7 @@ namespace App\Traits;
 trait WithChannelsAssociation
 {
     public array $channels_selected = [];
+
     public array $associateChannels = [];
 
     public function updatedChannelsSelected($choices)

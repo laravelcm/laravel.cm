@@ -46,16 +46,18 @@
   },
   "require-dev": {
     "barryvdh/laravel-debugbar": "^3.6",
+    "barryvdh/laravel-ide-helper": "^2.12",
     "brianium/paratest": "^6.3",
-    "spatie/laravel-ignition": "^1.0",
     "fakerphp/faker": "^1.9.1",
-    "friendsofphp/php-cs-fixer": "^3.0",
+    "laravel/pint": "^1.1",
     "laravel/sail": "^1.0.1",
     "mockery/mockery": "^1.4.2",
     "nunomaduro/collision": "^6.0",
+    "nunomaduro/larastan": "^2.0",
     "pestphp/pest-plugin-laravel": "^1.2.0",
     "pestphp/pest-plugin-livewire": "^1.0",
     "phpunit/phpunit": "^9.5.20",
+    "spatie/laravel-ignition": "^1.0",
     "spatie/test-time": "^1.2"
   },
   "autoload": {
@@ -78,20 +80,22 @@
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover --ansi"
     ],
+    "post-update-cmd": [
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+      "@php artisan ide-helper:generate",
+      "@php artisan ide-helper:meta"
+    ],
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ],
     "post-create-project-cmd": [
       "@php artisan key:generate --ansi"
     ],
-    "sniff": [
-      "./vendor/bin/php-cs-fixer fix -vvv --dry-run --show-progress=dots"
-    ],
-    "lint": [
-      "./vendor/bin/php-cs-fixer fix -vvv --show-progress=dots"
-    ],
     "pest": [
       "./vendor/bin/pest"
+    ],
+    "pint": [
+      "./vendor/bin/pint"
     ],
     "setup": [
       "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",

@@ -16,6 +16,7 @@ class CreateThread extends Component
     use WithChannelsAssociation;
 
     public string $title = '';
+
     public string $body = '';
 
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];

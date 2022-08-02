@@ -8,7 +8,7 @@ use Illuminate\View\View;
 
 class TopContributorsComposer
 {
-    public function compose(View $view)
+    public function compose(View $view): void
     {
         $topContributors = Cache::remember('contributors', 60 * 30, function () {
             return User::topContributors()

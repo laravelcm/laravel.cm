@@ -27,10 +27,10 @@ class ArticlesController extends Controller
 
         views($article)->record();
 
-        $article = Cache::remember('post-' . $article->id, now()->addHour(), fn () => $article);
+        $article = Cache::remember('post-'.$article->id, now()->addHour(), fn () => $article);
 
         abort_unless(
-            $article->isPublished() || ($user && $article->isAuthoredBy($user)) || ($user && $user->hasAnyRole(['admin', 'moderator'])),
+            $article->isPublished() || ($user && $article->isAuthoredBy($user)) || ($user && $user->hasAnyRole(['admin', 'moderator'])), // @phpstan-ignore-line
             404
         );
 

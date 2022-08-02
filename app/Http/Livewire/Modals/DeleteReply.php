@@ -12,6 +12,7 @@ class DeleteReply extends ModalComponent
     use AuthorizesRequests;
 
     public ?Reply $reply = null;
+
     public string $slug;
 
     public function mount($id, string $slug)
@@ -28,7 +29,7 @@ class DeleteReply extends ModalComponent
 
         session()->flash('status', 'La réponse a ete supprimée avec succès.');
 
-        $this->redirect('/forum/' . $this->slug);
+        $this->redirect('/forum/'.$this->slug);
     }
 
     public function render()

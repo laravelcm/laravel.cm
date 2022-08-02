@@ -20,7 +20,7 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * The policy mappings for the application.
      *
-     * @var array
+     * @var array<class-string, class-string>
      */
     protected $policies = [
         Article::class => ArticlePolicy::class,
@@ -30,12 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         Notification::class => NotificationPolicy::class,
     ];
 
-    /**
-     * Register any authentication / authorization services.
-     *
-     * @return void
-     */
-    public function boot()
+    public function boot(): void
     {
         $this->registerPolicies();
 

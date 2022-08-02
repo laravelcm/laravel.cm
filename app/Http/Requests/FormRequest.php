@@ -19,6 +19,7 @@ abstract class FormRequest extends LaravelFormRequest
     {
         $transformed = [];
 
+        // @phpstan-ignore-next-line
         foreach ($validator->errors() as $field => $message) {
             $transformed[] = [
                 'field' => $field,

@@ -19,7 +19,7 @@ trait HasReplies
         return $this->hasOne(Reply::class)->latestOfMany();
     }
 
-    public function deleteReplies()
+    public function deleteReplies(): void
     {
         // We need to explicitly iterate over the replies and delete them
         // separately because all related models need to be deleted.
@@ -37,7 +37,8 @@ trait HasReplies
      */
     public function solutionReplyUrl(): string
     {
-        return $this->getPathUrl() . "#reply-{$this->solution_reply_id}";
+        // @phpstan-ignore-next-line
+        return $this->getPathUrl()."#reply-{$this->solution_reply_id}";
     }
 
     /**

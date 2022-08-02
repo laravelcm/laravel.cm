@@ -17,7 +17,7 @@ if (! function_exists('is_active')) {
     /**
      * Determines if the given routes are active.
      */
-    function is_active($routes): bool
+    function is_active(string ...$routes): bool
     {
         return (bool) call_user_func_array([app('router'), 'is'], (array) $routes);
     }
@@ -73,6 +73,12 @@ if (! function_exists('canonical')) {
 }
 
 if (! function_exists('getFilter')) {
+    /**
+     * @param  string  $key
+     * @param  array  $filters
+     * @param  string  $default
+     * @return string
+     */
     function getFilter(string $key, array $filters = [], string $default = 'recent'): string
     {
         $filter = (string) request($key);
@@ -84,15 +90,14 @@ if (! function_exists('getFilter')) {
 if (! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.
+     *
+     * @param  \App\Models\Thread|\App\Models\Discussion  $replyAble
+     * @return string
      */
-    function route_to_reply_able(mixed $replyAble)
+    function route_to_reply_able(mixed $replyAble): string
     {
-        if ($replyAble instanceof App\Models\Thread) {
-            return route('forum.show', $replyAble->slug());
-        }
-
-        if ($replyAble instanceof App\Models\Discussion) {
-            return route('discussions.show', $replyAble->slug());
-        }
+        return $replyAble instanceof \App\Models\Thread ?
+            route('forum.show', $replyAble->slug()) :
+            route('discussions.show', $replyAble->slug());
     }
 }

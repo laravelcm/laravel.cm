@@ -17,6 +17,7 @@ class UpdateUserThreadsPoints extends Command
         $this->info('Updating users threads reputations...');
 
         foreach (Thread::all() as $thread) {
+            // @phpstan-ignore-next-line
             givePoint(new ThreadCreated($thread), $thread->author);
         }
 

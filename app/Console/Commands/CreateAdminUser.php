@@ -2,27 +2,18 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
 
 class CreateAdminUser extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'lcm:admin';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Create user with admin role and all permissions.';
 
-    public function handle()
+    public function handle(): void
     {
         $this->info('Create Admin User.');
         $this->createUser();
@@ -51,10 +42,9 @@ class CreateAdminUser extends Command
             'password' => Hash::make($password),
             'email_verified_at' => now()->toDateTimeString(),
         ];
-        $model = config('auth.providers.users.model');
 
         try {
-            $user = tap((new $model)->forceFill($userData))->save();
+            $user = User::query()->create($userData);
 
             $user->assignRole('admin');
         } catch (\Exception | QueryException $e) {

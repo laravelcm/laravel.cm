@@ -8,9 +8,13 @@ use App\Models\User;
 class DiscussionPolicy
 {
     const UPDATE = 'update';
+
     const DELETE = 'delete';
+
     const PINNED = 'togglePinnedStatus';
+
     const SUBSCRIBE = 'subscribe';
+
     const UNSUBSCRIBE = 'unsubscribe';
 
     public function update(User $user, Discussion $discussion): bool

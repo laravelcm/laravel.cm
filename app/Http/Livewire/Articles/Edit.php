@@ -17,7 +17,9 @@ class Edit extends Component
     use WithFileUploads, WithTagsAssociation, WithArticleAttributes;
 
     public Article $article;
+
     public ?string $preview = null;
+
     public bool $alreadySubmitted = false;
 
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
@@ -76,7 +78,7 @@ class Edit extends Component
             $this->article->addMedia($this->file->getRealPath())->toMediaCollection('media');
         }
 
-        Cache::forget('post-' . $this->article->id);
+        Cache::forget('post-'.$this->article->id);
 
         $user->hasRole('user') ?
             $this->redirectRoute('dashboard') :

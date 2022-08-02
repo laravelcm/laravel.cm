@@ -17,6 +17,7 @@ class UpdateUserDiscussionsPoints extends Command
         $this->info('Updating users discussions reputations...');
 
         foreach (Discussion::all() as $discussion) {
+            // @phpstan-ignore-next-line
             givePoint(new DiscussionCreated($discussion), $discussion->author);
         }
 

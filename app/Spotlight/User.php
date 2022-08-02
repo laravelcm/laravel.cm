@@ -42,6 +42,6 @@ class User extends SpotlightCommand
 
     public function execute(Spotlight $spotlight, UserModel $user)
     {
-        $spotlight->redirect('/user/' . $user->username);
+        $spotlight->redirect('/user/'.$user->username);
     }
 }

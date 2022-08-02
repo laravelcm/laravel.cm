@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $latestArticles = Cache::remember('last-posts', now()->addHour(), fn () => Article::latest()->limit(2)->get());
 
         return view('cpanel.dashboard', [
-           'latestArticles' => $latestArticles,
+            'latestArticles' => $latestArticles,
             'users' => $users,
         ]);
     }

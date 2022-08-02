@@ -4,12 +4,12 @@ namespace App\Markdown;
 
 class MarkdownHelper
 {
-    public static function parseLiquidTags($html)
+    public static function parseLiquidTags($html): string
     {
-        $matches = '';
+        $matches = [];
 
         // If we find at least one liquid tag
-        if (preg_match_all('/{% .* %}/', $html, $matches) && isset($matches[0])) {
+        if (preg_match_all('/{% .* %}/', $html, $matches) && $matches[0]) {
 
             // loop through each of the liquid tags
             foreach ($matches[0] as $index => $match) {
@@ -43,18 +43,18 @@ class MarkdownHelper
         return $html;
     }
 
-    public static function replaceYouTubeTag($html, $tagArray, $original_string)
+    public static function replaceYouTubeTag($html, $tagArray, $original_string): string
     {
         if (isset($tagArray[2])) {
             $youtubeEmbedURL = $tagArray[2];
-            $youtubeEmbed = '<iframe width="100%" height="399" src="https://www.youtube.com/embed/' . $youtubeEmbedURL . '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            $youtubeEmbed = '<iframe width="100%" height="399" src="https://www.youtube.com/embed/'.$youtubeEmbedURL.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
             $html = str_replace($original_string, $youtubeEmbed, $html);
         }
 
         return $html;
     }
 
-    public static function replaceCodePenTag($html, $tagArray, $original_string)
+    public static function replaceCodePenTag($html, $tagArray, $original_string): string
     {
         if (isset($tagArray[2])) {
             $codepenEmbedURL = str_replace('/pen/', '/embed/', $tagArray[2]);
@@ -62,20 +62,20 @@ class MarkdownHelper
             if (isset($tagArray[3]) && $tagArray[3] != '%}') {
                 $defaultTag = $tagArray[3];
             }
-            $codepenEmbed = '<div class="overflow-hidden border border-skin-light rounded-lg"><iframe loading="lazy" height="600" style="width: 100%;" scrolling="no" src="' . $codepenEmbedURL . '?height=600&theme-id=24057&' . $defaultTag . '" frameborder="no" allowtransparency="true" allowfullscreen="true"></iframe></div>';
+            $codepenEmbed = '<div class="overflow-hidden border border-skin-light rounded-lg"><iframe loading="lazy" height="600" style="width: 100%;" scrolling="no" src="'.$codepenEmbedURL.'?height=600&theme-id=24057&'.$defaultTag.'" frameborder="no" allowtransparency="true" allowfullscreen="true"></iframe></div>';
             $html = str_replace($original_string, $codepenEmbed, $html);
         }
 
         return $html;
     }
 
-    public static function replaceCodeSandboxTag($html, $tagArray, $original_string)
+    public static function replaceCodeSandboxTag($html, $tagArray, $original_string): string
     {
         if (isset($tagArray[2]) && $tagArray[2] != '%}') {
             $codesandbox = $tagArray[2];
             $url = parse_url($codesandbox);
-            if (filter_var($codesandbox, FILTER_VALIDATE_URL) === true && ($url['host'] == 'www.codesandbox.io' || $url['host'] == 'codesandbox.io')) {
-                $codesandboxEmbed = '<iframe src="' . $codesandbox . '" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"title="rough-field-mykn0"allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>';
+            if (filter_var($codesandbox, FILTER_VALIDATE_URL) && ($url['host'] == 'www.codesandbox.io' || $url['host'] == 'codesandbox.io')) {
+                $codesandboxEmbed = '<iframe src="'.$codesandbox.'" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="rough-field-mykn0" allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>';
                 $html = str_replace($original_string, $codesandboxEmbed, $html);
             }
         }
@@ -83,22 +83,22 @@ class MarkdownHelper
         return $html;
     }
 
-    public static function replaceBuyMeACoffeeTag($html, $tagArray, $original_string)
+    public static function replaceBuyMeACoffeeTag($html, $tagArray, $original_string): string
     {
         if (isset($tagArray[2]) && $tagArray[2] != '%}') {
             $buyMeACoffee = $tagArray[2];
-            $bmcEmbed = '<div class="text-center"><a href="https://buymeacoffee.com/' . $buyMeACoffee . '"><img style="max-height: 90px;" src="https://cdn.devdojo.com/assets/img/buymeacoffee.png" alt="Buy Me A Coffee ' . $buyMeACoffee . '"></a></div>';
+            $bmcEmbed = '<div class="text-center"><a href="https://buymeacoffee.com/'.$buyMeACoffee.'"><img style="max-height: 90px;" src="https://cdn.devdojo.com/assets/img/buymeacoffee.png" alt="Buy Me A Coffee '.$buyMeACoffee.'"></a></div>';
             $html = str_replace($original_string, $bmcEmbed, $html);
         }
 
         return $html;
     }
 
-    public static function replaceGiphyTag($html, $tagArray, $original_string)
+    public static function replaceGiphyTag($html, $tagArray, $original_string): string
     {
         if (isset($tagArray[2])) {
             $giphyEmbed = $tagArray[2];
-            $giphyEmbed = '<div style="width:100%;height:0;padding-bottom:56%;position:relative;display:block"><iframe src="' . $giphyEmbed . '" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></p></div>';
+            $giphyEmbed = '<div style="width:100%;height:0;padding-bottom:56%;position:relative;display:block"><iframe src="'.$giphyEmbed.'" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></p></div>';
             $html = str_replace($original_string, $giphyEmbed, $html);
         }
 

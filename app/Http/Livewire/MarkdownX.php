@@ -14,11 +14,17 @@ use Livewire\Component;
 class MarkdownX extends Component
 {
     public string $content;
+
     public string $name;
+
     public string $key;
+
     public mixed $contentPreview;
+
     public mixed $style;
+
     public string $section = 'write';
+
     public bool $autofocus = true;
 
     /*
@@ -39,9 +45,9 @@ class MarkdownX extends Component
      * and a generic Key. This key can be specified so that way you can include multiple MarkdownX
      * editors in a single page.
      *
-     * @param string $content
-     * @param string $name
-     * @param string $key
+     * @param  string  $content
+     * @param  string  $name
+     * @param  string  $key
      * @return void
      */
     public function mount(string $content = '', string $name = '', string $key = '')
@@ -56,7 +62,7 @@ class MarkdownX extends Component
      * Anytime the editor is blurred, this function will be triggered and it will updated the $content,
      * this will also emit an event to the parent component with the updated content.
      *
-     * @param array $data
+     * @param  array  $data
      */
     public function update(array $data)
     {
@@ -105,7 +111,7 @@ class MarkdownX extends Component
     {
         $payload = (object) $payload;
 
-        $path = 'images/' . strtolower(date('FY')) . '/';
+        $path = 'images/'.strtolower(date('FY')).'/';
         $fullPath = '';
 
         try {
@@ -115,21 +121,21 @@ class MarkdownX extends Component
             $filename_counter = 1;
 
             // Make sure the filename does not exist, if it does make sure to add a number to the end 1, 2, 3, etc...
-            while (Storage::disk(config('markdownx.storage.disk'))->exists($path . $filename . '.' . $extension)) {
-                $filename = Str::slug($original_filename) . (string) ($filename_counter++);
+            while (Storage::disk(config('markdownx.storage.disk'))->exists($path.$filename.'.'.$extension)) {
+                $filename = Str::slug($original_filename).(string) ($filename_counter++);
             }
 
-            $fullPath = $path . $filename . '.' . $extension;
+            $fullPath = $path.$filename.'.'.$extension;
 
             // Get the Base64 string to store
-            @list($type, $file_data) = explode(';', $payload->image);
-            @list(, $file_data) = explode(',', $file_data);
+            @[$type, $file_data] = explode(';', $payload->image);
+            @[, $file_data] = explode(',', $file_data);
             $type = explode('/', $type)[1];
 
-            if (!in_array($type, config('markdownx.image.allowed_file_types'))) {
+            if (! in_array($type, config('markdownx.image.allowed_file_types'))) {
                 $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
                     'status' => 400,
-                    'message' => 'File type not supported. Must be of type ' . implode(', ', config('markdownx.image.allowed_file_types')),
+                    'message' => 'File type not supported. Must be of type '.implode(', ', config('markdownx.image.allowed_file_types')),
                     'key' => $payload->key,
                     'text' => $payload->text,
                 ]);
@@ -162,10 +168,10 @@ class MarkdownX extends Component
         $api_key = config('markdownx.integrations.giphy.api_key');
 
         $response = Http::get('https://api.giphy.com/v1/gifs/trending', [
-                        'api_key' => $api_key,
-                        'limit' => 30,
-                        'rating' => 'pg',
-                    ]);
+            'api_key' => $api_key,
+            'limit' => 30,
+            'rating' => 'pg',
+        ]);
 
         if ($response->ok()) {
             $this->sendResultsToView($response);
@@ -177,10 +183,10 @@ class MarkdownX extends Component
         $api_key = config('markdownx.integrations.giphy.api_key');
 
         $response = Http::get('https://api.giphy.com/v1/gifs/trending', [
-                        'api_key' => $api_key,
-                        'limit' => 30,
-                        'rating' => 'pg',
-                    ]);
+            'api_key' => $api_key,
+            'limit' => 30,
+            'rating' => 'pg',
+        ]);
 
         if ($response->ok()) {
             $this->sendResultsToView($response, $payload['key']);
@@ -192,11 +198,11 @@ class MarkdownX extends Component
         $api_key = config('markdownx.integrations.giphy.api_key');
 
         $response = Http::get('api.giphy.com/v1/gifs/search', [
-                        'api_key' => $api_key,
-                        'q' => $payload['search'],
-                        'limit' => 30,
-                        'rating' => 'pg',
-                    ]);
+            'api_key' => $api_key,
+            'q' => $payload['search'],
+            'limit' => 30,
+            'rating' => 'pg',
+        ]);
 
         if ($response->ok()) {
             $this->sendResultsToView($response, $payload['key']);
@@ -210,8 +216,8 @@ class MarkdownX extends Component
             array_push(
                 $parse_giphy_results,
                 [
-                'image' => $result['images']['fixed_height_small']['url'],
-                'embed' => $result['embed_url'], ]
+                    'image' => $result['images']['fixed_height_small']['url'],
+                    'embed' => $result['embed_url'], ]
             );
         }
 
@@ -243,8 +249,8 @@ class MarkdownX extends Component
 
     public function getSearchPeoples($payload)
     {
-        $users = User::where('name', 'like', '%' . $payload['search'] . '%')
-                    ->orWhere('username', 'like', '%' . $payload['search'] . '%')
+        $users = User::where('name', 'like', '%'.$payload['search'].'%')
+                    ->orWhere('username', 'like', '%'.$payload['search'].'%')
                     ->orderBy('name')
                     ->limit(30)
                     ->get()

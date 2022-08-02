@@ -11,12 +11,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use QCod\Gamify\Gamify;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * @mixin IdeHelperUser
+ */
 class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     use Gamify,
@@ -30,7 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<string>
      */
     protected $fillable = [
         'name',
@@ -56,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     /**
      * The attributes that should be hidden for arrays.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -68,7 +72,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -209,7 +213,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasMany(Subscribe::class);
     }
 
-    public function deleteThreads()
+    public function deleteThreads(): void
     {
         // We need to explicitly iterate over the threads and delete them
         // separately because all related models need to be deleted.
@@ -218,10 +222,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         }
     }
 
-    public function deleteReplies()
+    public function deleteReplies(): void
     {
         // We need to explicitly iterate over the replies and delete them
         // separately because all related models need to be deleted.
+        // @phpstan-ignore-next-line
         foreach ($this->replyAble->get() as $reply) {
             $reply->delete();
         }
@@ -277,7 +282,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     /**
      * Retrieve a setting with a given name or fall back to the default.
      */
-    public function setting(string $name, $default = null)
+    public function setting(string $name, $default = null): string
     {
         if ($this->settings && array_key_exists($name, $this->settings)) {
             return $this->settings[$name];
@@ -329,7 +334,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
      * @param  \Illuminate\Notifications\Notification  $notification
      * @return string
      */
-    public function routeNotificationForSlack($notification): string
+    public function routeNotificationForSlack(Notification $notification): string
     {
         return env('SLACK_WEBHOOK_URL', '');
     }
@@ -364,7 +369,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->threads()->count();
     }
 
-    public function scopeMostSolutions(Builder $query, int $inLastDays = null)
+    public function scopeMostSolutions(Builder $query, int $inLastDays = null): Builder
     {
         return $query->withCount(['replyAble as solutions_count' => function ($query) use ($inLastDays) {
             $query->where('replyable_type', 'threads')
@@ -378,7 +383,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         }])->orderBy('solutions_count', 'desc');
     }
 
-    public function scopeMostSubmissions(Builder $query, int $inLastDays = null)
+    public function scopeMostSubmissions(Builder $query, int $inLastDays = null): Builder
     {
         return $query->withCount(['articles as articles_count' => function ($query) use ($inLastDays) {
             if ($inLastDays) {
@@ -389,17 +394,37 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         }])->orderByDesc('articles_count');
     }
 
-    public function scopeMostSolutionsInLastDays(Builder $query, int $days)
+    /**
+     * Scope of most solutions in last days
+     *
+     * @param  Builder<User>  $query
+     * @param  int  $days
+     * @return Builder<User>
+     */
+    public function scopeMostSolutionsInLastDays(Builder $query, int $days): Builder
     {
         return $query->mostSolutions($days);
     }
 
-    public function scopeMostSubmissionsInLastDays(Builder $query, int $days)
+    /**
+     * Scope for most submissions in the last days.
+     *
+     * @param  Builder<User>  $query
+     * @param  int  $days
+     * @return Builder<User>
+     */
+    public function scopeMostSubmissionsInLastDays(Builder $query, int $days): Builder
     {
         return $query->mostSubmissions($days);
     }
 
-    public function scopeWithCounts(Builder $query)
+    /**
+     * Scope for all count values associate with a user.
+     *
+     * @param  Builder<User>  $query
+     * @return Builder<User>
+     */
+    public function scopeWithCounts(Builder $query): Builder
     {
         return $query->withCount([
             'discussions as discussions_count',
@@ -413,6 +438,12 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         ]);
     }
 
+    /**
+     * Scope to get the top contributors on discussions.
+     *
+     * @param  Builder<User>  $query
+     * @return Builder<User>
+     */
     public function scopeTopContributors(Builder $query): Builder
     {
         return $query->withCount(['discussions'])->orderByDesc('discussions_count');

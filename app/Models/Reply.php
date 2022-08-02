@@ -17,6 +17,9 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
+/**
+ * @mixin IdeHelperReply
+ */
 class Reply extends Model implements ReactableInterface, ReplyInterface
 {
     use HasAuthor,
@@ -39,12 +42,12 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
         parent::boot();
     }
 
-    public function subject(): string
+    public function subject(): int
     {
         return $this->id;
     }
 
-    public function replyAbleSubject(): string
+    public function replyAbleSubject(): int
     {
         return $this->id;
     }

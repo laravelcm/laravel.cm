@@ -2,19 +2,21 @@
 
 namespace App\Gamify\Points;
 
+use App\Models\User;
 use QCod\Gamify\PointType;
 
 class ThreadCreated extends PointType
 {
-    public int $points = 15;
+    public int $points = 55;
 
     public function __construct($subject)
     {
         $this->subject = $subject;
     }
 
-    public function payee()
+    public function payee(): User
     {
+        // @phpstan-ignore-next-line
         return $this->getSubject()->author;
     }
 }

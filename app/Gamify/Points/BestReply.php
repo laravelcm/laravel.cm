@@ -6,7 +6,7 @@ use QCod\Gamify\PointType;
 
 class BestReply extends PointType
 {
-    public int $points = 10;
+    public int $points = 20;
 
     protected string $payee = 'author';
 

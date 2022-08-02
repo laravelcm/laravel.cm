@@ -2,8 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Models\IdeHelperUser;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin IdeHelperUser
+ */
 class UserResource extends JsonResource
 {
     public function toArray($request): array

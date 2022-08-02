@@ -12,10 +12,13 @@ class Edit extends Component
     use WithTagsAssociation;
 
     public Discussion $discussion;
+
     public string $title = '';
+
     public string $body = '';
 
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
+
     protected $rules = [
         'title' => ['required', 'max:150'],
         'body' => ['required'],

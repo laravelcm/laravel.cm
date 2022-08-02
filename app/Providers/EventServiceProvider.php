@@ -44,7 +44,7 @@ class EventServiceProvider extends ServiceProvider
             SendNewCommentNotification::class,
         ],
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-            \SocialiteProviders\Twitter\TwitterExtendSocialite::class . '@handle',
+            \SocialiteProviders\Twitter\TwitterExtendSocialite::class.'@handle',
         ],
     ];
 

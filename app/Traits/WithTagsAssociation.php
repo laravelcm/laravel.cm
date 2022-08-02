@@ -5,6 +5,7 @@ namespace App\Traits;
 trait WithTagsAssociation
 {
     public array $tags_selected = [];
+
     public array $associateTags = [];
 
     public function updatedTagsSelected($choices)

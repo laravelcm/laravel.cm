@@ -34,7 +34,7 @@ class ApprovedArticle extends ModalComponent
 
         givePoint(new PostCreated($this->article));
 
-        Cache::forget('post-' . $this->article->id);
+        Cache::forget('post-'.$this->article->id);
 
         $this->article->author->notify(new SendApprovedArticle($this->article));
 
