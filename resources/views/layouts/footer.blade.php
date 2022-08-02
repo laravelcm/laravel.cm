@@ -48,27 +48,35 @@
                 </div>
             </div>
             <div class="mt-12 lg:mt-0">
-                <h3 class="text-sm font-semibold text-skin-muted tracking-wider uppercase">
-                    {{ __('Rejoignez nous') }}
-                </h3>
-                <p class="mt-4 text-base text-skin-base">
-                    {{ __('Rejoignez notre newsletter recevez des tutoriels, articles et podcasts sur le design et la programmation web.') }}
-                </p>
-                <form aria-labelledby="newsletter-headline" action="https://laravelcm.us4.list-manage.com/subscribe/post?u=0642d391e4785535c232a8c66&id=6ff87af677" method="POST" id="mc-embedded-subscribe-form" class="mt-4 sm:flex" name="mc-embedded-subscribe-form" target="_blank" novalidate>
-                    <div class="w-full">
-                        <x-email id="mce-EMAIL" name="EMAIL" autocomplete="email" required placeholder="{{ __('Entrer votre adresse email') }}" aria-label="{{ __('Adresse E-mail') }}" class="w-full block" />
-                        <input type="hidden" name="b_0642d391e4785535c232a8c66_6ff87af677" tabindex="-1" value="">
-                    </div>
-                    <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:shrink-0">
-                        <x-button type="submit" class="block w-full">
-                            {{__('S\'inscrire')}}
-                        </x-button>
-                    </div>
-                </form>
+                <div class="sm:max-w-lg lg:max-w-none">
+                    <h3 class="text-sm font-semibold text-skin-muted tracking-wider uppercase">
+                        {{ __('Rejoignez nous') }}
+                    </h3>
+                    <p class="mt-4 text-base text-skin-base">
+                        {{ __('Rejoignez notre newsletter recevez des tutoriels, articles et podcasts sur le design et la programmation web.') }}
+                    </p>
+                    <form aria-labelledby="newsletter-headline" action="https://laravelcm.us4.list-manage.com/subscribe/post?u=0642d391e4785535c232a8c66&id=6ff87af677" method="POST" id="mc-embedded-subscribe-form" class="mt-4 sm:flex" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+                        <div class="w-full">
+                            <x-email id="mce-EMAIL" name="EMAIL" autocomplete="email" required placeholder="{{ __('Entrer votre adresse email') }}" aria-label="{{ __('Adresse E-mail') }}" class="w-full block" />
+                            <input type="hidden" name="b_0642d391e4785535c232a8c66_6ff87af677" tabindex="-1" value="">
+                        </div>
+                        <div class="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:shrink-0">
+                            <x-button type="submit" class="block w-full">
+                                {{__('S\'inscrire')}}
+                            </x-button>
+                        </div>
+                    </form>
+                </div>
                 <p class="mt-6 text-base text-skin-base">
                     {{ __('Ou intégrez nos différentes plateformes de communication') }}
                 </p>
                 <div class="mt-4 sm:flex sm:items-center sm:space-x-4">
+                    <a href="{{ route('discord') }}" class="inline-flex items-center px-4 py-2 text-base text-skin-base font-medium bg-skin-body hover:bg-skin-card-muted rounded-md">
+                        <svg class="h-5 w-5 mr-2" fill="#5865F2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 146 146">
+                            <path d="M107.75 125.001s-4.5-5.375-8.25-10.125c16.375-4.625 22.625-14.875 22.625-14.875-5.125 3.375-10 5.75-14.375 7.375-6.25 2.625-12.25 4.375-18.125 5.375-12 2.25-23 1.625-32.375-.125-7.125-1.375-13.25-3.375-18.375-5.375-2.875-1.125-6-2.5-9.125-4.25-.375-.25-.75-.375-1.125-.625-.25-.125-.375-.25-.5-.375-2.25-1.25-3.5-2.125-3.5-2.125s6 10 21.875 14.75c-3.75 4.75-8.375 10.375-8.375 10.375-27.625-.875-38.125-19-38.125-19 0-40.25 18-72.875 18-72.875 18-13.5 35.125-13.125 35.125-13.125l1.25 1.5c-22.5 6.5-32.875 16.375-32.875 16.375s2.75-1.5 7.375-3.625c13.375-5.875 24-7.5 28.375-7.875.75-.125 1.375-.25 2.125-.25 7.625-1 16.25-1.25 25.25-.25 11.875 1.375 24.625 4.875 37.625 12 0 0-9.875-9.375-31.125-15.875l1.75-2S110 19.626 128 33.126c0 0 18 32.625 18 72.875 0 0-10.625 18.125-38.25 19zM49.625 66.626c-7.125 0-12.75 6.25-12.75 13.875s5.75 13.875 12.75 13.875c7.125 0 12.75-6.25 12.75-13.875.125-7.625-5.625-13.875-12.75-13.875zm45.625 0c-7.125 0-12.75 6.25-12.75 13.875s5.75 13.875 12.75 13.875c7.125 0 12.75-6.25 12.75-13.875s-5.625-13.875-12.75-13.875z" fill-rule="nonzero"></path>
+                        </svg>
+                        Discord
+                    </a>
                     <a href="{{ route('slack') }}" class="inline-flex items-center px-4 py-2 text-base text-skin-base font-medium bg-skin-body hover:bg-skin-card-muted rounded-md">
                         <svg class="h-5 w-5 mr-2" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                             <g clip-path="url(#clip0)" fill-rule="evenodd" clip-rule="evenodd">
