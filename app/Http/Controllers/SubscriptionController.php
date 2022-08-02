@@ -22,6 +22,7 @@ class SubscriptionController extends Controller
     {
         $subscribe = Subscribe::where('subscribeable_id', $id)->where('subscribeable_type', $type)->firstOrFail();
 
+        // @phpstan-ignore-next-line
         return redirect(route_to_reply_able($subscribe->subscribeAble));
     }
 }

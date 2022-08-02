@@ -13,7 +13,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      * Validate and update the given user's profile information.
      *
      * @param  mixed  $user
-     * @param  array  $input
+     * @param  array  $input<string, string>
      * @return void
      *
      * @throws \Illuminate\Validation\ValidationException

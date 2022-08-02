@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Models\Reply;
+use App\Models\Thread;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -27,15 +28,24 @@ class YouWereMentioned extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
+        /** @var Thread $thread */
+        $thread = $this->reply->replyAble;
+
         return (new MailMessage)
-                    ->subject("Nouvelle mention: {$this->reply->replyAble->subject()}")
-                    ->line($this->reply->author->name.' vous a mentionné dans le sujet '.$this->reply->replyAble->subject())
-                    ->action('Afficher', url($this->reply->replyAble->getPathUrl()."#reply-{$this->reply->id}"))
+                    ->subject("Nouvelle mention: {$thread->subject()}")
+                    ->line($this->reply->author->name.' vous a mentionné dans le sujet '.$thread->subject())
+                    ->action('Afficher', url($thread->getPathUrl()."#reply-{$this->reply->id}"))
                     ->line("Merci d'utiliser Laravel Cameroun!");
     }
 
+    /**
+     * Get the array representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array<string, string|int>
+     */
     public function toArray($notifiable): array
     {
         return [
@@ -45,6 +55,7 @@ class YouWereMentioned extends Notification implements ShouldQueue
             'author_photo' => $this->reply->author->profile_photo_url,
             'replyable_id' => $this->reply->replyable_id,
             'replyable_type' => $this->reply->replyable_type,
+            // @phpstan-ignore-next-line
             'replyable_subject' => $this->reply->replyAble->replyAbleSubject(),
         ];
     }

@@ -2,8 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Models\IdeHelperReply;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin IdeHelperReply
+ */
 class ReplyResource extends JsonResource
 {
     public function toArray($request): array
@@ -17,6 +21,7 @@ class ReplyResource extends JsonResource
             'author' => new UserResource($this->author),
             'experience' => $this->author->getPoints(),
             'has_replies' => $this->allChildReplies->isNotEmpty(),
+            // @phpstan-ignore-next-line
             'likes_count' => $this->getReactionsSummary()->sum('count'),
         ];
     }

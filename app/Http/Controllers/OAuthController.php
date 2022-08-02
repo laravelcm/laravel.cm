@@ -39,6 +39,7 @@ class OAuthController extends Controller
         try {
             $user = User::findOrCreateSocialUserProvider($socialiteUser, $provider);
         } catch (ModelNotFoundException $exception) {
+            // @phpstan-ignore-next-line
             return $this->userNotFound($socialiteUser->getRaw(), $exception->getMessage());
         }
 

@@ -11,7 +11,7 @@ trait HasSlug
         return $this->slug;
     }
 
-    public function setSlugAttribute(string $slug)
+    public function setSlugAttribute(string $slug): void
     {
         $this->attributes['slug'] = $this->generateUniqueSlug($slug);
     }

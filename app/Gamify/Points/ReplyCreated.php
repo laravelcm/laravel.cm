@@ -7,17 +7,17 @@ use QCod\Gamify\PointType;
 
 class ReplyCreated extends PointType
 {
-    public int $points = 2;
+    public int $points = 10;
 
     public User $author;
 
-    public function __construct($subject, $author)
+    public function __construct($subject, ?User $author = null)
     {
         $this->subject = $subject;
         $this->author = $author;
     }
 
-    public function payee()
+    public function payee(): User
     {
         return $this->author;
     }

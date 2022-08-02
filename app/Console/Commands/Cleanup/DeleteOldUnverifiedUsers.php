@@ -12,7 +12,7 @@ class DeleteOldUnverifiedUsers extends Command
 
     protected $description = 'Removed all unverified users.';
 
-    public function handle()
+    public function handle(): void
     {
         $this->info('Deleting old unverified users...');
 
@@ -20,8 +20,10 @@ class DeleteOldUnverifiedUsers extends Command
             ->whereNull('email_verified_at')
             ->where('created_at', '<', now()->subDays(10));
 
-        if ($query->get()->isNotEmpty()) {
-            foreach ($query->get() as $user) {
+        $users = $query->get();
+
+        if ($users->isNotEmpty()) {
+            foreach ($users as $user) {
                 $user->notify((new SendEMailToDeletedUser())->delay(now()->addMinutes(5)));
             }
         }

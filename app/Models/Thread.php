@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +30,9 @@ use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
+/**
+ * @mixin IdeHelperThread
+ */
 class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
     use HasAuthor,
@@ -58,7 +62,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'locked' => 'boolean',
@@ -68,7 +72,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
     /**
      * The relations to eager load on every query.
      *
-     * @var array
+     * @var array<string>
      */
     protected $with = [
         'channels',
@@ -150,7 +154,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         return false;
     }
 
-    public function markSolution(Reply $reply, User $user)
+    public function markSolution(Reply $reply, User $user): void
     {
         $thread = $reply->replyAble;
 
@@ -163,7 +167,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         $this->save();
     }
 
-    public function unmarkSolution()
+    public function unmarkSolution(): void
     {
         $this->resolvedBy()->dissociate();
         $this->solutionReply()->dissociate();
@@ -183,22 +187,39 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     public function scopeRecent(Builder $query): Builder
     {
+        // @phpstan-ignore-next-line
         return $query->feedQuery()->orderByDesc('last_posted_at');
     }
 
+    /**
+     * @param  Builder<Thread>  $query
+     * @return Builder<Thread>
+     */
     public function scopeResolved(Builder $query): Builder
     {
         return $query->feedQuery()
             ->whereNotNull('solution_reply_id');
     }
 
+    /**
+     * @param  Builder<Thread>  $query
+     * @return Builder<Thread>
+     */
     public function scopeUnresolved(Builder $query): Builder
     {
         return $query->feedQuery()
             ->whereNull('solution_reply_id');
     }
 
-    public function scopeFilter(Builder $builder, $request, array $filters = []): Builder
+    /**
+     * Scope for filtering threads.
+     *
+     * @param  Builder<Thread>  $builder
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $filters
+     * @return Builder<Thread>
+     */
+    public function scopeFilter(Builder $builder, Request $request, array $filters = []): Builder
     {
         return (new ThreadFilters($request))->add($filters)->filter($builder);
     }
@@ -213,10 +234,11 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     public function toFeedItem(): FeedItem
     {
+        // @phpstan-ignore-next-line
         $updatedAt = Carbon::parse($this->latest_creation);
 
         return FeedItem::create()
-            ->id($this->id)
+            ->id((string) $this->id)
             ->title($this->title)
             ->summary($this->body)
             ->updated($updatedAt)
@@ -226,6 +248,9 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     /**
      * This will order the threads by creation date and latest reply.
+     *
+     * @param  Builder<Thread>  $query
+     * @return Builder<Thread>
      */
     public function scopeFeedQuery(Builder $query): Builder
     {
@@ -253,10 +278,13 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     /**
      * This will calculate the average resolution time in days of all threads marked as resolved.
+     *
+     * @return bool|int
      */
-    public static function resolutionTime()
+    public static function resolutionTime(): bool|int
     {
         try {
+            // @phpstan-ignore-next-line
             return static::join('replies', 'threads.solution_reply_id', '=', 'replies.id')
                 ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
                 ->first()
@@ -273,12 +301,18 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
             ->getCollection();
     }
 
+    /**
+     * This will tell if the thread has any replies.
+     *
+     * @param  Builder<Thread>  $query
+     * @return Builder<Thread>
+     */
     public function scopeActive(Builder $query): Builder
     {
         return $query->has('replies');
     }
 
-    public function syncChannels(array $channels)
+    public function syncChannels(array $channels): void
     {
         $this->save();
         $this->channels()->sync($channels);
@@ -286,7 +320,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         $this->unsetRelation('channels');
     }
 
-    public function removeChannels()
+    public function removeChannels(): void
     {
         $this->channels()->detach();
 

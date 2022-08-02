@@ -17,24 +17,29 @@ class NewReplyNotification extends Notification implements ShouldQueue
     {
     }
 
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail', 'database'];
     }
 
-    public function toMail($notifiable)
+    public function toMail($notifiable): NewReplyEmail
     {
         return (new NewReplyEmail($this->reply, $this->subscription))
             ->to($notifiable->email, $notifiable->name);
     }
 
-    public function toArray($notifiable)
+    /**
+     * @param  mixed  $notifiable
+     * @return array<string, string|int>
+     */
+    public function toArray($notifiable): array
     {
         return [
             'type' => 'new_reply',
             'reply' => $this->reply->id,
             'replyable_id' => $this->reply->replyable_id,
             'replyable_type' => $this->reply->replyable_type,
+            // @phpstan-ignore-next-line
             'replyable_subject' => $this->reply->replyAble->replyAbleSubject(),
         ];
     }

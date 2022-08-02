@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 interface ReplyInterface
 {
-    public function subject(): string;
+    public function subject(): int|string;
 
     public function latestReplies(int $amount = 5): Collection;
 
@@ -15,7 +15,7 @@ interface ReplyInterface
 
     public function isConversationOld(): bool;
 
-    public function replyAbleSubject(): string;
+    public function replyAbleSubject(): int|string;
 
     public function getPathUrl(): string;
 }

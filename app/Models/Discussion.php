@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+/**
+ * @mixin IdeHelperDiscussion
+ */
 class Discussion extends Model implements ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
     use HasAuthor,
@@ -48,7 +51,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'locked' => 'boolean',
@@ -58,7 +61,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
     /**
      * The relations to eager load on every query.
      *
-     * @var array
+     * @var array<string>
      */
     protected $with = [
         'author',
@@ -67,7 +70,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
     /**
      * The accessors to append to the model's array form.
      *
-     * @var array
+     * @var array<string>
      */
     protected $appends = [
         'count_all_replies_with_child',
@@ -167,7 +170,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
             ->orderByDesc('created_at');
     }
 
-    public function lockedDiscussion()
+    public function lockedDiscussion(): void
     {
         $this->update(['locked' => true]);
     }

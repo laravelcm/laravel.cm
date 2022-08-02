@@ -10,6 +10,7 @@ class ReplyAbleController extends Controller
     {
         $reply = Reply::where('replyable_id', $id)->where('replyable_type', $type)->firstOrFail();
 
+        // @phpstan-ignore-next-line
         return redirect(route_to_reply_able($reply->replyAble));
     }
 }

@@ -18,6 +18,9 @@ use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
+/**
+ * @mixin IdeHelperArticle
+ */
 class Article extends Model implements ReactableInterface, HasMedia, Viewable
 {
     use HasAuthor,
@@ -55,7 +58,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     /**
      * The attributes that should be cast.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'submitted_at' => 'datetime',
@@ -71,7 +74,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     /**
      * The relations to eager load on every query.
      *
-     * @var array
+     * @var array<string>
      */
     protected $with = [
         'author',
@@ -105,12 +108,12 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         return $this->originalUrl() ?: route('articles.show', $this->slug);
     }
 
-    public function nextArticle()
+    public function nextArticle(): ?Article
     {
         return self::published()->where('id', '>', $this->id)->orderBy('id')->first();
     }
 
-    public function previousArticle()
+    public function previousArticle(): ?Article
     {
         return self::published()->where('id', '<', $this->id)->orderByDesc('id')->first();
     }
@@ -127,7 +130,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
             ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png']);
     }
 
-    public function showToc()
+    public function showToc(): bool
     {
         return $this->show_toc;
     }
@@ -209,7 +212,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function isPinned(): bool
     {
-        return (bool) $this->is_pinned;
+        return $this->is_pinned;
     }
 
     public function isNotShared(): bool
@@ -232,21 +235,45 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         return ! $this->isAwaitingApproval();
     }
 
+    /**
+     * Scope a query to return submitted posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeSubmitted(Builder $query): Builder
     {
         return $query->whereNotNull('submitted_at');
     }
 
+    /**
+     * Scope a query to return approved posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeApproved(Builder $query): Builder
     {
         return $query->whereNotNull('approved_at');
     }
 
+    /**
+     * Scope a query to return not approved posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeNotApproved(Builder $query): Builder
     {
         return $query->whereNull('approved_at');
     }
 
+    /**
+     * Scope a query to return only posts on awaiting approval.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeAwaitingApproval(Builder $query): Builder
     {
         return $query->submitted()
@@ -254,6 +281,12 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
             ->notDeclined();
     }
 
+    /**
+     * Scope a query to return only published posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopePublished(Builder $query): Builder
     {
         return $query->whereDate('published_at', '<=', now())
@@ -261,6 +294,12 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
             ->approved();
     }
 
+    /**
+     * Scope a query to return unpublished posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeNotPublished(Builder $query): Builder
     {
         return $query->where(function ($query) {
@@ -271,47 +310,101 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         });
     }
 
+    /**
+     * Scope a query to return only pinned posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopePinned(Builder $query): Builder
     {
         return $query->where('is_pinned', true);
     }
 
+    /**
+     * Scope a query to return unpinned posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeNotPinned(Builder $query): Builder
     {
         return $query->where('is_pinned', false);
     }
 
+    /**
+     * Scope a query to return shared posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeShared(Builder $query): Builder
     {
         return $query->whereNotNull('shared_at');
     }
 
+    /**
+     * Scope a query to return not shared posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeNotShared(Builder $query): Builder
     {
         return $query->whereNull('shared_at');
     }
 
+    /**
+     * Scope a query to return only declined posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeDeclined(Builder $query): Builder
     {
         return $query->whereNotNull('declined_at');
     }
 
+    /**
+     * Scope a query to return sponsored posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeSponsored(Builder $query): Builder
     {
         return $query->whereNotNull('sponsored_at');
     }
 
+    /**
+     * Scope a query to return not declined posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeNotDeclined(Builder $query): Builder
     {
         return $query->whereNull('declined_at');
     }
 
+    /**
+     * Scope a query to return recent posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeRecent(Builder $query): Builder
     {
         return $query->orderBy('is_pinned', 'desc')
             ->orderBy('published_at', 'desc');
     }
 
+    /**
+     * Scope a query to return popular posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopePopular(Builder $query): Builder
     {
         return $query->withCount('reactions')
@@ -319,6 +412,12 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
             ->orderBy('published_at', 'desc');
     }
 
+    /**
+     * Scope a query to return trending posts.
+     *
+     * @param  Builder<Article>  $query
+     * @return Builder<Article>
+     */
     public function scopeTrending(Builder $query): Builder
     {
         return $query->withCount(['reactions' => function ($query) {
@@ -328,7 +427,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
             ->orderBy('published_at', 'desc');
     }
 
-    public function markAsShared()
+    public function markAsShared(): void
     {
         $this->update(['shared_at' => now()]);
     }
@@ -349,7 +448,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
             ->first();
     }
 
-    public function markAsPublish()
+    public function markAsPublish(): void
     {
         $this->update(['tweet_id' => $this->author->id]);
     }

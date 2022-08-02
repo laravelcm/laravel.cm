@@ -29,21 +29,11 @@ use Spatie\Health\Facades\Health;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         $this->registerBladeDirective();
     }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot(): void
     {
         date_default_timezone_set('Africa/Douala');
@@ -59,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
         ReplyResource::withoutWrapping();
     }
 
-    public function registerBladeDirective()
+    public function registerBladeDirective(): void
     {
         Blade::directive('title', function ($expression) {
             return "<?php \$title = $expression ?>";
@@ -74,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    public function bootMacros()
+    public function bootMacros(): void
     {
         Str::macro('readDuration', function (...$text) {
             $totalWords = str_word_count(implode(' ', $text));
@@ -84,7 +74,7 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    public function bootViewsComposer()
+    public function bootViewsComposer(): void
     {
         View::composer('forum._channels', ChannelsComposer::class);
         View::composer('forum._top-members', TopMembersComposer::class);
@@ -94,7 +84,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('components.profile-users', ProfileUsersComposer::class);
     }
 
-    public function bootEloquentMorphs()
+    public function bootEloquentMorphs(): void
     {
         Relation::morphMap([
             'article' => Article::class,
@@ -105,7 +95,7 @@ class AppServiceProvider extends ServiceProvider
         ]);
     }
 
-    public function bootHealthCheck()
+    public function bootHealthCheck(): void
     {
         Health::checks([
             DebugModeCheck::new(),

@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Contracts\ReactableInterface;
 use App\Models\Reaction;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use WireUi\Traits\Actions;
@@ -12,7 +13,7 @@ class Reactions extends Component
 {
     use Actions;
 
-    public Model $model;
+    public ReactableInterface $model;
 
     public bool $withPlaceHolder = true;
 
@@ -20,7 +21,7 @@ class Reactions extends Component
 
     public string $direction = 'right';
 
-    public function userReacted(string $reaction)
+    public function userReacted(string $reaction): void
     {
         if (Auth::guest()) {
             $this->notification()->error(
@@ -33,7 +34,7 @@ class Reactions extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.reactions');
     }

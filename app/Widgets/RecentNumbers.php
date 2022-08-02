@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\User;
 use Arrilot\Widgets\AbstractWidget;
 use CyrildeWit\EloquentViewable\Support\Period;
+use Illuminate\Contracts\View\View;
 
 class RecentNumbers extends AbstractWidget
 {
@@ -35,7 +36,7 @@ class RecentNumbers extends AbstractWidget
      * Treat this method as a controller action.
      * Return view() or other content to display.
      */
-    public function run()
+    public function run(): View
     {
         $lastMonth = now()->subMonth();
         $countUsers = User::count();

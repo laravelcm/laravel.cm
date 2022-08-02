@@ -3,6 +3,7 @@
 namespace App\Filters\Thread;
 
 use App\Filters\AbstractFilter;
+use App\Models\Thread;
 use Illuminate\Database\Eloquent\Builder;
 
 class SortByFilter extends AbstractFilter
@@ -16,19 +17,20 @@ class SortByFilter extends AbstractFilter
         ];
     }
 
+    /**
+     * @param  Builder<Thread>  $builder
+     * @param  mixed  $value
+     * @return Builder<Thread>
+     */
     public function filter(Builder $builder, $value): Builder
     {
         $value = $this->resolveFilterValue($value);
 
-        switch ($value) {
-            case null:
-                return $builder;
-            case 'recent':
-                return $builder->recent();
-            case 'resolved':
-                return $builder->resolved();
-            case 'unresolved':
-                return $builder->unresolved();
-        }
+        return match ($value) {
+            'recent' => $builder->recent(),
+            'resolved' => $builder->resolved(),
+            'unresolved' => $builder->unresolved(),
+            default => $builder,
+        };
     }
 }

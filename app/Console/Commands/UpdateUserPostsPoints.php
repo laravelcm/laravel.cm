@@ -16,7 +16,8 @@ class UpdateUserPostsPoints extends Command
     {
         $this->info('Updating users posts reputations...');
 
-        foreach (Article::all() as $article) {
+        foreach (Article::published()->get() as $article) {
+            // @phpstan-ignore-next-line
             givePoint(new PostCreated($article), $article->author);
         }
 

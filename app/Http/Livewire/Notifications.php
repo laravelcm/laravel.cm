@@ -30,8 +30,10 @@ class Notifications extends Component
     {
         $this->notificationId = $notificationId;
 
+        // @phpstan-ignore-next-line
         $this->authorize(NotificationPolicy::MARK_AS_READ, $this->notification);
 
+        // @phpstan-ignore-next-line
         $this->notification->markAsRead();
 
         $this->notification()->success('Notification', 'Cette notification a été marquée comme lue.');

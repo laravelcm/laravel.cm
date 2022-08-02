@@ -31,12 +31,13 @@ trait Reacts
         return null;
     }
 
-    public function hasReaction(ReactableInterface $reactable)
+    public function hasReaction(ReactableInterface $reactable): bool
     {
+        // @phpstan-ignore-next-line
         return $reactable->reacted();
     }
 
-    protected function storeReaction(ReactableInterface $reactable, Reaction $reaction)
+    protected function storeReaction(ReactableInterface $reactable, Reaction $reaction): Reaction
     {
         $reactable->reactions()->attach(
             $reaction->id,
@@ -49,7 +50,7 @@ trait Reacts
         return $reaction;
     }
 
-    protected function deleteReaction(ReactableInterface $reactable, Reaction $reacted)
+    protected function deleteReaction(ReactableInterface $reactable, Reaction $reacted): void
     {
         $reactable->reactions()
             ->wherePivot('reaction_id', $reacted->id)

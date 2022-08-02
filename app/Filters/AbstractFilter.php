@@ -14,7 +14,7 @@ abstract class AbstractFilter
         return [];
     }
 
-    protected function resolveFilterValue($key)
+    protected function resolveFilterValue($key): mixed
     {
         return Arr::get($this->mappings(), $key);
     }
