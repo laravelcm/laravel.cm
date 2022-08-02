@@ -233,7 +233,7 @@
 
             @if($next || $previous)
                 <footer class="mt-10 border-t border-skin-light lg:hidden">
-                    <div class="space-y-8 py-8 sm:flex sm:items-center sm:space-y-0">
+                    <div class="space-y-8 py-8 sm:flex sm:items-center sm:justify-between sm:space-y-0">
                         @if($next)
                             <div>
                                 <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article suivant</h2>
