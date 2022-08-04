@@ -22,7 +22,7 @@ return [
     // We replace tabs in your code blocks with spaces in HTML. Set
     // the number of spaces you'd like to use per tab. Set to
     // `false` to leave literal tabs in the HTML.
-    'tab_width' => 2,
+    'tab_width' => 4,
 
     // Global options to control blocks-level settings.
     // https://torchlight.dev/docs/options

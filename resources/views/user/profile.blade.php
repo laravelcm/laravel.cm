@@ -16,8 +16,8 @@
                 </div>
                 <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                     <div class="sm:hidden md:block mt-6 min-w-0 flex-1">
-                        <h1 class="inline-flex items-center text-2xl font-bold text-skin-inverted truncate font-sans">
-                            {{ $user->name }}
+                        <h1 class="inline-flex items-center text-2xl font-bold text-skin-inverted truncate">
+                            <span class="font-heading">{{ $user->name }}</span>
 
                             <x-user.points :author="$user" />
 

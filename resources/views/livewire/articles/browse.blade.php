@@ -22,7 +22,7 @@
     >
         <div class="lg:col-span-6">
             <div class="pb-5 border-b border-skin-base">
-                <h1 class="text-3xl leading-8 font-extrabold text-skin-inverted font-mono">
+                <h1 class="text-3xl leading-8 font-extrabold text-skin-inverted font-heading">
                     Récentes publications
                 </h1>
                 <p class="mt-2 max-w-4xl text-skin-base leading-5">Tous les articles récemment publiés.</p>

@@ -5,7 +5,7 @@
 @section('body')
 
     <div class="pb-5 border-b border-skin-base">
-        <h3 class="text-3xl font-semibold text-skin-inverted font-sans">
+        <h3 class="text-3xl font-semibold text-skin-inverted font-heading">
             Paramètres
         </h3>
     </div>

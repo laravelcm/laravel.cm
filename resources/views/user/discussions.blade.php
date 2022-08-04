@@ -10,7 +10,7 @@
 
         <x-user.breadcrumb section="Discussions" />
 
-        <h2 class="text-xl font-bold leading-7 text-skin-inverted sm:text-2xl sm:truncate font-sans">
+        <h2 class="text-xl font-bold leading-7 text-skin-inverted sm:text-2xl sm:truncate font-heading">
             Discussions
         </h2>
     </div>

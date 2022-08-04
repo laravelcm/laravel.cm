@@ -5,7 +5,7 @@
         <dt class="text-sm font-medium text-skin-base truncate">
             Total Articles/Discussions
         </dt>
-        <dd class="mt-1 text-3xl font-semibold text-skin-inverted font-mono">
+        <dd class="mt-1 text-3xl font-semibold text-skin-inverted">
             {{ number_format($user->articles_count + $user->discussions_count) }}
         </dd>
     </div>
@@ -14,7 +14,7 @@
         <dt class="text-sm font-medium text-skin-base truncate">
             Total Réponses
         </dt>
-        <dd class="mt-1 text-3xl font-semibold text-skin-inverted font-mono">
+        <dd class="mt-1 text-3xl font-semibold text-skin-inverted">
             {{ number_format($user->replies_count) }}
         </dd>
     </div>
@@ -23,7 +23,7 @@
         <dt class="text-sm font-medium text-skin-base truncate">
             Sujets Résolus
         </dt>
-        <dd class="mt-1 text-3xl font-semibold text-skin-inverted font-mono">
+        <dd class="mt-1 text-3xl font-semibold text-skin-inverted">
             {{ number_format($user->solutions_count) }}
         </dd>
     </div>
@@ -32,7 +32,7 @@
         <dt class="text-sm font-medium text-skin-base truncate">
             Total Experience
         </dt>
-        <dd class="mt-1 text-3xl font-semibold text-skin-inverted font-mono">
+        <dd class="mt-1 text-3xl font-semibold text-skin-inverted">
             0
         </dd>
     </div>

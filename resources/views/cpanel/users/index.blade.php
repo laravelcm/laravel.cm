@@ -3,7 +3,7 @@
         <div>
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-xl font-semibold text-skin-inverted">{{ __('Utilisateurs') }}</h1>
+                    <h1 class="text-xl font-semibold text-skin-inverted font-heading">{{ __('Utilisateurs') }}</h1>
                     <p class="mt-2 text-sm text-skin-inverted-muted">{{ __('Une liste de tous les utilisateurs de votre compte, avec leur nom, leur titre, leur email et leur rôle.') }}</p>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">

@@ -8,7 +8,7 @@
         <div class="lg:col-span-8">
             <header class="space-y-5 border-b border-skin-base">
                 <div>
-                    <h1 class="text-2xl font-extrabold text-skin-inverted tracking-tight font-sans sm:text-3xl sm:leading-8">{{ $discussion->title }}</h1>
+                    <h1 class="text-2xl font-extrabold text-skin-inverted tracking-tight font-heading sm:text-3xl sm:leading-8">{{ $discussion->title }}</h1>
                     <div class="mt-2 sm:flex sm:items-center space-x-4">
                         <span class="inline-flex items-center justify-center text-skin-base bg-skin-card-gray h-8 w-8 rounded-full">
                             <x-heroicon-s-tag class="h-5 w-5" />

@@ -104,11 +104,13 @@
   }
 }
 
-html {
-  scroll-behavior: smooth;
+[x-cloak] {
+  display: none !important;
 }
 
-[x-cloak] { display: none !important; }
+.prose iframe {
+  @apply w-full;
+}
 
 .logo-dark {
   display: none;

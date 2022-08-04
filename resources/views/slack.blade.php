@@ -20,7 +20,7 @@
                     <x-heroicon-o-switch-horizontal class="h-6 w-6 text-gray-400" />
                     <x-application-icon class="block h-10 w-auto sm:h-12" />
                 </div>
-                <h2 class="mt-4 text-xl font-medium text-skin-inverted font-sans">Rejoindre le groupe Slack</h2>
+                <h2 class="mt-4 text-xl font-medium font-heading text-skin-inverted">Rejoindre le groupe Slack</h2>
                 <p class="mt-3 text-sm text-skin-base font-normal">
                     Rejoignez notre slack pour discuter a propos de Laravel, Javascript, Design, comment démarrer et mener un projet de bout en bout, et découvrez l'univers du développement au Cameroun.
                 </p>

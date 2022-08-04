@@ -1,13 +1,13 @@
 <x-layouts.cp title="Tableau de bord">
     <x-container class="max-w-7xl mx-auto px-4 sm:px-6">
         <div>
-            <h3 class="text-3xl leading-8 font-medium text-skin-inverted">{{ __('Shalom, :name', ['name' => auth()->user()->name]) }}</h3>
+            <h3 class="text-3xl leading-8 font-medium text-skin-inverted font-heading">{{ __('Shalom, :name', ['name' => auth()->user()->name]) }}</h3>
             <div class="mt-6 lg:grid lg:grid-cols-5 lg:gap-8">
                 <div class="lg:col-span-4">
                     @widget('recentNumbers')
                     <div class="mt-8">
                         <div class="pb-5 border-b border-skin-base">
-                            <h3 class="text-lg leading-6 font-medium text-skin-inverted">{{ __('Actions rapide') }}</h3>
+                            <h3 class="text-lg leading-6 font-medium text-skin-inverted font-heading">{{ __('Actions rapide') }}</h3>
                         </div>
                         <div class="mt-6 space-y-8">
                             <div class="grid gap-5 sm:grid-cols-3 sm:gap-6">

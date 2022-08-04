@@ -44,12 +44,12 @@
                 <livewire:reactions :model="$thread" :with-place-holder="false" :with-background="false"/>
                 <p class="inline-flex text-sm space-x-2 text-skin-base">
                     <x-heroicon-o-chat-alt class="h-5 w-5" />
-                    <span class="font-mono text-skin-inverted-muted">{{ count($thread->replies) }}</span>
+                    <span class="text-skin-inverted-muted">{{ count($thread->replies) }}</span>
                     <span class="sr-only">réponses</span>
                 </p>
                 <p class="inline-flex text-sm space-x-2 text-skin-base">
                     <x-heroicon-o-eye class="h-5 w-5" />
-                    <span class="font-mono text-skin-inverted-muted">{{ $thread->views_count }}</span>
+                    <span class="text-skin-inverted-muted">{{ $thread->views_count }}</span>
                     <span class="sr-only">vues</span>
                 </p>
             </div>

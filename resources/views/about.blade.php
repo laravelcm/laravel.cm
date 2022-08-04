@@ -27,7 +27,7 @@
                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-green-900">
                     Membres sur Slack
                 </dt>
-                <dd class="order-1 text-5xl font-extrabold text-green-600 font-sans">
+                <dd class="order-1 text-5xl font-extrabold text-green-600 font-heading">
                     +300
                 </dd>
             </div>
@@ -35,7 +35,7 @@
                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-green-900">
                     Membres sur Telegram
                 </dt>
-                <dd class="order-1 text-5xl font-extrabold text-green-600 font-sans">
+                <dd class="order-1 text-5xl font-extrabold text-green-600 font-heading">
                     +100
                 </dd>
             </div>
@@ -43,7 +43,7 @@
                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-green-900">
                     Membres sur WhatsApp
                 </dt>
-                <dd class="order-1 text-5xl font-extrabold text-green-600 font-sans">
+                <dd class="order-1 text-5xl font-extrabold text-green-600 font-heading">
                     +250
                 </dd>
             </div>
@@ -53,7 +53,7 @@
     <div class="py-8 sm:py-10 lg:py-12">
         <h1 class="font-sans text-skin-inverted">
             <span class="block text-sm font-semibold text-skin-primary sm:text-base lg:text-sm xl:text-base">Notre histoire</span>
-            <span class="mt-1 block text-xl tracking-tight font-extrabold sm:text-2xl xl:text-3xl">
+            <span class="mt-1 block text-xl tracking-tight font-extrabold font-heading sm:text-2xl xl:text-3xl">
                 Nous commençons tout juste
             </span>
         </h1>
@@ -96,8 +96,8 @@
             <div class="space-y-12 lg:grid lg:grid-cols-3 lg:gap-24 lg:space-y-0">
                 <div class="font-sans">
                     <span class="text-sm leading-5 text-skin-primary font-semibold tracking-wide uppercase">Notre équipe</span>
-                    <h2 class="mt-2 text-2xl font-extrabold text-skin-inverted tracking-tight sm:text-3xl">Équipe de direction</h2>
-                    <p class="mt-5 text-lg text-skin-base font-mono font-normal">Laravel Cameroun est une idée qui a été initiée puis transformée en une communauté par 2 développeurs parmi les plus influents au Cameroun.</p>
+                    <h2 class="mt-2 text-2xl font-extrabold font-heading text-skin-inverted tracking-tight sm:text-3xl">Équipe de direction</h2>
+                    <p class="mt-5 text-lg text-skin-base">Laravel Cameroun est une idée qui a été initiée puis transformée en une communauté par 2 développeurs parmi les plus influents au Cameroun.</p>
                 </div>
                 <div class="lg:col-span-2">
                     <ul role="list" class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:gap-x-8">

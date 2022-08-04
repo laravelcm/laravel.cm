@@ -74,7 +74,7 @@
                     x-ref="editor"
                     id="editor-{{ $key }}"
                     data-key="{{ $key }}"
-                    class="editors w-full h-full mx-auto bg-skin-input px-5 md:px-1 pt-5 font-mono leading-loose tracking-tighter text-skin-base @if(isset($style['textarea'])){{ $style['textarea'] }}@else{{ 'min-h-screen border-0 outline-none focus:outline-none sm:x-0 text-lg' }}@endif"
+                    class="editors w-full h-full mx-auto bg-skin-input px-5 md:px-1 pt-5 leading-loose tracking-tighter text-skin-base @if(isset($style['textarea'])){{ $style['textarea'] }}@else{{ 'min-h-screen border-0 outline-none focus:outline-none sm:x-0 text-lg' }}@endif"
                     placeholder=""
                     data-loaded="false"
                     name="{{ $name }}"
@@ -127,60 +127,60 @@
             <hr>
 
             <h3>Links</h3>
-            <p>You can add <a href="#_">links</a> by adding text inside of <span class="p-1 font-mono text-green-600 bg-green-100">[]</span> and the link inside of <span class="p-1 font-mono text-green-600 bg-green-100">()</span>, like so:</p>
-            <div class="p-1 font-mono text-green-600 bg-green-100">[link_text](https://google.com)</div>
+            <p>You can add <a href="#_">links</a> by adding text inside of <span class="p-1 text-green-600 bg-green-100">[]</span> and the link inside of <span class="p-1 text-green-600 bg-green-100">()</span>, like so:</p>
+            <div class="p-1 text-green-600 bg-green-100">[link_text](https://google.com)</div>
             <hr>
 
             <h3>Lists</h3>
-            <p>To add a numbered list you can simply start with a number and a <span class="p-1 font-mono text-green-600 bg-green-100">.</span>, like so:<br><span class="block p-1 pl-5 font-mono text-green-600 bg-green-100"> 1. The first item in my list</span></p>
-            <p>For an unordered list, you can add a dash <span class="p-1 font-mono text-green-600 bg-green-100">-</span>, like so:<br><span class="block p-1 pl-5 font-mono text-green-600 bg-green-100"> - The start of my list</span></p>
+            <p>To add a numbered list you can simply start with a number and a <span class="p-1 text-green-600 bg-green-100">.</span>, like so:<br><span class="block p-1 pl-5 text-green-600 bg-green-100"> 1. The first item in my list</span></p>
+            <p>For an unordered list, you can add a dash <span class="p-1 text-green-600 bg-green-100">-</span>, like so:<br><span class="block p-1 pl-5 text-green-600 bg-green-100"> - The start of my list</span></p>
             <hr>
 
             <h3>Images</h3>
-            <p>You can add images by selecting the image icon, which will upload and add an image to the editor, or you can manually add the image by adding an exclamation <span class="p-1 font-mono text-green-600 bg-green-100">!</span>, followed by the alt text inside of <span class="p-1 font-mono text-green-600 bg-green-100">[]</span>, and the image URL inside of <span class="p-1 font-mono text-green-600 bg-green-100">()</span>, like so:</p>
-            <div class="p-1 font-mono text-green-600 bg-green-100">![alt text for image](url_to_image.png)</div>
+            <p>You can add images by selecting the image icon, which will upload and add an image to the editor, or you can manually add the image by adding an exclamation <span class="p-1 text-green-600 bg-green-100">!</span>, followed by the alt text inside of <span class="p-1 text-green-600 bg-green-100">[]</span>, and the image URL inside of <span class="p-1 text-green-600 bg-green-100">()</span>, like so:</p>
+            <div class="p-1 text-green-600 bg-green-100">![alt text for image](url_to_image.png)</div>
             <hr>
 
             <h3>Dividers</h3>
-            <p>To add a divider you can add three dashes or three asterisks:<br><span class="block p-1 pl-5 font-mono text-green-600 bg-green-100">--- or ***</span>
+            <p>To add a divider you can add three dashes or three asterisks:<br><span class="block p-1 pl-5 text-green-600 bg-green-100">--- or ***</span>
             </p>
             <hr>
 
             @if(in_array('giphy', config('markdownx.dropdown_items')))
                 <h3>Embedding GIFs via Giphy</h3>
-                <p>You can easily embed animated GIFS with the following syntax:<br><span class="p-1 font-mono text-green-600 bg-green-100">{% giphy https://giphy.com/embed/giphy_id %}</span></p>
+                <p>You can easily embed animated GIFS with the following syntax:<br><span class="p-1 text-green-600 bg-green-100">{% giphy https://giphy.com/embed/giphy_id %}</span></p>
                 <hr>
             @endif
 
             @if(in_array('codepen', config('markdownx.dropdown_items')))
                 <h3>Embedding Codepens</h3>
-                <p>You can also embed a codepen by writing the following:<br><span class="p-1 font-mono text-green-600 bg-green-100">{% codepen https://codepen.io/your/pen/url %}</span></p>
-                <p>You may also choose the default tabs you wish to show your pen by writing the <span class="p-1 font-mono text-green-600 bg-green-100">default-tab</span> like so: (default is result)</p>
-                <p><span class="p-1 font-mono text-green-600 bg-green-100">{% codepen https://codepen.io/your/pen/url default-tab=result,html %}</span></p>
+                <p>You can also embed a codepen by writing the following:<br><span class="p-1 text-green-600 bg-green-100">{% codepen https://codepen.io/your/pen/url %}</span></p>
+                <p>You may also choose the default tabs you wish to show your pen by writing the <span class="p-1 text-green-600 bg-green-100">default-tab</span> like so: (default is result)</p>
+                <p><span class="p-1 text-green-600 bg-green-100">{% codepen https://codepen.io/your/pen/url default-tab=result,html %}</span></p>
                 <hr>
             @endif
 
             @if(in_array('codesandbox', config('markdownx.dropdown_items')))
                 <h3>Embedding CodeSandbox</h3>
-                <p>You can also embed CodeSandbox by writing the following:<br><span class="p-1 font-mono text-green-600 bg-green-100">{% codesandbox YOUR_CODESANDBOX_EMBED_URL %}</span></p>
+                <p>You can also embed CodeSandbox by writing the following:<br><span class="p-1 text-green-600 bg-green-100">{% codesandbox YOUR_CODESANDBOX_EMBED_URL %}</span></p>
                 <hr>
             @endif
 
             @if(in_array('gists', config('markdownx.dropdown_items')))
                 <h3>Embedding Gists</h3>
-                <p>You can also embed a Gists by writing the following:<br><span class="p-1 font-mono text-green-600 bg-green-100">{% gist GIST_ID_HERE %}</span></p>
+                <p>You can also embed a Gists by writing the following:<br><span class="p-1 text-green-600 bg-green-100">{% gist GIST_ID_HERE %}</span></p>
                 <hr>
             @endif
 
             @if(in_array('youtube', config('markdownx.dropdown_items')))
                 <h3>Embedding YouTube Videos</h3>
-                <p>You can also embed a YouTube video by writing the following:<br><span class="p-1 font-mono text-green-600 bg-green-100">{% youtube VIDEO_ID_HERE %}</span></p>
+                <p>You can also embed a YouTube video by writing the following:<br><span class="p-1 text-green-600 bg-green-100">{% youtube VIDEO_ID_HERE %}</span></p>
                 <hr>
             @endif
 
             @if(in_array('buy_me_a_coffee', config('markdownx.dropdown_items')))
                 <h3>Embedding buymeacoffee.com</h3>
-                <p>You can also embed your "Buy me a coffee" button by writing the following:<br><span class="p-1 font-mono text-green-600 bg-green-100">{% buymeacoffee BUY_ME_A_COFFEE_USERNAME_HERE %}</span></p>
+                <p>You can also embed your "Buy me a coffee" button by writing the following:<br><span class="p-1 text-green-600 bg-green-100">{% buymeacoffee BUY_ME_A_COFFEE_USERNAME_HERE %}</span></p>
                 <hr>
             @endif
         </div>

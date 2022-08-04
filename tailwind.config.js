@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const { fontFamily } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 function withOpacity(variableName) {
@@ -17,6 +17,7 @@ module.exports = {
   ],
   content: [
     './app/**/*.php',
+    './config/markdown.php',
     './resources/**/*.blade.php',
     './resources/**/*.{js,jsx}',
     './storage/framework/views/*.php',
@@ -54,11 +55,9 @@ module.exports = {
         green: colors.emerald,
       },
       fontFamily: {
-        mono: ['Operator Mono', ...defaultTheme.fontFamily.mono],
-        sans: ['Inter var', 'DM Sans', ...defaultTheme.fontFamily.sans],
-      },
-      fontWeight: {
-        normal: 300
+        heading: ['Lexend', ...fontFamily.sans],
+        mono: ['JetBrains Mono', ...fontFamily.mono],
+        sans: ['DM Sans', ...fontFamily.sans],
       },
       textColor: {
         skin: {
@@ -122,33 +121,29 @@ module.exports = {
             },
             'h1, h2, h3, h4': {
               color: theme('textColor.skin.inverted'),
-              fontFamily: "'Inter var', serif"
-            },
-            p: {
-              fontWeight: 300
+              fontFamily: "Lexend, sans-serif",
             },
             hr: {
               borderColor: theme('borderColor.skin.base')
             },
             blockquote: {
-              color: theme('textColor.skin.inverted')
+              color: theme('textColor.skin.inverted'),
+              fontStyle: 'normal',
+            },
+            'blockquote p:first-of-type::before': {
+              content: 'none',
+            },
+            'blockquote p:first-of-type::after': {
+              content: 'none',
+            },
+            'pre, code, p > code': {
+              fontWeight: theme('fontWeight.normal'),
+              fontFamily: 'JetBrains Mono, monospace',
             },
             'li strong, strong' : {
               color: theme('textColor.skin.inverted-muted'),
               fontWeight: 400
             },
-            'p > code, code': {
-              display: 'inline-flex',
-              fontFamily: "'Operator Mono', monospace",
-              alignItems: 'center',
-              borderRadius: '.375rem',
-              fontSize: '1rem',
-              lineHeight: '1.25rem',
-              fontWeight: 400,
-              padding: '.125rem .625rem',
-              color: theme('colors.green.800'),
-              backgroundColor: theme('colors.green.100'),
-            }
           },
         },
       }),

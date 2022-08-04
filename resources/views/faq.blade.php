@@ -5,7 +5,7 @@
 @section('body')
 
     <div class="mb-14">
-        <h2 class="text-3xl font-extrabold text-skin-inverted lg:text-4xl font-sans">
+        <h2 class="text-3xl font-extrabold font-heading text-skin-inverted lg:text-4xl">
             {{ __('Foire aux questions 🤔') }}
         </h2>
         <p class="mt-2 text-sm text-skin-muted font-normal lg:text-base">{{ __("Certaines d'entre elles ne sont pas demandées fréquemment, mais elles sont toujours bonnes à savoir.") }}</p>

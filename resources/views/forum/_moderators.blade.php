@@ -1,7 +1,7 @@
 <section aria-labelledby="moderators-title">
     <div class="rounded-lg bg-skin-card overflow-hidden shadow">
         <div class="p-6">
-            <h2 class="text-base font-medium text-skin-inverted font-mono" id="moderators-title">Modérateurs</h2>
+            <h2 class="text-base font-medium text-skin-inverted font-heading" id="moderators-title">Modérateurs</h2>
             <div class="flow-root mt-6">
                 <ul role="list" class="-my-5 divide-y divide-skin-base">
                     @foreach($moderators as $moderator)
