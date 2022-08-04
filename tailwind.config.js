@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const { fontFamily } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 function withOpacity(variableName) {
@@ -55,12 +55,9 @@ module.exports = {
         green: colors.emerald,
       },
       fontFamily: {
-        heading: ['Lexend', ...defaultTheme.fontFamily.sans],
-        mono: ['JetBrains Mono', ...defaultTheme.fontFamily.sans],
-        sans: ['DM Sans', ...defaultTheme.fontFamily.sans],
-      },
-      fontWeight: {
-        normal: 300
+        heading: ['Lexend', ...fontFamily.sans],
+        mono: ['JetBrains Mono', ...fontFamily.mono],
+        sans: ['DM Sans', ...fontFamily.sans],
       },
       textColor: {
         skin: {
@@ -124,10 +121,7 @@ module.exports = {
             },
             'h1, h2, h3, h4': {
               color: theme('textColor.skin.inverted'),
-              fontFamily: theme('fontFamily.heading'),
-            },
-            p: {
-              fontWeight: 300
+              fontFamily: "Lexend, sans-serif",
             },
             hr: {
               borderColor: theme('borderColor.skin.base')
@@ -142,23 +136,14 @@ module.exports = {
             'blockquote p:first-of-type::after': {
               content: 'none',
             },
-            code: {
+            'pre, code, p > code': {
               fontWeight: theme('fontWeight.normal'),
+              fontFamily: 'JetBrains Mono, monospace',
             },
             'li strong, strong' : {
               color: theme('textColor.skin.inverted-muted'),
               fontWeight: 400
             },
-            'p > code, code': {
-              display: 'inline-flex',
-              fontFamily: theme('fontFamily.mono'),
-              alignItems: 'center',
-              borderRadius: '.375rem',
-              fontSize: theme('fontSize.base'),
-              padding: '.125rem .625rem',
-              color: theme('colors.green.800'),
-              backgroundColor: theme('colors.green.100'),
-            }
           },
         },
       }),

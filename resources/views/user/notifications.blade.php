@@ -8,7 +8,7 @@
     <div class="flex-1 min-w-0">
         <x-user.breadcrumb section="Notifications" />
 
-        <h2 class="inline-flex items-center gap-x-2 text-xl font-bold leading-7 text-skin-inverted sm:text-2xl sm:truncate font-sans">
+        <h2 class="inline-flex items-center gap-x-2 text-xl font-bold leading-7 text-skin-inverted sm:text-2xl sm:truncate font-heading">
             Notifications <livewire:notification-count />
         </h2>
     </div>

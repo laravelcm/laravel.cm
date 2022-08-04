@@ -14,7 +14,7 @@
         <div class="hidden relative lg:block lg:col-span-2">
             <div class="divide-y divide-skin-base sticky space-y-6 top-4">
                 <div>
-                    <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase">A propos de l’auteur</h4>
+                    <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase font-heading">A propos de l’auteur</h4>
                     <div class="mt-6 space-y-4">
                         <a href="{{ route('profile', $author->username) }}" class="shrink-0 block">
                             <div class="flex items-center">
@@ -110,7 +110,7 @@
                         <span>{{ $article->readTime() }} min de lecture</span>
                     </div>
                 </div>
-                <h1 class="text-2xl font-extrabold text-skin-inverted tracking-tight font-sans sm:text-3xl sm:leading-10 md:text-4xl lg:text-5xl lg:leading-[3.5rem]">{{ $article->title }}</h1>
+                <h1 class="text-2xl font-extrabold text-skin-inverted tracking-tight font-heading sm:text-3xl sm:leading-10 md:text-4xl lg:text-5xl lg:leading-[3.5rem]">{{ $article->title }}</h1>
                 <a href="{{ route('profile', $article->author->username) }}" class="mt-3 shrink-0 group block lg:hidden">
                     <div class="flex items-center">
                         <div>
@@ -147,7 +147,7 @@
                                 <p class="text-sm font-medium text-skin-inverted">
                                     {{ $author->name }}
                                 </p>
-                                <p class="text-xs font-medium text-skin-muted font-mono">
+                                <p class="text-xs font-medium text-skin-muted">
                                     {{ '@' . $author->username }}
                                 </p>
                             </div>

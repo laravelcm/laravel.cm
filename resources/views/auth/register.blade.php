@@ -58,16 +58,15 @@
         </div>
         <div class="mx-auto max-w-md lg:mx-0 space-y-8">
             <div class="space-y-3">
-                <h2 class="text-center text-3xl font-extrabold text-skin-inverted font-mono">
+                <h2 class="text-3xl font-extrabold text-skin-inverted font-heading">
                     {{ __('Rejoindre Laravel Cameroun') }}
                 </h2>
                 <x-profile-users />
-                <p class="text-center text-sm text-skin-base font-normal">
+                <p class="text-base leading-6 text-skin-base">
                     {{ __("Rejoignez plus de 200 développeurs et designers. Parce qu’il y’a pas que le code dans la vie.") }}
                 </p>
             </div>
             <div>
-
                 <x-status-message />
 
                 <form class="space-y-6" action="{{ route('register') }}" method="POST">

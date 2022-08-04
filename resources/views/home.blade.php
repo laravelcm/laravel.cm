@@ -10,7 +10,7 @@
                     <span class="ml-4 text-sm">Nouvelle section disponible sur le site</span>
                     <x-heroicon-s-chevron-right class="ml-2 w-5 h-5 text-white" />
                 </a>
-                <h1 class="mt-4 text-4xl tracking-tight font-mono font-medium text-skin-primary sm:mt-5 sm:leading-none lg:mt-8 lg:text-5xl">
+                <h1 class="mt-4 text-4xl tracking-tight font-heading font-medium text-skin-primary sm:mt-5 sm:leading-none lg:mt-8 lg:text-5xl">
                     Laravel Cameroun
                 </h1>
                 <p class="mt-3 text-base text-skin-base sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
@@ -191,7 +191,7 @@
         </div>
         <div class="max-w-4xl mx-auto px-4 lg:max-w-7xl xl:grid xl:grid-cols-2 xl:grid-flow-col-dense xl:gap-x-8">
             <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
-                <h2 class="text-sm font-semibold text-green-300 tracking-wide uppercase font-mono">A propos</h2>
+                <h2 class="text-sm font-semibold text-green-300 tracking-wide uppercase font-heading">A propos</h2>
                 <p class="mt-3 text-3xl font-extrabold text-white">Nous construisons une communauté Open Source d'apprenants et d'enseignants</p>
                 <p class="mt-5 text-lg text-gray-400">
                     <span class="text-white"><span class="text-skin-primary italic">"</span>Tout le monde enseigne, tout le monde apprend<span class="text-skin-primary italic">"</span></span>.
@@ -199,28 +199,28 @@
                 </p>
                 <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
                     <p>
-                        <span class="block text-2xl font-mono text-white">600+</span>
+                        <span class="block text-2xl font-heading text-white">600+</span>
                         <span class="mt-1 block text-base text-gray-400">
                             <span class="font-medium text-white">Membres</span> qui ont rejoint les différents groupes de la communauté
                         </span>
                     </p>
 
                     <p>
-                        <span class="block text-2xl font-mono text-white">50K+</span>
+                        <span class="block text-2xl font-heading text-white">50K+</span>
                         <span class="mt-1 block text-base text-gray-400">
                             <span class="font-medium text-white">Développeurs PHP & Laravel</span> dans l’ensemble du territoire national.
                         </span>
                     </p>
 
                     <p>
-                        <span class="block text-2xl font-mono text-white">9%</span>
+                        <span class="block text-2xl font-heading text-white">9%</span>
                         <span class="mt-1 block text-base text-gray-400">
                             <span class="font-medium text-white">Taux de participation aux événements</span> car la communauté est encore très jeune.
                         </span>
                     </p>
 
                     <p>
-                        <span class="block text-2xl font-mono text-white">10K+</span>
+                        <span class="block text-2xl font-heading text-white">10K+</span>
                         <span class="mt-1 block text-base text-gray-400">
                             <span class="font-medium text-white">stars</span> sur les projets réalisés par les développeurs Camerounais sur Github.
                         </span>

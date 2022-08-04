@@ -50,7 +50,7 @@
                                             <p class="text-base font-sans font-medium text-skin-inverted">
                                                 {{ __('Snippets') }}
                                             </p>
-                                            <p class="mt-1 text-sm font-mono text-skin-base font-normal">
+                                            <p class="mt-1 text-sm text-skin-base font-normal">
                                                 {{ __('Créer et partagez des codes sources publiquement accessible par tous.') }}
                                             </p>
                                         </div>
@@ -64,7 +64,7 @@
                                             <p class="text-base font-sans font-medium text-skin-inverted">
                                                 {{ __('Guides') }}
                                             </p>
-                                            <p class="mt-1 text-sm font-mono text-skin-base font-normal">
+                                            <p class="mt-1 text-sm text-skin-base font-normal">
                                                 {{ __('Découvrez le code de conduite pour l’utilisation du site.') }}
                                             </p>
                                         </div>
@@ -83,7 +83,7 @@
                                                 {{ __('Podcasts') }}
                                                 <span class="inline-flex ml-2 text-xs leading-4 text-green-800 bg-green-100 py-0.5 px-1.5 rounded-full">Bientôt</span>
                                             </p>
-                                            <p class="mt-1 text-sm font-mono text-skin-base font-normal">
+                                            <p class="mt-1 text-sm text-skin-base font-normal">
                                                 {{ __('Toutes les discussions sur le développement de Laravel et PHP.') }}
                                             </p>
                                         </div>
@@ -97,7 +97,7 @@
                                             <p class="text-base font-sans font-medium text-skin-inverted">
                                                 {{ __('Badges') }}
                                             </p>
-                                            <p class="mt-1 text-sm font-mono text-skin-base font-normal">
+                                            <p class="mt-1 text-sm text-skin-base font-normal">
                                                 {{ __('Obtenez des badges et débloquez différentes fonctionnalités.') }}
                                             </p>
                                         </div>
@@ -113,7 +113,7 @@
                                             <p class="text-base font-sans font-medium text-yellow-500">
                                                 {{ __('Devenez Premium') }}
                                             </p>
-                                            <p class="mt-1 text-sm font-mono text-skin-base font-normal">
+                                            <p class="mt-1 text-sm text-skin-base font-normal">
                                                 {{ __('Devenez prémium et soutenez la production de contenu du site.') }}
                                             </p>
                                         </div>
@@ -128,7 +128,7 @@
                                                 {{ __('Jobs') }}
                                                 <span class="inline-flex ml-2 text-xs leading-4 text-green-800 bg-green-100 py-0.5 px-1.5 rounded-full">Bientôt</span>
                                             </p>
-                                            <p class="mt-1 text-sm font-mono text-skin-base font-normal">
+                                            <p class="mt-1 text-sm text-skin-base font-normal">
                                                 {{ __('Les offres pour développeurs Laravel dans la zone CEMAC.') }}
                                             </p>
                                         </div>

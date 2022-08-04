@@ -16,7 +16,7 @@
     @include('layouts._favicons')
     @include('layouts._fathom')
 </head>
-<body class="antialiased font-mono bg-skin-body">
+<body class="antialiased font-sans bg-skin-body">
 
     <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div class="shrink-0 pt-16">

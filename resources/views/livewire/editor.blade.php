@@ -38,7 +38,7 @@
         <div x-show="mode === 'write'">
             <div class="flex flex-col relative">
                 <textarea
-                    class="w-full h-full min-h-[250px] bg-skin-input font-mono leading-loose tracking-tighter text-skin-base hide-scroll resize-none border-none p-5 focus:border focus:border-skin-input focus:outline-none"
+                    class="w-full h-full min-h-[250px] bg-skin-input leading-loose tracking-tighter text-skin-base hide-scroll resize-none border-none p-5 focus:border focus:border-skin-input focus:outline-none"
                     id="body"
                     name="body"
                     aria-label="Body"

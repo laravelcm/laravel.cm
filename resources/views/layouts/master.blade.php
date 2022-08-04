@@ -22,11 +22,7 @@
     <x-seo::meta />
 
     <!-- Styles -->
-    <link href="https://fonts.cdnfonts.com/css/operator-mono" rel="stylesheet">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    @googlefonts
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @include('layouts._favicons')
     @livewireStyles

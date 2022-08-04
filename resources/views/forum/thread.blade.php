@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="lg:col-span-7 lg:pl-8 lg:border-l lg:border-skin-base">
-            <h1 class="text-xl text-skin-inverted font-medium tracking-tight sm:text-3xl">{{ $thread->subject() }}</h1>
+            <h1 class="text-xl text-skin-inverted font-medium tracking-tight sm:text-3xl font-heading">{{ $thread->subject() }}</h1>
 
             <div class="border-b pt-2 pb-4 border-skin-base">
                 <div class="sm:inline-flex sm:items-center text-sm text-skin-inverted-muted">
