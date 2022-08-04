@@ -13,6 +13,7 @@ declare(strict_types=1);
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\Mention\MentionExtension;
+use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
 use Torchlight\Commonmark\V2\TorchlightExtension;
 
 return [
@@ -55,6 +56,7 @@ return [
         MentionExtension::class,
         AttributesExtension::class,
         TorchlightExtension::class,
+        TableOfContentsExtension::class,
     ],
 
     /*
@@ -80,7 +82,8 @@ return [
 
     'heading_permalink' => [
         'html_class' => 'anchor !text-skin-primary !no-underline hover:!text-skin-primary-hover focus:!text-skin-primary-hover focus:outline-none',
-        'symbol' => '',
+        'id_prefix' => '',
+        'symbol' => '#',
         'aria_hidden' => true,
     ],
 
@@ -128,7 +131,7 @@ return [
     |
     */
 
-    'html_input' => 'strip',
+    'html_input' => 'allow',
 
     /*
     |--------------------------------------------------------------------------
