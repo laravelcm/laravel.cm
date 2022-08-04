@@ -17,6 +17,7 @@ module.exports = {
   ],
   content: [
     './app/**/*.php',
+    './config/markdown.php',
     './resources/**/*.blade.php',
     './resources/**/*.{js,jsx}',
     './storage/framework/views/*.php',
@@ -54,8 +55,9 @@ module.exports = {
         green: colors.emerald,
       },
       fontFamily: {
-        mono: ['Operator Mono', ...defaultTheme.fontFamily.mono],
-        sans: ['Inter var', 'DM Sans', ...defaultTheme.fontFamily.sans],
+        heading: ['Lexend', ...defaultTheme.fontFamily.sans],
+        mono: ['JetBrains Mono', ...defaultTheme.fontFamily.sans],
+        sans: ['DM Sans', ...defaultTheme.fontFamily.sans],
       },
       fontWeight: {
         normal: 300
@@ -122,7 +124,7 @@ module.exports = {
             },
             'h1, h2, h3, h4': {
               color: theme('textColor.skin.inverted'),
-              fontFamily: "'Inter var', serif"
+              fontFamily: theme('fontFamily.heading'),
             },
             p: {
               fontWeight: 300
@@ -131,7 +133,17 @@ module.exports = {
               borderColor: theme('borderColor.skin.base')
             },
             blockquote: {
-              color: theme('textColor.skin.inverted')
+              color: theme('textColor.skin.inverted'),
+              fontStyle: 'normal',
+            },
+            'blockquote p:first-of-type::before': {
+              content: 'none',
+            },
+            'blockquote p:first-of-type::after': {
+              content: 'none',
+            },
+            code: {
+              fontWeight: theme('fontWeight.normal'),
             },
             'li strong, strong' : {
               color: theme('textColor.skin.inverted-muted'),
@@ -139,12 +151,10 @@ module.exports = {
             },
             'p > code, code': {
               display: 'inline-flex',
-              fontFamily: "'Operator Mono', monospace",
+              fontFamily: theme('fontFamily.mono'),
               alignItems: 'center',
               borderRadius: '.375rem',
-              fontSize: '1rem',
-              lineHeight: '1.25rem',
-              fontWeight: 400,
+              fontSize: theme('fontSize.base'),
               padding: '.125rem .625rem',
               color: theme('colors.green.800'),
               backgroundColor: theme('colors.green.100'),
