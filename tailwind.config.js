@@ -137,8 +137,9 @@ module.exports = {
               content: 'none',
             },
             'pre, code, p > code': {
-              fontWeight: theme('fontWeight.normal'),
+              fontWeight: theme('fontWeight.medium'),
               fontFamily: 'JetBrains Mono, monospace',
+              color: theme('colors.amber.500'),
             },
             'li strong, strong' : {
               color: theme('textColor.skin.inverted-muted'),
