@@ -55,6 +55,8 @@
                 <x-sponsors />
 
                 <x-ads />
+
+                <x-discord />
             </div>
         </div>
     </div>

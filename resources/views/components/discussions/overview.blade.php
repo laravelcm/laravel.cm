@@ -33,13 +33,14 @@
             </div>
         </div>
         <div class="hidden sm:flex sm:items-center space-x-3">
-            <livewire:reactions
-                wire:key="{{ $discussion->id }}"
-                :model="$discussion"
-                direction="left"
-                :with-place-holder="false"
-                :with-background="false"
-            />
+            @if($discussion->getReactionsSummary()->isNotEmpty())
+                <div class="flex items-center justify-center space-x-2">
+                    @foreach($discussion->getReactionsSummary() as $reaction)
+                        <img class="w-4 h-4" src="{{ asset("/images/reactions/{$reaction->name}.svg") }}" alt="{{ $reaction->name }} emoji">
+                    @endforeach
+                    <span class="ml-3 text-sm font-medium text-green-500">{{ $discussion->getReactionsSummary()->sum('count') }}</span>
+                </div>
+            @endif
             <p class="inline-flex text-sm space-x-2 text-skin-base">
                 <x-heroicon-o-chat-alt-2 class="h-5 w-5" />
                 <span class="font-normal text-skin-inverted-muted">{{ $discussion->count_all_replies_with_child }}</span>

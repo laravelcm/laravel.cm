@@ -19,7 +19,11 @@
             @endauth
         </aside>
     </div>
-    <div class="relative lg:col-span-7">
+    <div
+        x-data
+        x-intersect="@this.call('loadMore')"
+        class="relative lg:col-span-7"
+    >
         <div class="w-full">
             <nav class="relative z-0 rounded-lg shadow flex divide-x divide-skin-base" aria-label="Tabs">
                 <button
@@ -58,6 +62,19 @@
                 <x-discussions.overview :discussion="$discussion" />
             @endforeach
         </div>
+
+        @if($discussions->hasMorePages())
+            <div
+                x-data
+                x-intersect="@this.call('loadMore')"
+                class="mt-5 flex justify-center"
+            >
+                <p class="flex items-center">
+                    <x-loader class="text-skin-primary" />
+                    Chargement...
+                </p>
+            </div>
+        @endif
     </div>
     <div class="hidden relative lg:block lg:col-span-3">
         @include('discussions._contributions')
