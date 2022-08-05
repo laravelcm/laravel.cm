@@ -273,6 +273,8 @@
                 @endif
 
                 <x-ads />
+
+                <x-discord />
             </div>
         </div>
     </article>
