@@ -10,12 +10,12 @@ trait WithTags
 
     public string $sortBy = 'recent';
 
-    public function toggleTag($tag): void
+    public function toggleTag(string $tag): void
     {
         $this->tag = $this->tag !== $tag && $this->tagExists($tag) ? $tag : null;
     }
 
-    public function sortBy($sort): void
+    public function sortBy(string $sort): void
     {
         $this->sortBy = $this->validSort($sort) ? $sort : 'recent';
     }

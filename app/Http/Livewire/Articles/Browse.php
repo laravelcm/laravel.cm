@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Traits\WithInfiniteScroll;
 use App\Traits\WithTags;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Browse extends Component
@@ -26,7 +27,7 @@ class Browse extends Component
         ]);
     }
 
-    public function render()
+    public function render(): View
     {
         $articles = Article::with('tags')->published()
             ->notPinned()

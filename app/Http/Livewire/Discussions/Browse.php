@@ -6,6 +6,7 @@ use App\Models\Discussion;
 use App\Models\Tag;
 use App\Traits\WithInfiniteScroll;
 use App\Traits\WithTags;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Browse extends Component
@@ -17,7 +18,7 @@ class Browse extends Component
         'sortBy' => ['except' => 'recent'],
     ];
 
-    public function validSort($sort): bool
+    public function validSort(string $sort): bool
     {
         return in_array($sort, [
             'recent',
@@ -26,7 +27,7 @@ class Browse extends Component
         ]);
     }
 
-    public function render()
+    public function render(): View
     {
         $discussions = Discussion::with('tags')
             ->withCount('replies')

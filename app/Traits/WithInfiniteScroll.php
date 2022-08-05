@@ -10,7 +10,7 @@ trait WithInfiniteScroll
 
     public int $perPage = 10;
 
-    public function loadMore()
+    public function loadMore(): void
     {
         $this->perPage += 10;
     }
