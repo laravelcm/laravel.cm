@@ -47,7 +47,7 @@ class MarkdownHelper
     {
         if (isset($tagArray[2])) {
             $youtubeEmbedURL = $tagArray[2];
-            $youtubeEmbed = '<iframe width="100%" height="399" src="https://www.youtube.com/embed/'.$youtubeEmbedURL.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            $youtubeEmbed = '<div class="overflow-hidden rounded-lg"><iframe width="100%" height="399" src="https://www.youtube.com/embed/'.$youtubeEmbedURL.'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
             $html = str_replace($original_string, $youtubeEmbed, $html);
         }
 
