@@ -1,6 +1,6 @@
 <div class="relative lg:grid lg:grid-cols-12 lg:gap-8">
     <div class="hidden relative lg:block lg:col-span-2">
-        <aside class="sticky top-4 divide-y divide-skin-base">
+        <x-sticky-content class="divide-y divide-skin-base">
             <div class="pb-6">
                 <span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-skin-link text-skin-base font-sans">
                     <svg class="mr-1.5 h-2 w-2 text-skin-base" fill="currentColor" viewBox="0 0 8 8">
@@ -17,7 +17,7 @@
                     <x-button :link="route('discussions.new')">Nouvelle discussion</x-button>
                 </div>
             @endauth
-        </aside>
+        </x-sticky-content>
     </div>
     <div
         x-data

@@ -7,7 +7,7 @@
 
     <div class="relative lg:grid lg:grid-cols-9 lg:gap-10">
         <div class="hidden relative lg:block lg:col-span-2">
-            <div class="sticky top-4 space-y-6">
+            <x-sticky-content class="space-y-6">
                 <x-button :link="route('forum.new')" class="w-full flex justify-center">
                     Nouveau Sujet
                     <x-heroicon-o-plus-circle class="h-4 w-4 ml-2.5" />
@@ -24,7 +24,7 @@
                 @endauth
 
                 <x-forum.thread-author :author="$thread->author" />
-            </div>
+            </x-sticky-content>
         </div>
         <div class="lg:col-span-7 lg:pl-8 lg:border-l lg:border-skin-base">
             <h1 class="text-xl text-skin-inverted font-medium tracking-tight sm:text-3xl font-heading">{{ $thread->subject() }}</h1>

@@ -14,7 +14,7 @@ class ChannelsComposer
             'channels',
             Cache::remember(
                 'channels',
-                now()->addDay(),
+                now()->addWeek(),
                 fn () => Channel::with('items')->whereNull('parent_id')->get()
             )
         );

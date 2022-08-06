@@ -35,13 +35,13 @@
         </div>
 
         <div class="hidden relative mt-10 lg:block lg:col-span-2 xl:col-span-3">
-            <aside class="sticky block top-4 space-y-10">
+            <x-sticky-content class="space-y-10">
                 <x-sponsors />
 
                 <x-ads />
 
                 @include('forum._moderators')
-            </aside>
+            </x-sticky-content>
         </div>
     </div>
 
