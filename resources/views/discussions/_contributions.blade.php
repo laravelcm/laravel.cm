@@ -1,4 +1,4 @@
-<aside class="sticky space-y-16 top-4">
+<x-sticky-content class="space-y-12">
     <div>
         <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">Top Contributeurs</h4>
         <p class="mt-3 font-normal text-skin-base text-sm">Les personnes qui ont lancé le plus de discussions sur le site.</p>
@@ -56,4 +56,4 @@
         </div>
 
     </div>
-</aside>
+</x-sticky-content>

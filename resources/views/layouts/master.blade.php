@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth {{ get_current_theme() }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full scroll-smooth {{ get_current_theme() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,11 +44,9 @@
 
     @include('layouts._fathom')
 </head>
-<body class="font-sans antialiased bg-skin-body text-skin-base">
+<body class="h-full font-sans antialiased bg-skin-body text-skin-base">
 
-    <div class="relative min-h-full overflow-hidden">
-        @yield('content')
-    </div>
+    @yield('content')
 
     <x-notifications z-index="z-50" />
 

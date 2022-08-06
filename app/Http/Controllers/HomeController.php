@@ -27,7 +27,7 @@ class HomeController extends Controller
 
         $latestThreads = Cache::remember('latestThreads', now()->addHour(), function () {
             return Thread::whereNull('solution_reply_id')
-                ->whereBetween('threads.created_at', [now()->subMonth(), now()])
+                ->whereBetween('threads.created_at', [now()->subMonths(3), now()])
                 ->inRandomOrder()
                 ->limit(4)
                 ->get();

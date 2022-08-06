@@ -1,19 +1,19 @@
-<div class="relative lg:grid lg:grid-cols-9 lg:gap-10">
-    <div class="hidden relative lg:block lg:col-span-2">
-        <div class="sticky top-4 divide-y divide-skin-base">
+<div class="lg:grid lg:grid-cols-9 lg:gap-10">
+    <div class="hidden lg:block lg:col-span-2">
+        <x-sticky-content class="divide-y divide-skin-base">
             <x-articles.filter :selectedSortBy="$selectedSortBy" />
 
             <div class="pt-8">
-                    <span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-skin-link text-skin-base font-sans">
-                        <svg class="mr-1.5 h-2 w-2 text-skin-base" fill="currentColor" viewBox="0 0 8 8">
-                            <circle cx="4" cy="4" r="3" />
-                        </svg>
-                        Tous les tags
-                    </span>
+                <span class="inline-flex items-center px-2 py-1 rounded-md text-sm font-medium bg-skin-link text-skin-base font-sans">
+                    <svg class="mr-1.5 h-2 w-2 text-skin-base" fill="currentColor" viewBox="0 0 8 8">
+                        <circle cx="4" cy="4" r="3" />
+                    </svg>
+                    Tous les tags
+                </span>
 
                 <x-tags :tags="$tags" :selected-tag="$selectedTag" isLowercase showHashTag />
             </div>
-        </div>
+        </x-sticky-content>
     </div>
     <div
         x-data
@@ -51,13 +51,13 @@
         </div>
 
         <div class="hidden lg:block lg:col-span-2">
-            <div class="sticky top-4 space-y-12">
+            <x-sticky-content class="space-y-12">
                 <x-sponsors />
 
                 <x-ads />
 
                 <x-discord />
-            </div>
+            </x-sticky-content>
         </div>
     </div>
 </div>

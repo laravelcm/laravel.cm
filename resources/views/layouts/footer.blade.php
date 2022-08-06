@@ -24,7 +24,7 @@
 
                         <x-footer-link title="Jobs" url="#" soon />
 
-                        <x-footer-link title="Sponsors" url="#" />
+                        <x-footer-link title="Sponsors" url="#" soon />
 
                         <x-footer-link title="Branding" url="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md" />
 
