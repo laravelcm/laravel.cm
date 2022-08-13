@@ -8,7 +8,7 @@
         <div class="flex {{ !$label && $cornerHint ? 'justify-end' : 'justify-between' }} mb-1">
             @if ($label)
                 <x-dynamic-component
-                    :component="WireUiComponent::resolve('label')"
+                    :component="WireUi::component('label')"
                     :label="$label"
                     :has-error="$hasError"
                     :for="$id"
@@ -17,7 +17,7 @@
 
             @if ($cornerHint)
                 <x-dynamic-component
-                    :component="WireUiComponent::resolve('label')"
+                    :component="WireUi::component('label')"
                     :label="$cornerHint"
                     :has-error="$hasError"
                     :for="$id"
@@ -29,10 +29,10 @@
     <div class="relative rounded-md @unless($shadowless) shadow-sm @endunless">
         @if ($prefix || $icon)
             <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none
-                {{ $hasError ? 'text-negative-500' : 'text-secondary-400' }}">
+                {{ $hasError ? 'text-negative-500' : 'text-skin-muted' }}">
                 @if ($icon)
                     <x-dynamic-component
-                        :component="WireUiComponent::resolve('icon')"
+                        :component="WireUi::component('icon')"
                         :name="$icon"
                         class="h-5 w-5"
                     />
@@ -55,10 +55,10 @@
 
         @if ($suffix || $rightIcon || ($hasError && !$append))
             <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center pointer-events-none
-                {{ $hasError ? 'text-negative-500' : 'text-secondary-400' }}">
+                {{ $hasError ? 'text-negative-500' : 'text-skin-muted' }}">
                 @if ($rightIcon)
                     <x-dynamic-component
-                        :component="WireUiComponent::resolve('icon')"
+                        :component="WireUi::component('icon')"
                         :name="$rightIcon"
                         class="h-5 w-5"
                     />
@@ -68,7 +68,7 @@
                     </span>
                 @elseif ($hasError)
                     <x-dynamic-component
-                        :component="WireUiComponent::resolve('icon')"
+                        :component="WireUi::component('icon')"
                         name="exclamation-circle"
                         class="h-5 w-5"
                     />
@@ -80,14 +80,14 @@
     </div>
 
     @if (!$hasError && $hint)
-        <label @if ($id) for="{{ $id }}" @endif class="mt-2 text-sm text-secondary-500 dark:text-secondary-400">
+        <label @if ($id) for="{{ $id }}" @endif class="mt-2 text-sm text-skin-base">
             {{ $hint }}
         </label>
     @endif
 
     @if ($name && !$errorless)
         <x-dynamic-component
-            :component="WireUiComponent::resolve('error')"
+            :component="WireUi::component('error')"
             :name="$name"
         />
     @endif

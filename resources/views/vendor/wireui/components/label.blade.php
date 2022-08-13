@@ -1,7 +1,7 @@
 <label {{ $attributes->class([
         'block text-sm font-medium',
         'text-negative-600'  =>  $hasError,
-        'text-secondary-700 dark:text-gray-400' => !$hasError,
+        'text-skin-inverted-muted' => !$hasError,
     ]) }}>
     {{ $label ?? $slot }}
 </label>
