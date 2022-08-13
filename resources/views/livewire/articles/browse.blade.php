@@ -41,7 +41,11 @@
 
             <div class="py-12 space-y-8 sm:space-y-10 max-w-lg mx-auto lg:max-w-none">
                 @foreach ($articles as $article)
-                    <x-articles.overview :article="$article" />
+                    @if($viewMode === 'card')
+                        <x-articles.card-with-author :article="$article" />
+                    @else
+                        <x-articles.overview :article="$article" />
+                    @endif
                 @endforeach
             </div>
 

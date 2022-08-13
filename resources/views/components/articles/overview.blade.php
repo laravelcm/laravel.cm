@@ -20,10 +20,10 @@
         </div>
         <div class="mt-2">
             <a href="{{ route('articles.show', $article) }}" class="group">
-                <h4 class="text-lg leading-6 font-semibold font-sans text-skin-inverted group-hover:text-skin-primary">{{ $article->title }}</h4>
+                <h4 class="text-lg leading-7 font-semibold font-sans text-skin-inverted group-hover:text-skin-primary">{{ $article->title }}</h4>
             </a>
-            <p class="mt-1 text-sm font-normal text-skin-base leading-5">
-                {!! $article->excerpt() !!}
+            <p class="mt-1 text-sm text-skin-base leading-5">
+                {!! $article->excerpt(130) !!}
             </p>
             <div class="mt-3 flex items-center font-sans">
                 <div class="shrink-0">

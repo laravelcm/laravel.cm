@@ -44,6 +44,7 @@ class Browse extends Component
     public function render(): View
     {
         $articles = Article::with('tags')
+            ->withCount(['views', 'reactions'])
             ->published()
             ->notPinned()
             ->orderByDesc('sponsored_at')
