@@ -38,11 +38,6 @@ class Edit extends Component
         $this->associateTags = $this->tags_selected = old('tags', $article->tags()->pluck('id')->toArray());
     }
 
-    public function onMarkdownUpdate(string $content)
-    {
-        $this->body = $content;
-    }
-
     public function submit()
     {
         $this->alreadySubmitted = $this->article->submitted_at !== null;

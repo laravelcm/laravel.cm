@@ -65,7 +65,7 @@
                     <div class="pt-6 space-y-6">
                         @if($next)
                             <div>
-                                <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article suivant</h2>
+                                <h2 class="text-xs leading-5 font-medium tracking-wide uppercase text-skin-base">Article suivant</h2>
                                 <a href="{{ route('articles.show', $next) }}" class="mt-3 flex items-start space-x-2">
                                     <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $next->getFirstMediaUrl('media') }}" alt="{{ $next->slug }}">
                                     <span class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2">{{ $next->title }}</span>
@@ -75,7 +75,7 @@
 
                         @if($previous)
                             <div>
-                                <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article précédent</h2>
+                                <h2 class="text-xs leading-5 font-medium tracking-wide uppercase text-skin-base">Article précédent</h2>
                                 <a href="{{ route('articles.show', $previous) }}" class="mt-3 flex items-start space-x-2">
                                     <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $previous->getFirstMediaUrl('media') }}" alt="{{ $previous->slug }}">
                                     <span class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2">{{ $previous->title }}</span>
@@ -105,9 +105,11 @@
                     </div>
 
                     <div class="mt-2 flex space-x-1 text-sm text-skin-base sm:mt-0">
-                        <time datetime="{{ $article->createdAt()->format('Y-m-d') }}">{{ $article->createdAt()->format('j M, Y') }}</time>
+                        <time datetime="{{ $article->publishedAt()->format('Y-m-d') }}">{{ $article->publishedAt()->format('j M, Y') }}</time>
                         <span aria-hidden="true">&middot;</span>
                         <span>{{ $article->readTime() }} min de lecture</span>
+                        <span aria-hidden="true">&middot;</span>
+                        <span>{{ $article->views_count }} vues</span>
                     </div>
                 </div>
                 <h1 class="text-2xl font-extrabold text-skin-inverted tracking-tight font-heading sm:text-3xl sm:leading-10 md:text-4xl lg:text-5xl lg:leading-[3.5rem]">{{ $article->title }}</h1>
@@ -131,7 +133,7 @@
                 <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}" />
             </div>
             <div
-                class="mt-8 prose prose-lg prose-green text-skin-base mx-auto md:prose-xl lg:max-w-none"
+                class="mt-8 prose prose-lg prose-green text-skin-base mx-auto overflow-x-hidden md:prose-xl lg:max-w-none"
             >
                 <x-markdown-content :content="$article->body" />
             </div>

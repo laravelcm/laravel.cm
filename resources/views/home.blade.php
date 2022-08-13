@@ -43,21 +43,26 @@
                 <p class="text-center text-base uppercase tracking-tight text-skin-base tracking-wider leading-6 font-sans">
                     Nous travaillons avec d’autres communautés et startups
                 </p>
-                <div class="mt-8 grid grid-cols-2 gap-y-8 lg:grid-cols-3 lg:mt-12">
-                    <div class="col-span-2 flex justify-center lg:col-span-1">
+                <div class="mt-8 grid sm:grid-cols-2 gap-y-8 lg:grid-cols-4 lg:mt-12">
+                    <div class="col-span-1 flex justify-center">
                         <a href="https://cosna-afrique.com" target="_blank" class="flex items-center">
                             <x-icon.cosna class="h-14 w-auto"/>
                         </a>
                     </div>
-                    <div class="col-span-2 flex justify-center lg:col-span-1">
+                    <div class="col-span-1 flex justify-center">
                         <a href="https://laravelshopper.io" target="_blank" class="flex items-center">
                             <img class="h-12 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
                             <img class="h-12 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
                         </a>
                     </div>
-                    <div class="col-span-2 flex justify-center lg:col-span-1">
+                    <div class="col-span-1 flex justify-center">
                         <a href="https://gdg.community.dev/gdg-douala" target="_blank" class="flex items-center">
                             <x-icon.gdg class="h-8 text-skin-inverted" />
+                        </a>
+                    </div>
+                    <div class="col-span-1 flex justify-center">
+                        <a href="https://twitter.com/DarkCodeCompany" target="_blank" class="flex items-center">
+                            <x-icon.darkcode class="h-8 text-skin-inverted" />
                         </a>
                     </div>
                 </div>
