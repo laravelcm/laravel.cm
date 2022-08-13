@@ -87,7 +87,7 @@
                          x-transition:leave-end="translate-x-full"
                          class="w-screen max-w-md"
                     >
-                        <div class="h-full flex flex-col py-6 bg-skin-card shadow-xl overflow-y-scroll">
+                        <div class="h-full flex flex-col py-6 bg-skin-card shadow-xl overflow-y-scroll lg:pb-12">
                             <div class="px-4 sm:px-6">
                                 <div class="flex items-start justify-between">
                                     <h2 class="text-lg font-medium text-skin-inverted" id="slide-over-title">
@@ -102,68 +102,72 @@
                                 </div>
                             </div>
                             <div class="mt-6 relative flex-1 px-4 sm:px-6">
-                                <div class="absolute inset-0 px-4 sm:px-6">
-                                    <div class="h-full" aria-hidden="true">
-                                        <x-label for="cover_photo">
-                                            Image de couverture
-                                        </x-label>
-                                        <div class="mt-2">
-                                            <x-forms.single-upload
-                                                id="file"
-                                                wire:click="removeImage"
-                                                wire:model="file"
-                                                :file="$file"
-                                                :preview="isset($preview) ? $preview : null"
-                                                :error="$errors->first('file')"
-                                            />
-                                        </div>
+                                <div class="h-full" aria-hidden="true">
+                                    <x-label for="cover_photo">
+                                        Image de couverture
+                                    </x-label>
+                                    <div class="mt-2">
+                                        <x-forms.single-upload
+                                            id="file"
+                                            wire:click="removeImage"
+                                            wire:model="file"
+                                            :file="$file"
+                                            :preview="isset($preview) ? $preview : null"
+                                            :error="$errors->first('file')"
+                                        />
+                                    </div>
 
-                                        <div x-data="{ on: @entangle('show_toc') }" class="mt-8 flex-grow flex items-center justify-between">
-                                            <div>
-                                                <dt class="text-sm leading-7 font-semibold text-skin-base">Afficher le Sommaire</dt>
-                                            </div>
-                                            <button type="button"
-                                                    class="relative inline-flex shrink-0 h-6 w-11 border border-skin-base rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 bg-skin-card-muted"
-                                                    :class="{ 'bg-green-600': on, 'bg-skin-card-muted': !(on) }"
-                                                    aria-pressed="false"
-                                                    x-ref="switch"
-                                                    x-state:on="Enabled"
-                                                    x-state:off="Not Enabled"
-                                                    aria-labelledby="availability-label"
-                                                    :aria-pressed="on.toString()"
-                                                    @click="on = !on"
-                                            >
-                                                <span class="sr-only">{{ __('Afficher le sommaire') }}</span>
-                                                <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 rounded-full bg-skin-menu shadow transform ring-0 transition ease-in-out duration-200 translate-x-0" x-state:on="Enabled" x-state:off="Not Enabled" :class="{ 'translate-x-5': on, 'translate-x-0': !(on) }"></span>
-                                            </button>
+                                    <div x-data="{ on: @entangle('show_toc') }" class="mt-8 flex-grow flex items-center justify-between">
+                                        <div>
+                                            <dt class="text-sm leading-7 font-semibold text-skin-base">Afficher le Sommaire</dt>
                                         </div>
+                                        <button type="button"
+                                                class="relative inline-flex items-center shrink-0 h-6 w-11 border border-skin-base rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 bg-skin-card-muted"
+                                                :class="{ 'bg-green-600': on, 'bg-skin-card-muted': !(on) }"
+                                                aria-pressed="false"
+                                                x-ref="switch"
+                                                x-state:on="Enabled"
+                                                x-state:off="Not Enabled"
+                                                aria-labelledby="availability-label"
+                                                :aria-pressed="on.toString()"
+                                                @click="on = !on"
+                                        >
+                                            <span class="sr-only">{{ __('Afficher le sommaire') }}</span>
+                                            <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200 translate-x-0" x-state:on="Enabled" x-state:off="Not Enabled" :class="{ 'translate-x-5': on, 'translate-x-0': !(on) }"></span>
+                                        </button>
+                                    </div>
 
-                                        @if(Auth::user()->hasAnyRole(['admin', 'moderator']))
-                                            <div class="mt-8">
-                                                <x-label for="published_at">Date de publication</x-label>
-                                                <x-input wire:model.defer="published_at" id="published_at" name="published_at" class="mt-1" type="date" />
-                                            </div>
-                                        @endif
+                                    <div class="mt-8">
+                                        <x-label for="published_at">Date de publication</x-label>
+                                        <x-datetime-picker
+                                            placeholder="Sélectionner une date"
+                                            name="published_at"
+                                            class="mt-1"
+                                            wire:model.defer="published_at"
+                                            :min="now()->subDay()"
+                                            time-format="24"
+                                            without-timezone
+                                        />
+                                    </div>
 
-                                        <div class="mt-8">
-                                            <x-label for="slug">URL Slug</x-label>
-                                            <x-input wire:model.debounce.500ms="slug" id="slug" name="slug" class="mt-1" type="text" autocomplete="off" required />
-                                        </div>
+                                    <div class="mt-8">
+                                        <x-label for="slug">URL Slug</x-label>
+                                        <x-input wire:model.debounce.500ms="slug" id="slug" name="slug" class="mt-1" type="text" autocomplete="off" required />
+                                    </div>
 
-                                        <div class="mt-8">
-                                            <x-label for="canonical_url">Canonical URL</x-label>
-                                            <span class="text-xs leading-3 text-skin-muted">Modifiez si l'article a été publié pour la première fois ailleurs (comme sur votre propre blog).</span>
-                                            <x-input wire:model.defer="canonical_url" id="canonical_url" name="canonical_url" class="mt-1" type="text" autocomplete="off" required />
-                                        </div>
+                                    <div class="mt-8">
+                                        <x-label for="canonical_url">Canonical URL</x-label>
+                                        <span class="text-xs leading-3 text-skin-muted">Modifiez si l'article a été publié pour la première fois ailleurs (comme sur votre propre blog).</span>
+                                        <x-input wire:model.defer="canonical_url" id="canonical_url" name="canonical_url" class="mt-1" type="text" autocomplete="off" />
+                                    </div>
 
-                                        <div class="mt-8 standard" wire:ignore>
-                                            <x-label for="tags_selected">Tags</x-label>
-                                            <x-forms.select wire:model="tags_selected" id="tags_selected" class="mt-2" x-data="{}" x-init="function () { choices($el) }" multiple>
-                                                @foreach($tags as $tag)
-                                                    <option value="{{ $tag->id }}" @if(in_array($tag->id, $tags_selected)) selected @endif>{{ $tag->name }}</option>
-                                                @endforeach
-                                            </x-forms.select>
-                                        </div>
+                                    <div class="mt-8 standard" wire:ignore>
+                                        <x-label for="tags_selected">Tags</x-label>
+                                        <x-forms.select wire:model="tags_selected" id="tags_selected" class="mt-2" x-data="{}" x-init="function () { choices($el) }" multiple>
+                                            @foreach($tags as $tag)
+                                                <option value="{{ $tag->id }}" @if(in_array($tag->id, $tags_selected)) selected @endif>{{ $tag->name }}</option>
+                                            @endforeach
+                                        </x-forms.select>
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +178,7 @@
         </div>
     </div>
 
-    <main class="relative max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8 z-0">
+    <main class="relative max-w-4xl mx-auto py-10 z-0 px-4 sm:px-6 lg:px-8 lg:pb-16">
         <x-validation-errors />
 
         @if(! isset($article))
@@ -193,6 +197,9 @@
                 autocomplete="off"
             />
             <livewire:markdown-x :content="$body" />
+            <div class="mt-6 text-right text-skin-base">
+                Temps de lecture estimé : <span class="text-skin-inverted">{{ $reading_time }} min</span>
+            </div>
         </div>
     </main>
 
