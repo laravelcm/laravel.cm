@@ -1,7 +1,7 @@
 @props(['tags', 'isLowercase' => false, 'showHashTag' => false])
 
 <div x-data="{ selectedTag: '{{ $selectedTag ? $selectedTag->id() : null }}' }"
-     class="mt-4"
+     class="mt-5"
      aria-labelledby="posts-tags"
 >
     @foreach($tags as $tag)

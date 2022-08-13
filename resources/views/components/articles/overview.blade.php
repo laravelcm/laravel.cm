@@ -38,8 +38,8 @@
                             {{ $article->author->name }}
                         </a>
                     </p>
-                    <div class="flex space-x-1 text-sm text-skin-muted">
-                        <time datetime="{{ $article->created_at->format('Y-m-d') }}">{{ $article->created_at->format('j M, Y') }}</time>
+                    <div class="flex space-x-1 text-sm text-skin-base/60">
+                        <time datetime="{{ $article->publishedAt()->format('Y-m-d') }}">{{ $article->publishedAt()->format('j M, Y') }}</time>
                         <span aria-hidden="true">&middot;</span>
                         <span>{{ $article->readTime() }} min de lecture</span>
                     </div>
