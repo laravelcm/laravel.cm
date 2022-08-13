@@ -1,6 +1,7 @@
 <?php
 
 use WireUi\View\Components;
+use App\View\Components\WireUI;
 
 return [
 
@@ -36,6 +37,21 @@ return [
     ],
 
     /*
+        |--------------------------------------------------------------------------
+        | Card
+        |--------------------------------------------------------------------------
+        |
+        | The default card preferences
+        |
+    */
+    'card' => [
+        'padding'   => env('WIREUI_CARD_PADDING', 'px-2 py-5 md:px-4'),
+        'shadow'    => env('WIREUI_CARD_SHADOW', 'shadow-md'),
+        'rounded'   => env('WIREUI_CARD_ROUNDED', 'rounded-lg'),
+        'color'     => env('WIREUI_CARD_COLOR', 'bg-skin-card'),
+    ],
+
+    /*
     |--------------------------------------------------------------------------
     | Components
     |--------------------------------------------------------------------------
@@ -56,26 +72,26 @@ return [
             'class' => Components\Icons\Spinner::class,
             'alias' => 'icon.spinner',
         ],
-        //        'input' => [
-        //            'class' => Components\Input::class,
-        //            'alias' => 'input',
-        //        ],
+        'input' => [
+            'class' => WireUI\Input::class,
+            'alias' => 'wi-input',
+        ],
         //        'textarea' => [
         //            'class' => Components\Textarea::class,
         //            'alias' => 'textarea',
         //        ],
-        //        'label' => [
-        //            'class' => Components\Label::class,
-        //            'alias' => 'label',
-        //        ],
-        //        'error' => [
-        //            'class' => Components\Error::class,
-        //            'alias' => 'error',
-        //        ],
-        //        'errors' => [
-        //            'class' => Components\Errors::class,
-        //            'alias' => 'errors',
-        //        ],
+        'label' => [
+            'class' => Components\Label::class,
+            'alias' => 'wi-label',
+        ],
+        'error' => [
+            'class' => Components\Error::class,
+            'alias' => 'error',
+        ],
+        'errors' => [
+            'class' => Components\Errors::class,
+            'alias' => 'errors',
+        ],
         //        'inputs.maskable' => [
         //            'class' => Components\Inputs\MaskableInput::class,
         //            'alias' => 'inputs.maskable',
@@ -89,7 +105,7 @@ return [
         //            'alias' => 'inputs.currency',
         //        ],
         'button' => [
-            'class' => Components\Button::class,
+            'class' => WireUI\Button::class,
             'alias' => 'wi-button',
         ],
         //        'dropdown' => [

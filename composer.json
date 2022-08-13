@@ -21,7 +21,7 @@
     "laravel-notification-channels/telegram": "^2.0",
     "laravel-notification-channels/twitter": "^6.0",
     "laravel/fortify": "^1.13",
-    "laravel/framework": "^9.0",
+    "laravel/framework": "^9.24",
     "laravel/slack-notification-channel": "^2.4",
     "laravel/socialite": "^5.2",
     "laravel/tinker": "^2.5",
@@ -42,7 +42,7 @@
     "torchlight/torchlight-commonmark": "^0.5.5",
     "wire-elements/modal": "^1.0",
     "wire-elements/spotlight": "^1.0",
-    "wireui/wireui": "^1.6.0",
+    "wireui/wireui": "^1.13.3",
     "yarri/link-finder": "^2.7"
   },
   "require-dev": {
