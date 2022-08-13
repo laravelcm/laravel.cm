@@ -13,10 +13,24 @@ class Browse extends Component
 {
     use WithInfiniteScroll, WithTags;
 
+    public string $viewMode = 'list';
+
     protected $queryString = [
         'tag' => ['except' => ''],
         'sortBy' => ['except' => 'recent'],
     ];
+
+    public function mount()
+    {
+        $this->viewMode = session('viewMode', $this->viewMode);
+    }
+
+    public function changeViewMode($mode)
+    {
+        session()->put('viewMode', $mode);
+
+        $this->viewMode = $mode;
+    }
 
     public function validSort($sort): bool
     {
@@ -29,10 +43,11 @@ class Browse extends Component
 
     public function render(): View
     {
-        $articles = Article::with('tags')->published()
+        $articles = Article::with('tags')
+            ->published()
             ->notPinned()
             ->orderByDesc('sponsored_at')
-            ->orderByDesc('submitted_at');
+            ->orderByDesc('published_at');
 
         $tags = Tag::whereHas('articles', function ($query) {
             $query->published();

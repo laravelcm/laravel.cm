@@ -9,7 +9,9 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Traits\WithArticleAttributes;
 use App\Traits\WithTagsAssociation;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -24,13 +26,9 @@ class Create extends Component
         /** @var User $user */
         $user = Auth::user();
 
+        $this->published_at = now()->toDateTimeLocalString();
         $this->submitted_at = $user->hasAnyRole(['admin', 'moderator']) ? now() : null;
         $this->approved_at = $user->hasAnyRole(['admin', 'moderator']) ? now() : null;
-    }
-
-    public function onMarkdownUpdate(string $content)
-    {
-        $this->body = $content;
     }
 
     public function submit()
@@ -83,7 +81,7 @@ class Create extends Component
             $this->redirectRoute('articles.show', $article);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.articles.create', [
             'tags' => Tag::whereJsonContains('concerns', ['post'])->get(),
