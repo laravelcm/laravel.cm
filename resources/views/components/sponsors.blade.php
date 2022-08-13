@@ -8,8 +8,11 @@
             <img class="h-10 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
             <img class="h-10 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
         </a>
-        <a href="https://gdg.community.dev/gdg-douala" class="flex items-center justify-end">
+        <a href="https://gdg.community.dev/gdg-douala" class="flex items-center justify-end py-2">
             <x-icon.gdg class="w-auto h-5 text-skin-inverted"/>
+        </a>
+        <a href="https://twitter.com/DarkCodeCompany" class="flex items-center justify-end">
+            <x-icon.darkcode class="h-4 text-skin-inverted"/>
         </a>
     </div>
 </div>
