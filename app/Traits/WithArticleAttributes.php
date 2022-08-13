@@ -22,6 +22,8 @@ trait WithArticleAttributes
 
     public ?string $published_at = null;
 
+    public int $reading_time = 1;
+
     public $file;
 
     protected $rules = [
@@ -50,5 +52,11 @@ trait WithArticleAttributes
     public function updatedTitle(string $value): void
     {
         $this->slug = Str::slug($value);
+    }
+
+    public function onMarkdownUpdate(string $content)
+    {
+        $this->body = $content;
+        $this->reading_time = Str::readDuration($content);
     }
 }

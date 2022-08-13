@@ -44,7 +44,9 @@ class ArticlesController extends Controller
             ->twitterSite('laravelcm')
             ->withUrl();
 
-        return view('articles.show', compact('article'));
+        return view('articles.show', [
+            'article' => $article->loadCount('views'),
+        ]);
     }
 
     public function create()
