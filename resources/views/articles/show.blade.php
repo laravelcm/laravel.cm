@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="mt-2 flex space-x-1 text-sm text-skin-base sm:mt-0">
-                        <time datetime="{{ $article->publishedAt()->format('Y-m-d') }}">{{ $article->publishedAt()->format('j M, Y') }}</time>
+                        <time class="capitalize" datetime="{{ $article->publishedAt()->format('Y-m-d') }}">{{ $article->publishedAt()->isoFormat('LL') }}</time>
                         <span aria-hidden="true">&middot;</span>
                         <span>{{ $article->readTime() }} min de lecture</span>
                         <span aria-hidden="true">&middot;</span>
@@ -132,11 +132,8 @@
             <div class="mt-6 aspect-w-4 aspect-h-2 sm:mt-8 mx-auto">
                 <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}" />
             </div>
-            <div
-                class="mt-8 prose prose-lg prose-green text-skin-base mx-auto overflow-x-hidden md:prose-xl lg:max-w-none"
-            >
-                <x-markdown-content :content="$article->body" />
-            </div>
+
+            <x-markdown-content id="content" class="mt-8 prose prose-lg prose-green text-skin-base mx-auto overflow-x-hidden md:prose-xl lg:max-w-none" :content="$article->body" />
 
             <div class="mt-6 pt-5 border-t border-skin-base sm:hidden">
                 <div class="space-y-4">
@@ -267,6 +264,8 @@
         </div>
         <div class="hidden relative lg:block lg:col-span-2">
             <x-sticky-content class="space-y-10">
+                <x-sponsors />
+
                 @if($article->showToc())
                     <div class="bg-skin-card px-4 py-6 rounded-lg shadow-lg">
                         <h4 class="text-sm text-skin-inverted font-semibold leading-tight tracking-widest uppercase">Table des matières</h4>

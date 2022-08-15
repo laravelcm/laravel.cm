@@ -6,7 +6,7 @@ import { findAllReplies, addReply, updateReply, deleteReply, likeReply } from '@
 import { DefaultButton, PrimaryButton } from '@components/Button';
 import { Field } from '@components/Form'
 import { Markdown } from '@components/Markdown'
-import { ChatIcon, HeartIcon } from '@components/Icon'
+import { HeartIcon } from '@components/Icon'
 import { canManage, currentUser, isAuthenticated, getUserId } from '@helpers/auth'
 import { scrollTo } from '@helpers/animation'
 import { catchViolations } from '@helpers/api'

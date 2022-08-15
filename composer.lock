@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b467f3830899d89da8e1e6ee571963b",
+    "content-hash": "7fbd2eaca58c0f49db1438262b3ed922",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -3496,16 +3496,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.2.0",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "ed0ecc7f9b5c2f4a9872185846974a808a3b052a"
+                "reference": "81aea9e5217084c7850cd36e1587ee4aad721c6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/ed0ecc7f9b5c2f4a9872185846974a808a3b052a",
-                "reference": "ed0ecc7f9b5c2f4a9872185846974a808a3b052a",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/81aea9e5217084c7850cd36e1587ee4aad721c6b",
+                "reference": "81aea9e5217084c7850cd36e1587ee4aad721c6b",
                 "shasum": ""
             },
             "require": {
@@ -3566,7 +3566,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.2.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.2.1"
             },
             "funding": [
                 {
@@ -3582,7 +3582,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-26T07:26:36+00:00"
+            "time": "2022-08-14T20:48:34+00:00"
         },
         {
             "name": "league/glide",
@@ -7100,27 +7100,27 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "9.12.2",
+            "version": "10.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "9ed0f4a6017f8f0b5b4ef2d9ee7a89a0d0e4919d"
+                "reference": "8f3bf5fa504a3368a1bb50d56e54bbcce311b9a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/9ed0f4a6017f8f0b5b4ef2d9ee7a89a0d0e4919d",
-                "reference": "9ed0f4a6017f8f0b5b4ef2d9ee7a89a0d0e4919d",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/8f3bf5fa504a3368a1bb50d56e54bbcce311b9a9",
+                "reference": "8f3bf5fa504a3368a1bb50d56e54bbcce311b9a9",
                 "shasum": ""
             },
             "require": {
                 "ext-exif": "*",
                 "ext-fileinfo": "*",
                 "ext-json": "*",
-                "illuminate/bus": "^9.0",
-                "illuminate/console": "^9.0",
-                "illuminate/database": "^9.0",
-                "illuminate/pipeline": "^9.0",
-                "illuminate/support": "^9.0",
+                "illuminate/bus": "^9.18",
+                "illuminate/console": "^9.18",
+                "illuminate/database": "^9.18",
+                "illuminate/pipeline": "^9.18",
+                "illuminate/support": "^9.18",
                 "intervention/image": "^2.7",
                 "maennchen/zipstream-php": "^2.0",
                 "php": "^8.0",
@@ -7142,7 +7142,7 @@
                 "mockery/mockery": "^1.4",
                 "nunomaduro/larastan": "^2.0",
                 "orchestra/testbench": "7.*",
-                "pestphp/pest": "^1.20",
+                "pestphp/pest": "^1.21",
                 "phpstan/extension-installer": "^1.1",
                 "spatie/laravel-ray": "^1.28",
                 "spatie/pdf-to-image": "^2.1",
@@ -7192,7 +7192,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/9.12.2"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.4.3"
             },
             "funding": [
                 {
@@ -7204,7 +7204,88 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-22T13:27:17+00:00"
+            "time": "2022-08-02T07:35:43+00:00"
+        },
+        {
+            "name": "spatie/laravel-medialibrary-pro",
+            "version": "2.5.4",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:spatie/laravel-medialibrary-pro.git",
+                "reference": "e17e86011e78833fa20c40ed211b29b2b8edf78d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.spatie.be/dist/spatie/laravel-medialibrary-pro/spatie-laravel-medialibrary-pro-e17e86011e78833fa20c40ed211b29b2b8edf78d-zip-7d10b5.zip",
+                "reference": "e17e86011e78833fa20c40ed211b29b2b8edf78d",
+                "shasum": "71f3e31c5fa4f6f733045640d7ca2d744f52867b"
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/validation": "^9.0",
+                "php": "^8.0",
+                "spatie/laravel-medialibrary": "^10.2",
+                "symfony/mime": "^6.0"
+            },
+            "require-dev": {
+                "illuminate/support": "^9.0",
+                "livewire/livewire": "^2.10",
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.20",
+                "symfony/var-dumper": "^6.0"
+            },
+            "suggest": {
+                "livewire/livewire": "Allow uploads without using a front end framework"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\MediaLibraryPro\\MediaLibraryProServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\MediaLibraryPro\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Spatie\\MediaLibraryPro\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "format": [
+                    "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "test-coverage": [
+                    "vendor/bin/phpunit --coverage-html coverage"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Handle media in a Laravel app",
+            "homepage": "https://github.com/spatie/laravel-medialibrary-pro",
+            "keywords": [
+                "laravel-medialibrary-pro",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/laravel-medialibrary-pro/tree/2.5.4",
+                "issues": "https://github.com/spatie/laravel-medialibrary-pro/issues"
+            },
+            "time": "2022-07-29T15:03:33+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",

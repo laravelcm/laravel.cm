@@ -142,7 +142,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         $this->addMediaCollection('avatar')
             ->singleFile()
-            ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png']);
+            ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png', 'image/gif']);
     }
 
     public static function findByUsername(string $username): self

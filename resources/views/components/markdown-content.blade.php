@@ -1,5 +1,5 @@
 @props(['content'])
 
 <div {{ $attributes }}>
-    {!! replace_links(\App\Markdown\MarkdownHelper::parseLiquidTags(Markdown::convertToHtml($content))) !!}
+    {!! replace_links(\App\Markdown\MarkdownHelper::parseLiquidTags(Markdown::convert($content))) !!}
 </div>

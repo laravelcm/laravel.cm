@@ -11,9 +11,7 @@
                     <a href="{{ route('profile', $article->author->username) }}" class="hover:underline">{{ $article->author->name }}</a>
                 </p>
                 <p class="text-sm text-skin-base">
-                    <a href="#" class="hover:underline">
-                        <time datetime="{{ $article->publishedAt()->format('Y-m-d') }}">{{ $article->publishedAt()->format('j M, Y') }}</time>
-                    </a>
+                    <time class="capitalize" datetime="{{ $article->publishedAt()->format('Y-m-d') }}">{{ $article->publishedAt()->isoFormat('LL') }}</time>
                 </p>
             </div>
         </div>
@@ -41,7 +39,7 @@
                     <div class="inline-flex space-x-2 text-skin-muted">
                         <x-heroicon-o-eye class="h-5 w-5" />
                         <span class="font-medium text-skin-inverted">{{ $article->views_count }}</span>
-                        <span class="sr-only">views</span>
+                        <span class="sr-only">vues</span>
                     </div>
                 </span>
             </div>

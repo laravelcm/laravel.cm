@@ -17,4 +17,10 @@ return [
         ],
     ],
 
+    'slack' => [
+        'team' => env('SLACK_TEAM_NAME', 'Laravel Cameroun'),
+        'url' => env('SLACK_TEAM_URL', 'https://laravelcm.slack.com'),
+        'token' => env('SLACK_API_TOKEN', null),
+    ],
+
 ];

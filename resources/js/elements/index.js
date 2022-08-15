@@ -1,8 +1,8 @@
 import preactCustomElement from '@helpers/preact.js'
-import { Comments } from '@components/Comments.jsx'
-import { Confetti } from './Confetti.js'
-import { TimeAgo } from './TimeAgo.js'
-import { TimeCountdown } from './TimeCountdown.js'
+import { Comments } from '@components/Comments'
+import { Confetti } from './Confetti'
+import { TimeAgo } from './TimeAgo'
+import { TimeCountdown } from './TimeCountdown'
 
 customElements.define('con-fetti', Confetti)
 customElements.define('time-ago', TimeAgo)
