@@ -9,3 +9,9 @@ input {
 .hide-scroll::-webkit-scrollbar { display: none; }
 
 [x-cloak] {display: none; }
+
+.affiliate img {
+  margin-bottom: 0 !important;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
