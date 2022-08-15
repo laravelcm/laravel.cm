@@ -16,10 +16,10 @@ class HomeController extends Controller
     {
         $latestArticles = Cache::remember('latestArticles', now()->addHour(), function () {
             return Article::with('tags')
-                ->orderByDesc('sponsored_at')
-                ->orderByDesc('submitted_at')
-                ->orderByViews()
                 ->published()
+                ->orderByDesc('sponsored_at')
+                ->orderByDesc('published_at')
+                ->orderByViews()
                 ->trending()
                 ->limit(4)
                 ->get();
@@ -44,6 +44,8 @@ class HomeController extends Controller
         seo()
             ->description('Laravel Cameroun est le portail de la communauté de développeurs PHP & Laravel au Cameroun, On partage, on apprend, on découvre et on construit une grande communauté.')
             ->twitterDescription('Laravel Cameroun est le portail de la communauté de développeurs PHP & Laravel au Cameroun, On partage, on apprend, on découvre et on construit une grande communauté.')
+            ->image(asset('/images/socialcard.png'))
+            ->twitterSite('laravelcm')
             ->withUrl();
 
         return view('home', compact('latestArticles', 'latestThreads', 'latestDiscussions'));
@@ -54,14 +56,14 @@ class HomeController extends Controller
         $request->validate(['email' => 'required|email']);
 
         $client = new Client();
-        $team = env('SLACK_TEAM_NAME', 'Laravel Cameroun');
+        $team = config('lcm.slack.team');
         $email = $request->input('email');
 
         try {
             $client->request(
                 'POST',
-                env('SLACK_TEAM_URL').'/api/users.admin.invite?t='
-                .time().'&email='.$email.'&token='.env('SLACK_API_TOKEN')
+                config('lcm.slack.url').'/api/users.admin.invite?t='
+                .time().'&email='.$email.'&token='.config('lcm.slack.token')
                 .'&set_active=true&_attempts=1'
             );
 
