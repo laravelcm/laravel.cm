@@ -11,8 +11,8 @@
         <a href="https://gdg.community.dev/gdg-douala" class="flex items-center justify-end py-2">
             <x-icon.gdg class="w-auto h-5 text-skin-inverted"/>
         </a>
-        <a href="https://twitter.com/DarkCodeCompany" class="flex items-center justify-end">
+        {{--<a href="https://twitter.com/DarkCodeCompany" class="flex items-center justify-end">
             <x-icon.darkcode class="h-4 text-skin-inverted"/>
-        </a>
+        </a>--}}
     </div>
 </div>

@@ -1,6 +1,6 @@
 @props(['article'])
 
-<div class="space-y-4 lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0">
+<article id="article-title-{{ $article->id }}" class="space-y-4 lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0">
     <a href="{{ route('articles.show', $article) }}" class="group">
         <div class="aspect-w-3 aspect-h-2">
             <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}" />
@@ -39,7 +39,7 @@
                         </a>
                     </p>
                     <div class="flex space-x-1 text-sm text-skin-base/60">
-                        <time datetime="{{ $article->publishedAt()->format('Y-m-d') }}">{{ $article->publishedAt()->format('j M, Y') }}</time>
+                        <time class="capitalize" datetime="{{ $article->publishedAt()->format('Y-m-d') }}">{{ $article->publishedAt()->isoFormat('LL') }}</time>
                         <span aria-hidden="true">&middot;</span>
                         <span>{{ $article->readTime() }} min de lecture</span>
                     </div>
@@ -47,4 +47,4 @@
             </div>
         </div>
     </div>
-</div>
+</article>

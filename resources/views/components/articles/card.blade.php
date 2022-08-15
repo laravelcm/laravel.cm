@@ -8,8 +8,8 @@
     </a>
     <div class="space-y-4">
         <div>
-            <time datetime="{{ $article->created_at->format('Y-m-d') }}" class="font-sans text-sm leading-5 text-skin-base capitalize">
-                {{ $article->created_at->isoFormat('LL') }}
+            <time datetime="{{ $article->publishedAt()->format('Y-m-d') }}" class="font-sans text-sm leading-5 text-skin-base capitalize">
+                {{ $article->publishedAt()->isoFormat('LL') }}
             </time>
             <a href="{{ route('articles.show', $article) }}" class="mt-2 flex items-center justify-between group">
                 <h4 class="text-lg leading-6 font-semibold font-sans text-skin-inverted group-hover:text-skin-primary">{{ $article->title }}</h4>
