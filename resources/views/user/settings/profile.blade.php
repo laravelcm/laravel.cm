@@ -55,7 +55,7 @@
                         </div>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                             <div class="w-full max-w-lg">
-                                
+                                <x-media-library-attachment name="avatar" rules="mimes:png,jpg,jpeg,gif|max:1024"/>
                             </div>
                         </div>
                     </div>

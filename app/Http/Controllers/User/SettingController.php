@@ -41,7 +41,7 @@ class SettingController extends Controller
         ]);
 
         if ($request->avatar) {
-            $user->addMediaFromRequest('avatar')
+            $user->addFromMediaLibraryRequest($request->avatar)
                 ->toMediaCollection('avatar');
             $user->avatar_type = 'storage';
             $user->save();
