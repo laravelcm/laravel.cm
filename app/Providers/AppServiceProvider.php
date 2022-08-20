@@ -37,8 +37,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         date_default_timezone_set('Africa/Douala');
-        setlocale(LC_TIME, 'French');
-        setlocale(LC_ALL, 'fr_FR.UTF-8');
+        setlocale(LC_TIME, 'fr_FR', 'fr', 'FR', 'French', 'fr_FR.UTF-8');
+        setlocale(LC_ALL, 'fr_FR', 'fr', 'FR', 'French', 'fr_FR.UTF-8');
         Carbon::setLocale('fr');
 
         $this->bootMacros();
