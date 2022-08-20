@@ -33,9 +33,9 @@ class HomeController extends Controller
                 ->get();
         });
 
-        $latestDiscussions = Cache::remember('latestDiscussions', now()->addDay(), function () {
+        $latestDiscussions = Cache::remember('latestDiscussions', now()->addHour(), function () {
             return Discussion::query()
-                ->scopes('popular')
+                ->recent()
                 ->orderByViews()
                 ->limit(3)
                 ->get();

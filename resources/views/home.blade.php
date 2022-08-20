@@ -169,7 +169,7 @@
                                 <p class="mt-3 text-base text-skin-base">{!! $discussion->excerpt() !!}</p>
                             </a>
                             <div class="mt-3">
-                                <a href="{{ route('discussions.show', $discussion) }}" class="text-base font-medium text-flag-green hover:text-green-500"> Lire la discussion </a>
+                                <a href="{{ route('discussions.show', $discussion) }}" class="text-base font-medium text-flag-green hover:underline hover:text-green-500">Lire la discussion</a>
                             </div>
                         </div>
                     @endforeach
