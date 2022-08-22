@@ -396,7 +396,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     public function scopeRecent(Builder $query): Builder
     {
         return $query->orderByDesc('published_at')
-            ->orderByDesc('published_at');
+            ->orderByDesc('created_at');
     }
 
     /**

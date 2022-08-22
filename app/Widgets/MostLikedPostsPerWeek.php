@@ -4,10 +4,9 @@ namespace App\Widgets;
 
 use App\Models\Article;
 use Arrilot\Widgets\AbstractWidget;
-use CyrildeWit\EloquentViewable\Support\Period;
 use Illuminate\Contracts\View\View;
 
-class MostViewedPostsPerWeek extends AbstractWidget
+class MostLikedPostsPerWeek extends AbstractWidget
 {
     /**
      * The configuration array.
@@ -29,7 +28,7 @@ class MostViewedPostsPerWeek extends AbstractWidget
      *
      * @var int|float|bool
      */
-    public $cacheTime = 90;
+    public $cacheTime = 0;
 
     /**
      * Treat this method as a controller action.
@@ -37,14 +36,12 @@ class MostViewedPostsPerWeek extends AbstractWidget
      */
     public function run(): View
     {
-        $articles = Article::withViewsCount(Period::create(now()->startOfWeek(), now()->endOfWeek()))
-            ->published()
-            ->orderByDesc('views_count')
-            ->orderByDesc('published_at')
+        $articles = Article::published()
+            ->popular()
             ->limit(5)
             ->get();
 
-        return view('widgets.most_viewed_posts_per_week', [
+        return view('widgets.most_liked_posts_per_week', [
             'config' => $this->config,
             'articles' => $articles,
         ]);

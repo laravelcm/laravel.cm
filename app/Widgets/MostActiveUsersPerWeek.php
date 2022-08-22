@@ -2,12 +2,12 @@
 
 namespace App\Widgets;
 
-use App\Models\Article;
+use App\Models\User;
 use Arrilot\Widgets\AbstractWidget;
-use CyrildeWit\EloquentViewable\Support\Period;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 
-class MostViewedPostsPerWeek extends AbstractWidget
+class MostActiveUsersPerWeek extends AbstractWidget
 {
     /**
      * The configuration array.
@@ -29,7 +29,7 @@ class MostViewedPostsPerWeek extends AbstractWidget
      *
      * @var int|float|bool
      */
-    public $cacheTime = 90;
+    public $cacheTime = 0;
 
     /**
      * Treat this method as a controller action.
@@ -37,16 +37,22 @@ class MostViewedPostsPerWeek extends AbstractWidget
      */
     public function run(): View
     {
-        $articles = Article::withViewsCount(Period::create(now()->startOfWeek(), now()->endOfWeek()))
-            ->published()
-            ->orderByDesc('views_count')
-            ->orderByDesc('published_at')
+        $users = User::with('activities')
+            ->withCount('activities')
+            ->verifiedUsers()
+            ->whereHas('activities', function (Builder $query) {
+                return $query->whereBetween('created_at', [
+                    now()->startOfWeek(),
+                    now()->endOfWeek()
+                ]);
+            })
+            ->orderByDesc('activities_count')
             ->limit(5)
             ->get();
 
-        return view('widgets.most_viewed_posts_per_week', [
+        return view('widgets.most_active_users_per_week', [
             'config' => $this->config,
-            'articles' => $articles,
+            'users' => $users,
         ]);
     }
 }
