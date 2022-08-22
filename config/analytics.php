@@ -12,6 +12,8 @@ return [
 
     'middleware' => [
         'web',
+        'auth',
+        'role:moderator|admin',
     ],
 
     /**
