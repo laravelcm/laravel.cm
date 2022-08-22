@@ -8,6 +8,7 @@
     "php": "^8.0",
     "ext-fileinfo": "*",
     "ext-json": "*",
+    "andreaselia/analytics": "^1.5",
     "archtechx/laravel-seo": "^0.4.0",
     "arrilot/laravel-widgets": "^3.13",
     "blade-ui-kit/blade-heroicons": "^1.3",

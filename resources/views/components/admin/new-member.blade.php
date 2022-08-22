@@ -7,6 +7,6 @@
     </span>
     <div class="ml-3">
         <h4 class="font-medium text-sm leading-5 text-skin-inverted-muted">{{ $user->name }}</h4>
-        <span class="text-sm leading-5 text-skin-muted">{{ __('Membre depuis :date', ['date' => ucfirst($user->created_at->formatLocalized('%B %Y'))]) }}</span>
+        <span class="text-sm leading-5 text-skin-muted">{{ __('Membre depuis :date', ['date' => ucfirst($user->created_at->isoFormat('MMMM YYYY'))]) }}</span>
     </div>
 </a>

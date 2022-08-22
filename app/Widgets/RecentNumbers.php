@@ -56,8 +56,11 @@ class RecentNumbers extends AbstractWidget
         $differenceArticle = $currentMonthArticles - $lastMonthArticles;
 
         $totalViews = views(Article::class)->count();
-        $lastMonthViews = views(Article::class)->period(Period::pastMonths(1))->count();
-        $currentViews = views(Article::class)->period(Period::create(now()->startOfMonth()))->count();
+        $lastMonthViews = views(Article::class)
+            ->period(Period::create(now()->subMonth()->startOfMonth(), now()->subMonth()->endOfMonth()))
+            ->remember(now()->addMonth())
+            ->count();
+        $currentViews = views(Article::class)->period(Period::upto(now()->startOfMonth()))->count();
         $differenceViews = $currentViews - $lastMonthViews;
 
         return view('widgets.recent_numbers', [

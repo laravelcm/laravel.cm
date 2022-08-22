@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fbd2eaca58c0f49db1438262b3ed922",
+    "content-hash": "e4393b792f0e20d38c10662bed13ec6b",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -67,6 +67,80 @@
                 "source": "https://github.com/abraham/twitteroauth"
             },
             "time": "2022-04-02T16:47:22+00:00"
+        },
+        {
+            "name": "andreaselia/analytics",
+            "version": "v1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andreaselia/laravel-analytics.git",
+                "reference": "0c1d0faa46b28a154609b299242c5ee8acf6f0b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andreaselia/laravel-analytics/zipball/0c1d0faa46b28a154609b299242c5ee8acf6f0b8",
+                "reference": "0c1d0faa46b28a154609b299242c5ee8acf6f0b8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-intl": "*",
+                "illuminate/collections": "^8.0|^9.0",
+                "illuminate/database": "^8.0|^9.0",
+                "illuminate/http": "^8.0|^9.0",
+                "illuminate/support": "^8.0|^9.0",
+                "illuminate/view": "^8.0|^9.0",
+                "jenssegers/agent": "^2.6",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "6.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "AndreasElia\\Analytics\\AnalyticsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AndreasElia\\Analytics\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Elia",
+                    "email": "contact@andreaselia.co.uk"
+                },
+                {
+                    "name": "Tom Irons",
+                    "email": "tom@irons.pw"
+                }
+            ],
+            "description": "Analytics for the Laravel framework.",
+            "keywords": [
+                "analytics",
+                "laravel",
+                "middleware",
+                "package"
+            ],
+            "support": {
+                "issues": "https://github.com/andreaselia/laravel-analytics/issues",
+                "source": "https://github.com/andreaselia/laravel-analytics/tree/v1.5.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/andreaselia",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-07-28T11:01:09+00:00"
         },
         {
             "name": "archtechx/laravel-seo",
