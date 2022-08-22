@@ -9,7 +9,7 @@
                         (<span class=" font-medium text-green-500 capitalize">{{ __(':start - :end', ['start' => now()->startOfWeek()->isoFormat('DD MMMM'), 'end' => now()->endOfWeek()->isoFormat('DD MMMM')]) }}</span>)
                     </p>
                 </div>
-                <div class="mt-10 grid grid-cols-3 gap-x-8 gap-y-10">
+                <div class="mt-8 grid grid-cols-3 gap-x-8 gap-y-10">
                     @widget('recentPostsPerWeek')
                     @widget('mostViewedPostsPerWeek')
                     @widget('mostLikedPostsPerWeek')
