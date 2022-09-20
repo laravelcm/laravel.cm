@@ -43,7 +43,7 @@ class MostActiveUsersPerWeek extends AbstractWidget
             ->whereHas('activities', function (Builder $query) {
                 return $query->whereBetween('created_at', [
                     now()->startOfWeek(),
-                    now()->endOfWeek()
+                    now()->endOfWeek(),
                 ]);
             })
             ->orderByDesc('activities_count')

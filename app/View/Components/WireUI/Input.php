@@ -2,9 +2,9 @@
 
 namespace App\View\Components\WireUI;
 
-use WireUi\View\Components;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
+use WireUi\View\Components;
 
 class Input extends Components\Input
 {

@@ -1,7 +1,7 @@
 <?php
 
-use WireUi\View\Components;
 use App\View\Components\WireUI;
+use WireUi\View\Components;
 
 return [
 
@@ -45,10 +45,10 @@ return [
         |
     */
     'card' => [
-        'padding'   => env('WIREUI_CARD_PADDING', 'px-2 py-5 md:px-4'),
-        'shadow'    => env('WIREUI_CARD_SHADOW', 'shadow-md'),
-        'rounded'   => env('WIREUI_CARD_ROUNDED', 'rounded-lg'),
-        'color'     => env('WIREUI_CARD_COLOR', 'bg-skin-card'),
+        'padding' => env('WIREUI_CARD_PADDING', 'px-2 py-5 md:px-4'),
+        'shadow' => env('WIREUI_CARD_SHADOW', 'shadow-md'),
+        'rounded' => env('WIREUI_CARD_ROUNDED', 'rounded-lg'),
+        'color' => env('WIREUI_CARD_COLOR', 'bg-skin-card'),
     ],
 
     /*
