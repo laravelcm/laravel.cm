@@ -25,7 +25,7 @@
     @googlefonts
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @include('layouts._favicons')
-    @livewireStyles
+    <livewire:styles />
 
     <script defer>
         window.csrfToken = {!! json_encode(['csrfToken' => csrf_token()]) !!};
@@ -38,8 +38,7 @@
     </script>
 
     <!-- Scripts -->
-    <wireui:scripts />
-    @livewireScripts
+    <livewire:scripts />
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     @include('layouts._fathom')
@@ -47,8 +46,6 @@
 <body class="h-full font-sans antialiased bg-skin-body text-skin-base">
 
     @yield('content')
-
-    <x-notifications z-index="z-50" />
 
     @livewire('livewire-ui-modal')
     @livewire('livewire-ui-spotlight')
