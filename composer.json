@@ -44,7 +44,7 @@
     "torchlight/torchlight-commonmark": "^0.5.5",
     "wire-elements/modal": "^1.0",
     "wire-elements/spotlight": "^1.0",
-    "wireui/wireui": "^1.13.3",
+    "wireui/wireui": "^1.15.1",
     "yarri/link-finder": "^2.7"
   },
   "require-dev": {

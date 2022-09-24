@@ -39,6 +39,7 @@
 
     <!-- Scripts -->
     <livewire:scripts />
+    <wireui:scripts />
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     @include('layouts._fathom')
