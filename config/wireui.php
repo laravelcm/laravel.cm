@@ -4,30 +4,27 @@ use App\View\Components\WireUI;
 use WireUi\View\Components;
 
 return [
-
     /*
-    |--------------------------------------------------------------------------
-    | Icons
-    |--------------------------------------------------------------------------
-    |
-    | The icons config will be used in icon component as default
-    | https://heroicons.com
-    |
+        |--------------------------------------------------------------------------
+        | Icons
+        |--------------------------------------------------------------------------
+        |
+        | The icons config will be used in icon component as default
+        | https://heroicons.com
+        |
     */
-
     'icons' => [
         'style' => env('WIREUI_ICONS_STYLE', 'outline'),
     ],
 
     /*
-    |--------------------------------------------------------------------------
-    | Modal
-    |--------------------------------------------------------------------------
-    |
-    | The default modal preferences
-    |
+        |--------------------------------------------------------------------------
+        | Modal
+        |--------------------------------------------------------------------------
+        |
+        | The default modal preferences
+        |
     */
-
     'modal' => [
         'zIndex' => env('WIREUI_MODAL_Z_INDEX', 'z-50'),
         'maxWidth' => env('WIREUI_MODAL_MAX_WIDTH', '2xl'),
@@ -64,6 +61,10 @@ return [
      */
 
     'components' => [
+        'avatar' => [
+            'class' => Components\Avatar::class,
+            'alias' => 'avatar',
+        ],
         'icon' => [
             'class' => Components\Icon::class,
             'alias' => 'wi-icon',
@@ -72,14 +73,18 @@ return [
             'class' => Components\Icons\Spinner::class,
             'alias' => 'icon.spinner',
         ],
+        'color-picker' => [
+            'class' => Components\ColorPicker::class,
+            'alias' => 'color-picker',
+        ],
         'input' => [
             'class' => WireUI\Input::class,
             'alias' => 'wi-input',
         ],
-        //        'textarea' => [
-        //            'class' => Components\Textarea::class,
-        //            'alias' => 'textarea',
-        //        ],
+//        'textarea' => [
+//            'class' => Components\Textarea::class,
+//            'alias' => 'textarea',
+//        ],
         'label' => [
             'class' => Components\Label::class,
             'alias' => 'wi-label',
@@ -92,34 +97,34 @@ return [
             'class' => Components\Errors::class,
             'alias' => 'errors',
         ],
-        //        'inputs.maskable' => [
-        //            'class' => Components\Inputs\MaskableInput::class,
-        //            'alias' => 'inputs.maskable',
-        //        ],
-        //        'inputs.phone' => [
-        //            'class' => Components\Inputs\PhoneInput::class,
-        //            'alias' => 'inputs.phone',
-        //        ],
-        //        'inputs.currency' => [
-        //            'class' => Components\Inputs\CurrencyInput::class,
-        //            'alias' => 'inputs.currency',
-        //        ],
+//        'inputs.maskable' => [
+//            'class' => Components\Inputs\MaskableInput::class,
+//            'alias' => 'inputs.maskable',
+//        ],
+//        'inputs.phone' => [
+//            'class' => Components\Inputs\PhoneInput::class,
+//            'alias' => 'inputs.phone',
+//        ],
+//        'inputs.currency' => [
+//            'class' => Components\Inputs\CurrencyInput::class,
+//            'alias' => 'inputs.currency',
+//        ],
+//        'inputs.number' => [
+//            'class' => Components\Inputs\NumberInput::class,
+//            'alias' => 'inputs.number',
+//        ],
+//        'inputs.password' => [
+//            'class' => Components\Inputs\PasswordInput::class,
+//            'alias' => 'inputs.password',
+//        ],
         'button' => [
             'class' => WireUI\Button::class,
             'alias' => 'wi-button',
         ],
-        //        'dropdown' => [
-        //            'class' => Components\Dropdown::class,
-        //            'alias' => 'wi-dropdown',
-        //        ],
-        //        'dropdown.item' => [
-        //            'class' => Components\Dropdown\DropdownItem::class,
-        //            'alias' => 'wi-dropdown.item',
-        //        ],
-        //        'dropdown.header' => [
-        //            'class' => Components\Dropdown\DropdownHeader::class,
-        //            'alias' => 'dropdown.header',
-        //        ],
+        'dropdown.header' => [
+            'class' => Components\Dropdown\DropdownHeader::class,
+            'alias' => 'dropdown.header',
+        ],
         'notifications' => [
             'class' => Components\Notifications::class,
             'alias' => 'notifications',
@@ -156,26 +161,25 @@ return [
             'class' => Components\Toggle::class,
             'alias' => 'toggle',
         ],
-        //        'checkbox' => [
-        //            'class' => Components\Checkbox::class,
-        //            'alias' => 'wi-checkbox',
-        //        ],
-        //        'radio' => [
-        //            'class' => Components\Radio::class,
-        //            'alias' => 'wi-radio',
-        //        ],
-        //        'modal' => [
-        //            'class' => Components\Modal::class,
-        //            'alias' => 'wi-modal',
-        //        ],
-        //        'modal.card' => [
-        //            'class' => Components\ModalCard::class,
-        //            'alias' => 'wi-modal.card',
-        //        ],
+//        'checkbox' => [
+//            'class' => Components\Checkbox::class,
+//            'alias' => 'checkbox',
+//        ],
+//        'radio' => [
+//            'class' => Components\Radio::class,
+//            'alias' => 'radio',
+//        ],
+//        'modal' => [
+//            'class' => Components\Modal::class,
+//            'alias' => 'modal',
+//        ],
+//        'modal.card' => [
+//            'class' => Components\ModalCard::class,
+//            'alias' => 'modal.card',
+//        ],
         'dialog' => [
             'class' => Components\Dialog::class,
             'alias' => 'dialog',
         ],
     ],
-
 ];
