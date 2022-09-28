@@ -38,7 +38,6 @@
     </script>
 
     <!-- Scripts -->
-    <wireui:scripts />
     @livewireScripts
     <script src="{{ mix('js/app.js') }}" defer></script>
 
@@ -47,8 +46,6 @@
 <body class="h-full font-sans antialiased bg-skin-body text-skin-base">
 
     @yield('content')
-
-    <x-notifications z-index="z-50" />
 
     @livewire('livewire-ui-modal')
     @livewire('livewire-ui-spotlight')

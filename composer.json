@@ -44,11 +44,9 @@
     "torchlight/torchlight-commonmark": "^0.5.5",
     "wire-elements/modal": "^1.0",
     "wire-elements/spotlight": "^1.0",
-    "wireui/wireui": "^1.13.3",
     "yarri/link-finder": "^2.7"
   },
   "require-dev": {
-    "barryvdh/laravel-debugbar": "^3.6",
     "barryvdh/laravel-ide-helper": "^2.12",
     "brianium/paratest": "^6.3",
     "fakerphp/faker": "^1.9.1",
@@ -81,7 +79,8 @@
   "scripts": {
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-      "@php artisan package:discover --ansi"
+      "@php artisan package:discover --ansi",
+      "@php artisan vendor:publish --force --tag=livewire:assets --ansi"
     ],
     "post-update-cmd": [
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
