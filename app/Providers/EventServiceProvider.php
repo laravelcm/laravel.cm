@@ -47,14 +47,4 @@ class EventServiceProvider extends ServiceProvider
             \SocialiteProviders\Twitter\TwitterExtendSocialite::class.'@handle',
         ],
     ];
-
-    /**
-     * Register any events for your application.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
 }
