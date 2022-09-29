@@ -29,7 +29,7 @@
                 {{ __('Inscrit') }}
             </dt>
             <dd class="text-skin-base">
-                <time-ago time="{{ $user->created_at->getTimestamp() }}"/>
+                <time-ago time="{{ $author->created_at->getTimestamp() }}"/>
             </dd>
         </div>
     </div>
