@@ -7,14 +7,14 @@ use App\Models\Reply as ReplyModel;
 use App\Models\Thread;
 use App\Policies\ReplyPolicy;
 use App\Policies\ThreadPolicy;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use WireUi\Traits\Actions;
 
 class Reply extends Component
 {
-    use Actions, AuthorizesRequests;
+    use AuthorizesRequests;
 
     public ReplyModel $reply;
 
@@ -53,10 +53,11 @@ class Reply extends Component
 
         $this->reply->update(['body' => $this->body]);
 
-        $this->notification()->success(
-            'Réponse modifié',
-            'Vous avez modifié cette solution avec succès.'
-        );
+        // @ToDo mettre un nouveau system de notification
+//        $this->notification()->success(
+//            'Réponse modifié',
+//            'Vous avez modifié cette solution avec succès.'
+//        );
 
         $this->isUpdating = false;
 
@@ -73,10 +74,11 @@ class Reply extends Component
 
         $this->emitSelf('refresh');
 
-        $this->notification()->success(
-            'Réponse acceptée',
-            'Vous avez retiré cette réponse comme solution pour ce sujet.'
-        );
+        // @ToDo mettre un nouveau system de notification
+//        $this->notification()->success(
+//            'Réponse acceptée',
+//            'Vous avez retiré cette réponse comme solution pour ce sujet.'
+//        );
     }
 
     public function markAsSolution(): void
@@ -93,13 +95,14 @@ class Reply extends Component
 
         $this->emitSelf('refresh');
 
-        $this->notification()->success(
-            'Réponse acceptée',
-            'Vous avez accepté cette solution pour ce sujet.'
-        );
+        // @ToDo mettre un nouveau system de notification
+//        $this->notification()->success(
+//            'Réponse acceptée',
+//            'Vous avez accepté cette solution pour ce sujet.'
+//        );
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.forum.reply');
     }

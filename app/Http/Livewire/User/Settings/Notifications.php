@@ -7,11 +7,10 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use WireUi\Traits\Actions;
 
 class Notifications extends Component
 {
-    use Actions, AuthorizesRequests;
+    use AuthorizesRequests;
 
     public $subscribeId;
 
@@ -22,7 +21,8 @@ class Notifications extends Component
         // @phpstan-ignore-next-line
         $this->subscribe->delete();
 
-        $this->notification()->success('Désabonnement', 'Vous êtes maintenant désabonné de cet fil.');
+        // @ToDo mettre un nouveau system de notification
+        // $this->notification()->success('Désabonnement', 'Vous êtes maintenant désabonné de cet fil.');
     }
 
     public function getSubscribeProperty(): Subscribe

@@ -29,7 +29,7 @@
                 <div class="shrink-0">
                     <a href="{{ route('profile', $article->author->username) }}">
                         <span class="sr-only">{{ $article->author->name }}</span>
-                        <img class="h-10 w-10 rounded-full" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}">
+                        <img class="h-10 w-10 object-cover rounded-full" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}">
                     </a>
                 </div>
                 <div class="ml-3">
@@ -41,7 +41,7 @@
                     <div class="flex space-x-1 text-sm text-skin-base/60">
                         <time class="capitalize" datetime="{{ $article->publishedAt()->format('Y-m-d') }}">{{ $article->publishedAt()->isoFormat('LL') }}</time>
                         <span aria-hidden="true">&middot;</span>
-                        <span>{{ $article->readTime() }} min de lecture</span>
+                        <span>{{ __(':time min de lecture', ['time' => $article->readTime()]) }}</span>
                     </div>
                 </div>
             </div>
