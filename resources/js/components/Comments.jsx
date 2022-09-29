@@ -1,7 +1,7 @@
 import { memo } from 'preact/compat'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'preact/hooks'
 import ContentLoader from 'react-content-loader'
-import { ChatAltIcon } from '@heroicons/react/solid'
+import { ChatBubbleLeftIcon } from '@heroicons/react/24/solid'
 import { findAllReplies, addReply, updateReply, deleteReply, likeReply } from '@api/comments';
 import { DefaultButton, PrimaryButton } from '@components/Button';
 import { Field } from '@components/Form'
@@ -429,13 +429,12 @@ function CommentForm ({ onSubmit, parent, isRoot = false, onCancel = null }) {
           <div className="flex-shrink-0">
             <div className="relative">
               <img
-                className="h-10 w-10 rounded-full bg-skin-card-gray flex items-center justify-center ring-8 ring-body"
+                className="h-10 w-10 rounded-full object-cover bg-skin-card-gray flex items-center justify-center ring-8 ring-body"
                 src={`${currentUser().picture}`}
-                alt=""
+                alt={`${currentUser().name}`}
               />
-
               <span className="absolute -bottom-0.5 -right-1 bg-skin-body rounded-tl px-0.5 py-px">
-                <ChatAltIcon className="h-5 w-5 text-skin-muted" aria-hidden="true" />
+                <ChatBubbleLeftIcon className="h-5 w-5 text-skin-muted" aria-hidden="true" />
               </span>
             </div>
           </div>

@@ -4,15 +4,15 @@ namespace App\Http\Livewire;
 
 use App\Policies\NotificationPolicy;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use WireUi\Traits\Actions;
 
 class Notifications extends Component
 {
-    use Actions, AuthorizesRequests;
+    use AuthorizesRequests;
 
     public $notificationId;
 
@@ -36,12 +36,13 @@ class Notifications extends Component
         // @phpstan-ignore-next-line
         $this->notification->markAsRead();
 
-        $this->notification()->success('Notification', 'Cette notification a été marquée comme lue.');
+        // @ToDo mettre un nouveau system de notification
+        // $this->notification()->success('Notification', 'Cette notification a été marquée comme lue.');
 
         $this->emit('NotificationMarkedAsRead', Auth::user()->unreadNotifications()->count());
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.notifications', [
             'notifications' => Auth::user()

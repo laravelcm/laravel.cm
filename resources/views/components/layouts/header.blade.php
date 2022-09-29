@@ -38,12 +38,10 @@
                         >
                             <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                 <div class="relative grid gap-6 bg-skin-card px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
-
                                     <a href="https://snippets.laravel.cm" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
                                         <div class="shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
-                                            <svg class="h-6 w-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                <path d="M20.228 5.202l-6.46-3.73a3.547 3.547 0 0 0-3.537 0l-6.46 3.73A3.555 3.555 0 0 0 2 8.273v7.454c0 1.263.679 2.44 1.772 3.07l6.46 3.73c1.09.63 2.446.63 3.537 0l6.46-3.73A3.555 3.555 0 0 0 22 15.728V8.273c0-1.263-.679-2.44-1.772-3.07zm.055 10.525c0 .65-.35 1.257-.912 1.582l-6.46 3.73a1.827 1.827 0 0 1-1.822 0l-6.46-3.73a1.831 1.831 0 0 1-.912-1.582V8.273c0-.65.35-1.257.912-1.582l6.46-3.73a1.827 1.827 0 0 1 1.822 0l6.46 3.73c.563.325.912.931.912 1.582v7.454z" />
-                                                <path d="M11.184 11.344L7.996 8.643a.858.858 0 0 0-1.21.1.86.86 0 0 0 .101 1.212L9.301 12l-2.414 2.045a.86.86 0 0 0-.1 1.211.858.858 0 0 0 1.21.101l3.187-2.7a.86.86 0 0 0 0-1.313zm5.374 2.498h-3.862a.859.859 0 0 0 0 1.719h3.862a.859.859 0 0 0 0-1.72z" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
                                             </svg>
                                         </div>
                                         <div class="ml-4">
@@ -58,7 +56,9 @@
 
                                     <a href="{{ route('rules') }}" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
                                         <div class="shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
-                                            <x-heroicon-o-bookmark-alt class="h-6 w-6" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                                            </svg>
                                         </div>
                                         <div class="ml-4">
                                             <p class="text-base font-sans font-medium text-skin-inverted">
@@ -91,7 +91,9 @@
 
                                     <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
                                         <div class="shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
-                                            <x-heroicon-o-badge-check class="h-6 w-6" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                                            </svg>
                                         </div>
                                         <div class="ml-4">
                                             <p class="text-base font-sans font-medium text-skin-inverted">
@@ -121,7 +123,9 @@
 
                                     <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-skin-card-muted">
                                         <div class="shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-green-500 text-white sm:h-12 sm:w-12">
-                                            <x-heroicon-o-briefcase class="h-6 w-6" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+                                            </svg>
                                         </div>
                                         <div class="ml-4">
                                             <p class="inline-flex items-center text-base font-sans font-medium text-skin-inverted">
@@ -133,7 +137,6 @@
                                             </p>
                                         </div>
                                     </a>
-
                                 </div>
                             </div>
                         </div>
@@ -159,7 +162,9 @@
                 @auth
                     <a href="{{ route('notifications') }}" class="relative shrink-0 hover:bg-skin-body p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <span class="sr-only">{{ __('Voir les notifications') }}</span>
-                        <x-heroicon-o-bell class="h-5 w-5"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                        </svg>
                         <livewire:notification-indicator />
                     </a>
 
@@ -167,7 +172,9 @@
                     <div x-data="{ open: false }" @keydown.escape.stop="open = false;" @click.outside="open = false;" class="ml-4 relative shrink-0">
                         <div>
                             <button type="button" class="shrink-0 bg-skin-card p-1 text-skin-muted rounded-full hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500" x-ref="button" @click="open =! open">
-                                <x-heroicon-o-plus class="h-5 w-5" />
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
                             </button>
                         </div>
 
@@ -206,74 +213,7 @@
                     </div>
 
                     <!-- Profile dropdown -->
-                    <div @keydown.escape.stop="open = false;" @click.outside="open = false;" class="ml-4 relative shrink-0">
-                        <div>
-                            <button type="button" class="bg-skin-menu rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" id="user-menu-button" x-ref="button" @click="open =! open"  aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()">
-                                <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
-                            </button>
-                        </div>
-
-                        <div x-show="open"
-                             x-transition:enter="transition ease-out duration-100"
-                             x-transition:enter-start="transform opacity-0 scale-95"
-                             x-transition:enter-end="transform opacity-100 scale-100"
-                             x-transition:leave="transition ease-in duration-75"
-                             x-transition:leave-start="transform opacity-100 scale-100"
-                             x-transition:leave-end="transform opacity-0 scale-95"
-                             class="origin-top-right absolute right-0 mt-2 w-60 rounded-md shadow-lg py-1 bg-skin-menu divide-y divide-skin-light ring-1 ring-black ring-opacity-5 focus:outline-none"
-                             x-ref="menu-items"
-                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
-                             tabindex="-1"
-                             @keydown.tab="open = false"
-                             @keydown.enter.prevent="open = false;"
-                             @keyup.space.prevent="open = false;"
-                             style="display: none;">
-                            <div class="px-3.5 py-3" role="none">
-                                <p class="text-xs text-skin-base font-normal" role="none">
-                                    {{ __('Connecté en tant que') }}
-                                </p>
-                                <p class="text-sm font-medium text-skin-inverted truncate" role="none">
-                                    {{ Auth::user()->email }}
-                                </p>
-                            </div>
-                            @if(Auth::user()->hasRole(['admin', 'moderator']))
-                                <div class="py-1.5 px-3.5" role="none">
-                                    <a href="{{ route('cpanel.home') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
-                                        <svg class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" fill="none" viewBox="0 0 24 24">
-                                            <path d="M15 17v4H9v-4m-3.8 0h13.6c1.12 0 1.68 0 2.108-.218a2 2 0 0 0 .874-.874C22 15.48 22 14.92 22 13.8V6.2c0-1.12 0-1.68-.218-2.108a2 2 0 0 0-.874-.874C20.48 3 19.92 3 18.8 3H5.2c-1.12 0-1.68 0-2.108.218a2 2 0 0 0-.874.874C2 4.52 2 5.08 2 6.2v7.6c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874C3.52 17 4.08 17 5.2 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                        {{ __('Administration') }}
-                                    </a>
-                                </div>
-                            @endif
-                            <div class="py-1.5 px-3.5" role="none">
-                                <a href="{{ route('dashboard') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
-                                    <x-heroicon-o-view-grid class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
-                                    {{ __('Dashboard') }}
-                                </a>
-                                <a href="{{ route('profile') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-1">
-                                    <x-heroicon-o-user-circle class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
-                                    {{ __('Mon profil') }}
-                                </a>
-                                <a href="{{ route('user.settings') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-2">
-                                    <x-heroicon-o-cog class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
-                                    {{ __('Paramètres') }}
-                                </a>
-                            </div>
-                            <div class="py-1.5 px-3.5" role="none">
-                                <form method="POST" action="{{ route('logout') }}" role="form">
-                                    @csrf
-                                    <button type="submit" class="group flex items-center text-skin-base hover:text-skin-primary font-normal w-full text-left py-1.5 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">
-                                        <svg stroke="currentColor" fill="none" class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" viewBox="0 0 20 20">
-                                            <path d="M10.25 3.75H9A6.25 6.25 0 002.75 10v0A6.25 6.25 0 009 16.25h1.25M10.75 10h6.5M14.75 12.25l2.5-2.25-2.5-2.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                        {{ __('Se déconnecter') }}
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    <x-dropdown-profile />
                 @else
                     <div class="relative flex items-center space-x-6 font-sans">
                         <a href="{{ route('login') }}" class="text-skin-menu hover:text-skin-menu-hover inline-flex items-center text-sm font-medium">
@@ -362,7 +302,7 @@
                     <div class="px-4 py-2" role="form">
                         <form method="POST" action="{{ route('logout') }}" role="form">
                             @csrf
-                            <button type="submit" class="group flex items-center text-skin-base hover:text-skin-menu-hover font-medium w-full text-base" role="menuitem" tabindex="-1" id="menu-item-3">
+                            <button type="submit" class="group flex items-center text-skin-base hover:text-skin-menu-hover font-medium w-full text-base" role="menuitem" tabindex="-1" id="logout-mobile">
                                 {{ __('Se déconnecter') }}
                             </button>
                         </form>
