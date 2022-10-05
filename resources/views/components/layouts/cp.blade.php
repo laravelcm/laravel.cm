@@ -34,7 +34,6 @@
     </script>
 
     <!-- Scripts -->
-    <wireui:scripts />
     @livewireScripts
     <script src="{{ mix('js/app.js') }}" defer></script>
 
@@ -51,8 +50,6 @@
 
         <x-layouts.footer />
     </div>
-
-    <x-notifications z-index="z-50" />
 
     @livewire('livewire-ui-modal')
     @livewire('livewire-ui-spotlight')

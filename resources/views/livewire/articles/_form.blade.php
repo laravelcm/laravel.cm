@@ -96,7 +96,9 @@
                                     <div class="ml-3 h-7 flex items-center">
                                         <button type="button" class="bg-skin-card rounded-md text-skin-muted hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500" @click="open = false">
                                             <span class="sr-only">Close panel</span>
-                                            <x-heroicon-o-x class="h-6 w-6" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
                                         </button>
                                     </div>
                                 </div>
@@ -112,7 +114,7 @@
                                             wire:click="removeImage"
                                             wire:model="file"
                                             :file="$file"
-                                            :preview="isset($preview) ? $preview : null"
+                                            :preview="$preview ?? null"
                                             :error="$errors->first('file')"
                                         />
                                     </div>
@@ -139,15 +141,7 @@
 
                                     <div class="mt-8">
                                         <x-label for="published_at">Date de publication</x-label>
-                                        <x-datetime-picker
-                                            placeholder="Sélectionner une date"
-                                            name="published_at"
-                                            class="mt-1"
-                                            wire:model.defer="published_at"
-                                            :min="now()->subDay()"
-                                            time-format="24"
-                                            without-timezone
-                                        />
+                                        <x-input wire:model.debounce.500ms="published_at" id="published_at" name="published_at" class="mt-1" type="date" autocomplete="off" />
                                     </div>
 
                                     <div class="mt-8">

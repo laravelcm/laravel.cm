@@ -93,7 +93,9 @@
                 <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
                     <x-button :link="route('articles')">
                         Voir tous les articles
-                        <x-heroicon-o-arrow-narrow-right class="h-5 w-5 ml-1.5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 ml-1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                        </svg>
                     </x-button>
                 </div>
             </div>
@@ -138,7 +140,9 @@
                     <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
                         <x-button :link="route('forum.index')">
                             Voir tous les sujets
-                            <x-heroicon-o-arrow-narrow-right class="h-5 w-5 ml-1.5" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 ml-1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                            </svg>
                         </x-button>
                     </div>
                 </div>
@@ -178,7 +182,9 @@
                 <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
                     <x-button :link="route('discussions.index')">
                         Voir toutes les discussions
-                        <x-heroicon-o-arrow-narrow-right class="h-5 w-5 ml-1.5" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 ml-1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                        </svg>
                     </x-button>
                 </div>
             </div>

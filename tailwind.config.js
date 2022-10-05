@@ -12,20 +12,13 @@ function withOpacity(variableName) {
 
 module.exports = {
   darkMode: 'class',
-  presets: [
-    require('./vendor/wireui/wireui/tailwind.config.js')
-  ],
   content: [
     './app/**/*.php',
     './config/markdown.php',
     './resources/**/*.blade.php',
     './resources/**/*.{js,jsx}',
     './storage/framework/views/*.php',
-
     './vendor/wire-elements/modal/resources/views/*.blade.php',
-    './vendor/wireui/wireui/resources/**/*.blade.php',
-    './vendor/wireui/wireui/ts/**/*.ts',
-    './vendor/wireui/wireui/src/View/**/*.php',
   ],
   safelist: [
     'sm:max-w-xl',

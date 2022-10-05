@@ -8,7 +8,6 @@
     "php": "^8.0",
     "ext-fileinfo": "*",
     "ext-json": "*",
-    "andreaselia/analytics": "^1.5",
     "archtechx/laravel-seo": "^0.4.0",
     "arrilot/laravel-widgets": "^3.13",
     "blade-ui-kit/blade-heroicons": "^1.3",
@@ -44,7 +43,6 @@
     "torchlight/torchlight-commonmark": "^0.5.5",
     "wire-elements/modal": "^1.0",
     "wire-elements/spotlight": "^1.0",
-    "wireui/wireui": "^1.15.1",
     "yarri/link-finder": "^2.7"
   },
   "require-dev": {
