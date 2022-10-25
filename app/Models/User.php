@@ -14,6 +14,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use QCod\Gamify\Gamify;
+use Rinvex\Subscriptions\Traits\HasPlanSubscriptions;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
@@ -23,13 +24,14 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
-    use Gamify,
-        HasFactory,
-        HasProfilePhoto,
-        HasRoles,
-        InteractsWithMedia,
-        Notifiable,
-        Reacts;
+    use Gamify;
+    use HasFactory;
+    use HasPlanSubscriptions;
+    use HasProfilePhoto;
+    use HasRoles;
+    use InteractsWithMedia;
+    use Notifiable;
+    use Reacts;
 
     /**
      * The attributes that are mass assignable.
