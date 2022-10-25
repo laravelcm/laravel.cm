@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatePlansTable extends Migration
 {
@@ -19,7 +19,7 @@ class CreatePlansTable extends Migration
             $table->increments('id');
             $table->string('slug');
             $table->json('name');
-            $table->string('type')->default('fixed');
+            $table->string('type')->default(\App\Enums\PlanType::DEVELOPER);
             $table->json('description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->decimal('price')->default('0.00');
