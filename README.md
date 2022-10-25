@@ -23,8 +23,6 @@ Groupe Slack: https://laravelcm.slack.com <br />
 Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainage. Si vous souhaitez devenir sponsor, veuillez visiter <a href="https://github.com/sponsors/mckenziearts">la page Laravel.cm Github de Sponsoring</a>.
 
 - **[Laravel Shopper](https://laravelshopper.io)**
-- [Localhost Academy](https://localhostkmer.xyz)
-- [Lotin Corp](https://lotincorp.biz)
 
 ## Caractéristiques Serveur
 
