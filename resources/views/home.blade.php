@@ -202,42 +202,49 @@
         </div>
         <div class="max-w-4xl mx-auto px-4 lg:max-w-7xl xl:grid xl:grid-cols-2 xl:grid-flow-col-dense xl:gap-x-8">
             <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
-                <h2 class="text-sm font-semibold text-green-300 tracking-wide uppercase font-heading">A propos</h2>
-                <p class="mt-3 text-3xl font-extrabold text-white">Nous construisons une communauté Open Source d'apprenants et d'enseignants</p>
+                <h2 class="text-sm font-semibold text-green-300 tracking-wide uppercase font-heading">{{ __('A propos') }}</h2>
+                <p class="mt-3 text-3xl font-extrabold text-white">{{ __('Nous construisons une communauté Open Source d\'apprenants et d\'enseignants') }}</p>
                 <p class="mt-5 text-lg text-gray-400">
-                    <span class="text-white"><span class="text-skin-primary italic">"</span>Tout le monde enseigne, tout le monde apprend<span class="text-skin-primary italic">"</span></span>.
-                    Tel est l'esprit qui est derrière la communauté. Une communauté qui se veut grandissante et qui donne la possibilité à tout le monde de partager ses connaissances et d'apprendre.
+                    <span class="text-white"><span class="text-skin-primary italic">"</span>{{ __('Tout le monde enseigne, tout le monde apprend') }}<span class="text-skin-primary italic">"</span></span>.
+                    {{ __('Tel est l\'esprit qui est derrière la communauté. Une communauté qui se veut grandissante et qui donne la possibilité à tout le monde de partager ses connaissances et d\'apprendre.') }}
                 </p>
                 <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
                     <p>
                         <span class="block text-2xl font-heading text-white">600+</span>
                         <span class="mt-1 block text-base text-gray-400">
-                            <span class="font-medium text-white">Membres</span> qui ont rejoint les différents groupes de la communauté
+                            <span class="font-medium text-white">{{ __('Membres') }}</span> {{ __('qui ont rejoint les différents groupes de la communauté') }}
                         </span>
                     </p>
 
                     <p>
                         <span class="block text-2xl font-heading text-white">50K+</span>
                         <span class="mt-1 block text-base text-gray-400">
-                            <span class="font-medium text-white">Développeurs PHP & Laravel</span> dans l’ensemble du territoire national.
+                            <span class="font-medium text-white">{{ __('Développeurs PHP & Laravel') }}</span> {{ __('dans l’ensemble du territoire national.') }}
                         </span>
                     </p>
 
                     <p>
                         <span class="block text-2xl font-heading text-white">9%</span>
                         <span class="mt-1 block text-base text-gray-400">
-                            <span class="font-medium text-white">Taux de participation aux événements</span> car la communauté est encore très jeune.
+                            <span class="font-medium text-white">{{ __('Taux de participation aux événements') }}</span> {{ __('car la communauté est encore très jeune.') }}
                         </span>
                     </p>
 
                     <p>
                         <span class="block text-2xl font-heading text-white">10K+</span>
                         <span class="mt-1 block text-base text-gray-400">
-                            <span class="font-medium text-white">stars</span> sur les projets réalisés par les développeurs Camerounais sur Github.
+                            <span class="font-medium text-white">stars</span> {{ __('sur les projets réalisés par les développeurs Camerounais sur Github.') }}
                         </span>
                     </p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="relative py-12 overflow-hidden sm:py-16 lg:py-20">
+        <testimonies-area />
+        <div class="relative mx-auto max-w-7xl px-4">
+
         </div>
     </div>
 

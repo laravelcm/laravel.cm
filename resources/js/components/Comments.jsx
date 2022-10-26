@@ -1,7 +1,8 @@
 import { memo } from 'preact/compat'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'preact/hooks'
 import ContentLoader from 'react-content-loader'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'preact/hooks'
 import { ChatBubbleLeftIcon } from '@heroicons/react/24/solid'
+
 import { findAllReplies, addReply, updateReply, deleteReply, likeReply } from '@api/comments';
 import { DefaultButton, PrimaryButton } from '@components/Button';
 import { Field } from '@components/Form'
@@ -14,7 +15,7 @@ import { classNames } from '@helpers/dom'
 import { useVisibility, useAsyncEffect } from '@helpers/hooks'
 
 /**
- * Affiche les commentaires associé à un contenu
+ * Affiche les commentaires associés à un contenu
  *
  * @param {{target: number}} param
  */
@@ -27,7 +28,6 @@ export function Comments ({ target, parent }) {
     focus: null, // Commentaire à focus
     reply: null // Commentaire auquel on souhaite répondre
   })
-  const count = state.comments ? state.comments.length : null
   const isVisible = useVisibility(parent)
   const comments = useMemo(() => {
     if (state.comments === null) {
@@ -36,7 +36,7 @@ export function Comments ({ target, parent }) {
     return state.comments.filter(c => c.model_type === 'discussion')
   }, [state.comments])
 
-  // Trouve les commentaire enfant d'un commentaire
+  // Trouve les commentaires enfant d'un commentaire
   function repliesFor (comment) {
     return state.comments.filter(c => c.model_type === 'reply' && c.model_id === comment.id)
   }
@@ -98,7 +98,7 @@ export function Comments ({ target, parent }) {
     }))
   }, [])
 
-  // On scroll jusqu'à l'élément si l'ancre commence par un "c"
+  // Scroll jusqu'à l'élément si l'ancre commence par un "c"
   useAsyncEffect(async () => {
     if (window.location.hash.startsWith('#c')) {
       const comments = await findAllReplies(target)
@@ -110,7 +110,7 @@ export function Comments ({ target, parent }) {
     }
   }, [element])
 
-  // On charge les commentaire dès l'affichage du composant
+  // On charge les commentaires dès l'affichage du composant
   useAsyncEffect(async () => {
     if (isVisible) {
       const comments = await findAllReplies(target)
