@@ -4336,6 +4336,12 @@ select {
 .-bottom-0 {
   bottom: -0px;
 }
+.left-1\/2 {
+  left: 50%;
+}
+.top-4 {
+  top: 1rem;
+}
 .right-0 {
   right: 0px;
 }
@@ -4356,9 +4362,6 @@ select {
 }
 .top-16 {
   top: 4rem;
-}
-.top-4 {
-  top: 1rem;
 }
 .left-1 {
   left: 0.25rem;
@@ -4648,6 +4651,9 @@ select {
 .grid {
   display: grid;
 }
+.inline-grid {
+  display: inline-grid;
+}
 .contents {
   display: contents;
 }
@@ -4686,6 +4692,9 @@ select {
 }
 .h-10 {
   height: 2.5rem;
+}
+.h-\[1026px\] {
+  height: 1026px;
 }
 .h-9 {
   height: 2.25rem;
@@ -4782,6 +4791,9 @@ select {
 }
 .w-10 {
   width: 2.5rem;
+}
+.w-\[1026px\] {
+  width: 1026px;
 }
 .w-9 {
   width: 2.25rem;
@@ -4891,6 +4903,10 @@ select {
 .origin-top {
   transform-origin: top;
 }
+.-translate-x-1\/3 {
+  --tw-translate-x: -33.333333%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 .translate-x-full {
   --tw-translate-x: 100%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -4972,6 +4988,32 @@ select {
   -webkit-animation: spin 1s linear infinite;
           animation: spin 1s linear infinite;
 }
+@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  -webkit-animation: spin 4s linear infinite;
+          animation: spin 4s linear infinite;
+}
+@-webkit-keyframes spin-reverse {
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes spin-reverse {
+
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.animate-spin-reverse-slower {
+  -webkit-animation: spin-reverse 6s linear infinite;
+          animation: spin-reverse 6s linear infinite;
+}
 @-webkit-keyframes scroll {
 
   from {
@@ -5052,6 +5094,9 @@ select {
 }
 .flex-wrap {
   flex-wrap: wrap;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
 }
 .items-start {
   align-items: flex-start;
@@ -5702,6 +5747,9 @@ select {
 }
 .fill-current {
   fill: currentColor;
+}
+.stroke-gray-300\/70 {
+  stroke: rgb(209 213 219 / 0.7);
 }
 .stroke-current {
   stroke: currentColor;
@@ -6634,6 +6682,10 @@ select {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+.\[mask-image\:linear-gradient\(to_bottom\2c white_20\%\2c transparent_75\%\)\] {
+  -webkit-mask-image: linear-gradient(to bottom,white 20%,transparent 75%);
+          mask-image: linear-gradient(to bottom,white 20%,transparent 75%);
+}
 /*@import "christmas.css";*/
 
 :root {
@@ -6690,11 +6742,15 @@ select {
 .animate-scroll-slow:nth-child(2) {
   -webkit-animation-duration: 40s;
           animation-duration: 40s;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
 }
 
 .animate-scroll-slow:nth-child(3) {
   -webkit-animation-duration: 50s;
           animation-duration: 50s;
+  -webkit-animation-delay: 750ms;
+          animation-delay: 750ms;
 }
 
 .focus-within\:ring-2[focus-within] {
@@ -7898,6 +7954,10 @@ select {
 
 @media (min-width: 640px) {
 
+  .sm\:top-16 {
+    top: 4rem;
+  }
+
   .sm\:col-span-1 {
     grid-column: span 1 / span 1;
   }
@@ -8105,6 +8165,11 @@ select {
 
   .sm\:shrink-0 {
     flex-shrink: 0;
+  }
+
+  .sm\:-translate-x-1\/2 {
+    --tw-translate-x: -50%;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .sm\:translate-y-0 {
@@ -9405,6 +9470,10 @@ select {
 
 @media (min-width: 1024px) {
 
+  .lg\:-top-16 {
+    top: -4rem;
+  }
+
   .lg\:left-1\/2 {
     left: 50%;
   }
@@ -9481,6 +9550,10 @@ select {
 
   .lg\:mt-10 {
     margin-top: 2.5rem;
+  }
+
+  .lg\:ml-12 {
+    margin-left: 3rem;
   }
 
   .lg\:mb-32 {
@@ -10229,6 +10302,10 @@ select {
     left: 0px;
   }
 
+  .xl\:-top-14 {
+    top: -3.5rem;
+  }
+
   .xl\:col-span-7 {
     grid-column: span 7 / span 7;
   }
@@ -10247,6 +10324,10 @@ select {
 
   .xl\:mt-16 {
     margin-top: 4rem;
+  }
+
+  .xl\:ml-0 {
+    margin-left: 0px;
   }
 
   .xl\:grid {
