@@ -26,11 +26,14 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('media-library:delete-old-temporary-uploads')->daily();
         $schedule->command('lcm:delete-old-unverified-users')->daily();
-        $schedule->command('lcm:post-article-to-twitter')->everyFourHours();
-        $schedule->command('lcm:post-article-to-telegram')->everyFourHours();
-        $schedule->command('lcm:send-unverified-mails')->weeklyOn(1, '8:00');
-        $schedule->command('sitemap:generate')->daily();
-        $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyMinute();
+
+        if (app()->environment('production')) {
+            $schedule->command('lcm:post-article-to-twitter')->everyFourHours();
+            $schedule->command('lcm:post-article-to-telegram')->everyFourHours();
+            $schedule->command('lcm:send-unverified-mails')->weeklyOn(1, '8:00');
+            $schedule->command('sitemap:generate')->daily();
+            $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyMinute();
+        }
     }
 
     /**
