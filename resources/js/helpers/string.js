@@ -14,6 +14,14 @@ window.capitalize = (string) => string.replace(/^\w/, (c) => c.toUpperCase());
 window.snakeCase = (string) => string && string.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(s => s.toLowerCase()).join('_');
 
 /**
+ * Injecte la fonction dans le contexte global
+ * 
+ * @param {number} number 
+ * @returns 
+ */
+window.formatMoney = (number) => formatMoney(number);
+
+/**
  * Ajoute des sauts de ligne automatiquement sur une chaine
  *
  * @param {string} str

@@ -1,4 +1,4 @@
-import { random } from "lodash/number";
+import { random } from 'lodash/number'
 
 function BackgroundIllustration(props) {
   let id = random()
@@ -9,7 +9,7 @@ function BackgroundIllustration(props) {
         viewBox="0 0 1026 1026"
         fill="none"
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full animate-spin-slow"
+        className="absolute inset-0 w-full h-full animate-spin-slow"
       >
         <path
           d="M1025 513c0 282.77-229.23 512-512 512S1 795.77 1 513 230.23 1 513 1s512 229.23 512 512Z"
@@ -39,7 +39,7 @@ function BackgroundIllustration(props) {
         viewBox="0 0 1026 1026"
         fill="none"
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full animate-spin-reverse-slower"
+        className="absolute inset-0 w-full h-full animate-spin-reverse-slower"
       >
         <path
           d="M913 513c0 220.914-179.086 400-400 400S113 733.914 113 513s179.086-400 400-400 400 179.086 400 400Z"
@@ -156,11 +156,11 @@ export function Testimonies ({ target }) {
   return (
     <>
       <BackgroundIllustration className="absolute left-1/2 top-4 h-[1026px] w-[1026px] -translate-x-1/3 stroke-gray-300/70 [mask-image:linear-gradient(to_bottom,white_20%,transparent_75%)] sm:top-16 sm:-translate-x-1/2 lg:-top-16 lg:ml-12 xl:-top-14 xl:ml-0" />
-      <div className="space-y-5">
-        <div className="animate-scroll-slow flex items-center">
+      <div className="space-y-6 pointer-events-none select-none">
+        <div className="flex items-center space-x-20 animate-scroll-slow whitespace-nowrap">
           {testimonies.map((testimony, index) => (
-            <div key={index} className="inline-flex items-center w-full px-3 py-1.5 rounded-md mx-4 px-3">
-              <img className="inline-block h-8 w-8 rounded-full object-cover" src={testimony.image} alt={testimony.name} />
+            <div key={index} className="inline-flex items-center w-full px-3 py-1.5 rounded-md mx-4">
+              <img className="inline-block object-cover w-8 h-8 rounded-full" src={testimony.image} alt={testimony.name} />
               <div className="ml-3">
                 <p className="text-sm font-medium text-skin-inverted-muted">{testimony.name}</p>
                 <p className="text-xs leading-4 text-skin-muted">{`@${testimony.username}`}</p>
@@ -168,10 +168,10 @@ export function Testimonies ({ target }) {
             </div>
           ))}
         </div>
-        <div className="animate-scroll-slow flex flex-nowrap items-center space-x-20">
+        <div className="flex items-center space-x-20 animate-scroll-slow whitespace-nowrap">
           {testimonies.map((testimony, index) => (
             <div key={index} className="inline-flex items-center w-auto px-3 py-1.5 rounded-md">
-              <img className="inline-block h-8 w-8 rounded-full object-cover" src={testimony.image} alt={testimony.name} />
+              <img className="inline-block object-cover w-8 h-8 rounded-full" src={testimony.image} alt={testimony.name} />
               <div className="ml-3">
                 <p className="text-sm font-medium text-skin-inverted-muted">{testimony.name}</p>
                 <p className="text-xs leading-4 text-skin-muted">{`@${testimony.username}`}</p>
@@ -179,10 +179,10 @@ export function Testimonies ({ target }) {
             </div>
           ))}
         </div>
-        <div className="animate-scroll-slow flex flex-nowrap items-center space-x-20">
+        <div className="flex items-center space-x-20 animate-scroll-slow whitespace-nowrap">
           {testimonies.map((testimony, index) => (
             <div key={index} className="inline-flex items-center w-auto px-3 py-1.5 rounded-md">
-              <img className="inline-block h-8 w-8 rounded-full object-cover" src={testimony.image} alt={testimony.name} />
+              <img className="inline-block object-cover w-8 h-8 rounded-full" src={testimony.image} alt={testimony.name} />
               <div className="ml-3">
                 <p className="text-sm font-medium text-skin-inverted-muted">{testimony.name}</p>
                 <p className="text-xs leading-4 text-skin-muted">{`@${testimony.username}`}</p>

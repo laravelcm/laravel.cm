@@ -2,15 +2,15 @@
 
 @section('body')
 
-    <x-container class="max-w-7xl mx-auto px-4">
+    <x-container class="px-4 mx-auto max-w-7xl">
         <div class="relative py-10 lg:grid lg:grid-cols-12 lg:gap-8">
             <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:self-center">
-                <a href="{{ route('discussions.index') }}" class="inline-flex items-center text-white bg-green-700 rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base font-sans">
+                <a href="{{ route('discussions.index') }}" class="inline-flex items-center p-1 pr-2 font-sans text-white bg-green-700 rounded-full sm:text-base lg:text-sm xl:text-base">
                     <span class="hidden sm:block px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-flag-green rounded-full">Discussions</span>
                     <span class="ml-4 text-sm">Nouvelle section disponible sur le site</span>
-                    <x-heroicon-s-chevron-right class="ml-2 w-5 h-5 text-white" />
+                    <x-heroicon-s-chevron-right class="w-5 h-5 ml-2 text-white" />
                 </a>
-                <h1 class="mt-4 text-4xl tracking-tight font-heading font-medium text-skin-primary sm:mt-5 sm:leading-none lg:mt-8 lg:text-5xl">
+                <h1 class="mt-4 text-4xl font-medium tracking-tight font-heading text-skin-primary sm:mt-5 sm:leading-none lg:mt-8 lg:text-5xl">
                     Laravel Cameroun
                 </h1>
                 <p class="mt-3 text-base text-skin-base sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
@@ -19,48 +19,48 @@
                 <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                     <div class="mt-3 sm:flex">
                         @auth
-                            <x-button :link="route('forum.new')" class="w-full sm:w-auto text-base font-normal">
+                            <x-button :link="route('forum.new')" class="w-full text-base font-normal sm:w-auto">
                                 Lancer un thread
                             </x-button>
                         @else
-                            <x-button :link="route('login')" class="w-full sm:w-auto text-base font-normal">
+                            <x-button :link="route('login')" class="w-full text-base font-normal sm:w-auto">
                                 Rejoindre la communauté
                             </x-button>
                         @endauth
-                        <x-default-button :link="route('forum.index')" class="mt-3 w-full sm:mt-0 sm:ml-3 sm:shrink-0 sm:inline-flex sm:items-center sm:w-auto text-base font-normal">
+                        <x-default-button :link="route('forum.index')" class="w-full mt-3 text-base font-normal sm:mt-0 sm:ml-3 sm:shrink-0 sm:inline-flex sm:items-center sm:w-auto">
                             Visiter le Forum
                         </x-default-button>
                     </div>
                 </div>
             </div>
-            <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
+            <div class="relative mt-12 sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
                 <img src="{{ asset('/images/illustration.svg') }}" alt="Illustration" />
             </div>
         </div>
 
         <div class="divide-y divide-skin-base">
             <div class="py-10 lg:py-12 xl:pb-14">
-                <p class="text-center text-base uppercase tracking-tight text-skin-base tracking-wider leading-6 font-sans">
+                <p class="font-sans text-base leading-6 tracking-tight text-center uppercase text-skin-base">
                     Nous travaillons avec d’autres communautés et startups
                 </p>
-                <div class="mt-8 grid sm:grid-cols-2 gap-y-8 lg:grid-cols-4 lg:mt-12">
-                    <div class="col-span-1 flex justify-center">
+                <div class="grid mt-8 sm:grid-cols-2 gap-y-8 lg:grid-cols-4 lg:mt-12">
+                    <div class="flex justify-center col-span-1">
                         <a href="https://cosna-afrique.com" target="_blank" class="flex items-center">
-                            <x-icon.cosna class="h-14 w-auto"/>
+                            <x-icon.cosna class="w-auto h-14"/>
                         </a>
                     </div>
-                    <div class="col-span-1 flex justify-center">
+                    <div class="flex justify-center col-span-1">
                         <a href="https://laravelshopper.io" target="_blank" class="flex items-center">
                             <img class="h-12 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
                             <img class="h-12 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
                         </a>
                     </div>
-                    <div class="col-span-1 flex justify-center">
+                    <div class="flex justify-center col-span-1">
                         <a href="https://gdg.community.dev/gdg-douala" target="_blank" class="flex items-center">
                             <x-icon.gdg class="h-8 text-skin-inverted" />
                         </a>
                     </div>
-                    <div class="col-span-1 flex justify-center">
+                    <div class="flex justify-center col-span-1">
                         <a href="https://twitter.com/DarkCodeCompany" target="_blank" class="flex items-center">
                             <x-icon.darkcode class="h-8 text-skin-inverted" />
                         </a>
@@ -76,7 +76,7 @@
                     title="Articles Populaires"
                     content="Découvrez les articles les plus appréciés et partagés par les membres de la communauté"
                 />
-                <div class="mt-8 grid gap-10 max-w-xl mx-auto lg:grid-rows-3 lg:grid-flow-col lg:grid-cols-2 lg:mt-10 lg:gap-x-8 lg:max-w-none">
+                <div class="grid max-w-xl gap-10 mx-auto mt-8 lg:grid-rows-3 lg:grid-flow-col lg:grid-cols-2 lg:mt-10 lg:gap-x-8 lg:max-w-none">
                     @foreach($latestArticles as $article)
                         @if($loop->first)
                             <div class="lg:row-span-3">
@@ -106,7 +106,7 @@
                         title="On apprend aussi en aidant les autres"
                         content="En rejoignant la communauté, vous pouvez consulter les dernières questions non résolues et apporter votre pierre à l’édifice."
                     />
-                    <div class="mt-10 grid gap-10 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-12 lg:mt-12">
+                    <div class="grid gap-10 mt-10 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-12 lg:mt-12">
                         @foreach($latestThreads as $thread)
                             <div>
                                 <div class="flex items-center font-sans text-skin-base">
@@ -120,16 +120,16 @@
                                         <time-ago time="{{ $thread->created_at->getTimestamp() }}"/>
                                     </span>
                                 </div>
-                                <a href="{{ route('forum.show', $thread) }}" class="mt-3 block">
-                                    <p class="text-xl font-medium text-skin-inverted font-sans">
+                                <a href="{{ route('forum.show', $thread) }}" class="block mt-3">
+                                    <p class="font-sans text-xl font-medium text-skin-inverted">
                                         {{ $thread->subject() }}
                                     </p>
-                                    <p class="mt-3 text-base text-skin-base font-normal">
+                                    <p class="mt-3 text-base font-normal text-skin-base">
                                         {!! $thread->excerpt() !!}
                                     </p>
                                 </a>
                                 <div class="mt-3">
-                                    <a href="{{ route('forum.show', $thread) }}" class="text-base font-medium text-green-600 hover:text-green-500 hover:underline font-normal">
+                                    <a href="{{ route('forum.show', $thread) }}" class="text-base font-normal font-medium text-green-600 hover:text-green-500 hover:underline">
                                         Afficher la question
                                     </a>
                                 </div>
@@ -154,21 +154,21 @@
                     content="Dans la communauté on partage aussi des sujets de discussions dans divers domaines, pour nous édifier tous ensemble. Rejoins nous en participant"
                 />
 
-                <div class="mt-8 grid gap-8 md:grid-cols-3 md:gap-x-10 lg:mt-12">
+                <div class="grid gap-8 mt-8 md:grid-cols-3 md:gap-x-10 lg:mt-12">
                     @foreach($latestDiscussions as $discussion)
                         <div>
-                            <div class="flex items-center text-sm font-sans text-skin-muted">
+                            <div class="flex items-center font-sans text-sm text-skin-muted">
                                 <a class="shrink-0" href="/user/{{ $discussion->author->username }}">
-                                    <img class="h-6 w-6 rounded-full" src="{{ $discussion->author->profile_photo_url }}" alt="{{ $discussion->author->name }}">
+                                    <img class="w-6 h-6 rounded-full" src="{{ $discussion->author->profile_photo_url }}" alt="{{ $discussion->author->name }}">
                                 </a>
-                                <span class="ml-2 pr-1">Posté par</span>
+                                <span class="pr-1 ml-2">Posté par</span>
                                 <div class="flex items-center space-x-1">
                                     <a href="{{ route('profile', $discussion->author->username) }}" class="text-skin-inverted hover:underline">{{ $discussion->author->name }}</a>
                                     <span aria-hidden="true">&middot;</span>
                                     <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
                                 </div>
                             </div>
-                            <a href="{{ route('discussions.show', $discussion) }}" class="mt-2 block">
+                            <a href="{{ route('discussions.show', $discussion) }}" class="block mt-2">
                                 <p class="text-xl font-semibold text-skin-inverted">{{ $discussion->title }}</p>
                                 <p class="mt-3 text-base text-skin-base">{!! $discussion->excerpt() !!}</p>
                             </a>
@@ -192,47 +192,47 @@
     </x-container>
 
     <div class="relative bg-black">
-        <div class="h-80 w-full absolute bottom-0 xl:inset-0 xl:h-full">
-            <div class="h-full w-full xl:grid xl:grid-cols-2">
+        <div class="absolute bottom-0 w-full h-80 xl:inset-0 xl:h-full">
+            <div class="w-full h-full xl:grid xl:grid-cols-2">
                 <div class="h-full xl:relative xl:col-start-2">
-                    <img class="h-full w-full object-cover opacity-25 xl:absolute xl:inset-0" src="{{ asset('/images/developer.jpg') }}" alt="Developer working on laptop"/>
+                    <img class="object-cover w-full h-full opacity-25 xl:absolute xl:inset-0" src="{{ asset('/images/developer.jpg') }}" alt="Developer working on laptop"/>
                     <div aria-hidden="true" class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r"></div>
                 </div>
             </div>
         </div>
-        <div class="max-w-4xl mx-auto px-4 lg:max-w-7xl xl:grid xl:grid-cols-2 xl:grid-flow-col-dense xl:gap-x-8">
+        <div class="max-w-4xl px-4 mx-auto lg:max-w-7xl xl:grid xl:grid-cols-2 xl:grid-flow-col-dense xl:gap-x-8">
             <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
-                <h2 class="text-sm font-semibold text-green-300 tracking-wide uppercase font-heading">{{ __('A propos') }}</h2>
+                <h2 class="text-sm font-semibold tracking-wide text-green-300 uppercase font-heading">{{ __('A propos') }}</h2>
                 <p class="mt-3 text-3xl font-extrabold text-white">{{ __('Nous construisons une communauté Open Source d\'apprenants et d\'enseignants') }}</p>
                 <p class="mt-5 text-lg text-gray-400">
-                    <span class="text-white"><span class="text-skin-primary italic">"</span>{{ __('Tout le monde enseigne, tout le monde apprend') }}<span class="text-skin-primary italic">"</span></span>.
+                    <span class="text-white"><span class="italic text-skin-primary">"</span>{{ __('Tout le monde enseigne, tout le monde apprend') }}<span class="italic text-skin-primary">"</span></span>.
                     {{ __('Tel est l\'esprit qui est derrière la communauté. Une communauté qui se veut grandissante et qui donne la possibilité à tout le monde de partager ses connaissances et d\'apprendre.') }}
                 </p>
-                <div class="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
+                <div class="grid grid-cols-1 mt-12 gap-y-12 gap-x-6 sm:grid-cols-2">
                     <p>
-                        <span class="block text-2xl font-heading text-white">600+</span>
-                        <span class="mt-1 block text-base text-gray-400">
+                        <span class="block text-2xl text-white font-heading">600+</span>
+                        <span class="block mt-1 text-base text-gray-400">
                             <span class="font-medium text-white">{{ __('Membres') }}</span> {{ __('qui ont rejoint les différents groupes de la communauté') }}
                         </span>
                     </p>
 
                     <p>
-                        <span class="block text-2xl font-heading text-white">50K+</span>
-                        <span class="mt-1 block text-base text-gray-400">
+                        <span class="block text-2xl text-white font-heading">50K+</span>
+                        <span class="block mt-1 text-base text-gray-400">
                             <span class="font-medium text-white">{{ __('Développeurs PHP & Laravel') }}</span> {{ __('dans l’ensemble du territoire national.') }}
                         </span>
                     </p>
 
                     <p>
-                        <span class="block text-2xl font-heading text-white">9%</span>
-                        <span class="mt-1 block text-base text-gray-400">
+                        <span class="block text-2xl text-white font-heading">9%</span>
+                        <span class="block mt-1 text-base text-gray-400">
                             <span class="font-medium text-white">{{ __('Taux de participation aux événements') }}</span> {{ __('car la communauté est encore très jeune.') }}
                         </span>
                     </p>
 
                     <p>
-                        <span class="block text-2xl font-heading text-white">10K+</span>
-                        <span class="mt-1 block text-base text-gray-400">
+                        <span class="block text-2xl text-white font-heading">10K+</span>
+                        <span class="block mt-1 text-base text-gray-400">
                             <span class="font-medium text-white">stars</span> {{ __('sur les projets réalisés par les développeurs Camerounais sur Github.') }}
                         </span>
                     </p>
@@ -241,10 +241,156 @@
         </div>
     </div>
 
-    <div class="relative py-12 overflow-hidden sm:py-16 lg:py-20">
-        <testimonies-area />
-        <div class="relative mx-auto max-w-7xl px-4">
-
+    <div class="relative pt-12 overflow-hidden sm:pt-16 lg:pt-20">
+        <div class="z-0 hidden overflow-hidden opacity-50 pointer-events-none lg:block">
+            <testimonies-area />
+        </div>
+        <div class="relative z-50 pb-12 lg:-mt-16 bg-gradient-to-t from-transparent via-skin-card to-skin-body sm:pb-16 lg:pb-20">
+            <div class="px-4 mx-auto max-w-7xl">
+                <div class="lg:text-center">
+                    <div class="inline-flex items-center space-x-2 px-2 py-0.5 rounded-md bg-yellow-100 text-yellow-600">
+                        <svg class="w-5 h-5 t" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M23 9.04c0-1.249-1.051-2.27-2.335-2.27-1.285 0-2.336 1.021-2.336 2.27 0 .703.35 1.36.888 1.77l-3.083 2.29-2.99-3.857c.724-.386 1.215-1.135 1.215-1.975C14.359 6.021 13.308 5 12.023 5 10.74 5 9.688 6.021 9.688 7.27c0 .839.467 1.588 1.191 1.974L7.633 13.1 4.76 10.832c.537-.408.91-1.066.91-1.793 0-1.248-1.05-2.269-2.335-2.269C2.051 6.77 1 7.791 1 9.04c0 1.111.817 2.042 1.915 2.223l1.121 5.696v2.36c0 .386.304.681.7.681h14.527c.397 0 .7-.295.7-.68v-2.36l1.122-5.697C22.183 11.082 23 10.151 23 9.04zm-2.335-.908c.513 0 .934.408.934.907 0 .5-.42.908-.934.908s-.935-.408-.935-.908c0-.499.42-.907.934-.907zM12 6.339c.514 0 .934.408.934.908 0 .499-.42.907-.934.907s-.934-.408-.934-.907c0-.5.42-.908.934-.908zm-4.18 8.396a.727.727 0 0 0 .467-.25l3.69-4.47 3.456 4.448c.117.136.28.25.467.272a.683.683 0 0 0 .514-.136l3.036-2.247-.77 3.858H5.32l-.747-3.79 2.733 2.156c.14.114.327.182.514.16zM2.4 9.04c0-.499.42-.907.934-.907s.935.408.935.907c0 .5-.42.908-.935.908-.513 0-.934-.408-.934-.908zm3.036 9.6v-1.067h13.126v1.066H5.437z" />
+                        </svg>
+                        <h2 class="text-lg font-semibold">Premium</h2>
+                    </div>
+                    <h4 class="mt-2 text-3xl font-bold leading-8 tracking-tight text-skin-inverted sm:text-4xl font-heading">Accès illimité avec un abonnement premium</h4>
+                    <p class="max-w-2xl mt-4 text-xl text-skin-base lg:mx-auto">
+                        Devenir premium c'est soutenir la communauté, la nouveaux contenus chaque semaine et accéder à du contenu exclusif pour apprendre et progresser.
+                    </p>
+                </div>
+                <div class="mt-16 space-y-12 lg:mt-20 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:space-y-0 lg:max-w-4xl lg:mx-auto">
+                    <div class="relative flex flex-col p-8 border shadow-sm rounded-2xl border-skin-base backdrop-blur-md">
+                        <div class="flex-1">
+                          <h3 class="text-xl font-semibold text-skin-inverted">Le Rookie</h3>
+                          <p class="flex items-baseline mt-4 text-skin-inverted">
+                            <span class="text-4xl font-bold tracking-tight" x-data="{ price: 0 }" x-init="price = formatMoney(2000)">
+                                <span x-text="price"></span>
+                            </span>
+                            <span class="ml-1 text-xl font-semibold">/mois</span>
+                          </p>
+              
+                          <!-- Feature list -->
+                          <ul role="list" class="mt-6 space-y-6">
+                              <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">Voir les vidéos premium</span>
+                              </li>
+                            
+                              <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">Ecouter les Podcasts premium</span>
+                              </li>
+                            
+                              <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">Poster des tutoriels video</span>
+                              </li>
+                            
+                              <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">Badge Premium sur le profil</span>
+                              </li>
+                            
+                              <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">Invitation sur le Github du projet</span>
+                              </li>
+                          </ul>
+                        </div>
+              
+                        <x-button link="#" class="w-full mt-10">Souscire Maintenant</x-button>
+                    </div>
+                    <div class="relative flex flex-col p-8 border shadow-sm rounded-2xl border-skin-base backdrop-blur-md">
+                        <div class="flex-1">
+                          <h3 class="text-xl font-semibold text-skin-inverted">Le Pro</h3>
+                          <p class="inline-flex items-center absolute top-0 -translate-y-1/2 transform rounded-full bg-flag-yellow py-1.5 px-4 text-sm font-semibold text-yellow-900">
+                            <svg class="w-5 h-5 mr-2.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                            </svg>                              
+                            Populaire
+                        </p>
+                        <p class="flex items-baseline mt-4 text-skin-inverted">
+                            <span class="text-4xl font-bold tracking-tight" x-data="{ price: 0 }" x-init="price = formatMoney(5000)">
+                                <span x-text="price"></span>
+                            </span>
+                            <span class="ml-1 text-xl font-semibold">/mois</span>
+                        </p>
+              
+                          <!-- Feature list -->
+                        <ul role="list" class="mt-6 space-y-6">
+                            <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">Voir les vidéos premium</span>
+                            </li>
+                            
+                             <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">Ecouter les Podcasts premium</span>
+                              </li>
+                            
+                              <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">Poster des tutoriels video</span>
+                              </li>
+                            
+                              <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">Acces code source des tutoriels</span>
+                              </li>
+                            
+                              <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">Invitation sur le Github du projet</span>
+                              </li>
+                            
+                              <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">Invitation channel privee sur Discord</span>
+                              </li>
+                            
+                              <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">E-Books Laravel, Design UI/UX, etc</span>
+                              </li>
+                            
+                              <li class="flex">
+                                <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                                <span class="ml-3 text-skin-base">2 heures (2 seances) de consultation menseul gratuite</span>
+                              </li>
+                          </ul>
+                        </div>
+              
+                        <x-button link="#" class="w-full mt-10">Souscire Maintenant</x-button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
