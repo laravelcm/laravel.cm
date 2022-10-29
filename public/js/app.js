@@ -3109,6 +3109,29 @@ async function updateReply(id, body) {
 
 /***/ }),
 
+/***/ "./resources/js/api/premium.js":
+/*!*************************************!*\
+  !*** ./resources/js/api/premium.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "findPremiumUsers": () => (/* binding */ findPremiumUsers)
+/* harmony export */ });
+/* harmony import */ var _helpers_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @helpers/api.js */ "./resources/js/helpers/api.js");
+
+/**
+ * @return {Promise<PremiumUserResource[]>}
+ */
+
+async function findPremiumUsers() {
+  return (0,_helpers_api_js__WEBPACK_IMPORTED_MODULE_0__.jsonFetch)(`/api/premium-users`);
+}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -3127,6 +3150,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _editor__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_editor__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _scrollspy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./scrollspy */ "./resources/js/scrollspy.js");
 /* harmony import */ var _scrollspy__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_scrollspy__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _helpers_string__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./helpers/string */ "./resources/js/helpers/string.js");
+
 
 
 
@@ -4125,6 +4150,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var preact__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! preact */ "./node_modules/preact/dist/preact.module.js");
 /* harmony import */ var lodash_number__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/number */ "./node_modules/lodash/number.js");
 /* harmony import */ var lodash_number__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_number__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var preact_hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! preact/hooks */ "./node_modules/preact/hooks/dist/hooks.module.js");
+/* harmony import */ var _helpers_hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @helpers/hooks */ "./resources/js/helpers/hooks.js");
+/* harmony import */ var _api_premium__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @api/premium */ "./resources/js/api/premium.js");
+
+
+
 
 
 
@@ -4134,7 +4165,7 @@ function BackgroundIllustration(props) {
     viewBox: "0 0 1026 1026",
     fill: "none",
     "aria-hidden": "true",
-    className: "absolute inset-0 h-full w-full animate-spin-slow"
+    className: "absolute inset-0 w-full h-full animate-spin-slow"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("path", {
     d: "M1025 513c0 282.77-229.23 512-512 512S1 795.77 1 513 230.23 1 513 1s512 229.23 512 512Z",
     stroke: "#D4D4D4",
@@ -4160,7 +4191,7 @@ function BackgroundIllustration(props) {
     viewBox: "0 0 1026 1026",
     fill: "none",
     "aria-hidden": "true",
-    className: "absolute inset-0 h-full w-full animate-spin-reverse-slower"
+    className: "absolute inset-0 w-full h-full animate-spin-reverse-slower"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("path", {
     d: "M913 513c0 220.914-179.086 400-400 400S113 733.914 113 513s179.086-400 400-400 400 179.086 400 400Z",
     stroke: "#D4D4D4",
@@ -4187,8 +4218,29 @@ function BackgroundIllustration(props) {
 
 function Testimonies(_ref) {
   let {
-    target
+    target,
+    parent
   } = _ref;
+  const [state, setState] = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useState)({
+    users: [] // Liste des utilisateurs
+
+  });
+  const isVisible = (0,_helpers_hooks__WEBPACK_IMPORTED_MODULE_3__.useVisibility)(parent);
+  const users = (0,preact_hooks__WEBPACK_IMPORTED_MODULE_2__.useMemo)(() => {
+    if (state.users === null) {
+      return null;
+    }
+
+    return state.users;
+  }, [state.users]);
+  (0,_helpers_hooks__WEBPACK_IMPORTED_MODULE_3__.useAsyncEffect)(async () => {
+    if (isVisible) {
+      const users = await (0,_api_premium__WEBPACK_IMPORTED_MODULE_4__.findPremiumUsers)();
+      setState({
+        users
+      });
+    }
+  }, [target, isVisible]);
   const testimonies = [{
     name: 'John Doe',
     username: 'johndoe',
@@ -4257,53 +4309,24 @@ function Testimonies(_ref) {
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(preact__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(BackgroundIllustration, {
     className: "absolute left-1/2 top-4 h-[1026px] w-[1026px] -translate-x-1/3 stroke-gray-300/70 [mask-image:linear-gradient(to_bottom,white_20%,transparent_75%)] sm:top-16 sm:-translate-x-1/2 lg:-top-16 lg:ml-12 xl:-top-14 xl:ml-0"
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "space-y-5"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "animate-scroll-slow flex items-center"
-  }, testimonies.map((testimony, index) => (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    className: "space-y-6 pointer-events-none select-none"
+  }, users ? users.map((userGroup, index) => (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     key: index,
-    className: "inline-flex items-center w-full px-3 py-1.5 rounded-md"
+    className: "flex items-center space-x-20 animate-scroll-slow whitespace-nowrap"
+  }, userGroup.map((user, idx) => (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
+    key: idx,
+    className: "inline-flex items-center w-full px-3 py-1.5 rounded-md mx-4"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
-    className: "inline-block h-8 w-8 rounded-full object-cover",
-    src: testimony.image,
-    alt: testimony.name
+    className: "inline-block object-cover w-8 h-8 rounded-full",
+    src: user.image,
+    alt: user.name
   }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
     className: "ml-3"
   }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "text-sm font-medium text-skin-inverted-muted"
-  }, testimony.name), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
+  }, user.name), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
     className: "text-xs leading-4 text-skin-muted"
-  }, `@${testimony.username}`))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "animate-scroll-slow flex flex-nowrap items-center space-x-20"
-  }, testimonies.map((testimony, index) => (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    key: index,
-    className: "inline-flex items-center w-auto px-3 py-1.5 rounded-md"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
-    className: "inline-block h-8 w-8 rounded-full object-cover",
-    src: testimony.image,
-    alt: testimony.name
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "ml-3"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
-    className: "text-sm font-medium text-skin-inverted-muted"
-  }, testimony.name), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
-    className: "text-xs leading-4 text-skin-muted"
-  }, `@${testimony.username}`))))), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "animate-scroll-slow flex flex-nowrap items-center space-x-20"
-  }, testimonies.map((testimony, index) => (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    key: index,
-    className: "inline-flex items-center w-auto px-3 py-1.5 rounded-md"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("img", {
-    className: "inline-block h-8 w-8 rounded-full object-cover",
-    src: testimony.image,
-    alt: testimony.name
-  }), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("div", {
-    className: "ml-3"
-  }, (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
-    className: "text-sm font-medium text-skin-inverted-muted"
-  }, testimony.name), (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)("p", {
-    className: "text-xs leading-4 text-skin-muted"
-  }, `@${testimony.username}`)))))));
+  }, `@${user.username}`)))))) : null));
 }
 
 /***/ }),
@@ -5812,6 +5835,69 @@ function toVdom(element, nodeName) {
 
   const wrappedChildren = nodeName ? (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(Slot, null, children) : children;
   return (0,preact__WEBPACK_IMPORTED_MODULE_0__.h)(nodeName || element.nodeName.toLowerCase(), props, wrappedChildren);
+}
+
+/***/ }),
+
+/***/ "./resources/js/helpers/string.js":
+/*!****************************************!*\
+  !*** ./resources/js/helpers/string.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "nl2br": () => (/* binding */ nl2br),
+/* harmony export */   "formatMoney": () => (/* binding */ formatMoney)
+/* harmony export */ });
+/**
+ * Transforme la première d'une chaîne de caractère en majuscule
+ *
+ * @param string
+ */
+window.capitalize = string => string.replace(/^\w/, c => c.toUpperCase());
+/**
+ * Créer une chaîne de cas de serpent
+ *
+ * @param string
+ * @returns {*}
+ */
+
+
+window.snakeCase = string => string && string.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g).map(s => s.toLowerCase()).join('_');
+/**
+ * Injecte la fonction dans le contexte global
+ * 
+ * @param {number} number 
+ * @returns 
+ */
+
+
+window.formatMoney = number => formatMoney(number);
+/**
+ * Ajoute des sauts de ligne automatiquement sur une chaine
+ *
+ * @param {string} str
+ * @return {string}
+ */
+
+
+function nl2br(str) {
+  return str.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br>$2');
+}
+/**
+ * Formate un nombre
+ *
+ * @param {number} amount
+ * @return {string}
+ */
+
+function formatMoney(amount) {
+  return new Intl.NumberFormat('fr-FR', {
+    style: 'currency',
+    currency: 'XAF'
+  }).format(amount);
 }
 
 /***/ }),

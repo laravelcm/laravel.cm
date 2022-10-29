@@ -1,4 +1,8 @@
 import { random } from 'lodash/number'
+import { useMemo, useState } from 'preact/hooks'
+
+import { useVisibility, useAsyncEffect } from '@helpers/hooks'
+import { findPremiumUsers } from '@api/premium'
 
 function BackgroundIllustration(props) {
   let id = random()
@@ -69,7 +73,26 @@ function BackgroundIllustration(props) {
   )
 }
 
-export function Testimonies ({ target }) {
+export function Testimonies ({ target, parent }) {
+  const [state, setState] = useState({
+    users: [], // Liste des utilisateurs
+  })
+
+  const isVisible = useVisibility(parent)
+  const users = useMemo(() => {
+    if (state.users === null) {
+      return null
+    }
+    return state.users
+  }, [state.users])
+  
+  useAsyncEffect(async () => {
+    if (isVisible) {
+      const users = await findPremiumUsers()
+      setState({ users })
+    }
+  }, [target, isVisible])
+
   const testimonies = [
     {
       name: 'John Doe',
@@ -157,39 +180,19 @@ export function Testimonies ({ target }) {
     <>
       <BackgroundIllustration className="absolute left-1/2 top-4 h-[1026px] w-[1026px] -translate-x-1/3 stroke-gray-300/70 [mask-image:linear-gradient(to_bottom,white_20%,transparent_75%)] sm:top-16 sm:-translate-x-1/2 lg:-top-16 lg:ml-12 xl:-top-14 xl:ml-0" />
       <div className="space-y-6 pointer-events-none select-none">
-        <div className="flex items-center space-x-20 animate-scroll-slow whitespace-nowrap">
-          {testimonies.map((testimony, index) => (
-            <div key={index} className="inline-flex items-center w-full px-3 py-1.5 rounded-md mx-4">
-              <img className="inline-block object-cover w-8 h-8 rounded-full" src={testimony.image} alt={testimony.name} />
-              <div className="ml-3">
-                <p className="text-sm font-medium text-skin-inverted-muted">{testimony.name}</p>
-                <p className="text-xs leading-4 text-skin-muted">{`@${testimony.username}`}</p>
+        {users ? users.map((userGroup, index) => (
+          <div key={index} className="flex items-center space-x-20 animate-scroll-slow whitespace-nowrap">
+            {userGroup.map((user, idx) => (
+              <div key={idx} className="inline-flex items-center w-full px-3 py-1.5 rounded-md mx-4">
+                <img className="inline-block object-cover w-8 h-8 rounded-full" src={user.image} alt={user.name} />
+                <div className="ml-3">
+                  <p className="text-sm font-medium text-skin-inverted-muted">{user.name}</p>
+                  <p className="text-xs leading-4 text-skin-muted">{`@${user.username}`}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex items-center space-x-20 animate-scroll-slow whitespace-nowrap">
-          {testimonies.map((testimony, index) => (
-            <div key={index} className="inline-flex items-center w-auto px-3 py-1.5 rounded-md">
-              <img className="inline-block object-cover w-8 h-8 rounded-full" src={testimony.image} alt={testimony.name} />
-              <div className="ml-3">
-                <p className="text-sm font-medium text-skin-inverted-muted">{testimony.name}</p>
-                <p className="text-xs leading-4 text-skin-muted">{`@${testimony.username}`}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex items-center space-x-20 animate-scroll-slow whitespace-nowrap">
-          {testimonies.map((testimony, index) => (
-            <div key={index} className="inline-flex items-center w-auto px-3 py-1.5 rounded-md">
-              <img className="inline-block object-cover w-8 h-8 rounded-full" src={testimony.image} alt={testimony.name} />
-              <div className="ml-3">
-                <p className="text-sm font-medium text-skin-inverted-muted">{testimony.name}</p>
-                <p className="text-xs leading-4 text-skin-muted">{`@${testimony.username}`}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )) : null}
       </div>
     </>
 
