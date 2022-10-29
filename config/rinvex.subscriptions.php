@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
 
     // Manage autoload migrations
-    'autoload_migrations' => true,
+    'autoload_migrations' => false,
 
     // Subscriptions Database Tables
     'tables' => [
