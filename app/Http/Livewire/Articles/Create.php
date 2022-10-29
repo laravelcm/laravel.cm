@@ -11,7 +11,6 @@ use App\Traits\WithArticleAttributes;
 use App\Traits\WithTagsAssociation;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 

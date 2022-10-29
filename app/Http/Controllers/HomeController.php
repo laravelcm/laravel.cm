@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Discussion;
+use App\Models\Premium\Plan;
 use App\Models\Thread;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -14,6 +16,12 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $plans = Cache::remember('plans', now()->addYear(), function () {
+            return Plan::with('features')
+                ->developer()
+                ->get();
+        });
+
         $latestArticles = Cache::remember('latestArticles', now()->addHour(), function () {
             return Article::with('tags')
                 ->published()
@@ -48,7 +56,12 @@ class HomeController extends Controller
             ->twitterSite('laravelcm')
             ->withUrl();
 
-        return view('home', compact('latestArticles', 'latestThreads', 'latestDiscussions'));
+        return view('home', compact(
+            'latestArticles', 
+            'latestThreads', 
+            'latestDiscussions',
+            'plans'
+        ));
     }
 
     public function slack(Request $request)

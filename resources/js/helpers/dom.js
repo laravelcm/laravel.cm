@@ -1,4 +1,4 @@
-import htm from "htm/mini";
+import htm from 'htm/mini';
 
 /**
  * Trouve la position de l'élément par rapport au haut de la page de manière recursive

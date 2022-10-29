@@ -25,7 +25,7 @@
     @googlefonts
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @include('layouts._favicons')
-    @livewireStyles
+    <livewire:styles />
 
     <script defer>
         window.csrfToken = {!! json_encode(['csrfToken' => csrf_token()]) !!};
@@ -38,7 +38,7 @@
     </script>
 
     <!-- Scripts -->
-    @livewireScripts
+    <livewire:scripts />
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     @include('layouts._fathom')

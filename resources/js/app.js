@@ -7,6 +7,7 @@ import './elements'
 import './helpers'
 import './editor'
 import './scrollspy'
+import './helpers/string'
 
 registerHeader()
 
