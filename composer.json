@@ -23,6 +23,7 @@
     "laravel-notification-channels/twitter": "^6.0",
     "laravel/fortify": "^1.13",
     "laravel/framework": "^9.24",
+    "laravel/sanctum": "^3.0",
     "laravel/slack-notification-channel": "^2.4",
     "laravel/socialite": "^5.2",
     "laravel/tinker": "^2.5",

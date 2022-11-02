@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\HasApiTokens;
 use QCod\Gamify\Gamify;
 use Rinvex\Subscriptions\Traits\HasPlanSubscriptions;
 use Spatie\MediaLibrary\HasMedia;
@@ -28,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     use HasFactory;
     use HasPlanSubscriptions;
     use HasProfilePhoto;
+    use HasApiTokens;
     use HasRoles;
     use InteractsWithMedia;
     use Notifiable;
