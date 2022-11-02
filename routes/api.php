@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\ReplyController;
 use App\Http\Controllers\Api\PremiumController;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,12 @@ Route::post('like/{id}', [ReplyController::class, 'like']);
 Route::delete('replies/{id}', [ReplyController::class, 'delete']);
 
 Route::get('premium-users', [PremiumController::class, 'users']);
+
+
+/** Authentication Routes */
+Route::post('login', [LoginController::class, 'login']);
+
+/* Authenticated Routes */
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', [LoginController::class, 'logout']);
+});
