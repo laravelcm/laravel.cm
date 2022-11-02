@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\ReplyController;
 use App\Http\Controllers\Api\PremiumController;
+use App\Http\Controllers\Api\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,10 @@ Route::post('login', [LoginController::class, 'login']);
 /* Authenticated Routes */
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [LoginController::class, 'logout']);
+
+    /** User Profile Api */
+    Route::prefix('user')->group(function () {
+        Route::get('me', [ProfileController::class, 'me']);
+        Route::get('roles', [ProfileController::class, 'roles']);
+    });
 });
