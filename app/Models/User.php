@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasProfilePhoto;
+use App\Traits\HasUsername;
 use App\Traits\Reacts;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
@@ -34,6 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     use InteractsWithMedia;
     use Notifiable;
     use Reacts;
+    use HasUsername;
 
     /**
      * The attributes that are mass assignable.
@@ -149,17 +151,12 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
             ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png', 'image/gif']);
     }
 
-    public static function findByUsername(string $username): self
-    {
-        return static::where('username', $username)->firstOrFail();
-    }
-
     public static function findByEmailAddress(string $emailAddress): self
     {
         return static::where('email', $emailAddress)->firstOrFail();
     }
 
-    public static function findOrCreateSocialUserProvider($socialUser, string $provider): self
+    public static function findOrCreateSocialUserProvider($socialUser, string $provider, string $role = 'user'): self
     {
         $socialEmail = $socialUser->email ?? "{$socialUser->id}@{$provider}.com";
 
@@ -176,7 +173,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
                 'avatar_type' => $provider,
             ]);
 
-            $user->assignRole('user');
+            $user->assignRole($role);
         }
 
         return $user;
