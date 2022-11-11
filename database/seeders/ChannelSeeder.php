@@ -12,7 +12,7 @@ class ChannelSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $authentification = Channel::create(['name' => 'Authentification', 'slug' => 'authentification', 'color' => '#31c48d']);
         $authentification->items()->createMany([
