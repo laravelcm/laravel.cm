@@ -12,7 +12,7 @@ class TagSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $this->createTag('AlpineJS', 'alpinejs', ['post', 'tutorial']);
         $this->createTag('Laravel', 'laravel', ['post', 'tutorial']);

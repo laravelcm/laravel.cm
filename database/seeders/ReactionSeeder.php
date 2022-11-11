@@ -12,7 +12,7 @@ class ReactionSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         Reaction::createFromName('clap');
         Reaction::createFromName('fire');

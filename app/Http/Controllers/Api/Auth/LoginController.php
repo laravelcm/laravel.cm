@@ -16,6 +16,7 @@ class LoginController extends Controller
 {
     public function login(LoginRequest $request): JsonResponse
     {
+        /** @var User $user */
         $user = User::query()
             ->with(['roles', 'permissions'])
             ->where('email', strtolower($request->input('email')))
@@ -27,7 +28,7 @@ class LoginController extends Controller
         ];
 
         if (empty($user) || !Auth::attempt($sanitized)) {
-            throw  ValidationException::withMessages([
+            throw ValidationException::withMessages([
                 'email' => 'Les informations d\'identification fournies sont incorrectes.',
             ]);
         }

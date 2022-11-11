@@ -13,7 +13,7 @@ class DeveloperPremiumPlanSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $rookiePlan = Plan::create([
             'name' => 'Le Rookie',
@@ -36,7 +36,7 @@ class DeveloperPremiumPlanSeeder extends Seeder
             new Feature(['name' => 'Accès au code source des tutoriels', 'value' => 1, 'sort_order' => 5]),
             new Feature(['name' => 'Invitation sur le Github du projet', 'value' => 1, 'sort_order' => 6]),
         ]);
-        
+
         $proPlan = Plan::create([
             'name' => 'Le Pro',
             'description' => 'Le Pro plan',
