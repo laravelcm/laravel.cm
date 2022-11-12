@@ -17,14 +17,14 @@ class VerifyEmailController extends Controller
         $user = User::find($request->route('id'));
 
         if ($user->hasVerifiedEmail()) {
-            return redirect(env('FRONTEND_APP_URL') . '/email/verify/already-success');
+            return redirect(config('lcm.spa_url') . '/email/verify/already');
         }
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
 
-        return redirect(env('FRONTEND_APP_URL') . '/email/verify/success');
+        return redirect(config('lcm.spa_url') . '/email/verify/success');
     }
 
     public function resend(Request $request): JsonResponse

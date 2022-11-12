@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Auth\VerifyEmailController;
 use App\Http\Controllers\Api\ReplyController;
 use App\Http\Controllers\Api\PremiumController;
@@ -36,6 +38,10 @@ Route::get('email/verify/{id}/{hash}', [VerifyEmailController::class, 'verify'])
 Route::prefix('register')->group(function () {
     Route::post('/', [RegisterController::class, 'register']);
     Route::post('google', [RegisterController::class, 'googleAuthenticator']);
+});
+Route::prefix('password')->group(function () {
+    Route::post('forgot', ForgotPasswordController::class);
+    Route::post('reset', ResetPasswordController::class);
 });
 
 /* Authenticated Routes */

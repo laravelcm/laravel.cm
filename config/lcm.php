@@ -23,4 +23,6 @@ return [
         'token' => env('SLACK_API_TOKEN', null),
     ],
 
+    'spa_url' => env('FRONTEND_APP_URL', 'http://localhost:4200'),
+
 ];
