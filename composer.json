@@ -105,6 +105,7 @@
       "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
       "php artisan key:generate",
       "php artisan migrate --seed",
+      "php artisan rinvex:migrate:subscriptions",
       "php artisan lcm:admin"
     ]
   },
