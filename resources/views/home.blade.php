@@ -43,26 +43,21 @@
                 <p class="font-sans text-base leading-6 tracking-tight text-center uppercase text-skin-base">
                     Nous travaillons avec d’autres communautés et startups
                 </p>
-                <div class="grid mt-8 sm:grid-cols-2 gap-y-8 lg:grid-cols-4 lg:mt-12">
-                    <div class="flex justify-center col-span-1">
+                <div class="mt-8 flex items-center justify-center flex-wrap gap-8 lg:mt-12">
+                    <div class="flex items-center justify-center px-4">
                         <a href="https://cosna-afrique.com" target="_blank" class="flex items-center">
                             <x-icon.cosna class="w-auto h-14"/>
                         </a>
                     </div>
-                    <div class="flex justify-center col-span-1">
+                    <div class="flex items-center justify-center px-4">
                         <a href="https://laravelshopper.io" target="_blank" class="flex items-center">
                             <img class="h-12 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
                             <img class="h-12 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
                         </a>
                     </div>
-                    <div class="flex justify-center col-span-1">
+                    <div class="flex items-center justify-center px-4">
                         <a href="https://gdg.community.dev/gdg-douala" target="_blank" class="flex items-center">
                             <x-icon.gdg class="h-8 text-skin-inverted" />
-                        </a>
-                    </div>
-                    <div class="flex justify-center col-span-1">
-                        <a href="https://twitter.com/DarkCodeCompany" target="_blank" class="flex items-center">
-                            <x-icon.darkcode class="h-8 text-skin-inverted" />
                         </a>
                     </div>
                 </div>
@@ -241,7 +236,7 @@
         </div>
     </div>
 
-    @if($plans->count() > 0)    
+    @if($plans->count() > 0)
         <div class="relative pt-12 overflow-hidden sm:pt-16 lg:pt-20">
             <div class="z-0 hidden overflow-hidden opacity-50 pointer-events-none lg:block">
                 <testimonies-area />
@@ -261,7 +256,7 @@
                         </p>
                     </div>
                     <div class="mt-16 space-y-12 lg:mt-20 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:space-y-0 lg:max-w-4xl lg:mx-auto">
-                        @foreach ($plans as $plan)    
+                        @foreach ($plans as $plan)
                             <div class="relative flex flex-col p-8 border shadow-sm rounded-2xl border-skin-base bg-skin-card/50 backdrop-blur-sm">
                                 <div class="flex-1">
                                     <h3 class="text-xl font-semibold text-skin-inverted">{{ $plan->title }}</h3>
@@ -269,7 +264,7 @@
                                         <p class="inline-flex items-center absolute top-0 -translate-y-1/2 transform rounded-full bg-flag-yellow py-1.5 px-4 text-sm font-semibold text-yellow-900">
                                             <svg class="w-5 h-5 mr-2.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                                            </svg>                              
+                                            </svg>
                                             Populaire
                                         </p>
                                     @endif
@@ -279,7 +274,7 @@
                                         </span>
                                         <span class="ml-1 text-xl font-semibold">/mois</span>
                                     </p>
-                        
+
                                     <!-- Feature list -->
                                     <ul role="list" class="mt-6 space-y-6">
                                         @foreach ($plan->features as $feature)
@@ -292,7 +287,7 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                    
+
                                 <x-button link="#" class="w-full mt-10">Souscire Maintenant</x-button>
                             </div>
                         @endforeach
