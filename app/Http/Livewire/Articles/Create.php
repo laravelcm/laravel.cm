@@ -20,7 +20,7 @@ class Create extends Component
 
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 
-    public function mount()
+    public function mount(): void
     {
         /** @var User $user */
         $user = Auth::user();
@@ -30,13 +30,13 @@ class Create extends Component
         $this->approved_at = $user->hasAnyRole(['admin', 'moderator']) ? now() : null;
     }
 
-    public function submit()
+    public function submit(): void
     {
         $this->submitted_at = now();
         $this->store();
     }
 
-    public function store()
+    public function store(): void
     {
         $this->validate();
 
@@ -65,8 +65,10 @@ class Create extends Component
         }
 
         if ($article->isAwaitingApproval()) {
-            // Envoi de la notification sur le channel Telegram pour la validation de l'article.
-            event(new ArticleWasSubmittedForApproval($article));
+            if (app()->environment('production')) {
+                // Envoi de la notification sur le channel Telegram pour la validation de l'article.
+                event(new ArticleWasSubmittedForApproval($article));
+            }
 
             session()->flash('status', 'Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.');
         }
