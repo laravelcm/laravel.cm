@@ -13,7 +13,7 @@
 @import "toc.css";
 @import "header.css";
 @import "media-library.css";
-/*@import "christmas.css";*/
+@import "christmas.css";
 
 :root {
   --brand-laravel: #FF2D20;
