@@ -1,5 +1,5 @@
 .g-snows {
-  @apply pointer-events-none min-h-full w-full;
+  @apply fixed inset-0 pointer-events-none min-h-full w-full overflow-hidden opacity-40;
 }
 
 .g-snows > li {

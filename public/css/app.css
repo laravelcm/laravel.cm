@@ -2525,8 +2525,15 @@ pre code.torchlight .summary-caret {
 
 .g-snows {
   pointer-events: none;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
   min-height: 100%;
   width: 100%;
+  overflow: hidden;
+  opacity: 0.4;
 }
 
 .g-snows > li {
