@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Rinvex\Subscriptions\Models\Plan as Model;
 
+/**
+ * @mixin IdeHelperPlan
+ */
 class Plan extends Model
 {
     use HasFactory;
