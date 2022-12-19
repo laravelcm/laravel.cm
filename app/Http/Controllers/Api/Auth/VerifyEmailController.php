@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Auth\Events\Verified;
-use Illuminate\Http\RedirectResponse;
 use App\Models\User;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class VerifyEmailController extends Controller
 {
@@ -17,14 +17,14 @@ class VerifyEmailController extends Controller
         $user = User::find($request->route('id'));
 
         if ($user->hasVerifiedEmail()) {
-            return redirect(config('lcm.spa_url') . '/email/verify/already');
+            return redirect(config('lcm.spa_url').'/email/verify/already');
         }
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
         }
 
-        return redirect(config('lcm.spa_url') . '/email/verify/success');
+        return redirect(config('lcm.spa_url').'/email/verify/success');
     }
 
     public function resend(Request $request): JsonResponse

@@ -3,7 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\ApiRegistered;
-use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
