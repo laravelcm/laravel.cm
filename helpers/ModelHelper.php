@@ -217,7 +217,9 @@ namespace App\Models{
  * @property string|null $about
  * @property mixed|null $founded_in
  * @property string|null $ceo
+ * @property int $user_id
  * @property bool $is_certified
+ * @property bool $is_featured
  * @property bool $is_public
  * @property string $size
  * @property array|null $settings
@@ -225,6 +227,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
  * @property-read int|null $media_count
+ * @property-read \App\Models\User $owner
+ * @method static \Illuminate\Database\Eloquent\Builder|Enterprise featured()
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise query()
@@ -236,12 +240,14 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereFoundedIn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereIsCertified($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereIsFeatured($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereIsPublic($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereSettings($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereWebsite($value)
  */
 	class IdeHelperEnterprise {}
@@ -685,6 +691,7 @@ namespace App\Models{
  * @property-read int|null $badges_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Discussion[] $discussions
  * @property-read int|null $discussions_count
+ * @property-read \App\Models\Enterprise|null $enterprise
  * @property-read string $profile_photo_url
  * @property-read string $roles_label
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media

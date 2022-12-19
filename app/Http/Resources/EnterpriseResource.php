@@ -22,9 +22,15 @@ class EnterpriseResource extends JsonResource
             'foundedIn' => $this->founded_in,
             'ceo' => $this->ceo,
             'isCertified' => $this->is_certified,
+            'isFeatured' => $this->is_featured,
             'isPublic' => $this->is_public,
             'size' => $this->size,
             'settings' => $this->settings,
+            'images' => [
+                'logo' => $this->getFirstMediaUrl('logo'),
+                'cover' => $this->getFirstMediaUrl('avatar'),
+            ],
+            'owner' => UserResource::make($this->owner),
             'createdAt' => DateTimeResource::make($this->created_at),
             'updatedAt' => DateTimeResource::make($this->updated_at),
         ];

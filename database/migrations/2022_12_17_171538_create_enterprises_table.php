@@ -18,7 +18,9 @@ return new class extends Migration
             $table->longText('about')->nullable();
             $table->year('founded_in')->nullable();
             $table->string('ceo')->nullable();
+            $table->foreignIdFor(\App\Models\User::class);
             $table->boolean('is_certified')->default(false);
+            $table->boolean('is_featured')->default(false);
             $table->boolean('is_public')->default(true);
             $table->string('size')->default(\App\Enums\EnterpriseSize::SEED);
             $table->json('settings')->nullable();
