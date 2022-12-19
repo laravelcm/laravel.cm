@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Filters\Enterprise\EnterpriseFilters;
 use App\Traits\HasSettings;
 use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Builder;
@@ -78,5 +79,10 @@ class Enterprise extends Model implements HasMedia
     public function scopePublic(Builder $query): Builder
     {
         return $query->where('is_public', true);
+    }
+
+    public function scopeFilters(Builder $query, $request, array $filters = []): Builder
+    {
+        return (new EnterpriseFilters($request))->add($filters)->filter($query);
     }
 }

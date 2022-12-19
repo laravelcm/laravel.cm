@@ -23,9 +23,13 @@ class PublicController extends Controller
 
     public function paginate(Request $request): EnterpriseResourceCollection
     {
+        $filters = $request->query();
+
         $enterprises = Enterprise::query()
+            ->filters($request)
+            ->latest()
             ->paginate($request->query('per_page', 12));
 
-        return new EnterpriseResourceCollection($enterprises, []);
+        return new EnterpriseResourceCollection($enterprises, $filters);
     }
 }
