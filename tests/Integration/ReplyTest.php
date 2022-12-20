@@ -5,7 +5,7 @@ use App\Models\Reply;
 use App\Models\Thread;
 
 it('records activity when a reply is send', function () {
-    actingAs();
+    $this->login();
 
     $thread = Thread::factory()->create();
     $reply = Reply::factory()->create(['user_id' => auth()->id()]);

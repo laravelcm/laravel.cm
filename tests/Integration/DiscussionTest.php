@@ -16,10 +16,10 @@ it('can give an excerpt of its body', function () {
     expect($discussion->excerpt(7))->toEqual('This is...');
 });
 
-test('html in excerpts is html encoded', function () {
-    $discussion = Discussion::factory()->make(['body' => '<p>Discussion body</p>']);
+test('html in excerpts is markdown converted', function () {
+    $discussion = Discussion::factory()->make(['body' => '### A propos de moi']);
 
-    expect($discussion->excerpt())->toEqual("&lt;p&gt;Discussion body&lt;/p&gt;\n");
+    expect($discussion->excerpt())->toEqual("#A propos de moi\n");
 });
 
 it('can have many tags', function () {
@@ -31,7 +31,7 @@ it('can have many tags', function () {
 });
 
 it('records activity when a discussion is created', function () {
-    actingAs();
+    $this->login();
 
     $discussion = Discussion::factory()->create(['user_id' => auth()->id()]);
 

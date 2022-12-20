@@ -19,10 +19,10 @@ it('can give an excerpt of its body', function () {
     expect($thread->excerpt(7))->toEqual('This is...');
 });
 
-test('html in excerpts is html encoded', function () {
+test('html in excerpts is markdown converted', function () {
     $thread = Thread::factory()->make(['body' => '<p>Thread body</p>']);
 
-    expect($thread->excerpt())->toEqual("&lt;p&gt;Thread body&lt;/p&gt;\n");
+    expect($thread->excerpt())->toEqual("Thread body\n");
 });
 
 it('can have many channels', function () {

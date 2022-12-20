@@ -28,9 +28,7 @@ uses(Tests\TestCase::class, RefreshDatabase::class, DatabaseMigrations::class)->
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
-});
+/** @link https://pestphp.com/docs/expectations#custom-expectations */
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +41,3 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function actingAs(Authenticatable $user = null, string $driver = null)
-{
-    $user = $user ?: App\Models\User::factory()->create();
-
-    return test()->actingAs($user, $driver);
-}

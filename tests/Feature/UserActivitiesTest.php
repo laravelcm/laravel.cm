@@ -5,7 +5,7 @@ use App\Models\Article;
 use Carbon\Carbon;
 
 it('records activity when an article is created', function () {
-    actingAs();
+    $this->login();
 
     $article = Article::factory()->create(['user_id' => auth()->id()]);
 
@@ -22,7 +22,7 @@ it('records activity when an article is created', function () {
 });
 
 it('get feed from any user', function () {
-    actingAs();
+    $this->login();
 
     Article::factory()->count(2)->create(['user_id' => auth()->id()]);
     auth()->user()->activities()->first()->update(['created_at' => Carbon::now()->subWeek()]);
