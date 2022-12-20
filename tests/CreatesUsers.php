@@ -15,7 +15,7 @@ trait CreatesUsers
         return $user;
     }
 
-    protected function loginAs(User $user)
+    protected function loginAs(User $user): void
     {
         $this->be($user);
     }

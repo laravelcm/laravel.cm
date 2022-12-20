@@ -54,6 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'location',
         'avatar',
         'avatar_type',
+        'reputation',
         'phone_number',
         'github_profile',
         'twitter_profile',

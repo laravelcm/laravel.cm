@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait RecordsActivity
 {
-    protected static function bootRecordsActivity()
+    protected static function bootRecordsActivity(): void
     {
         if (auth()->guest()) {
             return;
@@ -29,7 +29,7 @@ trait RecordsActivity
         return ['created'];
     }
 
-    protected function recordActivity($event, bool $useDefaultEvent = true, array $data = [])
+    protected function recordActivity($event, bool $useDefaultEvent = true, array $data = []): void
     {
         $this->activity()->create([
             'user_id' => auth()->id(),
