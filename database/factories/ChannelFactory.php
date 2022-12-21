@@ -10,7 +10,7 @@ class ChannelFactory extends Factory
     {
         return [
             'name' => $this->faker->text(15),
-            'slug' => $this->faker->slug,
+            'slug' => $this->faker->unique()->slug(),
         ];
     }
 }
