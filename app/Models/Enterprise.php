@@ -35,6 +35,7 @@ class Enterprise extends Model implements HasMedia
         'is_certified',
         'is_public',
         'size',
+        'user_id',
         'settings',
     ];
 

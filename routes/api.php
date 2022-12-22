@@ -62,4 +62,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::prefix('enterprises')->group(function () {
     Route::get('featured', [Enterprise\PublicController::class, 'featured']);
     Route::get('paginate', [Enterprise\PublicController::class, 'paginate']);
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('add', Enterprise\RegisterController::class);
+    });
 });

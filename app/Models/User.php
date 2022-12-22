@@ -116,6 +116,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasOne(Enterprise::class);
     }
 
+    public function hasEnterprise(): bool
+    {
+        return $this->enterprise !== null;
+    }
+
     public function getRolesLabelAttribute(): string
     {
         $roles = $this->getRoleNames()->toArray();
@@ -137,6 +142,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function isModerator(): bool
     {
         return $this->hasRole('moderator');
+    }
+
+    public function isEnterprise(): bool
+    {
+        return $this->hasRole('company');
     }
 
     public function isLoggedInUser(): bool
