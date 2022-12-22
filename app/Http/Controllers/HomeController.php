@@ -8,7 +8,6 @@ use App\Models\Premium\Plan;
 use App\Models\Thread;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -57,8 +56,8 @@ class HomeController extends Controller
             ->withUrl();
 
         return view('home', compact(
-            'latestArticles', 
-            'latestThreads', 
+            'latestArticles',
+            'latestThreads',
             'latestDiscussions',
             'plans'
         ));

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasProfilePhoto;
+use App\Traits\HasSettings;
 use App\Traits\HasUsername;
 use App\Traits\Reacts;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
@@ -32,10 +34,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     use HasProfilePhoto;
     use HasApiTokens;
     use HasRoles;
+    use HasUsername;
+    use HasSettings;
     use InteractsWithMedia;
     use Notifiable;
     use Reacts;
-    use HasUsername;
 
     /**
      * The attributes that are mass assignable.
@@ -51,6 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'location',
         'avatar',
         'avatar_type',
+        'reputation',
         'phone_number',
         'github_profile',
         'twitter_profile',
@@ -107,6 +111,16 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return false;
     }
 
+    public function enterprise(): HasOne
+    {
+        return $this->hasOne(Enterprise::class);
+    }
+
+    public function hasEnterprise(): bool
+    {
+        return $this->enterprise !== null;
+    }
+
     public function getRolesLabelAttribute(): string
     {
         $roles = $this->getRoleNames()->toArray();
@@ -128,6 +142,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function isModerator(): bool
     {
         return $this->hasRole('moderator');
+    }
+
+    public function isEnterprise(): bool
+    {
+        return $this->hasRole('company');
     }
 
     public function isLoggedInUser(): bool
@@ -278,32 +297,6 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function scopeUnVerifiedUsers(Builder $query): Builder
     {
         return $query->whereNull('email_verified_at');
-    }
-
-    /**
-     * Retrieve a setting with a given name or fall back to the default.
-     */
-    public function setting(string $name, $default = null): string
-    {
-        if ($this->settings && array_key_exists($name, $this->settings)) {
-            return $this->settings[$name];
-        }
-
-        return $default;
-    }
-
-    /**
-     * Update one or more settings and then optionally save the model.
-     */
-    public function settings(array $revisions, bool $save = true): self
-    {
-        $this->settings = array_merge($this->settings ?? [], $revisions);
-
-        if ($save) {
-            $this->save();
-        }
-
-        return $this;
     }
 
     public function hasPassword(): bool

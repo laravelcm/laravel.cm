@@ -30,7 +30,8 @@ class RegisterController extends Controller
         //TODO: Send new company registration notification on Slack
         event(new ApiRegistered($user));
 
-        return response()->json(array_merge(
+        return response()->json(
+            array_merge(
                 ['message' => 'Votre compte a été créé avec succès. Un e-mail de vérification vous a été envoyé.'],
                 $this->userMetaData($user)
             )

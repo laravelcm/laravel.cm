@@ -28,6 +28,7 @@
     "laravel/socialite": "^5.2",
     "laravel/tinker": "^2.5",
     "livewire/livewire": "^2.10",
+    "nnjeim/world": "^1.1",
     "qcod/laravel-gamify": "^1.0.6",
     "ramsey/uuid": "^4.2",
     "rinvex/laravel-subscriptions": "^6.1",
@@ -100,6 +101,9 @@
     ],
     "pint": [
       "./vendor/bin/pint"
+    ],
+    "models:doc": [
+      "@php artisan ide-helper:models -F helpers/ModelHelper.php -M"
     ],
     "setup": [
       "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",

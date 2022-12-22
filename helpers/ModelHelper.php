@@ -217,6 +217,275 @@ namespace App\Models{
 
 namespace App\Models{
     /**
+     * App\Models\Enterprise
+     *
+     * @property int $id
+     * @property string $name
+     * @property string $slug
+     * @property string $website
+     * @property string|null $address
+     * @property string|null $description
+     * @property string|null $about
+     * @property mixed|null $founded_in
+     * @property string|null $ceo
+     * @property int $user_id
+     * @property bool $is_certified
+     * @property bool $is_featured
+     * @property bool $is_public
+     * @property string $size
+     * @property array|null $settings
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
+     * @property-read int|null $media_count
+     * @property-read \App\Models\User $owner
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise featured()
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereAbout($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereAddress($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereCeo($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereDescription($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereFoundedIn($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereIsCertified($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereIsFeatured($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereIsPublic($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereSettings($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereSize($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereSlug($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereUserId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereWebsite($value)
+     */
+    class IdeHelperEnterprise
+    {
+    }
+}
+
+namespace App\Models\Premium{
+    /**
+     * App\Models\Premium\Feature
+     *
+     * @property int $id
+     * @property int $plan_id
+     * @property string $slug
+     * @property array $name
+     * @property array|null $description
+     * @property string $value
+     * @property int $resettable_period
+     * @property string $resettable_interval
+     * @property int $sort_order
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property \Illuminate\Support\Carbon|null $deleted_at
+     * @property-read array $translations
+     * @property-read \App\Models\Premium\Plan $plan
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Premium\SubscriptionUsage[] $usage
+     * @property-read int|null $usage_count
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|PlanFeature byPlanId(int $planId)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature newQuery()
+     * @method static \Illuminate\Database\Query\Builder|Feature onlyTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|PlanFeature ordered(string $direction = 'asc')
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature whereDeletedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature whereDescription($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature wherePlanId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature whereResettableInterval($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature whereResettablePeriod($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature whereSlug($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature whereSortOrder($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Feature whereValue($value)
+     * @method static \Illuminate\Database\Query\Builder|Feature withTrashed()
+     * @method static \Illuminate\Database\Query\Builder|Feature withoutTrashed()
+     */
+    class IdeHelperFeature
+    {
+    }
+}
+
+namespace App\Models\Premium{
+    /**
+     * App\Models\Premium\Plan
+     *
+     * @property int $id
+     * @property string $slug
+     * @property array $name
+     * @property string $type
+     * @property array|null $description
+     * @property bool $is_active
+     * @property float $price
+     * @property float $signup_fee
+     * @property string $currency
+     * @property int $trial_period
+     * @property string $trial_interval
+     * @property int $invoice_period
+     * @property string $invoice_interval
+     * @property int $grace_period
+     * @property string $grace_interval
+     * @property int|null $prorate_day
+     * @property int|null $prorate_period
+     * @property int|null $prorate_extend_due
+     * @property int|null $active_subscribers_limit
+     * @property int $sort_order
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property \Illuminate\Support\Carbon|null $deleted_at
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Premium\Feature[] $features
+     * @property-read int|null $features_count
+     * @property-read array $translations
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Premium\Subscription[] $subscriptions
+     * @property-read int|null $subscriptions_count
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan developer()
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan enterprise()
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan newQuery()
+     * @method static \Illuminate\Database\Query\Builder|Plan onlyTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan ordered(string $direction = 'asc')
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereActiveSubscribersLimit($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereCurrency($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereDeletedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereDescription($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereGraceInterval($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereGracePeriod($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereInvoiceInterval($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereInvoicePeriod($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereIsActive($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan wherePrice($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereProrateDay($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereProrateExtendDue($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereProratePeriod($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereSignupFee($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereSlug($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereSortOrder($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereTrialInterval($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereTrialPeriod($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Plan whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Query\Builder|Plan withTrashed()
+     * @method static \Illuminate\Database\Query\Builder|Plan withoutTrashed()
+     */
+    class IdeHelperPlan
+    {
+    }
+}
+
+namespace App\Models\Premium{
+    /**
+     * App\Models\Premium\Subscription
+     *
+     * @property int $id
+     * @property string $subscriber_type
+     * @property int $subscriber_id
+     * @property int $plan_id
+     * @property string $slug
+     * @property array $name
+     * @property array|null $description
+     * @property \Illuminate\Support\Carbon|null $trial_ends_at
+     * @property \Illuminate\Support\Carbon|null $starts_at
+     * @property \Illuminate\Support\Carbon|null $ends_at
+     * @property \Illuminate\Support\Carbon|null $cancels_at
+     * @property \Illuminate\Support\Carbon|null $canceled_at
+     * @property string|null $timezone
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property \Illuminate\Support\Carbon|null $deleted_at
+     * @property-read array $translations
+     * @property-read \App\Models\Premium\Plan $plan
+     * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $subscriber
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Premium\SubscriptionUsage[] $usage
+     * @property-read int|null $usage_count
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription byPlanId(int $planId)
+     * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription findActive()
+     * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription findEndedPeriod()
+     * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription findEndedTrial()
+     * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription findEndingPeriod(int $dayRange = 3)
+     * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription findEndingTrial(int $dayRange = 3)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription ofSubscriber(\Illuminate\Database\Eloquent\Model $subscriber)
+     * @method static \Illuminate\Database\Query\Builder|Subscription onlyTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereCanceledAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereCancelsAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereDeletedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereDescription($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereEndsAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription wherePlanId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereSlug($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereStartsAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereSubscriberId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereSubscriberType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereTimezone($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereTrialEndsAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Query\Builder|Subscription withTrashed()
+     * @method static \Illuminate\Database\Query\Builder|Subscription withoutTrashed()
+     */
+    class IdeHelperSubscription
+    {
+    }
+}
+
+namespace App\Models\Premium{
+    /**
+     * App\Models\Premium\SubscriptionUsage
+     *
+     * @property int $id
+     * @property int $subscription_id
+     * @property int $feature_id
+     * @property int $used
+     * @property \Illuminate\Support\Carbon|null $valid_until
+     * @property string|null $timezone
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property \Illuminate\Support\Carbon|null $deleted_at
+     * @property-read \App\Models\Premium\Feature $feature
+     * @property-read \App\Models\Premium\Subscription $subscription
+     *
+     * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscriptionUsage byFeatureSlug(string $featureSlug)
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage newQuery()
+     * @method static \Illuminate\Database\Query\Builder|SubscriptionUsage onlyTrashed()
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage query()
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage whereDeletedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage whereFeatureId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage whereSubscriptionId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage whereTimezone($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage whereUsed($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage whereValidUntil($value)
+     * @method static \Illuminate\Database\Query\Builder|SubscriptionUsage withTrashed()
+     * @method static \Illuminate\Database\Query\Builder|SubscriptionUsage withoutTrashed()
+     */
+    class IdeHelperSubscriptionUsage
+    {
+    }
+}
+
+namespace App\Models{
+    /**
      * App\Models\Reaction
      *
      * @property int $id
@@ -401,7 +670,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Thread active()
      * @method static \Database\Factories\ThreadFactory factory(...$parameters)
      * @method static \Illuminate\Database\Eloquent\Builder|Thread feedQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|Thread filter($request, array $filters = [])
+     * @method static \Illuminate\Database\Eloquent\Builder|Thread filter(\Illuminate\Http\Request $request, array $filters = [])
      * @method static \Illuminate\Database\Eloquent\Builder|Thread forChannel(\App\Models\Channel $channel)
      * @method static \Illuminate\Database\Eloquent\Builder|Thread newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Thread newQuery()
@@ -466,6 +735,7 @@ namespace App\Models{
      * @property-read int|null $badges_count
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Discussion[] $discussions
      * @property-read int|null $discussions_count
+     * @property-read \App\Models\Enterprise|null $enterprise
      * @property-read string $profile_photo_url
      * @property-read string $roles_label
      * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\Spatie\MediaLibrary\MediaCollections\Models\Media[] $media
@@ -474,6 +744,8 @@ namespace App\Models{
      * @property-read int|null $notifications_count
      * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Permission\Models\Permission[] $permissions
      * @property-read int|null $permissions_count
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Premium\Subscription[] $planSubscriptions
+     * @property-read int|null $plan_subscriptions_count
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SocialAccount[] $providers
      * @property-read int|null $providers_count
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Reply[] $replyAble
@@ -486,6 +758,8 @@ namespace App\Models{
      * @property-read int|null $subscriptions_count
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Thread[] $threads
      * @property-read int|null $threads_count
+     * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+     * @property-read int|null $tokens_count
      *
      * @method static \Database\Factories\UserFactory factory(...$parameters)
      * @method static \Illuminate\Database\Eloquent\Builder|User hasActivity()

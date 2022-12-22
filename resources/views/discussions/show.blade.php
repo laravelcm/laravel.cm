@@ -61,9 +61,7 @@
                                     <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
                                 </div>
                             </div>
-                            <div class="text-sm prose md:prose-lg prose-green text-skin-base mx-auto max-w-none">
-                                <x-markdown-content :content="$discussion->body" />
-                            </div>
+                            <x-markdown-content class="mt-3 text-sm prose md:prose-lg prose-green text-skin-base mx-auto max-w-none" :content="$discussion->body" />
                             <div class="mt-3 relative inline-flex">
                                 <livewire:reactions
                                     wire:key="{{ $discussion->id }}"

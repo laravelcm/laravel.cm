@@ -27,7 +27,7 @@ class LoginController extends Controller
             'password' => $request->input('password'),
         ];
 
-        if (empty($user) || !Auth::attempt($sanitized)) {
+        if (empty($user) || ! Auth::attempt($sanitized)) {
             throw ValidationException::withMessages([
                 'email' => 'Les informations d\'identification fournies sont incorrectes.',
             ]);
