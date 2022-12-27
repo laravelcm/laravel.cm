@@ -63,7 +63,7 @@ class RegisterController extends Controller
 
         if (! $user->hasProvider($socialUser['provider'])) {
             $user->providers()->save(new SocialAccount([
-                'provider' => $socialUser['provider'],
+                'provider' => strtolower($socialUser['provider']),
                 'provider_id' => $socialUser['id'],
                 'token' => $socialUser['idToken'],
                 'avatar' => $socialUser['photoUrl'],
@@ -83,7 +83,10 @@ class RegisterController extends Controller
         $user->last_login_ip = $request->ip();
         $user->save();
 
-        return response()->json($this->userMetaData($user));
+        return response()->json([
+            'message' => 'Votre compte a été cree avec succes via Google.',
+            'response' => $this->userMetaData($user),
+        ]);
     }
 
     private function userMetaData(User $user): array
