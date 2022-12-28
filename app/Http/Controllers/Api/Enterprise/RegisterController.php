@@ -32,7 +32,7 @@ class RegisterController extends Controller
         ]);
 
         return response()->json([
-            'user' => new AuthenticateUserResource($owner),
+            'message' => 'Votre entreprise a été cree avec succès',
             'enterprise' => new EnterpriseResource($enterprise),
         ]);
     }
