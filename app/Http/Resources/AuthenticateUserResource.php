@@ -29,11 +29,12 @@ class AuthenticateUserResource extends JsonResource
             'optIn' => $this->opt_in,
             'settings' => $this->settings,
             'reputation' => $this->reputation,
+            'timezone' => 'Africa/Douala',
 
-            'lastLoginAt' => $this->last_login_at,
-            'emailVerifiedAt' => $this->email_verified_at,
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
+            'lastLoginAt' => new DateTimeResource($this->last_login_at),
+            'emailVerifiedAt' => new DateTimeResource($this->email_verified_at),
+            'createdAt' => new DateTimeResource($this->created_at),
+            'updatedAt' => new DateTimeResource($this->updated_at),
         ];
     }
 }

@@ -84,7 +84,7 @@ class RegisterController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'Votre compte a été cree avec succes via Google.',
+            'message' => 'Votre compte a été cree avec succès via Google.',
             'response' => $this->userMetaData($user),
         ]);
     }
