@@ -6,8 +6,10 @@ use App\Events\ApiRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\RegisterRequest;
 use App\Http\Resources\AuthenticateUserResource;
+use App\Http\Resources\EnterpriseResource;
 use App\Models\SocialAccount;
 use App\Models\User;
+use App\Traits\UserResponse;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -15,6 +17,8 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+    use UserResponse;
+
     public function register(RegisterRequest $request): JsonResponse
     {
         /** @var User $user */
@@ -84,18 +88,8 @@ class RegisterController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'Votre compte a été cree avec succès via Google.',
+            'message' => 'Votre compte a été crée avec succès via Google.',
             'response' => $this->userMetaData($user),
         ]);
-    }
-
-    private function userMetaData(User $user): array
-    {
-        return [
-            'user' => new AuthenticateUserResource($user),
-            'token' => $user->createToken($user->email)->plainTextToken,
-            'roles' => $user->roles()->pluck('name'),
-            'permissions' => $user->permissions()->pluck('name'),
-        ];
     }
 }

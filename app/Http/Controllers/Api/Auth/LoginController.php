@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Resources\AuthenticateUserResource;
+use App\Http\Resources\EnterpriseResource;
 use App\Models\User;
+use App\Traits\UserResponse;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,6 +16,8 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
+    use UserResponse;
+
     public function login(LoginRequest $request): JsonResponse
     {
         /** @var User $user */
@@ -41,12 +45,7 @@ class LoginController extends Controller
         $user->last_login_ip = $request->ip();
         $user->save();
 
-        return response()->json([
-            'user' => new AuthenticateUserResource($user),
-            'token' => $user->createToken($request->input('email'))->plainTextToken,
-            'roles' => $user->roles()->pluck('name'),
-            'permissions' => $user->permissions()->pluck('name'),
-        ]);
+        return response()->json($this->userMetaData($user));
     }
 
     public function logout(Request $request): JsonResponse
