@@ -49,6 +49,8 @@
 
     @livewire('livewire-ui-modal')
     @livewire('livewire-ui-spotlight')
+
+
     @stack('scripts')
 </body>
 </html>

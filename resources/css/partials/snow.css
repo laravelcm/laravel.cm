@@ -1,0 +1,1113 @@
+.g-snows {
+  @apply fixed inset-0 pointer-events-none min-h-full w-full overflow-hidden opacity-40;
+}
+
+.g-snows > li {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  border-radius: 100%;
+  background-color: #FFFFFF;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  -webkit-animation-name: snow-drop;
+  animation-name: snow-drop;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.g-snows > li:nth-child(1) {
+  left: 77%;
+  width: 15px;
+  height: 15px;
+  -webkit-animation-duration: 10179ms;
+  animation-duration: 10179ms;
+  -webkit-animation-delay: 842ms;
+  animation-delay: 842ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(2) {
+  left: 41%;
+  width: 1px;
+  height: 1px;
+  -webkit-animation-duration: 10637ms;
+  animation-duration: 10637ms;
+  -webkit-animation-delay: 4550ms;
+  animation-delay: 4550ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(3) {
+  left: 7%;
+  width: 2px;
+  height: 2px;
+  -webkit-animation-duration: 5263ms;
+  animation-duration: 5263ms;
+  -webkit-animation-delay: 2409ms;
+  animation-delay: 2409ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(4) {
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  -webkit-animation-duration: 6440ms;
+  animation-duration: 6440ms;
+  -webkit-animation-delay: 4218ms;
+  animation-delay: 4218ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(5) {
+  left: 25%;
+  width: 12px;
+  height: 12px;
+  -webkit-animation-duration: 5567ms;
+  animation-duration: 5567ms;
+  -webkit-animation-delay: 473ms;
+  animation-delay: 473ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(6) {
+  left: 61%;
+  width: 1px;
+  height: 1px;
+  -webkit-animation-duration: 8251ms;
+  animation-duration: 8251ms;
+  -webkit-animation-delay: 4732ms;
+  animation-delay: 4732ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(7) {
+  left: 10%;
+  width: 25px;
+  height: 25px;
+  -webkit-animation-duration: 10536ms;
+  animation-duration: 10536ms;
+  -webkit-animation-delay: 2407ms;
+  animation-delay: 2407ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(8) {
+  left: 65%;
+  width: 5px;
+  height: 5px;
+  -webkit-animation-duration: 10593ms;
+  animation-duration: 10593ms;
+  -webkit-animation-delay: 9ms;
+  animation-delay: 9ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(9) {
+  left: 46%;
+  width: 1px;
+  height: 1px;
+  -webkit-animation-duration: 5120ms;
+  animation-duration: 5120ms;
+  -webkit-animation-delay: 174ms;
+  animation-delay: 174ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(10) {
+  left: 7%;
+  width: 5px;
+  height: 5px;
+  -webkit-animation-duration: 5068ms;
+  animation-duration: 5068ms;
+  -webkit-animation-delay: 1330ms;
+  animation-delay: 1330ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(11) {
+  left: 49%;
+  width: 6px;
+  height: 6px;
+  -webkit-animation-duration: 6880ms;
+  animation-duration: 6880ms;
+  -webkit-animation-delay: 1306ms;
+  animation-delay: 1306ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(12) {
+  left: 86%;
+  width: 6px;
+  height: 6px;
+  -webkit-animation-duration: 7992ms;
+  animation-duration: 7992ms;
+  -webkit-animation-delay: 2160ms;
+  animation-delay: 2160ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(13) {
+  left: 106%;
+  width: 6px;
+  height: 6px;
+  -webkit-animation-duration: 9480ms;
+  animation-duration: 9480ms;
+  -webkit-animation-delay: 2686ms;
+  animation-delay: 2686ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(14) {
+  left: 2%;
+  width: 8px;
+  height: 8px;
+  -webkit-animation-duration: 13869ms;
+  animation-duration: 13869ms;
+  -webkit-animation-delay: 3121ms;
+  animation-delay: 3121ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(15) {
+  left: 35%;
+  width: 16px;
+  height: 16px;
+  -webkit-animation-duration: 8060ms;
+  animation-duration: 8060ms;
+  -webkit-animation-delay: 3485ms;
+  animation-delay: 3485ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(16) {
+  left: 83%;
+  width: 14px;
+  height: 14px;
+  -webkit-animation-duration: 9136ms;
+  animation-duration: 9136ms;
+  -webkit-animation-delay: 1593ms;
+  animation-delay: 1593ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(17) {
+  left: 7%;
+  width: 4px;
+  height: 4px;
+  -webkit-animation-duration: 11456ms;
+  animation-duration: 11456ms;
+  -webkit-animation-delay: 4156ms;
+  animation-delay: 4156ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(18) {
+  left: 124%;
+  width: 2px;
+  height: 2px;
+  -webkit-animation-duration: 5750ms;
+  animation-duration: 5750ms;
+  -webkit-animation-delay: 3554ms;
+  animation-delay: 3554ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(19) {
+  left: 45%;
+  width: 2px;
+  height: 2px;
+  -webkit-animation-duration: 6435ms;
+  animation-duration: 6435ms;
+  -webkit-animation-delay: 4319ms;
+  animation-delay: 4319ms;
+  filter: blur(4px);
+}
+.g-snows > li:nth-child(20) {
+  left: 36%;
+  width: 1px;
+  height: 1px;
+  -webkit-animation-duration: 7391ms;
+  animation-duration: 7391ms;
+  -webkit-animation-delay: 1458ms;
+  animation-delay: 1458ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(21) {
+  left: 68%;
+  width: 17px;
+  height: 17px;
+  -webkit-animation-duration: 13165ms;
+  animation-duration: 13165ms;
+  -webkit-animation-delay: 405ms;
+  animation-delay: 405ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(22) {
+  left: 29%;
+  width: 6px;
+  height: 6px;
+  -webkit-animation-duration: 12138ms;
+  animation-duration: 12138ms;
+  -webkit-animation-delay: 622ms;
+  animation-delay: 622ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(23) {
+  left: 107%;
+  width: 10px;
+  height: 10px;
+  -webkit-animation-duration: 7416ms;
+  animation-duration: 7416ms;
+  -webkit-animation-delay: 2183ms;
+  animation-delay: 2183ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(24) {
+  left: 61%;
+  width: 1px;
+  height: 1px;
+  -webkit-animation-duration: 5741ms;
+  animation-duration: 5741ms;
+  -webkit-animation-delay: 4902ms;
+  animation-delay: 4902ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(25) {
+  left: 131%;
+  width: 11px;
+  height: 11px;
+  -webkit-animation-duration: 8190ms;
+  animation-duration: 8190ms;
+  -webkit-animation-delay: 336ms;
+  animation-delay: 336ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(26) {
+  left: 35%;
+  width: 15px;
+  height: 15px;
+  -webkit-animation-duration: 5149ms;
+  animation-duration: 5149ms;
+  -webkit-animation-delay: 4843ms;
+  animation-delay: 4843ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(27) {
+  left: 62%;
+  width: 18px;
+  height: 18px;
+  -webkit-animation-duration: 5715ms;
+  animation-duration: 5715ms;
+  -webkit-animation-delay: 20ms;
+  animation-delay: 20ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(28) {
+  left: 17%;
+  width: 8px;
+  height: 8px;
+  -webkit-animation-duration: 6606ms;
+  animation-duration: 6606ms;
+  -webkit-animation-delay: 4585ms;
+  animation-delay: 4585ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(29) {
+  left: 22%;
+  width: 23px;
+  height: 23px;
+  -webkit-animation-duration: 7918ms;
+  animation-duration: 7918ms;
+  -webkit-animation-delay: 163ms;
+  animation-delay: 163ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(30) {
+  left: 62%;
+  width: 18px;
+  height: 18px;
+  -webkit-animation-duration: 6021ms;
+  animation-duration: 6021ms;
+  -webkit-animation-delay: 2063ms;
+  animation-delay: 2063ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(31) {
+  left: 13%;
+  width: 8px;
+  height: 8px;
+  -webkit-animation-duration: 9535ms;
+  animation-duration: 9535ms;
+  -webkit-animation-delay: 1169ms;
+  animation-delay: 1169ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(32) {
+  left: 45%;
+  width: 17px;
+  height: 17px;
+  -webkit-animation-duration: 9473ms;
+  animation-duration: 9473ms;
+  -webkit-animation-delay: 3235ms;
+  animation-delay: 3235ms;
+  filter: blur(4px);
+}
+.g-snows > li:nth-child(33) {
+  left: 63%;
+  width: 9px;
+  height: 9px;
+  -webkit-animation-duration: 6357ms;
+  animation-duration: 6357ms;
+  -webkit-animation-delay: 4989ms;
+  animation-delay: 4989ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(34) {
+  left: 22%;
+  width: 12px;
+  height: 12px;
+  -webkit-animation-duration: 12077ms;
+  animation-duration: 12077ms;
+  -webkit-animation-delay: 4597ms;
+  animation-delay: 4597ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(35) {
+  left: 33%;
+  width: 1px;
+  height: 1px;
+  -webkit-animation-duration: 7382ms;
+  animation-duration: 7382ms;
+  -webkit-animation-delay: 567ms;
+  animation-delay: 567ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(36) {
+  left: 65%;
+  width: 6px;
+  height: 6px;
+  -webkit-animation-duration: 8332ms;
+  animation-duration: 8332ms;
+  -webkit-animation-delay: 4247ms;
+  animation-delay: 4247ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(37) {
+  left: 43%;
+  width: 11px;
+  height: 11px;
+  -webkit-animation-duration: 7247ms;
+  animation-duration: 7247ms;
+  -webkit-animation-delay: 2365ms;
+  animation-delay: 2365ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(38) {
+  left: 18%;
+  width: 10px;
+  height: 10px;
+  -webkit-animation-duration: 11104ms;
+  animation-duration: 11104ms;
+  -webkit-animation-delay: 256ms;
+  animation-delay: 256ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(39) {
+  left: 25%;
+  width: 25px;
+  height: 25px;
+  -webkit-animation-duration: 10054ms;
+  animation-duration: 10054ms;
+  -webkit-animation-delay: 4671ms;
+  animation-delay: 4671ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(40) {
+  left: 65%;
+  width: 15px;
+  height: 15px;
+  -webkit-animation-duration: 8691ms;
+  animation-duration: 8691ms;
+  -webkit-animation-delay: 3571ms;
+  animation-delay: 3571ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(41) {
+  left: 14%;
+  width: 21px;
+  height: 21px;
+  -webkit-animation-duration: 10888ms;
+  animation-duration: 10888ms;
+  -webkit-animation-delay: 2672ms;
+  animation-delay: 2672ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(42) {
+  left: 49%;
+  width: 1px;
+  height: 1px;
+  -webkit-animation-duration: 9450ms;
+  animation-duration: 9450ms;
+  -webkit-animation-delay: 4555ms;
+  animation-delay: 4555ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(43) {
+  left: 2%;
+  width: 7px;
+  height: 7px;
+  -webkit-animation-duration: 13605ms;
+  animation-duration: 13605ms;
+  -webkit-animation-delay: 1840ms;
+  animation-delay: 1840ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(44) {
+  left: 15%;
+  width: 23px;
+  height: 23px;
+  -webkit-animation-duration: 12424ms;
+  animation-duration: 12424ms;
+  -webkit-animation-delay: 783ms;
+  animation-delay: 783ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(45) {
+  left: 14%;
+  width: 14px;
+  height: 14px;
+  -webkit-animation-duration: 6999ms;
+  animation-duration: 6999ms;
+  -webkit-animation-delay: 1146ms;
+  animation-delay: 1146ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(46) {
+  left: 23%;
+  width: 1px;
+  height: 1px;
+  -webkit-animation-duration: 11778ms;
+  animation-duration: 11778ms;
+  -webkit-animation-delay: 2975ms;
+  animation-delay: 2975ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(47) {
+  left: 19%;
+  width: 20px;
+  height: 20px;
+  -webkit-animation-duration: 8058ms;
+  animation-duration: 8058ms;
+  -webkit-animation-delay: 427ms;
+  animation-delay: 427ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(48) {
+  left: 57%;
+  width: 10px;
+  height: 10px;
+  -webkit-animation-duration: 5045ms;
+  animation-duration: 5045ms;
+  -webkit-animation-delay: 3678ms;
+  animation-delay: 3678ms;
+  filter: blur(4px);
+}
+.g-snows > li:nth-child(49) {
+  left: 84%;
+  width: 11px;
+  height: 11px;
+  -webkit-animation-duration: 12885ms;
+  animation-duration: 12885ms;
+  -webkit-animation-delay: 1981ms;
+  animation-delay: 1981ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(50) {
+  left: 56%;
+  width: 9px;
+  height: 9px;
+  -webkit-animation-duration: 8999ms;
+  animation-duration: 8999ms;
+  -webkit-animation-delay: 3382ms;
+  animation-delay: 3382ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(51) {
+  left: 20%;
+  width: 11px;
+  height: 11px;
+  -webkit-animation-duration: 9969ms;
+  animation-duration: 9969ms;
+  -webkit-animation-delay: 3097ms;
+  animation-delay: 3097ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(52) {
+  left: 100%;
+  width: 6px;
+  height: 6px;
+  -webkit-animation-duration: 11808ms;
+  animation-duration: 11808ms;
+  -webkit-animation-delay: 4356ms;
+  animation-delay: 4356ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(53) {
+  left: 21%;
+  width: 14px;
+  height: 14px;
+  -webkit-animation-duration: 8818ms;
+  animation-duration: 8818ms;
+  -webkit-animation-delay: 4814ms;
+  animation-delay: 4814ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(54) {
+  left: 81%;
+  width: 5px;
+  height: 5px;
+  -webkit-animation-duration: 8065ms;
+  animation-duration: 8065ms;
+  -webkit-animation-delay: 3727ms;
+  animation-delay: 3727ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(55) {
+  left: 58%;
+  width: 16px;
+  height: 16px;
+  -webkit-animation-duration: 6305ms;
+  animation-duration: 6305ms;
+  -webkit-animation-delay: 620ms;
+  animation-delay: 620ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(56) {
+  left: 127%;
+  width: 22px;
+  height: 22px;
+  -webkit-animation-duration: 10304ms;
+  animation-duration: 10304ms;
+  -webkit-animation-delay: 374ms;
+  animation-delay: 374ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(57) {
+  left: 28%;
+  width: 12px;
+  height: 12px;
+  -webkit-animation-duration: 5573ms;
+  animation-duration: 5573ms;
+  -webkit-animation-delay: 2921ms;
+  animation-delay: 2921ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(58) {
+  left: 3%;
+  width: 19px;
+  height: 19px;
+  -webkit-animation-duration: 9769ms;
+  animation-duration: 9769ms;
+  -webkit-animation-delay: 3150ms;
+  animation-delay: 3150ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(59) {
+  left: 36%;
+  width: 10px;
+  height: 10px;
+  -webkit-animation-duration: 7993ms;
+  animation-duration: 7993ms;
+  -webkit-animation-delay: 2461ms;
+  animation-delay: 2461ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(60) {
+  left: 32%;
+  width: 13px;
+  height: 13px;
+  -webkit-animation-duration: 7934ms;
+  animation-duration: 7934ms;
+  -webkit-animation-delay: 232ms;
+  animation-delay: 232ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(61) {
+  left: 20%;
+  width: 12px;
+  height: 12px;
+  -webkit-animation-duration: 5454ms;
+  animation-duration: 5454ms;
+  -webkit-animation-delay: 1940ms;
+  animation-delay: 1940ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(62) {
+  left: 20%;
+  width: 9px;
+  height: 9px;
+  -webkit-animation-duration: 5746ms;
+  animation-duration: 5746ms;
+  -webkit-animation-delay: 2749ms;
+  animation-delay: 2749ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(63) {
+  left: 132%;
+  width: 4px;
+  height: 4px;
+  -webkit-animation-duration: 8184ms;
+  animation-duration: 8184ms;
+  -webkit-animation-delay: 1643ms;
+  animation-delay: 1643ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(64) {
+  left: 140%;
+  width: 11px;
+  height: 11px;
+  -webkit-animation-duration: 8277ms;
+  animation-duration: 8277ms;
+  -webkit-animation-delay: 2604ms;
+  animation-delay: 2604ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(65) {
+  left: 66%;
+  width: 16px;
+  height: 16px;
+  -webkit-animation-duration: 8145ms;
+  animation-duration: 8145ms;
+  -webkit-animation-delay: 525ms;
+  animation-delay: 525ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(66) {
+  left: 42%;
+  width: 3px;
+  height: 3px;
+  -webkit-animation-duration: 8173ms;
+  animation-duration: 8173ms;
+  -webkit-animation-delay: 3287ms;
+  animation-delay: 3287ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(67) {
+  left: 24%;
+  width: 4px;
+  height: 4px;
+  -webkit-animation-duration: 10253ms;
+  animation-duration: 10253ms;
+  -webkit-animation-delay: 777ms;
+  animation-delay: 777ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(68) {
+  left: 31%;
+  width: 23px;
+  height: 23px;
+  -webkit-animation-duration: 11539ms;
+  animation-duration: 11539ms;
+  -webkit-animation-delay: 3051ms;
+  animation-delay: 3051ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(69) {
+  left: 56%;
+  width: 24px;
+  height: 24px;
+  -webkit-animation-duration: 11818ms;
+  animation-duration: 11818ms;
+  -webkit-animation-delay: 3407ms;
+  animation-delay: 3407ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(70) {
+  left: 12%;
+  width: 1px;
+  height: 1px;
+  -webkit-animation-duration: 13215ms;
+  animation-duration: 13215ms;
+  -webkit-animation-delay: 2692ms;
+  animation-delay: 2692ms;
+  filter: blur(4px);
+}
+.g-snows > li:nth-child(71) {
+  left: 58%;
+  width: 14px;
+  height: 14px;
+  -webkit-animation-duration: 13892ms;
+  animation-duration: 13892ms;
+  -webkit-animation-delay: 2563ms;
+  animation-delay: 2563ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(72) {
+  left: 89%;
+  width: 3px;
+  height: 3px;
+  -webkit-animation-duration: 5208ms;
+  animation-duration: 5208ms;
+  -webkit-animation-delay: 583ms;
+  animation-delay: 583ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(73) {
+  left: 56%;
+  width: 6px;
+  height: 6px;
+  -webkit-animation-duration: 11723ms;
+  animation-duration: 11723ms;
+  -webkit-animation-delay: 1437ms;
+  animation-delay: 1437ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(74) {
+  left: 24%;
+  width: 2px;
+  height: 2px;
+  -webkit-animation-duration: 7781ms;
+  animation-duration: 7781ms;
+  -webkit-animation-delay: 3988ms;
+  animation-delay: 3988ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(75) {
+  left: 138%;
+  width: 13px;
+  height: 13px;
+  -webkit-animation-duration: 8272ms;
+  animation-duration: 8272ms;
+  -webkit-animation-delay: 2605ms;
+  animation-delay: 2605ms;
+  filter: blur(4px);
+}
+.g-snows > li:nth-child(76) {
+  left: 28%;
+  width: 12px;
+  height: 12px;
+  -webkit-animation-duration: 5476ms;
+  animation-duration: 5476ms;
+  -webkit-animation-delay: 621ms;
+  animation-delay: 621ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(77) {
+  left: 13%;
+  width: 6px;
+  height: 6px;
+  -webkit-animation-duration: 7855ms;
+  animation-duration: 7855ms;
+  -webkit-animation-delay: 3690ms;
+  animation-delay: 3690ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(78) {
+  left: 26%;
+  width: 18px;
+  height: 18px;
+  -webkit-animation-duration: 7100ms;
+  animation-duration: 7100ms;
+  -webkit-animation-delay: 4307ms;
+  animation-delay: 4307ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(79) {
+  left: 75%;
+  width: 14px;
+  height: 14px;
+  -webkit-animation-duration: 5176ms;
+  animation-duration: 5176ms;
+  -webkit-animation-delay: 2086ms;
+  animation-delay: 2086ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(80) {
+  left: 27%;
+  width: 9px;
+  height: 9px;
+  -webkit-animation-duration: 9216ms;
+  animation-duration: 9216ms;
+  -webkit-animation-delay: 205ms;
+  animation-delay: 205ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(81) {
+  left: 30%;
+  width: 8px;
+  height: 8px;
+  -webkit-animation-duration: 8673ms;
+  animation-duration: 8673ms;
+  -webkit-animation-delay: 256ms;
+  animation-delay: 256ms;
+  filter: blur(4px);
+}
+.g-snows > li:nth-child(82) {
+  left: 72%;
+  width: 16px;
+  height: 16px;
+  -webkit-animation-duration: 14040ms;
+  animation-duration: 14040ms;
+  -webkit-animation-delay: 3849ms;
+  animation-delay: 3849ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(83) {
+  left: 51%;
+  width: 17px;
+  height: 17px;
+  -webkit-animation-duration: 8816ms;
+  animation-duration: 8816ms;
+  -webkit-animation-delay: 955ms;
+  animation-delay: 955ms;
+  filter: blur(4px);
+}
+.g-snows > li:nth-child(84) {
+  left: 125%;
+  width: 10px;
+  height: 10px;
+  -webkit-animation-duration: 5964ms;
+  animation-duration: 5964ms;
+  -webkit-animation-delay: 1377ms;
+  animation-delay: 1377ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(85) {
+  left: 74%;
+  width: 9px;
+  height: 9px;
+  -webkit-animation-duration: 6358ms;
+  animation-duration: 6358ms;
+  -webkit-animation-delay: 2414ms;
+  animation-delay: 2414ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(86) {
+  left: 83%;
+  width: 12px;
+  height: 12px;
+  -webkit-animation-duration: 6545ms;
+  animation-duration: 6545ms;
+  -webkit-animation-delay: 3928ms;
+  animation-delay: 3928ms;
+  filter: blur(4px);
+}
+.g-snows > li:nth-child(87) {
+  left: 16%;
+  width: 21px;
+  height: 21px;
+  -webkit-animation-duration: 7131ms;
+  animation-duration: 7131ms;
+  -webkit-animation-delay: 2389ms;
+  animation-delay: 2389ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(88) {
+  left: 57%;
+  width: 12px;
+  height: 12px;
+  -webkit-animation-duration: 7522ms;
+  animation-duration: 7522ms;
+  -webkit-animation-delay: 3801ms;
+  animation-delay: 3801ms;
+  filter: blur(4px);
+}
+.g-snows > li:nth-child(89) {
+  left: 78%;
+  width: 5px;
+  height: 5px;
+  -webkit-animation-duration: 13623ms;
+  animation-duration: 13623ms;
+  -webkit-animation-delay: 2185ms;
+  animation-delay: 2185ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(90) {
+  left: 61%;
+  width: 8px;
+  height: 8px;
+  -webkit-animation-duration: 8657ms;
+  animation-duration: 8657ms;
+  -webkit-animation-delay: 71ms;
+  animation-delay: 71ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(91) {
+  left: 28%;
+  width: 2px;
+  height: 2px;
+  -webkit-animation-duration: 7909ms;
+  animation-duration: 7909ms;
+  -webkit-animation-delay: 3333ms;
+  animation-delay: 3333ms;
+  filter: blur(2px);
+}
+.g-snows > li:nth-child(92) {
+  left: 12%;
+  width: 7px;
+  height: 7px;
+  -webkit-animation-duration: 6594ms;
+  animation-duration: 6594ms;
+  -webkit-animation-delay: 243ms;
+  animation-delay: 243ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(93) {
+  left: 49%;
+  width: 16px;
+  height: 16px;
+  -webkit-animation-duration: 12482ms;
+  animation-duration: 12482ms;
+  -webkit-animation-delay: 1371ms;
+  animation-delay: 1371ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(94) {
+  left: 9%;
+  width: 22px;
+  height: 22px;
+  -webkit-animation-duration: 5760ms;
+  animation-duration: 5760ms;
+  -webkit-animation-delay: 3697ms;
+  animation-delay: 3697ms;
+  filter: blur(3px);
+}
+.g-snows > li:nth-child(95) {
+  left: 45%;
+  width: 10px;
+  height: 10px;
+  -webkit-animation-duration: 8898ms;
+  animation-duration: 8898ms;
+  -webkit-animation-delay: 3597ms;
+  animation-delay: 3597ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(96) {
+  left: 96%;
+  width: 6px;
+  height: 6px;
+  -webkit-animation-duration: 5404ms;
+  animation-duration: 5404ms;
+  -webkit-animation-delay: 2061ms;
+  animation-delay: 2061ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(97) {
+  left: 94%;
+  width: 1px;
+  height: 1px;
+  -webkit-animation-duration: 6600ms;
+  animation-duration: 6600ms;
+  -webkit-animation-delay: 2167ms;
+  animation-delay: 2167ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(98) {
+  left: 39%;
+  width: 6px;
+  height: 6px;
+  -webkit-animation-duration: 8484ms;
+  animation-duration: 8484ms;
+  -webkit-animation-delay: 433ms;
+  animation-delay: 433ms;
+  filter: blur(1px);
+}
+.g-snows > li:nth-child(99) {
+  left: 28%;
+  width: 6px;
+  height: 6px;
+  -webkit-animation-duration: 9263ms;
+  animation-duration: 9263ms;
+  -webkit-animation-delay: 2548ms;
+  animation-delay: 2548ms;
+  filter: blur(0px);
+}
+.g-snows > li:nth-child(100) {
+  left: 119%;
+  width: 9px;
+  height: 9px;
+  -webkit-animation-duration: 9902ms;
+  animation-duration: 9902ms;
+  -webkit-animation-delay: 3559ms;
+  animation-delay: 3559ms;
+  filter: blur(2px);
+}
+
+@-webkit-keyframes snow-drop {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+    margin-left: 0;
+  }
+  10% {
+    margin-left: 15px;
+  }
+  20% {
+    margin-left: 20px;
+  }
+  25% {
+    transform: translate(0, 166.6666666667px);
+    opacity: 0.75;
+  }
+  30% {
+    margin-left: 15px;
+  }
+  40% {
+    margin-left: 0;
+  }
+  50% {
+    transform: translate(0, 333.3333333333px);
+    opacity: 1;
+    margin-left: -15px;
+  }
+  60% {
+    margin-left: -20px;
+  }
+  70% {
+    margin-left: -15px;
+  }
+  75% {
+    transform: translate(0, 500px);
+    opacity: 0.5;
+  }
+  80% {
+    margin-left: 0;
+  }
+  100% {
+    transform: translate(0, 666.6666666667px);
+    opacity: 0;
+  }
+}
+
+@keyframes snow-drop {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+    margin-left: 0;
+  }
+  10% {
+    margin-left: 15px;
+  }
+  20% {
+    margin-left: 20px;
+  }
+  25% {
+    transform: translate(0, 166.6666666667px);
+    opacity: 0.75;
+  }
+  30% {
+    margin-left: 15px;
+  }
+  40% {
+    margin-left: 0;
+  }
+  50% {
+    transform: translate(0, 333.3333333333px);
+    opacity: 1;
+    margin-left: -15px;
+  }
+  60% {
+    margin-left: -20px;
+  }
+  70% {
+    margin-left: -15px;
+  }
+  75% {
+    transform: translate(0, 500px);
+    opacity: 0.5;
+  }
+  80% {
+    margin-left: 0;
+  }
+  100% {
+    transform: translate(0, 666.6666666667px);
+    opacity: 0;
+  }
+}

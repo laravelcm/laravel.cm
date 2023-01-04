@@ -45,11 +45,6 @@
                 </p>
                 <div class="mt-8 flex items-center justify-center flex-wrap gap-8 lg:mt-12">
                     <div class="flex items-center justify-center px-4">
-                        <a href="https://cosna-afrique.com" target="_blank" class="flex items-center">
-                            <x-icon.cosna class="w-auto h-14"/>
-                        </a>
-                    </div>
-                    <div class="flex items-center justify-center px-4">
                         <a href="https://laravelshopper.io" target="_blank" class="flex items-center">
                             <img class="h-12 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
                             <img class="h-12 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
@@ -252,7 +247,7 @@
                         </div>
                         <h4 class="mt-2 text-3xl font-bold leading-8 tracking-tight text-skin-inverted sm:text-4xl font-heading">Accès illimité avec un abonnement premium</h4>
                         <p class="max-w-2xl mt-4 text-xl text-skin-base lg:mx-auto">
-                            Devenir premium c'est soutenir la communauté, la nouveaux contenus chaque semaine et accéder à du contenu exclusif pour apprendre et progresser.
+                            Devenir premium c'est soutenir la communauté, les nouveaux contenus chaque semaine et accéder à du contenu exclusif pour apprendre et progresser.
                         </p>
                     </div>
                     <div class="mt-16 space-y-12 lg:mt-20 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:space-y-0 lg:max-w-4xl lg:mx-auto">
@@ -288,7 +283,7 @@
                                     </ul>
                                 </div>
 
-                                <x-button link="#" class="w-full mt-10">Souscire Maintenant</x-button>
+                                <x-button link="#" class="w-full mt-10">Souscrire Maintenant</x-button>
                             </div>
                         @endforeach
                     </div>
