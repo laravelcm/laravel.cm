@@ -50,8 +50,6 @@
     @livewire('livewire-ui-modal')
     @livewire('livewire-ui-spotlight')
 
-    <x-winter-is-coming />
-    <x-guirlandes />
 
     @stack('scripts')
 </body>
