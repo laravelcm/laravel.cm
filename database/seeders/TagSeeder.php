@@ -7,11 +7,6 @@ use Illuminate\Database\Seeder;
 
 class TagSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run(): void
     {
         $this->createTag('AlpineJS', 'alpinejs', ['post', 'tutorial']);

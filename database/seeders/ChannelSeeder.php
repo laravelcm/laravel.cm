@@ -7,11 +7,6 @@ use Illuminate\Database\Seeder;
 
 class ChannelSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run(): void
     {
         $authentification = Channel::create(['name' => 'Authentification', 'slug' => 'authentification', 'color' => '#31c48d']);

@@ -8,11 +8,6 @@ use Illuminate\Database\Seeder;
 
 class DeveloperPremiumPlanSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run(): void
     {
         $rookiePlan = Plan::create([

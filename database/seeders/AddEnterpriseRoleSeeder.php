@@ -7,11 +7,6 @@ use Spatie\Permission\Models\Role;
 
 class AddEnterpriseRoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run(): void
     {
         Role::create(['name' => 'company']);
