@@ -55,7 +55,9 @@ class CreateThread extends Component
 
         givePoint(new ThreadCreated($thread));
 
-        event(new ThreadWasCreated($thread));
+        if (app()->environment('production')) {
+            event(new ThreadWasCreated($thread));
+        }
 
         $this->redirectRoute('forum.show', $thread);
     }

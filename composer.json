@@ -108,8 +108,9 @@
     "setup": [
       "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
       "php artisan key:generate",
-      "php artisan migrate --seed",
+      "php artisan migrate",
       "php artisan rinvex:migrate:subscriptions",
+      "php artisan db:seed",
       "php artisan lcm:admin"
     ]
   },

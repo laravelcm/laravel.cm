@@ -7,13 +7,9 @@ use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run(): void
     {
+        /** @var User $user */
         $user = User::factory()->create([
             'name' => 'Arthur Doe',
             'email' => 'user@laravel.cm',
