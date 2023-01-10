@@ -9,6 +9,7 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
+        /** @var User $user */
         $user = User::factory()->create([
             'name' => 'Arthur Doe',
             'email' => 'user@laravel.cm',
