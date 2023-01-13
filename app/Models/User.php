@@ -17,6 +17,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
+use LaravelFeature\Featurable\Featurable;
+use LaravelFeature\Featurable\FeaturableInterface;
 use QCod\Gamify\Gamify;
 use Rinvex\Subscriptions\Traits\HasPlanSubscriptions;
 use Spatie\MediaLibrary\HasMedia;
@@ -26,7 +28,7 @@ use Spatie\Permission\Traits\HasRoles;
 /**
  * @mixin IdeHelperUser
  */
-class User extends Authenticatable implements MustVerifyEmail, HasMedia
+class User extends Authenticatable implements MustVerifyEmail, HasMedia, FeaturableInterface
 {
     use Gamify;
     use HasFactory;
@@ -39,6 +41,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     use InteractsWithMedia;
     use Notifiable;
     use Reacts;
+    use Featurable;
 
     /**
      * The attributes that are mass assignable.

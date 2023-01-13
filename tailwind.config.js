@@ -85,6 +85,7 @@ module.exports = {
         card: 'rgb(var(--color-card-fill))',
         primary: colors.emerald,
         green: colors.emerald,
+        orange: colors.orange,
       },
       fontFamily: {
         heading: ['Lexend', ...fontFamily.sans],
