@@ -15,6 +15,7 @@
     "blade-ui-kit/blade-ui-kit": "^0.3",
     "cyrildewit/eloquent-viewable": "^6.1",
     "doctrine/dbal": "^3.3",
+    "filament/filament": "^2.0",
     "francescomalatesta/laravel-feature": "^3.0",
     "fruitcake/laravel-cors": "^2.0",
     "graham-campbell/markdown": "^14.0",
@@ -89,7 +90,8 @@
     "post-update-cmd": [
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
       "@php artisan ide-helper:generate",
-      "@php artisan ide-helper:meta"
+      "@php artisan ide-helper:meta",
+      "@php artisan filament:upgrade"
     ],
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
