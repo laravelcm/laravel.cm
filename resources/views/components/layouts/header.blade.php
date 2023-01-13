@@ -96,8 +96,9 @@
                                             </svg>
                                         </div>
                                         <div class="ml-4">
-                                            <p class="text-base font-sans font-medium text-skin-inverted">
+                                            <p class="inline-flex items-center text-base font-sans font-medium text-skin-inverted">
                                                 {{ __('Badges') }}
+                                                <span class="inline-flex ml-2 text-xs leading-4 text-green-800 bg-green-100 py-0.5 px-1.5 rounded-full">Bientôt</span>
                                             </p>
                                             <p class="mt-1 text-sm text-skin-base font-normal">
                                                 {{ __('Obtenez des badges et débloquez différentes fonctionnalités.') }}
