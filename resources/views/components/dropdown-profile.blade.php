@@ -29,6 +29,7 @@
                 {{ Auth::user()->email }}
             </p>
         </div>
+
         @if(Auth::user()->hasRole(['admin', 'moderator']))
             <div class="py-1.5 px-3.5" role="none">
                 <a href="{{ route('cpanel.home') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
@@ -39,34 +40,70 @@
                 </a>
             </div>
         @endif
+
+        @feature('job_profile')
+            <div class="py-2 px-3.5" role="none">
+                <div class="flex items-center justify-between">
+                    <h5 class="text-sm leading-5 text-skin-base">{{ __('Profil Développeur') }}</h5>
+                    <span class="inline-flex items-center rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-800">
+                        <svg class="mr-1.5 h-2 w-2 text-orange-400" fill="currentColor" viewBox="0 0 8 8">
+                            <circle cx="4" cy="4" r="3" />
+                        </svg>
+                        Off
+                    </span>
+                </div>
+                <div class="py-1 5">
+                    <a href="#" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
+                        <x-icon.user-edit class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                        {{ __('Mon compte') }}
+                    </a>
+                    <a href="#" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
+                        <x-icon.file-attachment class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                        {{ __('Mes candidatures') }}
+                    </a>
+                    <a href="#" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
+                        <x-icon.clipboard-document class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                        {{ __('Mes compétences') }}
+                    </a>
+                    <a href="#" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
+                        <x-icon.adjustments class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                        {{ __('Préférences') }}
+                    </a>
+                </div>
+                <div class="my-2 px-3 py-2.5 border border-skin-base rounded-md">
+                    <h6 class="inline-flex items-center text-sm leading-5 font-medium text-skin-inverted-muted">
+                        Profil incomplet!
+                        <svg class="ml-1.5 text-sky-500 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                        </svg>
+                    </h6>
+                    <p class="mt-1 text-sm leading-5 text-skin-base">
+                        {{ __('Nous avons besoin de plus d\'informations pour vous mettre en relation avec les entreprises.') }}
+                    </p>
+                    <a href="#" class="inline-block rounded-md mt-3 w-full border border-skin-base px-1.5 py-2 text-center text-sm leading-4 font-medium text-skin-base hover:text-skin-inverted-muted">
+                        Compléter mon profil
+                    </a>
+                </div>
+            </div>
+        @endfeature
+
         <div class="py-1.5 px-3.5" role="none">
             <a href="{{ route('dashboard') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-                </svg>
-                {{ __('Dashboard') }}
+                <x-icon.grid class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                {{ __('Tableau de bord') }}
             </a>
             <a href="{{ route('profile') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                </svg>
+                <x-icon.profile class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
                 {{ __('Mon profil') }}
             </a>
             <a href="{{ route('user.settings') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
+                <x-icon.settings class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
                 {{ __('Paramètres') }}
             </a>
-        </div>
-        <div class="py-1.5 px-3.5" role="none">
             <form method="POST" action="{{ route('logout') }}" role="form">
                 @csrf
                 <button type="submit" class="group flex items-center text-skin-base hover:text-skin-primary font-normal w-full text-left py-1.5 text-sm" role="menuitem" tabindex="-1" id="logout">
-                    <svg stroke="currentColor" fill="none" class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" viewBox="0 0 20 20">
-                        <path d="M10.25 3.75H9A6.25 6.25 0 002.75 10v0A6.25 6.25 0 009 16.25h1.25M10.75 10h6.5M14.75 12.25l2.5-2.25-2.5-2.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
+                    <x-icon.logout class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
                     {{ __('Se déconnecter') }}
                 </button>
             </form>
