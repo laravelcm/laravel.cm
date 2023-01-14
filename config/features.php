@@ -21,7 +21,7 @@ return [
     */
 
     'scanned_paths' => [
-        base_path('resources/views')
+        base_path('resources/views'),
     ],
 
     /*
@@ -53,6 +53,6 @@ return [
     |
     */
 
-    'repository' => LaravelFeature\Repository\EloquentFeatureRepository::class
+    'repository' => LaravelFeature\Repository\EloquentFeatureRepository::class,
 
 ];

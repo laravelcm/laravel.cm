@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -40,4 +39,3 @@ uses(Tests\TestCase::class, RefreshDatabase::class, DatabaseMigrations::class)->
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
-

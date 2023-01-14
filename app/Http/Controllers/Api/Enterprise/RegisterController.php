@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\Enterprise;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Enterprise\RegisterRequest;
-use App\Http\Resources\AuthenticateUserResource;
 use App\Http\Resources\EnterpriseResource;
 use App\Models\Enterprise;
 use App\Models\User;

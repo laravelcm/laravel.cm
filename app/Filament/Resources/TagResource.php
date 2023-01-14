@@ -10,7 +10,6 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TagResource extends Resource
 {
@@ -31,7 +30,7 @@ class TagResource extends Resource
                             'post' => __('Article'),
                             'tutorial' => __('Tutoriel'),
                             'discussion' => __('Discussion'),
-                            'jobs' => __('Jobs')
+                            'jobs' => __('Jobs'),
                         ])
                         ->required()
                         ->bulkToggleable()
@@ -55,13 +54,13 @@ class TagResource extends Resource
                         'post' => __('Article'),
                         'tutorial' => __('Tutoriel'),
                         'discussion' => __('Discussion'),
-                        'jobs' => __('Jobs')
+                        'jobs' => __('Jobs'),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query->whereJsonContains('concerns', $data['values']);
                     })
                 ->attribute('concerns')
-                ->default(false)
+                ->default(false),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

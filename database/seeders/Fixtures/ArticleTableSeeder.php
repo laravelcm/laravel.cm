@@ -5,9 +5,9 @@ namespace Database\Seeders\Fixtures;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
+use Faker\Generator as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
 
 class ArticleTableSeeder extends Seeder
 {
@@ -24,7 +24,7 @@ class ArticleTableSeeder extends Seeder
 
         /** @var Article $article1 */
         $article1 = Article::create([
-            'title' => $name = "Voyager - The Missing Laravel Admin",
+            'title' => $name = 'Voyager - The Missing Laravel Admin',
             'slug' => $name,
             'body' => "
                 # **V**oyager - The Missing Laravel Admin
@@ -131,7 +131,7 @@ And you will be prompted for the user's name and password.
 
         /** @var Article $article2 */
         $article2 = Article::create([
-            'title' => $name = "Awesome of awesome",
+            'title' => $name = 'Awesome of awesome',
             'slug' => $name,
             'body' => "
                 ## Contents
@@ -398,7 +398,7 @@ And you will be prompted for the user's name and password.
 
         /** @var Article $article3 */
         $article3 = Article::create([
-            'title' => $name = "React Email Editor",
+            'title' => $name = 'React Email Editor',
             'slug' => $name,
             'body' => "
                 The excellent drag-n-drop email editor by [Unlayer](https://unlayer.com/embed) as a [React.js](http://facebook.github.io/react) _wrapper component_. This is the most powerful and developer friendly visual email builder for your app.
@@ -521,7 +521,7 @@ Copyright (c) 2022 Unlayer. [MIT](LICENSE) Licensed.
 
         /** @var Article $article4 */
         $article4 = Article::create([
-            'title' => $name = "Awesome Laravel Package, Tutorials, News",
+            'title' => $name = 'Awesome Laravel Package, Tutorials, News',
             'slug' => $name,
             'body' => "
             A curated list of awesome bookmarks, packages, tutorials, videos and other cool resources from the Laravel ecosystem.
@@ -1105,7 +1105,7 @@ Awesome Laravel is licensed under a  [Creative Commons Attribution 4.0 Internati
 
         /** @var Article $article5 */
         $article5 = Article::create([
-            'title' => $name = "COVID TEST CENTER",
+            'title' => $name = 'COVID TEST CENTER',
             'slug' => $name,
             'body' => "
 
@@ -1179,7 +1179,7 @@ MIT
 
         /** @var Article $article6 */
         $article6 = Article::create([
-            'title' => $name = "Le nouveau site de Grafikart (Grafikart.New)",
+            'title' => $name = 'Le nouveau site de Grafikart (Grafikart.New)',
             'slug' => $name,
             'body' => "
             Dépôt pour la nouvelle version de Grafikart.fr. L'objectif est de rendre le projet Open Source afin que tout le monde puisse participer à l'élaboration du site et à son évolution.
