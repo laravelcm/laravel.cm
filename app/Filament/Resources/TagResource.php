@@ -23,7 +23,9 @@ class TagResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Group::make()->schema([
-                    Forms\Components\TextInput::make('name')->label('Nom'),
+                    Forms\Components\TextInput::make('name')
+                        ->label('Nom')
+                        ->required(),
                     Forms\Components\CheckboxList::make('concerns')
                         ->options([
                             'post' => __('Article'),
@@ -31,6 +33,7 @@ class TagResource extends Resource
                             'discussion' => __('Discussion'),
                             'jobs' => __('Jobs')
                         ])
+                        ->required()
                         ->bulkToggleable()
                         ->columns(),
                 ]),
