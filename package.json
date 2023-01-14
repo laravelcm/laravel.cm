@@ -15,24 +15,26 @@
     "@babel/plugin-transform-runtime": "^7.16.4",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.16.0",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/line-clamp": "^0.3.0",
+    "@tailwindcss/typography": "^0.5.0",
+    "alpinejs": "^3.10.3",
+    "autoprefixer": "^10.4.7",
     "babel-plugin-jsx-pragmatic": "^1.0.2",
     "eslint-config-preact": "^1.1.3",
     "laravel-mix": "^6.0.38",
     "lodash": "^4.17.19",
     "postcss": "^8.4.5",
     "postcss-loader": "^6.2.1",
-    "postcss-preset-env": "^7.0.1"
+    "postcss-preset-env": "^7.0.1",
+    "tailwindcss": "^3.2.4",
+    "tippy.js": "^6.3.7"
   },
   "dependencies": {
     "@alpinejs/intersect": "^3.6.1",
     "@headlessui/react": "^1.7.2",
     "@heroicons/react": "^2.0.11",
-    "@tailwindcss/aspect-ratio": "^0.4.0",
-    "@tailwindcss/forms": "^0.5.2",
-    "@tailwindcss/line-clamp": "^0.3.0",
-    "@tailwindcss/typography": "^0.5.0",
-    "alpinejs": "^3.10.3",
-    "autoprefixer": "^10.4.1",
     "axios": "^0.21.1",
     "canvas-confetti": "^1.4.0",
     "choices.js": "^9.0.1",
@@ -41,7 +43,6 @@
     "intl-tel-input": "^17.0.13",
     "markdown-to-jsx": "^7.1.3",
     "preact": "^10.5.15",
-    "react-content-loader": "^6.0.3",
-    "tailwindcss": "^3.1.8"
+    "react-content-loader": "^6.0.3"
   }
 }

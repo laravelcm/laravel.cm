@@ -15,6 +15,7 @@ use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
 use App\View\Composers\TopMembersComposer;
 use Carbon\Carbon;
+use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
@@ -45,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
         $this->bootViewsComposer();
         $this->bootEloquentMorphs();
         $this->bootHealthCheck();
+        $this->bootFilament();
 
         ReplyResource::withoutWrapping();
     }
@@ -104,5 +106,19 @@ class AppServiceProvider extends ServiceProvider
             DatabaseCheck::new(),
             CacheCheck::new(),
         ]);
+    }
+
+    public function bootFilament(): void
+    {
+        Filament::serving(function () {
+            Filament::registerTheme(
+                mix('css/filament.css'),
+            );
+        });
+
+        Filament::registerRenderHook(
+            'body.start',
+            fn (): string => Blade::render('@livewire(\'livewire-ui-modal\')'),
+        );
     }
 }
