@@ -5161,6 +5161,9 @@ html {
 .break-words{
   overflow-wrap: break-word;
 }
+.break-all{
+  word-break: break-all;
+}
 .rounded-lg{
   border-radius: 0.5rem;
 }
