@@ -244,7 +244,7 @@ return [
             'alignment' => 'right',
         ],
         'sidebar' => [
-            'is_collapsible_on_desktop' => true,
+            'is_collapsible_on_desktop' => false,
             'groups' => [
                 'are_collapsible' => true,
             ],
@@ -262,7 +262,7 @@ return [
     |
     */
 
-    'favicon' => null,
+    'favicon' => '/images/favicons/favicon-32x32.png',
 
     /*
     |--------------------------------------------------------------------------
