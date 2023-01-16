@@ -53,6 +53,7 @@
     "yarri/link-finder": "^2.7"
   },
   "require-dev": {
+    "barryvdh/laravel-debugbar": "^3.7",
     "barryvdh/laravel-ide-helper": "^2.12",
     "brianium/paratest": "^6.3",
     "fakerphp/faker": "^1.9.1",
