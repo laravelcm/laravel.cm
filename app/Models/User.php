@@ -6,6 +6,7 @@ use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
 use App\Traits\Reacts;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -28,7 +29,7 @@ use Spatie\Permission\Traits\HasRoles;
 /**
  * @mixin IdeHelperUser
  */
-class User extends Authenticatable implements MustVerifyEmail, HasMedia, FeaturableInterface
+class User extends Authenticatable implements MustVerifyEmail, HasMedia, FeaturableInterface, FilamentUser
 {
     use Gamify;
     use HasFactory;
@@ -152,6 +153,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
         return $this->hasRole('company');
     }
 
+    public function canAccessFilament(): bool
+    {
+        return $this->isAdmin() || $this->isModerator();
+    }
+
     public function isLoggedInUser(): bool
     {
         return $this->id === Auth::id();
@@ -164,6 +170,16 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
             'username' => $this->username,
             'picture' => $this->profile_photo_url,
         ];
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->profile_photo_url;
+    }
+
+    public function getFilamentName(): string
+    {
+        return $this->name;
     }
 
     public function registerMediaCollections(): void

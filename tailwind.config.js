@@ -19,6 +19,7 @@ module.exports = {
     './resources/**/*.blade.php',
     './resources/**/*.{js,jsx}',
     './storage/framework/views/*.php',
+    './vendor/filament/**/*.blade.php',
     './vendor/wire-elements/modal/resources/views/*.blade.php',
   ],
   safelist: [
@@ -86,6 +87,9 @@ module.exports = {
         primary: colors.emerald,
         green: colors.emerald,
         orange: colors.orange,
+        danger: colors.rose,
+        success: colors.green,
+        warning: colors.yellow,
       },
       fontFamily: {
         heading: ['Lexend', ...fontFamily.sans],

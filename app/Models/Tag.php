@@ -17,12 +17,14 @@ class Tag extends Model
         HasSlug,
         ModelHelpers;
 
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
     public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'concerns',
+    ];
 
     /**
      * The attributes that should be cast.

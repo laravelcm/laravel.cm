@@ -2,6 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import '../../vendor/filament/forms/dist/module.esm.css';
 @import "~highlight.js/styles/atom-one-dark.css";
 @import '~choices.js/public/assets/styles/choices.css';
 @import '~intl-tel-input/build/css/intlTelInput.css';
@@ -103,35 +104,3 @@
     --color-border-light: 55, 65, 81;
   }
 }
-
-[x-cloak] {
-  display: none !important;
-}
-
-.prose iframe {
-  @apply w-full;
-}
-
-.logo-dark {
-  display: none;
-}
-
-.theme-dark .logo-white {
-  display: none;
-}
-
-.theme-dark .logo-dark {
-  display: block;
-}
-
-.animate-scroll-slow:nth-child(2) {
-  animation-duration: 40s;
-  animation-delay: 500ms;
-}
-
-.animate-scroll-slow:nth-child(3) {
-  animation-duration: 50s;
-  animation-delay: 750ms;
-}
-
-

@@ -35,12 +35,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        ResetPassword::createUrlUsing(function ($user, string $token) {
-            return config('lcm.spa_url').'/auth/password/reset?token='.$token;
-        });
+        ResetPassword::createUrlUsing(fn ($user, string $token) => config('lcm.spa_url').'/auth/password/reset?token='.$token);
 
-        Gate::before(function ($user) {
-            return $user->hasRole('admin') ? true : null;
-        });
+        Gate::before(fn ($user) => $user->hasRole('admin') ? true : null);
     }
 }

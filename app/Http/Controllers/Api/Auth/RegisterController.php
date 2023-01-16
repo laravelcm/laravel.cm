@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Events\ApiRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\RegisterRequest;
-use App\Http\Resources\AuthenticateUserResource;
-use App\Http\Resources\EnterpriseResource;
 use App\Models\SocialAccount;
 use App\Models\User;
 use App\Traits\UserResponse;
