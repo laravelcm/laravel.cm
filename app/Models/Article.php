@@ -207,7 +207,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function isNotPublished(): bool
     {
-        return ($this->isNotSubmitted() || $this->isNotApproved()) && $this->published_at === null;
+        return $this->isNotSubmitted() || $this->isNotApproved();
     }
 
     public function isPinned(): bool
