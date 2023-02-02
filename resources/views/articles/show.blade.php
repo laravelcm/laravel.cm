@@ -14,7 +14,7 @@
         <div class="hidden relative lg:block lg:col-span-2">
             <x-sticky-content class="divide-y divide-skin-base space-y-6">
                 <div>
-                    <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase font-heading">A propos de l’auteur</h4>
+                    <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase font-heading">{{ __('A propos de l’auteur') }}</h4>
                     <div class="mt-6 space-y-4">
                         <a href="{{ route('profile', $author->username) }}" class="shrink-0 block">
                             <div class="flex items-center">
@@ -107,12 +107,14 @@
                     <div class="mt-2 flex space-x-1 text-sm text-skin-base sm:mt-0">
                         <time class="capitalize" datetime="{{ $article->publishedAt()->format('Y-m-d') }}">{{ $article->publishedAt()->isoFormat('LL') }}</time>
                         <span aria-hidden="true">&middot;</span>
-                        <span>{{ $article->readTime() }} min de lecture</span>
+                        <span>{{ __(':time min de lecture', ['time' => $article->readTime()]) }}</span>
                         <span aria-hidden="true">&middot;</span>
-                        <span>{{ $article->views_count }} vues</span>
+                        <span>{{ __(':views vues', ['views' => $article->views_count]) }}</span>
                     </div>
                 </div>
-                <h1 class="text-2xl font-extrabold text-skin-inverted tracking-tight font-heading sm:text-3xl sm:leading-10 md:text-4xl lg:text-5xl lg:leading-[3.5rem]">{{ $article->title }}</h1>
+                <h1 class="text-2xl font-extrabold text-skin-inverted tracking-tight font-heading sm:text-3xl sm:leading-10 md:text-4xl lg:text-5xl lg:leading-[3.5rem]">
+                    {{ $article->title }}
+                </h1>
                 <a href="{{ route('profile', $article->author->username) }}" class="mt-3 shrink-0 group block lg:hidden">
                     <div class="flex items-center">
                         <div>
@@ -129,11 +131,17 @@
                     </div>
                 </a>
             </header>
-            <div class="mt-6 aspect-w-4 aspect-h-2 sm:mt-8 mx-auto">
-                <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}" />
-            </div>
 
-            <x-markdown-content id="content" class="mt-8 prose prose-lg prose-green text-skin-base mx-auto overflow-x-hidden md:prose-xl lg:max-w-none" :content="$article->body" />
+            @if($media = $article->getFirstMediaUrl('media'))
+                <div class="mt-6 aspect-w-4 aspect-h-2 sm:mt-8 mx-auto">
+                    <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $media }}" alt="{{ $article->title }}" />
+                </div>
+            @endif
+
+            <x-markdown-content
+                id="content"
+                class="mt-8 prose prose-lg prose-green text-skin-base mx-auto overflow-x-hidden md:prose-xl lg:max-w-none"
+                :content="$article->body" />
 
             <div class="mt-6 pt-5 border-t border-skin-base sm:hidden">
                 <div class="space-y-4">
@@ -183,7 +191,7 @@
             </div>
 
             <div class="py-6">
-                <p class="text-base text-skin-base font-normal">Vous aimez cet article ? Faite le savoir en partageant</p>
+                <p class="text-base text-skin-base font-normal">{{ __('Vous aimez cet article ? Faite le savoir en partageant') }}</p>
                 <div class="mt-4 space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-4">
                     <a href="https://twitter.com/share?text={{ urlencode('"'.$article->title.'" par '. ($article->author->twitter() ? '@'.$article->author->twitter() : $article->author->name) . ' #caparledev - ') }}&url={{ urlencode(route('articles.show', $article)) }}"
                        class="inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
@@ -211,18 +219,19 @@
                     <div class="relative flex justify-center">
                         <span class="relative z-0 inline-flex shadow-sm rounded-md -space-x-px">
                             <a href="{{ route('articles.edit', $article) }}" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-skin-base bg-skin-card text-sm font-medium text-skin-inverted-muted hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
-                                <span class="sr-only">Éditer</span>
+                                <span class="sr-only">{{ __('Éditer') }}</span>
                                 <x-heroicon-s-pencil class="h-5 w-5" />
                             </a>
                             @if($article->isNotApproved())
                                 @hasanyrole('admin|moderator')
                                     <button onclick="Livewire.emit('openModal', 'modals.approved-article', {{ json_encode([$article->id]) }})" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-skin-base bg-skin-card text-sm font-medium text-green-500 hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:border-green-500 focus:ring-offset-body">
+                                        <span class="sr-only">{{ __('Approuver') }}</span>
                                         <x-heroicon-s-badge-check class="h-5 w-5" />
                                     </button>
                                 @endhasanyrole
                             @endif
                             <button onclick="Livewire.emit('openModal', 'modals.delete-article', {{ json_encode([$article->id]) }})" type="button" class="relative inline-flex items-center px-4 py-2 rounded-r-md border border-skin-base bg-skin-card text-sm font-medium text-skin-inverted-muted hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
-                                <span class="sr-only">Supprimer</span>
+                                <span class="sr-only">{{ __('Supprimer') }}</span>
                                 <x-heroicon-s-trash class="h-5 w-5" />
                             </button>
                         </span>
@@ -235,12 +244,12 @@
                     <div class="space-y-8 py-8 sm:flex sm:items-center sm:justify-between sm:space-y-0">
                         @if($next)
                             <div>
-                                <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article suivant</h2>
+                                <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">{{ __('Article suivant') }}</h2>
                                 <div class="mt-3 flex items-start space-x-2">
-                                    <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $next->getFirstMediaUrl('media') }}" alt="{{ $next->slug }}">
+                                    <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $next->getFirstMediaUrl('media') ?? asset('images/socialcard.png') }}" alt="{{ $next->slug }}">
                                     <div class="flex flex-col space-y-1">
                                         <a class="text-base font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2" href="{{ route('articles.show', $next) }}">{{ $next->title }}</a>
-                                        <span class="text-sm text-skin-muted">{{ $next->readTime() }} min de lecture</span>
+                                        <span class="text-sm text-skin-muted">{{ __(':time min de lecture', ['time' => $next->readTime()]) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -248,12 +257,12 @@
 
                         @if($previous)
                             <div>
-                                <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">Article précédent</h2>
+                                <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">{{ __('Article précédent') }}</h2>
                                 <div class="mt-3 flex items-start space-x-2">
-                                    <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $previous->getFirstMediaUrl('media') }}" alt="{{ $previous->slug }}">
+                                    <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $previous->getFirstMediaUrl('media') ?? asset('images/socialcard.png') }}" alt="{{ $previous->slug }}">
                                     <div class="flex flex-col space-y-1">
                                         <a class="text-base font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2" href="{{ route('articles.show', $previous) }}">{{ $previous->title }}</a>
-                                        <span class="text-sm text-skin-muted">{{ $previous->readTime() }} min de lecture</span>
+                                        <span class="text-sm text-skin-muted">{{ __(':time min de lecture', ['time' => $previous->readTime()]) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -268,7 +277,7 @@
 
                 @if($article->showToc())
                     <div class="bg-skin-card px-4 py-6 rounded-lg shadow-lg">
-                        <h4 class="text-sm text-skin-inverted font-semibold leading-tight tracking-widest uppercase">Table des matières</h4>
+                        <h4 class="text-sm text-skin-inverted font-semibold leading-tight tracking-widest uppercase">{{ __('Table des matières') }}</h4>
                         <x-toc class="mt-4 toc" id="toc">{!! $article->body !!}</x-toc>
                     </div>
                 @endif
@@ -293,7 +302,7 @@
                         <path d="M9.143 4.571h12.571a2.286 2.286 0 000-4.571H9.143a2.286 2.286 0 000 4.571zM21.714 8H9.143a2.286 2.286 0 000 4.571h12.571a2.286 2.286 0 000-4.571zM21.714 16H9.143a2.286 2.286 0 000 4.571h12.571a2.286 2.286 0 100-4.571z" />
                     </g>
                 </svg>
-                <span class="hidden ml-1 text-sm font-semibold uppercase md:block">Sommaire</span>
+                <span class="hidden ml-1 text-sm font-semibold uppercase md:block">{{ __('Sommaire') }}</span>
             </button>
 
             <div
@@ -319,10 +328,10 @@
                                 <div class="h-[450px] flex flex-col py-6 bg-skin-card shadow-xl rounded-l-lg overflow-y-scroll">
                                     <div class="px-4 sm:px-6">
                                         <div class="flex items-start justify-between">
-                                            <h2 class="text-lg font-medium text-skin-inverted" id="slide-over-title">Table des Matières</h2>
+                                            <h2 class="text-lg font-medium text-skin-inverted" id="slide-over-title">{{ __('Table des Matières') }}</h2>
                                             <div class="ml-3 h-7 flex items-center">
                                                 <button type="button" class="bg-skin-card rounded-md text-skin-muted hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" @click="openTOC = false">
-                                                    <span class="sr-only">Fermer</span>
+                                                    <span class="sr-only">{{ __('Fermer') }}</span>
                                                     <x-heroicon-o-x class="h-6 w-6" />
                                                 </button>
                                             </div>

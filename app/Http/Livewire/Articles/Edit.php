@@ -7,6 +7,7 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Traits\WithArticleAttributes;
 use App\Traits\WithTagsAssociation;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
@@ -38,19 +39,19 @@ class Edit extends Component
         $this->associateTags = $this->tags_selected = old('tags', $article->tags()->pluck('id')->toArray());
     }
 
-    public function submit()
+    public function submit(): void
     {
         $this->alreadySubmitted = $this->article->submitted_at !== null;
         $this->submitted_at = $this->article->submitted_at ?? now();
         $this->store();
     }
 
-    public function store()
+    public function store(): void
     {
         $this->save();
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -80,7 +81,7 @@ class Edit extends Component
             $this->redirectRoute('articles.show', $this->article);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.articles.edit', [
             'tags' => Tag::whereJsonContains('concerns', ['post'])->get(),

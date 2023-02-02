@@ -27,6 +27,7 @@ class ArticlesController extends Controller
 
         views($article)->record();
 
+        /** @var Article $article */
         $article = Cache::remember('post-'.$article->id, now()->addHour(), fn () => $article);
 
         abort_unless(
@@ -34,13 +35,14 @@ class ArticlesController extends Controller
             404
         );
 
+        $image = $article->getFirstMediaUrl('media') ?? asset('images/socialcard.png');
         seo()
             ->title($article->title)
             ->description($article->excerpt(100))
-            ->image($article->getFirstMediaUrl('media'))
+            ->image($image)
             ->twitterTitle($article->title)
             ->twitterDescription($article->excerpt(100))
-            ->twitterImage($article->getFirstMediaUrl('media'))
+            ->twitterImage($image)
             ->twitterSite('laravelcm')
             ->withUrl();
 
