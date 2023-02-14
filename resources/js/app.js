@@ -18,6 +18,6 @@ Alpine.plugin(intersect)
 Alpine.plugin(FormsAlpinePlugin)
 Alpine.plugin(NotificationsAlpinePlugin)
 
-window.Alpine = Alpine;
+window.Alpine = Alpine
 
-Alpine.start();
+Alpine.start()

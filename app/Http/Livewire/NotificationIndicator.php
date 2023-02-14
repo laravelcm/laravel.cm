@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -18,7 +19,7 @@ class NotificationIndicator extends Component
         return $count > 0;
     }
 
-    public function render()
+    public function render(): View
     {
         $this->hasNotification = $this->setHasNotification(
             Auth::user()->unreadNotifications()->count(),

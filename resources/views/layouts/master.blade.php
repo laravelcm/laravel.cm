@@ -49,6 +49,7 @@
 
     @livewire('livewire-ui-modal')
     @livewire('livewire-ui-spotlight')
+    @livewire('notifications')
 
 
     @stack('scripts')
