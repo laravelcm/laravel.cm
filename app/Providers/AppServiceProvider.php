@@ -8,6 +8,7 @@ use App\Models\Discussion;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
+use App\View\Composers\AuthUserComposer;
 use App\View\Composers\ChannelsComposer;
 use App\View\Composers\InactiveDiscussionsComposer;
 use App\View\Composers\ModeratorsComposer;
@@ -28,7 +29,7 @@ use Spatie\Health\Checks\Checks\EnvironmentCheck;
 use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;
 use Spatie\Health\Facades\Health;
 
-class AppServiceProvider extends ServiceProvider
+final class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
@@ -84,6 +85,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('discussions._contributions', TopContributorsComposer::class);
         View::composer('discussions._contributions', InactiveDiscussionsComposer::class);
         View::composer('components.profile-users', ProfileUsersComposer::class);
+        View::composer('*', AuthUserComposer::class);
     }
 
     public function bootEloquentMorphs(): void
