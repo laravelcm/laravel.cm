@@ -6,15 +6,15 @@
                     <svg class="mr-1.5 h-2 w-2 text-skin-base" fill="currentColor" viewBox="0 0 8 8">
                         <circle cx="4" cy="4" r="3" />
                     </svg>
-                    Toutes les catégories
+                    {{ __('Toutes les catégories') }}
                 </span>
 
                 <x-tags :tags="$tags" :selected-tag="$selectedTag" />
             </div>
             @auth
                 <div class="py-6 space-y-3">
-                    <h4 class="text-sm leading-5 font-sans text-skin-base">Vous avez un sujet passionnant ?</h4>
-                    <x-button :link="route('discussions.new')">Nouvelle discussion</x-button>
+                    <h4 class="text-sm leading-5 font-sans text-skin-base">{{ __('Vous avez un sujet passionnant ?') }}</h4>
+                    <x-button :link="route('discussions.new')">{{ __('Nouvelle discussion') }}</x-button>
                 </div>
             @endauth
         </x-sticky-content>
@@ -42,7 +42,7 @@
                     aria-current="{{ $selectedSortBy === 'popular' ? 'page' : 'false' }}"
                     class="w-full {{ $selectedSortBy === 'popular' ? 'text-skin-inverted': 'text-skin-base hover:text-skin-inverted' }} group relative min-w-0 flex-1 overflow-hidden bg-skin-card py-4 px-6 text-sm font-medium text-center hover:bg-skin-card-muted focus:z-10"
                 >
-                    <span>Populaire</span>
+                    <span>{{ __('Populaire') }}</span>
                     <span aria-hidden="true" class="{{ $selectedSortBy === 'popular' ? 'bg-skin-primary': 'bg-transparent' }} absolute inset-x-0 bottom-0 h-0.5"></span>
                 </button>
 
@@ -52,7 +52,7 @@
                     aria-current="{{ $selectedSortBy === 'active' ? 'page' : 'false' }}"
                     class="w-full {{ $selectedSortBy === 'active' ? 'text-skin-inverted': 'text-skin-base hover:text-skin-inverted' }} rounded-r-lg group relative min-w-0 flex-1 overflow-hidden bg-skin-card py-4 px-6 text-sm font-medium text-center hover:bg-skin-card-muted focus:z-10"
                 >
-                    <span>Actif</span>
+                    <span>{{ __('Actif') }}</span>
                     <span aria-hidden="true" class="{{ $selectedSortBy === 'active' ? 'bg-skin-primary': 'bg-transparent' }} absolute inset-x-0 bottom-0 h-0.5"></span>
                 </button>
             </nav>
@@ -71,12 +71,12 @@
             >
                 <p class="flex items-center">
                     <x-loader class="text-skin-primary" />
-                    Chargement...
+                    {{ __('Chargement...') }}
                 </p>
             </div>
         @endif
     </div>
-    <div class="hidden relative lg:block lg:col-span-3">
+    <div wire:ignore class="hidden relative lg:block lg:col-span-3">
         @include('discussions._contributions')
     </div>
 </div>

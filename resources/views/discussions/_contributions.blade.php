@@ -1,14 +1,14 @@
 <x-sticky-content class="space-y-12">
     <div>
-        <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">Top Contributeurs</h4>
-        <p class="mt-3 font-normal text-skin-base text-sm">Les personnes qui ont lancé le plus de discussions sur le site.</p>
+        <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">{{ __('Top Contributeurs') }}</h4>
+        <p class="mt-3 font-normal text-skin-base text-sm">{{ __('Les personnes qui ont lancé le plus de discussions sur le site.') }}</p>
         <div class="mt-6">
             <ul role="list" class="divide-y divide-skin-base">
                 @foreach($topContributors as $contributor)
                     <li class="py-4">
                         <div class="flex items-center space-x-4">
                             <div class="shrink-0">
-                                <img class="h-8 w-8 object-cover rounded-full" src="{{ $contributor->profile_photo_url }}" alt="">
+                                <img class="h-8 w-8 object-cover rounded-full" src="{{ $contributor->profile_photo_url }}" alt="{{ $contributor->name }}">
                             </div>
                             <div class="flex-1 min-w-0 font-sans">
                                 <p class="text-sm font-medium text-skin-inverted truncate">
@@ -34,8 +34,8 @@
     </div>
 
     <div>
-        <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">Discussions sans commentaires</h4>
-        <p class="mt-3 font-normal text-skin-base text-sm">Les discussions/sujets qui n’ont pas encore eu de commentaires. Soyez le premier à apporter votre contribution.</p>
+        <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">{{ __('Discussions sans commentaires') }}</h4>
+        <p class="mt-3 font-normal text-skin-base text-sm">{{ __('Les discussions/sujets qui n’ont pas encore eu de commentaires. Soyez le premier à apporter votre contribution.') }}</p>
 
         <div class="mt-6">
             <ul role="list" class="divide-y divide-skin-base">
@@ -50,7 +50,7 @@
                                     </h3>
                                     <p class="text-xs text-skin-muted font-normal truncate"><time-ago time="{{ $discussion->created_at->getTimestamp() }}" /></p>
                                 </div>
-                                <a href="{{ route('discussions.show', $discussion) }}" class="inline-flex text-sm text-skin-base font-normal hover:text-skin-primary leading-5">{{ $discussion->title }}</a>
+                                <a href="{{ route('discussions.show', $discussion) }}" class="inline-flex text-sm text-skin-base font-normal hover:text-skin-inverted leading-5">{{ $discussion->title }}</a>
                             </div>
                         </div>
                     </li>
