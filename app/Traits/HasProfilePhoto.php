@@ -10,14 +10,13 @@ trait HasProfilePhoto
             return $this->getFirstMediaUrl('avatar');
         }
 
-        if (!in_array($this->avatar_type, ['avatar', 'storage'])) {
+        if (! in_array($this->avatar_type, ['avatar', 'storage'])) {
             $social_avatar = $this->providers->firstWhere('provider', $this->avatar_type);
 
             if ($social_avatar && strlen($social_avatar->avatar)) {
                 return $social_avatar->avatar;
             }
         }
-
 
         return $this->defaultProfilePhotoUrl();
     }
