@@ -62,7 +62,7 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
         return $this->hasOne(Thread::class, 'solution_reply_id');
     }
 
-    public function wasJustPublished()
+    public function wasJustPublished(): bool
     {
         return $this->created_at->gt(Carbon::now()->subMinute());
     }
@@ -72,7 +72,7 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
         return Str::limit(strip_tags(md_to_html($this->body)), $limit);
     }
 
-    public function mentionedUsers()
+    public function mentionedUsers(): array
     {
         preg_match_all('/@([a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}(?!\w))/', $this->body, $matches);
 

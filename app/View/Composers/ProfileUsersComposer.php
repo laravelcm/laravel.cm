@@ -6,11 +6,11 @@ use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
-class ProfileUsersComposer
+final class ProfileUsersComposer
 {
-    public function compose(View $view)
+    public function compose(View $view): void
     {
-        $view->with('users', Cache::remember('avatar_users', now()->addDay(), function () {
+        $view->with('users', Cache::remember('avatar_users', now()->addWeek(), function () {
             return User::verifiedUsers()->inRandomOrder()->take(10)->get();
         }));
     }

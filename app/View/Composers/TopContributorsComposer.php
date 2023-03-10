@@ -6,14 +6,14 @@ use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
-class TopContributorsComposer
+final class TopContributorsComposer
 {
     public function compose(View $view): void
     {
-        $topContributors = Cache::remember('contributors', 60 * 30, function () {
+        $topContributors = Cache::remember('contributors', now()->addWeek(), function () {
             return User::topContributors()
                 ->get()
-                ->filter(fn ($contributor) => $contributor->discussions_count >= 1)
+                ->filter(fn ($contributor) => $contributor->loadCount('discussions')->discussions_count >= 1)
                 ->take(5);
         });
 

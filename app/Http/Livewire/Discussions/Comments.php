@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Http\Livewire\Discussions;
+
+use App\Models\Discussion;
+use App\Models\Reply;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
+use Livewire\Component;
+
+class Comments extends Component
+{
+    public $discussion;
+
+    public $listeners = ['reloadComments' => '$refresh'];
+
+    public function mount(Discussion $discussion): void
+    {
+        $this->discussion = $discussion;
+    }
+
+    public function getCommentsProperty(): Collection
+    {
+        $replies = collect();
+
+        foreach ($this->discussion->replies->load(['allChildReplies', 'author']) as $reply) {
+            /** @var Reply $reply */
+            if ($reply->allChildReplies->isNotEmpty()) {
+                foreach ($reply->allChildReplies as $childReply) {
+                    $replies->add($childReply);
+                }
+            }
+
+            $replies->add($reply);
+        }
+
+        return $replies;
+    }
+
+    public function render(): View
+    {
+        return view('livewire.discussions.comments');
+    }
+}

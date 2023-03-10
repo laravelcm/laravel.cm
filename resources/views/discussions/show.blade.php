@@ -72,9 +72,9 @@
                             </div>
                             @can(App\Policies\DiscussionPolicy::UPDATE, $discussion)
                                 <div class="mt-2 flex items-center space-x-2">
-                                    <a href="{{ route('discussions.edit', $discussion) }}" class="text-sm leading-5 font-sans text-skin-base focus:outline-none hover:underline">Éditer</a>
+                                    <a href="{{ route('discussions.edit', $discussion) }}" class="text-sm leading-5 font-sans text-skin-base focus:outline-none hover:underline">{{ __('Éditer') }}</a>
                                     <span class="text-skin-base font-medium">·</span>
-                                    <button onclick="Livewire.emit('openModal', 'modals.delete-discussion', {{ json_encode([$discussion->id]) }})" type="button" class="text-sm leading-5 font-sans text-red-500 focus:outline-none hover:underline">Supprimer</button>
+                                    <button onclick="Livewire.emit('openModal', 'modals.delete-discussion', {{ json_encode([$discussion->id]) }})" type="button" class="text-sm leading-5 font-sans text-red-500 focus:outline-none hover:underline">{{ __('Supprimer') }}</button>
                                 </div>
                             @endcan
                         </div>
@@ -82,13 +82,13 @@
                 </div>
             </header>
             <div class="py-6 flex items-center justify-between">
-                <p class="text-skin-inverted font-semibold font-sans" id="comments-count">Commentaires ({{ $discussion->count_all_replies_with_child }})</p>
+                <p class="text-skin-inverted font-semibold font-sans" id="comments-count">{{ __('Commentaires (:count)', ['count' => $discussion->count_all_replies_with_child]) }}</p>
                 @auth
                     <livewire:discussions.subscribe :discussion="$discussion" />
                 @endauth
             </div>
 
-            <comments-area target="{{ $discussion->id }}" />
+            <livewire:discussions.comments :discussion="$discussion" />
         </div>
         <div class="hidden lg:block lg:col-start-10 lg:col-span-3">
             @include('discussions._contributions')

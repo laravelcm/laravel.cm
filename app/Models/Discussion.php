@@ -125,7 +125,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
 
     public function getCountAllRepliesWithChildAttribute(): int
     {
-        $count = $this->replies()->count();
+        $count = $this->replies->count();
 
         foreach ($this->replies()->withCount('allChildReplies')->get() as $reply) {
             $count += $reply->all_child_replies_count;

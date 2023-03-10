@@ -10,7 +10,7 @@ class BlogPostsOverview extends Widget
 {
     protected static string $view = 'filament.widgets.blog-posts-overview';
 
-    protected int | string | array $columnSpan = 5;
+    protected int|string|array $columnSpan = 5;
 
     protected function getViewData(): array
     {

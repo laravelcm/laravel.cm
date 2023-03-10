@@ -16,13 +16,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\Cleanup\DeleteOldUnverifiedUsers::class,
     ];
 
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
         $schedule->command('media-library:delete-old-temporary-uploads')->daily();
         $schedule->command('lcm:delete-old-unverified-users')->daily();
@@ -36,15 +30,8 @@ class Kernel extends ConsoleKernel
         }
     }
 
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
-    protected function commands()
+    protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
-
-        require base_path('routes/console.php');
     }
 }

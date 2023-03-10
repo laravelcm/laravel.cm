@@ -1,6 +1,3 @@
-/**
- * Loader animé
- */
 export default function Loader ({ className = 'text-white', ...props }) {
   return (
     <svg className={`animate-spin -ml-1 mr-3 h-5 w-5 ${className}`} fill="none" viewBox="0 0 24 24" {...props}>
