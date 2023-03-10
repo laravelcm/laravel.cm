@@ -34,31 +34,33 @@
                                 </span>
                             </div>
                             <div class="ml-4 sm:hidden">
-                                <h4 class="inline-flex items-center text-sm text-skin-inverted font-medium">
-                                    {{ $discussion->author->name }}
-                                    @if($discussion->author->hasAnyRole('admin', 'moderator'))
-                                        <x-user.status />
-                                    @endif
-                                </h4>
+                                <a href="{{ route('profile', $discussion->author->username) }}">
+                                    <h4 class="inline-flex items-center text-sm text-skin-inverted font-medium">
+                                        {{ $discussion->author->name }}
+                                        @if($discussion->author->hasAnyRole('admin', 'moderator'))
+                                            <x-user.status />
+                                        @endif
+                                    </h4>
+                                </a>
                                 <div class="text-sm whitespace-nowrap text-skin-muted font-normal">
                                     <time class="sr-only" datetime="{{ $discussion->created_at->format('Y-m-d') }}">{{ $discussion->created_at->diffForHumans() }}</time>
-                                    Crée
-                                    <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
+                                    Crée <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
                                 </div>
                             </div>
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="hidden sm:block">
-                                <h4 class="inline-flex items-center text-sm text-skin-inverted font-medium">
-                                    {{ $discussion->author->name }}
-                                    @if($discussion->author->hasAnyRole('admin', 'moderator'))
-                                        <x-user.status />
-                                    @endif
-                                </h4>
+                                <a href="{{ route('profile', $discussion->author->username) }}">
+                                    <h4 class="inline-flex items-center text-sm text-skin-inverted font-medium">
+                                        {{ $discussion->author->name }}
+                                        @if($discussion->author->hasAnyRole('admin', 'moderator'))
+                                            <x-user.status />
+                                        @endif
+                                    </h4>
+                                </a>
                                 <div class="text-sm whitespace-nowrap text-skin-muted font-normal">
                                     <time class="sr-only" datetime="{{ $discussion->created_at->format('Y-m-d') }}">{{ $discussion->created_at->diffForHumans() }}</time>
-                                    Crée
-                                    <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
+                                    Crée <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
                                 </div>
                             </div>
                             <x-markdown-content class="mt-3 text-sm prose md:prose-lg prose-green text-skin-base mx-auto max-w-none" :content="$discussion->body" />

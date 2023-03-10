@@ -7,17 +7,19 @@
                 @foreach($topContributors as $contributor)
                     <li class="py-4">
                         <div class="flex items-center space-x-4">
-                            <div class="shrink-0">
-                                <img class="h-8 w-8 object-cover rounded-full" src="{{ $contributor->profile_photo_url }}" alt="{{ $contributor->name }}">
-                            </div>
-                            <div class="flex-1 min-w-0 font-sans">
-                                <p class="text-sm font-medium text-skin-inverted truncate">
-                                    {{ $contributor->name }}
-                                </p>
-                                <p class="text-sm text-skin-base truncate">
-                                    {{ '@' . $contributor->username }}
-                                </p>
-                            </div>
+                            <a href="{{ route('profile', $contributor->username) }}" class="flex items-center flex-1 min-w-0">
+                                <div class="shrink-0">
+                                    <img class="h-8 w-8 object-cover rounded-full" src="{{ $contributor->profile_photo_url }}" alt="{{ $contributor->name }}">
+                                </div>
+                                <div class="ml-3.5 font-sans">
+                                    <p class="text-sm font-medium text-skin-inverted truncate">
+                                        {{ $contributor->name }}
+                                    </p>
+                                    <p class="text-sm text-skin-base truncate">
+                                        {{ '@' . $contributor->username }}
+                                    </p>
+                                </div>
+                            </a>
                             <div>
                                 <span class="inline-flex items-center text-sm leading-5 font-medium text-skin-inverted">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 mr-1 text-skin-muted">
