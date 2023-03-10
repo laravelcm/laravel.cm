@@ -1,11 +1,5 @@
 {
-<<<<<<< HEAD
-    "/js/app.js": "/js/app.js?id=47334bd79ba1d01922e3019827d48a1d",
-    "/css/app.css": "/css/app.css?id=74e2d1bac51784b1efec62d77cbd7255",
-    "/css/filament.css": "/css/filament.css?id=a17407b5d32e1f306c0555aba48494f3"
-=======
     "/js/app.js": "/js/app.js?id=14e78ed3da0550befb1ae94a465013f5",
     "/css/app.css": "/css/app.css?id=e949df09924e368d035a31b5f215b118",
     "/css/filament.css": "/css/filament.css?id=31807c66ef04b2d10d4b1a197a767d07"
->>>>>>> 1d3678caac938fff90f56d07b53aaca97bf8392d
 }
