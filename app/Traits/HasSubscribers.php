@@ -21,8 +21,6 @@ trait HasSubscribers
 
     public function hasSubscriber(User $user): bool
     {
-        return $this->subscribes()
-            ->where('user_id', $user->id)
-            ->exists();
+        return in_array($user->id, $this->subscribes->pluck('user_id')->toArray());
     }
 }

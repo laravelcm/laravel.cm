@@ -44,10 +44,11 @@ class CreateAdminUser extends Command
         ];
 
         try {
+            /** @var User $user */
             $user = User::query()->create($userData);
 
             $user->assignRole('admin');
-        } catch (\Exception | QueryException $e) {
+        } catch (\Exception|QueryException $e) {
             $this->error($e->getMessage());
         }
     }

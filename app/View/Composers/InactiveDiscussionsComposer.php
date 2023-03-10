@@ -6,11 +6,11 @@ use App\Models\Discussion;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
-class InactiveDiscussionsComposer
+final class InactiveDiscussionsComposer
 {
-    public function compose(View $view)
+    public function compose(View $view): void
     {
-        $discussions = Cache::remember('inactive-discussions', 60 * 30, function () {
+        $discussions = Cache::remember('inactive_discussions', now()->addDays(3), function () {
             return Discussion::noComments()->limit(5)->get();
         });
 

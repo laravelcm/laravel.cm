@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Discussions;
 use App\Models\Discussion;
 use App\Models\Subscribe as SubscribeModel;
 use App\Policies\DiscussionPolicy;
+use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,13 @@ class Subscribe extends Component
         $subscribe->user()->associate(Auth::user());
         $this->discussion->subscribes()->save($subscribe);
 
-        // @ToDo Mettre un nouveau system de notification avec Livewire $this->notification()->success('Abonnement', 'Vous êtes maintenant abonné à cette discussion.');
+        Notification::make()
+            ->title(__('Abonnement'))
+            ->body(__('Vous êtes maintenant abonné à cette discussion.'))
+            ->success()
+            ->duration(5000)
+            ->send();
+
         $this->emitSelf('refresh');
     }
 
@@ -40,7 +47,13 @@ class Subscribe extends Component
             ->where('user_id', Auth::id())
             ->delete();
 
-        // @ToDo Mettre un nouveau system de notification $this->notification()->success('Désabonnement', 'Vous êtes maintenant désabonné de cette discussion.');
+        Notification::make()
+            ->title(__('Désabonnement'))
+            ->body(__('Vous êtes maintenant désabonné à cette discussion.'))
+            ->success()
+            ->duration(5000)
+            ->send();
+
         $this->emitSelf('refresh');
     }
 

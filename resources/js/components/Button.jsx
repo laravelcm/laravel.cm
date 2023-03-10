@@ -1,4 +1,4 @@
-import Loader from '@components/Loader';
+import Loader from '@components/Loader'
 import { classNames } from '@helpers/dom.js'
 
 export function PrimaryButton ({ children, ...props }) {
