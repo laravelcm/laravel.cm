@@ -6,6 +6,7 @@ use App\Actions\Replies\LikeReply;
 use App\Models\Reply;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Comment extends Component
@@ -29,6 +30,16 @@ class Comment extends Component
 
     public function toggleLike(): void
     {
+        if (! Auth::check()) {
+            Notification::make()
+                ->title(__('Vous devez être connecté pour liker un commentaire.'))
+                ->danger()
+                ->duration(5000)
+                ->send();
+
+            return;
+        }
+
         LikeReply::run(auth()->user(), $this->comment);
 
         $this->emitSelf('reloadComment');
