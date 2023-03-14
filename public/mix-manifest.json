@@ -1,23 +1,5 @@
 {
-<<<<<<< HEAD
     "/js/app.js": "/js/app.js?id=d891a2d14ba2c320f58fd39d97107432",
     "/css/app.css": "/css/app.css?id=f883bd15acfcb8f7becc11f85ed68a34",
     "/css/filament.css": "/css/filament.css?id=baef68e9b10c9ecd2c6e89260976385d"
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "/js/app.js": "/js/app.js?id=d891a2d14ba2c320f58fd39d97107432",
-    "/css/app.css": "/css/app.css?id=eaeae4ed6500cc10a072b4753147ef7f",
-    "/css/filament.css": "/css/filament.css?id=31807c66ef04b2d10d4b1a197a767d07"
-=======
-    "/js/app.js": "/js/app.js?id=47334bd79ba1d01922e3019827d48a1d",
-    "/css/app.css": "/css/app.css?id=74e2d1bac51784b1efec62d77cbd7255",
-    "/css/filament.css": "/css/filament.css?id=a17407b5d32e1f306c0555aba48494f3"
->>>>>>> 60bc9af (Fix notifications page (#82))
-=======
-    "/js/app.js": "/js/app.js?id=14e78ed3da0550befb1ae94a465013f5",
-    "/css/app.css": "/css/app.css?id=e949df09924e368d035a31b5f215b118",
-    "/css/filament.css": "/css/filament.css?id=31807c66ef04b2d10d4b1a197a767d07"
->>>>>>> 56f1c50 (update assets)
->>>>>>> 4aecdbc (wip)
 }
