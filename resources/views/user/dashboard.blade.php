@@ -5,7 +5,7 @@
 
 @section('body')
 
-    <div class="flex-1 min-w-0">
+    <div>
         <x-status-message class="mb-5" />
 
         <h2 class="text-xl font-bold leading-7 text-skin-inverted sm:text-2xl sm:truncate">

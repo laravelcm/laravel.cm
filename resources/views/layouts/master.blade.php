@@ -45,7 +45,9 @@
 </head>
 <body class="h-full font-sans antialiased bg-skin-body text-skin-base">
 
-    @yield('content')
+    <div class="min-h-screen flex flex-col justify-between">
+        @yield('content')
+    </div>
 
     @livewire('livewire-ui-modal')
     @livewire('livewire-ui-spotlight')
