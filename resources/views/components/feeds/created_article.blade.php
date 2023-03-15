@@ -14,10 +14,15 @@
                 </div>
                 <div class="min-w-0 flex-1">
                     <div>
-                        <p class="text-sm text-skin-base">a créé l'article <a href="{{ route('articles.show', $activity->subject) }}" class="font-medium text-skin-primary hover:text-skin-primary-hover">{{ $activity->subject->title }}</a></p>
+                        <p class="text-sm text-skin-base">
+                            {{ __('a créé l\'article') }}
+                            <a href="{{ route('articles.show', $activity->subject) }}" class="font-medium text-skin-primary hover:text-skin-primary-hover">{{ $activity->subject->title }}</a>
+                        </p>
                     </div>
                     <div class="mt-1.5 text-sm whitespace-nowrap text-skin-muted font-sans">
-                        <time datetime="{{ $activity->created_at->format('Y-m-d') }}">{{ $activity->created_at->diffForHumans() }}</time>
+                        <time datetime="{{ $activity->created_at->format('Y-m-d') }}">
+                            {{ $activity->created_at->diffForHumans() }}
+                        </time>
                     </div>
                 </div>
             </div>
