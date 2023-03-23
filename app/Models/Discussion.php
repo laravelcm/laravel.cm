@@ -78,11 +78,6 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
 
     protected $removeViewsOnDelete = true;
 
-    public static function boot()
-    {
-        parent::boot();
-    }
-
     /**
      * Get the route key for the model.
      *

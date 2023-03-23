@@ -5,7 +5,7 @@
 
 @section('body')
 
-    <div class="flex-1 min-w-0">
+    <div>
         <x-status-message class="mb-5" />
 
         <x-user.breadcrumb section="Sujets" />

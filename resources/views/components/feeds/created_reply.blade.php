@@ -15,7 +15,10 @@
                 <div>
                     <div>
                         <p class="text-sm text-skin-base">
-                            a répondu au sujet <a href="{{ url("/forum/{$activity->subject->replyAble->slug()}#reply-{$activity->subject->id}") }}" class="font-medium text-skin-primary hover:text-skin-primary-hover">{{ $activity->subject->replyAble->title }}</a>
+                            {{ __('a répondu au sujet') }}
+                            <a href="{{ url("/forum/{$activity->subject->replyAble->slug()}#reply-{$activity->subject->id}") }}" class="font-medium text-skin-primary hover:text-skin-primary-hover">
+                                {{ $activity->subject->replyAble->title }}
+                            </a>
                         </p>
                     </div>
                     <div class="mt-1.5 text-sm whitespace-nowrap text-skin-muted font-sans">
@@ -23,9 +26,7 @@
                     </div>
                 </div>
                 <div class="mt-2 text-sm text-skin-inverted-muted font-normal">
-                    <p>
-                        {{ $activity->subject->excerpt() }}
-                    </p>
+                    <p>{{ $activity->subject->excerpt() }}</p>
                 </div>
             </div>
         </div>

@@ -202,7 +202,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
 
         if (! $user) {
             $user = self::create([
-                'name' => $socialUser->getName(),
+                'name' => $socialUser->getName() ?? $socialUser->getNickName() ?? $socialUser->getId(),
                 'email' => $socialEmail,
                 'username' => $socialUser->getNickName() ?? $socialUser->getId(),
                 'github_profile' => $provider === 'github' ? $socialUser->getNickName() : null,
