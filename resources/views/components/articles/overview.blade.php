@@ -3,7 +3,10 @@
 <article id="article-title-{{ $article->id }}" class="space-y-4 lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0">
     <a href="{{ route('articles.show', $article) }}" class="group">
         <div class="aspect-w-3 aspect-h-2">
-            <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}" />
+            <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75"
+                 src="{{ $article->getFirstMediaUrl('media') }}"
+                 alt="{{ $article->title }}"
+            />
         </div>
     </a>
     <div class="sm:col-span-2">
@@ -27,15 +30,15 @@
             </p>
             <div class="mt-3 flex items-center font-sans">
                 <div class="shrink-0">
-                    <a href="{{ route('profile', $article->author->username) }}">
-                        <span class="sr-only">{{ $article->author->name }}</span>
-                        <img class="h-10 w-10 object-cover rounded-full" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->name }}">
+                    <a href="{{ route('profile', $article->user->username) }}">
+                        <span class="sr-only">{{ $article->user->name }}</span>
+                        <img class="h-10 w-10 object-cover rounded-full" src="{{ $article->user->profile_photo_url }}" alt="{{ $article->user->name }}">
                     </a>
                 </div>
                 <div class="ml-3">
                     <p class="text-sm font-medium text-skin-inverted">
-                        <a href="{{ route('profile', $article->author->username) }}" class="hover:underline">
-                            {{ $article->author->name }}
+                        <a href="{{ route('profile', $article->user->username) }}" class="hover:underline">
+                            {{ $article->user->name }}
                         </a>
                     </p>
                     <div class="flex space-x-1 text-sm text-skin-base/60">

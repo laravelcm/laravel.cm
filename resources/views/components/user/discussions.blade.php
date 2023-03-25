@@ -1,8 +1,10 @@
+@props(['user', 'discussions'])
+
 <div>
     @if($discussions->isNotEmpty())
         <div class="-mt-6 relative divide-y divide-skin-base z-20">
             @foreach($discussions as $discussion)
-                <x-discussions.overview :discussion="$discussion" />
+                <x-discussions.overview :discussion="$discussion" :hiddenAuthor="true" />
             @endforeach
         </div>
     @else

@@ -10,7 +10,7 @@ final class ModeratorsComposer
 {
     public function compose(View $view): void
     {
-        $view->with('moderators', Cache::remember('moderators', now()->addMinutes(30), function () {
+        $view->with('moderators', Cache::remember('moderators', now()->addYear(), function () {
             return User::moderators()->get();
         }));
     }

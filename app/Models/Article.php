@@ -77,7 +77,6 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
      * @var array<string>
      */
     protected $with = [
-        'author',
         'media',
     ];
 

@@ -76,15 +76,9 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
      */
     protected $with = [
         'channels',
-        'author',
     ];
 
     protected $removeViewsOnDelete = true;
-
-    public static function boot()
-    {
-        parent::boot();
-    }
 
     /**
      * Get the route key for the model.

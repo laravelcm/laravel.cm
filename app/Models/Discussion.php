@@ -59,15 +59,6 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
     ];
 
     /**
-     * The relations to eager load on every query.
-     *
-     * @var array<string>
-     */
-    protected $with = [
-        'author',
-    ];
-
-    /**
      * The accessors to append to the model's array form.
      *
      * @var array<string>
