@@ -8,12 +8,13 @@ use App\Models\Premium\Plan;
 use App\Models\Thread;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function __invoke(): View
     {
         $plans = Cache::remember('plans', now()->addYear(), function () {
             return Plan::with('features')
@@ -22,7 +23,7 @@ class HomeController extends Controller
         });
 
         $latestArticles = Cache::remember('latestArticles', now()->addHour(), function () {
-            return Article::with('tags')
+            return Article::with(['tags', 'user'])
                 ->published()
                 ->orderByDesc('sponsored_at')
                 ->orderByDesc('published_at')
@@ -33,7 +34,7 @@ class HomeController extends Controller
         });
 
         $latestThreads = Cache::remember('latestThreads', now()->addHour(), function () {
-            return Thread::whereNull('solution_reply_id')
+            return Thread::with('user')->whereNull('solution_reply_id')
                 ->whereBetween('threads.created_at', [now()->subMonths(3), now()])
                 ->inRandomOrder()
                 ->limit(4)
@@ -41,7 +42,7 @@ class HomeController extends Controller
         });
 
         $latestDiscussions = Cache::remember('latestDiscussions', now()->addHour(), function () {
-            return Discussion::query()
+            return Discussion::with('user')
                 ->recent()
                 ->orderByViews()
                 ->limit(3)
@@ -61,31 +62,5 @@ class HomeController extends Controller
             'latestDiscussions',
             'plans'
         ));
-    }
-
-    public function slack(Request $request)
-    {
-        $request->validate(['email' => 'required|email']);
-
-        $client = new Client();
-        $team = config('lcm.slack.team');
-        $email = $request->input('email');
-
-        try {
-            $client->request(
-                'POST',
-                config('lcm.slack.url').'/api/users.admin.invite?t='
-                .time().'&email='.$email.'&token='.config('lcm.slack.token')
-                .'&set_active=true&_attempts=1'
-            );
-
-            session()->flash('status', "Une invitation vous a été envoyé à votre courrier pour rejoindre l'espace de travail {$team}.");
-
-            return redirect()->back();
-        } catch (GuzzleException $e) {
-            session()->flash('error', 'Une erreur s\'est produite lors de l\'envoi de l\'invitation, veuillez réessayer.');
-
-            return redirect()->back();
-        }
     }
 }
