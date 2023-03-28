@@ -102,6 +102,7 @@ Route::redirectMap([
     'telegram' => 'https://t.me/laravelcameroun',
     'linkedin' => 'https://www.linkedin.com/company/laravel-cameroun',
     'github' => 'https://github.com/laravelcm',
+    'whatsapp' => 'https://chat.whatsapp.com/G8e98Ms0MgSLEOGd3Uai1i',
     'discord' => 'https://discord.gg/KNp6brbyVD',
     'youtube' => 'https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw',
 ]);
