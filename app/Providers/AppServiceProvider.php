@@ -22,12 +22,6 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Spatie\Health\Checks\Checks\CacheCheck;
-use Spatie\Health\Checks\Checks\DatabaseCheck;
-use Spatie\Health\Checks\Checks\DebugModeCheck;
-use Spatie\Health\Checks\Checks\EnvironmentCheck;
-use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;
-use Spatie\Health\Facades\Health;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -46,7 +40,6 @@ final class AppServiceProvider extends ServiceProvider
         $this->bootMacros();
         $this->bootViewsComposer();
         $this->bootEloquentMorphs();
-        $this->bootHealthCheck();
         $this->bootFilament();
 
         ReplyResource::withoutWrapping();
@@ -96,17 +89,6 @@ final class AppServiceProvider extends ServiceProvider
             'thread' => Thread::class,
             'reply' => Reply::class,
             'user' => User::class,
-        ]);
-    }
-
-    public function bootHealthCheck(): void
-    {
-        Health::checks([
-            DebugModeCheck::new(),
-            EnvironmentCheck::new(),
-            UsedDiskSpaceCheck::new(),
-            DatabaseCheck::new(),
-            CacheCheck::new(),
         ]);
     }
 

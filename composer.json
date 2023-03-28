@@ -5,7 +5,7 @@
   "keywords": ["framework", "laravel"],
   "license": "MIT",
   "require": {
-    "php": "^8.0",
+    "php": "^8.2",
     "ext-fileinfo": "*",
     "ext-json": "*",
     "archtechx/laravel-seo": "^0.5.1",
@@ -40,7 +40,6 @@
     "socialiteproviders/twitter": "^4.1",
     "spatie/laravel-feed": "^4.1",
     "spatie/laravel-google-fonts": "^1.2",
-    "spatie/laravel-health": "^1.11",
     "spatie/laravel-medialibrary": "^10.4.3",
     "spatie/laravel-medialibrary-pro": "^2.0.0",
     "spatie/laravel-permission": "^5.1",
@@ -108,6 +107,9 @@
     "pint": [
       "./vendor/bin/pint"
     ],
+    "test": [
+      "@php artisan test"
+    ],
     "models:doc": [
       "@php artisan ide-helper:models -F helpers/ModelHelper.php -M"
     ],
@@ -131,7 +133,8 @@
     "preferred-install": "dist",
     "sort-packages": true,
     "allow-plugins": {
-      "pestphp/pest-plugin": true
+      "pestphp/pest-plugin": true,
+      "php-http/discovery": false
     }
   },
   "minimum-stability": "dev",
