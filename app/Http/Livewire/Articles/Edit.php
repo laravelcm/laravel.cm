@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Articles;
 
 use App\Models\Article;
@@ -15,7 +17,9 @@ use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
-    use WithFileUploads, WithTagsAssociation, WithArticleAttributes;
+    use WithFileUploads;
+    use WithTagsAssociation;
+    use WithArticleAttributes;
 
     public Article $article;
 

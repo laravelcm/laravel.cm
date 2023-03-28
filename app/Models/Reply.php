@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Contracts\ReactableInterface;
@@ -22,11 +24,11 @@ use Illuminate\Support\Str;
  */
 class Reply extends Model implements ReactableInterface, ReplyInterface
 {
-    use HasAuthor,
-        HasFactory,
-        HasReplies,
-        Reactable,
-        RecordsActivity;
+    use HasAuthor;
+    use HasFactory;
+    use HasReplies;
+    use Reactable;
+    use RecordsActivity;
 
     /**
      * The attributes that are mass assignable.

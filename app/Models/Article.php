@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Contracts\ReactableInterface;
@@ -23,14 +25,14 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  */
 class Article extends Model implements ReactableInterface, HasMedia, Viewable
 {
-    use HasAuthor,
-        HasFactory,
-        HasSlug,
-        HasTags,
-        InteractsWithMedia,
-        InteractsWithViews,
-        Reactable,
-        RecordsActivity;
+    use HasAuthor;
+    use HasFactory;
+    use HasSlug;
+    use HasTags;
+    use InteractsWithMedia;
+    use InteractsWithViews;
+    use Reactable;
+    use RecordsActivity;
 
     /**
      * The attributes that are mass assignable.

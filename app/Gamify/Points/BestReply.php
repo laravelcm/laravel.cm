@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Gamify\Points;
 
 use QCod\Gamify\PointType;

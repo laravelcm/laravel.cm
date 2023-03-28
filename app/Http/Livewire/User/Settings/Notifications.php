@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\User\Settings;
 
 use App\Models\Subscribe;

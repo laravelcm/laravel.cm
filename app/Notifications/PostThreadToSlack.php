@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\Models\Thread;
@@ -22,7 +24,7 @@ class PostThreadToSlack extends Notification
 
     public function toSlack()
     {
-        return (new SlackMessage)
+        return (new SlackMessage())
             ->to('#forum')
             ->content('[Nouveau sujet] '.$this->thread->author->name.' a crée un nouveau sujet : '.$this->thread->subject().'. '.url($this->thread->getPathUrl()));
     }

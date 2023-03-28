@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Traits\HasUuid;
@@ -13,7 +15,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class Subscribe extends Model
 {
-    use HasFactory, HasUuid;
+    use HasFactory;
+    use HasUuid;
 
     public function user(): BelongsTo
     {

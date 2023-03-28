@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -51,7 +53,7 @@ abstract class AbstractFilters
      */
     public function resolverFilter($filter)
     {
-        return new $this->filters[$filter];
+        return new $this->filters[$filter]();
     }
 
     /**

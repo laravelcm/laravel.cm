@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\Models\Reply;
@@ -33,7 +35,7 @@ class YouWereMentioned extends Notification implements ShouldQueue
         /** @var Thread $thread */
         $thread = $this->reply->replyAble;
 
-        return (new MailMessage)
+        return (new MailMessage())
                     ->subject("Nouvelle mention: {$thread->subject()}")
                     ->line($this->reply->author->name.' vous a mentionné dans le sujet '.$thread->subject())
                     ->action('Afficher', url($thread->getPathUrl()."#reply-{$this->reply->id}"))

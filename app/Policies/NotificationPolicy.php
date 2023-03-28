@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\User;
@@ -7,7 +9,7 @@ use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationPolicy
 {
-    const MARK_AS_READ = 'markAsRead';
+    public const MARK_AS_READ = 'markAsRead';
 
     /**
      * Determine if the given notification can be marked as read by the user.

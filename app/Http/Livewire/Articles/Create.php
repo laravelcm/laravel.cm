@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Articles;
 
 use App\Events\ArticleWasSubmittedForApproval;
@@ -16,7 +18,9 @@ use Livewire\WithFileUploads;
 
 class Create extends Component
 {
-    use WithFileUploads, WithTagsAssociation, WithArticleAttributes;
+    use WithFileUploads;
+    use WithTagsAssociation;
+    use WithArticleAttributes;
 
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 

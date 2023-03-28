@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\Models\Discussion;
@@ -25,7 +27,7 @@ class NewCommentNotification extends Notification implements ShouldQueue
 
     public function toMail($notifiable): MailMessage
     {
-        return (new MailMessage)
+        return (new MailMessage())
                     ->subject("Re: {$this->discussion->subject()}")
                     ->line('@'.$this->reply->author->username.' a répondu à ce sujet.')
                     ->line($this->reply->excerpt(150))

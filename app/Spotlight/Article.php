@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Spotlight;
 
 use App\Models\Article as ArticleModel;

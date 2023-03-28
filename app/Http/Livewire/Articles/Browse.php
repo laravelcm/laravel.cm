@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Articles;
 
 use App\Models\Article;
@@ -11,7 +13,8 @@ use Livewire\Component;
 
 class Browse extends Component
 {
-    use WithInfiniteScroll, WithTags;
+    use WithInfiniteScroll;
+    use WithTags;
 
     public string $viewMode = 'list';
 

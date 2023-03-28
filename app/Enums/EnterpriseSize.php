@@ -8,17 +8,17 @@ use BenSampo\Enum\Enum;
 
 final class EnterpriseSize extends Enum
 {
-    const SEED = '1-10';
+    public const SEED = '1-10';
 
-    const SMALL = '11-50';
+    public const SMALL = '11-50';
 
-    const MEDIUM = '51-200';
+    public const MEDIUM = '51-200';
 
-    const LARGE = '201-500';
+    public const LARGE = '201-500';
 
-    const VERY_LARGE = '501-1000';
+    public const VERY_LARGE = '501-1000';
 
-    const ENTERPRISE = '1001-5000';
+    public const ENTERPRISE = '1001-5000';
 
-    const LARGE_ENTERPRISE = '5000+';
+    public const LARGE_ENTERPRISE = '5000+';
 }

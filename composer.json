@@ -107,6 +107,9 @@
     "pint": [
       "./vendor/bin/pint"
     ],
+    "stan": [
+      "./vendor/bin/phpstan analyse"
+    ],
     "test": [
       "@php artisan test"
     ],

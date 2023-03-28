@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Article;
@@ -7,15 +9,15 @@ use App\Models\User;
 
 class ArticlePolicy
 {
-    const UPDATE = 'update';
+    public const UPDATE = 'update';
 
-    const DELETE = 'delete';
+    public const DELETE = 'delete';
 
-    const APPROVE = 'approve';
+    public const APPROVE = 'approve';
 
-    const DISAPPROVE = 'disapprove';
+    public const DISAPPROVE = 'disapprove';
 
-    const PINNED = 'togglePinnedStatus';
+    public const PINNED = 'togglePinnedStatus';
 
     public function update(User $user, Article $article): bool
     {

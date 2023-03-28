@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Console\Commands\Cleanup\DeleteOldUnverifiedUsers;
 use App\Models\User;
 use Spatie\TestTime\TestTime;

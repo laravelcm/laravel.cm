@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Contracts\ReactableInterface;
@@ -35,17 +37,17 @@ use Spatie\Feed\FeedItem;
  */
 class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
-    use HasAuthor,
-        HasFactory,
-        HasSlug,
-        HasReplies,
-        HasSubscribers,
-        InteractsWithViews,
-        Notifiable,
-        Reactable,
-        RecordsActivity;
+    use HasAuthor;
+    use HasFactory;
+    use HasSlug;
+    use HasReplies;
+    use HasSubscribers;
+    use InteractsWithViews;
+    use Notifiable;
+    use Reactable;
+    use RecordsActivity;
 
-    const FEED_PAGE_SIZE = 20;
+    public const FEED_PAGE_SIZE = 20;
 
     /**
      * The attributes that are mass assignable.

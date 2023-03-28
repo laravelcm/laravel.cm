@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
@@ -30,7 +32,7 @@ class SendEMailToDeletedUser extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
                     ->subject('Suppression de compte | Laravel Cameroun')
                     ->line('Pour des raisons de validité et d\'authenticité de votre adresse email')
                     ->line('Nous avons supprimé votre compte après 10 jours d\'inscription sans validation de votre adresse email.')

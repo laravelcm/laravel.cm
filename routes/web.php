@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\HomeController;

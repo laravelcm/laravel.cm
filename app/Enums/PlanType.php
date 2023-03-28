@@ -8,7 +8,7 @@ use BenSampo\Enum\Enum;
 
 final class PlanType extends Enum
 {
-    const DEVELOPER = 'developer';
+    public const DEVELOPER = 'developer';
 
-    const ENTERPRISE = 'enterprise';
+    public const ENTERPRISE = 'enterprise';
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Traits\HasSlug;
@@ -13,9 +15,9 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 class Tag extends Model
 {
-    use HasFactory,
-        HasSlug,
-        ModelHelpers;
+    use HasFactory;
+    use HasSlug;
+    use ModelHelpers;
 
     public $timestamps = false;
 

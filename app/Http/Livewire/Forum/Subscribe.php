@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Forum;
 
 use App\Models\Subscribe as SubscribeModel;

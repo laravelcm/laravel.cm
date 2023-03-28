@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     // The Torchlight client caches highlighted code blocks. Here
     // you can define which cache driver you'd like to use. If

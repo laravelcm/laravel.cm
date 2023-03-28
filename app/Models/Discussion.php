@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Contracts\ReactableInterface;
@@ -24,15 +26,15 @@ use Illuminate\Support\Str;
  */
 class Discussion extends Model implements ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
-    use HasAuthor,
-        HasFactory,
-        HasReplies,
-        HasSubscribers,
-        HasSlug,
-        HasTags,
-        InteractsWithViews,
-        Reactable,
-        RecordsActivity;
+    use HasAuthor;
+    use HasFactory;
+    use HasReplies;
+    use HasSubscribers;
+    use HasSlug;
+    use HasTags;
+    use InteractsWithViews;
+    use Reactable;
+    use RecordsActivity;
 
     /**
      * The attributes that are mass assignable.
