@@ -15,7 +15,6 @@
     "blade-ui-kit/blade-ui-kit": "^0.3",
     "cyrildewit/eloquent-viewable": "^6.1",
     "doctrine/dbal": "^3.5",
-    "filament/filament": "^2.0",
     "filament/forms": "^2.0",
     "francescomalatesta/laravel-feature": "^3.0",
     "fruitcake/laravel-cors": "^2.0",
