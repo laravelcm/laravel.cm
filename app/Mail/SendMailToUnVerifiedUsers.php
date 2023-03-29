@@ -19,14 +19,9 @@ class SendMailToUnVerifiedUsers extends Mailable implements ShouldQueue
     {
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
+    public function build(): self
     {
-        return $this->subject('Vérification Email')
+        return $this->subject(__('Vérification Email'))
             ->markdown('emails.send-mail-to-un-verified-users');
     }
 }

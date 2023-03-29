@@ -8,19 +8,13 @@ use App\Models\Article;
 use Arrilot\Widgets\AbstractWidget;
 use Illuminate\Contracts\View\View;
 
-class RecentPostsPerWeek extends AbstractWidget
+final class RecentPostsPerWeek extends AbstractWidget
 {
     /**
-     * The configuration array.
-     *
-     * @var array
+     * @var array<string>
      */
     protected $config = [];
 
-    /**
-     * Treat this method as a controller action.
-     * Return view() or other content to display.
-     */
     public function run(): View
     {
         $articles = Article::recent()

@@ -18,12 +18,15 @@ class PostDiscussionToTelegram extends Notification
     {
     }
 
-    public function via($notifiable)
+    /**
+     * @return string[]
+     */
+    public function via(mixed $notifiable): array
     {
         return [TelegramChannel::class];
     }
 
-    public function toTelegram($notifiable)
+    public function toTelegram(): TelegramMessage
     {
         return TelegramMessage::create()
             ->to('@laravelcm')

@@ -35,13 +35,13 @@ class Channel extends Model
     /**
      * The relationship counts that should be eager loaded on every query.
      *
-     * @var array
+     * @var string[]
      */
     protected $withCount = [
         'threads',
     ];
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 

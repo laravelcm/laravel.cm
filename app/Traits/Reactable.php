@@ -30,6 +30,7 @@ trait Reactable
     public function reacted(User $responder = null): bool
     {
         if (is_null($responder)) {
+            /** @var User $responder */
             $responder = auth()->user();
         }
 

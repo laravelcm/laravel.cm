@@ -14,29 +14,20 @@ class SendEMailToDeletedUser extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
+     * @return string[]
      */
-    public function via($notifiable)
+    public function via(mixed $notifiable): array
     {
         return ['mail'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
+    public function toMail(): MailMessage
     {
         return (new MailMessage())
-                    ->subject('Suppression de compte | Laravel Cameroun')
-                    ->line('Pour des raisons de validité et d\'authenticité de votre adresse email')
-                    ->line('Nous avons supprimé votre compte après 10 jours d\'inscription sans validation de votre adresse email.')
-                    ->line('Nous ne pouvons donc pas authentifier que cette adresse email est belle et bien utilisée.')
-                    ->line('Merci d\'avoir utilisé Laravel Cameroun!');
+                    ->subject(__('Suppression de compte | Laravel Cameroun'))
+                    ->line(__('Pour des raisons de validité et d\'authenticité de votre adresse email'))
+                    ->line(__('Nous avons supprimé votre compte après 10 jours d\'inscription sans validation de votre adresse email.'))
+                    ->line(__('Nous ne pouvons donc pas authentifier que cette adresse e-mail est belle et bien utilisée.'))
+                    ->line(__('Merci d\'avoir utilisé Laravel Cameroun!'));
     }
 }

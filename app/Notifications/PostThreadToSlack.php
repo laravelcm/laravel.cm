@@ -13,19 +13,22 @@ class PostThreadToSlack extends Notification
 {
     use Queueable;
 
-    public function __construct(public Thread $thread)
+    public function __construct(public readonly Thread $thread)
     {
     }
 
-    public function via($notifiable): array
+    /**
+     * @return string[]
+     */
+    public function via(mixed $notifiable): array
     {
         return ['slack'];
     }
 
-    public function toSlack()
+    public function toSlack(): SlackMessage
     {
         return (new SlackMessage())
             ->to('#forum')
-            ->content('[Nouveau sujet] '.$this->thread->author->name.' a crée un nouveau sujet : '.$this->thread->subject().'. '.url($this->thread->getPathUrl()));
+            ->content('[Nouveau sujet] '.$this->thread->user->name.' a crée un nouveau sujet : '.$this->thread->subject().'. '.url($this->thread->getPathUrl()));
     }
 }

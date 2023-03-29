@@ -4,14 +4,19 @@ declare(strict_types=1);
 
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Auth;
+use League\CommonMark\Output\RenderedContentInterface;
 
 if (! function_exists('active')) {
     /**
-     * Sets the menu item class for an active route.
+     * @param array<string> $routes
+     * @param string $activeClass
+     * @param string $defaultClass
+     * @param bool $condition
+     * @return string
      */
-    function active($routes, string $activeClass = 'active', string $defaultClass = '', bool $condition = true): string
+    function active(array $routes, string $activeClass = 'active', string $defaultClass = '', bool $condition = true): string
     {
-        return call_user_func_array([app('router'), 'is'], (array) $routes) && $condition ? $activeClass : $defaultClass;
+        return call_user_func_array([app('router'), 'is'], $routes) && $condition ? $activeClass : $defaultClass;
     }
 }
 
@@ -26,19 +31,13 @@ if (! function_exists('is_active')) {
 }
 
 if (! function_exists('md_to_html')) {
-    /**
-     * Convert Markdown to HTML.
-     */
-    function md_to_html(string $markdown): string
+    function md_to_html(string $markdown): RenderedContentInterface
     {
         return Markdown::convert($markdown);
     }
 }
 
 if (! function_exists('replace_links')) {
-    /**
-     * Convert Standalone Urls to HTML.
-     */
     function replace_links(string $markdown): string
     {
         return (new LinkFinder([
@@ -48,9 +47,6 @@ if (! function_exists('replace_links')) {
 }
 
 if (! function_exists('get_current_theme')) {
-    /**
-     * Get the current active theme from user settings.
-     */
     function get_current_theme(): string
     {
         return Auth::user() ?
@@ -61,7 +57,9 @@ if (! function_exists('get_current_theme')) {
 
 if (! function_exists('canonical')) {
     /**
-     * Generate a canonical URL to the given route and allowed list of query params.
+     * @param string $route
+     * @param array<string> $params
+     * @return string
      */
     function canonical(string $route, array $params = []): string
     {
@@ -76,9 +74,9 @@ if (! function_exists('canonical')) {
 
 if (! function_exists('getFilter')) {
     /**
-     * @param  string  $key
-     * @param  array  $filters
-     * @param  string  $default
+     * @param string $key
+     * @param array<string> $filters
+     * @param string $default
      * @return string
      */
     function getFilter(string $key, array $filters = [], string $default = 'recent'): string

@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class PasswordCheck implements Rule
+final class PasswordCheck implements Rule
 {
     public function passes($attribute, $value): bool
     {
@@ -17,6 +17,6 @@ class PasswordCheck implements Rule
 
     public function message(): string
     {
-        return 'Votre mot de passe actuel est incorrect.';
+        return __('Votre mot de passe actuel est incorrect.');
     }
 }

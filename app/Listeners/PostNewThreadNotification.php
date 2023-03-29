@@ -9,7 +9,7 @@ use App\Notifications\PostThreadToTelegram;
 
 class PostNewThreadNotification
 {
-    public function handle(ThreadWasCreated $event)
+    public function handle(ThreadWasCreated $event): void
     {
         $thread = $event->thread;
 

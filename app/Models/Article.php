@@ -76,13 +76,13 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     /**
      * The relations to eager load on every query.
      *
-     * @var array<string>
+     * @var string[]
      */
     protected $with = [
         'media',
     ];
 
-    protected $removeViewsOnDelete = true;
+    protected bool $removeViewsOnDelete = true;
 
     /**
      * Get the route key for the model.
@@ -451,10 +451,10 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function markAsPublish(): void
     {
-        $this->update(['tweet_id' => $this->author->id]);
+        $this->update(['tweet_id' => $this->user->id]);
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->removeTags();
 

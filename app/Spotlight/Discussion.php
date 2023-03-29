@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Spotlight;
 
 use App\Models\Discussion as DiscussionModel;
+use Illuminate\Support\Collection;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 use LivewireUI\Spotlight\SpotlightCommandDependencies;
@@ -17,6 +18,9 @@ class Discussion extends SpotlightCommand
 
     protected string $description = 'rechercher une discussion spécifique';
 
+    /**
+     * @var string[]
+     */
     protected array $synonyms = [];
 
     public function dependencies(): ?SpotlightCommandDependencies
@@ -28,20 +32,19 @@ class Discussion extends SpotlightCommand
             );
     }
 
-    public function searchDiscussion($query)
+    public function searchDiscussion(string $query): Collection
     {
-        return DiscussionModel::where('title', 'like', "%$query%")
+        return DiscussionModel::with('user')
+            ->where('title', 'like', "%$query%")
             ->get()
-            ->map(function (DiscussionModel $discussion) {
-                return new SpotlightSearchResult(
-                    $discussion->slug(),
-                    $discussion->title,
-                    sprintf('par @%s', $discussion->author->username)
-                );
-            });
+            ->map(fn(DiscussionModel $discussion) => new SpotlightSearchResult(
+                $discussion->slug(),
+                $discussion->title,
+                sprintf('par @%s', $discussion->user->username)
+            ));
     }
 
-    public function execute(Spotlight $spotlight, DiscussionModel $discussion)
+    public function execute(Spotlight $spotlight, DiscussionModel $discussion): void
     {
         $spotlight->redirectRoute('discussions.show', $discussion);
     }

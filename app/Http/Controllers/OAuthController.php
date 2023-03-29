@@ -16,13 +16,12 @@ class OAuthController extends Controller
 {
     use HasSocialite;
 
-    /**
-     * Redirect the user to the GitHub|Google authentication page.
-     */
     public function redirectToProvider(string $provider): RedirectResponse
     {
         if (! in_array($provider, $this->getAcceptedProviders(), true)) {
-            return redirect()->route('login')->withErrors(__('La connexion via :provider n\'est pas disponible', ['provider' => e($provider)]));
+            return redirect()
+                ->route('login')
+                ->withErrors(__('La connexion via :provider n\'est pas disponible', ['provider' => e($provider)]));
         }
 
         return $this->getAuthorizationFirst($provider);
@@ -64,7 +63,7 @@ class OAuthController extends Controller
         return redirect()->route('register')->withErrors($errorMessage);
     }
 
-    private function updateOrRegisterProvider(User $user, $socialiteUser, string $provider)
+    private function updateOrRegisterProvider(User $user, $socialiteUser, string $provider): void
     {
         if (! $user->hasProvider($provider)) {
             $user->providers()->save(new SocialAccount([

@@ -39,11 +39,6 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
         'body',
     ];
 
-    public static function boot()
-    {
-        parent::boot();
-    }
-
     public function subject(): int
     {
         return $this->id;
@@ -74,6 +69,9 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
         return Str::limit(strip_tags(md_to_html($this->body)), $limit);
     }
 
+    /**
+     * @return string[]
+     */
     public function mentionedUsers(): array
     {
         preg_match_all('/@([a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}(?!\w))/', $this->body, $matches);
@@ -81,7 +79,7 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
         return $matches[1];
     }
 
-    public function to(ReplyInterface $replyAble)
+    public function to(ReplyInterface $replyAble): void
     {
         $this->replyAble()->associate($replyAble);
     }
@@ -107,7 +105,7 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
         return $builder->has('solutionTo');
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->deleteReplies();
 

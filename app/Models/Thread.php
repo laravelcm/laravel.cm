@@ -80,7 +80,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         'channels',
     ];
 
-    protected $removeViewsOnDelete = true;
+    protected bool $removeViewsOnDelete = true;
 
     /**
      * Get the route key for the model.
@@ -109,7 +109,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     public function excerpt(int $limit = 100): string
     {
-        return Str::limit(strip_tags(md_to_html($this->body)), $limit);
+        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
     }
 
     public function resolvedBy(): BelongsTo
@@ -212,7 +212,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
      *
      * @param  Builder<Thread>  $builder
      * @param  \Illuminate\Http\Request  $request
-     * @param  array  $filters
+     * @param  string[]  $filters
      * @return Builder<Thread>
      */
     public function scopeFilter(Builder $builder, Request $request, array $filters = []): Builder
@@ -220,7 +220,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         return (new ThreadFilters($request))->add($filters)->filter($builder);
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->channels()->detach();
         $this->deleteReplies();
@@ -239,7 +239,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
             ->summary($this->body)
             ->updated($updatedAt)
             ->link(route('forum.show', $this->slug))
-            ->authorName($this->author->name);
+            ->authorName($this->user->name);
     }
 
     /**
@@ -254,9 +254,9 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
             'solutionReply',
             'replies',
             'reactions',
-            'replies.author',
+            'replies.user',
             'channels',
-            'author',
+            'user',
         ])
             ->leftJoin('replies', function ($join) {
                 $join->on('threads.id', 'replies.replyable_id')
@@ -308,6 +308,9 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         return $query->has('replies');
     }
 
+    /**
+     * @param int[] $channels
+     */
     public function syncChannels(array $channels): void
     {
         $this->save();

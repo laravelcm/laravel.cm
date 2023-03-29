@@ -7,6 +7,7 @@ namespace App\Http\Livewire\Discussions;
 use App\Models\Discussion;
 use App\Models\Tag;
 use App\Traits\WithTagsAssociation;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Edit extends Component
@@ -27,7 +28,7 @@ class Edit extends Component
         'tags_selected' => 'nullable|array',
     ];
 
-    public function mount(Discussion $discussion)
+    public function mount(Discussion $discussion): void
     {
         $this->discussion = $discussion;
         $this->title = $discussion->title;
@@ -35,12 +36,12 @@ class Edit extends Component
         $this->associateTags = $this->tags_selected = old('tags', $discussion->tags()->pluck('id')->toArray());
     }
 
-    public function onMarkdownUpdate(string $content)
+    public function onMarkdownUpdate(string $content): void
     {
         $this->body = $content;
     }
 
-    public function store()
+    public function store(): void
     {
         $this->validate();
 
@@ -57,7 +58,7 @@ class Edit extends Component
         $this->redirectRoute('discussions.show', $this->discussion);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.discussions.edit', [
             'tags' => Tag::whereJsonContains('concerns', ['discussion'])->get(),

@@ -8,12 +8,12 @@ use App\Models\Article;
 use Arrilot\Widgets\AbstractWidget;
 use Illuminate\Contracts\View\View;
 
-class MostLikedPostsPerWeek extends AbstractWidget
+final class MostLikedPostsPerWeek extends AbstractWidget
 {
     /**
      * The configuration array.
      *
-     * @var array
+     * @var array<string>
      */
     protected $config = [];
 
@@ -22,7 +22,7 @@ class MostLikedPostsPerWeek extends AbstractWidget
      *
      * @var int|float
      */
-    public $reloadTimeout = 60 * 60 * 24 * 2; // 2 days
+    public $reloadTimeout = 172800; // 2 days
 
     /**
      * The number of minutes before cache expires.

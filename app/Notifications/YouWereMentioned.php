@@ -15,46 +15,40 @@ class YouWereMentioned extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public Reply $reply)
+    public function __construct(public readonly Reply $reply)
     {
     }
 
-    public function via($notifiable): array
+    /**
+     * @return string[]
+     */
+    public function via(mixed $notifiable): array
     {
         return ['database', 'mail'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable): MailMessage
+    public function toMail(): MailMessage
     {
         /** @var Thread $thread */
         $thread = $this->reply->replyAble;
 
         return (new MailMessage())
-                    ->subject("Nouvelle mention: {$thread->subject()}")
-                    ->line($this->reply->author->name.' vous a mentionné dans le sujet '.$thread->subject())
-                    ->action('Afficher', url($thread->getPathUrl()."#reply-{$this->reply->id}"))
-                    ->line("Merci d'utiliser Laravel Cameroun!");
+                    ->subject(__('Nouvelle mention: :subject', ['subject' => $thread->subject()]))
+                    ->line(__(':name vous a mentionné dans le sujet :subject', ['name' => $this->reply->user->name, 'subject' => $thread->subject()]))
+                    ->action(__('Afficher'), url($thread->getPathUrl()."#reply-{$this->reply->id}"))
+                    ->line(__('Merci d\'utiliser Laravel Cameroun!'));
     }
 
     /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
      * @return array<string, string|int>
      */
-    public function toArray($notifiable): array
+    public function toArray(): array
     {
         return [
             'type' => 'new_mention',
-            'author_name' => $this->reply->author->name,
-            'author_username' => $this->reply->author->username,
-            'author_photo' => $this->reply->author->profile_photo_url,
+            'author_name' => $this->reply->user->name,
+            'author_username' => $this->reply->user->username,
+            'author_photo' => $this->reply->user->profile_photo_url,
             'replyable_id' => $this->reply->replyable_id,
             'replyable_type' => $this->reply->replyable_type,
             // @phpstan-ignore-next-line

@@ -11,24 +11,19 @@ class Telegram extends SpotlightCommand
 {
     protected string $name = 'Telegram';
 
-    /**
-     * This is the description of your command which will be shown besides the command name.
-     */
     protected string $description = 'rejoindre le groupe sur Telegram';
 
     /**
-     * You can define any number of additional search terms (also known as synonyms)
-     * to be used when searching for this command.
+     * @var string[]
      */
     protected array $synonyms = [
         'channels',
-        'social',
-        'slack',
-        'whatsapp',
         'community',
+        'telegram',
+        'groupe',
     ];
 
-    public function execute(Spotlight $spotlight)
+    public function execute(Spotlight $spotlight): void
     {
         $spotlight->redirectRoute('telegram');
     }

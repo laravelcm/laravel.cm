@@ -36,7 +36,7 @@ class RegisterController extends Controller
 
         return response()->json(
             array_merge(
-                ['message' => 'Votre compte a été créé avec succès. Un e-mail de vérification vous a été envoyé.'],
+                ['message' => __('Votre compte a été créé avec succès. Un e-mail de vérification vous a été envoyé.')],
                 $this->userMetaData($user)
             )
         );
@@ -62,7 +62,9 @@ class RegisterController extends Controller
         }
 
         if ($user->hasRole('user')) {
-            return response()->json(['error' => 'Vous n\'êtes pas autorisé à accéder à cette section avec cette adresse e-mail.'], 401);
+            return response()->json([
+                'error' => __('Vous n\'êtes pas autorisé à accéder à cette section avec cette adresse e-mail.')
+            ], 401);
         }
 
         if (! $user->hasProvider($socialUser['provider'])) {
@@ -88,7 +90,7 @@ class RegisterController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'Votre compte a été crée avec succès via Google.',
+            'message' => __('Votre compte a été crée avec succès via Google.'),
             'response' => $this->userMetaData($user),
         ]);
     }

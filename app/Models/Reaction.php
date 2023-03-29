@@ -15,18 +15,19 @@ class Reaction extends Model
     use HasFactory;
 
     /**
-     * The attributes that aren't mass assignable.
-     *
      * @var string[]|bool
      */
     protected $guarded = [];
 
-    public static function createFromName($name): self
+    public static function createFromName(string $name): self
     {
         return self::create(['name' => $name]);
     }
 
-    public function getResponder()
+    /**
+     * @return mixed
+     */
+    public function getResponder(): mixed
     {
         if ($this->getOriginal('pivot_responder_type', null)) {
             return forward_static_call(

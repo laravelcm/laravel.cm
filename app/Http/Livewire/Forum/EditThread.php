@@ -26,19 +26,19 @@ class EditThread extends Component
         'body' => 'required',
     ];
 
-    public function mount(Thread $thread)
+    public function mount(Thread $thread): void
     {
         $this->title = $thread->title;
         $this->body = $thread->body;
         $this->associateChannels = $this->channels_selected = old('channels', $thread->channels()->pluck('id')->toArray());
     }
 
-    public function onMarkdownUpdate(string $content)
+    public function onMarkdownUpdate(string $content): void
     {
         $this->body = $content;
     }
 
-    public function store()
+    public function store(): void
     {
         $this->validate();
 

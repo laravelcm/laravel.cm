@@ -15,16 +15,11 @@ class Welcome extends Mailable implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public function __construct(public User $user)
+    public function __construct(public readonly User $user)
     {
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
+    public function build(): self
     {
         return $this->from('arthur@laravel.cm', 'Arthur Monney')
             ->subject(__('Bienvenue sur Laravel Cameroun ✨'))

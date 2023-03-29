@@ -7,3 +7,4 @@ parameters:
     level: 8
     scanDirectories:
         - ./helpers
+    checkGenericClassInNonGenericObjectType: false

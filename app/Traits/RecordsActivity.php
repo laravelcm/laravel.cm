@@ -26,12 +26,21 @@ trait RecordsActivity
         });
     }
 
+    /**
+     * @return string[]
+     */
     protected static function getActivitiesToRecord(): array
     {
         return ['created'];
     }
 
-    protected function recordActivity($event, bool $useDefaultEvent = true, array $data = []): void
+    /**
+     * @param string $event
+     * @param bool $useDefaultEvent
+     * @param array<string, mixed> $data
+     * @return void
+     */
+    protected function recordActivity(string $event, bool $useDefaultEvent = true, array $data = []): void
     {
         $this->activity()->create([
             'user_id' => auth()->id(),
@@ -45,7 +54,7 @@ trait RecordsActivity
         return $this->morphMany(Activity::class, 'subject');
     }
 
-    protected function getActivityType($event): string
+    protected function getActivityType(string $event): string
     {
         $type = strtolower((new \ReflectionClass($this))->getShortName());
 

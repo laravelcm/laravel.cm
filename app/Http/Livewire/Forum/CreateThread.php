@@ -9,6 +9,7 @@ use App\Gamify\Points\ThreadCreated;
 use App\Models\Channel;
 use App\Models\Thread;
 use App\Traits\WithChannelsAssociation;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Ramsey\Uuid\Uuid;
@@ -28,12 +29,12 @@ class CreateThread extends Component
         'body' => 'required',
     ];
 
-    public function onMarkdownUpdate(string $content)
+    public function onMarkdownUpdate(string $content): void
     {
         $this->body = $content;
     }
 
-    public function store()
+    public function store(): void
     {
         $this->validate();
         $author = Auth::user();
@@ -64,7 +65,7 @@ class CreateThread extends Component
         $this->redirectRoute('forum.show', $thread);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.forum.create-thread', [
             'channels' => Channel::all(),

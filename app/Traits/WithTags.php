@@ -22,7 +22,7 @@ trait WithTags
         $this->sortBy = $this->validSort($sort) ? $sort : 'recent';
     }
 
-    public function tagExists($tag): bool
+    public function tagExists(string $tag): bool
     {
         return Tag::where('slug', $tag)->exists();
     }

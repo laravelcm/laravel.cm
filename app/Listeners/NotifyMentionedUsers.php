@@ -10,7 +10,7 @@ use App\Notifications\YouWereMentioned;
 
 class NotifyMentionedUsers
 {
-    public function handle(ReplyWasCreated $event)
+    public function handle(ReplyWasCreated $event): void
     {
         User::whereIn('username', $event->reply->mentionedUsers())
             ->get()

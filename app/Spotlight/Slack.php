@@ -13,15 +13,20 @@ class Slack extends SpotlightCommand
 
     protected string $description = 'rejoindre le Slack de Laravel Cameroun';
 
+    /**
+     * @var string[]
+     */
     protected array $synonyms = [
         'community',
         'join',
         'telegram',
         'whatsapp',
         'social',
+        'discord',
+        'rejoindre',
     ];
 
-    public function execute(Spotlight $spotlight)
+    public function execute(Spotlight $spotlight): void
     {
         $spotlight->redirectRoute('slack');
     }

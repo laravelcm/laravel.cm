@@ -16,26 +16,34 @@ class NewCommentNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public Reply $reply, public Subscribe $subscription, public Discussion $discussion)
-    {
-    }
+    public function __construct(
+        public readonly Reply $reply,
+        public readonly Subscribe $subscription,
+        public readonly Discussion $discussion
+    ) {}
 
-    public function via($notifiable): array
+    /**
+     * @return string[]
+     */
+    public function via(mixed $notifiable): array
     {
         return ['mail', 'database'];
     }
 
-    public function toMail($notifiable): MailMessage
+    public function toMail(): MailMessage
     {
         return (new MailMessage())
                     ->subject("Re: {$this->discussion->subject()}")
-                    ->line('@'.$this->reply->author->username.' a répondu à ce sujet.')
+                    ->line(__('@:name a répondu à ce sujet.', ['name' => $this->reply->user->username]))
                     ->line($this->reply->excerpt(150))
-                    ->action('Voir la discussion', route('discussions.show', $this->discussion))
-                    ->line('Vous recevez ceci parce que vous êtes abonné à cette discussion.');
+                    ->action(__('Voir la discussion'), route('discussions.show', $this->discussion))
+                    ->line(__('Vous recevez ceci parce que vous êtes abonné à cette discussion.'));
     }
 
-    public function toArray($notifiable): array
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
     {
         return [
             'type' => 'new_comment',

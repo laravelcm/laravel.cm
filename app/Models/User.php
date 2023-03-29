@@ -20,6 +20,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Socialite\One\User as SocialUser;
 use LaravelFeature\Featurable\Featurable;
 use LaravelFeature\Featurable\FeaturableInterface;
 use QCod\Gamify\Gamify;
@@ -99,14 +100,14 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
     /**
      * The accessors to append to the model's array form.
      *
-     * @var array
+     * @var string[]
      */
     protected $appends = [
         'profile_photo_url',
         'roles_label',
     ];
 
-    public function hasProvider($provider): bool
+    public function hasProvider(string $provider): bool
     {
         foreach ($this->providers as $p) {
             if ($p->provider == $provider) {
@@ -165,6 +166,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
         return $this->id === Auth::id();
     }
 
+    /**
+     * @return array{name: string, username: string, picture: string}
+     */
     public function profile(): array
     {
         return [
@@ -196,7 +200,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
         return static::where('email', $emailAddress)->firstOrFail();
     }
 
-    public static function findOrCreateSocialUserProvider($socialUser, string $provider, string $role = 'user'): self
+    public static function findOrCreateSocialUserProvider(SocialUser $socialUser, string $provider, string $role = 'user'): self
     {
         $socialEmail = $socialUser->email ?? "{$socialUser->id}@{$provider}.com";
 
@@ -351,7 +355,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
      */
     public function routeNotificationForSlack(Notification $notification): string
     {
-        return env('SLACK_WEBHOOK_URL', '');
+        return config('lcm.slack.web_hook');
     }
 
     public function replies(): Collection

@@ -6,7 +6,7 @@ namespace App\Markdown;
 
 class MarkdownHelper
 {
-    public static function parseLiquidTags($html): string
+    public static function parseLiquidTags(string $html): string
     {
         $matches = [];
 
@@ -43,7 +43,13 @@ class MarkdownHelper
         return $html;
     }
 
-    public static function replaceYouTubeTag($html, $tagArray, $original_string): string
+    /**
+     * @param string $html
+     * @param string[] $tagArray
+     * @param string $original_string
+     * @return string
+     */
+    public static function replaceYouTubeTag(string $html, array $tagArray, string $original_string): string
     {
         if (isset($tagArray[2])) {
             $youtubeEmbedURL = $tagArray[2];
@@ -54,7 +60,13 @@ class MarkdownHelper
         return $html;
     }
 
-    public static function replaceCodePenTag($html, $tagArray, $original_string): string
+    /**
+     * @param string $html
+     * @param string[] $tagArray
+     * @param string $original_string
+     * @return string
+     */
+    public static function replaceCodePenTag(string $html, array $tagArray, string $original_string): string
     {
         if (isset($tagArray[2])) {
             $codepenEmbedURL = str_replace('/pen/', '/embed/', $tagArray[2]);
@@ -69,7 +81,13 @@ class MarkdownHelper
         return $html;
     }
 
-    public static function replaceCodeSandboxTag($html, $tagArray, $original_string): string
+    /**
+     * @param string $html
+     * @param string[] $tagArray
+     * @param string $original_string
+     * @return string
+     */
+    public static function replaceCodeSandboxTag(string $html, array $tagArray, string $original_string): string
     {
         if (isset($tagArray[2]) && $tagArray[2] != '%}') {
             $codesandbox = $tagArray[2];
@@ -83,7 +101,13 @@ class MarkdownHelper
         return $html;
     }
 
-    public static function replaceBuyMeACoffeeTag($html, $tagArray, $original_string): string
+    /**
+     * @param string $html
+     * @param string[] $tagArray
+     * @param string $original_string
+     * @return string
+     */
+    public static function replaceBuyMeACoffeeTag(string $html, array $tagArray, string $original_string): string
     {
         if (isset($tagArray[2]) && $tagArray[2] != '%}') {
             $buyMeACoffee = $tagArray[2];
@@ -94,7 +118,13 @@ class MarkdownHelper
         return $html;
     }
 
-    public static function replaceGiphyTag($html, $tagArray, $original_string): string
+    /**
+     * @param string $html
+     * @param string[] $tagArray
+     * @param string $original_string
+     * @return string
+     */
+    public static function replaceGiphyTag(string $html, array $tagArray, string $original_string): string
     {
         if (isset($tagArray[2])) {
             $giphyEmbed = $tagArray[2];

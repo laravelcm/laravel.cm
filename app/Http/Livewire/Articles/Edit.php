@@ -29,7 +29,7 @@ class Edit extends Component
 
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 
-    public function mount(Article $article)
+    public function mount(Article $article): void
     {
         $this->article = $article;
         $this->title = $article->title;

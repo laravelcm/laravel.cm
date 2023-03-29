@@ -10,6 +10,16 @@ use App\Models\User;
 
 trait UserResponse
 {
+    /**
+     * @param User $user
+     * @return array{
+     *      user: AuthenticateUserResource,
+     *      token: string,
+     *      roles: \Illuminate\Support\Collection,
+     *      permissions: \Illuminate\Support\Collection,
+     *     enterprise: EnterpriseResource|null
+     *   }
+     */
     public function userMetaData(User $user): array
     {
         return [

@@ -10,12 +10,10 @@ use Arrilot\Widgets\AbstractWidget;
 use CyrildeWit\EloquentViewable\Support\Period;
 use Illuminate\Contracts\View\View;
 
-class RecentNumbers extends AbstractWidget
+final class RecentNumbers extends AbstractWidget
 {
     /**
-     * The configuration array.
-     *
-     * @var array
+     * @var array<string>
      */
     protected $config = [];
 
@@ -34,10 +32,6 @@ class RecentNumbers extends AbstractWidget
      */
     public $cacheTime = 90;
 
-    /**
-     * Treat this method as a controller action.
-     * Return view() or other content to display.
-     */
     public function run(): View
     {
         $lastMonth = now()->subMonth();

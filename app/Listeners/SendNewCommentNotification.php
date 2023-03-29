@@ -5,23 +5,24 @@ declare(strict_types=1);
 namespace App\Listeners;
 
 use App\Events\CommentWasAdded;
+use App\Models\Subscribe;
 use App\Models\User;
 use App\Notifications\NewCommentNotification;
 
-class SendNewCommentNotification
+final class SendNewCommentNotification
 {
-    public function handle(CommentWasAdded $event)
+    public function handle(CommentWasAdded $event): void
     {
         $discussion = $event->discussion;
 
         foreach ($discussion->subscribes as $subscription) {
-            if ($this->replyAuthorDoesNotMatchSubscriber($event->reply->author, $subscription)) {
+            if ($this->replyAuthorDoesNotMatchSubscriber($event->reply->user, $subscription)) {
                 $subscription->user->notify(new NewCommentNotification($event->reply, $subscription, $discussion));
             }
         }
     }
 
-    private function replyAuthorDoesNotMatchSubscriber(User $author, $subscription): bool
+    private function replyAuthorDoesNotMatchSubscriber(User $author, Subscribe $subscription): bool
     {
         return ! $author->is($subscription->user);
     }

@@ -69,7 +69,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
         'count_all_replies_with_child',
     ];
 
-    protected $removeViewsOnDelete = true;
+    protected bool $removeViewsOnDelete = true;
 
     /**
      * Get the route key for the model.
@@ -98,7 +98,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
 
     public function excerpt(int $limit = 110): string
     {
-        return Str::limit(strip_tags(md_to_html($this->body)), $limit);
+        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
     }
 
     public function isPinned(): bool
@@ -116,6 +116,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
         $count = $this->replies->count();
 
         foreach ($this->replies()->withCount('allChildReplies')->get() as $reply) {
+            /** @var Reply $reply */
             $count += $reply->all_child_replies_count;
         }
 
