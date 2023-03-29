@@ -12,6 +12,9 @@ class NotificationIndicator extends Component
 {
     public bool $hasNotification = false;
 
+    /**
+     * @var string[]
+     */
     protected $listeners = [
         'NotificationMarkedAsRead' => 'setHasNotification',
     ];

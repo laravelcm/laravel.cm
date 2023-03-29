@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Subscribe;
+use Illuminate\Http\RedirectResponse;
 
-class SubscriptionController extends Controller
+final class SubscriptionController extends Controller
 {
-    public function unsubscribe(Subscribe $subscription)
+    public function unsubscribe(Subscribe $subscription): RedirectResponse
     {
         /** @var \App\Models\Thread $thread */
         $thread = $subscription->subscribeAble;
@@ -20,7 +21,7 @@ class SubscriptionController extends Controller
         return redirect()->route('forum.show', $thread->slug());
     }
 
-    public function redirect($id, $type)
+    public function redirect(int $id, string $type): RedirectResponse
     {
         $subscribe = Subscribe::where('subscribeable_id', $id)->where('subscribeable_type', $type)->firstOrFail();
 

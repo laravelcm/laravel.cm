@@ -9,6 +9,7 @@ use App\Models\Discussion;
 use App\Models\Tag;
 use App\Notifications\PostDiscussionToTelegram;
 use App\Traits\WithTagsAssociation;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -20,20 +21,26 @@ class Create extends Component
 
     public string $body = '';
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 
+    /**
+     * @var array<string, string[]|string>
+     */
     protected $rules = [
         'title' => ['required', 'max:150'],
         'body' => ['required'],
         'tags_selected' => 'nullable|array',
     ];
 
-    public function onMarkdownUpdate(string $content)
+    public function onMarkdownUpdate(string $content): void
     {
         $this->body = $content;
     }
 
-    public function store()
+    public function store(): void
     {
         $this->validate();
 
@@ -57,7 +64,7 @@ class Create extends Component
         $this->redirectRoute('discussions.show', $discussion);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.discussions.create', [
             'tags' => Tag::whereJsonContains('concerns', ['discussion'])->get(),

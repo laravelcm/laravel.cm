@@ -9,6 +9,7 @@ use App\Models\Reply as ReplyModel;
 use App\Models\Thread;
 use App\Policies\ReplyPolicy;
 use App\Policies\ThreadPolicy;
+use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
@@ -26,28 +27,34 @@ class Reply extends Component
 
     public bool $isUpdating = false;
 
+    /**
+     * @var string[]
+     */
     protected $listeners = [
         'refresh' => '$refresh',
         'editor:update' => 'onEditorUpdate',
     ];
 
+    /**
+     * @var string[]
+     */
     protected $rules = [
         'body' => 'required',
     ];
 
-    public function mount(ReplyModel $reply, Thread $thread)
+    public function mount(ReplyModel $reply, Thread $thread): void
     {
         $this->thread = $thread;
         $this->reply = $reply;
         $this->body = $reply->body;
     }
 
-    public function onEditorUpdate(string $body)
+    public function onEditorUpdate(string $body): void
     {
         $this->body = $body;
     }
 
-    public function edit()
+    public function edit(): void
     {
         $this->authorize(ReplyPolicy::UPDATE, $this->reply);
 
@@ -55,11 +62,12 @@ class Reply extends Component
 
         $this->reply->update(['body' => $this->body]);
 
-        // @ToDo mettre un nouveau system de notification
-//        $this->notification()->success(
-//            'Réponse modifié',
-//            'Vous avez modifié cette solution avec succès.'
-//        );
+        Notification::make()
+            ->title(__('Réponse modifiée'))
+            ->body(__('Vous avez modifié cette solution avec succès.'))
+            ->success()
+            ->duration(5000)
+            ->send();
 
         $this->isUpdating = false;
 
@@ -76,11 +84,12 @@ class Reply extends Component
 
         $this->emitSelf('refresh');
 
-        // @ToDo mettre un nouveau system de notification
-//        $this->notification()->success(
-//            'Réponse acceptée',
-//            'Vous avez retiré cette réponse comme solution pour ce sujet.'
-//        );
+        Notification::make()
+            ->title(__('Réponse rejetée'))
+            ->body(__('Vous avez retiré cette réponse comme solution pour ce sujet.'))
+            ->success()
+            ->duration(5000)
+            ->send();
     }
 
     public function markAsSolution(): void
@@ -97,11 +106,12 @@ class Reply extends Component
 
         $this->emitSelf('refresh');
 
-        // @ToDo mettre un nouveau system de notification
-//        $this->notification()->success(
-//            'Réponse acceptée',
-//            'Vous avez accepté cette solution pour ce sujet.'
-//        );
+        Notification::make()
+            ->title(__('Réponse acceptée'))
+            ->body(__('Vous avez accepté cette solution pour ce sujet.'))
+            ->success()
+            ->duration(5000)
+            ->send();
     }
 
     public function render(): View

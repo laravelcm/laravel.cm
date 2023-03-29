@@ -9,14 +9,17 @@ use Illuminate\Support\Arr;
 
 abstract class AbstractFilter
 {
-    abstract public function filter(Builder $builder, $value): Builder;
+    abstract public function filter(Builder $builder, string $value): Builder;
 
+    /**
+     * @return string[]
+     */
     public function mappings(): array
     {
         return [];
     }
 
-    protected function resolveFilterValue($key): mixed
+    protected function resolveFilterValue(string $key): mixed
     {
         return Arr::get($this->mappings(), $key);
     }

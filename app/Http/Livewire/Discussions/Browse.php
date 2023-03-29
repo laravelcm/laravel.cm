@@ -16,6 +16,9 @@ class Browse extends Component
     use WithInfiniteScroll;
     use WithTags;
 
+    /**
+     * @var array[]
+     */
     protected $queryString = [
         'tag' => ['except' => ''],
         'sortBy' => ['except' => 'recent'],

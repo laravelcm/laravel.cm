@@ -27,6 +27,9 @@ class Edit extends Component
 
     public bool $alreadySubmitted = false;
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 
     public function mount(Article $article): void

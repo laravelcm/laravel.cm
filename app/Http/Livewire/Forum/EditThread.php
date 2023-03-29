@@ -7,6 +7,7 @@ namespace App\Http\Livewire\Forum;
 use App\Models\Channel;
 use App\Models\Thread;
 use App\Traits\WithChannelsAssociation;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class EditThread extends Component
@@ -19,8 +20,14 @@ class EditThread extends Component
 
     public string $body = '';
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 
+    /**
+     * @var string[]
+     */
     protected $rules = [
         'title' => 'required|max:75',
         'body' => 'required',
@@ -53,7 +60,7 @@ class EditThread extends Component
         $this->redirectRoute('forum.show', $this->thread);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.forum.edit-thread', [
             'channels' => Channel::all(),

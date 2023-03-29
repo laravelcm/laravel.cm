@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class SortByFilter extends AbstractFilter
 {
+    /**
+     * @return string[]
+     */
     public function mappings(): array
     {
         return [
@@ -24,7 +27,7 @@ class SortByFilter extends AbstractFilter
      * @param  mixed  $value
      * @return Builder<Thread>
      */
-    public function filter(Builder $builder, $value): Builder
+    public function filter(Builder $builder, mixed $value): Builder
     {
         $value = $this->resolveFilterValue($value);
 

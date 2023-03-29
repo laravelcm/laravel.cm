@@ -20,8 +20,14 @@ class Edit extends Component
 
     public string $body = '';
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 
+    /**
+     * @var array<string, string[]|string>
+     */
     protected $rules = [
         'title' => ['required', 'max:150'],
         'body' => ['required'],

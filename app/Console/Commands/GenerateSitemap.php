@@ -16,6 +16,9 @@ class GenerateSitemap extends Command
 
     protected $description = 'Crawl the site to generate a sitemap.xml file';
 
+    /**
+     * @var array|string[]
+     */
     private array $noIndexPaths = [
         '',
         '/forum/*',

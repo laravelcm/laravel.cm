@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
     /**
      * The Artisan commands provided by your application.
      *
-     * @var array
+     * @var string[]
      */
     protected $commands = [
         \App\Console\Commands\Cleanup\DeleteOldUnverifiedUsers::class,

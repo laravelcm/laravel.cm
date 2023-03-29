@@ -18,17 +18,20 @@ class Browse extends Component
 
     public string $viewMode = 'list';
 
+    /**
+     * @var array[]
+     */
     protected $queryString = [
         'tag' => ['except' => ''],
         'sortBy' => ['except' => 'recent'],
     ];
 
-    public function mount()
+    public function mount(): void
     {
         $this->viewMode = session('viewMode', $this->viewMode);
     }
 
-    public function changeViewMode($mode)
+    public function changeViewMode(string $mode): void
     {
         session()->put('viewMode', $mode);
 

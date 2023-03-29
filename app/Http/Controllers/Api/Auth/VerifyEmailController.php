@@ -31,8 +31,9 @@ class VerifyEmailController extends Controller
 
     public function resend(Request $request): JsonResponse
     {
+        // @phpstan-ignore-next-line
         $request->user()->sendEmailVerificationNotification();
 
-        return response()->json(['message', 'Un nouveau lien de Verification a été envoyé!']);
+        return response()->json(['message', __('Un nouveau lien de Verification a été envoyé!')]);
     }
 }

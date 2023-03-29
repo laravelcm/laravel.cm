@@ -11,18 +11,15 @@ abstract class AbstractFilters
 {
     protected Builder $builder;
 
+    /**
+     * @var string[]
+     */
     protected array $filters = [];
 
     public function __construct(public Request $request)
     {
     }
 
-    /**
-     * Get all filters and make a new instance.
-     *
-     * @param  Builder  $builder
-     * @return Builder
-     */
     public function filter(Builder $builder): Builder
     {
         foreach ($this->getFilters() as $filter => $value) {
@@ -35,7 +32,7 @@ abstract class AbstractFilters
     /**
      * Add Filters to current filter class.
      *
-     * @param  array  $filters
+     * @param  string[]  $filters
      * @return $this
      */
     public function add(array $filters): self
@@ -45,13 +42,7 @@ abstract class AbstractFilters
         return $this;
     }
 
-    /**
-     * Get the Filter instance Class.
-     *
-     * @param    $filter
-     * @return mixed
-     */
-    public function resolverFilter($filter)
+    public function resolverFilter(string $filter): mixed
     {
         return new $this->filters[$filter]();
     }
@@ -59,7 +50,7 @@ abstract class AbstractFilters
     /**
      * Fetch all relevant filters from the request.
      *
-     * @return array
+     * @return string[]
      */
     public function getFilters(): array
     {

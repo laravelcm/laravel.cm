@@ -16,7 +16,7 @@ class PostThreadToTelegram extends Notification
     /**
      * @return string[]
      */
-    public function via($notifiable): array
+    public function via(mixed $notifiable): array
     {
         return [TelegramChannel::class];
     }

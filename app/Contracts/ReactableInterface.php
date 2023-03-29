@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Contracts;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+
 interface ReactableInterface
 {
     /**
      * Returns an Eloquent collection of reactions to the current item.
      */
-    public function reactions();
+    public function reactions(): MorphToMany;
 
     /**
      * Returns a collection of objects. Every object has a name and a count.
@@ -25,5 +28,5 @@ interface ReactableInterface
      *          $reaction->count
      *      }
      */
-    public function getReactionsSummary();
+    public function getReactionsSummary(): Collection;
 }

@@ -6,6 +6,7 @@ namespace App\Http\Livewire\Modals;
 
 use App\Models\Discussion;
 use App\Policies\DiscussionPolicy;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LivewireUI\Modal\ModalComponent;
 
@@ -15,7 +16,7 @@ class DeleteDiscussion extends ModalComponent
 
     public ?Discussion $discussion = null;
 
-    public function mount($id)
+    public function mount(int $id): void
     {
         $this->discussion = Discussion::find($id);
     }
@@ -25,7 +26,7 @@ class DeleteDiscussion extends ModalComponent
         return 'xl';
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->authorize(DiscussionPolicy::DELETE, $this->discussion);
 
@@ -36,7 +37,7 @@ class DeleteDiscussion extends ModalComponent
         $this->redirectRoute('discussions.index');
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.modals.delete-discussion');
     }

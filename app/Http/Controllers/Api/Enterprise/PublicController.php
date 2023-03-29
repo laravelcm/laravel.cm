@@ -30,7 +30,7 @@ class PublicController extends Controller
         $enterprises = Enterprise::query()
             ->filters($request)
             ->latest()
-            ->paginate($request->query('per_page', 12));
+            ->paginate((int) $request->query('per_page', 12));
 
         return new EnterpriseResourceCollection($enterprises, $filters);
     }

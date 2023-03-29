@@ -14,11 +14,11 @@ class UpdateUserBestRepliesPoints extends Command
 
     protected $description = 'Updating users bests replies reputation points';
 
-    public function handle()
+    public function handle(): void
     {
         $this->info('Updating users bests replies reputations...');
 
-        $resolvedThread = Thread::with('solutionReply')->resolved()->get();
+        $resolvedThread = Thread::resolved()->with('solutionReply')->get();
 
         foreach ($resolvedThread as $thread) {
             givePoint(new BestReply($thread->solutionReply));

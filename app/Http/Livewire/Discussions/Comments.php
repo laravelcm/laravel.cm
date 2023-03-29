@@ -14,6 +14,9 @@ class Comments extends Component
 {
     public $discussion;
 
+    /**
+     * @var string[]
+     */
     public $listeners = ['reloadComments' => '$refresh'];
 
     public function mount(Discussion $discussion): void

@@ -6,6 +6,7 @@ namespace App\Http\Livewire\Modals;
 
 use App\Models\Article;
 use App\Policies\ArticlePolicy;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LivewireUI\Modal\ModalComponent;
 
@@ -15,7 +16,7 @@ class DeleteArticle extends ModalComponent
 
     public ?Article $article = null;
 
-    public function mount(int $id)
+    public function mount(int $id): void
     {
         $this->article = Article::find($id);
     }
@@ -25,7 +26,7 @@ class DeleteArticle extends ModalComponent
         return 'xl';
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->authorize(ArticlePolicy::DELETE, $this->article);
 
@@ -36,7 +37,7 @@ class DeleteArticle extends ModalComponent
         $this->redirectRoute('articles');
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.modals.delete-article');
     }

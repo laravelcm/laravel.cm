@@ -11,12 +11,13 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Two\InvalidStateException;
+use Laravel\Socialite\Contracts\User as SocialUser;
 
 class OAuthController extends Controller
 {
     use HasSocialite;
 
-    public function redirectToProvider(string $provider): RedirectResponse
+    public function redirectToProvider(string $provider): RedirectResponse | \Symfony\Component\HttpFoundation\RedirectResponse
     {
         if (! in_array($provider, $this->getAcceptedProviders(), true)) {
             return redirect()
@@ -56,14 +57,14 @@ class OAuthController extends Controller
         return redirect('/dashboard');
     }
 
-    private function userNotFound($socialUser, string $errorMessage): RedirectResponse
+    private function userNotFound(User $socialUser, string $errorMessage): RedirectResponse
     {
         session(['socialData' => $socialUser->toArray()]);
 
         return redirect()->route('register')->withErrors($errorMessage);
     }
 
-    private function updateOrRegisterProvider(User $user, $socialiteUser, string $provider): void
+    private function updateOrRegisterProvider(User $user, SocialUser $socialiteUser, string $provider): void
     {
         if (! $user->hasProvider($provider)) {
             $user->providers()->save(new SocialAccount([

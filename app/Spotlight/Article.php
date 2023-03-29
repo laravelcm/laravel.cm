@@ -41,7 +41,7 @@ class Article extends SpotlightCommand
             ->map(fn(ArticleModel $article) => new SpotlightSearchResult(
                 $article->slug(),
                 $article->title,
-                sprintf('par @%s', $article->user->username)
+                sprintf('par @%s', $article->user?->username)
             ));
     }
 

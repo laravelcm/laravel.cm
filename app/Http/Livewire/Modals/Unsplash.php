@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Livewire\Modals;
 
+use Illuminate\Contracts\View\View;
 use LivewireUI\Modal\ModalComponent;
 
 class Unsplash extends ModalComponent
@@ -17,7 +18,7 @@ class Unsplash extends ModalComponent
         return '4xl';
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.modals.unsplash');
     }

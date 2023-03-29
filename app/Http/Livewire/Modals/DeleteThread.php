@@ -6,6 +6,7 @@ namespace App\Http\Livewire\Modals;
 
 use App\Models\Thread;
 use App\Policies\ThreadPolicy;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LivewireUI\Modal\ModalComponent;
 
@@ -15,7 +16,7 @@ class DeleteThread extends ModalComponent
 
     public ?Thread $thread = null;
 
-    public function mount($id)
+    public function mount(int $id): void
     {
         $this->thread = Thread::find($id);
     }
@@ -25,18 +26,18 @@ class DeleteThread extends ModalComponent
         return 'xl';
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->authorize(ThreadPolicy::DELETE, $this->thread);
 
         $this->thread->delete();
 
-        session()->flash('status', 'Le sujet a été supprimé avec toutes ses réponses.');
+        session()->flash('status', __('Le sujet a été supprimé avec toutes ses réponses.'));
 
         $this->redirectRoute('forum.index');
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.modals.delete-thread');
     }

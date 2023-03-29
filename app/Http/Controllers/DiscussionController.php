@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Discussion;
 use App\Policies\DiscussionPolicy;
+use Illuminate\Contracts\View\View;
 
 class DiscussionController extends Controller
 {
@@ -14,12 +15,12 @@ class DiscussionController extends Controller
         $this->middleware(['auth', 'verified'], ['except' => ['index', 'show']]);
     }
 
-    public function index()
+    public function index(): View
     {
         return view('discussions.index');
     }
 
-    public function show(Discussion $discussion)
+    public function show(Discussion $discussion): View
     {
         views($discussion)->record();
 
@@ -36,12 +37,12 @@ class DiscussionController extends Controller
         return view('discussions.show', ['discussion' => $discussion->load('tags')]);
     }
 
-    public function create()
+    public function create(): View
     {
         return view('discussions.new');
     }
 
-    public function edit(Discussion $discussion)
+    public function edit(Discussion $discussion): View
     {
         $this->authorize(DiscussionPolicy::UPDATE, $discussion);
 

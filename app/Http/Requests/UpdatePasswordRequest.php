@@ -15,6 +15,9 @@ class UpdatePasswordRequest extends FormRequest
         return auth()->check();
     }
 
+    /**
+     * @return array<string, string[]|string>
+     */
     public function rules(): array
     {
         return [

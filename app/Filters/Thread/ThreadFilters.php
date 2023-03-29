@@ -11,7 +11,7 @@ class ThreadFilters extends AbstractFilters
     /**
      * Registered filters to operate upon.
      *
-     * @var array
+     * @var string[]
      */
     protected array $filters = [
         'sortBy' => SortByFilter::class,

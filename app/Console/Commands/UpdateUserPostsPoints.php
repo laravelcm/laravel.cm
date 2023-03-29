@@ -14,7 +14,7 @@ class UpdateUserPostsPoints extends Command
 
     protected $description = 'Update users posts reputation points';
 
-    public function handle()
+    public function handle(): void
     {
         $this->info('Updating users posts reputations...');
 

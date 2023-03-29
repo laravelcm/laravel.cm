@@ -20,6 +20,9 @@ class AddComment extends Component
 
     public string $body = '';
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['reloadComment' => '$refresh'];
 
     public function mount(Discussion $discussion): void

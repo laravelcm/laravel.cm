@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\User;
 use App\Policies\ArticlePolicy;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
@@ -17,12 +18,12 @@ class ArticlesController extends Controller
         $this->middleware(['auth', 'verified'], ['except' => ['index', 'show']]);
     }
 
-    public function index()
+    public function index(): View
     {
         return view('articles.index');
     }
 
-    public function show(Article $article)
+    public function show(Article $article): View
     {
         /** @var User $user */
         $user = Auth::user();
@@ -53,12 +54,12 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): View
     {
         return view('articles.new');
     }
 
-    public function edit(Article $article)
+    public function edit(Article $article): View
     {
         $this->authorize(ArticlePolicy::UPDATE, $article);
 

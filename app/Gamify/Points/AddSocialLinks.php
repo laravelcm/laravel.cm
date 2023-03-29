@@ -11,7 +11,7 @@ class AddSocialLinks extends PointType
 {
     public int $points = 15;
 
-    public function __construct($subject)
+    public function __construct(mixed $subject)
     {
         $this->subject = $subject;
     }

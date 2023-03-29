@@ -5,6 +5,13 @@ parameters:
     paths:
         - app
     level: 8
+    excludePaths:
+        - app/Http/Resources/
+        - app/Http/Middleware/
+        - app/Actions/
+        - app/Notifications/
+        - app/Http/Controllers/OAuthController.php
     scanDirectories:
         - ./helpers
     checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false

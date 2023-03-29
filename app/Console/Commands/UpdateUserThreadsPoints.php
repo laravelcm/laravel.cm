@@ -14,7 +14,7 @@ class UpdateUserThreadsPoints extends Command
 
     protected $description = 'Update users threads reputation points';
 
-    public function handle()
+    public function handle(): void
     {
         $this->info('Updating users threads reputations...');
 

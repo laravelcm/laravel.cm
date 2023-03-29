@@ -12,7 +12,7 @@ class BestReply extends PointType
 
     protected string $payee = 'author';
 
-    public function __construct($subject)
+    public function __construct(mixed $subject)
     {
         $this->subject = $subject;
     }

@@ -15,6 +15,9 @@ class Comment extends Component
 {
     public Reply $comment;
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['reloadComment' => '$refresh'];
 
     public function delete(): void

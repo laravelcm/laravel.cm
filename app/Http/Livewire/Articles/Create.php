@@ -22,6 +22,9 @@ class Create extends Component
     use WithTagsAssociation;
     use WithArticleAttributes;
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 
     public function mount(): void

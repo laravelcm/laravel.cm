@@ -22,8 +22,14 @@ class CreateThread extends Component
 
     public string $body = '';
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 
+    /**
+     * @var string[]
+     */
     protected $rules = [
         'title' => 'required|max:75',
         'body' => 'required',

@@ -8,6 +8,7 @@ use App\Markdown\MarkdownHelper;
 use App\Models\User;
 use Exception;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -29,10 +30,11 @@ class MarkdownX extends Component
 
     public bool $autofocus = true;
 
-    /*
+    /**
      * Laravel livewire listeners, learn more at https://laravel-livewire.com/docs/events#event-listeners
      *
      * 'markdown-x-image-upload' => uploads image files from the editor
+     * @var string[]
      */
     protected $listeners = [
         'markdown-x-image-upload' => 'upload',
@@ -52,7 +54,7 @@ class MarkdownX extends Component
      * @param  string  $key
      * @return void
      */
-    public function mount(string $content = '', string $name = '', string $key = '')
+    public function mount(string $content = '', string $name = '', string $key = ''): void
     {
         $this->content = $content;
         $this->name = $name;
@@ -64,9 +66,9 @@ class MarkdownX extends Component
      * Anytime the editor is blurred, this function will be triggered and it will updated the $content,
      * this will also emit an event to the parent component with the updated content.
      *
-     * @param  array  $data
+     * @param  string[]  $data
      */
-    public function update(array $data)
+    public function update(array $data): void
     {
         $content = $data['content'];
         $this->content = $content;
@@ -77,7 +79,7 @@ class MarkdownX extends Component
      * content is being emitted to the parent component.
      *
      */
-    public function updatedContent()
+    public function updatedContent(): void
     {
         $this->emitUp('markdown-x:update', $this->content);
     }
@@ -91,12 +93,12 @@ class MarkdownX extends Component
      * MarkdownX editor.
      *
      */
-    public function updateContentPreview()
+    public function updateContentPreview(): void
     {
         $this->contentPreview = replace_links(MarkdownHelper::parseLiquidTags(Markdown::convertToHtml($this->content)));
     }
 
-    /*
+    /**
      * This function is called from the markdown-x view when the image file input has changed
      * The following data is sent with the payload:
      * {
@@ -106,10 +108,10 @@ class MarkdownX extends Component
      *      text: "![" + file.name + "](Uploading...)"
      * }
      *
-     * @param array $payload
+     * @param array<mixed> $payload
      * @return void
      */
-    public function upload($payload)
+    public function upload(array $payload): void
     {
         $payload = (object) $payload;
 
@@ -149,7 +151,7 @@ class MarkdownX extends Component
 
             $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
                 'status' => 200,
-                'message' => 'Successfully uploaded image.',
+                'message' => __('Successfully uploaded image.'),
                 'path' => str_replace(' ', '%20', Storage::url($fullPath)),
                 'key' => $payload->key,
                 'text' => $payload->text,
@@ -158,14 +160,14 @@ class MarkdownX extends Component
         } catch (Exception $e) {
             $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
                 'status' => 400,
-                'message' => 'Error when trying to upload.',
+                'message' => __('Error when trying to upload.'),
                 'key' => $payload->key,
                 'text' => $payload->text,
             ]);
         }
     }
 
-    public function getGiphyImages($payload)
+    public function getGiphyImages(): void
     {
         $api_key = config('markdownx.integrations.giphy.api_key');
 
@@ -180,7 +182,10 @@ class MarkdownX extends Component
         }
     }
 
-    public function getGiphyTrendingImages($payload)
+    /**
+     * @param array<string> $payload
+     */
+    public function getGiphyTrendingImages(array $payload): void
     {
         $api_key = config('markdownx.integrations.giphy.api_key');
 
@@ -195,7 +200,10 @@ class MarkdownX extends Component
         }
     }
 
-    public function getGiphySearchImages($payload)
+    /**
+     * @param array<string> $payload
+     */
+    public function getGiphySearchImages(array $payload): void
     {
         $api_key = config('markdownx.integrations.giphy.api_key');
 
@@ -211,52 +219,59 @@ class MarkdownX extends Component
         }
     }
 
-    public function sendResultsToView($response, $key = null)
+    public function sendResultsToView(mixed $response, $key = null): void
     {
         $parse_giphy_results = [];
         foreach ($response->json()['data'] as $result) {
-            array_push(
-                $parse_giphy_results,
-                [
-                    'image' => $result['images']['fixed_height_small']['url'],
-                    'embed' => $result['embed_url'], ]
-            );
+            $parse_giphy_results[] = [
+                'image' => $result['images']['fixed_height_small']['url'],
+                'embed' => $result['embed_url'],
+            ];
         }
 
         $this->dispatchBrowserEvent('markdown-x-giphy-results', [
             'status' => 200,
-            'message' => 'Successfully returned results.',
+            'message' => __('Successfully returned results.'),
             'results' => $parse_giphy_results,
             'key' => $key,
         ]);
     }
 
-    public function getTrendingPeoples($payload)
+    /**
+     * @param array<string> $payload
+     */
+    public function getTrendingPeoples(array $payload): void
     {
-        $users = User::orderBy('name')->limit(30)->get()->map(function ($user) {
-            $people['name'] = $user->name;
-            $people['picture'] = $user->profile_photo_url;
-            $people['username'] = $user->username;
-
-            return $people;
-        });
+        $users = User::orderBy('name')
+            ->limit(30)
+            ->get()
+            ->map(function (User $user) {
+                $people['name'] = $user->name;
+                $people['picture'] = $user->profile_photo_url;
+                $people['username'] = $user->username;
+                return $people;
+            }
+        );
 
         $this->dispatchBrowserEvent('markdown-x-peoples-results', [
             'status' => 200,
-            'message' => 'Successfully returned results.',
+            'message' => __('Successfully returned results.'),
             'results' => $users->toArray(),
             'key' => $payload['key'],
         ]);
     }
 
-    public function getSearchPeoples($payload)
+    /**
+     * @param array<string> $payload
+     */
+    public function getSearchPeoples(array $payload): void
     {
         $users = User::where('name', 'like', '%'.$payload['search'].'%')
                     ->orWhere('username', 'like', '%'.$payload['search'].'%')
                     ->orderBy('name')
                     ->limit(30)
                     ->get()
-                    ->map(function ($user) {
+                    ->map(function (User $user) {
                         $people['name'] = $user->name;
                         $people['picture'] = $user->profile_photo_url;
                         $people['username'] = $user->username;
@@ -266,16 +281,13 @@ class MarkdownX extends Component
 
         $this->dispatchBrowserEvent('markdown-x-peoples-results', [
             'status' => 200,
-            'message' => 'Successfully returned results.',
+            'message' => __('Successfully returned results.'),
             'results' => $users->toArray(),
             'key' => $payload['key'],
         ]);
     }
 
-    /**
-     * Render the markdown-x view. Hazah!
-     */
-    public function render()
+    public function render(): View
     {
         return view('livewire.markdown-x');
     }
