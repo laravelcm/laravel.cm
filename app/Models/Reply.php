@@ -61,12 +61,12 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
 
     public function wasJustPublished(): bool
     {
-        return $this->created_at->gt(Carbon::now()->subMinute());
+        return $this->created_at?->gt(Carbon::now()->subMinute());
     }
 
     public function excerpt(int $limit = 100): string
     {
-        return Str::limit(strip_tags(md_to_html($this->body)), $limit);
+        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
     }
 
     /**
@@ -105,10 +105,12 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
         return $builder->has('solutionTo');
     }
 
-    public function delete(): void
+    public function delete(): ?bool
     {
         $this->deleteReplies();
 
         parent::delete();
+
+        return true;
     }
 }

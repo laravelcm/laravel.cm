@@ -37,7 +37,7 @@ class Discussion extends SpotlightCommand
         return DiscussionModel::with('user')
             ->where('title', 'like', "%$query%")
             ->get()
-            ->map(fn(DiscussionModel $discussion) => new SpotlightSearchResult(
+            ->map(fn (DiscussionModel $discussion) => new SpotlightSearchResult(
                 $discussion->slug(),
                 $discussion->title,
                 sprintf('par @%s', $discussion->user?->username)

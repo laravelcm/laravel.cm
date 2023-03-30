@@ -30,6 +30,7 @@ class Reaction extends Model
     public function getResponder(): mixed
     {
         if ($this->getOriginal('pivot_responder_type', null)) {
+            // @phpstan-ignore-next-line
             return forward_static_call(
                 [$this->getOriginal('pivot_responder_type'), 'find'],
                 $this->getOriginal('pivot_responder_id')

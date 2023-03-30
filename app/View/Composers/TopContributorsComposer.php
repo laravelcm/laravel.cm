@@ -15,7 +15,7 @@ final class TopContributorsComposer
         $topContributors = Cache::remember('contributors', now()->addWeek(), function () {
             return User::topContributors()
                 ->get()
-                ->filter(fn ($contributor) => $contributor->loadCount('discussions')->discussions_count >= 1)
+                ->filter(fn (User $contributor) => $contributor->loadCount('discussions')->discussions_count >= 1)
                 ->take(5);
         });
 

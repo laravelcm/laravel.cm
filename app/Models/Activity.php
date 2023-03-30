@@ -61,7 +61,7 @@ class Activity extends Model
             ->with('subject')
             ->take($take)
             ->get()
-            ->groupBy(fn($activity) => $activity->created_at->format('Y-m-d'));
+            ->groupBy(fn ($activity) => $activity->created_at->format('Y-m-d'));
     }
 
     public static function latestFeed(User $user, int $take = 10): Collection

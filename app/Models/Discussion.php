@@ -53,7 +53,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
     /**
      * The attributes that should be cast to native types.
      *
-     * @var string[]
+     * @var array<string>
      */
     protected $casts = [
         'locked' => 'boolean',

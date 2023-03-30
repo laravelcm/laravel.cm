@@ -22,8 +22,7 @@ class NewReplyEmail extends Mailable implements ShouldQueue
     public function __construct(
         public readonly Reply $reply,
         public readonly Subscribe $subscription
-    )
-    {
+    ) {
     }
 
     public function build(): self

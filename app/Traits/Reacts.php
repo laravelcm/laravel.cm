@@ -18,6 +18,7 @@ trait Reacts
         $currentReactedName = '';
 
         if ($reactedToReaction) {
+            /** @var Reaction $reactedToReaction */
             $currentReactedName = $reactedToReaction->name;
             $this->deleteReaction($reactable, $reactedToReaction);
         }

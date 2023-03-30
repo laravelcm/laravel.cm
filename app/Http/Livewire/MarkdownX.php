@@ -245,13 +245,14 @@ class MarkdownX extends Component
         $users = User::orderBy('name')
             ->limit(30)
             ->get()
-            ->map(function (User $user) {
+            ->map(
+                function (User $user) {
                 $people['name'] = $user->name;
                 $people['picture'] = $user->profile_photo_url;
                 $people['username'] = $user->username;
                 return $people;
             }
-        );
+            );
 
         $this->dispatchBrowserEvent('markdown-x-peoples-results', [
             'status' => 200,

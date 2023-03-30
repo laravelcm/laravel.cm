@@ -168,7 +168,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
         return [
             'name' => $this->name,
             'username' => $this->username,
-            'picture' => $this->profile_photo_url,
+            'picture' => (string) $this->profile_photo_url,
         ];
     }
 
@@ -186,7 +186,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
 
     public static function findOrCreateSocialUserProvider(SocialUser $socialUser, string $provider, string $role = 'user'): self
     {
-        $socialEmail = !empty($socialUser->email) ? $socialUser->email : "{$socialUser->id}@{$provider}.com";
+        $socialEmail = $socialUser->getEmail() ?? "{$socialUser->getId()}@{$provider}.com";
 
         $user = static::where('email', $socialEmail)->first();
 

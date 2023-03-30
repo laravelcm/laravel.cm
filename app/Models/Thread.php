@@ -220,12 +220,14 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         return (new ThreadFilters($request))->add($filters)->filter($builder);
     }
 
-    public function delete(): void
+    public function delete(): ?bool
     {
         $this->channels()->detach();
         $this->deleteReplies();
 
         parent::delete();
+
+        return true;
     }
 
     public function toFeedItem(): FeedItem
@@ -239,7 +241,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
             ->summary($this->body)
             ->updated($updatedAt)
             ->link(route('forum.show', $this->slug))
-            ->authorName($this->user->name);
+            ->authorName($this->user?->name);
     }
 
     /**

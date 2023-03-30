@@ -46,7 +46,9 @@ class Channel extends Model
         parent::boot();
 
         static::saving(function ($channel) {
+            // @phpstan-ignore-next-line
             if ($channel->parent_id) {
+                /** @var self $record */
                 if ($record = self::find($channel->parent_id)) {
                     if ($record->exists() && $record->parent_id) {
                         throw CannotAddChannelToChild::childChannelCannotBeParent($channel);
