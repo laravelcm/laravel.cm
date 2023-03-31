@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Traits;
 
 use App\Models\Tag;
@@ -20,7 +22,7 @@ trait WithTags
         $this->sortBy = $this->validSort($sort) ? $sort : 'recent';
     }
 
-    public function tagExists($tag): bool
+    public function tagExists(string $tag): bool
     {
         return Tag::where('slug', $tag)->exists();
     }

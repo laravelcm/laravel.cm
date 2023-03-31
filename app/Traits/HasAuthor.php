@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Traits;
 
 use App\Models\User;
@@ -9,23 +11,23 @@ trait HasAuthor
 {
     public function authoredBy(User $author): void
     {
-        $this->author()->associate($author);
+        $this->user()->associate($author);
 
-        $this->unsetRelation('author');
+        $this->unsetRelation('user');
     }
 
-    public function author(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
-    public function getAuthor(): User
+    public function getUser(): ?User
     {
-        return $this->author;
+        return $this->user;
     }
 
-    public function isAuthoredBy(User $user): bool
+    public function isAuthoredBy(User $user): ?bool
     {
-        return $this->author->is($user);
+        return $this->user?->is($user);
     }
 }

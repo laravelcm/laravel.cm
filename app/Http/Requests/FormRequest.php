@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
@@ -11,7 +13,7 @@ abstract class FormRequest extends LaravelFormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return  array
+     * @return string[]
      */
     abstract public function rules(): array;
 

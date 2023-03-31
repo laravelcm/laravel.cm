@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Fortify;
 
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +21,7 @@ class ResetUserPassword implements ResetsUserPasswords
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function reset($user, array $input)
+    public function reset($user, array $input): void
     {
         Validator::make($input, [
             'password' => $this->passwordRules(),

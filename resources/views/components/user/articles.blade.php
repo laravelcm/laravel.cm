@@ -1,3 +1,5 @@
+@props(['user', 'articles'])
+
 <div>
     @if($articles->isNotEmpty())
         <div>

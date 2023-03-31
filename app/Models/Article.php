@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Contracts\ReactableInterface;
@@ -23,14 +25,14 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  */
 class Article extends Model implements ReactableInterface, HasMedia, Viewable
 {
-    use HasAuthor,
-        HasFactory,
-        HasSlug,
-        HasTags,
-        InteractsWithMedia,
-        InteractsWithViews,
-        Reactable,
-        RecordsActivity;
+    use HasAuthor;
+    use HasFactory;
+    use HasSlug;
+    use HasTags;
+    use InteractsWithMedia;
+    use InteractsWithViews;
+    use Reactable;
+    use RecordsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -74,14 +76,13 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     /**
      * The relations to eager load on every query.
      *
-     * @var array<string>
+     * @var string[]
      */
     protected $with = [
-        'author',
         'media',
     ];
 
-    protected $removeViewsOnDelete = true;
+    protected bool $removeViewsOnDelete = true;
 
     /**
      * Get the route key for the model.
@@ -95,7 +96,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function excerpt(int $limit = 110): string
     {
-        return Str::limit(strip_tags(md_to_html($this->body)), $limit);
+        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
     }
 
     public function originalUrl(): ?string
@@ -436,7 +437,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     {
         return self::notShared()
             ->published()
-            ->orderBy('published_at', 'asc')
+            ->orderBy('published_at')
             ->first();
     }
 
@@ -450,13 +451,13 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function markAsPublish(): void
     {
-        $this->update(['tweet_id' => $this->author->id]);
+        $this->update(['tweet_id' => $this->user->id]); // @phpstan-ignore-line
     }
 
-    public function delete()
+    public function delete(): ?bool
     {
         $this->removeTags();
 
-        parent::delete();
+        return parent::delete();
     }
 }

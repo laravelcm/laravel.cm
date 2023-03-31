@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Spotlight;
 
 use App\Models\Thread;
+use Illuminate\Support\Collection;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 use LivewireUI\Spotlight\SpotlightCommandDependencies;
@@ -15,6 +18,9 @@ class Sujet extends SpotlightCommand
 
     protected string $description = 'Rechercher un sujet dans le forum';
 
+    /**
+     * @var string[]
+     */
     protected array $synonyms = [
         'topic',
         'sujet',
@@ -31,20 +37,19 @@ class Sujet extends SpotlightCommand
             );
     }
 
-    public function searchThread($query)
+    public function searchThread(string $query): Collection
     {
-        return Thread::where('title', 'like', "%$query%")
+        return Thread::with('user')
+            ->where('title', 'like', "%$query%")
             ->get()
-            ->map(function (Thread $thread) {
-                return new SpotlightSearchResult(
-                    $thread->slug(),
-                    $thread->title,
-                    sprintf('par @%s', $thread->author->username)
-                );
-            });
+            ->map(fn (Thread $thread) => new SpotlightSearchResult(
+                $thread->slug(),
+                $thread->title,
+                sprintf('par @%s', $thread->user?->username)
+            ));
     }
 
-    public function execute(Spotlight $spotlight, Thread $thread)
+    public function execute(Spotlight $spotlight, Thread $thread): void
     {
         $spotlight->redirectRoute('forum.show', $thread);
     }

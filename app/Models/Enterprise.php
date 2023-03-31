@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Filters\Enterprise\EnterpriseFilters;
@@ -9,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -82,7 +85,13 @@ class Enterprise extends Model implements HasMedia
         return $query->where('is_public', true);
     }
 
-    public function scopeFilters(Builder $query, $request, array $filters = []): Builder
+    /**
+     * @param Builder<Enterprise> $query
+     * @param Request $request
+     * @param string[] $filters
+     * @return Builder
+     */
+    public function scopeFilters(Builder $query, Request $request, array $filters = []): Builder
     {
         return (new EnterpriseFilters($request))->add($filters)->filter($query);
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Policies\NotificationPolicy;
@@ -15,7 +17,7 @@ class NotificationsPage extends Component
 {
     use AuthorizesRequests;
 
-    public $notificationId;
+    public string $notificationId;
 
     public function mount(): void
     {
@@ -31,11 +33,9 @@ class NotificationsPage extends Component
     {
         $this->notificationId = $notificationId;
 
-        // @phpstan-ignore-next-line
-        $this->authorize(NotificationPolicy::MARK_AS_READ, $this->notification);
+        $this->authorize(NotificationPolicy::MARK_AS_READ, $this->notification); // @phpstan-ignore-line
 
-        // @phpstan-ignore-next-line
-        $this->notification->markAsRead();
+        $this->notification->markAsRead(); // @phpstan-ignore-line
 
         Notification::make()
             ->title(__('Cette notification a été marquée comme lue.'))
@@ -43,12 +43,13 @@ class NotificationsPage extends Component
             ->seconds(5)
             ->send();
 
-        $this->emit('NotificationMarkedAsRead', Auth::user()->unreadNotifications()->count());
+        $this->emit('NotificationMarkedAsRead', Auth::user()->unreadNotifications()->count()); // @phpstan-ignore-line
     }
 
     public function render(): View
     {
         return view('livewire.notifications-page', [
+            // @phpstan-ignore-next-line
             'notifications' => Auth::user()
                 ->unreadNotifications()
                 ->take(10)

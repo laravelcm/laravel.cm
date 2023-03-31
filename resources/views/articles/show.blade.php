@@ -7,7 +7,7 @@
     @php
         $next = $article->nextArticle();
         $previous = $article->previousArticle();
-        $author = $article->author;
+        $user = $article->user;
     @endphp
 
     <article class="relative lg:grid lg:grid-cols-9 lg:gap-10" xmlns:livewire="http://www.w3.org/1999/html">
@@ -16,42 +16,42 @@
                 <div>
                     <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase font-heading">{{ __('A propos de l’auteur') }}</h4>
                     <div class="mt-6 space-y-4">
-                        <a href="{{ route('profile', $author->username) }}" class="shrink-0 block">
+                        <a href="{{ route('profile', $user->username) }}" class="shrink-0 block">
                             <div class="flex items-center">
                                 <div>
-                                    <img class="inline-block h-9 w-9 rounded-full" src="{{ $author->profile_photo_url }}" alt="{{ $author->username }}">
+                                    <img class="inline-block h-9 w-9 rounded-full" src="{{ $user->profile_photo_url }}" alt="{{ $user->username }}">
                                 </div>
                                 <div class="ml-3">
                                     <p class="text-sm font-medium text-skin-inverted">
-                                        {{ $author->name }}
+                                        {{ $user->name }}
                                     </p>
                                     <p class="text-xs font-medium text-skin-muted">
-                                        {{ '@' . $author->username }}
+                                        {{ '@' . $user->username }}
                                     </p>
                                 </div>
                             </div>
                         </a>
-                        @if($author->bio)
-                            <p class="text-sm text-skin-base leading-5">{{ $author->bio }}</p>
+                        @if($user->bio)
+                            <p class="text-sm text-skin-base leading-5">{{ $user->bio }}</p>
                         @endif
                         <div class="flex space-x-3">
 
-                            @if($author->twitter())
-                                <a href="https://twitter.com/{{ $author->twitter() }}" class="text-skin-muted hover:text-skin-base">
+                            @if($user->twitter())
+                                <a href="https://twitter.com/{{ $user->twitter() }}" class="text-skin-muted hover:text-skin-base">
                                     <span class="sr-only">Twitter</span>
                                     <x-icon.twitter class="h-6 w-6"/>
                                 </a>
                             @endif
 
-                            @if($author->linkedin())
-                                <a href="https://linkedin.com/in/{{ $author->linkedin() }}" class="text-skin-muted hover:text-skin-base">
+                            @if($user->linkedin())
+                                <a href="https://linkedin.com/in/{{ $user->linkedin() }}" class="text-skin-muted hover:text-skin-base">
                                     <span class="sr-only">LinkedIn</span>
                                     <x-icon.linkedin class="h-6 w-6"/>
                                 </a>
                             @endif
 
-                            @if($author->githubUsername())
-                                <a href="https://github.com/{{ $author->githubUsername() }}" class="text-skin-muted hover:text-skin-base">
+                            @if($user->githubUsername())
+                                <a href="https://github.com/{{ $user->githubUsername() }}" class="text-skin-muted hover:text-skin-base">
                                     <span class="sr-only">GitHub</span>
                                     <x-icon.github class="h-6 w-6"/>
                                 </a>
@@ -115,17 +115,17 @@
                 <h1 class="text-2xl font-extrabold text-skin-inverted tracking-tight font-heading sm:text-3xl sm:leading-10 md:text-4xl lg:text-5xl lg:leading-[3.5rem]">
                     {{ $article->title }}
                 </h1>
-                <a href="{{ route('profile', $article->author->username) }}" class="mt-3 shrink-0 group block lg:hidden">
+                <a href="{{ route('profile', $article->user->username) }}" class="mt-3 shrink-0 group block lg:hidden">
                     <div class="flex items-center">
                         <div>
-                            <img class="inline-block h-8 w-8 rounded-full" src="{{ $article->author->profile_photo_url }}" alt="{{ $article->author->username }}">
+                            <img class="inline-block h-8 w-8 rounded-full" src="{{ $article->user->profile_photo_url }}" alt="{{ $article->user->username }}">
                         </div>
                         <div class="ml-3">
                             <p class="text-sm font-medium text-skin-inverted">
-                                {{ $article->author->name }}
+                                {{ $article->user->name }}
                             </p>
                             <p class="text-xs text-skin-muted">
-                                {{ '@' . $article->author->username }}
+                                {{ '@' . $article->user->username }}
                             </p>
                         </div>
                     </div>
@@ -145,42 +145,42 @@
 
             <div class="mt-6 pt-5 border-t border-skin-base sm:hidden">
                 <div class="space-y-4">
-                    <a href="{{ route('profile', $author->username) }}" class="shrink-0 block">
+                    <a href="{{ route('profile', $user->username) }}" class="shrink-0 block">
                         <div class="flex items-center">
                             <div>
-                                <img class="inline-block h-9 w-9 rounded-full" src="{{ $author->profile_photo_url }}" alt="{{ $author->username }}">
+                                <img class="inline-block h-9 w-9 rounded-full" src="{{ $user->profile_photo_url }}" alt="{{ $user->username }}">
                             </div>
                             <div class="ml-3">
                                 <p class="text-sm font-medium text-skin-inverted">
-                                    {{ $author->name }}
+                                    {{ $user->name }}
                                 </p>
                                 <p class="text-xs font-medium text-skin-muted">
-                                    {{ '@' . $author->username }}
+                                    {{ '@' . $user->username }}
                                 </p>
                             </div>
                         </div>
                     </a>
-                    @if($author->bio)
-                        <p class="text-sm text-skin-base leading-5">{{ $author->bio }}</p>
+                    @if($user->bio)
+                        <p class="text-sm text-skin-base leading-5">{{ $user->bio }}</p>
                     @endif
                     <div class="flex space-x-3">
 
-                        @if($author->twitter())
-                            <a href="https://twitter.com/{{ $author->twitter() }}" class="text-skin-muted hover:text-skin-base">
+                        @if($user->twitter())
+                            <a href="https://twitter.com/{{ $user->twitter() }}" class="text-skin-muted hover:text-skin-base">
                                 <span class="sr-only">Twitter</span>
                                 <x-icon.twitter class="h-6 w-6"/>
                             </a>
                         @endif
 
-                        @if($author->linkedin())
-                            <a href="https://linkedin.com/in/{{ $author->linkedin() }}" class="text-skin-muted hover:text-skin-base">
+                        @if($user->linkedin())
+                            <a href="https://linkedin.com/in/{{ $user->linkedin() }}" class="text-skin-muted hover:text-skin-base">
                                 <span class="sr-only">LinkedIn</span>
                                 <x-icon.linkedin class="h-6 w-6"/>
                             </a>
                         @endif
 
-                        @if($author->githubUsername())
-                            <a href="https://github.com/{{ $author->githubUsername() }}" class="text-skin-muted hover:text-skin-base">
+                        @if($user->githubUsername())
+                            <a href="https://github.com/{{ $user->githubUsername() }}" class="text-skin-muted hover:text-skin-base">
                                 <span class="sr-only">GitHub</span>
                                 <x-icon.github class="h-6 w-6"/>
                             </a>
@@ -193,17 +193,17 @@
             <div class="py-6">
                 <p class="text-base text-skin-base font-normal">{{ __('Vous aimez cet article ? Faite le savoir en partageant') }}</p>
                 <div class="mt-4 space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-4">
-                    <a href="https://twitter.com/share?text={{ urlencode('"'.$article->title.'" par '. ($article->author->twitter() ? '@'.$article->author->twitter() : $article->author->name) . ' #caparledev - ') }}&url={{ urlencode(route('articles.show', $article)) }}"
+                    <a href="https://twitter.com/share?text={{ urlencode('"'.$article->title.'" par '. ($article->user->twitter() ? '@'.$article->user->twitter() : $article->user->name) . ' #caparledev - ') }}&url={{ urlencode(route('articles.show', $article)) }}"
                        class="inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <x-icon.twitter class="h-5 w-5 mr-1.5" />
                         Twitter
                     </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('articles.show', $article)) }}&quote={{ urlencode('"'.$article->title.'" par '.$article->author->name.' - ') }}"
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('articles.show', $article)) }}&quote={{ urlencode('"'.$article->title.'" par '.$article->user->name.' - ') }}"
                        class="inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <x-icon.facebook class="h-5 w-5 mr-1.5" />
                         Facebook
                     </a>
-                    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(route('articles.show', $article)) }}&title={{ urlencode('"'.$article->title.'" par '.$article->author->name.' - ') }}"
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(route('articles.show', $article)) }}&title={{ urlencode('"'.$article->title.'" par '.$article->user->name.' - ') }}"
                        class="inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <x-icon.linkedin class="h-5 w-5 mr-1.5" />
                         LinkedIn

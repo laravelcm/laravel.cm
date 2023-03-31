@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Modals;
 
 use App\Models\Discussion;
 use App\Policies\DiscussionPolicy;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LivewireUI\Modal\ModalComponent;
 
@@ -13,7 +16,7 @@ class DeleteDiscussion extends ModalComponent
 
     public ?Discussion $discussion = null;
 
-    public function mount($id)
+    public function mount(int $id): void
     {
         $this->discussion = Discussion::find($id);
     }
@@ -23,18 +26,18 @@ class DeleteDiscussion extends ModalComponent
         return 'xl';
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->authorize(DiscussionPolicy::DELETE, $this->discussion);
 
-        $this->discussion->delete();
+        $this->discussion->delete(); // @phpstan-ignore-line
 
         session()->flash('status', 'La discussion a été supprimé avec tous ses commentaires.');
 
         $this->redirectRoute('discussions.index');
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.modals.delete-discussion');
     }

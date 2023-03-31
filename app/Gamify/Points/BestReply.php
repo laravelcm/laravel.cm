@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Gamify\Points;
 
 use QCod\Gamify\PointType;
@@ -10,7 +12,7 @@ class BestReply extends PointType
 
     protected string $payee = 'author';
 
-    public function __construct($subject)
+    public function __construct(mixed $subject)
     {
         $this->subject = $subject;
     }

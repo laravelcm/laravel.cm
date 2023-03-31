@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Discussions;
 
 use App\Models\Discussion;
@@ -10,8 +12,11 @@ use Livewire\Component;
 
 class Comments extends Component
 {
-    public $discussion;
+    public Discussion $discussion;
 
+    /**
+     * @var string[]
+     */
     public $listeners = ['reloadComments' => '$refresh'];
 
     public function mount(Discussion $discussion): void

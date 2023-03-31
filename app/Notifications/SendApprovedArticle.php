@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\Models\Article;
@@ -16,24 +18,21 @@ class SendApprovedArticle extends Notification implements ShouldQueue
     {
     }
 
-    public function via($notifiable): array
+    /**
+     * @return string[]
+     */
+    public function via(mixed $notifiable): array
     {
         return ['mail'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
+    public function toMail(): MailMessage
     {
-        return (new MailMessage)
-                    ->subject('Article Approuvé 🎉.')
-                    ->greeting('Article Approuvé 🎉.')
-                    ->line('Merci d\'avoir soumis votre article pour créer du contenu au sein de Laravel Cameroun.')
-                    ->action('Voir mon article', route('articles.show', $this->article))
-                    ->line('Merci d\'avoir utilisé Laravel Cameroun.!');
+        return (new MailMessage())
+                    ->subject(__('Article Approuvé 🎉.'))
+                    ->greeting(__('Article Approuvé 🎉.'))
+                    ->line(__('Merci d\'avoir soumis votre article pour créer du contenu au sein de Laravel Cameroun.'))
+                    ->action(__('Voir mon article'), route('articles.show', $this->article))
+                    ->line(__('Merci d\'avoir utilisé Laravel Cameroun.!'));
     }
 }

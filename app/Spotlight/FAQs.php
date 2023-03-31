@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Spotlight;
 
 use LivewireUI\Spotlight\Spotlight;
@@ -11,17 +13,16 @@ class FAQs extends SpotlightCommand
 
     protected string $description = 'aller à la page des questions';
 
+    /**
+     * @var string[]
+     */
     protected array $synonyms = [
         'faq',
         'question',
         'foire',
     ];
 
-    /**
-     * When all dependencies have been resolved the execute method is called.
-     * You can type-hint all resolved dependency you defined earlier.
-     */
-    public function execute(Spotlight $spotlight)
+    public function execute(Spotlight $spotlight): void
     {
         $spotlight->redirectRoute('faq');
     }

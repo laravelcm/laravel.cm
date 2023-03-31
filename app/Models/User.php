@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
 use App\Traits\Reacts;
-use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -18,6 +19,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Socialite\Contracts\User as SocialUser;
 use LaravelFeature\Featurable\Featurable;
 use LaravelFeature\Featurable\FeaturableInterface;
 use QCod\Gamify\Gamify;
@@ -29,7 +31,7 @@ use Spatie\Permission\Traits\HasRoles;
 /**
  * @mixin IdeHelperUser
  */
-class User extends Authenticatable implements MustVerifyEmail, HasMedia, FeaturableInterface, FilamentUser
+class User extends Authenticatable implements MustVerifyEmail, HasMedia, FeaturableInterface
 {
     use Gamify;
     use HasFactory;
@@ -97,14 +99,14 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
     /**
      * The accessors to append to the model's array form.
      *
-     * @var array
+     * @var string[]
      */
     protected $appends = [
         'profile_photo_url',
         'roles_label',
     ];
 
-    public function hasProvider($provider): bool
+    public function hasProvider(string $provider): bool
     {
         foreach ($this->providers as $p) {
             if ($p->provider == $provider) {
@@ -153,33 +155,21 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
         return $this->hasRole('company');
     }
 
-    public function canAccessFilament(): bool
-    {
-        return $this->isAdmin() || $this->isModerator();
-    }
-
     public function isLoggedInUser(): bool
     {
         return $this->id === Auth::id();
     }
 
+    /**
+     * @return array{name: string, username: string, picture: string}
+     */
     public function profile(): array
     {
         return [
             'name' => $this->name,
             'username' => $this->username,
-            'picture' => $this->profile_photo_url,
+            'picture' => (string) $this->profile_photo_url,
         ];
-    }
-
-    public function getFilamentAvatarUrl(): ?string
-    {
-        return $this->profile_photo_url;
-    }
-
-    public function getFilamentName(): string
-    {
-        return $this->name;
     }
 
     public function registerMediaCollections(): void
@@ -194,9 +184,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
         return static::where('email', $emailAddress)->firstOrFail();
     }
 
-    public static function findOrCreateSocialUserProvider($socialUser, string $provider, string $role = 'user'): self
+    public static function findOrCreateSocialUserProvider(SocialUser $socialUser, string $provider, string $role = 'user'): self
     {
-        $socialEmail = $socialUser->email ?? "{$socialUser->id}@{$provider}.com";
+        $socialEmail = $socialUser->getEmail() ?? "{$socialUser->getId()}@{$provider}.com";
 
         $user = static::where('email', $socialEmail)->first();
 
@@ -349,7 +339,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
      */
     public function routeNotificationForSlack(Notification $notification): string
     {
-        return env('SLACK_WEBHOOK_URL', '');
+        return config('lcm.slack.web_hook');
     }
 
     public function replies(): Collection

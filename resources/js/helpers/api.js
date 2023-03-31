@@ -48,17 +48,9 @@ export async function jsonFetchOrFlash (url, params = {}) {
     return await jsonFetch(url, params)
   } catch (e) {
     if (e instanceof ApiError) {
-      window.$wireui.notify({
-        title: 'Ops! Erreur',
-        description: e.name,
-        icon: 'error'
-      })
+      console.log(e)
     } else {
-      window.$wireui.notify({
-        title: 'Ops! Erreur',
-        description: e,
-        icon: 'error'
-      })
+      console.log('error')
     }
     return null
   }

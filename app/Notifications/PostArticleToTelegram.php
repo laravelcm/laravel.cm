@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\Models\Article;
@@ -16,12 +18,15 @@ class PostArticleToTelegram extends Notification
     {
     }
 
-    public function via($notifiable)
+    /**
+     * @return string[]
+     */
+    public function via(mixed $notifiable): array
     {
         return [TelegramChannel::class];
     }
 
-    public function toTelegram($notifiable)
+    public function toTelegram(): TelegramMessage
     {
         return TelegramMessage::create()
             ->to('@laravelcm')

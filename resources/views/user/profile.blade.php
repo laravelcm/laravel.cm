@@ -121,12 +121,12 @@
                 class="lg:col-span-5"
                 x-data="{
                     activeTab: 'articles',
-                    tabs: ['articles', 'discussions', 'questions', 'badges']
+                    tabs: ['articles', 'discussions', 'questions']
                 }"
             >
                 <div>
                     <div class="sm:hidden">
-                        <label for="tabs" class="sr-only">Select a tab</label>
+                        <label for="tabs" class="sr-only">{{ __('Sélectionner une tab') }}</label>
                         <x-forms.select x-model="activeTab" aria-label="Selected tab" class="block w-full pl-3 pr-10 py-2">
                             <template x-for="tab in tabs" :key="tab">
                                 <option
@@ -155,13 +155,13 @@
 
                     <div class="mt-10">
                         <div x-show="activeTab === 'articles'">
-                            <livewire:user.articles :user="$user" />
+                            <x-user.articles :user="$user" :articles="$articles" />
                         </div>
                         <div x-cloak x-show="activeTab === 'discussions'">
-                            <livewire:user.discussions :user="$user" />
+                            <x-user.discussions :user="$user" :discussions="$discussions" />
                         </div>
                         <div x-cloak x-show="activeTab === 'questions'">
-                            <livewire:user.threads :user="$user" />
+                            <x-user.threads :user="$user" :threads="$threads" />
                         </div>
                         <div x-cloak x-show="activeTab === 'badges'">
                             <div class="flex items-center justify-between rounded-md border border-skin-base border-dashed py-8 px-6">
@@ -178,11 +178,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="hidden lg:block lg:col-span-3">
-                <aside aria-label="Sidebar" class="sticky top-4 ml-6">
-                    <livewire:user.activities :user="$user" />
-                </aside>
             </div>
         </div>
     </x-container>

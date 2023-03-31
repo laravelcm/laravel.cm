@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Contracts\ReactableInterface;
@@ -22,11 +24,11 @@ use Illuminate\Support\Str;
  */
 class Reply extends Model implements ReactableInterface, ReplyInterface
 {
-    use HasAuthor,
-        HasFactory,
-        HasReplies,
-        Reactable,
-        RecordsActivity;
+    use HasAuthor;
+    use HasFactory;
+    use HasReplies;
+    use Reactable;
+    use RecordsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -36,11 +38,6 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
     protected $fillable = [
         'body',
     ];
-
-    public static function boot()
-    {
-        parent::boot();
-    }
 
     public function subject(): int
     {
@@ -64,14 +61,17 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
 
     public function wasJustPublished(): bool
     {
-        return $this->created_at->gt(Carbon::now()->subMinute());
+        return $this->created_at->gt(Carbon::now()->subMinute()); // @phpstan-ignore-line
     }
 
     public function excerpt(int $limit = 100): string
     {
-        return Str::limit(strip_tags(md_to_html($this->body)), $limit);
+        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
     }
 
+    /**
+     * @return string[]
+     */
     public function mentionedUsers(): array
     {
         preg_match_all('/@([a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}(?!\w))/', $this->body, $matches);
@@ -79,7 +79,7 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
         return $matches[1];
     }
 
-    public function to(ReplyInterface $replyAble)
+    public function to(ReplyInterface $replyAble): void
     {
         $this->replyAble()->associate($replyAble);
     }
@@ -105,10 +105,12 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
         return $builder->has('solutionTo');
     }
 
-    public function delete()
+    public function delete(): ?bool
     {
         $this->deleteReplies();
 
         parent::delete();
+
+        return true;
     }
 }

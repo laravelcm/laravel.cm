@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -14,6 +16,9 @@ class GenerateSitemap extends Command
 
     protected $description = 'Crawl the site to generate a sitemap.xml file';
 
+    /**
+     * @var array|string[]
+     */
     private array $noIndexPaths = [
         '',
         '/forum/*',

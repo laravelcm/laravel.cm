@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Thread;
@@ -7,13 +9,13 @@ use App\Models\User;
 
 class ThreadPolicy
 {
-    const UPDATE = 'update';
+    public const UPDATE = 'update';
 
-    const DELETE = 'delete';
+    public const DELETE = 'delete';
 
-    const SUBSCRIBE = 'subscribe';
+    public const SUBSCRIBE = 'subscribe';
 
-    const UNSUBSCRIBE = 'unsubscribe';
+    public const UNSUBSCRIBE = 'unsubscribe';
 
     public function update(User $user, Thread $thread): bool
     {

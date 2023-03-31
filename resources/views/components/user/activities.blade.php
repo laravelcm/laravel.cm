@@ -1,3 +1,5 @@
+@props(['user', 'activities'])
+
 <div class="flow-root">
     <h3 class="mt-4 text-lg leading-6 font-medium text-skin-inverted font-sans">
         {{ __('Dernières activités de :name', ['name' => $user->name]) }}

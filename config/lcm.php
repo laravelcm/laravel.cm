@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     'ads' => [
@@ -21,6 +23,7 @@ return [
         'team' => env('SLACK_TEAM_NAME', 'Laravel Cameroun'),
         'url' => env('SLACK_TEAM_URL', 'https://laravelcm.slack.com'),
         'token' => env('SLACK_API_TOKEN', null),
+        'web_hook' => env('SLACK_WEBHOOK_URL', ''),
     ],
 
     'spa_url' => env('FRONTEND_APP_URL', 'http://localhost:4200'),

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use Illuminate\Contracts\View\View;
@@ -10,6 +12,9 @@ class NotificationIndicator extends Component
 {
     public bool $hasNotification = false;
 
+    /**
+     * @var string[]
+     */
     protected $listeners = [
         'NotificationMarkedAsRead' => 'setHasNotification',
     ];
@@ -22,7 +27,7 @@ class NotificationIndicator extends Component
     public function render(): View
     {
         $this->hasNotification = $this->setHasNotification(
-            Auth::user()->unreadNotifications()->count(),
+            Auth::user()->unreadNotifications()->count(), // @phpstan-ignore-line
         );
 
         return view('livewire.notification-indicator', [

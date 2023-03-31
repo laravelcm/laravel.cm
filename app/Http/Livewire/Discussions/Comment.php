@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Discussions;
 
 use App\Actions\Replies\LikeReply;
@@ -13,6 +15,9 @@ class Comment extends Component
 {
     public Reply $comment;
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['reloadComment' => '$refresh'];
 
     public function delete(): void

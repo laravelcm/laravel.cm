@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\ReplyAbleController;
+use App\Http\Controllers\SlackController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\User;
@@ -21,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 // Static pages
 Route::view('a-propos', 'about')->name('about');
@@ -30,7 +33,7 @@ Route::view('privacy', 'privacy')->name('privacy');
 Route::view('rules', 'rules')->name('rules');
 Route::view('terms', 'terms')->name('terms');
 Route::view('slack', 'slack')->name('slack');
-Route::post('slack', [HomeController::class, 'slack'])->name('slack.send');
+Route::post('slack', SlackController::class)->name('slack.send');
 
 // Social authentication
 Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');
@@ -101,6 +104,7 @@ Route::redirectMap([
     'telegram' => 'https://t.me/laravelcameroun',
     'linkedin' => 'https://www.linkedin.com/company/laravel-cameroun',
     'github' => 'https://github.com/laravelcm',
+    'whatsapp' => 'https://chat.whatsapp.com/G8e98Ms0MgSLEOGd3Uai1i',
     'discord' => 'https://discord.gg/KNp6brbyVD',
     'youtube' => 'https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw',
 ]);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Traits;
 
 use App\Models\Reply;
@@ -30,11 +32,6 @@ trait HasReplies
         $this->unsetRelation('replies');
     }
 
-    /**
-     * Determine the path to the reply.
-     *
-     * @return string
-     */
     public function solutionReplyUrl(): string
     {
         // @phpstan-ignore-next-line
@@ -57,9 +54,12 @@ trait HasReplies
         $sixMonthsAgo = now()->subMonths(6);
 
         if ($reply = $this->replies()->latest()->first()) {
+            /** @var $reply Reply */
+            // @phpstan-ignore-next-line
             return $reply->created_at->lt($sixMonthsAgo);
         }
 
+        // @phpstan-ignore-next-line
         return $this->created_at->lt($sixMonthsAgo);
     }
 }

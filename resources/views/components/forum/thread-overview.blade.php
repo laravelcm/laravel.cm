@@ -6,13 +6,13 @@
             <div class="lg:flex lg:space-x-3">
                 <div class="flex-1 flex items-center space-x-3">
                     <div class="shrink-0">
-                        <img class="h-8 w-8 object-cover rounded-full" src="{{ $thread->author->profile_photo_url }}" alt="{{ $thread->author->name }}">
+                        <img class="h-8 w-8 object-cover rounded-full" src="{{ $thread->user->profile_photo_url }}" alt="{{ $thread->user->name }}">
                     </div>
                     <div class="min-w-0 flex-1">
                         <p class="text-sm font-medium text-skin-inverted">
-                            <a href="{{ route('profile', $thread->author->username) }}" class="block group">
-                                <span class="group-hover:underline">{{ $thread->author->name }}</span>
-                                <span class="text-skin-muted">{{ '@'. $thread->author->username }}</span>
+                            <a href="{{ route('profile', $thread->user->username) }}" class="block group">
+                                <span class="group-hover:underline">{{ $thread->user->name }}</span>
+                                <span class="text-skin-muted">{{ '@'. $thread->user->username }}</span>
                             </a>
                         </p>
                         <p class="text-sm text-skin-base">

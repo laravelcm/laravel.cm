@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests\Api\Enterprise;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -13,7 +15,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->isEnterprise();
+        return auth()->user()->isEnterprise(); // @phpstan-ignore-line
     }
 
     /**

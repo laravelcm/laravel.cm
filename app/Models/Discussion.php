@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Contracts\ReactableInterface;
@@ -24,15 +26,15 @@ use Illuminate\Support\Str;
  */
 class Discussion extends Model implements ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
-    use HasAuthor,
-        HasFactory,
-        HasReplies,
-        HasSubscribers,
-        HasSlug,
-        HasTags,
-        InteractsWithViews,
-        Reactable,
-        RecordsActivity;
+    use HasAuthor;
+    use HasFactory;
+    use HasReplies;
+    use HasSubscribers;
+    use HasSlug;
+    use HasTags;
+    use InteractsWithViews;
+    use Reactable;
+    use RecordsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -51,20 +53,11 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
     /**
      * The attributes that should be cast to native types.
      *
-     * @var string[]
+     * @var array<string, string>
      */
     protected $casts = [
         'locked' => 'boolean',
         'is_pinned' => 'boolean',
-    ];
-
-    /**
-     * The relations to eager load on every query.
-     *
-     * @var array<string>
-     */
-    protected $with = [
-        'author',
     ];
 
     /**
@@ -76,7 +69,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
         'count_all_replies_with_child',
     ];
 
-    protected $removeViewsOnDelete = true;
+    protected bool $removeViewsOnDelete = true;
 
     /**
      * Get the route key for the model.
@@ -105,7 +98,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
 
     public function excerpt(int $limit = 110): string
     {
-        return Str::limit(strip_tags(md_to_html($this->body)), $limit);
+        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
     }
 
     public function isPinned(): bool
@@ -123,6 +116,8 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
         $count = $this->replies->count();
 
         foreach ($this->replies()->withCount('allChildReplies')->get() as $reply) {
+            /** @var Reply $reply */
+            // @phpstan-ignore-next-line
             $count += $reply->all_child_replies_count;
         }
 

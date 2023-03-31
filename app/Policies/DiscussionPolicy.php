@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Discussion;
@@ -7,15 +9,15 @@ use App\Models\User;
 
 class DiscussionPolicy
 {
-    const UPDATE = 'update';
+    public const UPDATE = 'update';
 
-    const DELETE = 'delete';
+    public const DELETE = 'delete';
 
-    const PINNED = 'togglePinnedStatus';
+    public const PINNED = 'togglePinnedStatus';
 
-    const SUBSCRIBE = 'subscribe';
+    public const SUBSCRIBE = 'subscribe';
 
-    const UNSUBSCRIBE = 'unsubscribe';
+    public const UNSUBSCRIBE = 'unsubscribe';
 
     public function update(User $user, Discussion $discussion): bool
     {

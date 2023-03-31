@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Spotlight;
 
 use LivewireUI\Spotlight\Spotlight;
@@ -11,6 +13,9 @@ class Articles extends SpotlightCommand
 
     protected string $description = 'aller à la page des articles';
 
+    /**
+     * @var string[]
+     */
     protected array $synonyms = [
         'articles',
         'article',
@@ -19,7 +24,7 @@ class Articles extends SpotlightCommand
         'news',
     ];
 
-    public function execute(Spotlight $spotlight)
+    public function execute(Spotlight $spotlight): void
     {
         $spotlight->redirectRoute('articles');
     }

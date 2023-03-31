@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Exceptions\CannotAddChannelToChild;
@@ -15,7 +17,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Channel extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory;
+    use HasSlug;
 
     /**
      * The attributes that are mass assignable.
@@ -32,20 +35,20 @@ class Channel extends Model
     /**
      * The relationship counts that should be eager loaded on every query.
      *
-     * @var array
+     * @var string[]
      */
     protected $withCount = [
         'threads',
     ];
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 
         static::saving(function ($channel) {
             if ($channel->parent_id) {
                 if ($record = self::find($channel->parent_id)) {
-                    if ($record->exists() && $record->parent_id) {
+                    if ($record->exists() && $record->parent_id) { // @phpstan-ignore-line
                         throw CannotAddChannelToChild::childChannelCannotBeParent($channel);
                     }
                 }
