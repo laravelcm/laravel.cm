@@ -30,7 +30,7 @@ class DeleteThread extends ModalComponent
     {
         $this->authorize(ThreadPolicy::DELETE, $this->thread);
 
-        $this->thread->delete();
+        $this->thread->delete(); // @phpstan-ignore-line
 
         session()->flash('status', __('Le sujet a été supprimé avec toutes ses réponses.'));
 

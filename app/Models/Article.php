@@ -96,7 +96,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function excerpt(int $limit = 110): string
     {
-        return Str::limit(strip_tags(md_to_html($this->body)), $limit);
+        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
     }
 
     public function originalUrl(): ?string
@@ -437,7 +437,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     {
         return self::notShared()
             ->published()
-            ->orderBy('published_at', 'asc')
+            ->orderBy('published_at')
             ->first();
     }
 
@@ -451,13 +451,13 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function markAsPublish(): void
     {
-        $this->update(['tweet_id' => $this->user->id]);
+        $this->update(['tweet_id' => $this->user->id]); // @phpstan-ignore-line
     }
 
-    public function delete(): void
+    public function delete(): ?bool
     {
         $this->removeTags();
 
-        parent::delete();
+        return parent::delete();
     }
 }

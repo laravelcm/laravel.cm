@@ -12,7 +12,7 @@ use Livewire\Component;
 
 class Comments extends Component
 {
-    public $discussion;
+    public Discussion $discussion;
 
     /**
      * @var string[]

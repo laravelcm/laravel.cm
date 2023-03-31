@@ -40,7 +40,7 @@ class Edit extends Component
         $this->slug = $article->slug;
         $this->show_toc = $article->show_toc;
         $this->submitted_at = $article->submitted_at;
-        $this->published_at = $article->published_at ? $article->publishedAt()->format('Y-m-d') : null;
+        $this->published_at = $article->published_at ? $article->publishedAt()?->format('Y-m-d') : null;
         $this->canonical_url = $article->originalUrl();
         $this->preview = $article->getFirstMediaUrl('media');
         $this->associateTags = $this->tags_selected = old('tags', $article->tags()->pluck('id')->toArray());

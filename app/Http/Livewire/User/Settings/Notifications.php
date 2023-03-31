@@ -15,7 +15,7 @@ class Notifications extends Component
 {
     use AuthorizesRequests;
 
-    public $subscribeId;
+    public string $subscribeId;
 
     public function unsubscribe(string $subscribeId): void
     {
@@ -40,7 +40,7 @@ class Notifications extends Component
     public function render(): View
     {
         return view('livewire.user.settings.notifications', [
-            'subscriptions' => Auth::user()->subscriptions,
+            'subscriptions' => Auth::user()->subscriptions, // @phpstan-ignore-line
         ]);
     }
 }

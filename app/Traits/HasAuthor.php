@@ -13,7 +13,7 @@ trait HasAuthor
     {
         $this->user()->associate($author);
 
-        $this->unsetRelation('author');
+        $this->unsetRelation('user');
     }
 
     public function user(): BelongsTo

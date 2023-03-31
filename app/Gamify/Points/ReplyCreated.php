@@ -11,7 +11,7 @@ class ReplyCreated extends PointType
 {
     public int $points = 10;
 
-    public User $author;
+    public ?User $author;
 
     public function __construct(mixed $subject, ?User $author = null)
     {

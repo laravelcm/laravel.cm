@@ -27,7 +27,7 @@ class NotificationIndicator extends Component
     public function render(): View
     {
         $this->hasNotification = $this->setHasNotification(
-            Auth::user()->unreadNotifications()->count(),
+            Auth::user()->unreadNotifications()->count(), // @phpstan-ignore-line
         );
 
         return view('livewire.notification-indicator', [

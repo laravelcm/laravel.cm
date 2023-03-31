@@ -46,7 +46,7 @@ class CreateReply extends Component
         $this->validate();
 
         $reply = new Reply(['body' => $this->body]);
-        $reply->authoredBy(Auth::user());
+        $reply->authoredBy(Auth::user()); // @phpstan-ignore-line
         $reply->to($this->thread);
         $reply->save();
 

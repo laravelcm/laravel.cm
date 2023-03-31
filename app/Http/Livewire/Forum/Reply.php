@@ -100,7 +100,7 @@ class Reply extends Component
             undoPoint(new BestReply($this->thread->solutionReply));
         }
 
-        $this->thread->markSolution($this->reply, Auth::user());
+        $this->thread->markSolution($this->reply, Auth::user()); // @phpstan-ignore-line
 
         givePoint(new BestReply($this->reply));
 

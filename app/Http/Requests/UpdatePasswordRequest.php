@@ -16,7 +16,7 @@ class UpdatePasswordRequest extends FormRequest
     }
 
     /**
-     * @return array<string, string[]|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {

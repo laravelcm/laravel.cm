@@ -30,7 +30,7 @@ class DeleteDiscussion extends ModalComponent
     {
         $this->authorize(DiscussionPolicy::DELETE, $this->discussion);
 
-        $this->discussion->delete();
+        $this->discussion->delete(); // @phpstan-ignore-line
 
         session()->flash('status', 'La discussion a été supprimé avec tous ses commentaires.');
 

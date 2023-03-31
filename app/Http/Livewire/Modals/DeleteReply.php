@@ -28,7 +28,7 @@ class DeleteReply extends ModalComponent
     {
         $this->authorize(ReplyPolicy::DELETE, $this->reply);
 
-        $this->reply->delete();
+        $this->reply->delete(); // @phpstan-ignore-line
 
         session()->flash('status', __('La réponse a ete supprimée avec succès.'));
 

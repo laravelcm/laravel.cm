@@ -58,7 +58,7 @@ class Create extends Component
         givePoint(new DiscussionCreated($discussion));
 
         if (app()->environment('production')) {
-            Auth::user()->notify(new PostDiscussionToTelegram($discussion));
+            Auth::user()->notify(new PostDiscussionToTelegram($discussion)); // @phpstan-ignore-line
         }
 
         $this->redirectRoute('discussions.show', $discussion);

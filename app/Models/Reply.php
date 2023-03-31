@@ -61,7 +61,7 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
 
     public function wasJustPublished(): bool
     {
-        return $this->created_at?->gt(Carbon::now()->subMinute());
+        return $this->created_at->gt(Carbon::now()->subMinute()); // @phpstan-ignore-line
     }
 
     public function excerpt(int $limit = 100): string

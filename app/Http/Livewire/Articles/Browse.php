@@ -38,7 +38,7 @@ class Browse extends Component
         $this->viewMode = $mode;
     }
 
-    public function validSort($sort): bool
+    public function validSort(string $sort): bool
     {
         return in_array($sort, [
             'recent',

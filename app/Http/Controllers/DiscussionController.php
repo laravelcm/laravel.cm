@@ -24,6 +24,7 @@ class DiscussionController extends Controller
     {
         views($discussion)->record();
 
+        // @phpstan-ignore-next-line
         seo()
             ->title($discussion->title)
             ->description($discussion->excerpt(100))

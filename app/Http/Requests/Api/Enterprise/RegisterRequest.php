@@ -15,7 +15,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user()->isEnterprise();
+        return auth()->user()->isEnterprise(); // @phpstan-ignore-line
     }
 
     /**

@@ -95,7 +95,7 @@ class MarkdownX extends Component
      */
     public function updateContentPreview(): void
     {
-        $this->contentPreview = replace_links(MarkdownHelper::parseLiquidTags(Markdown::convertToHtml($this->content)));
+        $this->contentPreview = replace_links(MarkdownHelper::parseLiquidTags((string) Markdown::convertToHtml($this->content)));
     }
 
     /**
@@ -121,7 +121,7 @@ class MarkdownX extends Component
         try {
             $original_filename = pathinfo($payload->name, PATHINFO_FILENAME);
             $filename = $original_filename;
-            $extension = explode('/', mime_content_type($payload->image))[1];
+            $extension = explode('/', mime_content_type($payload->image))[1]; // @phpstan-ignore-line
             $filename_counter = 1;
 
             // Make sure the filename does not exist, if it does make sure to add a number to the end 1, 2, 3, etc...
@@ -219,7 +219,7 @@ class MarkdownX extends Component
         }
     }
 
-    public function sendResultsToView(mixed $response, $key = null): void
+    public function sendResultsToView(mixed $response, string $key = null): void
     {
         $parse_giphy_results = [];
         foreach ($response->json()['data'] as $result) {

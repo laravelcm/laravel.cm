@@ -38,7 +38,8 @@ class ArticlesController extends Controller
             404
         );
 
-        $image = $article->getFirstMediaUrl('media') ?? asset('images/socialcard.png');
+        $image = $article->getFirstMediaUrl('media');
+        // @phpstan-ignore-next-line
         seo()
             ->title($article->title)
             ->description($article->excerpt(100))

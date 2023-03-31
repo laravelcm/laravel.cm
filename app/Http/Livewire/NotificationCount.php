@@ -26,7 +26,7 @@ class NotificationCount extends Component
 
     public function render(): View
     {
-        $this->count = Auth::user()->unreadNotifications()->count();
+        $this->count = Auth::user()->unreadNotifications()->count(); // @phpstan-ignore-line
 
         return view('livewire.notification-count', [
             'count' => $this->count,

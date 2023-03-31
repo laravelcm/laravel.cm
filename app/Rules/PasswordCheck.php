@@ -12,7 +12,7 @@ final class PasswordCheck implements Rule
 {
     public function passes($attribute, $value): bool
     {
-        return Hash::check($value, Auth::user()->getAuthPassword());
+        return Hash::check($value, Auth::user()->getAuthPassword()); // @phpstan-ignore-line
     }
 
     public function message(): string

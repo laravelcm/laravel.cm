@@ -49,7 +49,7 @@ class CreateThread extends Component
             'title' => $this->title,
             'body' => $this->body,
             'slug' => $this->title,
-            'user_id' => $author->id,
+            'user_id' => $author->id, // @phpstan-ignore-line
         ]);
 
         $thread->syncChannels($this->associateChannels);

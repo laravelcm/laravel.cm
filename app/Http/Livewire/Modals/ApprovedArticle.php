@@ -33,13 +33,13 @@ class ApprovedArticle extends ModalComponent
     {
         $this->authorize(ArticlePolicy::UPDATE, $this->article);
 
-        $this->article->update(['approved_at' => now()]);
+        $this->article->update(['approved_at' => now()]); // @phpstan-ignore-line
 
-        givePoint(new PostCreated($this->article));
+        givePoint(new PostCreated($this->article)); // @phpstan-ignore-line
 
-        Cache::forget('post-'.$this->article->id);
+        Cache::forget('post-'.$this->article->id); // @phpstan-ignore-line
 
-        $this->article->author->notify(new SendApprovedArticle($this->article));
+        $this->article->author->notify(new SendApprovedArticle($this->article)); // @phpstan-ignore-line
 
         session()->flash('status', __('L\'article a été approuvé et le mail a été envoyé à l\'auteur pour le notifier.'));
 

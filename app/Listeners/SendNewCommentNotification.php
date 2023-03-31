@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Listeners;
 
 use App\Events\CommentWasAdded;
+use App\Models\Discussion;
 use App\Models\Subscribe;
 use App\Models\User;
 use App\Notifications\NewCommentNotification;
@@ -16,8 +17,15 @@ final class SendNewCommentNotification
         $discussion = $event->discussion;
 
         foreach ($discussion->subscribes as $subscription) {
-            if ($this->replyAuthorDoesNotMatchSubscriber($event->reply->user, $subscription)) {
-                $subscription->user->notify(new NewCommentNotification($event->reply, $subscription, $discussion));
+            /** @var Subscribe $subscription */
+            // @phpstan-ignore-next-line
+            if ($this->replyAuthorDoesNotMatchSubscriber(author: $event->reply->user, subscription: $subscription)) {
+                // @phpstan-ignore-next-line
+                $subscription->user->notify(new NewCommentNotification(
+                    reply: $event->reply,
+                    subscription:  $subscription,
+                    discussion: $discussion
+                ));
             }
         }
     }

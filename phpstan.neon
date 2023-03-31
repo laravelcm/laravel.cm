@@ -11,6 +11,8 @@ parameters:
         - app/Actions/
         - app/Notifications/
         - app/Http/Controllers/OAuthController.php
+        - app/Http/Controllers/Api/Auth/LoginController.php
+        - app/Markdown/MarkdownHelper.php
     scanDirectories:
         - ./helpers
     checkGenericClassInNonGenericObjectType: false

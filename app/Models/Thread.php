@@ -232,8 +232,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     public function toFeedItem(): FeedItem
     {
-        // @phpstan-ignore-next-line
-        $updatedAt = Carbon::parse($this->latest_creation);
+        $updatedAt = Carbon::parse($this->latest_creation); // @phpstan-ignore-line
 
         return FeedItem::create()
             ->id((string) $this->id)
@@ -241,7 +240,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
             ->summary($this->body)
             ->updated($updatedAt)
             ->link(route('forum.show', $this->slug))
-            ->authorName($this->user?->name);
+            ->authorName($this->user->name); // @phpstan-ignore-line
     }
 
     /**

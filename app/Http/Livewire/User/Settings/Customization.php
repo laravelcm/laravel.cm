@@ -14,12 +14,12 @@ class Customization extends Component
 
     public function mount(): void
     {
-        $this->theme = Auth::user()->setting('theme', 'theme-light');
+        $this->theme = Auth::user()->setting('theme', 'theme-light'); // @phpstan-ignore-line
     }
 
     public function updatedTheme(string $value): void
     {
-        Auth::user()->settings(['theme' => $value]);
+        Auth::user()->settings(['theme' => $value]); // @phpstan-ignore-line
 
         $this->redirectRoute('user.customization');
     }

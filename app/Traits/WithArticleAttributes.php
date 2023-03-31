@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 trait WithArticleAttributes
@@ -18,11 +19,11 @@ trait WithArticleAttributes
 
     public bool $show_toc = false;
 
-    public ?string $submitted_at = null;
+    public ?Carbon $submitted_at = null;
 
-    public ?string $approved_at = null;
+    public ?Carbon $approved_at = null;
 
-    public ?string $published_at = null;
+    public Carbon|string|null $published_at = null;
 
     public int $reading_time = 1;
 

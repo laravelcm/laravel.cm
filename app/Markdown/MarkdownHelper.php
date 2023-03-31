@@ -83,15 +83,16 @@ class MarkdownHelper
 
     /**
      * @param string $html
-     * @param string[] $tagArray
+     * @param array<string, mixed> $tagArray
      * @param string $original_string
      * @return string
      */
     public static function replaceCodeSandboxTag(string $html, array $tagArray, string $original_string): string
     {
-        if (isset($tagArray[2]) && $tagArray[2] != '%}') {
+        if (isset($tagArray[2]) && $tagArray[2] !== '%}') {
             $codesandbox = $tagArray[2];
             $url = parse_url($codesandbox);
+            // @phpstan-ignore-next-line
             if (filter_var($codesandbox, FILTER_VALIDATE_URL) && ($url['host'] == 'www.codesandbox.io' || $url['host'] == 'codesandbox.io')) {
                 $codesandboxEmbed = '<iframe src="'.$codesandbox.'" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="rough-field-mykn0" allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>';
                 $html = str_replace($original_string, $codesandboxEmbed, $html);

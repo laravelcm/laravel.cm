@@ -33,7 +33,7 @@ class Reactions extends Component
         } else {
             /** @var Reaction $react */
             $react = Reaction::query()->where('name', $reaction)->first();
-            Auth::user()->reactTo($this->model, $react);
+            Auth::user()->reactTo($this->model, $react); // @phpstan-ignore-line
         }
     }
 

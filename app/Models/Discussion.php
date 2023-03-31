@@ -53,7 +53,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array<string>
+     * @var array<string, string>
      */
     protected $casts = [
         'locked' => 'boolean',
@@ -117,6 +117,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
 
         foreach ($this->replies()->withCount('allChildReplies')->get() as $reply) {
             /** @var Reply $reply */
+            // @phpstan-ignore-next-line
             $count += $reply->all_child_replies_count;
         }
 

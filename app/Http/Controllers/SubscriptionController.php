@@ -14,9 +14,9 @@ final class SubscriptionController extends Controller
         /** @var \App\Models\Thread $thread */
         $thread = $subscription->subscribeAble;
 
-        $thread->subscribes()->where('user_id', $subscription->user->id)->delete();
+        $thread->subscribes()->where('user_id', $subscription->user->id)->delete(); // @phpstan-ignore-line
 
-        session()->flash('status', 'Vous êtes maintenant désabonné de ce sujet.');
+        session()->flash('status', __('Vous êtes maintenant désabonné de ce sujet.'));
 
         return redirect()->route('forum.show', $thread->slug());
     }
@@ -25,7 +25,6 @@ final class SubscriptionController extends Controller
     {
         $subscribe = Subscribe::where('subscribeable_id', $id)->where('subscribeable_type', $type)->firstOrFail();
 
-        // @phpstan-ignore-next-line
         return redirect(route_to_reply_able($subscribe->subscribeAble));
     }
 }

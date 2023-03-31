@@ -8,11 +8,11 @@ use App\Models\Discussion;
 use App\Models\Reply;
 use Illuminate\Queue\SerializesModels;
 
-class CommentWasAdded
+final class CommentWasAdded
 {
     use SerializesModels;
 
-    public function __construct(public Reply $reply, public Discussion $discussion)
+    public function __construct(public readonly Reply $reply, public readonly Discussion $discussion)
     {
     }
 }

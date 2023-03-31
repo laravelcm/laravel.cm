@@ -26,7 +26,7 @@ class Editor extends Component
 
     public function getPreviewProperty(): string
     {
-        return MarkdownHelper::parseLiquidTags(replace_links(md_to_html($this->body ?: '')));
+        return MarkdownHelper::parseLiquidTags(replace_links((string) md_to_html($this->body ?: '')));
     }
 
     public function preview(): void

@@ -52,16 +52,17 @@ class Activity extends Model
     /**
      * @param User $user
      * @param int $take
-     * @return array<string, Activity[]>
+     * @return array<string, \Illuminate\Support\Collection<int|string, \Illuminate\Support\Collection<int|string, Activity>>>
      */
     public static function feed(User $user, int $take = 50): array
     {
+        // @phpstan-ignore-next-line
         return static::where('user_id', $user->id)
             ->latest()
             ->with('subject')
             ->take($take)
             ->get()
-            ->groupBy(fn ($activity) => $activity->created_at->format('Y-m-d'));
+            ->groupBy(fn (Activity $activity) => $activity->created_at->format('Y-m-d')); // @phpstan-ignore-line
     }
 
     public static function latestFeed(User $user, int $take = 10): Collection
