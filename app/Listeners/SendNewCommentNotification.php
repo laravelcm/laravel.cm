@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Listeners;
 
 use App\Events\CommentWasAdded;
-use App\Models\Discussion;
 use App\Models\Subscribe;
 use App\Models\User;
 use App\Notifications\NewCommentNotification;

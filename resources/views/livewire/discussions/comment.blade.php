@@ -5,15 +5,15 @@
         @endif
         <div class="relative flex space-x-3">
             <div class="flex-shrink-0">
-                <img class="h-10 w-10 rounded-full" src="{{ $comment->author->profile_photo_url }}" alt=""/>
+                <img class="h-10 w-10 rounded-full" src="{{ $comment->user->profile_photo_url }}" alt=""/>
             </div>
             <div class="flex-1">
                 <div class="text-sm sm:flex sm:items-center">
-                    <a href="{{ route('profile', $comment->author->username) }}" class="font-medium text-skin-primary font-sans hover:text-skin-primary-hover">
-                        {{ $comment->author->name }}
+                    <a href="{{ route('profile', $comment->user->username) }}" class="font-medium text-skin-primary font-sans hover:text-skin-primary-hover">
+                        {{ $comment->user->name }}
                     </a>
                     <span class="mx-1.5 inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-skin-card-gray text-skin-inverted-muted">
-                        {{ $comment->author->getPoints() }} XP
+                        {{ $comment->user->getPoints() }} XP
                     </span>
                     <span wire:ignore class="text-sm text-skin-base font-normal mx-2">
                         <time-ago time="{{ $comment->created_at->getTimestamp() }}" />
@@ -22,7 +22,6 @@
                         <div class="mt-1 flex sm:mt-0">
                             <span class="hidden sm:inline-block text-skin-base font-medium">·</span>
                             <div class="pl-2 flex items-center divide-x divide-skin-base space-x-2">
-                                {{--<button type="button" wire:click="edit" class="inline-flex items-center text-sm leading-5 font-sans text-skin-base focus:outline-none hover:underline">{{ __('Éditer') }}</button>--}}
                                 <button type="button" wire:click="delete" class="inline-flex items-center text-sm leading-5 font-sans text-red-500 focus:outline-none hover:underline">{{ __('Supprimer') }}</button>
                             </div>
                         </div>
@@ -45,15 +44,6 @@
                         </svg>
                         <span class="mr-1.5">{{ $count }}</span> Like
                     </button>
-                    {{--@auth
-                        <button type="button" wire:click="showForm" class="inline-flex items-center justify-center text-sm text-skin-base font-normal hover:text-skin-inverted">
-                            <svg class="-ml-1 mr-2 h-5 w-5 fill-current" aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path opacity="0.4" d="M12.02 2C6.21 2 2 6.74 2 12c0 1.68.49 3.41 1.35 4.99.16.26.18.59.07.9l-.67 2.24c-.15.54.31.94.82.78l2.02-.6c.55-.18.98.05 1.491.36 1.46.86 3.279 1.3 4.919 1.3 4.96 0 10-3.83 10-10C22 6.65 17.7 2 12.02 2z"/>
-                                <path d="M7.37 10.73c.71 0 1.28.57 1.28 1.28 0 .7-.57 1.27-1.28 1.28-.7 0-1.28-.58-1.28-1.28 0-.71.57-1.28 1.28-1.28zm4.61 0c.71 0 1.28.57 1.28 1.28 0 .7-.57 1.28-1.28 1.28-.71-.01-1.28-.58-1.28-1.29 0-.7.58-1.28 1.28-1.27zm4.61 0c.71 0 1.28.57 1.28 1.28 0 .7-.57 1.28-1.28 1.28-.71 0-1.28-.58-1.28-1.28 0-.71.57-1.28 1.28-1.28z"/>
-                            </svg>
-                            Répondre
-                        </button>
-                    @endauth--}}
                 </div>
             </div>
         </div>

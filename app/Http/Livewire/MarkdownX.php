@@ -247,11 +247,11 @@ class MarkdownX extends Component
             ->get()
             ->map(
                 function (User $user) {
-                $people['name'] = $user->name;
-                $people['picture'] = $user->profile_photo_url;
-                $people['username'] = $user->username;
-                return $people;
-            }
+                    $people['name'] = $user->name;
+                    $people['picture'] = $user->profile_photo_url;
+                    $people['username'] = $user->username;
+                    return $people;
+                }
             );
 
         $this->dispatchBrowserEvent('markdown-x-peoples-results', [
