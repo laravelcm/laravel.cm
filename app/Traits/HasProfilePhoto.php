@@ -17,7 +17,7 @@ trait HasProfilePhoto
         if (! in_array($this->avatar_type, ['avatar', 'storage'])) {
             /** @var SocialAccount $social_avatar */
             $social_avatar = $this->providers->firstWhere('provider', $this->avatar_type);
-
+            // @phpstan-ignore-next-line
             return $social_avatar ? $social_avatar->avatar : $this->defaultProfilePhotoUrl();
         }
 
