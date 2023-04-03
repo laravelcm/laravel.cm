@@ -18,7 +18,7 @@ trait HasProfilePhoto
             /** @var SocialAccount $social_avatar */
             $social_avatar = $this->providers->firstWhere('provider', $this->avatar_type);
 
-            return $social_avatar->avatar;
+            return $social_avatar ? $social_avatar->avatar : $this->defaultProfilePhotoUrl();
         }
 
         return $this->defaultProfilePhotoUrl();
