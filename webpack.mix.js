@@ -16,7 +16,6 @@ mix.disableNotifications();
 
 mix.js('resources/js/app.js', 'public/js').react()
   .postCss('resources/css/app.css', 'public/css')
-  .postCss('resources/css/filament.css', 'public/css')
   .webpackConfig({
     output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
     resolve: {
