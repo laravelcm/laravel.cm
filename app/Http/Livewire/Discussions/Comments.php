@@ -28,7 +28,7 @@ class Comments extends Component
     {
         $replies = collect();
 
-        foreach ($this->discussion->replies->load(['allChildReplies', 'author']) as $reply) {
+        foreach ($this->discussion->replies->load(['allChildReplies', 'user']) as $reply) {
             /** @var Reply $reply */
             if ($reply->allChildReplies->isNotEmpty()) {
                 foreach ($reply->allChildReplies as $childReply) {
