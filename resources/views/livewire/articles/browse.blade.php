@@ -21,7 +21,7 @@
             <div class="py-8">
                 <h4 class="text-skin-inverted text-base leading-6 font-medium">{{ __('Tous les tags') }}</h4>
 
-                <x-tags :tags="$tags" :selected-tag="$selectedTag" isLowercase showHashTag />
+                <x-tags :tags="$tags" :selected-tag="$selectedTag" :showTagsColor="false" showTagsIcon />
             </div>
         </x-sticky-content>
     </div>
