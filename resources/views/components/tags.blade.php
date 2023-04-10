@@ -7,7 +7,7 @@
 ])
 
 <div x-data="{ selectedTag: '{{ $selectedTag ? $selectedTag->id() : null }}' }"
-     class="mt-5 space-y-3"
+     class="mt-5 space-y-1"
      aria-labelledby="posts-tags"
 >
     @foreach($tags as $tag)
@@ -15,7 +15,7 @@
             wire:click="toggleTag('{{ $tag->slug() }}')"
             type="button"
             @class([
-                'group flex items-center text-sm font-medium text-skin-inverted-muted hover:text-skin-inverted rounded-full font-sans',
+                'group px-2 py-1.5 flex items-center text-base font-medium text-skin-inverted-muted/80 hover:text-skin-inverted rounded-md font-sans',
                 'bg-skin-card' => $selectedTag && $selectedTag->id() === $tag->id(),
             ])
         >

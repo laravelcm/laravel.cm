@@ -60,7 +60,7 @@ class Browse extends Component
             $query->published();
         })->orderBy('name')->get();
 
-        $selectedTag = Tag::where('name', $this->tag)->first();
+        $selectedTag = Tag::where('slug', $this->tag)->first();
 
         if ($this->tag) {
             $articles->forTag($this->tag);
