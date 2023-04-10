@@ -49,7 +49,7 @@ class Browse extends Component
 
     public function render(): View
     {
-        $articles = Article::with('tags')
+        $articles = Article::with(['tags', 'user'])
             ->withCount(['views', 'reactions'])
             ->published()
             ->notPinned()
@@ -60,7 +60,7 @@ class Browse extends Component
             $query->published();
         })->orderBy('name')->get();
 
-        $selectedTag = Tag::where('name', $this->tag)->first();
+        $selectedTag = Tag::where('slug', $this->tag)->first();
 
         if ($this->tag) {
             $articles->forTag($this->tag);
