@@ -6,13 +6,15 @@
     <a href="https://github.com/laravelcm/laravel.cm/actions">
         <img src="https://github.com/laravelcm/laravel.cm/workflows/Tests/badge.svg" alt="Build Status" />
     </a>
+    <a href="https://laravel.com">
+        <img alt="Laravel v9.x" src="https://img.shields.io/badge/Laravel-v9.x-FF2D20">
+    </a>
     <a href="https://forge.laravel.com">
         <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2Fb0b9e269-e85c-40eb-9b8d-cfa8197a1bb2&style=plastic" alt="Laravel Forge Site Deployment Status" />
     </a>
 </p>
 
 ## Laravel.cm
-
 Ce dépôt contient le code source du site de [Laravel.cm](https://laravel.cm). Laravel Cameroun est la plus grande communauté de 
 développeurs PHP & Laravel résidant au Cameroun.
 
@@ -22,13 +24,11 @@ Twitter: https://twitter.com/laravelcm <br />
 Groupe Slack: https://laravelcm.slack.com <br />
 
 ## Sponsors
-
 Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainage. Si vous souhaitez devenir sponsor, veuillez visiter <a href="https://github.com/sponsors/mckenziearts">la page Laravel.cm Github de Sponsoring</a>.
 
 - **[Laravel Shopper](https://laravelshopper.io)**
 
 ## Caractéristiques Serveur
-
 The following tools are required in order to start the installation.
 
 - PHP >=8.0
@@ -37,7 +37,6 @@ The following tools are required in order to start the installation.
 - [Valet](https://laravel.com/docs/valet#installation)
 
 ## Installation
-
 > Notez que vous êtes libre d'ajuster l'emplacement `~/Sites/laravel.cm` à n'importe quel répertoire de votre choix sur votre machine. Ce faisant, assurez-vous d'exécuter la commande `valet link` dans le répertoire souhaité.
 
 1. Clonez ce repo avec la commande `git clone git@github.com:laravelcm/laravel.cm.git ~/Sites/laravel.cm`
@@ -55,7 +54,6 @@ php artisan db:seed --class=DummyDatabaseSeeder
 ```
 
 ### Media Library Pro (optionnel)
-
 Pour que l'upload de fichier fonctionne en local (pour les elements qui utilise Media Library Pro comme la modification de la photo de profil) vous devez renseignez la Licence avec votre compte de Spatie. Pour ce projet une licence commune est disponible etant une `single Licence` pour ce projet uniquement. Vous devez copier coller ce code dans le fichier `auth.json` qui a ete cree a la racine et relancer la commande `composer install`
 
 ```json
@@ -70,7 +68,6 @@ Pour que l'upload de fichier fonctionne en local (pour les elements qui utilise 
 ```
 
 ### Github Authentication (optionnel)
-
 Pour que l'authentification Github fonctionne localement, vous devez [enregistrer une nouvelle application OAuth sur Github](https://github.com/settings/applications/new). Utilisez `http://laravel.cm.test` pour l'URL de la page d'accueil et `http://laravel.cm.test/auth/github` pour l'URL de rappel. Lorsque vous avez créé l'application, remplissez l'ID et le secret dans votre fichier `.env` dans les variables d'environnement ci-dessous. Vous devriez maintenant pouvoir vous authentifier avec Github.
 
 ```shell
@@ -80,7 +77,6 @@ GITHUB_URL=http://laravel.cm.test/auth/github
 ```
 
 ### Twitter Sharing (optionnel)
-
 Pour permettre le partage automatique des articles publiés sur Twitter, vous devez [créer une application Twitter](https://developer.twitter.com/apps/). Une fois l'application créée, mettez à jour les variables ci-dessous dans votre fichier `.env`. La clé et le secret du consommateur ainsi que le jeton et le secret d'accès se trouvent dans la section «Clés et jetons» de l'interface utilisateur des développeurs Twitter.
 
 ```shell
@@ -92,13 +88,20 @@ TWITTER_ACCESS_SECRET=
 
 Les articles approuvés sont partagés dans l'ordre dans lequel ils ont été soumis pour approbation. Les articles sont partagés deux fois par jour à 14h00 et 18h00 UTC. Une fois qu'un article a été partagé, il ne sera plus partagé.
 
-## Commands
+### Notifications Telegram (optionnel)
+Laravel Cameroun peut notifier les administrateurs des nouveaux articles soumis via Telegram. Pour que cela fonctionne, vous devez configurer un [bot Telegram](https://core.telegram.org/bots) et obtenir un token. Ensuite, configurez le canal sur lequel vous souhaitez envoyer les messages relatifs aux nouveaux articles.
 
+```shell
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHANNEL=
+```
+
+## Commands
 Command | Description
 --- | ---
-**`php artisan test --parallel`** | Exécuter les tests
+**`composer pest`** | Exécuter les tests
 `php artisan migrate:fresh --seed` | Reset la base de données
-`npx mix --watch` | Surveillez les changements dans les fichiers CSS et JS
+`yarn run watch` | Surveillez les changements dans les fichiers CSS et JS
 
 ## Maintainers
 
