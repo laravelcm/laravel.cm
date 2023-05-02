@@ -3,11 +3,14 @@
 </p>
 
 <p align="center">
+    <a href="https://laravel.com">
+        <img alt="Laravel v9.x" src="https://img.shields.io/badge/Laravel-v9.x-FF2D20">
+    </a>
     <a href="https://github.com/laravelcm/laravel.cm/actions">
         <img src="https://github.com/laravelcm/laravel.cm/workflows/Tests/badge.svg" alt="Build Status" />
     </a>
-    <a href="https://laravel.com">
-        <img alt="Laravel v9.x" src="https://img.shields.io/badge/Laravel-v9.x-FF2D20">
+    <a href="https://github.com/laravelcm/laravel.cm/actions/workflows/coding-standards.yml">
+        <img src="https://github.com/laravelcm/laravel.cm/actions/workflows/coding-standards.yml/badge.svg" alt="Coding Standards" />
     </a>
     <a href="https://forge.laravel.com">
         <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2Fb0b9e269-e85c-40eb-9b8d-cfa8197a1bb2&style=plastic" alt="Laravel Forge Site Deployment Status" />
