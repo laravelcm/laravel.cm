@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Traits;
 
 use App\Contracts\ReactableInterface;
@@ -16,6 +18,7 @@ trait Reacts
         $currentReactedName = '';
 
         if ($reactedToReaction) {
+            /** @var Reaction $reactedToReaction */
             $currentReactedName = $reactedToReaction->name;
             $this->deleteReaction($reactable, $reactedToReaction);
         }

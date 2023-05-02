@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Traits;
 
 use Illuminate\Http\RedirectResponse;
@@ -8,6 +10,9 @@ use Laravel\Socialite\Facades\Socialite;
 
 trait HasSocialite
 {
+    /**
+     * @return string[]
+     */
     public function getAcceptedProviders(): array
     {
         return ['github', 'twitter'];
@@ -18,7 +23,7 @@ trait HasSocialite
         return Socialite::driver($provider)->user();
     }
 
-    protected function getAuthorizationFirst($provider): RedirectResponse
+    protected function getAuthorizationFirst(string $provider): RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
     {
         $socialite = Socialite::driver($provider);
         $scopes = empty(config("services.{$provider}.scopes")) ? false : config("services.{$provider}.scopes");
@@ -26,14 +31,17 @@ trait HasSocialite
         $fields = empty(config("services.{$provider}.fields")) ? false : config("services.{$provider}.fields");
 
         if ($scopes) {
+            // @phpstan-ignore-next-line
             $socialite->scopes($scopes);
         }
 
         if ($with) {
+            // @phpstan-ignore-next-line
             $socialite->with($with);
         }
 
         if ($fields) {
+            // @phpstan-ignore-next-line
             $socialite->fields($fields);
         }
 

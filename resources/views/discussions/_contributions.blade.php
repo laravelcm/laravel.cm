@@ -44,15 +44,19 @@
                 @foreach($discussions as $discussion)
                     <li class="py-4">
                         <div class="flex space-x-3">
-                            <img class="h-6 w-6 object-cover rounded-full" src="{{ $discussion->author->profile_photo_url }}" alt="">
+                            <img class="h-6 w-6 object-cover rounded-full" src="{{ $discussion->user->profile_photo_url }}" alt="">
                             <div class="flex-1 space-y-1">
                                 <div class="flex items-center justify-between">
                                     <h3 class="text-sm font-medium text-skin-inverted font-sans">
-                                        <a href="{{ route('profile', $discussion->author->username) }}" class="hover:underline">{{ $discussion->author->name }}</a>
+                                        <a href="{{ route('profile', $discussion->user->username) }}" class="hover:underline">{{ $discussion->user->name }}</a>
                                     </h3>
-                                    <p class="text-xs text-skin-muted font-normal truncate"><time-ago time="{{ $discussion->created_at->getTimestamp() }}" /></p>
+                                    <p class="text-xs text-skin-muted font-normal truncate">
+                                        <time-ago time="{{ $discussion->created_at->getTimestamp() }}" />
+                                    </p>
                                 </div>
-                                <a href="{{ route('discussions.show', $discussion) }}" class="inline-flex text-sm text-skin-base font-normal hover:text-skin-inverted leading-5">{{ $discussion->title }}</a>
+                                <a href="{{ route('discussions.show', $discussion) }}" class="inline-flex text-sm text-skin-base font-normal hover:text-skin-inverted leading-5">
+                                    {{ $discussion->title }}
+                                </a>
                             </div>
                         </div>
                     </li>

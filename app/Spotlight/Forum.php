@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Spotlight;
 
 use LivewireUI\Spotlight\Spotlight;
@@ -11,6 +13,9 @@ class Forum extends SpotlightCommand
 
     protected string $description = 'aller sur le forum';
 
+    /**
+     * @var string[]
+     */
     protected array $synonyms = [
         'question',
         'thread',
@@ -19,7 +24,7 @@ class Forum extends SpotlightCommand
         'issue',
     ];
 
-    public function execute(Spotlight $spotlight)
+    public function execute(Spotlight $spotlight): void
     {
         $spotlight->redirectRoute('forum.index');
     }

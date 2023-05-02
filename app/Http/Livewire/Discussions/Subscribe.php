@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Discussions;
 
 use App\Models\Discussion;
@@ -18,9 +20,12 @@ class Subscribe extends Component
 
     public Discussion $discussion;
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['refresh' => '$refresh'];
 
-    public function subscribe()
+    public function subscribe(): void
     {
         $this->authorize(DiscussionPolicy::SUBSCRIBE, $this->discussion);
 
@@ -39,7 +44,7 @@ class Subscribe extends Component
         $this->emitSelf('refresh');
     }
 
-    public function unsubscribe()
+    public function unsubscribe(): void
     {
         $this->authorize(DiscussionPolicy::UNSUBSCRIBE, $this->discussion);
 

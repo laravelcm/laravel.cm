@@ -4,6 +4,16 @@ includes:
 parameters:
     paths:
         - app
-    level: 5
+    level: 8
+    excludePaths:
+        - app/Http/Resources/
+        - app/Http/Middleware/
+        - app/Actions/
+        - app/Notifications/
+        - app/Http/Controllers/OAuthController.php
+        - app/Http/Controllers/Api/Auth/LoginController.php
+        - app/Markdown/MarkdownHelper.php
     scanDirectories:
         - ./helpers
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false

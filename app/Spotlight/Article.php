@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Spotlight;
 
 use App\Models\Article as ArticleModel;
+use Illuminate\Support\Collection;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 use LivewireUI\Spotlight\SpotlightCommandDependencies;
@@ -15,6 +18,9 @@ class Article extends SpotlightCommand
 
     protected string $description = 'rechercher un article spécifique';
 
+    /**
+     * @var string[]
+     */
     protected array $synonyms = [];
 
     public function dependencies(): ?SpotlightCommandDependencies
@@ -26,20 +32,20 @@ class Article extends SpotlightCommand
             );
     }
 
-    public function searchArticle($query)
+    public function searchArticle(string $query): Collection
     {
-        return ArticleModel::published()->where('title', 'like', "%$query%")
+        return ArticleModel::published()
+            ->with('user')
+            ->where('title', 'like', "%$query%")
             ->get()
-            ->map(function (ArticleModel $article) {
-                return new SpotlightSearchResult(
-                    $article->slug(),
-                    $article->title,
-                    sprintf('par @%s', $article->author->username)
-                );
-            });
+            ->map(fn (ArticleModel $article) => new SpotlightSearchResult(
+                $article->slug(),
+                $article->title,
+                sprintf('par @%s', $article->user?->username)
+            ));
     }
 
-    public function execute(Spotlight $spotlight, ArticleModel $article)
+    public function execute(Spotlight $spotlight, ArticleModel $article): void
     {
         $spotlight->redirectRoute('articles.show', $article);
     }

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class RejectCommonPasswords implements Rule
+final class RejectCommonPasswords implements Rule
 {
     /**
      * Determine if the validation rule passes.

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Spotlight;
 
 use LivewireUI\Spotlight\Spotlight;
@@ -11,6 +13,9 @@ class Guides extends SpotlightCommand
 
     protected string $description = 'aller à la page du code de conduite';
 
+    /**
+     * @var string[]
+     */
     protected array $synonyms = [
         'code',
         'conduite',
@@ -18,7 +23,7 @@ class Guides extends SpotlightCommand
         'comportement',
     ];
 
-    public function execute(Spotlight $spotlight)
+    public function execute(Spotlight $spotlight): void
     {
         $spotlight->redirectRoute('rules');
     }

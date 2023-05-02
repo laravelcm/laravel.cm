@@ -74,16 +74,16 @@
 
                         <div class="flex items-center justify-between mt-6">
                             <div class="flex items-center">
-                                <a href="{{ route('profile', $article->author->username) }}" class="shrink-0">
+                                <a href="{{ route('profile', $article->user->username) }}" class="shrink-0">
                                     <img class="h-10 w-10 object-cover rounded-full"
-                                         src="{{ $article->author->profile_photo_url }}"
-                                         alt="{{ $article->author->username }}" />
+                                         src="{{ $article->user->profile_photo_url }}"
+                                         alt="{{ $article->user->username }}" />
                                 </a>
 
                                 <div class="ml-3 font-sans">
                                     <p class="text-sm leading-5 font-medium text-skin-inverted-muted">
-                                        <a href="{{ route('profile', $article->author->username) }}" class="hover:underline">
-                                            {{ $article->author->name }}
+                                        <a href="{{ route('profile', $article->user->username) }}" class="hover:underline">
+                                            {{ $article->user->name }}
                                         </a>
                                     </p>
 

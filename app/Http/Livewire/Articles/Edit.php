@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Articles;
 
 use App\Models\Article;
@@ -15,7 +17,9 @@ use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
-    use WithFileUploads, WithTagsAssociation, WithArticleAttributes;
+    use WithFileUploads;
+    use WithTagsAssociation;
+    use WithArticleAttributes;
 
     public Article $article;
 
@@ -23,9 +27,12 @@ class Edit extends Component
 
     public bool $alreadySubmitted = false;
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 
-    public function mount(Article $article)
+    public function mount(Article $article): void
     {
         $this->article = $article;
         $this->title = $article->title;
@@ -33,7 +40,7 @@ class Edit extends Component
         $this->slug = $article->slug;
         $this->show_toc = $article->show_toc;
         $this->submitted_at = $article->submitted_at;
-        $this->published_at = $article->published_at ? $article->publishedAt()->format('Y-m-d') : null;
+        $this->published_at = $article->published_at ? $article->publishedAt()?->format('Y-m-d') : null;
         $this->canonical_url = $article->originalUrl();
         $this->preview = $article->getFirstMediaUrl('media');
         $this->associateTags = $this->tags_selected = old('tags', $article->tags()->pluck('id')->toArray());

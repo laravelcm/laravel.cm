@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is the config file for MarkdownX https://devdojo.com/markdownx.
  *

@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Markdown\MarkdownHelper;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Editor extends Component
@@ -21,22 +24,22 @@ class Editor extends Component
 
     public string $buttonLabel = 'Enregistrer';
 
-    public function getPreviewProperty()
+    public function getPreviewProperty(): string
     {
-        return MarkdownHelper::parseLiquidTags(replace_links(md_to_html($this->body ?: '')));
+        return MarkdownHelper::parseLiquidTags(replace_links((string) md_to_html($this->body ?: '')));
     }
 
-    public function preview()
+    public function preview(): void
     {
         $this->emit('previewRequested');
     }
 
-    public function updatedBody()
+    public function updatedBody(): void
     {
         $this->emitUp('editor:update', $this->body);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.editor');
     }

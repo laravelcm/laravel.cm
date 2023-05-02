@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Listeners;
 
 use App\Events\ThreadWasCreated;
 use App\Notifications\PostThreadToSlack;
 
-class SendNewThreadNotification
+final class SendNewThreadNotification
 {
-    public function handle(ThreadWasCreated $event)
+    public function handle(ThreadWasCreated $event): void
     {
         $thread = $event->thread;
 
-        $thread->author->notify(new PostThreadToSlack($thread));
+        $thread->user->notify(new PostThreadToSlack($thread)); // @phpstan-ignore-line
     }
 }

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Listeners;
 
 use App\Events\ApiRegistered;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendWelcomeCompanyNotification implements ShouldQueue
+final class SendWelcomeCompanyNotification implements ShouldQueue
 {
     use InteractsWithQueue;
 

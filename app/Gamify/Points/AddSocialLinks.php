@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Gamify\Points;
 
 use App\Models\User;
@@ -9,7 +11,7 @@ class AddSocialLinks extends PointType
 {
     public int $points = 15;
 
-    public function __construct($subject)
+    public function __construct(mixed $subject)
     {
         $this->subject = $subject;
     }

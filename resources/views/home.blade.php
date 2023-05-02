@@ -7,28 +7,28 @@
             <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:self-center">
                 <a href="{{ route('discussions.index') }}" class="inline-flex items-center p-1 pr-2 font-sans text-white bg-green-700 rounded-full sm:text-base lg:text-sm xl:text-base">
                     <span class="hidden sm:block px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-flag-green rounded-full">Discussions</span>
-                    <span class="ml-4 text-sm">Nouvelle section disponible sur le site</span>
+                    <span class="ml-4 text-sm">{{ __('Nouvelle section disponible sur le site') }}</span>
                     <x-heroicon-s-chevron-right class="w-5 h-5 ml-2 text-white" />
                 </a>
                 <h1 class="mt-4 text-4xl font-medium tracking-tight font-heading text-skin-primary sm:mt-5 sm:leading-none lg:mt-8 lg:text-5xl">
-                    Laravel Cameroun
+                    {{ __('Laravel Cameroun') }}
                 </h1>
                 <p class="mt-3 text-base text-skin-base sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                    Bienvenue sur le site de la communauté des développeurs PHP et Laravel du Cameroun, le plus gros rassemblement de développeurs au Cameroun.
+                    {{ __('Bienvenue sur le site de la communauté des développeurs PHP et Laravel du Cameroun, le plus gros rassemblement de développeurs au Cameroun.') }}
                 </p>
                 <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                     <div class="mt-3 sm:flex">
                         @auth
                             <x-button :link="route('forum.new')" class="w-full text-base font-normal sm:w-auto">
-                                Lancer un thread
+                                {{ __('Lancer un thread') }}
                             </x-button>
                         @else
                             <x-button :link="route('login')" class="w-full text-base font-normal sm:w-auto">
-                                Rejoindre la communauté
+                                {{ __('Rejoindre la communauté') }}
                             </x-button>
                         @endauth
                         <x-default-button :link="route('forum.index')" class="w-full mt-3 text-base font-normal sm:mt-0 sm:ml-3 sm:shrink-0 sm:inline-flex sm:items-center sm:w-auto">
-                            Visiter le Forum
+                            {{ __('Visiter le Forum') }}
                         </x-default-button>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
         <div class="divide-y divide-skin-base">
             <div class="py-10 lg:py-12 xl:pb-14">
                 <p class="font-sans text-base leading-6 tracking-tight text-center uppercase text-skin-base">
-                    Nous travaillons avec d’autres communautés et startups
+                    {{ __('Nous travaillons avec d’autres communautés et startups') }}
                 </p>
                 <div class="mt-8 flex items-center justify-center flex-wrap gap-8 lg:mt-12">
                     <div class="flex items-center justify-center px-4">
@@ -57,7 +57,9 @@
                     </div>
                 </div>
                 <div class="mt-6 text-center lg:mt-10">
-                    <a class="text-sm leading-5 text-flag-green hover:text-green-600 hover:underline" href="mailto:arthur@laravel.cm">Votre logo ici ?</a>
+                    <a class="text-sm leading-5 text-flag-green hover:text-green-600 hover:underline" href="mailto:arthur@laravel.cm">
+                        {{ __('Votre logo ici ?') }}
+                    </a>
                 </div>
             </div>
 
@@ -82,7 +84,7 @@
 
                 <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
                     <x-button :link="route('articles')">
-                        Voir tous les articles
+                        {{ __('Voir tous les articles') }}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 ml-1.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                         </svg>
@@ -100,12 +102,12 @@
                         @foreach($latestThreads as $thread)
                             <div>
                                 <div class="flex items-center font-sans text-skin-base">
-                                    <a href="{{ route('profile', $thread->author->username) }}" class="inline-flex items-center hover:underline">
-                                        <img class="inline-block rounded-full h-6 w-6 mr-1.5" src="{{ $thread->author->profile_photo_url }}" alt="Avatar de {{ $thread->author->username }}">
-                                        <span class="font-sans">{{ '@' . $thread->author->username }}</span>
+                                    <a href="{{ route('profile', $thread->user->username) }}" class="inline-flex items-center hover:underline">
+                                        <img class="inline-block rounded-full h-6 w-6 mr-1.5" src="{{ $thread->user->profile_photo_url }}" alt="Avatar de {{ $thread->user->username }}">
+                                        <span class="font-sans">{{ '@' . $thread->user->username }}</span>
                                     </a>
                                     <span class="inline-flex mx-1.5 space-x-1.5">
-                                        <span>a posé</span>
+                                        <span>{{ __('a posé') }}</span>
                                         <time class="sr-only" datetime="{{ $thread->created_at }}" title="{{ $thread->last_posted_at->format('j M, Y \à H:i') }}">{{ $thread->last_posted_at->format('j M, Y \à H:i') }}</time>
                                         <time-ago time="{{ $thread->created_at->getTimestamp() }}"/>
                                     </span>
@@ -120,7 +122,7 @@
                                 </a>
                                 <div class="mt-3">
                                     <a href="{{ route('forum.show', $thread) }}" class="text-base font-normal font-medium text-green-600 hover:text-green-500 hover:underline">
-                                        Afficher la question
+                                        {{ __('Afficher la question') }}
                                     </a>
                                 </div>
                             </div>
@@ -129,7 +131,7 @@
 
                     <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
                         <x-button :link="route('forum.index')">
-                            Voir tous les sujets
+                            {{ __('Voir tous les sujets') }}
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 ml-1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                             </svg>
@@ -148,12 +150,12 @@
                     @foreach($latestDiscussions as $discussion)
                         <div>
                             <div class="flex items-center font-sans text-sm text-skin-muted">
-                                <a class="shrink-0" href="/user/{{ $discussion->author->username }}">
-                                    <img class="w-6 h-6 rounded-full" src="{{ $discussion->author->profile_photo_url }}" alt="{{ $discussion->author->name }}">
+                                <a class="shrink-0" href="/user/{{ $discussion->user->username }}">
+                                    <img class="w-6 h-6 rounded-full" src="{{ $discussion->user->profile_photo_url }}" alt="{{ $discussion->user->name }}">
                                 </a>
-                                <span class="pr-1 ml-2">Posté par</span>
+                                <span class="pr-1 ml-2">{{ __('Posté par') }}</span>
                                 <div class="flex items-center space-x-1">
-                                    <a href="{{ route('profile', $discussion->author->username) }}" class="text-skin-inverted hover:underline">{{ $discussion->author->name }}</a>
+                                    <a href="{{ route('profile', $discussion->user->username) }}" class="text-skin-inverted hover:underline">{{ $discussion->user->name }}</a>
                                     <span aria-hidden="true">&middot;</span>
                                     <time-ago time="{{ $discussion->created_at->getTimestamp() }}"/>
                                 </div>
@@ -163,7 +165,9 @@
                                 <p class="mt-3 text-base text-skin-base">{!! $discussion->excerpt() !!}</p>
                             </a>
                             <div class="mt-3">
-                                <a href="{{ route('discussions.show', $discussion) }}" class="text-base font-medium text-flag-green hover:underline hover:text-green-500">Lire la discussion</a>
+                                <a href="{{ route('discussions.show', $discussion) }}" class="text-base font-medium text-flag-green hover:underline hover:text-green-500">
+                                    {{ __('Lire la discussion') }}
+                                </a>
                             </div>
                         </div>
                     @endforeach
@@ -171,7 +175,7 @@
 
                 <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
                     <x-button :link="route('discussions.index')">
-                        Voir toutes les discussions
+                        {{ __('Voir toutes les discussions') }}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 ml-1.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                         </svg>
@@ -244,11 +248,13 @@
                                 <svg class="w-5 h-5 t" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M23 9.04c0-1.249-1.051-2.27-2.335-2.27-1.285 0-2.336 1.021-2.336 2.27 0 .703.35 1.36.888 1.77l-3.083 2.29-2.99-3.857c.724-.386 1.215-1.135 1.215-1.975C14.359 6.021 13.308 5 12.023 5 10.74 5 9.688 6.021 9.688 7.27c0 .839.467 1.588 1.191 1.974L7.633 13.1 4.76 10.832c.537-.408.91-1.066.91-1.793 0-1.248-1.05-2.269-2.335-2.269C2.051 6.77 1 7.791 1 9.04c0 1.111.817 2.042 1.915 2.223l1.121 5.696v2.36c0 .386.304.681.7.681h14.527c.397 0 .7-.295.7-.68v-2.36l1.122-5.697C22.183 11.082 23 10.151 23 9.04zm-2.335-.908c.513 0 .934.408.934.907 0 .5-.42.908-.934.908s-.935-.408-.935-.908c0-.499.42-.907.934-.907zM12 6.339c.514 0 .934.408.934.908 0 .499-.42.907-.934.907s-.934-.408-.934-.907c0-.5.42-.908.934-.908zm-4.18 8.396a.727.727 0 0 0 .467-.25l3.69-4.47 3.456 4.448c.117.136.28.25.467.272a.683.683 0 0 0 .514-.136l3.036-2.247-.77 3.858H5.32l-.747-3.79 2.733 2.156c.14.114.327.182.514.16zM2.4 9.04c0-.499.42-.907.934-.907s.935.408.935.907c0 .5-.42.908-.935.908-.513 0-.934-.408-.934-.908zm3.036 9.6v-1.067h13.126v1.066H5.437z" />
                                 </svg>
-                                <h2 class="text-lg font-semibold">Premium</h2>
+                                <h2 class="text-lg font-semibold">{{ __('Premium') }}</h2>
                             </div>
-                            <h4 class="mt-2 text-3xl font-bold leading-8 tracking-tight text-skin-inverted sm:text-4xl font-heading">Accès illimité avec un abonnement premium</h4>
+                            <h4 class="mt-2 text-3xl font-bold leading-8 tracking-tight text-skin-inverted sm:text-4xl font-heading">
+                                {{ __('Accès illimité avec un abonnement premium') }}
+                            </h4>
                             <p class="max-w-2xl mt-4 text-xl text-skin-base lg:mx-auto">
-                                Devenir premium c'est soutenir la communauté, les nouveaux contenus chaque semaine et accéder à du contenu exclusif pour apprendre et progresser.
+                                {{ __('Devenir premium c\'est soutenir la communauté, les nouveaux contenus chaque semaine et accéder à du contenu exclusif pour apprendre et progresser.') }}
                             </p>
                         </div>
                         <div class="mt-16 space-y-12 lg:mt-20 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:space-y-0 lg:max-w-4xl lg:mx-auto">
@@ -261,14 +267,14 @@
                                                 <svg class="w-5 h-5 mr-2.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
                                                 </svg>
-                                                Populaire
+                                                {{ __('Populaire') }}
                                             </p>
                                         @endif
                                         <p class="flex items-baseline mt-4 text-skin-inverted">
                                             <span class="text-4xl font-bold tracking-tight" x-data="{ price: 0 }" x-init="price = formatMoney({{ $plan->price }})">
                                                 <span x-text="price"></span>
                                             </span>
-                                            <span class="ml-1 text-xl font-semibold">/mois</span>
+                                            <span class="ml-1 text-xl font-semibold">{{ __('/mois') }}</span>
                                         </p>
 
                                         <!-- Feature list -->
@@ -284,7 +290,7 @@
                                         </ul>
                                     </div>
 
-                                    <x-button link="#" class="w-full mt-10">Souscrire Maintenant</x-button>
+                                    <x-button link="#" class="w-full mt-10">{{ __('Souscrire Maintenant') }}</x-button>
                                 </div>
                             @endforeach
                         </div>

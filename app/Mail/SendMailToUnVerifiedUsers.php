@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail;
 
 use App\Models\User;
@@ -10,20 +12,16 @@ use Illuminate\Queue\SerializesModels;
 
 class SendMailToUnVerifiedUsers extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public function __construct(public User $user)
     {
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
+    public function build(): self
     {
-        return $this->subject('Vérification Email')
+        return $this->subject(__('Vérification Email'))
             ->markdown('emails.send-mail-to-un-verified-users');
     }
 }

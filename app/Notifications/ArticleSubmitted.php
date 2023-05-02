@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\Models\Article;
@@ -13,11 +15,14 @@ class ArticleSubmitted extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(private Article $article)
+    public function __construct(private readonly Article $article)
     {
     }
 
-    public function via($notifiable)
+    /**
+     * @return array|string[]
+     */
+    public function via(mixed $notifiable): array
     {
         if (
             ! empty(config('services.telegram-bot-api.token')) &&
@@ -29,7 +34,7 @@ class ArticleSubmitted extends Notification implements ShouldQueue
         return [];
     }
 
-    public function toTelegram($notifiable)
+    public function toTelegram(): TelegramMessage
     {
         $url = route('articles.show', $this->article->slug());
 
@@ -43,7 +48,7 @@ class ArticleSubmitted extends Notification implements ShouldQueue
     {
         $content = "*Nouvel Article Soumis!*\n\n";
         $content .= 'Titre: '.$this->article->title."\n";
-        $content .= 'Par: [@'.$this->article->author->username.']('.route('profile', $this->article->author->username).')';
+        $content .= 'Par: [@'.$this->article->user?->username.']('.route('profile', $this->article->user?->username).')';
 
         return $content;
     }

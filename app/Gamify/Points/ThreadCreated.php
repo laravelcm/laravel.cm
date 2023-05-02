@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Gamify\Points;
 
+use App\Models\Thread;
 use App\Models\User;
 use QCod\Gamify\PointType;
 
@@ -9,7 +12,7 @@ class ThreadCreated extends PointType
 {
     public int $points = 55;
 
-    public function __construct($subject)
+    public function __construct(Thread $subject)
     {
         $this->subject = $subject;
     }
@@ -17,6 +20,6 @@ class ThreadCreated extends PointType
     public function payee(): User
     {
         // @phpstan-ignore-next-line
-        return $this->getSubject()->author;
+        return $this->getSubject()->user;
     }
 }

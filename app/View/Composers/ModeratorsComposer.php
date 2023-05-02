@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\View\Composers;
 
 use App\Models\User;
@@ -10,7 +12,7 @@ final class ModeratorsComposer
 {
     public function compose(View $view): void
     {
-        $view->with('moderators', Cache::remember('moderators', now()->addMinutes(30), function () {
+        $view->with('moderators', Cache::remember('moderators', now()->addYear(), function () {
             return User::moderators()->get();
         }));
     }

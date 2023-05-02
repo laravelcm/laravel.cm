@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Discussions;
 
 use App\Actions\Replies\CreateReply;
@@ -10,7 +12,7 @@ use Livewire\Component;
 
 class AddComment extends Component
 {
-    public $discussion;
+    public Discussion $discussion;
 
     public bool $isRoot = true;
 
@@ -18,6 +20,9 @@ class AddComment extends Component
 
     public string $body = '';
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['reloadComment' => '$refresh'];
 
     public function mount(Discussion $discussion): void

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail;
 
 use App\Models\Reply;
@@ -17,13 +19,14 @@ class NewReplyEmail extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(public Reply $reply, public Subscribe $subscription)
-    {
+    public function __construct(
+        public readonly Reply $reply,
+        public readonly Subscribe $subscription
+    ) {
     }
 
-    public function build()
+    public function build(): self
     {
-        // @phpstan-ignore-next-line
         return $this->subject("Re: {$this->reply->replyAble->subject()}")
             ->markdown('emails.new_reply');
     }

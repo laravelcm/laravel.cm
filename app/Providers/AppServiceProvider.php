@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use App\Http\Resources\ReplyResource;
@@ -16,18 +18,11 @@ use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
 use App\View\Composers\TopMembersComposer;
 use Carbon\Carbon;
-use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Spatie\Health\Checks\Checks\CacheCheck;
-use Spatie\Health\Checks\Checks\DatabaseCheck;
-use Spatie\Health\Checks\Checks\DebugModeCheck;
-use Spatie\Health\Checks\Checks\EnvironmentCheck;
-use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;
-use Spatie\Health\Facades\Health;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -46,8 +41,6 @@ final class AppServiceProvider extends ServiceProvider
         $this->bootMacros();
         $this->bootViewsComposer();
         $this->bootEloquentMorphs();
-        $this->bootHealthCheck();
-        $this->bootFilament();
 
         ReplyResource::withoutWrapping();
     }
@@ -97,30 +90,5 @@ final class AppServiceProvider extends ServiceProvider
             'reply' => Reply::class,
             'user' => User::class,
         ]);
-    }
-
-    public function bootHealthCheck(): void
-    {
-        Health::checks([
-            DebugModeCheck::new(),
-            EnvironmentCheck::new(),
-            UsedDiskSpaceCheck::new(),
-            DatabaseCheck::new(),
-            CacheCheck::new(),
-        ]);
-    }
-
-    public function bootFilament(): void
-    {
-        Filament::serving(function () {
-            Filament::registerTheme(
-                mix('css/filament.css'),
-            );
-        });
-
-        Filament::registerRenderHook(
-            'body.start',
-            fn (): string => Blade::render('@livewire(\'livewire-ui-modal\')'),
-        );
     }
 }

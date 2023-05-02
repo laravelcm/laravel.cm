@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Spotlight;
 
 use App\Models\User as UserModel;
+use Illuminate\Support\Collection;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 use LivewireUI\Spotlight\SpotlightCommandDependencies;
@@ -15,6 +18,9 @@ class User extends SpotlightCommand
 
     protected string $description = 'rechercher un utilisateur spécifique';
 
+    /**
+     * @var string[]
+     */
     protected array $synonyms = [];
 
     public function dependencies(): ?SpotlightCommandDependencies
@@ -26,21 +32,19 @@ class User extends SpotlightCommand
             );
     }
 
-    public function searchUser($query)
+    public function searchUser(string $query): Collection
     {
         return UserModel::where('name', 'like', "%$query%")
             ->orWhere('username', 'like', "%$query%")
             ->get()
-            ->map(function (UserModel $user) {
-                return new SpotlightSearchResult(
-                    $user->id,
-                    $user->name,
-                    sprintf('profile de @%s', $user->username)
-                );
-            });
+            ->map(fn (UserModel $user) => new SpotlightSearchResult(
+                $user->id,
+                $user->name,
+                sprintf('profile de @%s', $user->username)
+            ));
     }
 
-    public function execute(Spotlight $spotlight, UserModel $user)
+    public function execute(Spotlight $spotlight, UserModel $user): void
     {
         $spotlight->redirect('/user/'.$user->username);
     }

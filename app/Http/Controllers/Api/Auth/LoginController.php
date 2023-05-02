@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
@@ -29,13 +31,13 @@ class LoginController extends Controller
             'password' => $request->input('password'),
         ];
 
-        if (empty($user) || ! Auth::attempt($sanitized)) {
+        if (!$user || ! Auth::attempt($sanitized)) {
             throw ValidationException::withMessages([
-                'email' => 'Les informations d\'identification fournies sont incorrectes.',
+                'email' => __('Les informations d\'identification fournies sont incorrectes.'),
             ]);
         }
 
-        if (! empty($user->tokens())) {
+        if (! $user->tokens()) {
             $user->tokens()->delete();
         }
 
@@ -48,10 +50,12 @@ class LoginController extends Controller
 
     public function logout(Request $request): JsonResponse
     {
-        if ($request->user()->currentAccessToken()) {
-            $request->user()->currentAccessToken()->delete();
+        $user = $request->user();
+
+        if ($user->currentAccessToken()) {
+            $user->currentAccessToken()->delete();
         }
 
-        return response()->json(['message' => 'Déconnecté avec succès']);
+        return response()->json(['message' => __('Déconnecté avec succès')]);
     }
 }

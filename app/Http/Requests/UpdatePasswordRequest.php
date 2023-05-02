@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use App\Rules\PasswordCheck;
@@ -13,6 +15,9 @@ class UpdatePasswordRequest extends FormRequest
         return auth()->check();
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function rules(): array
     {
         return [

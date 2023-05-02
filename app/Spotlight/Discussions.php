@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Spotlight;
 
 use LivewireUI\Spotlight\Spotlight;
@@ -11,12 +13,15 @@ class Discussions extends SpotlightCommand
 
     protected string $description = 'aller à la page des discussions';
 
+    /**
+     * @var string[]
+     */
     protected array $synonyms = [
         'débat',
         'conversation',
     ];
 
-    public function execute(Spotlight $spotlight)
+    public function execute(Spotlight $spotlight): void
     {
         $spotlight->redirectRoute('discussions.index');
     }

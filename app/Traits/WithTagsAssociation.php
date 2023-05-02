@@ -1,19 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Traits;
 
 trait WithTagsAssociation
 {
+    /**
+     * @var array<string, string>
+     */
     public array $tags_selected = [];
 
+    /**
+     * @var int[]
+     */
     public array $associateTags = [];
 
-    public function updatedTagsSelected($choices)
+    /**
+     * @param array{value: string} $choices
+     */
+    public function updatedTagsSelected(array $choices): void
     {
         if (! in_array($choices['value'], $this->associateTags)) {
-            array_push($this->associateTags, $choices['value']);
+            $this->associateTags[] = (int) $choices['value'];
         } else {
-            $key = array_search($choices['value'], $this->associateTags);
+            $key = array_search((int) $choices['value'], $this->associateTags);
             unset($this->associateTags[$key]);
         }
     }

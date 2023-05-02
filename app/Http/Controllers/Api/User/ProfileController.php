@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
@@ -17,7 +19,7 @@ class ProfileController extends Controller
     public function roles(): JsonResponse
     {
         /** @var User $user */
-        $user = request()->user()->load(['roles', 'permissions']);
+        $user = request()->user()->load(['roles', 'permissions']); // @phpstan-ignore-line
 
         return response()->json([
             'roles' => $user->roles()->pluck('name'),

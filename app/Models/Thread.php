@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Contracts\ReactableInterface;
@@ -35,17 +37,17 @@ use Spatie\Feed\FeedItem;
  */
 class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
-    use HasAuthor,
-        HasFactory,
-        HasSlug,
-        HasReplies,
-        HasSubscribers,
-        InteractsWithViews,
-        Notifiable,
-        Reactable,
-        RecordsActivity;
+    use HasAuthor;
+    use HasFactory;
+    use HasSlug;
+    use HasReplies;
+    use HasSubscribers;
+    use InteractsWithViews;
+    use Notifiable;
+    use Reactable;
+    use RecordsActivity;
 
-    const FEED_PAGE_SIZE = 20;
+    public const FEED_PAGE_SIZE = 20;
 
     /**
      * The attributes that are mass assignable.
@@ -76,15 +78,9 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
      */
     protected $with = [
         'channels',
-        'author',
     ];
 
-    protected $removeViewsOnDelete = true;
-
-    public static function boot()
-    {
-        parent::boot();
-    }
+    protected bool $removeViewsOnDelete = true;
 
     /**
      * Get the route key for the model.
@@ -113,7 +109,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     public function excerpt(int $limit = 100): string
     {
-        return Str::limit(strip_tags(md_to_html($this->body)), $limit);
+        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
     }
 
     public function resolvedBy(): BelongsTo
@@ -216,7 +212,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
      *
      * @param  Builder<Thread>  $builder
      * @param  \Illuminate\Http\Request  $request
-     * @param  array  $filters
+     * @param  string[]  $filters
      * @return Builder<Thread>
      */
     public function scopeFilter(Builder $builder, Request $request, array $filters = []): Builder
@@ -224,18 +220,19 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         return (new ThreadFilters($request))->add($filters)->filter($builder);
     }
 
-    public function delete()
+    public function delete(): ?bool
     {
         $this->channels()->detach();
         $this->deleteReplies();
 
         parent::delete();
+
+        return true;
     }
 
     public function toFeedItem(): FeedItem
     {
-        // @phpstan-ignore-next-line
-        $updatedAt = Carbon::parse($this->latest_creation);
+        $updatedAt = Carbon::parse($this->latest_creation); // @phpstan-ignore-line
 
         return FeedItem::create()
             ->id((string) $this->id)
@@ -243,7 +240,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
             ->summary($this->body)
             ->updated($updatedAt)
             ->link(route('forum.show', $this->slug))
-            ->authorName($this->author->name);
+            ->authorName($this->user->name); // @phpstan-ignore-line
     }
 
     /**
@@ -258,9 +255,9 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
             'solutionReply',
             'replies',
             'reactions',
-            'replies.author',
+            'replies.user',
             'channels',
-            'author',
+            'user',
         ])
             ->leftJoin('replies', function ($join) {
                 $join->on('threads.id', 'replies.replyable_id')
@@ -312,6 +309,9 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         return $query->has('replies');
     }
 
+    /**
+     * @param int[] $channels
+     */
     public function syncChannels(array $channels): void
     {
         $this->save();

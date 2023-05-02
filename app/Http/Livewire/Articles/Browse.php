@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Articles;
 
 use App\Models\Article;
@@ -11,28 +13,32 @@ use Livewire\Component;
 
 class Browse extends Component
 {
-    use WithInfiniteScroll, WithTags;
+    use WithInfiniteScroll;
+    use WithTags;
 
     public string $viewMode = 'list';
 
+    /**
+     * @var array[]
+     */
     protected $queryString = [
         'tag' => ['except' => ''],
         'sortBy' => ['except' => 'recent'],
     ];
 
-    public function mount()
+    public function mount(): void
     {
         $this->viewMode = session('viewMode', $this->viewMode);
     }
 
-    public function changeViewMode($mode)
+    public function changeViewMode(string $mode): void
     {
         session()->put('viewMode', $mode);
 
         $this->viewMode = $mode;
     }
 
-    public function validSort($sort): bool
+    public function validSort(string $sort): bool
     {
         return in_array($sort, [
             'recent',
@@ -43,7 +49,7 @@ class Browse extends Component
 
     public function render(): View
     {
-        $articles = Article::with('tags')
+        $articles = Article::with(['tags', 'user'])
             ->withCount(['views', 'reactions'])
             ->published()
             ->notPinned()
@@ -54,7 +60,7 @@ class Browse extends Component
             $query->published();
         })->orderBy('name')->get();
 
-        $selectedTag = Tag::where('name', $this->tag)->first();
+        $selectedTag = Tag::where('slug', $this->tag)->first();
 
         if ($this->tag) {
             $articles->forTag($this->tag);

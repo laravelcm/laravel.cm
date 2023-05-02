@@ -1,11 +1,4 @@
 /**
- * Transforme la première d'une chaîne de caractère en majuscule
- *
- * @param string
- */
-window.capitalize = (string) => string.replace(/^\w/, (c) => c.toUpperCase());
-
-/**
  * Créer une chaîne de cas de serpent
  *
  * @param string
@@ -15,9 +8,9 @@ window.snakeCase = (string) => string && string.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0
 
 /**
  * Injecte la fonction dans le contexte global
- * 
- * @param {number} number 
- * @returns 
+ *
+ * @param {number} number
+ * @returns
  */
 window.formatMoney = (number) => formatMoney(number);
 

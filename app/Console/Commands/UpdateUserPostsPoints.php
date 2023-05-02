@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Gamify\Points\PostCreated;
@@ -12,7 +14,7 @@ class UpdateUserPostsPoints extends Command
 
     protected $description = 'Update users posts reputation points';
 
-    public function handle()
+    public function handle(): void
     {
         $this->info('Updating users posts reputations...');
 

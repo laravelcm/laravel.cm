@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Forum;
 
 use App\Models\Subscribe as SubscribeModel;
 use App\Models\Thread;
 use App\Policies\ThreadPolicy;
+use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +20,12 @@ class Subscribe extends Component
 
     public Thread $thread;
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['refresh' => '$refresh'];
 
-    public function subscribe()
+    public function subscribe(): void
     {
         $this->authorize(ThreadPolicy::SUBSCRIBE, $this->thread);
 
@@ -28,12 +34,17 @@ class Subscribe extends Component
         $subscribe->user()->associate(Auth::user());
         $this->thread->subscribes()->save($subscribe);
 
-        // @ToDo mettre un nouveau system de notification
-        //$this->notification()->success('Abonnement', 'Vous êtes maintenant abonné à ce sujet.');
+        Notification::make()
+            ->title(__('Abonnement'))
+            ->body(__('Vous êtes maintenant abonné à ce sujet.'))
+            ->success()
+            ->duration(5000)
+            ->send();
+
         $this->emitSelf('refresh');
     }
 
-    public function unsubscribe()
+    public function unsubscribe(): void
     {
         $this->authorize(ThreadPolicy::UNSUBSCRIBE, $this->thread);
 
@@ -41,8 +52,13 @@ class Subscribe extends Component
             ->where('user_id', Auth::id())
             ->delete();
 
-        // @ToDo mettre un nouveau system de notification
-        // $this->notification()->success('Désabonnement', 'Vous êtes maintenant désabonné de ce sujet.');
+        Notification::make()
+            ->title(__('Désabonnement'))
+            ->body(__('Vous vous êtes désabonné de ce sujet.'))
+            ->success()
+            ->duration(5000)
+            ->send();
+
         $this->emitSelf('refresh');
     }
 

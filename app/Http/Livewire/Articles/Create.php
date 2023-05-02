@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Articles;
 
 use App\Events\ArticleWasSubmittedForApproval;
@@ -16,8 +18,13 @@ use Livewire\WithFileUploads;
 
 class Create extends Component
 {
-    use WithFileUploads, WithTagsAssociation, WithArticleAttributes;
+    use WithFileUploads;
+    use WithTagsAssociation;
+    use WithArticleAttributes;
 
+    /**
+     * @var string[]
+     */
     protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
 
     public function mount(): void
@@ -25,7 +32,7 @@ class Create extends Component
         /** @var User $user */
         $user = Auth::user();
 
-        $this->published_at = now()->toDateTimeLocalString();
+        $this->published_at = now();
         $this->submitted_at = $user->hasAnyRole(['admin', 'moderator']) ? now() : null;
         $this->approved_at = $user->hasAnyRole(['admin', 'moderator']) ? now() : null;
     }
@@ -70,7 +77,7 @@ class Create extends Component
                 event(new ArticleWasSubmittedForApproval($article));
             }
 
-            session()->flash('status', 'Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.');
+            session()->flash('status', __('Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.'));
         }
 
         if ($user->hasAnyRole(['admin', 'moderator'])) {

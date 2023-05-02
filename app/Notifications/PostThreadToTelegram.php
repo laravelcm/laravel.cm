@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
@@ -11,12 +13,15 @@ class PostThreadToTelegram extends Notification
 {
     use Queueable;
 
-    public function via($notifiable): array
+    /**
+     * @return string[]
+     */
+    public function via(mixed $notifiable): array
     {
         return [TelegramChannel::class];
     }
 
-    public function toTelegram($notifiable)
+    public function toTelegram(mixed $notifiable): TelegramMessage
     {
         return TelegramMessage::create()
             ->to('@laravelcm')

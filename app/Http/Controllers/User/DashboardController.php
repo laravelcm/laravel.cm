@@ -1,14 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function dashboard()
+    public function dashboard(): View
     {
         return view('user.dashboard', [
             'user' => $user = User::scopes('withCounts')->find(Auth::id()),
@@ -19,7 +22,7 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function threads()
+    public function threads(): View
     {
         return view('user.threads', [
             'user' => $user = User::scopes('withCounts')->find(Auth::id()),
@@ -29,7 +32,7 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function discussions()
+    public function discussions(): View
     {
         return view('user.discussions', [
             'user' => $user = User::scopes('withCounts')->find(Auth::id()),

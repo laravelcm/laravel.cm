@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Traits;
 
 trait HasSettings
@@ -7,7 +9,7 @@ trait HasSettings
     /**
      * Retrieve a setting with a given name or fall back to the default.
      */
-    public function setting(string $name, $default = null): string
+    public function setting(string $name, string $default): string
     {
         if ($this->settings && array_key_exists($name, $this->settings)) {
             return $this->settings[$name];
@@ -17,7 +19,8 @@ trait HasSettings
     }
 
     /**
-     * Update one or more settings and then optionally save the model.
+     * @param array<string> $revisions
+     * @param bool $save
      */
     public function settings(array $revisions, bool $save = true): self
     {

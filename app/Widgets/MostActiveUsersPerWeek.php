@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Widgets;
 
 use App\Models\User;
@@ -7,12 +9,12 @@ use Arrilot\Widgets\AbstractWidget;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class MostActiveUsersPerWeek extends AbstractWidget
+final class MostActiveUsersPerWeek extends AbstractWidget
 {
     /**
      * The configuration array.
      *
-     * @var array
+     * @var array<string>
      */
     protected $config = [];
 
@@ -31,10 +33,6 @@ class MostActiveUsersPerWeek extends AbstractWidget
      */
     public $cacheTime = 0;
 
-    /**
-     * Treat this method as a controller action.
-     * Return view() or other content to display.
-     */
     public function run(): View
     {
         $users = User::with('activities')
