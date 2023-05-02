@@ -29,7 +29,7 @@ final class FileUploadController extends Controller
         $requestKey = array_key_first($files);
 
         $file = is_array($request->input($requestKey))
-            ? $request->file($requestKey)[0]
+            ? $request->file($requestKey)[0] // @phpstan-ignore-line
             : $request->file($requestKey);
 
         $user->addMedia($file)->toMediaCollection('avatar');

@@ -17,39 +17,9 @@
  */
 
 /*!
- * FilePondPluginImageCrop 2.0.6
- * Licensed under MIT, https://opensource.org/licenses/MIT/
- * Please visit https://pqina.nl/filepond/ for details.
- */
-
-/*!
- * FilePondPluginImageExifOrientation 1.0.11
- * Licensed under MIT, https://opensource.org/licenses/MIT/
- * Please visit https://pqina.nl/filepond/ for details.
- */
-
-/*!
  * FilePondPluginImagePreview 4.6.11
  * Licensed under MIT, https://opensource.org/licenses/MIT/
  * Please visit https://pqina.nl/filepond/ for details.
- */
-
-/*!
- * FilePondPluginImageResize 2.0.10
- * Licensed under MIT, https://opensource.org/licenses/MIT/
- * Please visit https://pqina.nl/filepond/ for details.
- */
-
-/*!
- * FilePondPluginImageTransform 3.8.7
- * Licensed under MIT, https://opensource.org/licenses/MIT/
- * Please visit https://pqina.nl/filepond/ for details.
- */
-
-/*!
- * FilePondPluginMediaPreview 1.0.11
- * Licensed under MIT, https://opensource.org/licenses/MIT/
- * Please visit undefined for details.
  */
 
 /*!
@@ -61,15 +31,4 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-/*! @license DOMPurify 2.4.1 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.4.1/LICENSE */
-
-/*! choices.js v10.2.0 | © 2022 Josh Johnson | https://github.com/jshjohnson/Choices#readme */
-
 /*! choices.js v9.1.0 | © 2021 Josh Johnson | https://github.com/jshjohnson/Choices#readme */
-
-/**!
- * Sortable 1.15.0
- * @author	RubaXa   <trash@rubaxa.org>
- * @author	owenm    <owen23355@gmail.com>
- * @license MIT
- */
