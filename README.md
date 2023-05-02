@@ -56,20 +56,6 @@ Une fois que vous avez installé et configuré, pour avoir des dummy data vous d
 php artisan db:seed --class=DummyDatabaseSeeder
 ```
 
-### Media Library Pro (optionnel)
-Pour que l'upload de fichier fonctionne en local (pour les elements qui utilise Media Library Pro comme la modification de la photo de profil) vous devez renseignez la Licence avec votre compte de Spatie. Pour ce projet une licence commune est disponible etant une `single Licence` pour ce projet uniquement. Vous devez copier coller ce code dans le fichier `auth.json` qui a ete cree a la racine et relancer la commande `composer install`
-
-```json
-{
-    "http-basic": {
-        "satis.spatie.be": {
-            "username": "<YOUR-SPATIE.BE-ACCOUNT-EMAIL-ADDRESS-HERE>",
-            "password": "<YOUR-MEDIA-LIBRARY-PRO-LICENSE-KEY-HERE>"
-        }
-    }
-}
-```
-
 ### Github Authentication (optionnel)
 Pour que l'authentification Github fonctionne localement, vous devez [enregistrer une nouvelle application OAuth sur Github](https://github.com/settings/applications/new). Utilisez `http://laravel.cm.test` pour l'URL de la page d'accueil et `http://laravel.cm.test/auth/github` pour l'URL de rappel. Lorsque vous avez créé l'application, remplissez l'ID et le secret dans votre fichier `.env` dans les variables d'environnement ci-dessous. Vous devriez maintenant pouvoir vous authentifier avec Github.
 
