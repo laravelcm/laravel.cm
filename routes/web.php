@@ -114,7 +114,3 @@ Route::redirectMap([
 ]);
 
 Route::feeds();
-
-Route::middleware('auth')->group(function () {
-    Route::mediaLibrary();
-});
