@@ -2,7 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import '../../vendor/filament/forms/dist/module.esm.css';
 @import "~highlight.js/styles/atom-one-dark.css";
 @import '~choices.js/public/assets/styles/choices.css';
 @import '~intl-tel-input/build/css/intlTelInput.css';
@@ -14,7 +13,6 @@
 @import "toc.css";
 @import "header.css";
 @import "media-library.css";
-/*@import "christmas.css";*/
 
 :root {
   --brand-laravel: #FF2D20;

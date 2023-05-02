@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'preact/hooks'
 import { ApiError, jsonFetch } from '@helpers/api.js'
-import { strToDom } from '@helpers/dom.js'
 
 /**
  * Alterne une valeur

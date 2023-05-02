@@ -19,6 +19,7 @@ module.exports = {
     './resources/**/*.blade.php',
     './resources/**/*.{js,jsx}',
     './storage/framework/views/*.php',
+    './vendor/filament/**/*.blade.php',
     './vendor/wire-elements/modal/resources/views/*.blade.php',
   ],
   safelist: [
@@ -192,7 +193,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
   ],
 }
