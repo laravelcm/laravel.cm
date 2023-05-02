@@ -12,15 +12,17 @@
                 @method('PUT')
                 <div>
                     <h3 class="text-lg font-medium leading-6 text-skin-inverted">
-                        Profil
+                        {{ __('Profil') }}
                     </h3>
                     <p class="max-w-2xl mt-1 text-sm font-normal text-skin-base">
-                        Vous trouverez ci-dessous les informations de votre profil pour votre compte.
+                        {{ __('Vous trouverez ci-dessous les informations de votre profil pour votre compte.') }}
                     </p>
                 </div>
                 <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-skin-base sm:pt-5">
-                        <x-label for="username" class="sm:mt-px sm:pt-2 text-skin-inverted-muted">Pseudo</x-label>
+                        <x-label for="username" class="sm:mt-px sm:pt-2 text-skin-inverted-muted">
+                            {{ __('Pseudo') }}
+                        </x-label>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                             <div class="flex max-w-lg rounded-md shadow-sm">
                                 <x-input
@@ -39,30 +41,36 @@
                    </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-skin-base sm:pt-5">
-                        <x-label for="about" class="sm:mt-px sm:pt-2 text-skin-inverted-muted">Bio</x-label>
+                        <x-label for="about" class="sm:mt-px sm:pt-2 text-skin-inverted-muted">
+                            {{ __('Bio') }}
+                        </x-label>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                             <x-textarea id="about" name="bio" rows="3" class="max-w-lg" maxlength="160">
                                 {{ Auth::user()->bio }}
                             </x-textarea>
-                            <p class="mt-2 text-sm font-normal text-skin-muted">Écrivez quelques phrases sur vous-même.</p>
+                            <p class="mt-2 text-sm font-normal text-skin-muted">
+                                {{ __('Écrivez quelques phrases sur vous-même.') }}
+                            </p>
                         </div>
                     </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-skin-base sm:pt-5">
                         <div class="sm:mt-px sm:pt-2">
-                            <x-label for="photo" class="text-skin-inverted-muted">Photo</x-label>
-                            <p class="hidden text-sm font-normal sm:block text-skin-muted">Celle-ci sera affiché sur votre profil.</p>
+                            <x-label for="photo" class="text-skin-inverted-muted">{{ __('Photo') }}</x-label>
+                            <p class="hidden text-sm font-normal sm:block text-skin-muted">
+                                {{ __('Celle-ci sera affiché sur votre profil.') }}
+                            </p>
                         </div>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                             <div class="w-full max-w-lg">
-                                <x-media-library-attachment name="avatar" rules="mimes:png,jpg,jpeg,gif|max:1024"/>
+                                <input type="file" name="avatar" class="filepond" data-max-file-size="1MB"/>
                             </div>
                         </div>
                     </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-skin-base sm:pt-5">
                         <label for="website" class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
-                            Votre site web
+                            {{ __('Votre site web') }}
                         </label>
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                             <x-input
@@ -81,16 +89,16 @@
             <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                 <div>
                     <h3 class="text-lg font-medium leading-6 text-skin-inverted">
-                        Informations personnelles
+                        {{ __('Informations personnelles') }}
                     </h3>
                     <p class="mt-1 text-sm font-normal text-skin-base">
-                        Mettez à jour vos informations personnelles. Votre adresse ne sera jamais accessible au public.
+                        {{ __('Mettez à jour vos informations personnelles. Votre adresse ne sera jamais accessible au public.') }}
                     </p>
                 </div>
                 <div class="space-y-6 sm:space-y-5">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-skin-base sm:pt-5">
                         <label for="name" class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
-                            Nom
+                            {{ __('Nom') }}
                         </label>
                         <div class="relative mt-1 sm:mt-0 sm:col-span-2">
                             <x-input type="text" name="name" id="name" container-input-class="w-full max-w-lg" :value="Auth::user()->name" required />
@@ -99,7 +107,7 @@
 
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-skin-base sm:pt-5">
                         <label for="email" class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
-                            Adresse E-mail
+                            {{ __('Adresse E-mail') }}
                         </label>
                         <div class="relative mt-1 sm:mt-0 sm:col-span-2">
                             <div class="flex items-center space-x-3">
@@ -118,10 +126,10 @@
                             </div>
                             @unless(Auth::user()->hasVerifiedEmail())
                                 <p class="mt-2 font-sans text-sm text-skin-base">
-                                    Cette adresse mail n'est pas vérifiée.
+                                    {{ __('Cette adresse mail n\'est pas vérifiée.') }}
 
                                     <a href="{{ route('verification.notice') }}" class="underline text-skin-primary hover:text-skin-primary-hover">
-                                        Renvoyer l'e-mail de vérification.
+                                        {{ __('Renvoyer l\'e-mail de vérification.') }}
                                     </a>
                                 </p>
                             @endunless
@@ -130,7 +138,7 @@
 
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-skin-base sm:pt-5">
                         <label for="location" class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
-                            Localisation
+                            {{ __('Localisation') }}
                         </label>
                         <div class="relative mt-1 sm:mt-0 sm:col-span-2">
                             <x-input id="location" name="location" type="text" autocomplete="email" container-input-class="max-w-lg" :value="Auth::user()->location" />
@@ -139,7 +147,7 @@
 
                     <div x-data="internationalNumber('#phone_number')" class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-skin-base sm:pt-5">
                         <label for="phone_number" class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
-                            Numéro de téléphone
+                            {{ __('Numéro de téléphone') }}
                         </label>
                         <div class="relative mt-1 sm:mt-0 sm:col-span-2">
                             <x-input type="tel" name="phone_number" id="phone_number" container-input-class="block max-w-lg" :value="Auth::user()->phone_number" isPhone />
@@ -150,16 +158,16 @@
             <div class="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
                 <div>
                     <h3 class="text-lg font-medium leading-6 text-skin-inverted">
-                        Réseaux sociaux
+                        {{ __('Réseaux sociaux') }}
                     </h3>
                     <p class="max-w-2xl mt-1 text-sm font-normal text-skin-base">
-                        Faites savoir à tout le monde où ils peuvent vous trouver.
+                        {{ __('Faites savoir à tout le monde où ils peuvent vous trouver.') }}
                     </p>
                 </div>
                 <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-skin-base sm:pt-5">
                         <label class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
-                            Entrez votre pseudo Twitter sans le symbole @ en tête.
+                            {{ __('Entrez votre pseudo Twitter sans le symbole @ en tête.') }}
                         </label>
                         <div class="mt-1 space-y-4 sm:mt-0 sm:col-span-2">
                             <div class="flex max-w-lg">
@@ -207,7 +215,7 @@
         <div class="pt-5">
             <div class="flex justify-end">
                 <x-button type="submit" class="inline-flex">
-                    Enregistrer
+                    {{ __('Enregistrer') }}
                 </x-button>
             </div>
         </div>

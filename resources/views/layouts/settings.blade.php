@@ -10,7 +10,7 @@
         </h3>
     </div>
 
-    <section class="mt-8 relative lg:grid lg:grid-cols-12 lg:gap-12">
+    <section class="mt-8 relative lg:grid lg:grid-cols-11 lg:gap-8">
         <div class="hidden lg:block lg:col-span-2">
             <nav aria-label="Sidebar" class="sticky top-4">
                 <div class="space-y-2">
@@ -51,7 +51,7 @@
                 </div>
             </nav>
         </div>
-        <main class="lg:col-span-10">
+        <main class="lg:col-span-9">
             {{ $slot }}
         </main>
     </section>
