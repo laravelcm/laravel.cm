@@ -6,12 +6,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use Spatie\MediaLibraryPro\Rules\Concerns\ValidatesMedia;
 
 class UpdateProfileRequest extends FormRequest
 {
-    use ValidatesMedia;
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -37,9 +34,6 @@ class UpdateProfileRequest extends FormRequest
             'github_profile' => 'max:255|nullable|unique:users,github_profile,'.Auth::id(),
             'bio' => 'nullable|max:160',
             'website' => 'nullable|url',
-            'avatar' => $this->validateSingleMedia()
-                ->extension(['png', 'jpg', 'jpeg', 'gif'])
-                ->maxItemSizeInKb(1024),
         ];
     }
 }

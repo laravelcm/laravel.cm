@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64668a51a92c04bf2191fe2104a1e111",
+    "content-hash": "84104126499f23c909386bddfb84044c",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -8089,87 +8089,6 @@
             "time": "2023-04-21T10:23:52+00:00"
         },
         {
-            "name": "spatie/laravel-medialibrary-pro",
-            "version": "2.7.2",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:spatie/laravel-medialibrary-pro.git",
-                "reference": "d989b8f7be9ba7db0a911171bd96d32f99a79af0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://satis.spatie.be/dist/spatie/laravel-medialibrary-pro/spatie-laravel-medialibrary-pro-d989b8f7be9ba7db0a911171bd96d32f99a79af0-zip-4c5973.zip",
-                "reference": "d989b8f7be9ba7db0a911171bd96d32f99a79af0",
-                "shasum": "3c1846e0b775783cc87689cb0fbe5d468c61a35e"
-            },
-            "require": {
-                "ext-json": "*",
-                "illuminate/validation": "^9.0|^10.0",
-                "php": "^8.0",
-                "spatie/laravel-medialibrary": "^10.2",
-                "symfony/mime": "^6.0"
-            },
-            "require-dev": {
-                "illuminate/support": "^9.0|^10.0",
-                "livewire/livewire": "^2.10",
-                "mockery/mockery": "^1.4",
-                "orchestra/testbench": "^7.0|^8.0",
-                "pestphp/pest": "^1.20",
-                "symfony/var-dumper": "^6.0"
-            },
-            "suggest": {
-                "livewire/livewire": "Allow uploads without using a front end framework"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\MediaLibraryPro\\MediaLibraryProServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\MediaLibraryPro\\": "src"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Spatie\\MediaLibraryPro\\Tests\\": "tests"
-                }
-            },
-            "scripts": {
-                "format": [
-                    "vendor/bin/php-cs-fixer fix --allow-risky=yes"
-                ],
-                "test": [
-                    "vendor/bin/pest"
-                ],
-                "test-coverage": [
-                    "vendor/bin/phpunit --coverage-html coverage"
-                ]
-            },
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Handle media in a Laravel app",
-            "homepage": "https://github.com/spatie/laravel-medialibrary-pro",
-            "keywords": [
-                "laravel-medialibrary-pro",
-                "spatie"
-            ],
-            "support": {
-                "source": "https://github.com/spatie/laravel-medialibrary-pro/tree/2.7.2",
-                "issues": "https://github.com/spatie/laravel-medialibrary-pro/issues"
-            },
-            "time": "2023-04-12T08:30:54+00:00"
-        },
-        {
             "name": "spatie/laravel-package-tools",
             "version": "1.15.0",
             "source": {
@@ -13893,16 +13812,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.20.3",
+            "version": "1.20.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "6c04009f6cae6eda2f040745b6b846080ef069c2"
+                "reference": "7d568c87a9df9c5f7e8b5f075fc469aa8cb0a4cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/6c04009f6cae6eda2f040745b6b846080ef069c2",
-                "reference": "6c04009f6cae6eda2f040745b6b846080ef069c2",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/7d568c87a9df9c5f7e8b5f075fc469aa8cb0a4cd",
+                "reference": "7d568c87a9df9c5f7e8b5f075fc469aa8cb0a4cd",
                 "shasum": ""
             },
             "require": {
@@ -13932,9 +13851,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.20.3"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.20.4"
             },
-            "time": "2023-04-25T09:01:03+00:00"
+            "time": "2023-05-02T09:19:37+00:00"
         },
         {
             "name": "phpstan/phpstan",

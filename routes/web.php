@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\DiscussionController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\ReplyAbleController;
@@ -34,6 +35,9 @@ Route::view('rules', 'rules')->name('rules');
 Route::view('terms', 'terms')->name('terms');
 Route::view('slack', 'slack')->name('slack');
 Route::post('slack', SlackController::class)->name('slack.send');
+Route::post('uploads/process', [FileUploadController::class, 'process'])
+    ->middleware('auth')
+    ->name('uploads.process');
 
 // Social authentication
 Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');
@@ -110,7 +114,3 @@ Route::redirectMap([
 ]);
 
 Route::feeds();
-
-Route::middleware('auth')->group(function () {
-    Route::mediaLibrary();
-});

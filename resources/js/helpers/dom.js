@@ -1,4 +1,4 @@
-import htm from 'htm/mini';
+import htm from 'htm/mini'
 
 /**
  * Trouve la position de l'élément par rapport au haut de la page de manière recursive
@@ -7,14 +7,14 @@ import htm from 'htm/mini';
  * @param {HTMLElement|null} parent
  */
 export function offsetTop(element, parent = null) {
-  let top = element.offsetTop;
+  let top = element.offsetTop
   while ((element = element.offsetParent)) {
     if (parent === element) {
-      return top;
+      return top
     }
-    top += element.offsetTop;
+    top += element.offsetTop
   }
-  return top;
+  return top
 }
 
 /**
@@ -29,23 +29,23 @@ export function offsetTop(element, parent = null) {
  */
 export function createElement(tagName, attributes = {}, ...children) {
   if (typeof tagName === "function") {
-    return tagName(attributes);
+    return tagName(attributes)
   }
 
-  const svgTags = ["svg", "use", "path", "circle", "g"];
+  const svgTags = ["svg", "use", "path", "circle", "g"]
   // On construit l'élément
   const e = !svgTags.includes(tagName)
     ? document.createElement(tagName)
-    : document.createElementNS("http://www.w3.org/2000/svg", tagName);
+    : document.createElementNS("http://www.w3.org/2000/svg", tagName)
 
   // On lui associe les bons attributs
   for (const k of Object.keys(attributes || {})) {
     if (typeof attributes[k] === "function" && k.startsWith("on")) {
-      e.addEventListener(k.substr(2).toLowerCase(), attributes[k]);
+      e.addEventListener(k.substr(2).toLowerCase(), attributes[k])
     } else if (k === "xlink:href") {
-      e.setAttributeNS("http://www.w3.org/1999/xlink", "href", attributes[k]);
+      e.setAttributeNS("http://www.w3.org/1999/xlink", "href", attributes[k])
     } else {
-      e.setAttribute(k, attributes[k]);
+      e.setAttribute(k, attributes[k])
     }
   }
 
@@ -71,45 +71,7 @@ export function createElement(tagName, attributes = {}, ...children) {
  * CreateElement version Tagged templates
  * @type {(strings: TemplateStringsArray, ...values: any[]) => (HTMLElement[] | HTMLElement)}
  */
-export const html = htm.bind(createElement);
-
-/**
- * Transform une chaine en élément DOM
- * @param {string} str
- * @return {DocumentFragment}
- */
-export function strToDom(str) {
-  return document.createRange().createContextualFragment(str).firstChild;
-}
-
-/**
- *
- * @param {HTMLElement|Document|Node} element
- * @param {string} selector
- * @return {null|HTMLElement}
- */
-export function closest(element, selector) {
-  for (; element && element !== document; element = element.parentNode) {
-    if (element.matches(selector)) return element;
-  }
-  return null;
-}
-
-/**
- * @param {string} selector
- * @return {HTMLElement}
- */
-export function $(selector) {
-  return document.querySelector(selector);
-}
-
-/**
- * @param {string} selector
- * @return {HTMLElement[]}
- */
-export function $$(selector) {
-  return Array.from(document.querySelectorAll(selector));
-}
+export const html = htm.bind(createElement)
 
 /**
  * Génère une classe à partir de différentes variables
@@ -117,15 +79,5 @@ export function $$(selector) {
  * @param  {...string|null} classnames
  */
 export function classNames(...classnames) {
-  return classnames.filter((classname) => classname !== null && classname !== false).join(" ");
-}
-
-/**
- * Convertit les données d'un formulaire en objet JavaScript
- *
- * @param {HTMLFormElement} form
- * @return {{[p: string]: string}}
- */
-export function formDataToObj(form) {
-  return Object.fromEntries(new FormData(form));
+  return classnames.filter((classname) => classname !== null && classname !== false).join(" ")
 }

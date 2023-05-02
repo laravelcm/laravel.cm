@@ -35,7 +35,7 @@ class SettingController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'username' => strtolower($request->username),
-            'bio' => trim(strip_tags($request->bio)),
+            'bio' => trim(strip_tags((string) $request->bio)),
             'twitter_profile' => $request->twitter_profile,
             'github_profile' => $request->github_profile,
             'linkedin_profile' => $request->linkedin_profile,
@@ -43,13 +43,6 @@ class SettingController extends Controller
             'location' => $request->location,
             'website' => $request->website,
         ]);
-
-        if ($request->avatar) {
-            $user->addFromMediaLibraryRequest($request->avatar)
-                ->toMediaCollection('avatar');
-            $user->avatar_type = 'storage';
-            $user->save();
-        }
 
         if ($request->email !== $emailAddress) {
             $user->email_verified_at = null;
