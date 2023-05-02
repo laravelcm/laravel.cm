@@ -9,10 +9,10 @@
                     @csrf
                     @method('PUT')
                     <h3 class="text-lg leading-6 font-medium text-skin-inverted">
-                        Mot de passe
+                        {{ __('Mot de passe') }}
                     </h3>
                     <p class="mt-1 max-w-2xl text-sm text-skin-base font-normal">
-                        Vous devez renseigner votre mot de passe actuel pour changer de mot de passe.
+                        {{ __('Vous devez renseigner votre mot de passe actuel pour changer de mot de passe.') }}
                     </p>
                 </div>
                 <div class="pt-6 sm:pt-5 space-y-6 sm:space-y-5">
@@ -26,7 +26,9 @@
                     <div class="block">
                         <x-label for="password">{{ __('Nouveau mot de passe') }}</x-label>
                         <x-password id="password" class="block mt-1 w-full" name="password" required />
-                        <p class="mt-2 text-sm text-skin-muted font-normal">Votre nouveau mot de passe doit comporter plus de 8 caractères.</p>
+                        <p class="mt-2 text-sm text-skin-muted font-normal">
+                            {{ __('Votre nouveau mot de passe doit comporter plus de 8 caractères.') }}
+                        </p>
                     </div>
 
                     <div class="block">
@@ -39,7 +41,7 @@
             <div class="pt-5">
                 <div class="flex justify-end">
                     <x-button type="submit" class="inline-flex">
-                        Enregistrer
+                        {{ __('Enregistrer') }}
                     </x-button>
                 </div>
             </div>
@@ -47,10 +49,10 @@
         <div class="mt-5 space-y-8 divide-y divide-skin-base sm:mt-0 sm:col-span-2 sm:space-y-5">
             <div>
                 <h3 class="text-lg leading-6 font-medium text-skin-inverted">
-                    Appareils connectés
+                    {{ __('Appareils connectés') }}
                 </h3>
                 <p class="mt-1 max-w-2xl text-sm text-skin-base font-normal">
-                    Nous vous avertirons via {{ Auth::user()->email }} en cas d'activité inhabituelle sur votre compte.
+                    {{ __('Nous vous avertirons via :email en cas d\'activité inhabituelle sur votre compte.', ['email' => Auth::user()->email]) }}
                 </p>
             </div>
             <ul role="list" class="pt-2 divide-y divide-skin-base">
@@ -76,7 +78,7 @@
                                             <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-green-400" fill="currentColor" viewBox="0 0 8 8">
                                                 <circle cx="4" cy="4" r="3" />
                                             </svg>
-                                            Connecté
+                                            {{ __('Connecté') }}
                                         </span>
                                     @endif
                                 </div>

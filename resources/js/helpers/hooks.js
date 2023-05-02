@@ -1,56 +1,8 @@
-import { useEffect, useState, useCallback, useRef } from 'preact/hooks'
-import { ApiError, jsonFetch } from '@helpers/api.js'
+import { useEffect, useState, useRef } from 'preact/hooks'
 
 /**
- * Alterne une valeur
- */
-export function useToggle (initialValue = null) {
-  const [value, setValue] = useState(initialValue)
-  return [value, useCallback(() => setValue(v => !v), [])]
-}
-
-/**
- * Valeur avec la possibilité de push un valeur supplémentaire
- */
-export function usePrepend (initialValue = []) {
-  const [value, setValue] = useState(initialValue)
-  return [
-    value,
-    useCallback(item => {
-      setValue(v => [item, ...v])
-    }, [])
-  ]
-}
-
-/**
- * Hook d'effet pour détecter le clique en dehors d'un élément
- */
-export function useClickOutside (ref, cb) {
-  useEffect(() => {
-    if (cb === null) {
-      return
-    }
-    const escCb = e => {
-      if (e.key === 'Escape' && ref.current) {
-        cb()
-      }
-    }
-    const clickCb = e => {
-      if (ref.current && !ref.current.contains(e.target)) {
-        cb()
-      }
-    }
-    document.addEventListener('click', clickCb)
-    document.addEventListener('keyup', escCb)
-    return function cleanup () {
-      document.removeEventListener('click', clickCb)
-      document.removeEventListener('keyup', escCb)
-    }
-  }, [ref, cb])
-}
-
-/**
- * Focus le premier champs dans l'élément correspondant à la ref
+ * Focus le premier champ dans l'élément correspondant à la ref
+ *
  * @param {boolean} focus
  */
 export function useAutofocus (ref, focus) {
@@ -64,87 +16,12 @@ export function useAutofocus (ref, focus) {
   }, [focus, ref])
 }
 
-/**
- * Hook faisant un appel fetch et flash en cas d'erreur / succès
- *
- * @param {string} url
- * @param {object} params
- * @return {{data: Object|null, fetch: fetch, loading: boolean, done: boolean}}
- */
-export function useJsonFetchOrFlash (url, params = {}) {
-  const [state, setState] = useState({
-    loading: false,
-    data: null,
-    done: false
-  })
-  const fetch = useCallback(
-    async (localUrl, localParams) => {
-      setState(s => ({ ...s, loading: true }))
-      try {
-        const response = await jsonFetch(localUrl || url, localParams || params)
-        setState(s => ({ ...s, loading: false, data: response, done: true }))
-        return response
-      } catch (e) {
-        if (e instanceof ApiError) {
-          window.$wireui.notify({
-            title: 'Ops! Erreur',
-            description: e.name,
-            icon: 'error'
-          })
-        } else {
-          window.$wireui.notify({
-            title: 'Ops! Erreur',
-            description: e,
-            icon: 'error'
-          })
-        }
-      }
-      setState(s => ({ ...s, loading: false }))
-    },
-    [url, params]
-  )
-  return { ...state, fetch }
-}
-
-/**
- * useEffect pour une fonction asynchrone
- */
 export function useAsyncEffect (fn, deps = []) {
   /* eslint-disable */
   useEffect(() => {
     fn()
   }, deps)
   /* eslint-enable */
-}
-
-export const PROMISE_PENDING = 0
-export const PROMISE_DONE = 1
-export const PROMISE_ERROR = -1
-
-/**
- * Décore une promesse et renvoie son état
- */
-export function usePromiseFn (fn) {
-  const [state, setState] = useState(null)
-  const resetState = useCallback(() => {
-    setState(null)
-  }, [])
-
-  const wrappedFn = useCallback(
-    async (...args) => {
-      setState(PROMISE_PENDING)
-      try {
-        await fn(...args)
-        setState(PROMISE_DONE)
-      } catch (e) {
-        setState(PROMISE_ERROR)
-        throw e
-      }
-    },
-    [fn]
-  )
-
-  return [state, wrappedFn, resetState]
 }
 
 /**

@@ -4,7 +4,7 @@ import { useMemo } from 'preact/compat'
 import { useAutofocus } from '@helpers/hooks.js'
 
 /**
- * Représente un champs, dans le contexte du formulaire
+ * Représente un champ, dans le contexte du formulaire
  *
  * @param {string} type
  * @param {string} name

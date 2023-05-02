@@ -1,20 +1,14 @@
-export const HTTP_UNPROCESSABLE_ENTITY = 422
-export const HTTP_NOT_FOUND = 404
-export const HTTP_FORBIDDEN = 403
-export const HTTP_OK = 200
-export const HTTP_NO_CONTENT = 204
-
 /**
  * @param {RequestInfo} url
  * @param params
  * @return {Promise<Object>}
  */
 export async function jsonFetch (url, params = {}) {
-  // Si on reçoit un FormData on le convertit en objet
+  // Si on reçoit un FormData, on le convertit en objet
   if (params.body instanceof FormData) {
     params.body = Object.fromEntries(params.body)
   }
-  // Si on reçoit un objet on le convertit en chaine JSON
+  // Si on reçoit un objet, on le convertit en chaine JSON
   if (params.body && typeof params.body === 'object') {
     params.body = JSON.stringify(params.body)
   }
@@ -84,7 +78,7 @@ export class ApiError {
     this.status = status
   }
 
-  // Récupère la liste de violation pour un champs donnée
+  // Récupère la liste de violation pour un champ donnée
   violationsFor (field) {
     return this.data.violations.filter(v => v.propertyPath === field).map(v => v.message)
   }
@@ -93,7 +87,7 @@ export class ApiError {
     return `${this.data.title} ${this.data.detail || ''}`
   }
 
-  // Renvoie les violations indexé par propertyPath
+  // Renvoie les violations indexées par propertyPath
   get violations () {
     if (!this.data.violations) {
       return {
