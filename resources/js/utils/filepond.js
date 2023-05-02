@@ -15,14 +15,16 @@ FilePond.registerPlugin(FilePondPluginFileValidateSize)
 FilePond.registerPlugin(FilePondPluginFileValidateType)
 FilePond.registerPlugin(FilePondPluginImagePreview)
 
-FilePond.create(inputElement).setOptions({
-  ...fr,
-  acceptedFileTypes: ['image/*'],
-  maxFileSize: inputElement.dataset.maxFileSize,
-  server: {
-    process: './uploads/process',
-    headers: {
-      'X-CSRF-TOKEN': csrfToken,
-    },
-  }
-});
+if (inputElement) {
+  FilePond.create(inputElement).setOptions({
+    ...fr,
+    acceptedFileTypes: ['image/*'],
+    maxFileSize: inputElement.dataset.maxFileSize,
+    server: {
+      process: './uploads/process',
+      headers: {
+        'X-CSRF-TOKEN': csrfToken,
+      },
+    }
+  })
+}
