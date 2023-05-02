@@ -117,7 +117,6 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
 
         foreach ($this->replies()->withCount('allChildReplies')->get() as $reply) {
             /** @var Reply $reply */
-            // @phpstan-ignore-next-line
             $count += $reply->all_child_replies_count;
         }
 
