@@ -4,12 +4,12 @@ import AlpineFloatingUI from '@awcodes/alpine-floating-ui'
 
 import NotificationsAlpinePlugin from '../../vendor/filament/notifications/dist/module.esm'
 import internationalNumber from './plugins/internationalNumber'
-import { registerHeader } from './header'
+import { registerHeader } from '@helpers/header'
+import '@helpers/helpers'
+import '@helpers/scrollspy'
 import './elements'
-import './helpers'
-import './editor'
-import './scrollspy'
-import './helpers/string'
+import './utils/editor'
+import './utils/filepond'
 
 registerHeader()
 
