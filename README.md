@@ -21,10 +21,10 @@
 Ce dépôt contient le code source du site de [Laravel.cm](https://laravel.cm). Laravel Cameroun est la plus grande communauté de 
 développeurs PHP & Laravel résidant au Cameroun.
 
-Site web : https://laravel.cm <br />
-Facebook: https://www.facebook.com/laravelcm <br />
-Twitter: https://twitter.com/laravelcm <br />
-Groupe Slack: https://laravelcm.slack.com <br />
+## Rejoindre la communauté
+Vous pouvez rejoindre la communauté ou nous suivre via nos différentes plateformes
+
+[Site Officiel](https://laravel.cm) - [Facebook](https://www.facebook.com/laravelcm) - [Twitter](https://twitter.com/laravelcm) - [Rejoindre Slack](https://laravel.cm/slack) - [Rejoindre Discord](https://laravel.cm/discord)
 
 ## Sponsors
 Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainage. Si vous souhaitez devenir sponsor, veuillez visiter <a href="https://github.com/sponsors/mckenziearts">la page Laravel.cm Github de Sponsoring</a>.
