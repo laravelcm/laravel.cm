@@ -1,4 +1,6 @@
 /*!
+<<<<<<< HEAD
+=======
  * FilePond 4.30.4
  * Licensed under MIT, https://opensource.org/licenses/MIT/
  * Please visit https://pqina.nl/filepond/ for details.
@@ -23,6 +25,7 @@
  */
 
 /*!
+>>>>>>> b685f538ad416e9838d8def7efcb09ec481d8d02
  * Fuse.js v3.4.6 - Lightweight fuzzy-search (http://fusejs.io)
  * 
  * Copyright (c) 2012-2017 Kirollos Risk (http://kiro.me)
