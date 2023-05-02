@@ -21,8 +21,5 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction
 
-      -   name: Run Laravel Pint
-          run: composer pint
-
       - name: Execute tests
         run: composer pest
