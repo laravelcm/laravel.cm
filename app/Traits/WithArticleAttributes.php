@@ -27,7 +27,7 @@ trait WithArticleAttributes
 
     public int $reading_time = 1;
 
-    public mixed $file;
+    public $file;
 
     /**
      * @var array|string[]
