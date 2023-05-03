@@ -1,9 +1,12 @@
 import hljs from 'highlight.js'
 import Choices from 'choices.js'
+import { capitalize } from 'lodash'
 
 window.choices = (element) => {
   return new Choices(element, { maxItemCount: 3, removeItemButton: true })
 }
+
+window.capitalize = capitalize
 
 window.highlightCode = (element) => {
   element.querySelectorAll('pre code').forEach((block) => {

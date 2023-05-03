@@ -25,7 +25,7 @@
                                 <x-user.status />
                             @endif
                         </h1>
-                        <p class="text-sm font-medium text-skin-base font-normal">
+                        <p class="text-sm text-skin-base font-normal">
                             {{ __('Inscrit') }} <time-ago time="{{ $user->created_at->getTimestamp() }}"/>
                         </p>
                     </div>
@@ -38,14 +38,6 @@
                                 {{ __('Éditer') }}
                             </x-default-button>
                         @endif
-                        @if (! $user->isLoggedInUser())
-                            <x-default-button type="button">
-                                <svg class="-ml-1 mr-2 h-5 w-5 text-skin-muted" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
-                                </svg>
-                                <span>{{ __('Suivre') }}</span>
-                            </x-default-button>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -53,7 +45,7 @@
                 <h1 class="text-2xl font-bold text-skin-inverted truncate font-sans">
                     {{ $user->name }}
                 </h1>
-                <p class="text-sm font-medium text-skin-base font-normal">
+                <p class="text-sm text-skin-base font-normal">
                     {{ __('Inscrit') }} <time-ago time="{{ $user->created_at->getTimestamp() }}"/>
                 </p>
             </div>
@@ -169,7 +161,9 @@
                                     <svg class="h-10 w-10 text-skin-primary mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
                                     </svg>
-                                    <p class="mt-1 text-skin-base text-sm leading-5">{{ __(':name ne possède aucun badge', ['name' => $user->name]) }}</p>
+                                    <p class="mt-1 text-skin-base text-sm leading-5">
+                                        {{ __(':name ne possède aucun badge', ['name' => $user->name]) }}
+                                    </p>
                                     <x-button link="#" class="mt-4">
                                         {{ __('Voir tous les badges') }}
                                     </x-button>
