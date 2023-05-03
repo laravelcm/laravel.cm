@@ -31,9 +31,6 @@ module.exports = {
     'lg:max-w-2xl',
     'lg:max-w-3xl',
     'lg:max-w-4xl',
-    {
-      pattern: /^media-library/
-    }
   ],
   theme: {
     extend: {
