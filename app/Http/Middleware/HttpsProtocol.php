@@ -9,10 +9,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class HttpsProtocol
 {
-    public function handle(Request $request, Closure $next): RedirectResponse | Response | JsonResponse
+    public function handle(Request $request, Closure $next): RedirectResponse | Response | JsonResponse | BinaryFileResponse
     {
         if (app()->environment('production') && ! $request->isSecure()) {
             return redirect()->secure($request->getRequestUri());
