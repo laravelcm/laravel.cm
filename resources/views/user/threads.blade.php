@@ -11,7 +11,7 @@
         <x-user.breadcrumb section="Sujets" />
 
         <h2 class="text-xl font-bold leading-7 text-skin-inverted sm:text-2xl sm:truncate font-heading">
-            Sujets
+            {{ __('Sujets') }}
         </h2>
     </div>
 
@@ -20,14 +20,14 @@
             <x-user.sidebar :user="$user" />
         </div>
         <main class="lg:col-span-9">
-            <x-user.page-heading title="Vos sujets" :url="route('forum.new')" button="Nouveau sujet" />
+            <x-user.page-heading title="Vos sujets" :url="route('forum.new')" :button="__('Nouveau sujet')" />
 
             <div class="mt-5">
                 @forelse($threads as $thread)
                     <x-forum.thread-summary :thread="$thread" />
                 @empty
                     <p class="text-skin-base text-base">
-                        Vous n'avez pas encore créé de sujets.
+                        {{ __('Vous n\'avez pas encore créé de sujets.') }}
                     </p>
                 @endforelse
 
