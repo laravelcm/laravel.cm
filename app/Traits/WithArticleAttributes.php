@@ -27,6 +27,7 @@ trait WithArticleAttributes
 
     public int $reading_time = 1;
 
+    //@phpstan-ignore-next-line
     public $file;
 
     /**

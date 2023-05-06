@@ -9,7 +9,6 @@ use App\Enums\TransactionType;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 use NotchPay\NotchPay;
 
