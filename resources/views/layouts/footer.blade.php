@@ -17,16 +17,11 @@
                         {{ __('Ressources') }}
                     </h3>
                     <ul class="mt-4 space-y-4">
-
-                        <x-footer-link title="A propos" :url="route('about')" />
-
-                        <x-footer-link title="Podcasts" url="#" soon />
-
-                        <x-footer-link title="Jobs" url="#" soon />
-
-                        <x-footer-link title="Sponsors" url="#" soon />
-
-                        <x-footer-link title="Branding" url="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md" />
+                        <x-footer-link :title="__('A propos')" :url="route('about')" />
+                        <x-footer-link :title="__('Podcasts')" url="#" soon />
+                        <x-footer-link :title="__('Jobs')" url="#" soon />
+                        <x-footer-link :title="__('Sponsors')" :url="route('sponsors')" />
+                        <x-footer-link :title="__('Branding')" url="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md" />
 
                     </ul>
                 </div>
@@ -35,15 +30,10 @@
                         {{ __('Légal') }}
                     </h3>
                     <ul class="mt-4 space-y-4">
-
-                        <x-footer-link title="Conditions d’utilisation" :url="route('terms')" />
-
-                        <x-footer-link title="Confidentialité" :url="route('privacy')" />
-
-                        <x-footer-link title="Code de conduite" :url="route('rules')" />
-
-                        <x-footer-link title="FAQ" :url="route('faq')" />
-
+                        <x-footer-link :title="__('Conditions d’utilisation')" :url="route('terms')" />
+                        <x-footer-link :title="__('Confidentialité')" :url="route('privacy')" />
+                        <x-footer-link :title="__('Code de conduite')" :url="route('rules')" />
+                        <x-footer-link :title="__('FAQ')" :url="route('faq')" />
                     </ul>
                 </div>
             </div>
@@ -105,7 +95,7 @@
         </div>
         <div class="border-t border-skin-base py-6 sm:flex sm:items-center sm:justify-between lg:py-8">
             <p class="text-base text-center leading-6 text-skin-muted lg:text-left">
-                © 2018 - {{ date('Y') }} Laravel Cameroun. Tous droits réservés.
+                {{ __('© 2018 - :date Laravel Cameroun. Tous droits réservés.', ['date' => date('Y')]) }}
             </p>
             <div class="mt-4 flex justify-center space-x-6 sm:mt-0 lg:justify-start">
                 <a href="{{ route('twitter') }}" class="text-skin-muted hover:text-skin-base">
@@ -132,7 +122,6 @@
                     <span class="sr-only">YouTube</span>
                     <x-icon.youtube class="h-6 w-6" />
                 </a>
-
             </div>
         </div>
     </div>

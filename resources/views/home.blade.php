@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="mt-6 text-center lg:mt-10">
-                    <a class="text-sm leading-5 text-flag-green hover:text-green-600 hover:underline" href="mailto:arthur@laravel.cm">
+                    <a class="text-sm leading-5 text-flag-green hover:text-green-600 hover:underline" href="{{ route('sponsors') }}">
                         {{ __('Votre logo ici ?') }}
                     </a>
                 </div>
@@ -121,7 +121,7 @@
                                     </p>
                                 </a>
                                 <div class="mt-3">
-                                    <a href="{{ route('forum.show', $thread) }}" class="text-base font-normal font-medium text-green-600 hover:text-green-500 hover:underline">
+                                    <a href="{{ route('forum.show', $thread) }}" class="text-base font-medium text-green-600 hover:text-green-500 hover:underline">
                                         {{ __('Afficher la question') }}
                                     </a>
                                 </div>
@@ -196,38 +196,50 @@
         </div>
         <div class="max-w-4xl px-4 mx-auto lg:max-w-7xl xl:grid xl:grid-cols-2 xl:grid-flow-col-dense xl:gap-x-8">
             <div class="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
-                <h2 class="text-sm font-semibold tracking-wide text-green-300 uppercase font-heading">{{ __('A propos') }}</h2>
-                <p class="mt-3 text-3xl font-extrabold text-white">{{ __('Nous construisons une communauté Open Source d\'apprenants et d\'enseignants') }}</p>
+                <h2 class="text-sm font-semibold tracking-wide text-green-300 uppercase font-heading">
+                    {{ __('A propos') }}
+                </h2>
+                <p class="mt-3 text-3xl font-extrabold text-white">
+                    {{ __('Nous construisons une communauté Open Source d\'apprenants et d\'enseignants') }}
+                </p>
                 <p class="mt-5 text-lg text-gray-400">
-                    <span class="text-white"><span class="italic text-skin-primary">"</span>{{ __('Tout le monde enseigne, tout le monde apprend') }}<span class="italic text-skin-primary">"</span></span>.
+                    <span class="text-white">
+                        <span class="italic text-skin-primary">"</span>
+                        {{ __('Tout le monde enseigne, tout le monde apprend') }}
+                        <span class="italic text-skin-primary">"</span>
+                    </span>.
                     {{ __('Tel est l\'esprit qui est derrière la communauté. Une communauté qui se veut grandissante et qui donne la possibilité à tout le monde de partager ses connaissances et d\'apprendre.') }}
                 </p>
                 <div class="grid grid-cols-1 mt-12 gap-y-12 gap-x-6 sm:grid-cols-2">
                     <p>
                         <span class="block text-2xl text-white font-heading">600+</span>
                         <span class="block mt-1 text-base text-gray-400">
-                            <span class="font-medium text-white">{{ __('Membres') }}</span> {{ __('qui ont rejoint les différents groupes de la communauté') }}
+                            <span class="font-medium text-white">{{ __('Membres') }}</span>
+                            {{ __('qui ont rejoint les différents groupes de la communauté') }}
                         </span>
                     </p>
 
                     <p>
                         <span class="block text-2xl text-white font-heading">50K+</span>
                         <span class="block mt-1 text-base text-gray-400">
-                            <span class="font-medium text-white">{{ __('Développeurs PHP & Laravel') }}</span> {{ __('dans l’ensemble du territoire national.') }}
+                            <span class="font-medium text-white">{{ __('Développeurs PHP & Laravel') }}</span>
+                            {{ __('dans l’ensemble du territoire national.') }}
                         </span>
                     </p>
 
                     <p>
                         <span class="block text-2xl text-white font-heading">9%</span>
                         <span class="block mt-1 text-base text-gray-400">
-                            <span class="font-medium text-white">{{ __('Taux de participation aux événements') }}</span> {{ __('car la communauté est encore très jeune.') }}
+                            <span class="font-medium text-white">{{ __('Taux de participation aux événements') }}</span>
+                            {{ __('car la communauté est encore très jeune.') }}
                         </span>
                     </p>
 
                     <p>
                         <span class="block text-2xl text-white font-heading">10K+</span>
                         <span class="block mt-1 text-base text-gray-400">
-                            <span class="font-medium text-white">stars</span> {{ __('sur les projets réalisés par les développeurs Camerounais sur Github.') }}
+                            <span class="font-medium text-white">stars</span>
+                            {{ __('sur les projets réalisés par les développeurs Camerounais sur Github.') }}
                         </span>
                     </p>
                 </div>
