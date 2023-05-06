@@ -39,7 +39,7 @@ class ApprovedArticle extends ModalComponent
 
         Cache::forget('post-'.$this->article->id); // @phpstan-ignore-line
 
-        $this->article->author->notify(new SendApprovedArticle($this->article)); // @phpstan-ignore-line
+        $this->article->user->notify(new SendApprovedArticle($this->article)); // @phpstan-ignore-line
 
         session()->flash('status', __('L\'article a été approuvé et le mail a été envoyé à l\'auteur pour le notifier.'));
 

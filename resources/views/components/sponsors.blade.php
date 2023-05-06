@@ -1,5 +1,7 @@
 <div {{ $attributes->merge(['class' => 'text-right']) }}>
-    <h4 class="text-skin-inverted text-sm leading-5 font-semibold uppercase tracking-wide font-sans">Sponsors</h4>
+    <h4 class="text-skin-inverted text-sm leading-5 font-semibold uppercase tracking-wide font-sans">
+        {{ __('Sponsors') }}
+    </h4>
     <div class="mt-5 space-y-6">
         <a href="https://laravelshopper.io" class="flex items-center justify-end">
             <img class="h-10 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84104126499f23c909386bddfb84044c",
+    "content-hash": "aa7031ee8b1679b1ab429e47f3316a77",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -5412,6 +5412,154 @@
                 "source": "https://github.com/nnjeim/world/tree/1.1.24"
             },
             "time": "2023-04-07T10:53:13+00:00"
+        },
+        {
+            "name": "notchpay/laravel-toolkit",
+            "version": "1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/notchpay/laravel-toolkit.git",
+                "reference": "cf75d64f59869059e7045cc910e5ba8435e8ac8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/notchpay/laravel-toolkit/zipball/cf75d64f59869059e7045cc910e5ba8435e8ac8a",
+                "reference": "cf75d64f59869059e7045cc910e5ba8435e8ac8a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.0|^10.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.13.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Notchpay\\Toolkit\\ToolkitServiceProvider"
+                    ],
+                    "aliases": {
+                        "Toolkit": "Notchpay\\Toolkit\\Facades\\Toolkit",
+                        "Currency": "Notchpay\\Toolkit\\Facades\\Currency"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Notchpay\\Toolkit\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "chapdel",
+                    "email": "chapdel.kamga2@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is my package laravel-toolkit",
+            "homepage": "https://github.com/notchpay/laravel-toolkit",
+            "keywords": [
+                "Exchange Rates API",
+                "currency",
+                "exchange rate",
+                "finance",
+                "laravel",
+                "money",
+                "notchpay",
+                "notchpay-toolkit"
+            ],
+            "support": {
+                "issues": "https://github.com/notchpay/laravel-toolkit/issues",
+                "source": "https://github.com/notchpay/laravel-toolkit/tree/1.5"
+            },
+            "time": "2023-02-16T19:52:27+00:00"
+        },
+        {
+            "name": "notchpay/php-sdk",
+            "version": "2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/notchpay/notchpay-php.git",
+                "reference": "7fbb6a3055f1a4533bd218ea682e42dab03639c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/notchpay/notchpay-php/zipball/7fbb6a3055f1a4533bd218ea682e42dab03639c9",
+                "reference": "7fbb6a3055f1a4533bd218ea682e42dab03639c9",
+                "shasum": ""
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.2",
+                "scrutinizer/ocular": "^1.1",
+                "squizlabs/php_codesniffer": "^2.3",
+                "vlucas/phpdotenv": "^2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NotchPay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chapdel KAMGA",
+                    "email": "drop@chapdel.me",
+                    "homepage": "https://github.com/chapdel",
+                    "role": "Owner"
+                },
+                {
+                    "name": "Yabacon",
+                    "email": "yabacon.valley@gmail.com",
+                    "homepage": "https://github.com/yabacon",
+                    "role": "Base credit"
+                }
+            ],
+            "description": "Notch Pay PHP Wrapper.",
+            "homepage": "https://github.com/notchpay/notchpay-php",
+            "keywords": [
+                "Orange Money",
+                "accept money",
+                "api",
+                "curl",
+                "customer",
+                "disable",
+                "enable",
+                "gateway",
+                "mtn momo",
+                "notchpay",
+                "payment",
+                "payment processing",
+                "transaction",
+                "verify"
+            ],
+            "support": {
+                "issues": "https://github.com/notchpay/notchpay-php/issues",
+                "source": "https://github.com/notchpay/notchpay-php/tree/2.2"
+            },
+            "time": "2023-03-15T10:24:33+00:00"
         },
         {
             "name": "nunomaduro/termwind",

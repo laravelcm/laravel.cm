@@ -167,21 +167,21 @@
 
                         @if($user->twitter())
                             <a href="https://twitter.com/{{ $user->twitter() }}" class="text-skin-muted hover:text-skin-base">
-                                <span class="sr-only">Twitter</span>
+                                <span class="sr-only">{{ __('Twitter') }}</span>
                                 <x-icon.twitter class="h-6 w-6"/>
                             </a>
                         @endif
 
                         @if($user->linkedin())
                             <a href="https://linkedin.com/in/{{ $user->linkedin() }}" class="text-skin-muted hover:text-skin-base">
-                                <span class="sr-only">LinkedIn</span>
+                                <span class="sr-only">{{ __('LinkedIn') }}</span>
                                 <x-icon.linkedin class="h-6 w-6"/>
                             </a>
                         @endif
 
                         @if($user->githubUsername())
                             <a href="https://github.com/{{ $user->githubUsername() }}" class="text-skin-muted hover:text-skin-base">
-                                <span class="sr-only">GitHub</span>
+                                <span class="sr-only">{{ __('GitHub') }}</span>
                                 <x-icon.github class="h-6 w-6"/>
                             </a>
                         @endif
@@ -191,22 +191,24 @@
             </div>
 
             <div class="py-6">
-                <p class="text-base text-skin-base font-normal">{{ __('Vous aimez cet article ? Faite le savoir en partageant') }}</p>
+                <p class="text-base text-skin-base font-normal">
+                    {{ __('Vous aimez cet article ? Faite le savoir en partageant') }}
+                </p>
                 <div class="mt-4 space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-4">
                     <a href="https://twitter.com/share?text={{ urlencode('"'.$article->title.'" par '. ($article->user->twitter() ? '@'.$article->user->twitter() : $article->user->name) . ' #caparledev - ') }}&url={{ urlencode(route('articles.show', $article)) }}"
                        class="inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <x-icon.twitter class="h-5 w-5 mr-1.5" />
-                        Twitter
+                        {{ __('Twitter') }}
                     </a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('articles.show', $article)) }}&quote={{ urlencode('"'.$article->title.'" par '.$article->user->name.' - ') }}"
                        class="inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <x-icon.facebook class="h-5 w-5 mr-1.5" />
-                        Facebook
+                        {{ __('Facebook') }}
                     </a>
                     <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(route('articles.show', $article)) }}&title={{ urlencode('"'.$article->title.'" par '.$article->user->name.' - ') }}"
                        class="inline-flex items-center py-2 px-4 border border-skin-base rounded-md shadow-sm bg-skin-button text-sm leading-5 font-normal text-skin-base hover:bg-skin-button-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500">
                         <x-icon.linkedin class="h-5 w-5 mr-1.5" />
-                        LinkedIn
+                        {{ __('LinkedIn') }}
                     </a>
                 </div>
             </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NotchPayCallBackController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\SlackController;
@@ -117,3 +118,4 @@ Route::redirectMap([
 Route::feeds();
 
 Route::get('sponsors', [SponsoringController::class, 'sponsors'])->name('sponsors');
+Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');

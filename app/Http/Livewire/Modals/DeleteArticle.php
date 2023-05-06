@@ -32,7 +32,7 @@ class DeleteArticle extends ModalComponent
 
         $this->article->delete(); // @phpstan-ignore-line
 
-        session()->flash('status', 'La discussion a été supprimé avec tous ses commentaires.');
+        session()->flash('status', __('La discussion a été supprimé avec tous ses commentaires.'));
 
         $this->redirectRoute('articles');
     }
