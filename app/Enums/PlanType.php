@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-use BenSampo\Enum\Enum;
-
-final class PlanType extends Enum
+enum PlanType: string
 {
-    public const DEVELOPER = 'developer';
-
-    public const ENTERPRISE = 'enterprise';
+    case DEVELOPER = 'developer';
+    case ENTERPRISE = 'enterprise';
 }

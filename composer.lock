@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84104126499f23c909386bddfb84044c",
+    "content-hash": "901a82a57b4d1784509155f0d58ad51e",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -5412,6 +5412,74 @@
                 "source": "https://github.com/nnjeim/world/tree/1.1.24"
             },
             "time": "2023-04-07T10:53:13+00:00"
+        },
+        {
+            "name": "notchpay/php-sdk",
+            "version": "2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/notchpay/notchpay-php.git",
+                "reference": "7fbb6a3055f1a4533bd218ea682e42dab03639c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/notchpay/notchpay-php/zipball/7fbb6a3055f1a4533bd218ea682e42dab03639c9",
+                "reference": "7fbb6a3055f1a4533bd218ea682e42dab03639c9",
+                "shasum": ""
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.2",
+                "scrutinizer/ocular": "^1.1",
+                "squizlabs/php_codesniffer": "^2.3",
+                "vlucas/phpdotenv": "^2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NotchPay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chapdel KAMGA",
+                    "email": "drop@chapdel.me",
+                    "homepage": "https://github.com/chapdel",
+                    "role": "Owner"
+                },
+                {
+                    "name": "Yabacon",
+                    "email": "yabacon.valley@gmail.com",
+                    "homepage": "https://github.com/yabacon",
+                    "role": "Base credit"
+                }
+            ],
+            "description": "Notch Pay PHP Wrapper.",
+            "homepage": "https://github.com/notchpay/notchpay-php",
+            "keywords": [
+                "Orange Money",
+                "accept money",
+                "api",
+                "curl",
+                "customer",
+                "disable",
+                "enable",
+                "gateway",
+                "mtn momo",
+                "notchpay",
+                "payment",
+                "payment processing",
+                "transaction",
+                "verify"
+            ],
+            "support": {
+                "issues": "https://github.com/notchpay/notchpay-php/issues",
+                "source": "https://github.com/notchpay/notchpay-php/tree/2.2"
+            },
+            "time": "2023-03-15T10:24:33+00:00"
         },
         {
             "name": "nunomaduro/termwind",
