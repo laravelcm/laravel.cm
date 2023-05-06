@@ -49,7 +49,7 @@ class AnonymousSponsors extends ModalComponent
                 'amount' => $this->amount,
                 'email' => $this->email,
                 'name' => $this->name,
-                'currency' => config('notchpay-toolkit.currency.default'),
+                'currency' => 'XAF',
                 'reference' => $adminUser->id . '-' . $adminUser->username() . '-' . uniqid(),
                 'callback' => route('notchpay-callback'),
             ]);

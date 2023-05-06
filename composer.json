@@ -31,7 +31,6 @@
     "livewire/livewire": "^2.11",
     "lorisleiva/laravel-actions": "^2.5",
     "nnjeim/world": "^1.1",
-    "notchpay/laravel-toolkit": "^1.5",
     "notchpay/php-sdk": "^2.2",
     "qcod/laravel-gamify": "^1.0.6",
     "ramsey/uuid": "^4.2",

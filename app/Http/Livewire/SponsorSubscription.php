@@ -45,7 +45,7 @@ class SponsorSubscription extends Component
                 'amount' => $this->amount,
                 'email' => Auth::user()?->email,
                 'name' => Auth::user()?->name,
-                'currency' => config('notchpay-toolkit.currency.default'),
+                'currency' => 'XAF',
                 'reference' => Auth::id() . '-' . Auth::user()?->username() . '-' . uniqid(),
                 'callback' => route('notchpay-callback'),
             ]);
