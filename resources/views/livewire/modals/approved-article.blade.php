@@ -6,7 +6,7 @@
             </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 class="text-lg leading-6 font-medium text-skin-inverted font-sans" id="modal-headline">
-                    {{ __('Approver cet article') }}
+                    {{ __('Approuver cet article') }}
                 </h3>
                 <div class="mt-2">
                     <p class="text-sm leading-5 text-skin-base font-normal">
@@ -21,7 +21,7 @@
         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
             <x-button wire:click="approved" type="button">
                 <x-loader class="text-white" wire:loading wire:target="approved" />
-                {{ __('Approver') }}
+                {{ __('Approuver') }}
             </x-button>
         </span>
         <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">

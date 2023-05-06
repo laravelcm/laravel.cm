@@ -242,6 +242,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
         return $this->hasMany(Subscribe::class);
     }
 
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
     public function deleteThreads(): void
     {
         // We need to explicitly iterate over the threads and delete them
@@ -255,8 +260,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
     {
         // We need to explicitly iterate over the replies and delete them
         // separately because all related models need to be deleted.
-        // @phpstan-ignore-next-line
-        foreach ($this->replyAble->get() as $reply) {
+        foreach ($this->replyAble->all() as $reply) {
             $reply->delete();
         }
     }
