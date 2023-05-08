@@ -19,12 +19,14 @@ class AnonymousSponsors extends ModalComponent
     public ?string $name = null;
     public ?string $email = null;
     public string $type = 'company';
+    public string $currency = 'XAF';
     public ?string $url = null;
 
-    public function mount(string $amount, string $option): void
+    public function mount(string $amount, string $option, string $currency): void
     {
         $this->amount = $amount;
         $this->option = $option;
+        $this->currency = $currency;
     }
 
     public function submit(): void
@@ -33,9 +35,9 @@ class AnonymousSponsors extends ModalComponent
             'name' => 'required',
             'email' => 'required|email',
         ], [
-            'name.required' => 'Votre nom est requis',
-            'email.required' => 'Une adresse e-mail est requise',
-            'email.email' => 'Veuillez renseigner une adresse e-mail valide',
+            'name.required' => __('Votre nom est requis'),
+            'email.required' => __('Une adresse e-mail est requise'),
+            'email.email' => __('Veuillez renseigner une adresse e-mail valide'),
         ]);
 
         $adminUser = User::findByEmailAddress('support@laravel.cm');
@@ -48,9 +50,10 @@ class AnonymousSponsors extends ModalComponent
                 'amount' => $this->amount,
                 'email' => $this->email,
                 'name' => $this->name,
-                'currency' => 'XAF',
+                'currency' => $this->currency,
                 'reference' => $adminUser->id . '-' . $adminUser->username() . '-' . uniqid(),
                 'callback' => route('notchpay-callback'),
+                'description' => __('Soutien de la communauté Laravel & PHP Cameroun.'),
             ]);
 
             Transaction::query()->create([
