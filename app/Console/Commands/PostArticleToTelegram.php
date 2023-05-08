@@ -17,10 +17,12 @@ class PostArticleToTelegram extends Command
 
     public function handle(AnonymousNotifiable $notifiable): void
     {
-        if ($article = Article::nexForSharingToTelegram()) {
-            $notifiable->notify(new PostArticleToTelegramNotification($article));
+        if (app()->environment('production')) {
+            if ($article = Article::nexForSharingToTelegram()) {
+                $notifiable->notify(new PostArticleToTelegramNotification($article));
 
-            $article->markAsPublish();
+                $article->markAsPublish();
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ class HomeController extends Controller
         });
 
         $latestArticles = Cache::remember('latestArticles', now()->addHour(), function () {
-            return Article::with(['tags', 'user'])
+            return Article::with(['tags', 'user', 'user.transactions'])
                 ->published()
                 ->orderByDesc('sponsored_at')
                 ->orderByDesc('published_at')
@@ -33,7 +33,7 @@ class HomeController extends Controller
         });
 
         $latestThreads = Cache::remember('latestThreads', now()->addHour(), function () {
-            return Thread::with('user')->whereNull('solution_reply_id')
+            return Thread::with(['user', 'user.transactions'])->whereNull('solution_reply_id')
                 ->whereBetween('threads.created_at', [now()->subMonths(3), now()])
                 ->inRandomOrder()
                 ->limit(4)
@@ -41,7 +41,7 @@ class HomeController extends Controller
         });
 
         $latestDiscussions = Cache::remember('latestDiscussions', now()->addHour(), function () {
-            return Discussion::with('user')
+            return Discussion::with(['user', 'user.transactions'])
                 ->recent()
                 ->orderByViews()
                 ->limit(3)

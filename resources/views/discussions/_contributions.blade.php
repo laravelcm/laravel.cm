@@ -9,7 +9,7 @@
                         <div class="flex items-center space-x-4">
                             <a href="{{ route('profile', $contributor->username) }}" class="flex items-center flex-1 min-w-0">
                                 <div class="shrink-0">
-                                    <img class="h-8 w-8 object-cover rounded-full" src="{{ $contributor->profile_photo_url }}" alt="{{ $contributor->name }}">
+                                    <x-user.avatar :user="$contributor" class="h-8 w-8" />
                                 </div>
                                 <div class="ml-3.5 font-sans">
                                     <p class="text-sm font-medium text-skin-inverted truncate">

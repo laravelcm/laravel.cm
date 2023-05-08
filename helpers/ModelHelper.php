@@ -744,6 +744,7 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read \App\Models\User $user
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction complete()
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction query()
@@ -804,6 +805,7 @@ namespace App\Models{
      * @property-read \App\Models\Enterprise|null $enterprise
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \LaravelFeature\Model\Feature> $features
      * @property-read int|null $features_count
+     * @property-read bool $is_sponsor
      * @property-read string|null $profile_photo_url
      * @property-read string $roles_label
      * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media

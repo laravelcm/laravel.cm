@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\TransactionStatus;
 use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
@@ -104,6 +105,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
     protected $appends = [
         'profile_photo_url',
         'roles_label',
+        'is_sponsor',
+    ];
+
+    protected $withCount = [
+        'transactions'
     ];
 
     public function hasProvider(string $provider): bool
@@ -138,6 +144,19 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
         }
 
         return 'N/A';
+    }
+
+    public function getIsSponsorAttribute(): bool
+    {
+        if ($this->transactions_count > 0) {
+            $transaction = $this->transactions()
+                ->where('status', TransactionStatus::COMPLETE->value)
+                ->first();
+
+            return (bool) $transaction;
+        }
+
+        return false;
     }
 
     public function isAdmin(): bool

@@ -27,13 +27,15 @@
             </x-sticky-content>
         </div>
         <div class="lg:col-span-7 lg:pl-8 lg:border-l lg:border-skin-base">
-            <h1 class="text-xl text-skin-inverted font-medium tracking-tight sm:text-3xl font-heading">{{ $thread->subject() }}</h1>
+            <h1 class="text-xl text-skin-inverted font-medium tracking-tight sm:text-3xl font-heading">
+                {{ $thread->subject() }}
+            </h1>
 
             <div class="border-b pt-2 pb-4 border-skin-base">
                 <div class="sm:inline-flex sm:items-center text-sm text-skin-inverted-muted">
                     <div class="flex items-center">
                         <a href="{{ route('profile', $thread->user->username) }}" class="inline-flex items-center hover:underline">
-                            <img class="inline-block rounded-full h-5 w-5 mr-1" src="{{ $thread->user->profile_photo_url }}" alt="Avatar de {{ $thread->user->username }}">
+                            <x-user.avatar :user="$thread->user" class="h-5 w-5" span="-right-1 h-3.5 w-3.5 -top-1 ring-1" container="mr-1" />
                             <span class="font-sans">{{ '@' . $thread->user->username }}</span>
                         </a>
                         <x-user.points :author="$thread->user" />

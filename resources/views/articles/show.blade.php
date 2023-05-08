@@ -14,12 +14,14 @@
         <div class="hidden relative lg:block lg:col-span-2">
             <x-sticky-content class="divide-y divide-skin-base space-y-6">
                 <div>
-                    <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase font-heading">{{ __('A propos de l’auteur') }}</h4>
+                    <h4 class="text-xs text-skin-base font-medium leading-4 tracking-wide uppercase font-heading">
+                        {{ __('A propos de l’auteur') }}
+                    </h4>
                     <div class="mt-6 space-y-4">
                         <a href="{{ route('profile', $user->username) }}" class="shrink-0 block">
                             <div class="flex items-center">
-                                <div>
-                                    <img class="inline-block h-9 w-9 rounded-full" src="{{ $user->profile_photo_url }}" alt="{{ $user->username }}">
+                                <div class="shrink-0">
+                                    <x-user.avatar :user="$user" class="h-9 w-9" />
                                 </div>
                                 <div class="ml-3">
                                     <p class="text-sm font-medium text-skin-inverted">

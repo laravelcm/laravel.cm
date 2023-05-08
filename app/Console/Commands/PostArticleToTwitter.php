@@ -17,10 +17,12 @@ class PostArticleToTwitter extends Command
 
     public function handle(AnonymousNotifiable $notifiable): void
     {
-        if ($article = Article::nextForSharing()) {
-            $notifiable->notify(new PostArticleToTwitterNotification($article));
+        if (app()->environment('production')) {
+            if ($article = Article::nextForSharing()) {
+                $notifiable->notify(new PostArticleToTwitterNotification($article));
 
-            $article->markAsShared();
+                $article->markAsShared();
+            }
         }
     }
 }

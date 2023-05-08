@@ -4,7 +4,7 @@
     <div>
         <div class="flex space-x-3">
             <div class="flex-shrink-0">
-                <img class="h-10 w-10 object-cover rounded-full" src="{{ $article->user->profile_photo_url }}" alt="{{ $article->user->name }}">
+                <x-user.avatar :user="$article->user" class="h-10 w-10" />
             </div>
             <div class="min-w-0 flex-1">
                 <p class="text-sm font-medium text-skin-inverted">

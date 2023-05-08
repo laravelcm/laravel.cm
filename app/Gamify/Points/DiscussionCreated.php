@@ -20,6 +20,6 @@ class DiscussionCreated extends PointType
     public function payee(): User
     {
         // @phpstan-ignore-next-line
-        return $this->getSubject()->author;
+        return $this->getSubject()->user;
     }
 }
