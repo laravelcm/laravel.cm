@@ -31,6 +31,7 @@ class SponsorSubscription extends Component
             $this->emit('openModal', 'modals.anonymous-sponsors', [
                 'amount' => $this->amount,
                 'option' => $this->option,
+                'currency' => $this->currency,
             ]);
 
             return;
@@ -47,6 +48,7 @@ class SponsorSubscription extends Component
                 'currency' => $this->currency,
                 'reference' => Auth::id() . '-' . Auth::user()?->username() . '-' . uniqid(),
                 'callback' => route('notchpay-callback'),
+                'description' => __('Soutien de la communauté Laravel & PHP Cameroun.'),
             ]);
 
             Transaction::query()->create([
