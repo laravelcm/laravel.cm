@@ -10,5 +10,8 @@
         <a href="https://gdg.community.dev/gdg-douala" class="flex items-center justify-end py-2">
             <x-icon.gdg class="w-auto h-5 text-skin-inverted"/>
         </a>
+        <a href="https://notchpay.co" class="flex items-center justify-end py-2">
+            <x-icon.notchpay class="w-auto h-6 text-skin-inverted"/>
+        </a>
     </div>
 </div>

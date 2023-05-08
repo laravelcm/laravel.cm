@@ -55,6 +55,11 @@
                             <x-icon.gdg class="h-8 text-skin-inverted" />
                         </a>
                     </div>
+                    <div class="flex items-center justify-center px-4">
+                        <a href="https://notchpay.co" class="flex items-center">
+                            <x-icon.notchpay class="w-auto h-8 text-skin-inverted"/>
+                        </a>
+                    </div>
                 </div>
                 <div class="mt-6 text-center lg:mt-10">
                     <a class="text-sm leading-5 text-flag-green hover:text-green-600 hover:underline" href="{{ route('sponsors') }}">

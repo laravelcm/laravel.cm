@@ -85,6 +85,9 @@
                         <a href="https://gdg.community.dev/gdg-douala" target="_blank" class="flex items-center">
                             <x-icon.gdg class="h-6 text-skin-inverted" />
                         </a>
+                        <a href="https://notchpay.co" class="flex items-center">
+                            <x-icon.notchpay class="w-auto h-6 text-skin-inverted"/>
+                        </a>
                     </div>
                 </div>
             </div>
