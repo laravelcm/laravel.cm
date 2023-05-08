@@ -13,7 +13,7 @@
               ])
               wire:click="chooseOption('monthly')"
           >
-            {{ __('Mensuel') }}
+              {{ __('Mensuel') }}
           </x-default-button>
           <x-default-button
               type="button"
@@ -24,7 +24,7 @@
              ])
               wire:click="chooseOption('one-time')"
           >
-            {{ __('Une fois') }}
+              {{ __('Une fois') }}
           </x-default-button>
         </span>
     </div>
@@ -39,12 +39,32 @@
         @else
             <div class="hover:bg-skin-card-muted p-4">
                 <dt class="flex items-center">
-                    <x-input name="amount" type="number" id="amount" wire:model="amount" required inline-addon="XAF" />
+                    <div class="relative flex items-center">
+                        <input
+                            aria-label="{{ __('Montant') }}"
+                            name="amount"
+                            wire:model="amount"
+                            class="bg-skin-input shadow-sm focus:ring-flag-green focus:border-flag-green block w-full placeholder-skin-input focus:outline-none focus:placeholder-skin-input-focus text-skin-base sm:text-sm border-skin-input rounded-md pr-16"
+                            type="number"
+                            required
+                        />
+                        <div class="absolute inset-y-0 right-0 flex items-center">
+                            <label for="currency" class="sr-only">{{ __('Devise') }}</label>
+                            <select wire:model="currency" id="currency" name="currency" class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-skin-base focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm">
+                                <option value="XAF">XAF</option>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                            </select>
+                        </div>
+                    </div>
                     <x-default-button wire:click="subscribe" class="ml-4">
                         <x-loader wire:loading class="text-white" wire:target="subscribe" />
                         {{ __('Choisir') }}
                     </x-default-button>
                 </dt>
+                @error('amount')
+                    <p class="mt-2 text-sm text-red-500">{{ __('Votre montant est requis') }}</p>
+                @enderror
                 <dd class="mt-1.5 text-sm leading-5 text-skin-base">
                     {{ __("Choisissez un montant personnalisé. Aucune récompense n'est associée à ce parrainage.") }}
                 </dd>

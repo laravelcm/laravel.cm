@@ -8,6 +8,7 @@ use App\Events\ApiRegistered;
 use App\Events\ArticleWasSubmittedForApproval;
 use App\Events\CommentWasAdded;
 use App\Events\ReplyWasCreated;
+use App\Events\SponsoringPaymentInitialize;
 use App\Events\ThreadWasCreated;
 use App\Listeners\NotifyMentionedUsers;
 use App\Listeners\PostNewThreadNotification;
@@ -16,6 +17,7 @@ use App\Listeners\SendNewArticleNotification;
 use App\Listeners\SendNewCommentNotification;
 use App\Listeners\SendNewReplyNotification;
 use App\Listeners\SendNewThreadNotification;
+use App\Listeners\SendPaymentNotification;
 use App\Listeners\SendWelcomeCompanyNotification;
 use App\Listeners\SendWelcomeMailNotification;
 use Illuminate\Auth\Events\Registered;
@@ -53,6 +55,10 @@ final class EventServiceProvider extends ServiceProvider
         ApiRegistered::class => [
             SendCompanyEmailVerificationNotification::class,
             SendWelcomeCompanyNotification::class,
+        ],
+
+        SponsoringPaymentInitialize::class => [
+            SendPaymentNotification::class,
         ],
     ];
 }
