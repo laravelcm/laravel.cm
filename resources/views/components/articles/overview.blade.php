@@ -23,7 +23,9 @@
         </div>
         <div class="mt-2">
             <a href="{{ route('articles.show', $article) }}" class="group">
-                <h4 class="text-lg leading-7 font-semibold font-sans text-skin-inverted group-hover:text-skin-primary">{{ $article->title }}</h4>
+                <h4 class="text-lg leading-7 font-semibold font-sans text-skin-inverted group-hover:text-skin-primary">
+                    {{ $article->title }}
+                </h4>
             </a>
             <p class="mt-1 text-sm text-skin-base leading-5">
                 {!! $article->excerpt(130) !!}
@@ -32,7 +34,7 @@
                 <div class="shrink-0">
                     <a href="{{ route('profile', $article->user->username) }}">
                         <span class="sr-only">{{ $article->user->name }}</span>
-                        <img class="h-10 w-10 object-cover rounded-full" src="{{ $article->user->profile_photo_url }}" alt="{{ $article->user->name }}">
+                        <x-user.avatar :user="$article->user" class="h-10 w-10" />
                     </a>
                 </div>
                 <div class="ml-3">

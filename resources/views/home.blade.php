@@ -108,7 +108,7 @@
                             <div>
                                 <div class="flex items-center font-sans text-skin-base">
                                     <a href="{{ route('profile', $thread->user->username) }}" class="inline-flex items-center hover:underline">
-                                        <img class="inline-block rounded-full h-6 w-6 mr-1.5" src="{{ $thread->user->profile_photo_url }}" alt="Avatar de {{ $thread->user->username }}">
+                                        <x-user.avatar :user="$thread->user" class="h-6 w-6" container="mr-1.5" span="-right-1 -top-1 w-4 h-4 ring-1" />
                                         <span class="font-sans">{{ '@' . $thread->user->username }}</span>
                                     </a>
                                     <span class="inline-flex mx-1.5 space-x-1.5">
@@ -156,7 +156,7 @@
                         <div>
                             <div class="flex items-center font-sans text-sm text-skin-muted">
                                 <a class="shrink-0" href="/user/{{ $discussion->user->username }}">
-                                    <img class="w-6 h-6 rounded-full" src="{{ $discussion->user->profile_photo_url }}" alt="{{ $discussion->user->name }}">
+                                    <x-user.avatar :user="$discussion->user" class="h-6 w-6" container="mr-1.5" span="-right-1 -top-1 w-4 h-4 ring-1" />
                                 </a>
                                 <span class="pr-1 ml-2">{{ __('Posté par') }}</span>
                                 <div class="flex items-center space-x-1">

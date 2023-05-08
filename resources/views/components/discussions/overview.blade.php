@@ -24,7 +24,7 @@
         <div class="mt-3 sm:flex sm:justify-between">
             <div class="flex items-center text-sm font-sans text-skin-muted">
                 <a class="shrink-0" href="{{ route('profile', $discussion->user->username) }}">
-                    <img class="h-6 w-6 object-cover rounded-full" src="{{ $discussion->user->profile_photo_url }}" alt="{{ $discussion->user->name }}">
+                    <x-user.avatar :user="$discussion->user" class="h-6 w-6" span="-right-1 -top-1 ring-1 h-4 w-4" />
                 </a>
                 <span class="ml-2 pr-1">{{ __('Posté par') }}</span>
                 <div class="flex items-center space-x-1" wire:ignore>

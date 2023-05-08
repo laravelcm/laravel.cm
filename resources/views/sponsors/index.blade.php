@@ -104,7 +104,7 @@
                         @auth
                             <span>{{ __('Soutenir comme') }}</span>
                             <span class="text-sm inline-flex items-center space-x-2 ml-3">
-                                <img class="h-5 w-5 object-cover rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+                                <x-user.avatar :user="Auth::user()" class="h-5 w-5" span="-right-1 -top-1 w-3.5 h-3.5 ring-1" />
                                 <span class="font-medium text-skin-inverted">{{ Auth::user()->username() }}</span>
                             </span>
                         @else

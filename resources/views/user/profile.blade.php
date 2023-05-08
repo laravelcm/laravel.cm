@@ -12,7 +12,11 @@
         <x-container class="max-w-7xl mx-auto px-4">
             <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
                 <div class="flex">
-                    <img class="h-24 w-24 rounded-full object-cover ring-4 ring-card sm:h-32 sm:w-32" src="{{ $user->profile_photo_url }}" alt="User avatar">
+                    <x-user.avatar
+                        :user="$user"
+                        class="h-24 w-24 !ring-4 ring-card sm:h-32 sm:w-32"
+                        span="right-1 top-0 ring-4 h-6 w-6"
+                    />
                 </div>
                 <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                     <div class="sm:hidden md:block mt-6 min-w-0 flex-1">

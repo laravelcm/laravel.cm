@@ -4,7 +4,7 @@
     <div class="sm:flex sm:space-x-3" id="reply-{{ $reply->id }}">
         <div class="flex items-center font-sans sm:items-start">
             <div class="shrink-0">
-                <img class="h-10 w-10 rounded-full" src="{{ $reply->user->profile_photo_url }}" alt="Avatar de {{ $reply->user->username }}">
+                <x-user.avatar :user="$reply->user" class="h-10 w-10" />
             </div>
             <div class="ml-4 text-sm space-y-1 sm:hidden">
                 <a href="{{ route('profile', $reply->user->username) }}" class="block font-medium text-skin-inverted">
