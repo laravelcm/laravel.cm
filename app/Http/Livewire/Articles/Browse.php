@@ -49,7 +49,7 @@ class Browse extends Component
 
     public function render(): View
     {
-        $articles = Article::with(['tags', 'user'])
+        $articles = Article::with(['tags', 'user', 'user.transactions'])
             ->withCount(['views', 'reactions'])
             ->published()
             ->notPinned()
