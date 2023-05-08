@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Notifications;
 
 use App\Models\Transaction;
@@ -14,7 +16,8 @@ class NewSponsorPaymentNotification extends Notification implements ShouldQueue
     use Queueable;
 
     public function __construct(public readonly Transaction $transaction)
-    {}
+    {
+    }
 
     /**
      * @return array|string[]
