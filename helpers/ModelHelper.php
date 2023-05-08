@@ -731,6 +731,41 @@ namespace App\Models{
 
 namespace App\Models{
     /**
+     * App\Models\Transaction
+     *
+     * @property string $id
+     * @property string $type
+     * @property int $user_id
+     * @property int $amount
+     * @property int|null $fees
+     * @property string $transaction_reference
+     * @property string $status
+     * @property array|null $metadata
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property-read \App\Models\User $user
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction query()
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereAmount($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereFees($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereMetadata($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereStatus($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereTransactionReference($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUserId($value)
+     * @mixin \Eloquent
+     */
+    class IdeHelperTransaction
+    {
+    }
+}
+
+namespace App\Models{
+    /**
      * App\Models\User
      *
      * @property int $id
@@ -793,6 +828,8 @@ namespace App\Models{
      * @property-read int|null $threads_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
      * @property-read int|null $tokens_count
+     * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Transaction> $transactions
+     * @property-read int|null $transactions_count
      * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|User hasActivity()
      * @method static \Illuminate\Database\Eloquent\Builder|User moderators()
