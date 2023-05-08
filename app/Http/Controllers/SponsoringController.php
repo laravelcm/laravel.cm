@@ -4,12 +4,28 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class SponsoringController extends Controller
 {
     public function sponsors(): View
     {
-        return view('sponsors.index');
+//        $sponsors = Cache::remember(
+//            'sponsors',
+//            3600,
+//            fn () => Transaction::with('user')
+//                ->scopes('complete')
+//                ->get(['id', 'user_id', 'metadata'])
+//        );
+        $sponsors = Transaction::with('user')
+            ->scopes('complete')
+            ->get(['id', 'user_id', 'metadata']);
+
+        return view('sponsors.index', [
+            'sponsors' => $sponsors
+        ]);
     }
 }

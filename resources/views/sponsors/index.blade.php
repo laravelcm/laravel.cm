@@ -74,9 +74,7 @@
                     </p>
                 </div>
                 <div class="pt-12 border-t border-skin-base">
-                    <div>
-                        <h4 class="text-skin-inverted text-lg lg:text-xl font-medium font-heading">{{ __('Sponsors') }}</h4>
-                    </div>
+                    <h4 class="text-skin-inverted text-lg lg:text-xl font-medium font-heading">{{ __('Sponsors') }}</h4>
                     <div class="mt-4 flex items-center flex-wrap gap-6">
                         <a href="https://laravelshopper.io" target="_blank" class="flex items-center">
                             <img class="h-10 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
@@ -89,10 +87,17 @@
                             <x-icon.notchpay class="w-auto h-6 text-skin-inverted"/>
                         </a>
                     </div>
+                    <div class="mt-10 flex items-center flex-wrap">
+                        <ul role="list" class="grid grid-cols-6 gap-1 sm:grid-cols-12 lg:grid-cols-20">
+                            @foreach($sponsors as $sponsor)
+                                <x-sponsor-profile :sponsor="$sponsor" />
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="mt-5 lg:mt-0 lg:col-span-3">
+        <div class="mt-10 lg:mt-0 lg:col-span-3">
             <x-sticky-content class="space-y-8">
                 <div class="overflow-hidden border border-skin-base rounded-md">
                     <div class="px-4 py-3 text-skin-base bg-skin-card flex items-center flex-wrap">
