@@ -7,7 +7,6 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
 
 class SponsoringController extends Controller
 {
