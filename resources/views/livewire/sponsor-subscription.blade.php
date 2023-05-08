@@ -8,7 +8,7 @@
               type="button"
               @class([
                 'relative text-sm leading-5 inline-flex items-center rounded-r-none px-2.5 py-2 !ring-0 focus:z-10',
-                'bg-primary-500 text-white hover:!bg-primary-500 border-transparent' => $option === 'monthly',
+                '!bg-primary-500 text-white hover:!bg-primary-500 border-transparent' => $option === 'monthly',
                 '!bg-skin-body hover:!bg-skin-card' => $option !== 'monthly'
               ])
               wire:click="chooseOption('monthly')"
@@ -19,7 +19,7 @@
               type="button"
               @class([
                 'relative text-sm leading-5 -ml-px inline-flex items-center rounded-l-none px-2.5 py-2 !ring-0 focus:z-10',
-                'bg-primary-500 text-white hover:!bg-primary-500 border-transparent' => $option === 'one-time',
+                '!bg-primary-500 text-white hover:!bg-primary-500 border-transparent' => $option === 'one-time',
                 '!bg-skin-body hover:!bg-skin-card' => $option !== 'one-time'
              ])
               wire:click="chooseOption('one-time')"

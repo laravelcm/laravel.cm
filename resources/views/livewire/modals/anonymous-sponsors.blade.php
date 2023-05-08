@@ -5,11 +5,11 @@
         </p>
         <div class="mt-3 grid gap-4 lg:grid-cols-2 lg:gap-6 lg:mt-5">
             <div>
-                <x-label for="name">{{ __('Votre nom') }}</x-label>
+                <x-label for="name">{{ __('Nom complet') }}</x-label>
                 <x-input container-class="mt-1" name="name" id="name" wire:model="name" />
             </div>
             <div>
-                <x-label for="email">{{ __('Votre E-mail') }}</x-label>
+                <x-label for="email">{{ __('Adresse E-mail') }}</x-label>
                 <x-email container-class="mt-1" name="email" id="email" wire:model="email" placeholder="etoo@laravel.cm" />
             </div>
         </div>
