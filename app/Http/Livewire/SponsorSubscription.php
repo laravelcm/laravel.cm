@@ -16,6 +16,7 @@ class SponsorSubscription extends Component
 {
     public string $option = 'one-time';
     public string $amount = '';
+    public string $currency = 'XAF';
 
     public function chooseOption(string $option): void
     {
@@ -24,16 +25,14 @@ class SponsorSubscription extends Component
 
     public function subscribe(): void
     {
-        $this->validate(
-            ['amount' => 'required'],
-            ['amount.required' => __('Votre montant est requis')],
-        );
+        $this->validate(['amount' => 'required']);
 
         if (!Auth::check()) {
             $this->emit('openModal', 'modals.anonymous-sponsors', [
                 'amount' => $this->amount,
                 'option' => $this->option,
             ]);
+
             return;
         }
 
@@ -45,7 +44,7 @@ class SponsorSubscription extends Component
                 'amount' => $this->amount,
                 'email' => Auth::user()?->email,
                 'name' => Auth::user()?->name,
-                'currency' => 'XAF',
+                'currency' => $this->currency,
                 'reference' => Auth::id() . '-' . Auth::user()?->username() . '-' . uniqid(),
                 'callback' => route('notchpay-callback'),
             ]);
@@ -72,7 +71,7 @@ class SponsorSubscription extends Component
                     'initiated_at' => $payload->transaction->initiated_at,
                     'description' => $payload->transaction->description,
                     'for' => PaymentType::SPONSORING->value,
-                ]
+                ],
             ]);
 
             $this->redirect($payload->authorization_url);
