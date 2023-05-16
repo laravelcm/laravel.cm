@@ -19,7 +19,7 @@ class CreatePlansTable extends Migration
             $table->increments('id');
             $table->string('slug');
             $table->json('name');
-            $table->string('type')->default(\App\Enums\PlanType::DEVELOPER);
+            $table->string('type')->default(\App\Enums\PlanType::DEVELOPER->value);
             $table->json('description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->decimal('price')->default('0.00');
