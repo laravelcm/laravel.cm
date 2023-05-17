@@ -2,83 +2,94 @@
 
 @section('body')
 
-    <x-container class="px-4 mx-auto max-w-7xl">
-        <div class="relative py-10 lg:grid lg:grid-cols-12 lg:gap-8">
-            <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:self-center">
-                <a href="{{ route('discussions.index') }}" class="inline-flex items-center p-1 pr-2 font-sans text-white bg-green-700 rounded-full sm:text-base lg:text-sm xl:text-base">
-                    <span class="hidden sm:block px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-flag-green rounded-full">Discussions</span>
-                    <span class="ml-4 text-sm">{{ __('Nouvelle section disponible sur le site') }}</span>
-                    <x-heroicon-s-chevron-right class="w-5 h-5 ml-2 text-white" />
-                </a>
-                <h1 class="mt-4 text-4xl font-medium tracking-tight font-heading text-skin-primary sm:mt-5 sm:leading-none lg:mt-8 lg:text-5xl">
-                    {{ __('Laravel Cameroun') }}
-                </h1>
-                <p class="mt-3 text-base text-skin-base sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                    {{ __('Bienvenue sur le site de la communauté des développeurs PHP et Laravel du Cameroun, le plus gros rassemblement de développeurs au Cameroun.') }}
-                </p>
-                <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
-                    <div class="mt-3 sm:flex">
-                        @auth
-                            <x-button :link="route('forum.new')" class="w-full text-base font-normal sm:w-auto">
-                                {{ __('Lancer un thread') }}
-                            </x-button>
-                        @else
-                            <x-button :link="route('login')" class="w-full text-base font-normal sm:w-auto">
-                                {{ __('Rejoindre la communauté') }}
-                            </x-button>
-                        @endauth
-                        <x-default-button :link="route('forum.index')" class="w-full mt-3 text-base font-normal sm:mt-0 sm:ml-3 sm:shrink-0 sm:inline-flex sm:items-center sm:w-auto">
-                            {{ __('Visiter le Forum') }}
-                        </x-default-button>
-                    </div>
-                </div>
+    <div class="isolate -mt-16 pt-14">
+        <div class="absolute inset-0 -z-10 mx-0 max-w-none overflow-hidden">
+            <div class="absolute left-1/2 top-0 ml-[-32rem] h-[32rem] w-[84.25rem]">
+                <div class="absolute inset-0 bg-gradient-to-r from-flag-red to-flag-yellow opacity-40 [mask-image:radial-gradient(farthest-side_at_top,white,transparent)]"></div>
+                <svg viewBox="0 0 1113 440" aria-hidden="true" class="absolute left-1/2 top-0 ml-[-24rem] w-[70.5625rem] fill-green-500 blur-2xl opacity-30 logo-dark">
+                    <path d="M.016 439.5s-9.5-300 434-300S882.516 20 882.516 20V0h230.004v439.5H.016Z"/>
+                </svg>
             </div>
-            <div class="relative mt-12 sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-                <img src="{{ asset('/images/illustration.svg') }}" alt="Illustration" />
+            <div class="pointer-events-none w-full flex absolute left-1/2 -mt-32 md:-mt-12 blur-sm py-20 justify-center top-0 z-0 opacity-20 lg:py-40">
+                <img class="pointer-events-none w-full md:w-1/2" src="{{ asset('/images/illustration.svg') }}" alt="Illustration" />
             </div>
         </div>
-
-        <div class="divide-y divide-skin-base">
-            <div class="py-10 lg:py-12 xl:pb-14">
-                <p class="font-sans text-base leading-6 tracking-tight text-center uppercase text-skin-base">
-                    {{ __('Nous travaillons avec d’autres communautés et startups') }}
+        <div class="mx-auto max-w-3xl pb-16 pt-28 sm:pt-32 lg:pt-40">
+            <div class="flex justify-center">
+                <a href="{{ route('sponsors') }}" class="inline-flex items-center p-1 pr-2 font-sans text-white bg-green-700 rounded-full sm:text-base lg:text-sm xl:text-base">
+                    <span class="hidden sm:block px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-flag-green rounded-full">
+                        {{ __('Sponsor') }}
+                    </span>
+                    <span class="ml-4 text-sm">{{ __('Soutenez Laravel Cameroun aujourd\'hui en sponsorisant') }}</span>
+                    <x-heroicon-s-chevron-right class="w-5 h-5 ml-2 text-white" />
+                </a>
+            </div>
+            <div class="mt-10 text-center">
+                <h1 class="text-4xl font-medium tracking-tight font-heading text-skin-primary sm:leading-none lg:text-6xl">
+                    {{ __('Laravel Cameroun') }}
+                </h1>
+                <p class="mt-3 text-base text-skin-inverted sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                    {{ __('Bienvenue sur le site de la communauté des développeurs PHP et Laravel du Cameroun, le plus gros rassemblement de développeurs au Cameroun.') }}
                 </p>
-                <div class="mt-8 flex items-center justify-center flex-wrap gap-8 lg:mt-12">
-                    <div class="flex items-center justify-center px-2">
-                        <a href="https://laravelshopper.io" target="_blank" class="flex items-center">
-                            <img class="h-12 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
-                            <img class="h-12 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
-                        </a>
-                    </div>
-                    <div class="flex items-center justify-center px-2">
-                        <a href="https://gdg.community.dev/gdg-douala" target="_blank" class="flex items-center">
-                            <x-icon.gdg class="h-8 text-skin-inverted" />
-                        </a>
-                    </div>
-                    <div class="flex items-center justify-center px-2">
-                        <a href="https://notchpay.co" class="flex items-center">
-                            <x-icon.notchpay class="w-auto h-8 text-skin-inverted"/>
-                        </a>
-                    </div>
-                    <div class="flex items-center justify-center px-2">
-                        <a href="https://www.dark-code.cm" class="flex items-center">
-                            <x-icon.darkcode class="w-auto h-6 text-skin-inverted"/>
-                        </a>
-                    </div>
-                    <div class="flex items-center justify-center px-2">
-                        <a href="https://sharuco.lndev.me" class="flex items-center">
-                            <x-icon.sharuco class="w-auto h-7 text-skin-inverted"/>
-                            <span class="ml-1 text-2xl text-skin-inverted font-bold">Sharuco</span>
-                        </a>
-                    </div>
+                <div class="mt-10 flex items-center justify-center gap-x-6">
+                    @auth
+                        <x-button :link="route('forum.new')" class="w-full text-base font-normal sm:w-auto">
+                            {{ __('Lancer un thread') }}
+                        </x-button>
+                    @else
+                        <x-button :link="route('login')" class="w-full text-base font-normal sm:w-auto">
+                            {{ __('Rejoindre la communauté') }}
+                        </x-button>
+                    @endauth
+                    <x-default-button :link="route('forum.index')" class="w-full mt-3 text-base font-normal sm:mt-0 sm:ml-3 sm:shrink-0 sm:inline-flex sm:items-center sm:w-auto">
+                        {{ __('Visiter le Forum') }}
+                    </x-default-button>
                 </div>
-                <div class="mt-6 text-center lg:mt-10">
-                    <a class="text-sm leading-5 text-flag-green hover:text-green-600 hover:underline" href="{{ route('sponsors') }}">
-                        {{ __('Votre logo ici ?') }}
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto py-10 lg:py-12 xl:pb-14">
+            <p class="text-center text-lg font-medium leading-8 text-skin-inverted-muted">
+                {{ __('Nous travaillons avec d’autres communautés et startups') }}
+            </p>
+            <div class="mt-5 flex items-center justify-center flex-wrap gap-8">
+                <div class="flex items-center justify-center px-2">
+                    <a href="https://laravelshopper.io" target="_blank" class="flex items-center">
+                        <img class="h-12 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
+                        <img class="h-12 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
+                    </a>
+                </div>
+                <div class="flex items-center justify-center px-2">
+                    <a href="https://gdg.community.dev/gdg-douala" class="flex items-center" target="_blank">
+                        <x-icon.gdg class="h-7 text-skin-inverted" />
+                    </a>
+                </div>
+                <div class="flex items-center justify-center px-2">
+                    <a href="https://notchpay.co" class="flex items-center" target="_blank">
+                        <x-icon.notchpay class="w-auto h-8 text-skin-inverted"/>
+                    </a>
+                </div>
+                <div class="flex items-center justify-center px-2">
+                    <a href="https://www.dark-code.cm" class="flex items-center" target="_blank">
+                        <x-icon.darkcode class="w-auto h-6 text-skin-inverted"/>
+                    </a>
+                </div>
+                <div class="flex items-center justify-center px-2">
+                    <a href="https://sharuco.lndev.me" class="flex items-center" target="_blank">
+                        <x-icon.sharuco class="w-auto h-7 text-skin-inverted"/>
+                        <span class="ml-1 text-2xl text-skin-inverted font-bold">Sharuco</span>
                     </a>
                 </div>
             </div>
+            <div class="mt-6 text-center lg:mt-10">
+                <a class="text-sm leading-5 text-flag-green hover:text-green-600 hover:underline" href="{{ route('sponsors') }}">
+                    {{ __('Votre logo ici ?') }}
+                </a>
+            </div>
+        </div>
+    </div>
 
+    <x-container class="px-4 mx-auto max-w-7xl">
+        <div class="divide-y divide-skin-base">
             <div class="py-12 lg:py-20">
                 <x-section-header
                     title="Articles Populaires"
