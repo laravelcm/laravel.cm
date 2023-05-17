@@ -44,20 +44,31 @@
                     {{ __('Nous travaillons avec d’autres communautés et startups') }}
                 </p>
                 <div class="mt-8 flex items-center justify-center flex-wrap gap-8 lg:mt-12">
-                    <div class="flex items-center justify-center px-4">
+                    <div class="flex items-center justify-center px-2">
                         <a href="https://laravelshopper.io" target="_blank" class="flex items-center">
                             <img class="h-12 logo-white" src="{{ asset('/images/sponsors/shopper-logo.svg') }}" alt="Laravel Shopper">
                             <img class="h-12 logo-dark" src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}" alt="Laravel Shopper">
                         </a>
                     </div>
-                    <div class="flex items-center justify-center px-4">
+                    <div class="flex items-center justify-center px-2">
                         <a href="https://gdg.community.dev/gdg-douala" target="_blank" class="flex items-center">
                             <x-icon.gdg class="h-8 text-skin-inverted" />
                         </a>
                     </div>
-                    <div class="flex items-center justify-center px-4">
+                    <div class="flex items-center justify-center px-2">
                         <a href="https://notchpay.co" class="flex items-center">
                             <x-icon.notchpay class="w-auto h-8 text-skin-inverted"/>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-center px-2">
+                        <a href="https://www.dark-code.cm" class="flex items-center">
+                            <x-icon.darkcode class="w-auto h-6 text-skin-inverted"/>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-center px-2">
+                        <a href="https://sharuco.lndev.me" class="flex items-center">
+                            <x-icon.sharuco class="w-auto h-7 text-skin-inverted"/>
+                            <span class="ml-1 text-2xl text-skin-inverted font-bold">Sharuco</span>
                         </a>
                     </div>
                 </div>
