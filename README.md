@@ -29,7 +29,11 @@ Vous pouvez rejoindre la communauté ou nous suivre via nos différentes platefo
 ## Sponsors
 Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainage. Si vous souhaitez devenir sponsor, veuillez visiter <a href="https://github.com/sponsors/mckenziearts">la page Laravel.cm Github de Sponsoring</a>.
 
-- **[Laravel Shopper](https://laravelshopper.io)**
+- ![Shopper Labs Logo](./art/laravel-shopper.svg)
+- ![GDG Douala Logo](./art/gdg-douala.svg)
+- ![NotchPay Logo](./art/notchpay.svg)
+- ![DarkCode Logo](./art/dark-code.svg)
+- ![Sharuco Logo](./art/sharuco.svg)
 
 ## Caractéristiques Serveur
 The following tools are required in order to start the installation.

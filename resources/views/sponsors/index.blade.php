@@ -86,6 +86,13 @@
                         <a href="https://notchpay.co" class="flex items-center">
                             <x-icon.notchpay class="w-auto h-6 text-skin-inverted"/>
                         </a>
+                        <a href="https://dark-code.cm" class="flex items-center">
+                            <x-icon.darkcode class="w-auto h-5 text-skin-inverted"/>
+                        </a>
+                        <a href="https://sharuco.lndev.me" class="flex items-center">
+                            <x-icon.sharuco class="w-auto h-5 text-skin-inverted"/>
+                            <span class="ml-1 text-xl text-skin-inverted font-bold">Sharuco</span>
+                        </a>
                     </div>
                     <div class="mt-10 flex items-center flex-wrap">
                         <ul role="list" class="grid grid-cols-6 gap-1 sm:grid-cols-12 lg:grid-cols-20">
