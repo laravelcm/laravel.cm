@@ -27,13 +27,13 @@ Vous pouvez rejoindre la communauté ou nous suivre via nos différentes platefo
 [Site Officiel](https://laravel.cm) - [Facebook](https://www.facebook.com/laravelcm) - [Twitter](https://twitter.com/laravelcm) - [Rejoindre Slack](https://laravel.cm/slack) - [Rejoindre Discord](https://laravel.cm/discord)
 
 ## Sponsors
-Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainage. Si vous souhaitez devenir sponsor, veuillez visiter <a href="https://github.com/sponsors/mckenziearts">la page Laravel.cm Github de Sponsoring</a>.
+Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainage. Si vous souhaitez devenir sponsor, veuillez visiter <a href="https://laravel.cm/sponsors">la page Laravel.cm de Sponsoring</a>.
 
-- ![Shopper Labs Logo](./art/laravel-shopper.svg)
-- ![GDG Douala Logo](./art/gdg-douala.svg)
-- ![NotchPay Logo](./art/notchpay.svg)
-- ![DarkCode Logo](./art/dark-code.svg)
-- ![Sharuco Logo](./art/sharuco.svg)
+- **[Laravel Shopper](https://laravelshopper.io)**
+- [GDG Douala](https://gdg.community.dev/gdg-douala) 
+- [NotchPay](https://notchpay.co) 
+- [Dark Code](https://dark-code.cm) 
+- [Sharuco](https://sharuco.lndev.me) 
 
 ## Caractéristiques Serveur
 The following tools are required in order to start the installation.
