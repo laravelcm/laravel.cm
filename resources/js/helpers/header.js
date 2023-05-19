@@ -7,7 +7,7 @@ let scrolling = false
 const scrollDelta = 20
 let scrollOffset = $header ? $header.offsetHeight : 0
 
-// Les différents états possible du header
+// Les différents états possibles du header
 const FIXED = 0
 const HIDDEN = 1
 const DEFAULT = 2
@@ -52,14 +52,14 @@ const autoHideHeader = function () {
   } else {
     setState(DEFAULT)
   }
-  /**
+
    // Masquage / affichage
    if (previousTop - currentTop > scrollDelta) {
     $header.classList.remove('is-hidden')
   } else if (currentTop - previousTop > scrollDelta && currentTop > scrollOffset) {
     $header.classList.add('is-hidden')
   }
-   **/
+
   previousTop = currentTop
   scrolling = false
 }

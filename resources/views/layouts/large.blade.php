@@ -4,9 +4,7 @@
 
     <x-layouts.header class="header" />
 
-    <x-container>
-        @yield('body')
-    </x-container>
+    @yield('body')
 
     @include('layouts.footer')
 

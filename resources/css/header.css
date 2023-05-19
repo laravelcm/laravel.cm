@@ -1,5 +1,5 @@
 .header.is-fixed {
-  @apply fixed inset-x-0 transform duration-300 bg-skin-menu/80 backdrop-blur;
+  @apply fixed inset-x-0 transform duration-300 bg-skin-menu/80;
 }
 
 .header.is-hidden {
