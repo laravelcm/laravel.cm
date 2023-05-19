@@ -7,7 +7,7 @@
         </div>
         <div class="absolute inset-x-0 bottom-0 w-full backdrop-blur-md bg-black/50 p-4">
             <div class="flex justify-between">
-                <h4 class="text-white text-sm leading-5">{{ $article->author->name }}</h4>
+                <h4 class="text-white text-sm leading-5">{{ $article->user->name }}</h4>
                 <time datetime="{{ $article->created_at->format('Y-m-d') }}" class="text-sm leading-5 text-slate-300 capitalize">
                     {{ $article->created_at->isoFormat('LL') }}
                 </time>
@@ -22,7 +22,9 @@
         </div>
     </div>
     <div>
-        <h4 class="text-lg leading-6 font-semibold font-sans text-slate-900 line-clamp-2 group-hover:text-primary-500">{{ $article->title }}</h4>
+        <h4 class="text-lg leading-6 font-semibold font-sans text-slate-900 line-clamp-2 group-hover:text-primary-500">
+            {{ $article->title }}
+        </h4>
         <p class="mt-3 font-normal text-slate-500 leading-6 line-clamp-2">
             {!! $article->excerpt(100) !!}
         </p>
