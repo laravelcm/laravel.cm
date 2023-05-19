@@ -11,7 +11,7 @@
             @hasanyrole('admin|moderator')
                 <x-button type="button" wire:click="store">
                     <x-loader class="text-white" wire:loading wire:target="store" />
-                    {{ isset($article) ? 'Enregistrer': 'Publier' }}
+                    {{ isset($article) ? __('Enregistrer'): __('Publier') }}
                 </x-button>
             @else
                 @if(isset($article))
@@ -56,16 +56,10 @@
                 @else
                     <x-button type="button" wire:click="submit">
                         <x-loader class="text-white" wire:loading wire:target="submit" />
-                        Soumettre
+                        {{ __('Soumettre') }}
                     </x-button>
                 @endif
             @endhasanyrole
-
-            @if(! isset($article) && ! Auth::user()->hasAnyRole(['admin', 'moderator']))
-                <x-default-button type="button" wire:click="draft">
-                    Brouillon
-                </x-default-button>
-            @endif
 
             <button type="button" @click="open = true;" class="inline-flex justify-center py-2 px-4 text-skin-base hover:text-skin-muted focus:outline-none">
                 <x-heroicon-o-cog class="h-5 w-5" />
@@ -91,11 +85,11 @@
                             <div class="px-4 sm:px-6">
                                 <div class="flex items-start justify-between">
                                     <h2 class="text-lg font-medium text-skin-inverted" id="slide-over-title">
-                                        Paramètres avancés
+                                        {{ __('Paramètres avancés') }}
                                     </h2>
                                     <div class="ml-3 h-7 flex items-center">
                                         <button type="button" class="bg-skin-card rounded-md text-skin-muted hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500" @click="open = false">
-                                            <span class="sr-only">Close panel</span>
+                                            <span class="sr-only">{{ __('Fermer') }}</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                             </svg>
@@ -106,7 +100,7 @@
                             <div class="mt-6 relative flex-1 px-4 sm:px-6">
                                 <div class="h-full" aria-hidden="true">
                                     <x-label for="cover_photo">
-                                        Image de couverture
+                                        {{ __('Image de couverture') }}
                                     </x-label>
                                     <div class="mt-2">
                                         <x-forms.single-upload
@@ -121,7 +115,9 @@
 
                                     <div x-data="{ on: @entangle('show_toc') }" class="mt-8 flex-grow flex items-center justify-between">
                                         <div>
-                                            <dt class="text-sm leading-7 font-semibold text-skin-base">Afficher le Sommaire</dt>
+                                            <dt class="text-sm leading-7 font-semibold text-skin-base">
+                                                {{ __('Afficher le Sommaire') }}
+                                            </dt>
                                         </div>
                                         <button type="button"
                                                 class="relative inline-flex items-center shrink-0 h-6 w-11 border border-skin-base rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 bg-skin-card-muted"
@@ -140,18 +136,20 @@
                                     </div>
 
                                     <div class="mt-8">
-                                        <x-label for="published_at">Date de publication</x-label>
+                                        <x-label for="published_at">{{ __('Date de publication') }}</x-label>
                                         <x-input wire:model.debounce.500ms="published_at" id="published_at" name="published_at" class="mt-1" type="date" autocomplete="off" />
                                     </div>
 
                                     <div class="mt-8">
-                                        <x-label for="slug">URL Slug</x-label>
+                                        <x-label for="slug">{{ __('URL Slug') }}</x-label>
                                         <x-input wire:model.debounce.500ms="slug" id="slug" name="slug" class="mt-1" type="text" autocomplete="off" required />
                                     </div>
 
                                     <div class="mt-8">
-                                        <x-label for="canonical_url">Canonical URL</x-label>
-                                        <span class="text-xs leading-3 text-skin-muted">Modifiez si l'article a été publié pour la première fois ailleurs (comme sur votre propre blog).</span>
+                                        <x-label for="canonical_url">{{ __('Canonical URL') }}</x-label>
+                                        <span class="text-xs leading-3 text-skin-muted">
+                                            {{ __('Modifiez si l\'article a été publié pour la première fois ailleurs (comme sur votre propre blog).') }}
+                                        </span>
                                         <x-input wire:model.defer="canonical_url" id="canonical_url" name="canonical_url" class="mt-1" type="text" autocomplete="off" />
                                     </div>
 
@@ -192,7 +190,7 @@
             />
             <livewire:markdown-x :content="$body" />
             <div class="mt-6 text-right text-skin-base">
-                Temps de lecture estimé : <span class="text-skin-inverted">{{ $reading_time }} min</span>
+                {{ __('Temps de lecture estimé :') }} <span class="text-skin-inverted">{{ $reading_time }} min</span>
             </div>
         </div>
     </main>
