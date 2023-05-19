@@ -9,16 +9,16 @@
                 <svg viewBox="0 0 1113 440" aria-hidden="true" class="absolute left-1/2 top-0 ml-[-24rem] w-[70.5625rem] fill-green-500 blur-2xl opacity-30 logo-dark">
                     <path d="M.016 439.5s-9.5-300 434-300S882.516 20 882.516 20V0h230.004v439.5H.016Z"/>
                 </svg>
-            </div>
-            <div class="pointer-events-none w-full flex absolute left-1/2 -mt-32 md:-mt-12 blur-sm py-20 justify-center top-0 z-0 opacity-20 lg:py-40">
-                <img class="pointer-events-none w-full md:w-1/2" src="{{ asset('/images/illustration.svg') }}" alt="Illustration" />
+                <svg viewBox="0 0 1113 440" aria-hidden="true" class="absolute left-1/2 top-0 ml-[-24rem] w-[70.5625rem] fill-yellow-50 blur-2xl opacity-50 logo-white">
+                    <path d="M.016 439.5s-9.5-300 434-300S882.516 20 882.516 20V0h230.004v439.5H.016Z"/>
+                </svg>
             </div>
         </div>
         <div class="mx-auto max-w-3xl pb-16 pt-28 sm:pt-32 lg:pt-40">
             <div class="flex justify-center">
                 <a href="{{ route('sponsors') }}" class="inline-flex items-center p-1 pr-2 font-sans text-white bg-green-700 rounded-full sm:text-base lg:text-sm xl:text-base">
                     <span class="hidden sm:block px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-flag-green rounded-full">
-                        {{ __('Sponsor') }}
+                        ⚡️ {{ __('Sponsor') }}
                     </span>
                     <span class="ml-4 text-sm">{{ __('Soutenez Laravel Cameroun aujourd\'hui en sponsorisant') }}</span>
                     <x-heroicon-s-chevron-right class="w-5 h-5 ml-2 text-white" />
@@ -33,15 +33,15 @@
                 </p>
                 <div class="mt-10 flex items-center justify-center gap-x-6">
                     @auth
-                        <x-button :link="route('forum.new')" class="w-full text-base font-normal sm:w-auto">
+                        <x-button :link="route('forum.new')" class="w-full text-base font-medium sm:w-auto">
                             {{ __('Lancer un thread') }}
                         </x-button>
                     @else
-                        <x-button :link="route('login')" class="w-full text-base font-normal sm:w-auto">
+                        <x-button :link="route('login')" class="w-full text-base font-medium sm:w-auto">
                             {{ __('Rejoindre la communauté') }}
                         </x-button>
                     @endauth
-                    <x-default-button :link="route('forum.index')" class="w-full mt-3 text-base font-normal sm:mt-0 sm:ml-3 sm:shrink-0 sm:inline-flex sm:items-center sm:w-auto">
+                    <x-default-button :link="route('forum.index')" class="w-full mt-3 text-base font-medium sm:mt-0 sm:ml-3 sm:shrink-0 sm:inline-flex sm:items-center sm:w-auto">
                         {{ __('Visiter le Forum') }}
                     </x-default-button>
                 </div>
