@@ -14,13 +14,14 @@
                 </svg>
             </div>
         </div>
-        <div class="mx-auto max-w-3xl pb-16 pt-28 sm:pt-32 lg:pt-40">
+        <div class="mx-auto max-w-3xl px-4 pb-16 pt-28 sm:pt-32 lg:pt-40">
             <div class="flex justify-center">
                 <a href="{{ route('sponsors') }}" class="inline-flex items-center p-1 pr-2 font-sans text-white bg-green-700 rounded-full sm:text-base lg:text-sm xl:text-base">
-                    <span class="hidden sm:block px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-flag-green rounded-full">
+                    <span class="px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-flag-green rounded-full">
                         ⚡️ {{ __('Sponsor') }}
                     </span>
-                    <span class="ml-4 text-sm">{{ __('Soutenez Laravel Cameroun aujourd\'hui en sponsorisant') }}</span>
+                    <span class="ml-4 hidden text-sm sm:block">{{ __('Soutenez Laravel Cameroun aujourd\'hui en sponsorisant') }}</span>
+                    <span class="ml-4 text-sm sm:hidden">{{ __('Soutenez Laravel Cameroun') }}</span>
                     <x-heroicon-s-chevron-right class="w-5 h-5 ml-2 text-white" />
                 </a>
             </div>
@@ -28,10 +29,10 @@
                 <h1 class="text-4xl font-medium tracking-tight font-heading text-skin-primary sm:leading-none lg:text-6xl">
                     {{ __('Laravel Cameroun') }}
                 </h1>
-                <p class="mt-3 text-base text-skin-inverted sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+                <p class="mt-3 text-base text-skin-inverted sm:mt-5 sm:text-lg lg:text-xl">
                     {{ __('Bienvenue sur le site de la communauté des développeurs PHP et Laravel du Cameroun, le plus gros rassemblement de développeurs au Cameroun.') }}
                 </p>
-                <div class="mt-10 flex items-center justify-center gap-x-6">
+                <div class="mt-10 sm:flex sm:items-center sm:justify-center gap-x-6">
                     @auth
                         <x-button :link="route('forum.new')" class="w-full text-base font-medium sm:w-auto">
                             {{ __('Lancer un thread') }}
@@ -47,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto py-10 lg:py-12 xl:pb-14">
+        <div class="max-w-7xl mx-auto px-4 py-10 lg:py-12 xl:pb-14">
             <p class="text-center text-lg font-medium leading-8 text-skin-inverted-muted">
                 {{ __('Nous travaillons avec d’autres communautés et startups') }}
             </p>
