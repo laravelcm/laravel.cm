@@ -33,6 +33,13 @@ class TagSeeder extends Seeder
         $this->createTag('Projets', 'projets', ['discussion']);
         $this->createTag('Paiement en ligne', 'paiement-en-ligne', ['discussion']);
         $this->createTag('Développement', 'developpement', ['discussion']);
+        $this->createTag('Event', 'event', ['post']);
+        $this->createTag('Tutoriel', 'tutoriel', ['post', 'tutorial']);
+        $this->createTag('Communauté', 'communaute', ['post']);
+        $this->createTag('Astuces', 'astuces', ['post', 'tutorial']);
+        $this->createTag('AWS', 'aws', ['post', 'tutorial']);
+        $this->createTag('Linux', 'linux', ['post', 'tutorial']);
+        $this->createTag('Serveur', 'serveur', ['post', 'tutorial']);
     }
 
     private function createTag(string $name, string $slug, array $concerns = []): void
