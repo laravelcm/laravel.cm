@@ -13,9 +13,9 @@ class SponsoringController extends Controller
     public function sponsors(): View
     {
         $sponsors = Cache::remember(
-            'sponsors',
-            3600,
-            fn () => Transaction::with(['user', 'user.media'])
+            key: 'sponsors',
+            ttl: 3600,
+            callback: fn () => Transaction::with(['user', 'user.media'])
                 ->scopes('complete')
                 ->get(['id', 'user_id', 'metadata'])
         );

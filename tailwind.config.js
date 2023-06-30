@@ -23,14 +23,10 @@ module.exports = {
     './vendor/wire-elements/modal/resources/views/*.blade.php',
   ],
   safelist: [
-    'sm:max-w-xl',
-    'sm:max-w-2xl',
-    'sm:max-w-3xl',
-    'sm:max-w-4xl',
-    'md:max-w-xl',
-    'lg:max-w-2xl',
-    'lg:max-w-3xl',
-    'lg:max-w-4xl',
+    {
+      pattern: /max-w-(xl|2xl|3xl|4xl)/,
+      variants: ['sm', 'md', 'lg'],
+    },
   ],
   theme: {
     extend: {
@@ -83,7 +79,6 @@ module.exports = {
         card: 'rgb(var(--color-card-fill))',
         primary: colors.emerald,
         green: colors.emerald,
-        orange: colors.orange,
         danger: colors.rose,
         success: colors.green,
         warning: colors.yellow,

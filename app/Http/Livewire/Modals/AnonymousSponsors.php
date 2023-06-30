@@ -9,8 +9,10 @@ use App\Enums\TransactionType;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Log;
 use LivewireUI\Modal\ModalComponent;
 use NotchPay\NotchPay;
+use NotchPay\Payment;
 
 class AnonymousSponsors extends ModalComponent
 {
@@ -31,22 +33,29 @@ class AnonymousSponsors extends ModalComponent
 
     public function submit(): void
     {
-        $this->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-        ], [
-            'name.required' => __('Votre nom est requis'),
-            'email.required' => __('Une adresse e-mail est requise'),
-            'email.email' => __('Veuillez renseigner une adresse e-mail valide'),
-        ]);
+        $this->validate(
+            rules: [
+                'name' => 'required',
+                'email' => 'required|email',
+            ],
+            messages: [
+                'name.required' => __('Votre nom est requis'),
+                'email.required' => __('Une adresse e-mail est requise'),
+                'email.email' => __('Veuillez renseigner une adresse e-mail valide'),
+            ]
+        );
 
-        $adminUser = User::findByEmailAddress('support@laravel.cm');
+        $adminUser = User::findByEmailAddress(
+            emailAddress: app()->environment('production') ? 'support@laravel.cm' : 'user@laravel.cm'
+        );
 
-        $notchPay = new NotchPay(config('lcm.notch-pay-public-token'));
+        NotchPay::setApiKey(
+            apiKey: config('lcm.notch-pay-public-token')
+        );
 
         try {
             // @phpstan-ignore-next-line
-            $payload = $notchPay->payment->initialize([
+            $payload = Payment::initialize([
                 'amount' => $this->amount,
                 'email' => $this->email,
                 'name' => $this->name,
@@ -81,8 +90,12 @@ class AnonymousSponsors extends ModalComponent
             ]);
 
             $this->redirect($payload->authorization_url);
-        } catch (NotchPay\Exception\ApiException $e) {
-            session()->flash('error', __('Impossible de procéder au paiement, veuillez recommencer plus tard. Merci'));
+        } catch (\NotchPay\Exceptions\ApiException $e) {
+            Log::error($e->getMessage());
+            session()->flash(
+                key: 'error',
+                value: __('Impossible de procéder au paiement, veuillez recommencer plus tard. Merci')
+            );
         }
     }
 
