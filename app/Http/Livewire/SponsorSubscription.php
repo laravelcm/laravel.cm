@@ -9,8 +9,10 @@ use App\Enums\TransactionType;
 use App\Models\Transaction;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use NotchPay\NotchPay;
+use NotchPay\Payment;
 
 class SponsorSubscription extends Component
 {
@@ -37,11 +39,10 @@ class SponsorSubscription extends Component
             return;
         }
 
-        $notchPay = new NotchPay(config('lcm.notch-pay-public-token'));
+        NotchPay::setApiKey(apiKey: config('lcm.notch-pay-public-token'));
 
         try {
-            // @phpstan-ignore-next-line
-            $payload = $notchPay->payment->initialize([
+            $payload = Payment::initialize([
                 'amount' => $this->amount,
                 'email' => Auth::user()?->email,
                 'name' => Auth::user()?->name,
@@ -76,8 +77,9 @@ class SponsorSubscription extends Component
                 ],
             ]);
 
-            $this->redirect($payload->authorization_url);
-        } catch (NotchPay\Exception\ApiException $e) {
+            $this->redirect($payload->authorization_url); // @phpstan-ignore-line
+        } catch (\NotchPay\Exceptions\ApiException $e) {
+            Log::error($e->getMessage());
             session()->flash('error', __('Impossible de procéder au paiement, veuillez recommencer plus tard. Merci'));
         }
     }

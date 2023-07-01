@@ -43,7 +43,7 @@
                         <input
                             aria-label="{{ __('Montant') }}"
                             name="amount"
-                            wire:model="amount"
+                            wire:model.defer="amount"
                             class="bg-skin-input shadow-sm focus:ring-flag-green focus:border-flag-green block w-full placeholder-skin-input focus:outline-none focus:placeholder-skin-input-focus text-skin-base sm:text-sm border-skin-input rounded-md pr-16"
                             type="number"
                             required
