@@ -56,7 +56,7 @@
         </x-container>
     </div>
 
-    <x-container class="py-10 max-w-7xl mx-auto px-4">
+    <x-container class="py-10 w-full max-w-7xl mx-auto px-4">
         <div class="space-y-6 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0">
             <div>
                 <h3 class="text-lg leading-6 font-medium font-sans text-skin-inverted">{{ __('Biographie') }}</h3>
@@ -112,54 +112,54 @@
             </div>
         </div>
 
-        <div class="relative border-t border-skin-base mt-6 pt-6 sm:pt-0 sm:border-0 lg:mt-0 lg:grid lg:grid-cols-8 lg:gap-12">
+        <div class="relative border-t border-skin-base mt-6 pt-6 sm:pt-0 sm:border-0 lg:grid lg:grid-cols-8 lg:gap-12">
             <div
-                class="lg:col-span-5"
+                class="lg:col-span-6"
                 x-data="{
-                    activeTab: 'articles',
-                    tabs: ['articles', 'discussions', 'questions']
+                    tabSelected: 1,
+                    tabId: $id('tabs'),
+                    tabButtonClicked(tabButton) {
+                        this.tabSelected = tabButton.id.replace(this.tabId + '-', '')
+                        this.tabRepositionMarker(tabButton)
+                    },
+                    tabRepositionMarker(tabButton) {
+                        this.$refs.tabMarker.style.width = tabButton.offsetWidth + 'px'
+                        this.$refs.tabMarker.style.height = tabButton.offsetHeight + 'px'
+                        this.$refs.tabMarker.style.left = tabButton.offsetLeft + 'px'
+                    },
+                    tabContentActive(tabContent) {
+                        return this.tabSelected == tabContent.id.replace(this.tabId + '-content-', '')
+                    }
                 }"
+                x-init="tabRepositionMarker($refs.tabButtons.firstElementChild)"
             >
-                <div>
-                    <div class="sm:hidden">
-                        <label for="tabs" class="sr-only">{{ __('Sélectionner une tab') }}</label>
-                        <x-forms.select x-model="activeTab" aria-label="Selected tab" class="block w-full pl-3 pr-10 py-2">
-                            <template x-for="tab in tabs" :key="tab">
-                                <option
-                                    x-bind:value="tab"
-                                    x-text="capitalize(tab)"
-                                    x-bind:selected="tab === activeTab"
-                                ></option>
-                            </template>
-                        </x-forms.select>
-                    </div>
-                    <div class="hidden sm:block">
-                        <div class="border-b border-skin-base">
-                            <nav class="-mb-px flex space-x-8" aria-label="Tabs">
-                                <template x-for="tab in tabs" :key="tab">
-                                    <button
-                                      type="button"
-                                      @click="activeTab = tab"
-                                      class="border-transparent text-skin-base hover:text-skin-inverted-muted hover:border-skin-base whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm focus:outline-none"
-                                      :class="{ 'border-green-500 text-green-600 focus:text-green-600 focus:border-green-500': activeTab === tab}"
-                                      x-text="capitalize(tab)"
-                                    ></button>
-                                </template>
-                            </nav>
+                <div class="relative w-full">
+                    <div x-ref="tabButtons" class="relative w-full lg:max-w-md inline-grid items-center justify-center w-full h-10 grid-cols-3 p-1 text-skin-base bg-skin-card rounded-lg select-none">
+                        <button :id="$id(tabId)" @click="tabButtonClicked($el)" type="button" class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">
+                            {{ __('Articles') }}
+                        </button>
+                        <button :id="$id(tabId)" @click="tabButtonClicked($el)" type="button" class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">
+                            {{ __('Discussions') }}
+                        </button>
+                        <button :id="$id(tabId)" @click="tabButtonClicked($el)" type="button" class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">
+                            {{ __('Questions') }}
+                        </button>
+                        <div x-ref="tabMarker" class="absolute left-0 z-10 w-1/2 h-full duration-300 ease-out" x-cloak>
+                            <div class="w-full h-full bg-skin-body rounded-md shadow-sm"></div>
                         </div>
                     </div>
 
-                    <div class="mt-10">
-                        <div x-show="activeTab === 'articles'">
+                    <div class="mt-8 content">
+                        <div :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
                             <x-user.articles :user="$user" :articles="$articles" />
                         </div>
-                        <div x-cloak x-show="activeTab === 'discussions'">
+                        <div x-cloak :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
                             <x-user.discussions :user="$user" :discussions="$discussions" />
                         </div>
-                        <div x-cloak x-show="activeTab === 'questions'">
+                        <div x-cloak :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
                             <x-user.threads :user="$user" :threads="$threads" />
                         </div>
-                        <div x-cloak x-show="activeTab === 'badges'">
+                        <div x-cloak :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
                             <div class="flex items-center justify-between rounded-md border border-skin-base border-dashed py-8 px-6">
                                 <div class="text-center max-w-sm mx-auto">
                                     <svg class="h-10 w-10 text-skin-primary mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
