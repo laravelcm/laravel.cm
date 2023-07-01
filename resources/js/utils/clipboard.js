@@ -19,16 +19,15 @@ codeBlocks.forEach((element, key) => {
             copyNotification: false,
             copyToClipboard() {
                 this.copyNotification = true
+                let that = this
                 const clipboardItem = new ClipboardItem({
-                  'text/plain': new Blob([\`${codeElement.innerText}\`], { type: 'text/plain' })
+                  'text/plain': new Blob([\`${codeElement.innerText.replaceAll('"', '\\`')}\`], { type: 'text/plain' })
                 })
                 navigator.clipboard.write([clipboardItem]).then(() => {
-                  console.log('Copied to clipboard')
+                  setTimeout(function() {
+                      that.copyNotification = false
+                  }, 3000)
                 })
-                let that = this
-                setTimeout(function() {
-                    that.copyNotification = false
-                }, 3000)
             }
         }" class="relative z-20 flex items-center">
         <div x-show="copyNotification" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-2" x-transition:enter-end="opacity-100 translate-x-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-x-0" x-transition:leave-end="opacity-0 translate-x-2" class="absolute left-0" x-cloak>
