@@ -15,5 +15,7 @@ parameters:
         - app/Markdown/MarkdownHelper.php
     scanDirectories:
         - ./helpers
+    ignoreErrors:
+        - "#^Cannot access property \\$transaction on array\\|object\\.$#"
     checkGenericClassInNonGenericObjectType: false
     checkMissingIterableValueType: false

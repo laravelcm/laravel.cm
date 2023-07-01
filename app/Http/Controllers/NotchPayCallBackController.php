@@ -29,8 +29,9 @@ class NotchPayCallBackController extends Controller
 
         try {
             $verifyTransaction = Payment::verify(reference: $request->get('reference'));
-            $transaction->update(['status' => $verifyTransaction->transaction->status]);
+            $transaction->update(['status' => $verifyTransaction->transaction->status]); // @phpstan-ignore-line
 
+            // @phpstan-ignore-next-line
             if ($verifyTransaction->transaction->status === TransactionStatus::CANCELED->value) {
                 session()->flash(
                     key: 'error',

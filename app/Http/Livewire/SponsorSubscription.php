@@ -42,7 +42,6 @@ class SponsorSubscription extends Component
         NotchPay::setApiKey(apiKey: config('lcm.notch-pay-public-token'));
 
         try {
-            // @phpstan-ignore-next-line
             $payload = Payment::initialize([
                 'amount' => $this->amount,
                 'email' => Auth::user()?->email,
@@ -78,7 +77,7 @@ class SponsorSubscription extends Component
                 ],
             ]);
 
-            $this->redirect($payload->authorization_url);
+            $this->redirect($payload->authorization_url); // @phpstan-ignore-line
         } catch (\NotchPay\Exceptions\ApiException $e) {
             Log::error($e->getMessage());
             session()->flash('error', __('Impossible de procéder au paiement, veuillez recommencer plus tard. Merci'));

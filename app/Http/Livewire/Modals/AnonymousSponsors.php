@@ -54,7 +54,6 @@ class AnonymousSponsors extends ModalComponent
         );
 
         try {
-            // @phpstan-ignore-next-line
             $payload = Payment::initialize([
                 'amount' => $this->amount,
                 'email' => $this->email,
@@ -89,7 +88,7 @@ class AnonymousSponsors extends ModalComponent
                 ]
             ]);
 
-            $this->redirect($payload->authorization_url);
+            $this->redirect($payload->authorization_url); // @phpstan-ignore-line
         } catch (\NotchPay\Exceptions\ApiException $e) {
             Log::error($e->getMessage());
             session()->flash(
