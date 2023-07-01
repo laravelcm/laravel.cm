@@ -15,7 +15,7 @@ trait HasSocialite
      */
     public function getAcceptedProviders(): array
     {
-        return ['github', 'twitter'];
+        return ['github'];
     }
 
     protected function getSocialiteUser(string $provider): User
@@ -31,18 +31,15 @@ trait HasSocialite
         $fields = empty(config("services.{$provider}.fields")) ? false : config("services.{$provider}.fields");
 
         if ($scopes) {
-            // @phpstan-ignore-next-line
-            $socialite->scopes($scopes);
+            $socialite->scopes($scopes); // @phpstan-ignore-line
         }
 
         if ($with) {
-            // @phpstan-ignore-next-line
-            $socialite->with($with);
+            $socialite->with($with); // @phpstan-ignore-line
         }
 
         if ($fields) {
-            // @phpstan-ignore-next-line
-            $socialite->fields($fields);
+            $socialite->fields($fields); // @phpstan-ignore-line
         }
 
         return $socialite->redirect();
