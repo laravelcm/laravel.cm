@@ -12,7 +12,7 @@ use Livewire\Component;
 
 class AddComment extends Component
 {
-    public $discussion;
+    public ?Discussion $discussion;
 
     public bool $isRoot = true;
 
