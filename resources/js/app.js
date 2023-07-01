@@ -11,6 +11,7 @@ import '@helpers/scrollspy'
 import './elements'
 import './utils/editor'
 import './utils/filepond'
+import './utils/clipboard'
 
 registerHeader()
 

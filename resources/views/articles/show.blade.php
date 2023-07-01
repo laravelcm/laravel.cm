@@ -143,7 +143,8 @@
             <x-markdown-content
                 id="content"
                 class="mt-8 prose prose-lg prose-green text-skin-base mx-auto overflow-x-hidden md:prose-xl lg:max-w-none"
-                :content="$article->body" />
+                :content="$article->body"
+            />
 
             <div class="mt-6 pt-5 border-t border-skin-base sm:hidden">
                 <div class="space-y-4">
