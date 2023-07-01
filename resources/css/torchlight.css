@@ -14,14 +14,14 @@ pre {
  colors extend edge to edge.
 */
 pre code.torchlight {
-  @apply block py-4 min-w-max;
+  @apply block py-6 min-w-max;
 }
 
 /*
  Horizontal line padding.
 */
 pre code.torchlight .line {
-  @apply px-4;
+  @apply px-5;
 }
 
 /*
@@ -84,4 +84,8 @@ pre code.torchlight .summary-caret {
 /* Show the [...] indicator when closed. */
 .torchlight details:not([open]) .summary-hide-when-open {
   display: initial;
+}
+
+.code-block .copyBtn {
+  @apply absolute right-2 top-2 outline-none;
 }
