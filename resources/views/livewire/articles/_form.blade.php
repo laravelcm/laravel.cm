@@ -3,9 +3,11 @@
         <div class="flex items-center divide-x divide-skin-light space-x-3">
             <a href="{{ route('articles') }}" class="flex items-center font-sans text-skin-primary text-base font-medium hover:text-skin-primary-hover">
                 <x-heroicon-o-chevron-left class="h-5 w-5 mr-1.5" />
-                Tous les articles
+                {{ __('Tous les articles') }}
             </a>
-            <a href="{{ route('dashboard') }}" class="flex items-center pl-3 font-sans text-skin-base text-base font-medium">Mes articles</a>
+            <a href="{{ route('dashboard') }}" class="flex items-center pl-3 font-sans text-skin-base text-base font-medium">
+                {{ __('Mes articles') }}
+            </a>
         </div>
         <div class="flex items-center space-x-2 mt-3 sm:mt-0">
             @hasanyrole('admin|moderator')
@@ -17,7 +19,7 @@
                 @if(isset($article))
                     <span class="relative z-20 inline-flex shadow-sm rounded-md">
                         <button type="button" class="button inline-flex items-center justify-center py-2 px-4 text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500 rounded-l-md border-r border-white" disabled>
-                            Enregistrer les modifications
+                            {{ __('Enregistrer') }}
                         </button>
                         <span x-data="{ open: false }" @keydown.escape.stop="open = false;" @click.away="open = false" class="-ml-px relative block">
                             <button type="button" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-transparent text-sm font-medium text-white text-white bg-green-600 hover:bg-green-700 focus:z-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500"
@@ -25,7 +27,7 @@
                                     x-ref="button"
                                     @click="open = !open"
                                     aria-expanded="false" aria-haspopup="true" x-bind:aria-expanded="open.toString()">
-                                <span class="sr-only">Ouvrir les options</span>
+                                <span class="sr-only">{{ __('Ouvrir les options') }}</span>
                                 <x-heroicon-s-chevron-down class="h-5 w-5" />
                             </button>
 
@@ -43,11 +45,11 @@
                                 <div class="py-1" role="none">
                                     <button type="button" wire:click="submit" class="block px-4 py-2 text-sm text-skin-inverted-muted hover:text-skin-inverted" role="menuitem" tabindex="-1" id="option-menu-item-0">
                                         <x-loader class="text-white" wire:loading wire:target="submit" />
-                                        Enregistrer et soumettre
+                                        {{ __('Soumettre') }}
                                     </button>
-                                    <button type="button" wire:click="save" class="block px-4 py-2 text-sm text-skin-inverted-muted hover:text-skin-inverted" role="menuitem" tabindex="-1" id="option-menu-item-1">
+                                    <button type="button" wire:click="store" class="block px-4 py-2 text-sm text-skin-inverted-muted hover:text-skin-inverted" role="menuitem" tabindex="-1" id="option-menu-item-1">
                                         <x-loader class="text-white" wire:loading wire:target="save" />
-                                        Enregistrer en brouillon
+                                       {{ __('Brouillon') }}
                                     </button>
                                 </div>
                             </div>
@@ -56,7 +58,7 @@
                 @else
                     <x-button type="button" wire:click="submit">
                         <x-loader class="text-white" wire:loading wire:target="submit" />
-                        {{ __('Soumettre') }}
+                        {{ __('Enregistrer') }}
                     </x-button>
                 @endif
             @endhasanyrole
@@ -120,24 +122,92 @@
                                             </dt>
                                         </div>
                                         <button type="button"
-                                                class="relative inline-flex items-center shrink-0 h-6 w-11 border border-skin-base rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 bg-skin-card-muted"
-                                                :class="{ 'bg-green-600': on, 'bg-skin-card-muted': !(on) }"
-                                                aria-pressed="false"
-                                                x-ref="switch"
-                                                x-state:on="Enabled"
-                                                x-state:off="Not Enabled"
-                                                aria-labelledby="availability-label"
-                                                :aria-pressed="on.toString()"
-                                                @click="on = !on"
+                                            class="relative inline-flex items-center shrink-0 h-6 w-11 border border-skin-base rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 bg-skin-card-muted"
+                                            :class="{ 'bg-green-600': on, 'bg-skin-card-muted': !(on) }"
+                                            aria-pressed="false"
+                                            x-ref="switch"
+                                            x-state:on="Enabled"
+                                            x-state:off="Not Enabled"
+                                            aria-labelledby="availability-label"
+                                            :aria-pressed="on.toString()"
+                                            @click="on = !on"
                                         >
                                             <span class="sr-only">{{ __('Afficher le sommaire') }}</span>
                                             <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200 translate-x-0" x-state:on="Enabled" x-state:off="Not Enabled" :class="{ 'translate-x-5': on, 'translate-x-0': !(on) }"></span>
                                         </button>
                                     </div>
 
-                                    <div class="mt-8">
+                                    <div class="mt-8" x-data="datepicker" wire:ignore>
                                         <x-label for="published_at">{{ __('Date de publication') }}</x-label>
-                                        <x-input wire:model.debounce.500ms="published_at" id="published_at" name="published_at" class="mt-1" type="date" autocomplete="off" />
+                                        <div class="relative mt-1" wire:model="published_at">
+                                            <input
+                                                x-ref="datePickerInput"
+                                                @click="datePickerOpen =! datePickerOpen"
+                                                x-model="datePickerValue"
+                                                x-on:keydown.escape="datePickerOpen = false"
+                                                id="published_at"
+                                                name="published_at"
+                                                class="bg-skin-input shadow-sm focus:ring-flag-green focus:border-flag-green block w-full placeholder-skin-input focus:outline-none focus:placeholder-skin-input-focus text-skin-base sm:text-sm border-skin-input rounded-md"
+                                                type="text"
+                                                autocomplete="off"
+                                                readonly
+                                            />
+                                            <button type="button" @click="datePickerOpen =! datePickerOpen; if(datePickerOpen) { $refs.datePickerInput.focus() }" class="absolute top-0 right-0 px-3 py-2 cursor-pointer text-skin-muted hover:text-skin-base">
+                                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                            </button>
+                                            <div
+                                                x-show="datePickerOpen"
+                                                x-transition
+                                                @click.away="datePickerOpen = false"
+                                                class="absolute top-0 left-0 max-w-lg p-4 mt-12 antialiased bg-skin-body border rounded-lg shadow w-[17rem] border-skin-base z-50">
+                                                <div class="flex items-center justify-between mb-2">
+                                                    <div>
+                                                        <span x-text="datePickerMonthNames[datePickerMonth]" class="text-lg font-bold text-skin-inverted"></span>
+                                                        <span x-text="datePickerYear" class="ml-1 text-lg font-normal text-skin-base"></span>
+                                                    </div>
+                                                    <div>
+                                                        <button @click="datePickerPreviousMonth()" type="button" class="inline-flex p-1 transition duration-100 ease-in-out rounded-full cursor-pointer focus:outline-none focus:shadow-outline hover:bg-skin-card">
+                                                            <svg class="inline-flex w-6 h-6 text-skin-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                                            </svg>
+                                                        </button>
+                                                        <button @click="datePickerNextMonth()" type="button" class="inline-flex p-1 transition duration-100 ease-in-out rounded-full cursor-pointer focus:outline-none focus:shadow-outline hover:bg-skin-card">
+                                                            <svg class="inline-flex w-6 h-6 text-skin-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="grid grid-cols-7 mb-3">
+                                                    <template x-for="(day, index) in datePickerDays" :key="index">
+                                                        <div class="px-0.5">
+                                                            <div x-text="day" class="text-xs font-medium text-center text-skin-inverted/80"></div>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                                <div class="grid grid-cols-7">
+                                                    <template x-for="blankDay in datePickerBlankDaysInMonth">
+                                                        <div class="p-1 text-sm text-center border border-transparent"></div>
+                                                    </template>
+                                                    <template x-for="(day, dayIndex) in datePickerDaysInMonth" :key="dayIndex">
+                                                        <div class="px-0.5 mb-1 aspect-square">
+                                                            <div
+                                                                x-text="day"
+                                                                @click="datePickerDayClicked(day); $wire.set('published_at', datePickerRealValue)"
+                                                                :class="{
+                                                                    'bg-skin-card': datePickerIsToday(day) == true,
+                                                                    'text-skin-base hover:bg-skin-card-gray': datePickerIsToday(day) == false && datePickerIsSelectedDate(day) == false,
+                                                                    'bg-primary-800 text-white hover:bg-opacity-75': datePickerIsSelectedDate(day) == true
+                                                                }"
+                                                                class="flex items-center justify-center text-sm leading-none text-center rounded-full cursor-pointer h-7 w-7">
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="mt-8">

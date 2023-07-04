@@ -11,6 +11,8 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Traits\WithArticleAttributes;
 use App\Traits\WithTagsAssociation;
+use Carbon\Carbon;
+use DateTimeInterface;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -50,6 +52,13 @@ class Create extends Component
         /** @var User $user */
         $user = Auth::user();
 
+        if ($this->published_at && ! ($this->published_at instanceof DateTimeInterface)) {
+            $this->published_at = new Carbon(
+                time: $this->published_at,
+                tz: config('app.timezone')
+            );
+        }
+
         /** @var Article $article */
         $article = Article::create([
             'title' => $this->title,
@@ -64,7 +73,7 @@ class Create extends Component
         ]);
 
         if (collect($this->associateTags)->isNotEmpty()) {
-            $article->syncTags($this->associateTags);
+            $article->syncTags(tags: $this->associateTags);
         }
 
         if ($this->file) {
