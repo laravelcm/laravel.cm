@@ -107,7 +107,7 @@ return [
         'namespace' => 'App\\Filament\\Pages',
         'path' => app_path('Filament/Pages'),
         'register' => [
-            // Pages\Dashboard::class,
+            Pages\Dashboard::class,
         ],
     ],
 
@@ -141,8 +141,8 @@ return [
         'namespace' => 'App\\Filament\\Widgets',
         'path' => app_path('Filament/Widgets'),
         'register' => [
-            // Widgets\AccountWidget::class,
-            // Widgets\FilamentInfoWidget::class,
+            Widgets\AccountWidget::class,
+            Widgets\FilamentInfoWidget::class,
         ],
     ],
 
@@ -185,7 +185,7 @@ return [
 
     'database_notifications' => [
         'enabled' => true,
-        'polling_interval' => '60s',
+        'polling_interval' => '3600s',
     ],
 
     /*
@@ -234,6 +234,7 @@ return [
         'forms' => [
             'actions' => [
                 'alignment' => 'left',
+                'are_sticky' => false,
             ],
             'have_inline_labels' => false,
         ],

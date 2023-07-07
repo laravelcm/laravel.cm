@@ -9,6 +9,9 @@ use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
 use App\Traits\Reacts;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Models\Contracts\HasName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -32,7 +35,7 @@ use Spatie\Permission\Traits\HasRoles;
 /**
  * @mixin IdeHelperUser
  */
-class User extends Authenticatable implements MustVerifyEmail, HasMedia, FeaturableInterface
+class User extends Authenticatable implements MustVerifyEmail, HasMedia, FeaturableInterface, FilamentUser, HasName, HasAvatar
 {
     use Gamify;
     use HasFactory;
@@ -47,11 +50,6 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
     use Reacts;
     use Featurable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
     protected $fillable = [
         'name',
         'email',
@@ -74,11 +72,6 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
         'opt_in',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -86,22 +79,12 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
         'two_factor_secret',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_login_at' => 'datetime',
         'settings' => 'array',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var string[]
-     */
     protected $appends = [
         'profile_photo_url',
         'roles_label',
@@ -177,6 +160,21 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
     public function isLoggedInUser(): bool
     {
         return $this->id === Auth::id();
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return str_ends_with($this->email, '@laravel.cm') || $this->isModerator() || $this->isAdmin();
+    }
+
+    public function getFilamentName(): string
+    {
+        return $this->name;
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->profile_photo_url;
     }
 
     /**
