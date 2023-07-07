@@ -4,16 +4,12 @@ declare(strict_types=1);
 
 namespace App\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class SettingsLayout extends Component
+final class SettingsLayout extends Component
 {
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render()
+    public function render(): View
     {
         return view('layouts.settings');
     }

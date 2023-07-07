@@ -7,18 +7,18 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class () extends Migration {
-    public function up()
+    public function up(): void
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->after('user_id', function ($table) {
+        Schema::table('articles', function (Blueprint $table): void {
+            $table->after('user_id', function ($table): void {
                 $table->timestamp('published_at')->nullable();
             });
         });
     }
 
-    public function down()
+    public function down(): void
     {
-        Schema::table('articles', function (Blueprint $table) {
+        Schema::table('articles', function (Blueprint $table): void {
             $table->removeColumn('published_at');
         });
     }

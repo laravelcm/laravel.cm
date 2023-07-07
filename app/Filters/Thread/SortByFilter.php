@@ -8,11 +8,8 @@ use App\Filters\AbstractFilter;
 use App\Models\Thread;
 use Illuminate\Database\Eloquent\Builder;
 
-class SortByFilter extends AbstractFilter
+final class SortByFilter extends AbstractFilter
 {
-    /**
-     * @return string[]
-     */
     public function mappings(): array
     {
         return [

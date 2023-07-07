@@ -7,15 +7,12 @@ namespace App\Spotlight;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 
-class Slack extends SpotlightCommand
+final class Slack extends SpotlightCommand
 {
     protected string $name = 'Slack';
 
     protected string $description = 'rejoindre le Slack de Laravel Cameroun';
 
-    /**
-     * @var string[]
-     */
     protected array $synonyms = [
         'community',
         'join',

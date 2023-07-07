@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
-class SendUnVerifiedMails extends Command
+final class SendUnVerifiedMails extends Command
 {
     protected $signature = 'lcm:send-unverified-mails';
 

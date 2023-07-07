@@ -49,9 +49,9 @@ final class AppServiceProvider extends ServiceProvider
 
     public function registerBladeDirective(): void
     {
-        Blade::directive('title', fn ($expression) => "<?php \$title = $expression ?>");
-        Blade::directive('shareImage', fn ($expression) => "<?php \$shareImage = $expression ?>");
-        Blade::directive('canonical', fn ($expression) => "<?php \$canonical = $expression ?>");
+        Blade::directive('title', fn ($expression) => "<?php \$title = {$expression} ?>");
+        Blade::directive('shareImage', fn ($expression) => "<?php \$shareImage = {$expression} ?>");
+        Blade::directive('canonical', fn ($expression) => "<?php \$canonical = {$expression} ?>");
     }
 
     public function bootMacros(): void
@@ -88,7 +88,7 @@ final class AppServiceProvider extends ServiceProvider
 
     public function bootFilament(): void
     {
-        Filament::serving(function () {
+        Filament::serving(function (): void {
             Filament::registerTheme(
                 mix('css/filament.css'),
             );

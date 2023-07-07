@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LivewireUI\Modal\ModalComponent;
 
-class DeleteThread extends ModalComponent
+final class DeleteThread extends ModalComponent
 {
     use AuthorizesRequests;
 

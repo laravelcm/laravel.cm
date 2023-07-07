@@ -18,11 +18,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 /**
  * @mixin IdeHelperEnterprise
  */
-class Enterprise extends Model implements HasMedia
+final class Enterprise extends Model implements HasMedia
 {
     use HasFactory;
-    use HasSlug;
     use HasSettings;
+    use HasSlug;
     use InteractsWithMedia;
 
     protected $fillable = [
@@ -42,11 +42,6 @@ class Enterprise extends Model implements HasMedia
         'settings',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'settings' => 'array',
         'is_public' => 'boolean',

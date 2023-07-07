@@ -8,6 +8,6 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'cpanel/home');
 Route::get('/home', Cpanel\DashboardController::class)->name('home');
 Route::get('/analytics', Cpanel\AnalyticsController::class)->name('analytics');
-Route::prefix('users')->as('users.')->group(function () {
+Route::prefix('users')->as('users.')->group(function (): void {
     Route::get('/', Cpanel\UserController::class)->name('browse');
 });

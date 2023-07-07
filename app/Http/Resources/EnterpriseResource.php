@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @mixin IdeHelperEnterprise
  */
-class EnterpriseResource extends JsonResource
+final class EnterpriseResource extends JsonResource
 {
     public function toArray($request): array
     {

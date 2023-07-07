@@ -11,7 +11,7 @@ use Faker\Generator as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ArticleTableSeeder extends Seeder
+final class ArticleTableSeeder extends Seeder
 {
     use WithoutModelEvents;
 

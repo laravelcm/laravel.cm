@@ -9,7 +9,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
 
-class PostThreadToSlack extends Notification
+final class PostThreadToSlack extends Notification
 {
     use Queueable;
 
@@ -20,9 +20,6 @@ class PostThreadToSlack extends Notification
         $this->thread = $thread->load('user');
     }
 
-    /**
-     * @return string[]
-     */
     public function via(mixed $notifiable): array
     {
         return ['slack'];

@@ -11,7 +11,7 @@ use Database\Seeders\Fixtures\UsersTableSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DummyDatabaseSeeder extends Seeder
+final class DummyDatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 

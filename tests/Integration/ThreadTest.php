@@ -14,25 +14,25 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(RefreshDatabase::class);
 uses(DatabaseMigrations::class);
 
-it('can find by slug', function () {
+it('can find by slug', function (): void {
     Thread::factory()->create(['slug' => 'foo']);
 
     expect(Thread::findBySlug('foo'))->toBeInstanceOf(Thread::class);
 });
 
-it('can give an excerpt of its body', function () {
+it('can give an excerpt of its body', function (): void {
     $thread = Thread::factory()->make(['body' => 'This is a pretty long text.']);
 
     expect($thread->excerpt(7))->toEqual('This is...');
 });
 
-test('html in excerpts is markdown converted', function () {
+test('html in excerpts is markdown converted', function (): void {
     $thread = Thread::factory()->make(['body' => '<p>Thread body</p>']);
 
     expect($thread->excerpt())->toEqual("Thread body\n");
 });
 
-it('can have many channels', function () {
+it('can have many channels', function (): void {
     $channels = Channel::factory()->count(3)->create();
     $thread = Thread::factory()->create();
     $thread->channels()->attach($channels->modelKeys());
@@ -40,7 +40,7 @@ it('can have many channels', function () {
     expect($thread->channels->count())->toEqual(3);
 })->skip();
 
-it('records activity when a thread is created', function () {
+it('records activity when a thread is created', function (): void {
     $user = $this->createUser();
 
     $thread = Thread::factory()->create(['user_id' => $user->id]);
@@ -59,7 +59,7 @@ it('records activity when a thread is created', function () {
     $this->assertEquals($user->activities->count(), 1);
 })->skip();
 
-test('its conversation is old when the oldest reply was six months ago', function () {
+test('its conversation is old when the oldest reply was six months ago', function (): void {
     $thread = Thread::factory()->create();
     $thread->replies()->save(Reply::factory()->make(['created_at' => now()->subMonths(7)]));
 
@@ -71,7 +71,7 @@ test('its conversation is old when the oldest reply was six months ago', functio
     expect($thread->isConversationOld())->toBeFalse();
 });
 
-test('its conversation is old when there are no replies but the creation date was six months ago', function () {
+test('its conversation is old when there are no replies but the creation date was six months ago', function (): void {
     $thread = Thread::factory()->create(['created_at' => now()->subMonths(7)]);
 
     expect($thread->isConversationOld())->toBeTrue();
@@ -81,7 +81,7 @@ test('its conversation is old when there are no replies but the creation date wa
     expect($thread->isConversationOld())->toBeFalse();
 });
 
-test('we can mark and unmark a reply as the solution', function () {
+test('we can mark and unmark a reply as the solution', function (): void {
     $thread = Thread::factory()->create();
     $reply = Reply::factory()->create(['replyable_id' => $thread->id]);
     $user = $this->createUser();
@@ -100,7 +100,7 @@ test('we can mark and unmark a reply as the solution', function () {
     expect($thread->fresh()->wasResolvedBy($user))->toBeFalse();
 });
 
-it('can retrieve the latest threads in a correct order', function () {
+it('can retrieve the latest threads in a correct order', function (): void {
     $threadUpdatedYesterday = createThreadFromYesterday();
     $threadFromToday = createThreadFromToday();
     $threadFromTwoDaysAgo = createThreadFromTwoDaysAgo();
@@ -112,7 +112,7 @@ it('can retrieve the latest threads in a correct order', function () {
     $this->assertTrue($threadFromTwoDaysAgo->is($threads->last()), 'Last thread is incorrect');
 });
 
-it('can retrieve only resolved threads', function () {
+it('can retrieve only resolved threads', function (): void {
     createThreadFromToday();
     $resolvedThread = createResolvedThread();
 
@@ -122,7 +122,7 @@ it('can retrieve only resolved threads', function () {
     expect($resolvedThread->is($threads->first()))->toBeTrue();
 });
 
-it('can retrieve only active threads', function () {
+it('can retrieve only active threads', function (): void {
     createThreadFromToday();
     $activeThread = createActiveThread();
 
@@ -132,20 +132,20 @@ it('can retrieve only active threads', function () {
     expect($activeThread->is($threads->first()))->toBeTrue();
 });
 
-it('generates a slug when valid url characters provided', function () {
+it('generates a slug when valid url characters provided', function (): void {
     $thread = Thread::factory()->make(['slug' => 'Help with eloquent']);
 
     expect($thread->slug())->toEqual('help-with-eloquent');
 });
 
-it('generates a unique slug when valid url characters provided', function () {
+it('generates a unique slug when valid url characters provided', function (): void {
     $threadOne = Thread::factory()->create(['slug' => 'Help with eloquent']);
     $threadTwo = Thread::factory()->create(['slug' => 'Help with eloquent']);
 
     expect($threadTwo->slug())->toEqual('help-with-eloquent-1');
 });
 
-it('generates a slug when invalid url characters provided', function () {
+it('generates a slug when invalid url characters provided', function (): void {
     $thread = Thread::factory()->make(['slug' => '한글 테스트']);
 
     // When providing a slug with invalid url characters, a random 5 character string is returned.

@@ -12,15 +12,12 @@ use LivewireUI\Spotlight\SpotlightCommandDependencies;
 use LivewireUI\Spotlight\SpotlightCommandDependency;
 use LivewireUI\Spotlight\SpotlightSearchResult;
 
-class User extends SpotlightCommand
+final class User extends SpotlightCommand
 {
     protected string $name = 'User';
 
     protected string $description = 'rechercher un utilisateur spécifique';
 
-    /**
-     * @var string[]
-     */
     protected array $synonyms = [];
 
     public function dependencies(): ?SpotlightCommandDependencies
@@ -34,8 +31,8 @@ class User extends SpotlightCommand
 
     public function searchUser(string $query): Collection
     {
-        return UserModel::where('name', 'like', "%$query%")
-            ->orWhere('username', 'like', "%$query%")
+        return UserModel::where('name', 'like', "%{$query}%")
+            ->orWhere('username', 'like', "%{$query}%")
             ->get()
             ->map(fn (UserModel $user) => new SpotlightSearchResult(
                 $user->id,

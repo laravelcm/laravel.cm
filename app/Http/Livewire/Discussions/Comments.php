@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
-class Comments extends Component
+final class Comments extends Component
 {
     public Discussion $discussion;
 

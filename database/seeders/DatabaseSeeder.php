@@ -7,7 +7,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 
-class DatabaseSeeder extends Seeder
+final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(WorldSeeder::class);
         $this->call(FeatureTableSeeder::class);
 
-        if (! App::environment('production')) {
+        if ( ! App::environment('production')) {
             $this->call(UserSeeder::class);
         }
     }

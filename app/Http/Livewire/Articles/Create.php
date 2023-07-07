@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Create extends Component
+final class Create extends Component
 {
+    use WithArticleAttributes;
     use WithFileUploads;
     use WithTagsAssociation;
-    use WithArticleAttributes;
 
     /**
      * @var string[]

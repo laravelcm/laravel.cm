@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 /**
  * @mixin IdeHelperSubscribe
  */
-class Subscribe extends Model
+final class Subscribe extends Model
 {
     use HasFactory;
     use HasUuid;

@@ -12,9 +12,7 @@ final class InactiveDiscussionsComposer
 {
     public function compose(View $view): void
     {
-        $discussions = Cache::remember('inactive_discussions', now()->addDays(3), function () {
-            return Discussion::noComments()->limit(5)->get();
-        });
+        $discussions = Cache::remember('inactive_discussions', now()->addDays(3), fn () => Discussion::noComments()->limit(5)->get());
 
         $view->with('discussions', $discussions);
     }

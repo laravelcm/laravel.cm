@@ -14,14 +14,20 @@ use LivewireUI\Modal\ModalComponent;
 use NotchPay\NotchPay;
 use NotchPay\Payment;
 
-class AnonymousSponsors extends ModalComponent
+final class AnonymousSponsors extends ModalComponent
 {
     public ?string $amount = null;
+
     public ?string $option = null;
+
     public ?string $name = null;
+
     public ?string $email = null;
+
     public string $type = 'company';
+
     public string $currency = 'XAF';
+
     public ?string $url = null;
 
     public function mount(string $amount, string $option, string $currency): void
@@ -59,7 +65,7 @@ class AnonymousSponsors extends ModalComponent
                 'email' => $this->email,
                 'name' => $this->name,
                 'currency' => $this->currency,
-                'reference' => $adminUser->id . '-' . $adminUser->username() . '-' . uniqid(),
+                'reference' => $adminUser->id.'-'.$adminUser->username().'-'.uniqid(),
                 'callback' => route('notchpay-callback'),
                 'description' => __('Soutien de la communauté Laravel & PHP Cameroun.'),
             ]);
@@ -70,7 +76,7 @@ class AnonymousSponsors extends ModalComponent
                 'transaction_reference' => $payload->transaction->reference,
                 'user_id' => $adminUser->id,
                 'fees' => $payload->transaction->fee,
-                'type' => $this->option === 'one-time'
+                'type' => 'one-time' === $this->option
                     ? TransactionType::ONETIME->value
                     : TransactionType::RECURSIVE->value,
                 'metadata' => [

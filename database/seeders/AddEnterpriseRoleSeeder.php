@@ -7,7 +7,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
-class AddEnterpriseRoleSeeder extends Seeder
+final class AddEnterpriseRoleSeeder extends Seeder
 {
     public function run(): void
     {

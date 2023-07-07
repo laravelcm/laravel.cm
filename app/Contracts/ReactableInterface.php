@@ -9,9 +9,6 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 interface ReactableInterface
 {
-    /**
-     * Returns an Eloquent collection of reactions to the current item.
-     */
     public function reactions(): MorphToMany;
 
     /**

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Ramsey\Uuid\Uuid;
 
-class CreateThread extends Component
+final class CreateThread extends Component
 {
     use WithChannelsAssociation;
 

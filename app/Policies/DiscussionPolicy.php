@@ -7,7 +7,7 @@ namespace App\Policies;
 use App\Models\Discussion;
 use App\Models\User;
 
-class DiscussionPolicy
+final class DiscussionPolicy
 {
     public const UPDATE = 'update';
 

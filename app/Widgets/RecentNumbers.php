@@ -12,9 +12,6 @@ use Illuminate\Contracts\View\View;
 
 final class RecentNumbers extends AbstractWidget
 {
-    /**
-     * @var array<string>
-     */
     protected $config = [];
 
     /**

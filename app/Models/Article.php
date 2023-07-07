@@ -23,7 +23,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 /**
  * @mixin IdeHelperArticle
  */
-class Article extends Model implements ReactableInterface, HasMedia, Viewable
+final class Article extends Model implements ReactableInterface, HasMedia, Viewable
 {
     use HasAuthor;
     use HasFactory;
@@ -34,11 +34,6 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
     use Reactable;
     use RecordsActivity;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'title',
         'body',
@@ -57,11 +52,6 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         'published_at',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'submitted_at' => 'datetime',
         'approved_at' => 'datetime',
@@ -73,22 +63,12 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
         'is_pinned' => 'boolean',
     ];
 
-    /**
-     * The relations to eager load on every query.
-     *
-     * @var string[]
-     */
     protected $with = [
         'media',
     ];
 
     protected bool $removeViewsOnDelete = true;
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -168,7 +148,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function isNotSubmitted(): bool
     {
-        return $this->submitted_at === null;
+        return null === $this->submitted_at;
     }
 
     public function isApproved(): bool
@@ -178,7 +158,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function isNotApproved(): bool
     {
-        return $this->approved_at === null;
+        return null === $this->approved_at;
     }
 
     public function isSponsored(): bool
@@ -188,7 +168,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function isNotSponsored(): bool
     {
-        return $this->sponsored_at === null;
+        return null === $this->sponsored_at;
     }
 
     public function isDeclined(): bool
@@ -198,7 +178,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function isNotDeclined(): bool
     {
-        return $this->declined_at === null;
+        return null === $this->declined_at;
     }
 
     public function isPublished(): bool
@@ -218,7 +198,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
 
     public function isNotShared(): bool
     {
-        return $this->shared_at === null;
+        return null === $this->shared_at;
     }
 
     public function isShared(): bool
@@ -303,7 +283,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
      */
     public function scopeNotPublished(Builder $query): Builder
     {
-        return $query->where(function ($query) {
+        return $query->where(function ($query): void {
             $query->whereNull('submitted_at')
                 ->orWhereNull('approved_at')
                 ->orWhereNull('published_at')
@@ -421,7 +401,7 @@ class Article extends Model implements ReactableInterface, HasMedia, Viewable
      */
     public function scopeTrending(Builder $query): Builder
     {
-        return $query->withCount(['reactions' => function ($query) {
+        return $query->withCount(['reactions' => function ($query): void {
             $query->where('created_at', '>=', now()->subWeek());
         }])
             ->orderBy('reactions_count', 'desc')

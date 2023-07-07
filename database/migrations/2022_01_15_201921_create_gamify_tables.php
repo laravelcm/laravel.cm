@@ -6,17 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGamifyTables extends Migration
+final class CreateGamifyTables extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
-        // reputations table
-        Schema::create('reputations', function (Blueprint $table) {
+        Schema::create('reputations', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
             $table->mediumInteger('point', false)->default(0);
@@ -27,8 +21,7 @@ class CreateGamifyTables extends Migration
             $table->timestamps();
         });
 
-        // badges table
-        Schema::create('badges', function (Blueprint $table) {
+        Schema::create('badges', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
@@ -38,7 +31,7 @@ class CreateGamifyTables extends Migration
         });
 
         // user_badges pivot
-        Schema::create('user_badges', function (Blueprint $table) {
+        Schema::create('user_badges', function (Blueprint $table): void {
             $table->primary(['user_id', 'badge_id']);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('badge_id');
@@ -46,12 +39,7 @@ class CreateGamifyTables extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('user_badges');
         Schema::dropIfExists('badges');

@@ -11,13 +11,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Enterprise>
  */
-class EnterpriseFactory extends Factory
+final class EnterpriseFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
@@ -38,7 +33,7 @@ class EnterpriseFactory extends Factory
 
     public function configure(): self
     {
-        return $this->afterCreating(function (Enterprise $enterprise) {
+        return $this->afterCreating(function (Enterprise $enterprise): void {
             $enterprise->addMediaFromUrl("https://source.unsplash.com/random/800x800/?img={$enterprise->id}")
                 ->toMediaCollection('logo');
         });

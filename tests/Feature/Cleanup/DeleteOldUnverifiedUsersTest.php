@@ -8,7 +8,7 @@ use Spatie\TestTime\TestTime;
 
 beforeEach(fn () => TestTime::freeze('Y-m-d H:i:s', '2021-05-01 00:00:01'));
 
-it('will delete unverified users after some days', function () {
+it('will delete unverified users after some days', function (): void {
     $user = User::factory()->create([
         'email_verified_at' => null,
     ]);
@@ -24,7 +24,7 @@ it('will delete unverified users after some days', function () {
     $this->assertFalse($user->exists());
 });
 
-it('will not delete verified users', function () {
+it('will not delete verified users', function (): void {
     $user = User::factory()->create([
         'email_verified_at' => now(),
     ]);

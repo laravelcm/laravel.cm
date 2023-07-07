@@ -13,15 +13,10 @@ use Illuminate\Support\Collection;
 /**
  * @mixin IdeHelperActivity
  */
-class Activity extends Model
+final class Activity extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'user_id',
         'data',
@@ -30,11 +25,6 @@ class Activity extends Model
         'type',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'data' => 'array',
     ];

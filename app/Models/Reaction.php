@@ -10,13 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @mixin IdeHelperReaction
  */
-class Reaction extends Model
+final class Reaction extends Model
 {
     use HasFactory;
 
-    /**
-     * @var string[]|bool
-     */
     protected $guarded = [];
 
     public static function createFromName(string $name): self
@@ -24,9 +21,6 @@ class Reaction extends Model
         return self::create(['name' => $name]);
     }
 
-    /**
-     * @return mixed
-     */
     public function getResponder(): mixed
     {
         if ($this->getOriginal('pivot_responder_type', null)) {

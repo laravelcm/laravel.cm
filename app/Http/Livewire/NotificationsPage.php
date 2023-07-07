@@ -13,7 +13,7 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class NotificationsPage extends Component
+final class NotificationsPage extends Component
 {
     use AuthorizesRequests;
 

@@ -10,7 +10,7 @@ use App\Traits\WithChannelsAssociation;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class EditThread extends Component
+final class EditThread extends Component
 {
     use WithChannelsAssociation;
 

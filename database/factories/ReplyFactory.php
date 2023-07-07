@@ -8,7 +8,7 @@ use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ReplyFactory extends Factory
+final class ReplyFactory extends Factory
 {
     public function definition(): array
     {

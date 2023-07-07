@@ -7,5 +7,6 @@ namespace App\Enums;
 enum PlanType: string
 {
     case DEVELOPER = 'developer';
+
     case ENTERPRISE = 'enterprise';
 }

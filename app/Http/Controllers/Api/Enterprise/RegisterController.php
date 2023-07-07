@@ -11,7 +11,7 @@ use App\Models\Enterprise;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
-class RegisterController extends Controller
+final class RegisterController extends Controller
 {
     public function __invoke(RegisterRequest $request): JsonResponse
     {

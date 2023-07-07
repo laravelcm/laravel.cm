@@ -8,7 +8,7 @@ use App\Gamify\Points\ReplyCreated;
 use App\Models\Reply;
 use Illuminate\Console\Command;
 
-class UpdateUserRepliesPoints extends Command
+final class UpdateUserRepliesPoints extends Command
 {
     protected $signature = 'lcm:update-users-replies-points';
 

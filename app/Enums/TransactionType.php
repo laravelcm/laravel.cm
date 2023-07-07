@@ -7,5 +7,6 @@ namespace App\Enums;
 enum TransactionType: string
 {
     case ONETIME = 'one-time';
+
     case RECURSIVE = 'recursive';
 }

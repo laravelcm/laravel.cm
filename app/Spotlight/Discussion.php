@@ -12,15 +12,12 @@ use LivewireUI\Spotlight\SpotlightCommandDependencies;
 use LivewireUI\Spotlight\SpotlightCommandDependency;
 use LivewireUI\Spotlight\SpotlightSearchResult;
 
-class Discussion extends SpotlightCommand
+final class Discussion extends SpotlightCommand
 {
     protected string $name = 'Discussion';
 
     protected string $description = 'rechercher une discussion spécifique';
 
-    /**
-     * @var string[]
-     */
     protected array $synonyms = [];
 
     public function dependencies(): ?SpotlightCommandDependencies
@@ -35,7 +32,7 @@ class Discussion extends SpotlightCommand
     public function searchDiscussion(string $query): Collection
     {
         return DiscussionModel::with('user')
-            ->where('title', 'like', "%$query%")
+            ->where('title', 'like', "%{$query}%")
             ->get()
             ->map(fn (DiscussionModel $discussion) => new SpotlightSearchResult(
                 $discussion->slug(),

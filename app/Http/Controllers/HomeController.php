@@ -11,7 +11,7 @@ use App\Models\Thread;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
 
-class HomeController extends Controller
+final class HomeController extends Controller
 {
     public function __invoke(): View
     {

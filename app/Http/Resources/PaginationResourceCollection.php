@@ -6,7 +6,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class PaginationResourceCollection extends ResourceCollection
+abstract class PaginationResourceCollection extends ResourceCollection
 {
     public function __construct($resource, public $filters = [])
     {

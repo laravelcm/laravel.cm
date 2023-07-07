@@ -14,10 +14,12 @@ use Livewire\Component;
 use NotchPay\NotchPay;
 use NotchPay\Payment;
 
-class SponsorSubscription extends Component
+final class SponsorSubscription extends Component
 {
     public string $option = 'one-time';
+
     public string $amount = '';
+
     public string $currency = 'XAF';
 
     public function chooseOption(string $option): void
@@ -29,7 +31,7 @@ class SponsorSubscription extends Component
     {
         $this->validate(['amount' => 'required']);
 
-        if (!Auth::check()) {
+        if ( ! Auth::check()) {
             $this->emit('openModal', 'modals.anonymous-sponsors', [
                 'amount' => $this->amount,
                 'option' => $this->option,
@@ -47,7 +49,7 @@ class SponsorSubscription extends Component
                 'email' => Auth::user()?->email,
                 'name' => Auth::user()?->name,
                 'currency' => $this->currency,
-                'reference' => Auth::id() . '-' . Auth::user()?->username() . '-' . uniqid(),
+                'reference' => Auth::id().'-'.Auth::user()?->username().'-'.uniqid(),
                 'callback' => route('notchpay-callback'),
                 'description' => __('Soutien de la communauté Laravel & PHP Cameroun.'),
             ]);
@@ -58,7 +60,7 @@ class SponsorSubscription extends Component
                 'transaction_reference' => $payload->transaction->reference,
                 'user_id' => Auth::id(),
                 'fees' => $payload->transaction->fee,
-                'type' => $this->option === 'one-time'
+                'type' => 'one-time' === $this->option
                     ? TransactionType::ONETIME->value
                     : TransactionType::RECURSIVE->value,
                 'metadata' => [

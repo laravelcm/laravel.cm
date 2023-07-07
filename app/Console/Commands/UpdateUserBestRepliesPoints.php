@@ -8,7 +8,7 @@ use App\Gamify\Points\BestReply;
 use App\Models\Thread;
 use Illuminate\Console\Command;
 
-class UpdateUserBestRepliesPoints extends Command
+final class UpdateUserBestRepliesPoints extends Command
 {
     protected $signature = 'lcm:update-users-bests-replies-points';
 

@@ -9,12 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
-class UpdateUserProfileInformation implements UpdatesUserProfileInformation
+final class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
-    /**
-     * @param  User $user
-     * @param  string[]  $input
-     */
     public function update(User $user, array $input): void
     {
         Validator::make($input, [
@@ -39,11 +35,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         }
     }
 
-    /**
-     * @param  mixed  $user
-     * @param  string[]  $input
-     */
-    protected function updateVerifiedUser(User $user, array $input): void
+    private function updateVerifiedUser(User $user, array $input): void
     {
         $user->forceFill([
             'name' => $input['name'],

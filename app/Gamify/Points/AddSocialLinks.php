@@ -7,7 +7,7 @@ namespace App\Gamify\Points;
 use App\Models\User;
 use QCod\Gamify\PointType;
 
-class AddSocialLinks extends PointType
+final class AddSocialLinks extends PointType
 {
     public int $points = 15;
 

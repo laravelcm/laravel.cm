@@ -10,15 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @mixin IdeHelperSocialAccount
  */
-class SocialAccount extends Model
+final class SocialAccount extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
     protected $fillable = [
         'user_id',
         'provider',

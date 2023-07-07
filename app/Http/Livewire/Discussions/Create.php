@@ -13,7 +13,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Create extends Component
+final class Create extends Component
 {
     use WithTagsAssociation;
 

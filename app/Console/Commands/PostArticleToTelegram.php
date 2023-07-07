@@ -9,7 +9,7 @@ use App\Notifications\PostArticleToTelegram as PostArticleToTelegramNotification
 use Illuminate\Console\Command;
 use Illuminate\Notifications\AnonymousNotifiable;
 
-class PostArticleToTelegram extends Command
+final class PostArticleToTelegram extends Command
 {
     protected $signature = 'lcm:post-article-to-telegram';
 

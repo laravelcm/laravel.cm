@@ -8,7 +8,7 @@ use App\Events\ReplyWasCreated;
 use App\Models\User;
 use App\Notifications\YouWereMentioned;
 
-class NotifyMentionedUsers
+final class NotifyMentionedUsers
 {
     public function handle(ReplyWasCreated $event): void
     {

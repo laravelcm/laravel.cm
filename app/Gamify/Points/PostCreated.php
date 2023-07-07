@@ -8,7 +8,7 @@ use App\Models\Article;
 use App\Models\User;
 use QCod\Gamify\PointType;
 
-class PostCreated extends PointType
+final class PostCreated extends PointType
 {
     public int $points = 50;
 

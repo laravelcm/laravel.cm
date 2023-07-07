@@ -11,7 +11,7 @@ use NotificationChannels\Twitter\Exceptions\CouldNotSendNotification;
 use NotificationChannels\Twitter\TwitterChannel;
 use NotificationChannels\Twitter\TwitterStatusUpdate;
 
-class PostArticleToTwitter extends Notification
+final class PostArticleToTwitter extends Notification
 {
     use Queueable;
 
@@ -22,9 +22,6 @@ class PostArticleToTwitter extends Notification
         $this->article = $article->load('user');
     }
 
-    /**
-     * @return string[]
-     */
     public function via(mixed $notifiable): array
     {
         return [TwitterChannel::class];

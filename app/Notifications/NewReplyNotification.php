@@ -12,7 +12,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 
-class NewReplyNotification extends Notification implements ShouldQueue
+final class NewReplyNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -20,9 +20,6 @@ class NewReplyNotification extends Notification implements ShouldQueue
     {
     }
 
-    /**
-     * @return string[]
-     */
     public function via(mixed $notifiable): array
     {
         return ['mail', 'database'];

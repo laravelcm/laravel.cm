@@ -11,7 +11,7 @@ use App\Traits\WithTags;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class Browse extends Component
+final class Browse extends Component
 {
     use WithInfiniteScroll;
     use WithTags;

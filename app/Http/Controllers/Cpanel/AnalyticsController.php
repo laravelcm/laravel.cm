@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Cpanel;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 
-class AnalyticsController extends Controller
+final class AnalyticsController extends Controller
 {
     public function __invoke(): View
     {

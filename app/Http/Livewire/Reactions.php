@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Reactions extends Component
+final class Reactions extends Component
 {
     public ReactableInterface $model;
 

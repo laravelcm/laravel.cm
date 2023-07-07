@@ -6,16 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReactablesTable extends Migration
+final class CreateReactablesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
-        Schema::create('reactables', function (Blueprint $table) {
+        Schema::create('reactables', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('reaction_id')->constrained();
             $table->morphs('reactable');
@@ -23,12 +18,7 @@ class CreateReactablesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('reactables');
     }

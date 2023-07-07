@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Enums\PlanType;
 use App\Models\Premium\Feature;
 use App\Models\Premium\Plan;
 use Illuminate\Database\Seeder;
 
-class DeveloperPremiumPlanSeeder extends Seeder
+final class DeveloperPremiumPlanSeeder extends Seeder
 {
     public function run(): void
     {
         $rookiePlan = Plan::create([
             'name' => 'Le Rookie',
             'description' => 'Le Rookie plan',
-            'type' => \App\Enums\PlanType::DEVELOPER,
+            'type' => PlanType::DEVELOPER->value,
             'price' => 2000,
             'signup_fee' => 0,
             'invoice_period' => 1,
@@ -37,7 +38,7 @@ class DeveloperPremiumPlanSeeder extends Seeder
         $proPlan = Plan::create([
             'name' => 'Le Pro',
             'description' => 'Le Pro plan',
-            'type' => \App\Enums\PlanType::DEVELOPER,
+            'type' => PlanType::DEVELOPER->value,
             'price' => 5000,
             'signup_fee' => 0,
             'invoice_period' => 1,

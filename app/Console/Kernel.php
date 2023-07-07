@@ -4,18 +4,14 @@ declare(strict_types=1);
 
 namespace App\Console;
 
+use App\Console\Commands\Cleanup\DeleteOldUnverifiedUsers;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
-class Kernel extends ConsoleKernel
+final class Kernel extends ConsoleKernel
 {
-    /**
-     * The Artisan commands provided by your application.
-     *
-     * @var string[]
-     */
     protected $commands = [
-        \App\Console\Commands\Cleanup\DeleteOldUnverifiedUsers::class,
+        DeleteOldUnverifiedUsers::class,
     ];
 
     protected function schedule(Schedule $schedule): void

@@ -22,7 +22,7 @@ use Illuminate\Support\Str;
 /**
  * @mixin IdeHelperReply
  */
-class Reply extends Model implements ReactableInterface, ReplyInterface
+final class Reply extends Model implements ReactableInterface, ReplyInterface
 {
     use HasAuthor;
     use HasFactory;
@@ -30,11 +30,6 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
     use Reactable;
     use RecordsActivity;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'body',
     ];
@@ -69,9 +64,6 @@ class Reply extends Model implements ReactableInterface, ReplyInterface
         return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
     }
 
-    /**
-     * @return string[]
-     */
     public function mentionedUsers(): array
     {
         preg_match_all('/@([a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}(?!\w))/', $this->body, $matches);

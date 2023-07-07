@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SendApprovedArticle extends Notification implements ShouldQueue
+final class SendApprovedArticle extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -18,9 +18,6 @@ class SendApprovedArticle extends Notification implements ShouldQueue
     {
     }
 
-    /**
-     * @return string[]
-     */
     public function via(mixed $notifiable): array
     {
         return ['mail'];
@@ -29,10 +26,10 @@ class SendApprovedArticle extends Notification implements ShouldQueue
     public function toMail(): MailMessage
     {
         return (new MailMessage())
-                    ->subject(__('Article Approuvé 🎉.'))
-                    ->greeting(__('Article Approuvé 🎉.'))
-                    ->line(__('Merci d\'avoir soumis votre article pour créer du contenu au sein de Laravel Cameroun.'))
-                    ->action(__('Voir mon article'), route('articles.show', $this->article))
-                    ->line(__('Merci d\'avoir utilisé Laravel Cameroun.!'));
+            ->subject(__('Article Approuvé 🎉.'))
+            ->greeting(__('Article Approuvé 🎉.'))
+            ->line(__('Merci d\'avoir soumis votre article pour créer du contenu au sein de Laravel Cameroun.'))
+            ->action(__('Voir mon article'), route('articles.show', $this->article))
+            ->line(__('Merci d\'avoir utilisé Laravel Cameroun.!'));
     }
 }

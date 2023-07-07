@@ -10,11 +10,11 @@ trait HasProfilePhoto
 {
     public function getProfilePhotoUrlAttribute(): ?string
     {
-        if ($this->avatar_type === 'storage') {
+        if ('storage' === $this->avatar_type) {
             return $this->getFirstMediaUrl('avatar');
         }
 
-        if (! in_array($this->avatar_type, ['avatar', 'storage'])) {
+        if ( ! in_array($this->avatar_type, ['avatar', 'storage'])) {
             /** @var SocialAccount $social_avatar */
             $social_avatar = $this->providers->firstWhere('provider', $this->avatar_type);
             // @phpstan-ignore-next-line

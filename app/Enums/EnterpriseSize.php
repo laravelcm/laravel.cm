@@ -4,21 +4,19 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-use BenSampo\Enum\Enum;
-
-final class EnterpriseSize extends Enum
+enum EnterpriseSize: string
 {
-    public const SEED = '1-10';
+    case SEED = '1-10';
 
-    public const SMALL = '11-50';
+    case SMALL = '11-50';
 
-    public const MEDIUM = '51-200';
+    case MEDIUM = '51-200';
 
-    public const LARGE = '201-500';
+    case LARGE = '201-500';
 
-    public const VERY_LARGE = '501-1000';
+    case VERY_LARGE = '501-1000';
 
-    public const ENTERPRISE = '1001-5000';
+    case ENTERPRISE = '1001-5000';
 
-    public const LARGE_ENTERPRISE = '5000+';
+    case LARGE_ENTERPRISE = '5000+';
 }

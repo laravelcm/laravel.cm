@@ -12,15 +12,12 @@ use LivewireUI\Spotlight\SpotlightCommandDependencies;
 use LivewireUI\Spotlight\SpotlightCommandDependency;
 use LivewireUI\Spotlight\SpotlightSearchResult;
 
-class Article extends SpotlightCommand
+final class Article extends SpotlightCommand
 {
     protected string $name = 'Article';
 
     protected string $description = 'rechercher un article spécifique';
 
-    /**
-     * @var string[]
-     */
     protected array $synonyms = [];
 
     public function dependencies(): ?SpotlightCommandDependencies
@@ -36,7 +33,7 @@ class Article extends SpotlightCommand
     {
         return ArticleModel::published()
             ->with('user')
-            ->where('title', 'like', "%$query%")
+            ->where('title', 'like', "%{$query}%")
             ->get()
             ->map(fn (ArticleModel $article) => new SpotlightSearchResult(
                 $article->slug(),

@@ -16,17 +16,6 @@ use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', HomeController::class)->name('home');
 
 // Static pages
@@ -46,7 +35,7 @@ Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->n
 Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderCallback']);
 
 // Articles
-Route::prefix('articles')->group(function () {
+Route::prefix('articles')->group(function (): void {
     Route::get('/', [ArticlesController::class, 'index'])->name('articles');
     Route::get('/new', [ArticlesController::class, 'create'])->name('articles.new');
     Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
@@ -54,7 +43,7 @@ Route::prefix('articles')->group(function () {
 });
 
 // Discussions
-Route::prefix('discussions')->as('discussions.')->group(function () {
+Route::prefix('discussions')->as('discussions.')->group(function (): void {
     Route::get('/', [DiscussionController::class, 'index'])->name('index');
     Route::get('/new', [DiscussionController::class, 'create'])->name('new');
     Route::get('/{discussion}', [DiscussionController::class, 'show'])->name('show');
@@ -62,7 +51,7 @@ Route::prefix('discussions')->as('discussions.')->group(function () {
 });
 
 // Forum
-Route::prefix('forum')->as('forum.')->group(function () {
+Route::prefix('forum')->as('forum.')->group(function (): void {
     Route::redirect('/channels', '/forum');
     Route::get('/', [ThreadController::class, 'index'])->name('index');
     Route::get('/channels/{channel}', [ThreadController::class, 'channel'])->name('channels');
@@ -80,7 +69,7 @@ Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::
 Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
 
 // Settings
-Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {
+Route::prefix('settings')->as('user.')->middleware('auth')->group(function (): void {
     Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
     Route::put('/', [User\SettingController::class, 'update'])->name('settings.update');
     Route::view('/customization', 'user.settings.customization')->name('customization')->middleware('verified');
@@ -90,7 +79,7 @@ Route::prefix('settings')->as('user.')->middleware('auth')->group(function () {
 });
 
 // User
-Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function () {
+Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function (): void {
     Route::get('/', [User\DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/threads', [User\DashboardController::class, 'threads'])->name('threads.me');
     Route::get('/discussions', [User\DashboardController::class, 'discussions'])->name('discussions.me');

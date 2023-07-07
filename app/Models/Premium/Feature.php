@@ -10,7 +10,7 @@ use Rinvex\Subscriptions\Models\PlanFeature as Model;
 /**
  * @mixin IdeHelperFeature
  */
-class Feature extends Model
+final class Feature extends Model
 {
     use HasFactory;
 }

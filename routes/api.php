@@ -19,35 +19,35 @@ Route::post('login', [LoginController::class, 'login']);
 Route::get('email/verify/{id}/{hash}', [VerifyEmailController::class, 'verify'])
     ->middleware(['signed', 'throttle:6,1'])
     ->name('verification.verify');
-Route::prefix('register')->group(function () {
+Route::prefix('register')->group(function (): void {
     Route::post('/', [RegisterController::class, 'register']);
     Route::post('google', [RegisterController::class, 'googleAuthenticator']);
 });
-Route::prefix('password')->group(function () {
+Route::prefix('password')->group(function (): void {
     Route::post('forgot', ForgotPasswordController::class);
     Route::post('reset', ResetPasswordController::class);
 });
 
 /* Authenticated Routes */
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function (): void {
     Route::post('logout', [LoginController::class, 'logout']);
     Route::get('email/verify/resend', [VerifyEmailController::class, 'resend'])
         ->middleware('throttle:6,1')
         ->name('verification.send');
 
     /** User Profile Api */
-    Route::prefix('user')->group(function () {
+    Route::prefix('user')->group(function (): void {
         Route::get('me', [ProfileController::class, 'me']);
         Route::get('roles', [ProfileController::class, 'roles']);
     });
 });
 
 /** Public SPA Api */
-Route::prefix('enterprises')->group(function () {
+Route::prefix('enterprises')->group(function (): void {
     Route::get('featured', [Enterprise\PublicController::class, 'featured']);
     Route::get('paginate', [Enterprise\PublicController::class, 'paginate']);
 
-    Route::middleware('auth:sanctum')->group(function () {
+    Route::middleware('auth:sanctum')->group(function (): void {
         Route::post('add', Enterprise\RegisterController::class);
     });
 });

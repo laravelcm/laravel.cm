@@ -7,7 +7,7 @@ namespace App\Events;
 use App\Models\Transaction;
 use Illuminate\Queue\SerializesModels;
 
-class SponsoringPaymentInitialize
+final class SponsoringPaymentInitialize
 {
     use SerializesModels;
 

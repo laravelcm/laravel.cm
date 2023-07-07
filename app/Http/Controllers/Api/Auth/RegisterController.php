@@ -15,7 +15,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class RegisterController extends Controller
+final class RegisterController extends Controller
 {
     use UserResponse;
 
@@ -25,7 +25,7 @@ class RegisterController extends Controller
         $user = User::query()->create([
             'name' => $request->input('name'),
             'username' => $request->input('name'),
-            'email' => strtolower($request->input('email')),
+            'email' => mb_strtolower($request->input('email')),
             'password' => Hash::make($request->input('password')),
         ]);
 
@@ -48,14 +48,14 @@ class RegisterController extends Controller
 
         $user = User::query()->where('email', $socialUser['email'])->first();
 
-        if (! $user) {
+        if ( ! $user) {
             /** @var User $user */
             $user = User::query()->create([
                 'name' => $socialUser['name'],
                 'email' => $socialUser['email'],
                 'username' => $socialUser['id'],
                 'email_verified_at' => now(),
-                'avatar_type' => strtolower($socialUser['provider']),
+                'avatar_type' => mb_strtolower($socialUser['provider']),
             ]);
 
             $user->assignRole('company');
@@ -67,9 +67,9 @@ class RegisterController extends Controller
             ], 401);
         }
 
-        if (! $user->hasProvider($socialUser['provider'])) {
+        if ( ! $user->hasProvider($socialUser['provider'])) {
             $user->providers()->save(new SocialAccount([
-                'provider' => strtolower($socialUser['provider']),
+                'provider' => mb_strtolower($socialUser['provider']),
                 'provider_id' => $socialUser['id'],
                 'token' => $socialUser['idToken'],
                 'avatar' => $socialUser['photoUrl'],

@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Comment extends Component
+final class Comment extends Component
 {
     public Reply $comment;
 
@@ -35,7 +35,7 @@ class Comment extends Component
 
     public function toggleLike(): void
     {
-        if (! Auth::check()) {
+        if ( ! Auth::check()) {
             Notification::make()
                 ->title(__('Vous devez être connecté pour liker un commentaire.'))
                 ->danger()

@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @mixin IdeHelperTransaction
  */
-class Transaction extends Model
+final class Transaction extends Model
 {
     use HasFactory;
     use HasUuids;
