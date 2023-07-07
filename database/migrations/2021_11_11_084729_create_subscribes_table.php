@@ -6,16 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubscribesTable extends Migration
+final class CreateSubscribesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
-        Schema::create('subscribes', function (Blueprint $table) {
+        Schema::create('subscribes', function (Blueprint $table): void {
             $table->uuid('uuid')->index()->unique();
             $table->primary('uuid');
             $table->foreignId('user_id')->index()->constrained();
@@ -25,12 +20,7 @@ class CreateSubscribesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('subscribes');
     }

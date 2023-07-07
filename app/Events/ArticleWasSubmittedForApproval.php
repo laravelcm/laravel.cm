@@ -7,7 +7,7 @@ namespace App\Events;
 use App\Models\Article;
 use Illuminate\Queue\SerializesModels;
 
-class ArticleWasSubmittedForApproval
+final class ArticleWasSubmittedForApproval
 {
     use SerializesModels;
 

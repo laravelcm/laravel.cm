@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Schema;
 return new class () extends Migration {
     public function up(): void
     {
-        Schema::create('enterprises', function (Blueprint $table) {
+        Schema::create('enterprises', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
@@ -28,7 +28,7 @@ return new class () extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('enterprise_has_relations', function (Blueprint $table) {
+        Schema::create('enterprise_has_relations', function (Blueprint $table): void {
             $table->unsignedBigInteger('enterprise_id')->index();
             $table->foreign('enterprise_id')
                 ->references('id')
@@ -38,11 +38,6 @@ return new class () extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down(): void
     {
         Schema::dropIfExists('enterprise_has_relations');

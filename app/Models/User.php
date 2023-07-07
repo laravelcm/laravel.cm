@@ -35,20 +35,20 @@ use Spatie\Permission\Traits\HasRoles;
 /**
  * @mixin IdeHelperUser
  */
-class User extends Authenticatable implements MustVerifyEmail, HasMedia, FeaturableInterface, FilamentUser, HasName, HasAvatar
+final class User extends Authenticatable implements MustVerifyEmail, HasMedia, FeaturableInterface, FilamentUser, HasName, HasAvatar
 {
+    use Featurable;
     use Gamify;
+    use HasApiTokens;
     use HasFactory;
     use HasPlanSubscriptions;
     use HasProfilePhoto;
-    use HasApiTokens;
     use HasRoles;
-    use HasUsername;
     use HasSettings;
+    use HasUsername;
     use InteractsWithMedia;
     use Notifiable;
     use Reacts;
-    use Featurable;
 
     protected $fillable = [
         'name',
@@ -98,7 +98,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
     public function hasProvider(string $provider): bool
     {
         foreach ($this->providers as $p) {
-            if ($p->provider == $provider) {
+            if ($p->provider === $provider) {
                 return true;
             }
         }
@@ -113,7 +113,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
 
     public function hasEnterprise(): bool
     {
-        return $this->enterprise !== null;
+        return null !== $this->enterprise;
     }
 
     public function getRolesLabelAttribute(): string
@@ -121,9 +121,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
         $roles = $this->getRoleNames()->toArray();
 
         if (count($roles)) {
-            return implode(', ', array_map(function ($item) {
-                return ucwords($item);
-            }, $roles));
+            return implode(', ', array_map(fn ($item) => ucwords($item), $roles));
         }
 
         return 'N/A';
@@ -207,13 +205,13 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
 
         $user = static::where('email', $socialEmail)->first();
 
-        if (! $user) {
+        if ( ! $user) {
             $user = self::create([
                 'name' => $socialUser->getName() ?? $socialUser->getNickName() ?? $socialUser->getId(),
                 'email' => $socialEmail,
                 'username' => $socialUser->getNickName() ?? $socialUser->getId(),
-                'github_profile' => $provider === 'github' ? $socialUser->getNickName() : null,
-                'twitter_profile' => $provider === 'twitter' ? $socialUser->getNickName() : null,
+                'github_profile' => 'github' === $provider ? $socialUser->getNickName() : null,
+                'twitter_profile' => 'twitter' === $provider ? $socialUser->getNickName() : null,
                 'email_verified_at' => now(),
                 'avatar_type' => $provider,
             ]);
@@ -309,7 +307,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
 
     public function scopeModerators(Builder $query): Builder
     {
-        return $query->whereHas('roles', function ($query) {
+        return $query->whereHas('roles', function ($query): void {
             $query->where('name', '<>', 'user');
         });
     }
@@ -333,20 +331,20 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia, Featura
     {
         $password = $this->getAuthPassword();
 
-        return $password !== '' && $password !== null;
+        return '' !== $password && null !== $password;
     }
 
-    public function delete()
+    public function delete(): ?bool
     {
         $this->deleteThreads();
         $this->deleteReplies();
 
-        parent::delete();
+        return parent::delete();
     }
 
     public function scopeHasActivity(Builder $query): Builder
     {
-        return $query->where(function ($query) {
+        return $query->where(function ($query): void {
             $query->has('threads')
                 ->orHas('replyAble');
         });

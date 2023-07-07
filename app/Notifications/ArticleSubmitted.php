@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class ArticleSubmitted extends Notification implements ShouldQueue
+final class ArticleSubmitted extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -19,9 +19,6 @@ class ArticleSubmitted extends Notification implements ShouldQueue
     {
     }
 
-    /**
-     * @return array|string[]
-     */
     public function via(mixed $notifiable): array
     {
         if (

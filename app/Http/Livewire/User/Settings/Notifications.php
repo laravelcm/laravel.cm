@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Notifications extends Component
+final class Notifications extends Component
 {
     use AuthorizesRequests;
 

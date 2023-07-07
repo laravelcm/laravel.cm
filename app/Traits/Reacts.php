@@ -27,7 +27,7 @@ trait Reacts
             'responder_id' => $this->getKey(),
         ])->first();
 
-        if (! $reacted && ($currentReactedName !== $reaction->name)) {
+        if ( ! $reacted && ($currentReactedName !== $reaction->name)) {
             return $this->storeReaction($reactable, $reaction);
         }
 

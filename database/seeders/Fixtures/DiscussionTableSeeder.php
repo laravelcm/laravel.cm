@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DiscussionTableSeeder extends Seeder
+final class DiscussionTableSeeder extends Seeder
 {
     use WithoutModelEvents;
 

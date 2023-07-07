@@ -6,13 +6,8 @@ namespace App\Filters\Thread;
 
 use App\Filters\AbstractFilters;
 
-class ThreadFilters extends AbstractFilters
+final class ThreadFilters extends AbstractFilters
 {
-    /**
-     * Registered filters to operate upon.
-     *
-     * @var string[]
-     */
     protected array $filters = [
         'sortBy' => SortByFilter::class,
     ];

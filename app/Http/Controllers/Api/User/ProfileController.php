@@ -9,7 +9,7 @@ use App\Http\Resources\AuthenticateUserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
-class ProfileController extends Controller
+final class ProfileController extends Controller
 {
     public function me(): JsonResponse
     {

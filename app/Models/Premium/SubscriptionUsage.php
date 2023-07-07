@@ -10,7 +10,7 @@ use Rinvex\Subscriptions\Models\PlanSubscriptionUsage as Model;
 /**
  * @mixin IdeHelperSubscriptionUsage
  */
-class SubscriptionUsage extends Model
+final class SubscriptionUsage extends Model
 {
     use HasFactory;
 }

@@ -7,15 +7,12 @@ namespace App\Spotlight;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 
-class Telegram extends SpotlightCommand
+final class Telegram extends SpotlightCommand
 {
     protected string $name = 'Telegram';
 
     protected string $description = 'rejoindre le groupe sur Telegram';
 
-    /**
-     * @var string[]
-     */
     protected array $synonyms = [
         'channels',
         'community',

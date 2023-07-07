@@ -11,7 +11,7 @@ use App\Models\Enterprise;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class PublicController extends Controller
+final class PublicController extends Controller
 {
     public function featured(): AnonymousResourceCollection
     {

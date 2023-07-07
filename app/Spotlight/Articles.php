@@ -7,15 +7,12 @@ namespace App\Spotlight;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 
-class Articles extends SpotlightCommand
+final class Articles extends SpotlightCommand
 {
     protected string $name = 'Articles';
 
     protected string $description = 'aller à la page des articles';
 
-    /**
-     * @var string[]
-     */
     protected array $synonyms = [
         'articles',
         'article',

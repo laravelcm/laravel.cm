@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Notifications\SendEMailToDeletedUser;
 use Illuminate\Console\Command;
 
-class DeleteOldUnverifiedUsers extends Command
+final class DeleteOldUnverifiedUsers extends Command
 {
     protected $signature = 'lcm:delete-old-unverified-users';
 

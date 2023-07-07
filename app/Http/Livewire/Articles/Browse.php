@@ -11,7 +11,7 @@ use App\Traits\WithTags;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class Browse extends Component
+final class Browse extends Component
 {
     use WithInfiniteScroll;
     use WithTags;
@@ -56,7 +56,7 @@ class Browse extends Component
             ->orderByDesc('sponsored_at')
             ->orderByDesc('published_at');
 
-        $tags = Tag::whereHas('articles', function ($query) {
+        $tags = Tag::whereHas('articles', function ($query): void {
             $query->published();
         })->orderBy('name')->get();
 

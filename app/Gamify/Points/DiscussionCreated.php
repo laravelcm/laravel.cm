@@ -8,7 +8,7 @@ use App\Models\Discussion;
 use App\Models\User;
 use QCod\Gamify\PointType;
 
-class DiscussionCreated extends PointType
+final class DiscussionCreated extends PointType
 {
     public int $points = 20;
 

@@ -11,7 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class VerifyEmailController extends Controller
+final class VerifyEmailController extends Controller
 {
     public function verify(Request $request): RedirectResponse
     {

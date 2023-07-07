@@ -7,7 +7,7 @@ namespace App\Events;
 use App\Models\User;
 use Illuminate\Queue\SerializesModels;
 
-class ApiRegistered
+final class ApiRegistered
 {
     use SerializesModels;
 

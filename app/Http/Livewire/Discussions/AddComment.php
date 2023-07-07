@@ -10,7 +10,7 @@ use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class AddComment extends Component
+final class AddComment extends Component
 {
     public ?Discussion $discussion;
 

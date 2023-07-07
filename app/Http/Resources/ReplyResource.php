@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @mixin IdeHelperReply
  */
-class ReplyResource extends JsonResource
+final class ReplyResource extends JsonResource
 {
     public function toArray($request): array
     {
@@ -20,8 +20,8 @@ class ReplyResource extends JsonResource
             'model_type' => $this->replyable_type,
             'model_id' => $this->replyable_id,
             'created_at' => $this->created_at->getTimestamp(),
-            'author' => new UserResource($this->author),
-            'experience' => $this->author->getPoints(),
+            'author' => new UserResource($this->user),
+            'experience' => $this->user->getPoints(),
             'has_replies' => $this->allChildReplies->isNotEmpty(),
             // @phpstan-ignore-next-line
             'likes_count' => $this->getReactionsSummary()->sum('count'),

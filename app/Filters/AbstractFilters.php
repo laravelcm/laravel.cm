@@ -11,9 +11,6 @@ abstract class AbstractFilters
 {
     protected Builder $builder;
 
-    /**
-     * @var string[]
-     */
     protected array $filters = [];
 
     public function __construct(public Request $request)
@@ -29,12 +26,6 @@ abstract class AbstractFilters
         return $builder;
     }
 
-    /**
-     * Add Filters to current filter class.
-     *
-     * @param  string[]  $filters
-     * @return $this
-     */
     public function add(array $filters): self
     {
         $this->filters = array_merge($this->filters, $filters);
@@ -47,11 +38,6 @@ abstract class AbstractFilters
         return new $this->filters[$filter]();
     }
 
-    /**
-     * Fetch all relevant filters from the request.
-     *
-     * @return string[]
-     */
     public function getFilters(): array
     {
         return array_filter($this->request->only(array_keys($this->filters)));

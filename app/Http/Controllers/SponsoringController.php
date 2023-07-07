@@ -8,7 +8,7 @@ use App\Models\Transaction;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
 
-class SponsoringController extends Controller
+final class SponsoringController extends Controller
 {
     public function sponsors(): View
     {

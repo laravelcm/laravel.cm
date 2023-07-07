@@ -134,6 +134,7 @@
     }
   },
   "prefer-stable": true,
+  "minimum-stability": "dev",
   "repositories": [
     {
       "type": "vcs",

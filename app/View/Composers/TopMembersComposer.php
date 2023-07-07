@@ -12,8 +12,6 @@ final class TopMembersComposer
 {
     public function compose(View $view): void
     {
-        $view->with('topMembers', Cache::remember('topMembers', now()->addWeek(), function () {
-            return User::mostSolutionsInLastDays(365)->take(5)->get();
-        }));
+        $view->with('topMembers', Cache::remember('topMembers', now()->addWeek(), fn () => User::mostSolutionsInLastDays(365)->take(5)->get()));
     }
 }

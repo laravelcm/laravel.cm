@@ -7,7 +7,7 @@ namespace App\Events;
 use App\Models\Thread;
 use Illuminate\Queue\SerializesModels;
 
-class ThreadWasCreated
+final class ThreadWasCreated
 {
     use SerializesModels;
 

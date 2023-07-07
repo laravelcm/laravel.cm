@@ -8,10 +8,5 @@ use App\Filters\AbstractFilters;
 
 final class EnterpriseFilters extends AbstractFilters
 {
-    /**
-     * Registered filters to operate upon.
-     *
-     * @var string[]
-     */
     protected array $filters = [];
 }

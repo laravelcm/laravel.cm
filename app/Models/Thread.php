@@ -35,12 +35,12 @@ use Spatie\Feed\FeedItem;
 /**
  * @mixin IdeHelperThread
  */
-class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
+final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
     use HasAuthor;
     use HasFactory;
-    use HasSlug;
     use HasReplies;
+    use HasSlug;
     use HasSubscribers;
     use InteractsWithViews;
     use Notifiable;
@@ -49,11 +49,6 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     public const FEED_PAGE_SIZE = 20;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'title',
         'body',
@@ -61,32 +56,17 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
         'user_id',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'locked' => 'boolean',
         'last_posted_at' => 'datetime',
     ];
 
-    /**
-     * The relations to eager load on every query.
-     *
-     * @var array<string>
-     */
     protected $with = [
         'channels',
     ];
 
     protected bool $removeViewsOnDelete = true;
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -138,7 +118,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     public function isSolved(): bool
     {
-        return ! is_null($this->solution_reply_id);
+        return null !== $this->solution_reply_id;
     }
 
     public function wasResolvedBy(User $user): bool
@@ -154,7 +134,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
     {
         $thread = $reply->replyAble;
 
-        if (! $thread instanceof self) {
+        if ( ! $thread instanceof self) {
             throw CouldNotMarkReplyAsSolution::replyAbleIsNotAThread($reply);
         }
 
@@ -172,7 +152,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
 
     public function scopeForChannel(Builder $query, Channel $channel): Builder
     {
-        return $query->whereHas('channels', function ($query) use ($channel) {
+        return $query->whereHas('channels', function ($query) use ($channel): void {
             if ($channel->hasItems()) {
                 $query->whereIn('channels.id', array_merge([$channel->id], $channel->items->modelKeys()));
             } else {
@@ -259,7 +239,7 @@ class Thread extends Model implements Feedable, ReactableInterface, ReplyInterfa
             'channels',
             'user',
         ])
-            ->leftJoin('replies', function ($join) {
+            ->leftJoin('replies', function ($join): void {
                 $join->on('threads.id', 'replies.replyable_id')
                     ->where('replies.replyable_type', self::class);
             })

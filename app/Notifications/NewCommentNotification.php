@@ -12,7 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewCommentNotification extends Notification implements ShouldQueue
+final class NewCommentNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -34,11 +34,11 @@ class NewCommentNotification extends Notification implements ShouldQueue
     public function toMail(): MailMessage
     {
         return (new MailMessage())
-                    ->subject("Re: {$this->discussion->subject()}")
-                    ->line(__('@:name a répondu à ce sujet.', ['name' => $this->reply->user?->username]))
-                    ->line($this->reply->excerpt(150))
-                    ->action(__('Voir la discussion'), route('discussions.show', $this->discussion))
-                    ->line(__('Vous recevez ceci parce que vous êtes abonné à cette discussion.'));
+            ->subject("Re: {$this->discussion->subject()}")
+            ->line(__('@:name a répondu à ce sujet.', ['name' => $this->reply->user?->username]))
+            ->line($this->reply->excerpt(150))
+            ->action(__('Voir la discussion'), route('discussions.show', $this->discussion))
+            ->line(__('Vous recevez ceci parce que vous êtes abonné à cette discussion.'));
     }
 
     /**

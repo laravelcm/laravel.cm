@@ -8,7 +8,7 @@ use App\Models\Discussion;
 use App\Policies\DiscussionPolicy;
 use Illuminate\Contracts\View\View;
 
-class DiscussionController extends Controller
+final class DiscussionController extends Controller
 {
     public function __construct()
     {

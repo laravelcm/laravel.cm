@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Reply extends Component
+final class Reply extends Component
 {
     use AuthorizesRequests;
 

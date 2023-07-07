@@ -10,7 +10,7 @@ use App\Traits\WithTagsAssociation;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class Edit extends Component
+final class Edit extends Component
 {
     use WithTagsAssociation;
 

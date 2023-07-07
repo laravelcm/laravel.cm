@@ -6,6 +6,7 @@ namespace App\Traits;
 
 use App\Models\Activity;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use ReflectionClass;
 
 trait RecordsActivity
 {
@@ -16,12 +17,12 @@ trait RecordsActivity
         }
 
         foreach (static::getActivitiesToRecord() as $event) {
-            static::$event(function ($model) use ($event) {
+            static::$event(function ($model) use ($event): void {
                 $model->recordActivity($event);
             });
         }
 
-        static::deleting(function ($model) {
+        static::deleting(function ($model): void {
             $model->activity()->delete();
         });
     }
@@ -56,7 +57,7 @@ trait RecordsActivity
 
     protected function getActivityType(string $event): string
     {
-        $type = strtolower((new \ReflectionClass($this))->getShortName());
+        $type = mb_strtolower((new ReflectionClass($this))->getShortName());
 
         return "{$event}_{$type}";
     }

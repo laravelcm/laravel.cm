@@ -21,7 +21,7 @@ final class RouteServiceProvider extends ServiceProvider
 
         $this->routeBindings();
 
-        $this->routes(function () {
+        $this->routes(function (): void {
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
@@ -32,7 +32,7 @@ final class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
 
-        Route::macro('redirectMap', function (array $map, int $status = 302) {
+        Route::macro('redirectMap', function (array $map, int $status = 302): void {
             foreach ($map as $old => $new) {
                 Route::redirect($old, $new, $status)->name($old);
             }

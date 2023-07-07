@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Reply;
 use Illuminate\Http\RedirectResponse;
 
-class ReplyAbleController extends Controller
+final class ReplyAbleController extends Controller
 {
     public function redirect(int $id, string $type): RedirectResponse
     {

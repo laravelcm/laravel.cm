@@ -8,7 +8,7 @@ use App\Gamify\Points\ThreadCreated;
 use App\Models\Thread;
 use Illuminate\Console\Command;
 
-class UpdateUserThreadsPoints extends Command
+final class UpdateUserThreadsPoints extends Command
 {
     protected $signature = 'lcm:update-users-threads-points';
 

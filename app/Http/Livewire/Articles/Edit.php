@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Edit extends Component
+final class Edit extends Component
 {
+    use WithArticleAttributes;
     use WithFileUploads;
     use WithTagsAssociation;
-    use WithArticleAttributes;
 
     public Article $article;
 
@@ -48,7 +48,7 @@ class Edit extends Component
 
     public function submit(): void
     {
-        $this->alreadySubmitted = $this->article->submitted_at !== null;
+        $this->alreadySubmitted = null !== $this->article->submitted_at;
         $this->submitted_at = $this->article->submitted_at ?? now();
         $this->store();
     }

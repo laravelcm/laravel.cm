@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Ramsey\Uuid\Uuid;
 
-class Subscribe extends Component
+final class Subscribe extends Component
 {
     use AuthorizesRequests;
 

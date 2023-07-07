@@ -9,7 +9,7 @@ use App\Notifications\PostArticleToTwitter as PostArticleToTwitterNotification;
 use Illuminate\Console\Command;
 use Illuminate\Notifications\AnonymousNotifiable;
 
-class PostArticleToTwitter extends Command
+final class PostArticleToTwitter extends Command
 {
     protected $signature = 'lcm:post-article-to-twitter';
 

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class HttpsProtocol
+final class HttpsProtocol
 {
     public function handle(Request $request, Closure $next): RedirectResponse | Response | JsonResponse | BinaryFileResponse
     {

@@ -8,7 +8,7 @@ use App\Models\Thread;
 use App\Models\User;
 use QCod\Gamify\PointType;
 
-class ThreadCreated extends PointType
+final class ThreadCreated extends PointType
 {
     public int $points = 55;
 

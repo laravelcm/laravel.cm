@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 use NotchPay\NotchPay;
 use NotchPay\Payment;
 
-class NotchPayCallBackController extends Controller
+final class NotchPayCallBackController extends Controller
 {
     public function __invoke(Request $request): RedirectResponse
     {

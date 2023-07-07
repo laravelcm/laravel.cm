@@ -8,21 +8,11 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class UserFactory extends Factory
+final class UserFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = User::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
             'name' => $this->faker->name(),
@@ -34,12 +24,7 @@ class UserFactory extends Factory
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */
-    public function unverified()
+    public function unverified(): self
     {
         return $this->state(function (array $attributes) {
             return [
@@ -48,12 +33,7 @@ class UserFactory extends Factory
         });
     }
 
-    /**
-     * Indicate that the model's created_at should be last month.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */
-    public function lastMonth()
+    public function lastMonth(): self
     {
         return $this->state(function (array $attributes) {
             return [

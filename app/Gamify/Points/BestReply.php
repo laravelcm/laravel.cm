@@ -6,7 +6,7 @@ namespace App\Gamify\Points;
 
 use QCod\Gamify\PointType;
 
-class BestReply extends PointType
+final class BestReply extends PointType
 {
     public int $points = 20;
 

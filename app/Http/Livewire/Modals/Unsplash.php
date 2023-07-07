@@ -7,7 +7,7 @@ namespace App\Http\Livewire\Modals;
 use Illuminate\Contracts\View\View;
 use LivewireUI\Modal\ModalComponent;
 
-class Unsplash extends ModalComponent
+final class Unsplash extends ModalComponent
 {
     public ?string $query = null;
 

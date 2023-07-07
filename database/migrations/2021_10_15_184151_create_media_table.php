@@ -6,11 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMediaTable extends Migration
+final class CreateMediaTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->morphs('model');
@@ -32,7 +32,7 @@ class CreateMediaTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('media');
     }

@@ -7,7 +7,7 @@ namespace App\Gamify\Points;
 use App\Models\User;
 use QCod\Gamify\PointType;
 
-class AddPhone extends PointType
+final class AddPhone extends PointType
 {
     public int $points = 10;
 

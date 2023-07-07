@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class NewSponsorPaymentNotification extends Notification implements ShouldQueue
+final class NewSponsorPaymentNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -19,9 +19,6 @@ class NewSponsorPaymentNotification extends Notification implements ShouldQueue
     {
     }
 
-    /**
-     * @return array|string[]
-     */
     public function via(mixed $notifiable): array
     {
         if (
@@ -46,7 +43,7 @@ class NewSponsorPaymentNotification extends Notification implements ShouldQueue
     {
         $content = "*Nouveau paiement de Sponsoring enregistré!*\n\n";
         $content .= 'Auteur: '.$this->transaction->getMetadata('merchant')['name']."\n";
-        $content .= 'Montant: '. $this->transaction->amount;
+        $content .= 'Montant: '.$this->transaction->amount;
 
         if ($this->transaction->getMetadata('merchant')['laravel_cm_id']) {
             $content .= 'Profil Laravel Cameroun: [@'.$this->transaction->user?->username.']('.route('profile', $this->transaction->user?->username).')';

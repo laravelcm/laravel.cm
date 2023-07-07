@@ -8,7 +8,7 @@ use App\Gamify\Points\DiscussionCreated;
 use App\Models\Discussion;
 use Illuminate\Console\Command;
 
-class UpdateUserDiscussionsPoints extends Command
+final class UpdateUserDiscussionsPoints extends Command
 {
     protected $signature = 'lcm:update-users-discussions-points';
 

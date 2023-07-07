@@ -24,23 +24,18 @@ use Illuminate\Support\Str;
 /**
  * @mixin IdeHelperDiscussion
  */
-class Discussion extends Model implements ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
+final class Discussion extends Model implements ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
     use HasAuthor;
     use HasFactory;
     use HasReplies;
-    use HasSubscribers;
     use HasSlug;
+    use HasSubscribers;
     use HasTags;
     use InteractsWithViews;
     use Reactable;
     use RecordsActivity;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'title',
         'body',
@@ -50,32 +45,17 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
         'locked',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'locked' => 'boolean',
         'is_pinned' => 'boolean',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<string>
-     */
     protected $appends = [
         'count_all_replies_with_child',
     ];
 
     protected bool $removeViewsOnDelete = true;
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -147,7 +127,7 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
 
     public function scopeActive(Builder $query): Builder
     {
-        return $query->withCount(['replies' => function ($query) {
+        return $query->withCount(['replies' => function ($query): void {
             $query->where('created_at', '>=', now()->subWeek());
         }])
             ->orderBy('replies_count', 'desc');
@@ -164,11 +144,11 @@ class Discussion extends Model implements ReactableInterface, ReplyInterface, Su
         $this->update(['locked' => true]);
     }
 
-    public function delete()
+    public function delete(): ?bool
     {
         $this->removeTags();
         $this->deleteReplies();
 
-        parent::delete();
+        return parent::delete();
     }
 }

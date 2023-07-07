@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
-class ArticlesController extends Controller
+final class ArticlesController extends Controller
 {
     public function __construct()
     {

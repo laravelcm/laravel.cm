@@ -10,7 +10,7 @@ use Psr\Http\Message\UriInterface;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Tags\Url;
 
-class GenerateSitemap extends Command
+final class GenerateSitemap extends Command
 {
     protected $signature = 'sitemap:generate';
 
@@ -28,9 +28,7 @@ class GenerateSitemap extends Command
     public function handle(): void
     {
         SitemapGenerator::create(config('app.url'))
-            ->shouldCrawl(function (UriInterface $url) {
-                return $this->shouldIndex($url->getPath());
-            })
+            ->shouldCrawl(fn (UriInterface $url) => $this->shouldIndex($url->getPath()))
             ->hasCrawled(function (Url $url) {
                 if ($this->shouldNotIndex($url->path())) {
                     return;

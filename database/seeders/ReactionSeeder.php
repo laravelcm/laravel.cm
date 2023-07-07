@@ -7,7 +7,7 @@ namespace Database\Seeders;
 use App\Models\Reaction;
 use Illuminate\Database\Seeder;
 
-class ReactionSeeder extends Seeder
+final class ReactionSeeder extends Seeder
 {
     public function run(): void
     {

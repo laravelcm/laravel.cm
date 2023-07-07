@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class NotificationIndicator extends Component
+final class NotificationIndicator extends Component
 {
     public bool $hasNotification = false;
 

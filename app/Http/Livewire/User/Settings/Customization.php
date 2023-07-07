@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Customization extends Component
+final class Customization extends Component
 {
     public string $theme = 'theme-light';
 

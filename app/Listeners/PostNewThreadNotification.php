@@ -7,7 +7,7 @@ namespace App\Listeners;
 use App\Events\ThreadWasCreated;
 use App\Notifications\PostThreadToTelegram;
 
-class PostNewThreadNotification
+final class PostNewThreadNotification
 {
     public function handle(ThreadWasCreated $event): void
     {

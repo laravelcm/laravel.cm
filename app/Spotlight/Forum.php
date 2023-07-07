@@ -7,15 +7,12 @@ namespace App\Spotlight;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 
-class Forum extends SpotlightCommand
+final class Forum extends SpotlightCommand
 {
     protected string $name = 'Forum';
 
     protected string $description = 'aller sur le forum';
 
-    /**
-     * @var string[]
-     */
     protected array $synonyms = [
         'question',
         'thread',

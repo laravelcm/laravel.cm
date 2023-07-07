@@ -15,16 +15,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @mixin IdeHelperChannel
  */
-class Channel extends Model
+final class Channel extends Model
 {
     use HasFactory;
     use HasSlug;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'name',
         'slug',
@@ -32,11 +27,6 @@ class Channel extends Model
         'color',
     ];
 
-    /**
-     * The relationship counts that should be eager loaded on every query.
-     *
-     * @var string[]
-     */
     protected $withCount = [
         'threads',
     ];
@@ -45,7 +35,7 @@ class Channel extends Model
     {
         parent::boot();
 
-        static::saving(function ($channel) {
+        static::saving(function ($channel): void {
             if ($channel->parent_id) {
                 if ($record = self::find($channel->parent_id)) {
                     if ($record->exists() && $record->parent_id) { // @phpstan-ignore-line
@@ -56,11 +46,6 @@ class Channel extends Model
         });
     }
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
     public function getRouteKeyName(): string
     {
         return 'slug';

@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class PostArticleToTelegram extends Notification
+final class PostArticleToTelegram extends Notification
 {
     use Queueable;
 
@@ -18,9 +18,6 @@ class PostArticleToTelegram extends Notification
     {
     }
 
-    /**
-     * @return string[]
-     */
     public function via(mixed $notifiable): array
     {
         return [TelegramChannel::class];

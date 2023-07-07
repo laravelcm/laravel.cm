@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use Jenssegers\Agent\Agent;
 use Stevebauman\Location\Facades\Location;
 
-class SettingController extends Controller
+final class SettingController extends Controller
 {
     public function profile(): View
     {
@@ -34,7 +34,7 @@ class SettingController extends Controller
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'username' => strtolower($request->username),
+            'username' => mb_strtolower($request->username),
             'bio' => trim(strip_tags((string) $request->bio)),
             'twitter_profile' => $request->twitter_profile,
             'github_profile' => $request->github_profile,
@@ -71,7 +71,7 @@ class SettingController extends Controller
                         'is_current_device' => $session->id === request()->session()->getId(),
                         'last_active' => Carbon::createFromTimestamp($session->last_activity)->diffForHumans(),
                         'location' => Location::get($session->ip_address),
-                        ]);
+                    ]);
             }),
         ]);
     }
@@ -87,7 +87,7 @@ class SettingController extends Controller
 
     protected function createAgent(mixed $session): mixed
     {
-        return tap(new Agent(), function ($agent) use ($session) {
+        return tap(new Agent(), function ($agent) use ($session): void {
             $agent->setUserAgent($session->user_agent);
         });
     }

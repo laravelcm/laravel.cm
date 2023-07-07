@@ -13,7 +13,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Cache;
 use LivewireUI\Modal\ModalComponent;
 
-class ApprovedArticle extends ModalComponent
+final class ApprovedArticle extends ModalComponent
 {
     use AuthorizesRequests;
 

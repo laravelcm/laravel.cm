@@ -7,7 +7,7 @@ namespace App\Console\Commands;
 use App\Models\User;
 use Illuminate\Console\Command;
 
-class AssignUserRole extends Command
+final class AssignUserRole extends Command
 {
     protected $signature = 'lcm:assign-user-role';
 

@@ -11,9 +11,6 @@ abstract class AbstractFilter
 {
     abstract public function filter(Builder $builder, string $value): Builder;
 
-    /**
-     * @return string[]
-     */
     public function mappings(): array
     {
         return [];

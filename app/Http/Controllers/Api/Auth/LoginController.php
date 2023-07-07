@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class LoginController extends Controller
+final class LoginController extends Controller
 {
     use UserResponse;
 
@@ -23,21 +23,21 @@ class LoginController extends Controller
         /** @var User $user */
         $user = User::query()
             ->with(['roles', 'permissions'])
-            ->where('email', strtolower($request->input('email')))
+            ->where('email', mb_strtolower($request->input('email')))
             ->first();
 
         $sanitized = [
-            'email' => strtolower($request->input('email')),
+            'email' => mb_strtolower($request->input('email')),
             'password' => $request->input('password'),
         ];
 
-        if (!$user || ! Auth::attempt($sanitized)) {
+        if ( ! $user || ! Auth::attempt($sanitized)) {
             throw ValidationException::withMessages([
                 'email' => __('Les informations d\'identification fournies sont incorrectes.'),
             ]);
         }
 
-        if (! $user->tokens()) {
+        if ( ! $user->tokens()) {
             $user->tokens()->delete();
         }
 

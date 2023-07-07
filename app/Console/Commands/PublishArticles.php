@@ -7,7 +7,7 @@ namespace App\Console\Commands;
 use App\Models\Article;
 use Illuminate\Console\Command;
 
-class PublishArticles extends Command
+final class PublishArticles extends Command
 {
     protected $signature = 'lcm:publish-articles';
 

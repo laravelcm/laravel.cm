@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
-class SendWelcomeMailToUsers extends Command
+final class SendWelcomeMailToUsers extends Command
 {
     protected $signature = 'lcm:send-welcome-mails';
 

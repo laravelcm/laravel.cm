@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class NotificationCount extends Component
+final class NotificationCount extends Component
 {
     public int $count = 0;
 

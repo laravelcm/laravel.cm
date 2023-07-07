@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-class EnterpriseResourceCollection extends PaginationResourceCollection
+final class EnterpriseResourceCollection extends PaginationResourceCollection
 {
     public function toArray($request): array
     {

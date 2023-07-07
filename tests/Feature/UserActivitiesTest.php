@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(RefreshDatabase::class);
 uses(DatabaseMigrations::class);
 
-it('records activity when an article is created', function () {
+it('records activity when an article is created', function (): void {
     $user = $this->createUser();
 
     $article = Article::factory()->create(['user_id' => $user->id]);
@@ -28,7 +28,7 @@ it('records activity when an article is created', function () {
     $this->assertEquals($activity->subject->id, $article->id);
 })->skip();
 
-it('get feed from any user', function () {
+it('get feed from any user', function (): void {
     $user = $this->createUser();
 
     Article::factory()->count(2)->create(['user_id' => $user->id]);

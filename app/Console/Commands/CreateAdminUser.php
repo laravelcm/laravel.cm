@@ -8,8 +8,9 @@ use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
+use Exception;
 
-class CreateAdminUser extends Command
+final class CreateAdminUser extends Command
 {
     protected $signature = 'lcm:admin';
 
@@ -50,7 +51,7 @@ class CreateAdminUser extends Command
             $user = User::query()->create($userData);
 
             $user->assignRole('admin');
-        } catch (\Exception|QueryException $e) {
+        } catch (Exception|QueryException $e) {
             $this->error($e->getMessage());
         }
     }

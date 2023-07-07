@@ -11,18 +11,10 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
-class CreateNewUser implements CreatesNewUsers
+final class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
 
-    /**
-     * Validate and create a newly registered user.
-     *
-     * @param  array  $input<string, string>
-     * @return \App\Models\User
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function create(array $input): User
     {
         Validator::make($input, [

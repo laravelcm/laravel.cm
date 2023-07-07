@@ -9,7 +9,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class SlackController extends Controller
+final class SlackController extends Controller
 {
     public function __invoke(Request $request): RedirectResponse
     {

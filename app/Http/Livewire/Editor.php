@@ -8,7 +8,7 @@ use App\Markdown\MarkdownHelper;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-class Editor extends Component
+final class Editor extends Component
 {
     public string $placeholder = 'laisser une réponse...';
 

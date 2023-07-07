@@ -8,7 +8,7 @@ use App\Gamify\Points\PostCreated;
 use App\Models\Article;
 use Illuminate\Console\Command;
 
-class UpdateUserPostsPoints extends Command
+final class UpdateUserPostsPoints extends Command
 {
     protected $signature = 'lcm:update-users-posts-points';
 

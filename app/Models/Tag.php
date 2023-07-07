@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 /**
  * @mixin IdeHelperTag
  */
-class Tag extends Model
+final class Tag extends Model
 {
     use HasFactory;
     use HasSlug;
@@ -28,11 +28,6 @@ class Tag extends Model
         'concerns',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'concerns' => 'array',
     ];

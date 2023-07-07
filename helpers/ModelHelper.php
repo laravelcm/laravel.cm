@@ -39,7 +39,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Activity whereUserId($value)
      * @mixin \Eloquent
      */
-    class IdeHelperActivity
+    final class IdeHelperActivity
     {
     }
 }
@@ -121,7 +121,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Article withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
      * @mixin \Eloquent
      */
-    class IdeHelperArticle
+    final class IdeHelperArticle
     {
     }
 }
@@ -155,7 +155,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Channel whereUpdatedAt($value)
      * @mixin \Eloquent
      */
-    class IdeHelperChannel
+    final class IdeHelperChannel
     {
     }
 }
@@ -213,7 +213,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Discussion withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
      * @mixin \Eloquent
      */
-    class IdeHelperDiscussion
+    final class IdeHelperDiscussion
     {
     }
 }
@@ -269,7 +269,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereWebsite($value)
      * @mixin \Eloquent
      */
-    class IdeHelperEnterprise
+    final class IdeHelperEnterprise
     {
     }
 }
@@ -293,7 +293,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Feature whereUpdatedAt($value)
      * @mixin \Eloquent
      */
-    class IdeHelperFeature
+    final class IdeHelperFeature
     {
     }
 }
@@ -340,7 +340,7 @@ namespace App\Models\Premium{
      * @method static \Illuminate\Database\Eloquent\Builder|Feature withoutTrashed()
      * @mixin \Eloquent
      */
-    class IdeHelperFeature
+    final class IdeHelperFeature
     {
     }
 }
@@ -411,7 +411,7 @@ namespace App\Models\Premium{
      * @method static \Illuminate\Database\Eloquent\Builder|Plan withoutTrashed()
      * @mixin \Eloquent
      */
-    class IdeHelperPlan
+    final class IdeHelperPlan
     {
     }
 }
@@ -472,7 +472,7 @@ namespace App\Models\Premium{
      * @method static \Illuminate\Database\Eloquent\Builder|Subscription withoutTrashed()
      * @mixin \Eloquent
      */
-    class IdeHelperSubscription
+    final class IdeHelperSubscription
     {
     }
 }
@@ -510,7 +510,7 @@ namespace App\Models\Premium{
      * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage withoutTrashed()
      * @mixin \Eloquent
      */
-    class IdeHelperSubscriptionUsage
+    final class IdeHelperSubscriptionUsage
     {
     }
 }
@@ -532,7 +532,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Reaction whereUpdatedAt($value)
      * @mixin \Eloquent
      */
-    class IdeHelperReaction
+    final class IdeHelperReaction
     {
     }
 }
@@ -574,7 +574,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Reply whereUserId($value)
      * @mixin \Eloquent
      */
-    class IdeHelperReply
+    final class IdeHelperReply
     {
     }
 }
@@ -604,7 +604,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|SocialAccount whereUserId($value)
      * @mixin \Eloquent
      */
-    class IdeHelperSocialAccount
+    final class IdeHelperSocialAccount
     {
     }
 }
@@ -632,7 +632,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Subscribe whereUuid($value)
      * @mixin \Eloquent
      */
-    class IdeHelperSubscribe
+    final class IdeHelperSubscribe
     {
     }
 }
@@ -659,7 +659,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Tag whereSlug($value)
      * @mixin \Eloquent
      */
-    class IdeHelperTag
+    final class IdeHelperTag
     {
     }
 }
@@ -724,7 +724,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Thread withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
      * @mixin \Eloquent
      */
-    class IdeHelperThread
+    final class IdeHelperThread
     {
     }
 }
@@ -760,7 +760,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUserId($value)
      * @mixin \Eloquent
      */
-    class IdeHelperTransaction
+    final class IdeHelperTransaction
     {
     }
 }
@@ -876,7 +876,7 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|User withoutRole()
      * @mixin \Eloquent
      */
-    class IdeHelperUser
+    final class IdeHelperUser
     {
     }
 }

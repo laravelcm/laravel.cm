@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateViewsTable extends Migration
+final class CreateViewsTable extends Migration
 {
     /**
      * The database schema.
@@ -20,13 +20,8 @@ class CreateViewsTable extends Migration
      *
      * @var string
      */
-    protected $table;
+    protected string $table;
 
-    /**
-     * Create a new migration instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->schema = Schema::connection(
@@ -36,14 +31,9 @@ class CreateViewsTable extends Migration
         $this->table = config('eloquent-viewable.models.view.table_name');
     }
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
-        $this->schema->create($this->table, function (Blueprint $table) {
+        $this->schema->create($this->table, function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->morphs('viewable');
             $table->text('visitor')->nullable();
@@ -52,12 +42,7 @@ class CreateViewsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists($this->table);
     }

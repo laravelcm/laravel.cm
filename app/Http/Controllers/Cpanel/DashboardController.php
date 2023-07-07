@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
 
-class DashboardController extends Controller
+final class DashboardController extends Controller
 {
     public function __invoke(): View
     {

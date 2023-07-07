@@ -9,13 +9,10 @@ use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class PostThreadToTelegram extends Notification
+final class PostThreadToTelegram extends Notification
 {
     use Queueable;
 
-    /**
-     * @return string[]
-     */
     public function via(mixed $notifiable): array
     {
         return [TelegramChannel::class];

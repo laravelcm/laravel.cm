@@ -30,7 +30,7 @@ trait HasTags
 
     public function scopeForTag(Builder $query, string $tag): Builder
     {
-        return $query->whereHas('tags', function ($query) use ($tag) {
+        return $query->whereHas('tags', function ($query) use ($tag): void {
             $query->where('tags.slug', $tag);
         });
     }

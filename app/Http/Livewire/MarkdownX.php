@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
-class MarkdownX extends Component
+final class MarkdownX extends Component
 {
     public string $content;
 
@@ -115,7 +115,7 @@ class MarkdownX extends Component
     {
         $payload = (object) $payload;
 
-        $path = 'images/'.strtolower(date('FY')).'/';
+        $path = 'images/'.mb_strtolower(date('FY')).'/';
         $fullPath = '';
 
         try {
@@ -136,7 +136,7 @@ class MarkdownX extends Component
             @[, $file_data] = explode(',', $file_data);
             $type = explode('/', $type)[1];
 
-            if (! in_array($type, config('markdownx.image.allowed_file_types'))) {
+            if ( ! in_array($type, config('markdownx.image.allowed_file_types'))) {
                 $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
                     'status' => 400,
                     'message' => 'File type not supported. Must be of type '.implode(', ', config('markdownx.image.allowed_file_types')),
@@ -268,17 +268,17 @@ class MarkdownX extends Component
     public function getSearchPeoples(array $payload): void
     {
         $users = User::where('name', 'like', '%'.$payload['search'].'%')
-                    ->orWhere('username', 'like', '%'.$payload['search'].'%')
-                    ->orderBy('name')
-                    ->limit(30)
-                    ->get()
-                    ->map(function (User $user) {
-                        $people['name'] = $user->name;
-                        $people['picture'] = $user->profile_photo_url;
-                        $people['username'] = $user->username;
+            ->orWhere('username', 'like', '%'.$payload['search'].'%')
+            ->orderBy('name')
+            ->limit(30)
+            ->get()
+            ->map(function (User $user) {
+                $people['name'] = $user->name;
+                $people['picture'] = $user->profile_photo_url;
+                $people['username'] = $user->username;
 
-                        return $people;
-                    });
+                return $people;
+            });
 
         $this->dispatchBrowserEvent('markdown-x-peoples-results', [
             'status' => 200,

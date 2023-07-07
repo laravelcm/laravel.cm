@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class EmailAddressWasChanged
+final class EmailAddressWasChanged
 {
     use Dispatchable;
     use SerializesModels;
