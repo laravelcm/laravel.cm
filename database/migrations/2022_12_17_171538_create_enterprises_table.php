@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Enums\EnterpriseSize;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,11 +21,11 @@ return new class () extends Migration {
             $table->longText('about')->nullable();
             $table->year('founded_in')->nullable();
             $table->string('ceo')->nullable();
-            $table->foreignIdFor(\App\Models\User::class);
+            $table->foreignIdFor(User::class);
             $table->boolean('is_certified')->default(false);
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_public')->default(true);
-            $table->string('size')->default(\App\Enums\EnterpriseSize::SEED);
+            $table->string('size')->default(EnterpriseSize::SEED->value);
             $table->json('settings')->nullable();
             $table->timestamps();
         });
