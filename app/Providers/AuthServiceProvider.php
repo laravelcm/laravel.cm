@@ -13,7 +13,6 @@ use App\Policies\DiscussionPolicy;
 use App\Policies\NotificationPolicy;
 use App\Policies\ReplyPolicy;
 use App\Policies\ThreadPolicy;
-use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Notifications\DatabaseNotification as Notification;
 use Illuminate\Support\Facades\Gate;
