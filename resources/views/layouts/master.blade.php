@@ -18,13 +18,15 @@
     <meta name="twitter:author" content="@laravelcm"/>
     <link rel="canonical" href="{{ $canonical ?? Request::url() }}" />
 
-    @include('layouts._og')
+    @include('partials._og')
     <x-seo::meta />
 
     <!-- Styles -->
     @googlefonts
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    @include('layouts._favicons')
+    @include('partials._favicons')
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <livewire:styles />
 
     <script defer>
@@ -41,7 +43,7 @@
     <livewire:scripts />
     <script src="{{ mix('js/app.js') }}" defer></script>
 
-    @include('layouts._fathom')
+    @include('partials._fathom')
 </head>
 <body class="h-full font-sans antialiased bg-skin-body text-skin-base">
 
@@ -52,7 +54,6 @@
     @livewire('livewire-ui-modal')
     @livewire('livewire-ui-spotlight')
     @livewire('notifications')
-
 
     @stack('scripts')
 </body>

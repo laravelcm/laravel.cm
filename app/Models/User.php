@@ -160,7 +160,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
         return $this->id === Auth::id();
     }
 
-    public function canAccessFilament(): bool
+    public function canAccessPanel(\Filament\Panel $panel): bool
     {
         return str_ends_with($this->email, '@laravel.cm') || $this->isModerator() || $this->isAdmin();
     }

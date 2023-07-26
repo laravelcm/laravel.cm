@@ -1,4 +1,4 @@
-import { throttle } from '@helpers/timers'
+import { throttle } from './timers'
 
 let $header = document.querySelector('.header')
 let currentTop = 0

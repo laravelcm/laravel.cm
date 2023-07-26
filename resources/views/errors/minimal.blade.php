@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-    @include('layouts._favicons')
-    @include('layouts._fathom')
+    @include('partials._favicons')
+    @include('partials._fathom')
 </head>
 <body class="antialiased font-sans bg-skin-body">
 
@@ -79,7 +79,7 @@
                     <li class="relative py-6 flex items-start space-x-4">
                         <div class="shrink-0">
                           <span class="flex items-center justify-center h-12 w-12 rounded-lg bg-green-50">
-                              <x-heroicon-o-bookmark-alt class="h-6 w-6 text-green-700" />
+                              <x-untitledui-bookmark class="h-6 w-6 text-green-700" />
                           </span>
                         </div>
                         <div class="min-w-0 flex-1">

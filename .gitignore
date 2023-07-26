@@ -6,31 +6,16 @@ yarn-error.log
 yarn.lock
 package-lock.json
 
-# Composer
-#
 /vendor
 composer.phar
 
-# IntelliJ/PhpStorm
-#
 /.idea
-
-# Visual Studio Code
-#
 /.vscode
-
-# Netbeans
-#
-/nbproject
-.project
-
-/.vagrant
 
 # Laravel Exclude
 #
-sitemap.xml
 .phpunit.result.cache
-.php-cs-fixer.cache
+/public/build
 /public/hot
 /public/storage
 /public/media
@@ -39,8 +24,6 @@ sitemap.xml
 /storage/framework/cache
 .env
 .env.backup
-Homestead.json
-Homestead.yaml
 .phpstorm.meta.php
 _ide_helper.php
 _ide_helper_models.php
