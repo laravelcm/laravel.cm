@@ -42,7 +42,6 @@ final class AppServiceProvider extends ServiceProvider
         $this->bootMacros();
         $this->bootViewsComposer();
         $this->bootEloquentMorphs();
-        $this->bootFilament();
 
         ReplyResource::withoutWrapping();
     }
@@ -84,19 +83,5 @@ final class AppServiceProvider extends ServiceProvider
             'reply' => Reply::class,
             'user' => User::class,
         ]);
-    }
-
-    public function bootFilament(): void
-    {
-        Filament::serving(function (): void {
-            Filament::registerTheme(
-                mix('css/filament.css'),
-            );
-        });
-
-        Filament::registerRenderHook(
-            'body.start',
-            fn (): string => Blade::render('@livewire(\'livewire-ui-modal\')'),
-        );
     }
 }
