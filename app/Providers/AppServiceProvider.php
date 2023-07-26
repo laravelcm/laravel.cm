@@ -18,7 +18,6 @@ use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
 use App\View\Composers\TopMembersComposer;
 use Carbon\Carbon;
-use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
