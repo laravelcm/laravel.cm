@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <x-layouts.header class="header" />
+    <x-header class="header" />
 
     @yield('body')
 

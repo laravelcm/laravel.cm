@@ -22,7 +22,7 @@
                     </a>
                     <div class="relative px-1 mt-1.5">
                         <button @click="flyoutMenu =! flyoutMenu" type="button" class="group rounded-md inline-flex items-center font-medium text-skin-menu hover:text-skin-menu-hover focus:outline-none focus:ring-0" :class="{ 'text-skin-menu-hover': flyoutMenu, 'text-skin-menu': !(flyoutMenu) }">
-                            <x-heroicon-s-dots-horizontal class="h-5 w-5" />
+                            <x-untitledui-dots-horizontal class="h-5 w-5" />
                         </button>
                         <div x-show="flyoutMenu"
                              x-transition:enter="transition ease-out duration-200"
@@ -258,7 +258,7 @@
                 </a>
 
                 <a href="{{ route('rules') }}" class="flex items-center text-skin-base">
-                    <x-heroicon-o-bookmark-alt class="h-6 w-6 mr-3 -ml-1" />
+                    <x-untitledui-bookmark class="h-6 w-6 mr-3 -ml-1" />
                     {{ __('Guides') }}
                 </a>
 
@@ -273,7 +273,7 @@
                 </a>
 
                 <a href="#" class="flex items-center text-skin-base">
-                    <x-heroicon-o-badge-check class="h-6 w-6 mr-3 -ml-1" />
+                    <x-untitledui-check-circle class="h-6 w-6 mr-3 -ml-1" />
                     {{ __('Badges') }}
                     <span class="inline-flex ml-2 text-xs leading-4 text-green-800 bg-green-100 py-0.5 px-1.5 rounded-full">{{ __('Bientôt') }}</span>
                 </a>

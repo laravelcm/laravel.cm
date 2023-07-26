@@ -1,5 +1,5 @@
 import confetti from 'canvas-confetti'
-import { windowHeight } from '@helpers/window.js'
+import { windowHeight } from '../helpers/window'
 
 export class Confetti extends HTMLElement {
   connectedCallback () {

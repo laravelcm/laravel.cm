@@ -30,7 +30,7 @@
         </p>
         <a href="{{ route('articles.show', $article) }}" class="mt-8 inline-flex items-center text-flag-green hover:text-primary-800">
             {{ __('Lire l\'article') }}
-            <x-heroicon-o-external-link class="ml-2.5 h-5 w-5" />
+            <x-untitledui-link-external-01 class="ml-2.5 h-5 w-5" />
         </a>
     </div>
 </div>
