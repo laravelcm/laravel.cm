@@ -231,13 +231,13 @@
                                 @hasanyrole('admin|moderator')
                                     <button onclick="Livewire.emit('openModal', 'modals.approved-article', {{ json_encode([$article->id]) }})" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-skin-base bg-skin-card text-sm font-medium text-green-500 hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:border-green-500 focus:ring-offset-body">
                                         <span class="sr-only">{{ __('Approuver') }}</span>
-                                        <x-heroicon-s-badge-check class="h-5 w-5" />
+                                        <x-untitledui-check-verified-02 class="h-5 w-5" />
                                     </button>
                                 @endhasanyrole
                             @endif
                             <button onclick="Livewire.emit('openModal', 'modals.delete-article', {{ json_encode([$article->id]) }})" type="button" class="relative inline-flex items-center px-4 py-2 rounded-r-md border border-skin-base bg-skin-card text-sm font-medium text-skin-inverted-muted hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
                                 <span class="sr-only">{{ __('Supprimer') }}</span>
-                                <x-heroicon-s-trash class="h-5 w-5" />
+                                <x-untitledui-trash-03 class="h-5 w-5" />
                             </button>
                         </span>
                     </div>
@@ -337,7 +337,7 @@
                                             <div class="ml-3 h-7 flex items-center">
                                                 <button type="button" class="bg-skin-card rounded-md text-skin-muted hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" @click="openTOC = false">
                                                     <span class="sr-only">{{ __('Fermer') }}</span>
-                                                    <x-heroicon-o-x class="h-6 w-6" />
+                                                    <x-untitledui-x class="h-6 w-6" />
                                                 </button>
                                             </div>
                                         </div>

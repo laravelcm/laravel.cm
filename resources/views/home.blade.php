@@ -100,11 +100,11 @@
                     @foreach($latestArticles as $article)
                         @if($loop->first)
                             <div class="lg:row-span-3">
-                                <x-articles.card :article="$article" />
+                                <x-articles.card :article="$article" :icon-link="true" />
                             </div>
                         @else
                             <div class="lg:col-span-2">
-                                <x-articles.summary :article="$article" />
+                                <x-articles.card :article="$article" is-summary />
                             </div>
                         @endif
                     @endforeach
@@ -113,9 +113,7 @@
                 <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
                     <x-button :link="route('articles')">
                         {{ __('Voir tous les articles') }}
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 ml-1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                        </svg>
+                        <x-heroicon-o-arrow-long-right class="h-5 w-5 ml-2" />
                     </x-button>
                 </div>
             </div>
@@ -160,9 +158,7 @@
                     <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
                         <x-button :link="route('forum.index')">
                             {{ __('Voir tous les sujets') }}
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 ml-1.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                            </svg>
+                            <x-heroicon-o-arrow-long-right class="h-5 w-5 ml-2" />
                         </x-button>
                     </div>
                 </div>
@@ -204,9 +200,7 @@
                 <div class="flex items-center justify-center mt-10 sm:mt-12 xl:mt-16">
                     <x-button :link="route('discussions.index')">
                         {{ __('Voir toutes les discussions') }}
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 ml-1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                        </svg>
+                        <x-heroicon-o-arrow-long-right class="h-5 w-5 ml-2" />
                     </x-button>
                 </div>
             </div>
@@ -304,9 +298,7 @@
                                         <h3 class="text-xl font-semibold text-skin-inverted">{{ $plan->title }}</h3>
                                         @if($plan->slug === 'le-pro')
                                             <p class="inline-flex items-center absolute top-0 -translate-y-1/2 transform rounded-full bg-flag-yellow py-1.5 px-4 text-sm font-semibold text-yellow-900">
-                                                <svg class="w-5 h-5 mr-2.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                                                </svg>
+                                                <x-untitledui-star-06 class="w-5 h-5 mr-2" />
                                                 {{ __('Populaire') }}
                                             </p>
                                         @endif
@@ -321,9 +313,7 @@
                                         <ul role="list" class="mt-6 space-y-6">
                                             @foreach ($plan->features as $feature)
                                                 <li class="flex">
-                                                    <svg class="flex-shrink-0 w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
-                                                    </svg>
+                                                    <x-heroicon-o-check class="flex-shrink-0 w-6 h-6 text-primary-500" />
                                                     <span class="ml-3 text-skin-base">{{ $feature->name }}</span>
                                                 </li>
                                             @endforeach

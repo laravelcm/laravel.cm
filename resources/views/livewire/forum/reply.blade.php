@@ -48,7 +48,7 @@
                     @if ($isSolution)
                         <div class="mt-2 flex items-center sm:mt-0 sm:ml-4">
                             <button wire:click="UnMarkAsSolution" type="button" class="inline-flex items-center justify-center p-2.5 bg-red-500 bg-opacity-10 text-red-600 text-sm leading-5 rounded-full focus:outline-none transform hover:scale-125 transition-all">
-                                <x-heroicon-s-x-circle class="w-6 h-6" />
+                                <x-untitledui-x class="w-6 h-6" />
                             </button>
                             <span class="ml-2 text-sm font-sans text-red-500 sm:hidden">{{ __('Retirer comme solution') }}</span>
                         </div>

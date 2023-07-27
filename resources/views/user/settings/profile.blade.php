@@ -121,7 +121,7 @@
                                 />
 
                                 @unless(Auth::user()->hasVerifiedEmail())
-                                    <x-heroicon-o-exclamation class="w-6 h-6 text-yellow-500" />
+                                    <x-untitledui-alert-triangle class="w-6 h-6 text-yellow-500" />
                                 @endunless
                             </div>
                             @unless(Auth::user()->hasVerifiedEmail())

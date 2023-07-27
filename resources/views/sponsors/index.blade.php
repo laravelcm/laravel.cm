@@ -10,7 +10,9 @@
             <x-error-message />
 
             <div class="space-y-10">
-                <h1 class="text-2xl lg:text-4xl font-heading text-skin-inverted font-bold">{{ __('Soutenir Laravel Cameroun') }}</h1>
+                <h1 class="text-2xl lg:text-4xl font-heading text-skin-inverted font-bold">
+                    {{ __('Soutenir Laravel Cameroun') }}
+                </h1>
                 <div class="relative flex items-center space-x-5">
                     <div class="shrink-0">
                         <x-application-icon class="block h-12 w-auto sm:h-14" />

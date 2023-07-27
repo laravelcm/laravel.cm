@@ -31,7 +31,7 @@
     <div class="overflow-hidden border border-skin-base rounded-md bg-skin-card">
         @if($option === 'monthly')
             <div class="p-4 flex items-start">
-                <x-heroicon-o-exclamation class="w-10 h-10 text-yellow-400" />
+                <x-untitledui-alert-triangle class="w-10 h-10 text-yellow-400" />
                 <p class="ml-4 text-base leading-6 text-skin-base">
                     {{ __('Les choix pour cette option ne sont pas encore disponible.') }}
                 </p>

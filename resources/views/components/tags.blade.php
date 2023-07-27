@@ -43,7 +43,7 @@
             <span @class(['truncate ml-1.5', 'lowercase' => $isLowercase])>{{ $tag->name }}</span>
 
             @if($selectedTag && $selectedTag->id() === $tag->id())
-                <x-heroicon-o-x-circle class="ml-1.5 w-4 h-4 text-skin-muted group-hover:text-skin-base"/>
+                <x-untitledui-x-circle class="ml-1.5 w-4 h-4 text-skin-muted group-hover:text-skin-base"/>
             @endif
 
         </button>
