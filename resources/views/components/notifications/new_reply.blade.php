@@ -7,7 +7,7 @@
             <div class="whitespace-nowrap text-sm leading-5 text-skin-base">
                 <div class="flex items-center space-x-3">
                     <span class="p-2 flex items-center justify-center rounded-full bg-skin-card-gray">
-                        <x-heroicon-s-reply class="w-5 h-5 text-skin-base"/>
+                        <x-untitledui-xs-reply class="w-5 h-5 text-skin-base"/>
                     </span>
                     <div>
                         <p class="font-normal text-base leading-6">Une nouvelle réponse a été ajoutée au sujet <a href="{{ route('replyable', [$data['replyable_id'], $data['replyable_type']]) }}" class="text-skin-primary hover:text-skin-primary-hover">"{{ $data['replyable_subject'] }}"</a>.</p>

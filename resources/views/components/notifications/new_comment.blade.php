@@ -7,10 +7,12 @@
             <div class="whitespace-nowrap text-sm leading-5 text-skin-base">
                 <div class="flex items-center space-x-3">
                     <span class="p-2 flex items-center justify-center rounded-full bg-skin-card-gray">
-                        <x-heroicon-s-chat-alt class="w-5 h-5 text-skin-base"/>
+                        <x-untitledui-message-plus-square class="w-5 h-5 text-skin-base"/>
                     </span>
                     <div>
-                        <p class="font-normal text-base leading-6">Un commentaire a été ajoutée dans la conversation <a href="{{ route('replyable', [$data['replyable_id'], $data['replyable_type']]) }}" class="text-skin-primary hover:text-skin-primary-hover">"{{ $data['replyable_subject'] }}"</a>.</p>
+                        <p class="font-normal text-base leading-6">
+                            Un commentaire a été ajoutée dans la conversation <a href="{{ route('replyable', [$data['replyable_id'], $data['replyable_type']]) }}" class="text-skin-primary hover:text-skin-primary-hover">"{{ $data['replyable_subject'] }}"</a>.
+                        </p>
                         <p class="mt-1 text-sm leading-5 text-skin-muted font-sans">
                             <time-ago time="{{ $notification->created_at->getTimestamp() }}" />
                         </p>

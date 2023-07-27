@@ -32,10 +32,8 @@
 
         @if(Auth::user()->hasRole(['admin', 'moderator']))
             <div class="py-1.5 px-3.5" role="none">
-                <a href="#c" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
-                    <svg class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                    </svg>
+                <a href="{{ route('filament.admin.pages.dashboard') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
+                    <x-untitledui-monitor class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
                     {{ __('Administration') }}
                 </a>
             </div>
@@ -89,15 +87,15 @@
 
         <div class="py-1.5 px-3.5" role="none">
             <a href="{{ route('dashboard') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-0">
-                <x-icon.grid class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                <x-untitledui-grid class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
                 {{ __('Tableau de bord') }}
             </a>
             <a href="{{ route('profile') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-1">
-                <x-icon.profile class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                <x-untitledui-user-circle class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
                 {{ __('Mon profil') }}
             </a>
             <a href="{{ route('user.settings') }}" class="group flex items-center py-1.5 text-sm text-skin-base hover:text-skin-primary font-normal" role="menuitem" tabindex="-1" id="user-menu-item-2">
-                <x-icon.settings class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
+                <x-untitledui-sliders class="flex-none h-5 w-5 mr-3 text-skin-muted group-hover:text-skin-primary" />
                 {{ __('Paramètres') }}
             </a>
             <form method="POST" action="{{ route('logout') }}" role="form">

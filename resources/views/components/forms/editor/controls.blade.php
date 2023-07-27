@@ -8,12 +8,12 @@
         </svg>
     </button>
     <button x-data title="Code sample" type="button" class="text-skin-base hover:text-skin-inverted-muted cursor-pointer focus:outline-none" @click="$dispatch('editor-control-clicked', 'code')">
-        <x-heroicon-o-code class="w-5 h-5" />
+        <x-untitledui-code class="w-5 h-5" />
     </button>
     <button x-data title="Link" type="button" class="text-skin-base hover:text-skin-inverted-muted cursor-pointer focus:outline-none" @click="$dispatch('editor-control-clicked', 'link')">
         <x-heroicon-o-link class="w-5 h-5" />
     </button>
     <button x-data title="Image" type="button" class="text-skin-base hover:text-skin-inverted-muted cursor-pointer focus:outline-none" @click="$dispatch('editor-control-clicked', 'image')">
-        <x-heroicon-o-photograph class="w-5 h-5" />
+        <x-untitledui-image class="w-5 h-5" />
     </button>
 </div>

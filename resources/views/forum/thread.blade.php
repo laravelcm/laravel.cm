@@ -14,7 +14,7 @@
                 </x-button>
                 <nav>
                     <a href="{{ route('forum.index') }}" class="w-full inline-flex items-center text-skin-base hover:text-skin-inverted py-3 text-sm font-medium">
-                        <x-heroicon-s-menu class="h-5 w-5 mr-2" />
+                        <x-untitledui-menu class="h-5 w-5 mr-2" />
                         <span>{{ __('Tous les sujets') }}</span>
                     </a>
                 </nav>
@@ -62,7 +62,7 @@
                             <div class="flex items-center">
                                 <span class="text-skin-muted mx-2">•</span>
                                 <span class="inline-flex items-center gap-x-2 font-medium text-green-500">
-                                    <x-heroicon-s-badge-check class="w-5 h-5" />
+                                    <x-untitledui-check-verified-03 class="w-5 h-5" />
                                     <span>{{ __('Résolu') }}</span>
                                 </span>
                             </div>
@@ -117,7 +117,7 @@
                             @csrf
                             <x-button type="submit" class="px-3 py-2 text-sm leading-4">
                                 {{ __('Recevoir un lien') }}
-                                <x-heroicon-o-arrow-narrow-right class="h-5 w-5 ml-1.5" />
+                                <x-heroicon-o-arrow-long-right class="h-5 w-5 ml-1.5" />
                             </x-button>
                         </form>
                     </div>
