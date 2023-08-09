@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TagResource\Pages;
@@ -10,10 +12,9 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
-class TagResource extends Resource
+final class TagResource extends Resource
 {
     protected static ?string $model = Tag::class;
 
@@ -24,8 +25,8 @@ class TagResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->afterStateUpdated(function (Forms\Get $get, Forms\Set $set, ?string $state) {
-                        if (! $get('is_slug_changed_manually') && filled($state)) {
+                    ->afterStateUpdated(function (Forms\Get $get, Forms\Set $set, ?string $state): void {
+                        if ( ! $get('is_slug_changed_manually') && filled($state)) {
                             $set('slug', Str::slug($state));
                         }
                     })
@@ -33,7 +34,7 @@ class TagResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('slug')
-                    ->afterStateUpdated(function (Closure $set) {
+                    ->afterStateUpdated(function (Closure $set): void {
                         $set('is_slug_changed_manually', true);
                     })
                     ->required(),
@@ -58,7 +59,7 @@ class TagResource extends Resource
                     ->label('Concerné par'),
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
