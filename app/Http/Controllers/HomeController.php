@@ -16,7 +16,7 @@ final class HomeController extends Controller
     public function __invoke(): View
     {
         $plans = Cache::remember('plans', now()->addYear(), function () {
-            return Plan::with('features')
+            return Plan::query()
                 ->developer()
                 ->get();
         });
