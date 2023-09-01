@@ -27,7 +27,7 @@ use Laravel\Socialite\Contracts\User as SocialUser;
 use LaravelFeature\Featurable\Featurable;
 use LaravelFeature\Featurable\FeaturableInterface;
 use QCod\Gamify\Gamify;
-use Rinvex\Subscriptions\Traits\HasPlanSubscriptions;
+// use Rinvex\Subscriptions\Traits\HasPlanSubscriptions;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
@@ -41,7 +41,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
     use Gamify;
     use HasApiTokens;
     use HasFactory;
-    use HasPlanSubscriptions;
+    // use HasPlanSubscriptions;
     use HasProfilePhoto;
     use HasRoles;
     use HasSettings;

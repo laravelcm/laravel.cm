@@ -35,7 +35,7 @@
             ...(window.laravel || {}),
             isModerator: {{ auth()->check() && auth()->user()->hasAnyRole('admin', 'moderator') ? 'true' : 'false' }},
             user: {{ auth()->check() ? auth()->id() : 'null' }},
-            currentUser: {!! auth()->check() ? json_encode(auth()->user()->profile()) : 'null'  !!}
+            currentUser: {!! auth()->check() ? json_encode(auth()->user()->profile()) : 'null' !!}
         }
     </script>
 
