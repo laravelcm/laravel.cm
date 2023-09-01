@@ -7,7 +7,8 @@ namespace App\Models\Premium;
 use App\Enums\PlanType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Rinvex\Subscriptions\Models\Plan as Model;
+// use Rinvex\Subscriptions\Models\Plan as Model;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @mixin IdeHelperPlan

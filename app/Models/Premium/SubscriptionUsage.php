@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Models\Premium;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Rinvex\Subscriptions\Models\PlanSubscriptionUsage as Model;
+// use Rinvex\Subscriptions\Models\PlanSubscriptionUsage as Model;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @mixin IdeHelperSubscriptionUsage
