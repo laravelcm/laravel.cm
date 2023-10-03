@@ -1,0 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Illuminate\Http\Request;
+
+final class {{ class }}
+{
+    public function __invoke(Request $request)
+    {
+        //
+    }
+}
