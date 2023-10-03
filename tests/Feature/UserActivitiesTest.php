@@ -5,8 +5,6 @@ declare(strict_types=1);
 use App\Models\Activity;
 use App\Models\Article;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 it('records activity when an article is created', function (): void {
     $user = $this->createUser();
