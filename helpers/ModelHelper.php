@@ -347,7 +347,7 @@ namespace App\Models\Premium{
 
 namespace App\Models\Premium{use App\Models\Plan;
 
-/**
+    /**
      * App\Models\Premium\Plan
      *
      * @property int $id
