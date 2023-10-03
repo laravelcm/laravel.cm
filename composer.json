@@ -28,6 +28,7 @@
     "laravel/slack-notification-channel": "^2.5",
     "laravel/socialite": "^5.6.3",
     "laravel/tinker": "^2.8.1",
+    "laravelcm/laravel-subscriptions": "^1.0",
     "livewire/livewire": "^2.12.3",
     "lorisleiva/laravel-actions": "^2.6",
     "mckenziearts/blade-untitledui-icons": "^1.2",

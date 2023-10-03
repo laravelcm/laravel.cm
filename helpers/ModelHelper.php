@@ -315,7 +315,7 @@ namespace App\Models\Premium{
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $deleted_at
      * @property-read array $translations
-     * @property-read \App\Models\Premium\Plan $plan
+     * @property-read \App\Models\Plan $plan
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Premium\SubscriptionUsage> $usage
      * @property-read int|null $usage_count
      * @method static \Illuminate\Database\Eloquent\Builder|PlanFeature byPlanId(int $planId)
@@ -345,7 +345,8 @@ namespace App\Models\Premium{
     }
 }
 
-namespace App\Models\Premium{
+namespace App\Models\Premium{use App\Models\Plan;
+
     /**
      * App\Models\Premium\Plan
      *
@@ -437,7 +438,7 @@ namespace App\Models\Premium{
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $deleted_at
      * @property-read array $translations
-     * @property-read \App\Models\Premium\Plan $plan
+     * @property-read \App\Models\Plan $plan
      * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $subscriber
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Premium\SubscriptionUsage> $usage
      * @property-read int|null $usage_count
