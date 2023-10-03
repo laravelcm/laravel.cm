@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Discussion;
-use App\Models\Premium\Plan;
+use App\Models\Plan;
 use App\Models\Thread;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
