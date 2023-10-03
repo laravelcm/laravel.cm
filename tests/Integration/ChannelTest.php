@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Exceptions\CannotAddChannelToChild;
 use App\Models\Channel;
 
-test('channel can have childs', function (): void {
+test('channel can have children', function (): void {
     $channel = Channel::factory()->create();
     Channel::factory()->count(2)->create(['parent_id' => $channel->id]);
 

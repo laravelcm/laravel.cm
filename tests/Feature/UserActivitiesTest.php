@@ -8,9 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(RefreshDatabase::class);
-uses(DatabaseMigrations::class);
-
 it('records activity when an article is created', function (): void {
     $user = $this->createUser();
 
