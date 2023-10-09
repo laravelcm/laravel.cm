@@ -11,6 +11,7 @@ composer.phar
 
 /.idea
 /.vscode
+/projects
 
 # Laravel Exclude
 #
