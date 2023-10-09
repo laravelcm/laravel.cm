@@ -74,7 +74,8 @@
     "psr-4": {
       "App\\": "app/",
       "Database\\Factories\\": "database/factories/",
-      "Database\\Seeders\\": "database/seeders/"
+      "Database\\Seeders\\": "database/seeders/",
+      "Domain\\": "src/Domain"
     }
   },
   "autoload-dev": {
@@ -119,7 +120,6 @@
       "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
       "php artisan key:generate",
       "php artisan migrate",
-      "php artisan rinvex:migrate:subscriptions",
       "php artisan db:seed",
       "php artisan lcm:admin"
     ]
