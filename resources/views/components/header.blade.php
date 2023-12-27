@@ -17,9 +17,6 @@
                     <a href="{{ route('discussions.index') }}" class="inline-flex items-center px-1 text-sm font-medium {{ active(['discussions', 'discussions*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
                         {{ __('Discussions') }}
                     </a>
-                    <a href="#" class="inline-flex items-center px-1 text-sm font-medium {{ active(['tutorials', 'tutorials*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }}">
-                        {{ __('Vidéos') }}
-                    </a>
                     <div class="relative px-1 mt-1.5">
                         <button @click="flyoutMenu =! flyoutMenu" type="button" class="group rounded-md inline-flex items-center font-medium text-skin-menu hover:text-skin-menu-hover focus:outline-none focus:ring-0" :class="{ 'text-skin-menu-hover': flyoutMenu, 'text-skin-menu': !(flyoutMenu) }">
                             <x-untitledui-dots-horizontal class="h-5 w-5" />

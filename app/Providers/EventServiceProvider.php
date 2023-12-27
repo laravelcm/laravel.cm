@@ -52,10 +52,10 @@ final class EventServiceProvider extends ServiceProvider
             \SocialiteProviders\Twitter\TwitterExtendSocialite::class.'@handle',
         ],
 
-        ApiRegistered::class => [
-            SendCompanyEmailVerificationNotification::class,
-            SendWelcomeCompanyNotification::class,
-        ],
+        //        ApiRegistered::class => [
+        //            SendCompanyEmailVerificationNotification::class,
+        //            SendWelcomeCompanyNotification::class,
+        //        ],
 
         SponsoringPaymentInitialize::class => [
             SendPaymentNotification::class,

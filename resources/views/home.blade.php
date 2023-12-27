@@ -82,7 +82,10 @@
                 </div>
             </div>
             <div class="mt-6 text-center lg:mt-10">
-                <a class="text-sm leading-5 text-flag-green hover:text-green-600 hover:underline" href="{{ route('sponsors') }}">
+                <a
+                    class="text-sm leading-5 text-flag-green hover:text-green-600 hover:underline"
+                    target="_blank"
+                    href="https://github.com/sponsors/laravelcm">
                     {{ __('Votre logo ici ?') }}
                 </a>
             </div>
