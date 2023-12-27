@@ -37,6 +37,6 @@
     "trim_array_spaces": true,
     "use_arrow_functions": true,
     "void_return": true,
-    "yoda_style": true
+    "yoda_style": false
   }
 }

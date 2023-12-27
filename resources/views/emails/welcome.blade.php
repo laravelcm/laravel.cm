@@ -17,7 +17,7 @@
 
   @component('mail::subcopy')
     [Créer un thread :]({{ route('forum.new') }})
-    vous rencontrez des soucis dans votre code ou votre projet 🤔 ? Partagez le avec nous et laissez nous vous aider.
+    vous rencontrez des soucis dans votre code ou votre projet 🤔 ? Partagez-le avec nous et laissez-nous vous aider.
   @endcomponent
 
   @component('mail::subcopy')

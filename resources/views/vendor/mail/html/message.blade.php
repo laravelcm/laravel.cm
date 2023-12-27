@@ -29,9 +29,9 @@
   {{-- Footer --}}
   @slot('footer')
     @component('mail::footer')
-      <span style="display: block; margin: 0px 0px 10px 0px">Vous recevez cet e-mail car vous êtes devenu un membre précieux de la communauté Laravel Cameroun.</span>
+      <span style="display: block; margin: 0px 0px 10px 0px">Vous recevez cet e-mail, car vous êtes devenu un membre précieux de la communauté Laravel Cameroun.</span>
       <span>© {{ date('Y') }} {{ config('app.name') }}. @lang('Tous droits reservés.')</span>
-      <span style="display: block; margin: 10px 0px 0px 0px">Sable Bonamoussadi, Hotel Joanes Douala - Cameroun.</span>
+      <span style="display: block; margin: 10px 0px 0px 0px">Akwa, Douala - Cameroun.</span>
     @endcomponent
   @endslot
 
