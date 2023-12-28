@@ -1,8 +1,4 @@
-@title(__('Rejoindre Slack'))
-
-@extends('layouts.default')
-
-@section('body')
+<x-app-layout title="Rejoindre Slack">
 
     <div class="max-w-xl mx-auto py-14">
         <div class="space-y-6">
@@ -37,7 +33,7 @@
         </div>
     </div>
 
-    <x-container class="px-4 mx-auto max-w-6xl pb-12">
+    <x-container class="max-w-6xl pb-12">
         <section class="text-center max-w-3xl mx-auto">
             <h2 class="mb-3 text-2xl leading-7 font-heading text-center tracking-tight text-skin-inverted font-bold">{{ __('Les autres groupes') }}</h2>
             <p class="leading-6 text-skin-base mx-auto max-w-3xl text-center">
@@ -102,5 +98,4 @@
         </ul>
     </x-container>
 
-
-@endsection
+</x-app-layout>

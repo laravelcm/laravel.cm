@@ -1,13 +1,13 @@
 <nav class="space-y-6">
     <x-button :link="route('forum.new')" class="w-full flex justify-between">
-        {{ __('Nouveau Sujet') }}
+        Nouveau Sujet
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 ml-2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
     </x-button>
     <div class="sm:hidden">
         <x-forms.select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-            <option value="">{{ __('Filtrer par channel') }}</option>
+            <option value="">Filtrer par channel</option>
             @foreach($channels as $channel)
                 <option value="{{ route('forum.channels', $channel) }}" @if(request()->fullUrlIs(route('forum.channels', $channel))) selected @endif>{{ $channel->name }}</option>
                 @if($channel->items->isNotEmpty())
@@ -21,7 +21,7 @@
     <ul class="hidden sm:block sm:space-y-3">
         <li>
             <a href="{{ route('forum.index') }}" class="truncate text-skin-base hover:text-skin-primary">
-                {{ __('Tous les sujets') }}
+                Tous les sujets
             </a>
         </li>
         @foreach($channels as $channel)

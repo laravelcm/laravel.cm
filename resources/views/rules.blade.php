@@ -1,10 +1,6 @@
-@title(__('Code de conduite'))
+<x-app-layout title="Code de conduite">
 
-@extends('layouts.default')
-
-@section('body')
-
-    <div class="relative max-w-3xl mx-auto px-4 py-10 prose">
+    <div class="relative max-w-4xl mx-auto px-4 py-10 prose">
 
         <h1>{{ __('Code de conduite') }}</h1>
 
@@ -54,4 +50,4 @@
 
     </div>
 
-@stop
+</x-app-layout>

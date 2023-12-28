@@ -1,8 +1,8 @@
 <section aria-labelledby="moderators-title">
-    <div class="rounded-lg bg-skin-card overflow-hidden shadow">
+    <div class="rounded-xl bg-skin-card overflow-hidden shadow">
         <div class="p-6">
             <h2 class="text-base font-medium text-skin-inverted font-heading" id="moderators-title">
-                {{ __('Modérateurs') }}
+                Modérateurs
             </h2>
             <div class="flow-root mt-6">
                 <ul role="list" class="-my-5 divide-y divide-skin-base">
@@ -22,7 +22,7 @@
                                 </div>
                                 <div>
                                     <a href="{{ route('profile', $moderator->username) }}" class="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-skin-base text-sm leading-5 font-medium rounded-full text-skin-inverted-muted bg-skin-card hover:bg-skin-footer">
-                                        {{ __('Voir') }}
+                                        Voir
                                     </a>
                                 </div>
                             </div>

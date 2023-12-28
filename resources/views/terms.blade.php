@@ -1,9 +1,6 @@
-@title(__("Conditions d'utilisation"))
+<x-app-layout title="Conditions d'utilisation">
 
-@extends('layouts.default')
-
-@section('body')
-    <div class="relative max-w-3xl mx-auto px-4 py-10 prose">
+    <div class="relative max-w-4xl mx-auto px-4 py-10 prose">
 
         <h1>{{ __("Conditions d'utilisation") }}</h1>
 
@@ -54,4 +51,5 @@
         <p>{{ __("Si vous avez des questions concernant ces Conditions, veuillez nous contacter.") }}</p>
 
     </div>
-@stop
+
+</x-app-layout>

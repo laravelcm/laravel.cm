@@ -1,6 +1,4 @@
-@extends('layouts.large')
-
-@section('body')
+<x-app-layout>
 
     <div class="isolate -mt-16 pt-14">
         <div class="absolute inset-0 -z-10 mx-0 max-w-none overflow-hidden">
@@ -92,7 +90,7 @@
         </div>
     </div>
 
-    <x-container class="px-4 mx-auto max-w-7xl">
+    <x-container>
         <div class="divide-y divide-skin-base">
             <div class="py-12 lg:py-20">
                 <x-section-header
@@ -276,7 +274,7 @@
         @if($plans->count() > 0)
             <div class="relative pt-12 overflow-hidden sm:pt-16 lg:pt-20">
                 <div class="z-0 hidden overflow-hidden opacity-50 pointer-events-none lg:block">
-                    <testimonies-area />
+                {{--  Testimonies Area  --}}
                 </div>
                 <div class="relative z-50 pb-12 lg:-mt-16 bg-gradient-to-t from-transparent via-skin-card to-skin-body sm:pb-16 lg:pb-20">
                     <div class="px-4 mx-auto max-w-7xl">
@@ -285,7 +283,7 @@
                                 <svg class="w-5 h-5 t" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                     <path d="M23 9.04c0-1.249-1.051-2.27-2.335-2.27-1.285 0-2.336 1.021-2.336 2.27 0 .703.35 1.36.888 1.77l-3.083 2.29-2.99-3.857c.724-.386 1.215-1.135 1.215-1.975C14.359 6.021 13.308 5 12.023 5 10.74 5 9.688 6.021 9.688 7.27c0 .839.467 1.588 1.191 1.974L7.633 13.1 4.76 10.832c.537-.408.91-1.066.91-1.793 0-1.248-1.05-2.269-2.335-2.269C2.051 6.77 1 7.791 1 9.04c0 1.111.817 2.042 1.915 2.223l1.121 5.696v2.36c0 .386.304.681.7.681h14.527c.397 0 .7-.295.7-.68v-2.36l1.122-5.697C22.183 11.082 23 10.151 23 9.04zm-2.335-.908c.513 0 .934.408.934.907 0 .5-.42.908-.934.908s-.935-.408-.935-.908c0-.499.42-.907.934-.907zM12 6.339c.514 0 .934.408.934.908 0 .499-.42.907-.934.907s-.934-.408-.934-.907c0-.5.42-.908.934-.908zm-4.18 8.396a.727.727 0 0 0 .467-.25l3.69-4.47 3.456 4.448c.117.136.28.25.467.272a.683.683 0 0 0 .514-.136l3.036-2.247-.77 3.858H5.32l-.747-3.79 2.733 2.156c.14.114.327.182.514.16zM2.4 9.04c0-.499.42-.907.934-.907s.935.408.935.907c0 .5-.42.908-.935.908-.513 0-.934-.408-.934-.908zm3.036 9.6v-1.067h13.126v1.066H5.437z" />
                                 </svg>
-                                <h2 class="text-lg font-semibold">{{ __('Premium') }}</h2>
+                                <h2 class="font-heading text-lg font-semibold">{{ __('Premium') }}</h2>
                             </div>
                             <h4 class="mt-2 text-3xl font-bold leading-8 tracking-tight text-skin-inverted sm:text-4xl font-heading">
                                 {{ __('Accès illimité avec un abonnement premium') }}
@@ -323,7 +321,9 @@
                                         </ul>
                                     </div>
 
-                                    <x-button link="#" class="w-full mt-10">{{ __('Souscrire Maintenant') }}</x-button>
+                                    <x-button link="#" class="w-full mt-10">
+                                        {{ __('Souscrire Maintenant') }}
+                                    </x-button>
                                 </div>
                             @endforeach
                         </div>
@@ -332,4 +332,5 @@
             </div>
         @endif
     @endfeature
-@stop
+
+</x-app-layout>
