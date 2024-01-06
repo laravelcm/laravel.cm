@@ -1,10 +1,6 @@
-@title(__('Modifier la discussion > :subject', ['subject' => $discussion->subject()]))
+<x-app-layout :title="'Modifier la discussion > ' . $discussion->subject()">
 
-@extends('layouts.default')
-
-@section('body')
-
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-4xl mx-auto py-12">
         <div class="space-y-8 divide-y divide-skin-base sm:space-y-5">
             <div>
                 <h3 class="text-lg leading-6 font-medium text-skin-inverted font-heading">
@@ -19,4 +15,4 @@
         </div>
     </div>
 
-@endsection
+</x-app-layout>
