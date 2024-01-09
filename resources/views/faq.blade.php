@@ -3,15 +3,19 @@
     <x-container class="py-10">
         <div class="mb-14">
             <h2 class="text-3xl font-extrabold font-heading text-skin-inverted lg:text-4xl">
-                {{ __('Foire aux questions 🤔') }}
+                Foire aux questions 🤔
             </h2>
-            <p class="mt-2 text-sm text-skin-muted font-normal lg:text-base">{{ __("Certaines d'entre elles ne sont pas demandées fréquemment, mais elles sont toujours bonnes à savoir.") }}</p>
+            <p class="mt-2 text-sm text-skin-muted font-normal lg:text-base">
+                Certaines d'entre elles ne sont pas demandées fréquemment, mais elles sont toujours bonnes à savoir.
+            </p>
         </div>
 
         <div id="faq-questions" class="text-base flex -mx-2 -mt-4">
             <div class="flex-none px-2 w-full space-y-4 md:hidden">
                 <div class="bg-skin-card p-6 rounded-xl ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="font-semibold text-skin-inverted font-heading mb-2">{{ __('Qui peut publier des articles/sujets sur Laravel.cm?') }}</h3>
+                    <h3 class="font-semibold text-skin-inverted font-heading mb-2">
+                        Qui peut publier des articles/sujets sur Laravel.cm ?
+                    </h3>
                     <div class="prose prose-sm leading-5">
                         <p>
                             Les modérateurs ! Oui, vous avez la permission de publier un nouvel article, quel qu'il soit, du moment qu'il
@@ -322,7 +326,10 @@
                             <a href="https://tallstack.dev" target="_blank">TALL Stack</a> qui permet
                             de créer des applications réactives sur Laravel avec Livewire et Alpinejs.
                         </p>
-                        <p>C'est un preset de développement full-stack, construite par les membres de la communauté Laravel.</p>
+                        <p>
+                            C'est un preset de développement full-stack,
+                            construite par les membres de la communauté Laravel.
+                        </p>
                     </div>
                 </div>
                 <div class="bg-skin-card p-6 rounded-xl ring-1 ring-inset ring-gray-900/10">

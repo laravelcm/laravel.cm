@@ -16,28 +16,39 @@
                     <x-untitledui-switch-horizontal class="h-6 w-6 text-gray-400" />
                     <x-application-icon class="block h-10 w-auto sm:h-12" />
                 </div>
-                <h2 class="mt-4 text-xl font-medium font-heading text-skin-inverted">{{ __('Rejoindre le groupe Slack') }}</h2>
+                <h2 class="mt-4 text-xl font-medium font-heading text-skin-inverted">
+                    Rejoindre le groupe Slack
+                </h2>
                 <p class="mt-3 leading-6 text-skin-base">
-                    {{ __('Rejoignez notre slack pour discuter a propos de Laravel, Javascript, Design, comment démarrer et mener un projet de bout en bout, et découvrez l\'univers du développement au Cameroun.') }}
+                    Rejoignez notre slack pour discuter a propos de Laravel, Javascript, Design,
+                    comment démarrer et mener un projet de bout en bout, et découvrez l'univers
+                    du développement au Cameroun.
                 </p>
             </div>
 
             <form action="{{ route('slack.send') }}" method="POST" class="mt-6 flex">
                 @csrf
-                <label for="email" class="sr-only">{{ __('Adresse email') }}</label>
-                <x-email type="email" name="email" id="email" container-class="w-full flex-1" placeholder="Renseigner votre email" required />
-                <x-button type="submit" class="ml-4">
-                    {{ __('Rejoindre') }}
-                </x-button>
+                <label for="email" class="sr-only">Adresse email</label>
+                <x-email type="email"
+                         name="email"
+                         id="email"
+                         container-class="w-full flex-1"
+                         placeholder="Renseigner votre email"
+                         required />
+                <x-button type="submit" class="ml-4">Rejoindre</x-button>
             </form>
         </div>
     </div>
 
     <x-container class="max-w-6xl pb-12">
         <section class="text-center max-w-3xl mx-auto">
-            <h2 class="mb-3 text-2xl leading-7 font-heading text-center tracking-tight text-skin-inverted font-bold">{{ __('Les autres groupes') }}</h2>
+            <h2 class="mb-3 text-2xl leading-7 font-heading text-center tracking-tight text-skin-inverted font-bold">
+                Les autres groupes
+            </h2>
             <p class="leading-6 text-skin-base mx-auto max-w-3xl text-center">
-                {{ __('Que vous soyez un débutant ou un développeur expérimenté, vous impliquer dans la communauté Laravel Cameroun est un excellent moyen d\'entrer en contact avec des personnes partageant les mêmes idées et qui construisent des choses géniales avec le framework.') }}
+                Que vous soyez un débutant ou un développeur expérimenté, vous impliquez dans la communauté
+                Laravel Cameroun est un excellent moyen d'entrer en contact avec des personnes partageant
+                les mêmes idées et qui construisent des choses géniales avec le framework.
             </p>
         </section>
         <ul class="mt-12 grid grid-cols-1 xl:grid-cols-3 gap-y-10 gap-x-8 items-start">
@@ -45,13 +56,14 @@
                 <div class="order-1 sm:ml-6 xl:ml-0">
                     <h3 class="mb-1 text-skin-inverted font-medium">
                         <span class="mb-1 block leading-6 text-[#28D146]">WhatsApp</span>
-                        {{ __('Groupe accessible á tous mais limité à moins de 300 personnes') }}
+                        Groupe accessible à tous mais limité à moins de 500 personnes
                     </h3>
                     <p class="text-sm leading-5 text-skin-inverted-muted/60">
-                        {{ __('Si vous êtes un habitué de WhatsApp, nous avons un groupe qui regroupe près de 250 développeurs junior et senior qui pourront discuter et échanger avec vous.') }}
+                        Si vous êtes un habitué de WhatsApp, nous avons un groupe qui regroupe près
+                        de 350 développeurs junior et senior qui pourront discuter et échanger avec vous.
                     </p>
                     <x-default-button :link="route('whatsapp')" target="_blank" class="w-auto font-normal mt-6">
-                        {{ __('Rejoindre') }}
+                        Rejoindre
                     </x-default-button>
                 </div>
                 <x-social-group-card class="from-[#28D146] to-[#5FFC7B]">
@@ -62,13 +74,14 @@
                 <div class="order-1 sm:ml-6 xl:ml-0">
                     <h3 class="mb-1 text-skin-inverted font-medium">
                         <span class="mb-1 block leading-6 text-[#27A7E7]">Telegram</span>
-                        {{ __('La plus grosse communauté de Laravel Cameroun') }}
+                        La plus grosse communauté de Laravel Cameroun
                     </h3>
                     <p class="text-sm leading-5 text-skin-inverted-muted/60">
-                        {{ __('Avec le plus grand nombre de membres c\'est la plateforme qui nous affectionne le plus alors n\'hésitez surtout pas à nous rejoindre.') }}
+                        Avec le plus grand nombre de membres c'est la plateforme qui nous affectionne
+                        le plus alors n'hésitez surtout pas à nous rejoindre.
                     </p>
                     <x-default-button :link="route('telegram')" target="_blank" class="w-auto font-normal mt-6">
-                        {{ __('Rejoindre') }}
+                        Rejoindre
                     </x-default-button>
                 </div>
                 <x-social-group-card class="from-[#27A7E7] to-[#0088cc]">
@@ -82,13 +95,14 @@
                 <div class="order-1 sm:ml-6 xl:ml-0">
                     <h3 class="mb-1 text-skin-inverted font-medium">
                         <span class="mb-1 block leading-6 text-[#5865F2]">Discord</span>
-                        {{ __('Le tout dernier venu mais notre plus grand coup de coeur') }}
+                        Le tout dernier venu, mais notre plus grand coup de cœur
                     </h3>
                     <p class="text-sm leading-5 text-skin-inverted-muted/60">
-                        {{ __('Discord est le dernier réseau rejoins par la communauté, vous pouvez nous rejoindre et participer à tous nos activités.') }}
+                        Discord est le dernier réseau rejoint par la communauté,
+                        vous pouvez nous rejoindre et participer à toutes nos activités.
                     </p>
                     <x-default-button :link="route('discord')" target="_blank" class="w-auto font-normal mt-6">
-                        {{ __('Rejoindre') }}
+                        Rejoindre
                     </x-default-button>
                 </div>
                 <x-social-group-card class="from-[#5865F2] to-[#1928D5]">

@@ -1,9 +1,7 @@
-@title('Tous les articles')
+<x-app-layout title="Tous les articles">
 
-@extends('layouts.default')
+    <x-container class="py-12">
+        <livewire:articles.browse />
+    </x-container>
 
-@section('body')
-
-    <livewire:articles.browse />
-
-@endsection
+</x-app-layout>

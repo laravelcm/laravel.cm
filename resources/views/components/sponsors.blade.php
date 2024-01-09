@@ -1,6 +1,6 @@
-<div {{ $attributes->merge(['class' => 'text-right']) }}>
+<div {{ $attributes->twMerge(['class' => 'text-right']) }}>
     <h4 class="text-skin-inverted text-sm leading-5 font-semibold uppercase tracking-wide font-sans">
-        {{ __('Sponsors') }}
+        Sponsors
     </h4>
     <div class="mt-5 space-y-5">
         <a href="https://laravelshopper.io" class="flex items-center justify-end">
