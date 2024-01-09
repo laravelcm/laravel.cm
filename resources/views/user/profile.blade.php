@@ -1,9 +1,6 @@
-@title("{$user->username} ({$user->name})")
-@canonical(route('profile', $user->username))
-
-@extends('layouts.large')
-
-@section('body')
+<x-app-layout
+    :title="$user->username .' ( '. $user->name . ')'"
+    :canonical="route('profile', $user->username)">
 
     <div>
         <div>
@@ -56,7 +53,7 @@
         </x-container>
     </div>
 
-    <x-container class="py-10 w-full max-w-7xl mx-auto px-4">
+    <x-container class="py-10">
         <div class="space-y-6 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0">
             <div>
                 <h3 class="text-lg leading-6 font-medium font-sans text-skin-inverted">{{ __('Biographie') }}</h3>
@@ -87,7 +84,7 @@
                 <dl class="grid grid-cols-1 gap-x-3 gap-y-6 sm:grid-cols-2">
                     <div class="sm:col-span-1">
                         <dt class="text-sm font-medium text-skin-base font-sans">
-                            {{ __('Localisation') }}
+                            Localisation
                         </dt>
                         <dd class="mt-1 text-skin-inverted-muted font-normal">
                             {{ $user->location ?? '...' }}
@@ -95,7 +92,7 @@
                     </div>
                     <div class="sm:col-span-1">
                         <dt class="text-sm font-medium text-skin-base font-sans">
-                            {{ __('Site internet') }}
+                            Site internet
                         </dt>
                         <dd class="mt-1 text-skin-inverted-muted font-normal">
                             @if ($user->website)
@@ -136,13 +133,13 @@
                 <div class="relative w-full">
                     <div x-ref="tabButtons" class="relative w-full lg:max-w-md inline-grid items-center justify-center w-full h-10 grid-cols-3 p-1 text-skin-base bg-skin-card rounded-lg select-none">
                         <button :id="$id(tabId)" @click="tabButtonClicked($el)" type="button" class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">
-                            {{ __('Articles') }}
+                            Articles
                         </button>
                         <button :id="$id(tabId)" @click="tabButtonClicked($el)" type="button" class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">
-                            {{ __('Discussions') }}
+                            Discussions
                         </button>
                         <button :id="$id(tabId)" @click="tabButtonClicked($el)" type="button" class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">
-                            {{ __('Questions') }}
+                            Questions
                         </button>
                         <div x-ref="tabMarker" class="absolute left-0 z-10 w-1/2 h-full duration-300 ease-out" x-cloak>
                             <div class="w-full h-full bg-skin-body rounded-md shadow-sm"></div>
@@ -169,7 +166,7 @@
                                         {{ __(':name ne possède aucun badge', ['name' => $user->name]) }}
                                     </p>
                                     <x-button link="#" class="mt-4">
-                                        {{ __('Voir tous les badges') }}
+                                        Voir tous les badges
                                     </x-button>
                                 </div>
                             </div>
@@ -180,4 +177,4 @@
         </div>
     </x-container>
 
-@endsection
+</x-app-layout>

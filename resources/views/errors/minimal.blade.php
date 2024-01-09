@@ -25,12 +25,18 @@
         </div>
         <div class="max-w-xl mx-auto py-16 sm:py-24">
             <div class="text-center">
-                <p class="text-sm font-semibold text-skin-primary uppercase tracking-wide font-sans">Erreur @yield('code')</p>
+                <p class="text-sm font-semibold text-skin-primary uppercase tracking-wide font-sans">
+                    Erreur @yield('code')
+                </p>
                 <h1 class="mt-2 text-4xl font-extrabold text-skin-inverted tracking-tight sm:text-5xl font-sans">@yield('message')</h1>
-                <p class="mt-2 text-lg text-skin-base font-normal">Il semble y avoir un problème en ce moment! Veuillez réessayer plus tard.</p>
+                <p class="mt-2 text-lg text-skin-base font-normal">
+                    Il semble y avoir un problème en ce moment ! Veuillez réessayer plus tard.
+                </p>
             </div>
             <div class="mt-12">
-                <h2 class="text-sm font-semibold text-skin-base tracking-wide uppercase font-sans">Pages Populaires</h2>
+                <h2 class="text-sm font-semibold text-skin-base tracking-wide uppercase font-sans">
+                    Pages Populaires
+                </h2>
                 <ul role="list" class="mt-4 border-t border-b border-skin-base divide-y divide-skin-base">
                     <li class="relative py-6 flex items-start space-x-4">
                         <div class="shrink-0">
@@ -47,7 +53,9 @@
                                     </a>
                                 </span>
                             </h3>
-                            <p class="text-base text-skin-base font-normal">Apprenez, découvrez, partagez dans le Forum.</p>
+                            <p class="text-base text-skin-base">
+                                Apprenez, découvrez, partagez dans le Forum.
+                            </p>
                         </div>
                         <div class="shrink-0 self-center">
                             <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />
@@ -69,7 +77,9 @@
                                     </a>
                                 </span>
                             </h3>
-                            <p class="text-base text-skin-base font-normal">Des émissions radios pour la culture.</p>
+                            <p class="text-base text-skin-base">
+                                Des émissions radios pour la culture.
+                            </p>
                         </div>
                         <div class="shrink-0 self-center">
                             <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />
@@ -91,7 +101,9 @@
                                     </a>
                                 </span>
                             </h3>
-                            <p class="text-base text-skin-base font-normal">Guide d'utilisation et paramétrage du site.</p>
+                            <p class="text-base text-skin-base">
+                                Guide d'utilisation et paramétrage du site.
+                            </p>
                         </div>
                         <div class="shrink-0 self-center">
                             <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />
@@ -113,7 +125,9 @@
                                     </a>
                                 </span>
                             </h3>
-                            <p class="text-base text-skin-base font-normal">Lisez les dernières nouvelles et articles.</p>
+                            <p class="text-base text-skin-base">
+                                Lisez les dernières nouvelles et articles.
+                            </p>
                         </div>
                         <div class="shrink-0 self-center">
                             <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />

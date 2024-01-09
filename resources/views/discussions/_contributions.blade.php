@@ -1,7 +1,11 @@
 <x-sticky-content class="space-y-12">
     <div>
-        <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">{{ __('Top Contributeurs') }}</h4>
-        <p class="mt-3 font-normal text-skin-base text-sm">{{ __('Les personnes qui ont lancé le plus de discussions sur le site.') }}</p>
+        <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">
+            Top Contributeurs
+        </h4>
+        <p class="mt-3 font-normal text-skin-base text-sm">
+            Les personnes qui ont lancé le plus de discussions sur le site.
+        </p>
         <div class="mt-6">
             <ul role="list" class="divide-y divide-skin-base">
                 @foreach($topContributors as $contributor)
@@ -36,8 +40,13 @@
     </div>
 
     <div>
-        <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">{{ __('Discussions sans commentaires') }}</h4>
-        <p class="mt-3 font-normal text-skin-base text-sm">{{ __('Les discussions/sujets qui n’ont pas encore eu de commentaires. Soyez le premier à apporter votre contribution.') }}</p>
+        <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">
+            Discussions sans commentaires
+        </h4>
+        <p class="mt-3 font-normal text-skin-base text-sm">
+            Les discussions / sujets qui n’ont pas encore eu de commentaires.
+            Soyez le premier à apporter votre contribution.
+        </p>
 
         <div class="mt-6">
             <ul role="list" class="divide-y divide-skin-base">

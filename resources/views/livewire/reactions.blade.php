@@ -21,7 +21,9 @@
                 @foreach($model->getReactionsSummary() as $reaction)
                     <img class="w-4 h-4" src="{{ asset("/images/reactions/{$reaction->name}.svg") }}" alt="{{ $reaction->name }} emoji">
                 @endforeach
-                <span class="ml-3 text-sm font-medium text-green-500">{{ $model->getReactionsSummary()->sum('count') }}</span>
+                <span class="ml-3 text-sm font-medium text-green-500">
+                    {{ $model->getReactionsSummary()->sum('count') }}
+                </span>
             </div>
         </button>
     @endif

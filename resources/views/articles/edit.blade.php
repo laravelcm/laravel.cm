@@ -1,9 +1,7 @@
-@title('Modifier mon article')
+<x-app-layout title="Modifier mon article">
 
-@extends('layouts.master')
+    <x-container>
+        <livewire:articles.edit :article="$article" />
+    </x-container>
 
-@section('content')
-
-    <livewire:articles.edit :article="$article" />
-
-@endsection
+</x-app-layout>

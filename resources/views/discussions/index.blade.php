@@ -1,9 +1,7 @@
-@title('Tous les sujets de discussion')
+<x-app-layout title="Tous les sujets de discussion">
 
-@extends('layouts.default')
+    <x-container class="py-12">
+        <livewire:discussions.browse />
+    </x-container>
 
-@section('body')
-
-    <livewire:discussions.browse />
-
-@endsection
+</x-app-layout>

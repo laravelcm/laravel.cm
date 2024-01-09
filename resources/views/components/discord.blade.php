@@ -6,7 +6,10 @@
         </svg>
         <p class="mt-1 text-base leading-6 text-skin-inverted">
             <strong class="block">Laravel Cameroun Discord</strong>
-            <span class="block mt-2 text-sm text-skin-base">Rejoignez le serveur Discord de la communauté et connectez-vous avec d'autres développeurs partageant les mêmes objectifs !</span>
+            <span class="block mt-2 text-sm text-skin-base">
+                Rejoignez le serveur Discord de la communauté et connectez-vous
+                avec d'autres développeurs partageant les mêmes objectifs !
+            </span>
         </p>
     </a>
 </div>
