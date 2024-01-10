@@ -253,14 +253,15 @@
                 wire:model="title"
                 name="title"
                 id="title"
-                class="block w-full h-auto px-0 py-4 text-3xl sm:text-4xl font-bold placeholder-skin-input focus:placeholder-skin-input-focus font-normal text-skin-inverted bg-transparent border-0 leading-normal border-0 appearance-none focus:ring-0 shadow-none"
+                class="block w-full h-auto px-0 py-4 text-3xl sm:text-4xl font-bold placeholder-skin-input focus:placeholder-skin-input-focus text-skin-inverted bg-transparent border-0 leading-normal appearance-none focus:ring-0 shadow-none"
                 placeholder="Titre de votre article..."
+                aria-label="Titre"
                 autofocus
                 autocomplete="off"
             />
             <livewire:markdown-x :content="$body" />
             <div class="mt-6 text-right text-skin-base">
-                {{ __('Temps de lecture estimé :') }} <span class="text-skin-inverted">{{ $reading_time }} min</span>
+                Temps de lecture estimé : <span class="text-skin-inverted">{{ $reading_time }} min</span>
             </div>
         </div>
     </main>

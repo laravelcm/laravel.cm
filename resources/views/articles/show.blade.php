@@ -6,7 +6,7 @@
         $user = $article->user;
     @endphp
 
-    <x-container>
+    <x-container class="py-12">
         <article class="relative lg:grid lg:grid-cols-9 lg:gap-10" xmlns:livewire="http://www.w3.org/1999/html">
             <div class="hidden relative lg:block lg:col-span-2">
                 <x-sticky-content class="divide-y divide-skin-base space-y-6">
