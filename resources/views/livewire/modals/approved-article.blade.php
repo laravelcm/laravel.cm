@@ -5,12 +5,13 @@
                 <x-untitledui-alert-triangle class="h-6 w-6 text-red-600" />
             </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                <h3 class="text-lg leading-6 font-medium text-skin-inverted font-sans" id="modal-headline">
-                    {{ __('Approuver cet article') }}
+                <h3 class="text-lg leading-6 font-medium text-skin-inverted font-heading" id="modal-headline">
+                    Approuver cet article
                 </h3>
                 <div class="mt-2">
-                    <p class="text-sm leading-5 text-skin-base font-normal">
-                        {{ __('Voulez-vous cet article? Il paraitra dans la liste des articles et un mail sera envoyé à l\'auteur pour lui signaler.') }}
+                    <p class="text-sm leading-5 text-skin-base">
+                        Voulez-vous cet article ? Il paraitra dans la liste des articles
+                        et un mail sera envoyé à l'auteur pour lui signaler.
                     </p>
                 </div>
             </div>
@@ -21,12 +22,12 @@
         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
             <x-button wire:click="approved" type="button">
                 <x-loader class="text-white" wire:loading wire:target="approved" />
-                {{ __('Approuver') }}
+                Approuver
             </x-button>
         </span>
         <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <x-default-button wire:click="$emit('closeModal')" type="button">
-                {{ __('Annuler') }}
+            <x-default-button wire:click="$dispatch('closeModal')" type="button">
+                Annuler
             </x-default-button>
         </span>
     </x-slot>

@@ -245,7 +245,7 @@
                                 </a>
                                 @if($article->isNotApproved())
                                     @hasanyrole('admin|moderator')
-                                        <button onclick="Livewire.emit('openModal', 'modals.approved-article', {{ json_encode([$article->id]) }})"
+                                        <button onclick="Livewire.dispatch('openModal', {component: 'modals.approved-article', arguments: {{ json_encode([$article->id]) }} })"
                                                 type="button"
                                                 class="-ml-px relative inline-flex items-center px-4 py-2 border border-skin-base bg-skin-card text-sm font-medium text-green-500 hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
                                             <span class="sr-only">Approuver</span>
@@ -253,7 +253,7 @@
                                         </button>
                                     @endhasanyrole
                                 @endif
-                                <button onclick="Livewire.emit('openModal', 'modals.delete-article', {{ json_encode([$article->id]) }})"
+                                <button onclick="Livewire.dispatch('openModal', {component: 'modals.delete-article', arguments: {{ json_encode([$article->id]) }} })"
                                         type="button"
                                         class="relative inline-flex items-center px-4 py-2 rounded-r-md border border-skin-base bg-skin-card text-sm font-medium text-skin-inverted-muted hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
                                     <span class="sr-only">Supprimer</span>

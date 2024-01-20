@@ -75,7 +75,7 @@
                                     <div class="mt-2 flex items-center space-x-2">
                                         <a href="{{ route('discussions.edit', $discussion) }}" class="text-sm leading-5 font-sans text-skin-base focus:outline-none hover:underline">{{ __('Éditer') }}</a>
                                         <span class="text-skin-base font-medium">·</span>
-                                        <button onclick="Livewire.emit('openModal', 'modals.delete-discussion', {{ json_encode([$discussion->id]) }})" type="button" class="text-sm leading-5 font-sans text-red-500 focus:outline-none hover:underline">{{ __('Supprimer') }}</button>
+                                        <button onclick="Livewire.dispatch('openModal', {component: 'modals.delete-discussion', arguments: {{ json_encode([$discussion->id]) }})" type="button" class="text-sm leading-5 font-sans text-red-500 focus:outline-none hover:underline">{{ __('Supprimer' }) }}</button>
                                     </div>
                                 @endcan
                             </div>

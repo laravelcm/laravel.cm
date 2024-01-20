@@ -43,7 +43,6 @@
 
     <!-- Scripts -->
     <livewire:scripts />
-    <script src="{{ mix('js/app.js') }}" defer></script>
 
     @include('partials._fathom')
 </head>
@@ -59,8 +58,8 @@
         <x-layouts.footer />
     </div>
 
-    @livewire('livewire-ui-modal')
-    @livewire('livewire-ui-spotlight')
+    @livewire('wire-elements-modal')
+    {{--@livewire('livewire-ui-spotlight')--}}
     @livewire('notifications')
 
     @stack('scripts')

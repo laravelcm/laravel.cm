@@ -5,12 +5,13 @@
                 <x-untitledui-alert-triangle class="h-6 w-6 text-red-600" />
             </div>
             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                <h3 class="text-lg leading-6 font-medium text-skin-inverted font-sans" id="modal-headline">
-                    {{ __('Supprimer cette discussion') }}
+                <h3 class="text-lg font-heading leading-6 font-medium text-skin-inverted" id="modal-headline">
+                    Supprimer cette discussion
                 </h3>
                 <div class="mt-2">
-                    <p class="text-sm leading-5 text-skin-base font-normal">
-                        {{ __('Voulez-vous vraiment supprimer cette discussion? Tous les commentaires seront supprimés cette action est irréversible.') }}
+                    <p class="text-sm leading-5 text-skin-base">
+                        Voulez-vous vraiment supprimer cette discussion ?
+                        Tous les commentaires seront supprimés cette action est irréversible.
                     </p>
                 </div>
             </div>
@@ -25,7 +26,7 @@
             </x-danger-button>
         </span>
         <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <x-default-button wire:click="$emit('closeModal')" type="button">
+            <x-default-button wire:click="$dispatch('closeModal')" type="button">
                 {{ __('Annuler') }}
             </x-default-button>
         </span>

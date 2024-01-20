@@ -15,19 +15,21 @@
                     <span class="mx-1.5 inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-skin-card-gray text-skin-inverted-muted">
                         {{ $comment->user->getPoints() }} XP
                     </span>
-                    <span wire:ignore class="text-sm text-skin-base font-normal mx-2">
+                    <span wire:ignore class="text-sm text-skin-base mx-2">
                         <time-ago time="{{ $comment->created_at->getTimestamp() }}" />
                     </span>
                     @can(App\Policies\ReplyPolicy::UPDATE, $comment)
                         <div class="mt-1 flex sm:mt-0">
                             <span class="hidden sm:inline-block text-skin-base font-medium">·</span>
                             <div class="pl-2 flex items-center divide-x divide-skin-base space-x-2">
-                                <button type="button" wire:click="delete" class="inline-flex items-center text-sm leading-5 font-sans text-red-500 focus:outline-none hover:underline">{{ __('Supprimer') }}</button>
+                                <button type="button" wire:click="delete" class="inline-flex items-center text-sm leading-5 text-red-500 focus:outline-none hover:underline">
+                                    Supprimer
+                                </button>
                             </div>
                         </div>
                     @endcan
                 </div>
-                <x-markdown-content :content="$comment->body" class="mt-2 text-sm text-skin-base prose prose-green font-normal max-w-none"/>
+                <x-markdown-content :content="$comment->body" class="mt-2 text-sm text-skin-base prose prose-green max-w-none" />
                 <div class="mt-4 text-sm space-x-4">
                     <button
                         type="button"

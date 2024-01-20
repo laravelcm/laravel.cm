@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="isolate -mt-16 pt-14">
+    <div class="relative isolate -mt-16 pt-14">
         <div class="absolute inset-0 -z-10 mx-0 max-w-none overflow-hidden">
             <div class="absolute left-1/2 top-0 ml-[-32rem] h-[32rem] w-[84.25rem]">
                 <div class="absolute inset-0 bg-gradient-to-r from-flag-red to-flag-yellow opacity-40 [mask-image:radial-gradient(farthest-side_at_top,white,transparent)]"></div>

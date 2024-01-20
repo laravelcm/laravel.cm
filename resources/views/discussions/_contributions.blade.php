@@ -1,9 +1,9 @@
 <x-sticky-content class="space-y-12">
     <div>
-        <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">
+        <h4 class="text-lg font-semibold text-skin-inverted font-heading leading-6">
             Top Contributeurs
         </h4>
-        <p class="mt-3 font-normal text-skin-base text-sm">
+        <p class="mt-3 text-skin-base text-sm">
             Les personnes qui ont lancé le plus de discussions sur le site.
         </p>
         <div class="mt-6">
@@ -40,10 +40,10 @@
     </div>
 
     <div>
-        <h4 class="text-lg font-semibold text-skin-inverted font-sans leading-6">
+        <h4 class="text-lg font-semibold text-skin-inverted font-heading leading-6">
             Discussions sans commentaires
         </h4>
-        <p class="mt-3 font-normal text-skin-base text-sm">
+        <p class="mt-3 text-skin-base text-sm">
             Les discussions / sujets qui n’ont pas encore eu de commentaires.
             Soyez le premier à apporter votre contribution.
         </p>
@@ -56,14 +56,16 @@
                             <img class="h-6 w-6 object-cover rounded-full" src="{{ $discussion->user->profile_photo_url }}" alt="">
                             <div class="flex-1 space-y-1">
                                 <div class="flex items-center justify-between">
-                                    <h3 class="text-sm font-medium text-skin-inverted font-sans">
-                                        <a href="{{ route('profile', $discussion->user->username) }}" class="hover:underline">{{ $discussion->user->name }}</a>
+                                    <h3 class="text-sm font-medium text-skin-inverted font-heading">
+                                        <a href="{{ route('profile', $discussion->user->username) }}" class="hover:underline">
+                                            {{ $discussion->user->name }}
+                                        </a>
                                     </h3>
-                                    <p class="text-xs text-skin-muted font-normal truncate">
+                                    <p class="text-xs text-skin-muted truncate">
                                         <time-ago time="{{ $discussion->created_at->getTimestamp() }}" />
                                     </p>
                                 </div>
-                                <a href="{{ route('discussions.show', $discussion) }}" class="inline-flex text-sm text-skin-base font-normal hover:text-skin-inverted leading-5">
+                                <a href="{{ route('discussions.show', $discussion) }}" class="inline-flex text-sm text-skin-base hover:text-skin-inverted leading-5">
                                     {{ $discussion->title }}
                                 </a>
                             </div>

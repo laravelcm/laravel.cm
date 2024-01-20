@@ -118,7 +118,7 @@
                                     <div x-data="{ on: @entangle('show_toc') }" class="mt-8 flex-grow flex items-center justify-between">
                                         <div>
                                             <dt class="text-sm leading-7 font-semibold text-skin-base">
-                                                {{ __('Afficher le Sommaire') }}
+                                                Afficher le Sommaire
                                             </dt>
                                         </div>
                                         <button type="button"
@@ -132,13 +132,13 @@
                                             :aria-pressed="on.toString()"
                                             @click="on = !on"
                                         >
-                                            <span class="sr-only">{{ __('Afficher le sommaire') }}</span>
+                                            <span class="sr-only">Afficher le sommaire</span>
                                             <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200 translate-x-0" x-state:on="Enabled" x-state:off="Not Enabled" :class="{ 'translate-x-5': on, 'translate-x-0': !(on) }"></span>
                                         </button>
                                     </div>
 
                                     <div class="mt-8" x-data="datepicker" wire:ignore>
-                                        <x-label for="published_at">{{ __('Date de publication') }}</x-label>
+                                        <x-label for="published_at">Date de publication</x-label>
                                         <div class="relative mt-1" wire:model="published_at">
                                             <input
                                                 x-ref="datePickerInput"
@@ -211,23 +211,40 @@
                                     </div>
 
                                     <div class="mt-8">
-                                        <x-label for="slug">{{ __('URL Slug') }}</x-label>
+                                        <x-label for="slug">URL Slug</x-label>
                                         <x-input wire:model.debounce.500ms="slug" id="slug" name="slug" class="mt-1" type="text" autocomplete="off" required />
                                     </div>
 
                                     <div class="mt-8">
-                                        <x-label for="canonical_url">{{ __('Canonical URL') }}</x-label>
+                                        <x-label for="canonical_url">Canonical URL</x-label>
                                         <span class="text-xs leading-3 text-skin-muted">
-                                            {{ __('Modifiez si l\'article a été publié pour la première fois ailleurs (comme sur votre propre blog).') }}
+                                            Modifiez si l'article a été publié pour la
+                                            première fois ailleurs (comme sur votre propre blog).
                                         </span>
-                                        <x-input wire:model.defer="canonical_url" id="canonical_url" name="canonical_url" class="mt-1" type="text" autocomplete="off" />
+                                        <x-input
+                                            wire:model="canonical_url"
+                                            id="canonical_url"
+                                            name="canonical_url"
+                                            class="mt-1"
+                                            type="text"
+                                            autocomplete="off"
+                                        />
                                     </div>
 
                                     <div class="mt-8 standard" wire:ignore>
                                         <x-label for="tags_selected">Tags</x-label>
-                                        <x-forms.select wire:model="tags_selected" id="tags_selected" class="mt-2" x-data="{}" x-init="function () { choices($el) }" multiple>
+                                        <x-forms.select
+                                            wire:model="tags_selected"
+                                            id="tags_selected"
+                                            class="mt-2"
+                                            x-data="{}"
+                                            x-init="function () { choices($el) }"
+                                            multiple
+                                        >
                                             @foreach($tags as $tag)
-                                                <option value="{{ $tag->id }}" @if(in_array($tag->id, $tags_selected)) selected @endif>{{ $tag->name }}</option>
+                                                <option value="{{ $tag->id }}" @selected(in_array($tag->id, $tags_selected))>
+                                                    {{ $tag->name }}
+                                                </option>
                                             @endforeach
                                         </x-forms.select>
                                     </div>

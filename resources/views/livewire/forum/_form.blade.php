@@ -5,7 +5,7 @@
     <div class="block">
         <x-label for="title">Titre</x-label>
         <x-input id="title" class="block mt-1 w-full" wire:model="title" name="title" required />
-        <p class="mt-2 text-sm text-skin-base font-normal">Maximum de 75 caractères.</p>
+        <p class="mt-2 text-sm text-skin-base">Maximum de 75 caractères.</p>
     </div>
 
     <div class="block standard relative z-50" wire:ignore>
@@ -25,7 +25,7 @@
             'textarea' => 'w-full h-full border border-skin-input focus:border-skin-base focus:outline-none p-4 rounded-b-lg',
             'height' => 'h-[350px]',
         ]" />
-        <p class="text-sm leading-5 font-normal text-skin-base">
+        <p class="text-sm leading-5 text-skin-base">
             Pour le formatage du code (couleur syntaxique, langage, etc) nous utilisons
             <a href="https://torchlight.dev/docs/overview" target="_blank" class="underline font-medium text-skin-primary hover:text-skin-primary-hover">
                 Torchlight

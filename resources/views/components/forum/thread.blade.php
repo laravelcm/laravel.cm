@@ -47,7 +47,7 @@
                                 </a>
                             @endcan
                             @can(App\Policies\ThreadPolicy::DELETE, $thread)
-                                <button type="button" onclick="Livewire.emit('openModal', 'modals.delete-thread', {{ json_encode([$thread->id]) }})" class="group text-skin-inverted-muted flex px-4 py-2 text-sm hover:text-skin-inverted" role="menuitem" tabindex="-1">
+                                <button type="button" onclick="Livewire.dispatch('openModal', {component: 'modals.delete-thread', arguments: {{ json_encode([$thread->id]) }} })" class="group text-skin-inverted-muted flex px-4 py-2 text-sm hover:text-skin-inverted" role="menuitem" tabindex="-1">
                                     <x-untitledui-trash-03 class="mr-3 h-5 w-5 text-skin-muted group-hover:text-skin-base" />
                                     <span>Supprimer</span>
                                 </button>

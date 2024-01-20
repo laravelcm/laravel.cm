@@ -7,7 +7,7 @@
 
 <div class="bg-skin-card">
     @if($formAction)
-        <form wire:submit.prevent="{{ $formAction }}">
+        <form wire:submit="{{ $formAction }}">
             @endif
             <div class="{{ $headerClasses }}">
                 @if(isset($title))

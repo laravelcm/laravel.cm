@@ -7,9 +7,9 @@
           <x-default-button
               type="button"
               @class([
-                'relative text-sm leading-5 inline-flex items-center rounded-r-none px-2.5 py-2 !ring-0 focus:z-10',
-                '!bg-primary-500 text-white hover:!bg-primary-500 border-transparent' => $option === 'monthly',
-                '!bg-skin-body hover:!bg-skin-card' => $option !== 'monthly'
+                'relative text-sm leading-5 inline-flex items-center rounded-r-none px-2.5 py-2 ring-0 focus:z-10',
+                'bg-primary-500 text-white hover:bg-primary-500 border-transparent' => $option === 'monthly',
+                'bg-skin-body hover:bg-skin-card' => $option !== 'monthly'
               ])
               wire:click="chooseOption('monthly')"
           >
@@ -18,9 +18,9 @@
           <x-default-button
               type="button"
               @class([
-                'relative text-sm leading-5 -ml-px inline-flex items-center rounded-l-none px-2.5 py-2 !ring-0 focus:z-10',
-                '!bg-primary-500 text-white hover:!bg-primary-500 border-transparent' => $option === 'one-time',
-                '!bg-skin-body hover:!bg-skin-card' => $option !== 'one-time'
+                'relative text-sm leading-5 -ml-px inline-flex items-center rounded-l-none px-2.5 py-2 ring-0 focus:z-10',
+                'bg-primary-500 text-white hover:bg-primary-500 border-transparent' => $option === 'one-time',
+                'bg-skin-body hover:bg-skin-card' => $option !== 'one-time'
              ])
               wire:click="chooseOption('one-time')"
           >
@@ -43,7 +43,7 @@
                         <input
                             aria-label="Montant"
                             name="amount"
-                            wire:model.defer="amount"
+                            wire:model="amount"
                             class="bg-skin-input shadow-sm focus:ring-flag-green focus:border-flag-green block w-full placeholder-skin-input focus:outline-none focus:placeholder-skin-input-focus text-skin-base sm:text-sm border-skin-input rounded-md pr-16"
                             type="number"
                             required

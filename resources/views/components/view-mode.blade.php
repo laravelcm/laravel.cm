@@ -15,5 +15,5 @@
         </span>
     @endif
 
-        {{ $slot }}
+    {{ $slot }}
 </x-default-button>

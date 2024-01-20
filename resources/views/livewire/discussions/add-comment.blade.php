@@ -22,7 +22,7 @@
     ])>
         <label for="body" class="sr-only">{{ __('Commentaire') }}</label>
         <x-textarea
-            wire:model.defer="body"
+            wire:model="body"
             name="body"
             id="body"
             placeholder="{{ __('Laisser un commentaire, vous pouvez utilise du **Markdown**') }}"
