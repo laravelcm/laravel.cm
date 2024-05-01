@@ -1,22 +1,30 @@
-@props(['author'])
+@props([
+    'author',
+])
 
-<div class="bg-skin-card rounded-lg shadow">
-    <div class="w-full flex items-center justify-between pt-4 px-4 space-x-3">
+<div class="rounded-lg bg-skin-card shadow">
+    <div class="flex w-full items-center justify-between space-x-3 px-4 pt-4">
         <x-user.avatar :user="$author" class="h-8 w-8" />
         <div class="flex-1 truncate">
             <div class="flex items-center space-x-3">
-                <a href="{{ route('profile', $author->username) }}" class="text-skin-inverted text-sm font-medium truncate">{{ $author->name }}</a>
+                <a
+                    href="{{ route('profile', $author->username) }}"
+                    class="truncate text-sm font-medium text-skin-inverted"
+                >
+                    {{ $author->name }}
+                </a>
             </div>
-            <p class="text-skin-base text-sm truncate">{{ '@'. $author->username }}</p>
+            <p class="truncate text-sm text-skin-base">{{ '@' . $author->username }}</p>
         </div>
     </div>
     <div class="space-y-4 p-4">
-        @if($author->bio)
-            <p class="text-skin-base text-sm leading-5">{{ $author->bio }}</p>
+        @if ($author->bio)
+            <p class="text-sm leading-5 text-skin-base">{{ $author->bio }}</p>
         @endif
-        @if($author->location)
+
+        @if ($author->location)
             <div>
-                <dt class="text-[12px] font-medium text-skin-muted uppercase tracking-wider">
+                <dt class="text-[12px] font-medium uppercase tracking-wider text-skin-muted">
                     {{ __('Localisation') }}
                 </dt>
                 <dd class="text-skin-base">
@@ -24,12 +32,13 @@
                 </dd>
             </div>
         @endif
+
         <div>
-            <dt class="text-[12px] font-medium text-skin-muted uppercase tracking-wider">
+            <dt class="text-[12px] font-medium uppercase tracking-wider text-skin-muted">
                 {{ __('Inscrit') }}
             </dt>
             <dd class="text-skin-base">
-                <time-ago time="{{ $author->created_at->getTimestamp() }}"/>
+                <time-ago time="{{ $author->created_at->getTimestamp() }}" />
             </dd>
         </div>
     </div>

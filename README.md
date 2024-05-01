@@ -55,12 +55,12 @@ The following tools are required in order to start the installation.
 
 Vous pouvez maintenant visiter l'application dans votre navigateur en visitant [http://laravel.cm.test](http://laravel.cm.test). Si vous avez amorcé la base de données, vous pouvez vous connecter à un compte de test avec ** `johndoe` ** & **` password` **.
 
-Une fois que vous avez installé et configuré, pour avoir des dummy data vous devez exécuter la commande
+Une fois que vous avez installé et configuré, pour avoir des dummy data, vous devez exécuter la commande
 ```shell
 php artisan db:seed --class=DummyDatabaseSeeder
 ```
 
-### Github Authentication (optionnel)
+### GitHub Authentication (optionnel)
 Pour que l'authentification Github fonctionne localement, vous devez [enregistrer une nouvelle application OAuth sur Github](https://github.com/settings/applications/new). Utilisez `http://laravel.cm.test` pour l'URL de la page d'accueil et `http://laravel.cm.test/auth/github` pour l'URL de rappel. Lorsque vous avez créé l'application, remplissez l'ID et le secret dans votre fichier `.env` dans les variables d'environnement ci-dessous. Vous devriez maintenant pouvoir vous authentifier avec Github.
 
 ```shell
@@ -110,7 +110,7 @@ Veuillez lire notre [Code de conduite](CODE_OF_CONDUCT.md) avant de contribuer o
 
 ## Vulnérabilités de sécurité
 
-Si vous découvrez une faille de sécurité dans Laravel.cm, veuillez envoyer un e-mail immédiatement à [contact@arthurmonney.me](mailto:contact@arthurmonney.me). **Ne créez pas de problème pour la vulnérabilité.**
+Si vous découvrez une faille de sécurité dans Laravel.cm, veuillez envoyer un e-mail immédiatement à [support@laravel.cm](mailto:support@laravel.cm). **Ne créez pas de problème pour la vulnérabilité.**
 
 ## License
 

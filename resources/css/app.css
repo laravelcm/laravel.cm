@@ -1,103 +1,101 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@import 'choices.js/public/assets/styles/choices.css';
 @import 'intl-tel-input/build/css/intlTelInput.css';
 
-@import "base.css";
-@import "tag.css";
-@import "forms.css";
-@import "torchlight.css";
-@import "toc.css";
-@import "header.css";
-@import "media-library.css";
+@import 'base.css';
+@import 'tag.css';
+@import 'forms.css';
+@import 'torchlight.css';
+@import 'toc.css';
+@import 'header.css';
 
 :root {
-  --brand-laravel: #FF2D20;
-  --brand-livewire: #fb70a9;
-  --brand-inertia: #8B5CF6;
-  --brand-javascript: #F7DF1E;
-  --brand-typesript: #007ACC;
-  --brand-react: #53C1DE;
-  --brand-vue-js: #41B883;
-  --brand-php: #777BB3;
-  --brand-digital-ocean: #0080FF;
-  --brand-forge: #19B69B;
-  --brand-packages: #4F46E5;
-  --brand-outils: #22D3EE;
-  --brand-tailwindcss: #06B6D4;
-  --brand-design: #78350F;
-  --brand-alpinejs: #2D3441;
-  --brand-open-source: #F97316;
-  --brand-freelance: #F43F5E;
-  --brand-salaire: #C7D2FE;
-  --brand-projets: #14B8A6;
-  --brand-entrepreneuriat: #0EA5E9;
-  --brand-paiement-en-ligne: #10B981;
-  --brand-branding: #EC4899;
-  --brand-applications: #0284C7;
-  --brand-developpement: #4d7c0f;
-  --brand-event: #36BFFA;
-  --brand-tutoriel: #164E63;
-  --brand-communaute: #DD2590;
-  --brand-astuces: #D6BBFB;
+    --brand-laravel: #ff2d20;
+    --brand-livewire: #fb70a9;
+    --brand-inertia: #8b5cf6;
+    --brand-javascript: #f7df1e;
+    --brand-typesript: #007acc;
+    --brand-react: #53c1de;
+    --brand-vue-js: #41b883;
+    --brand-php: #777bb3;
+    --brand-digital-ocean: #0080ff;
+    --brand-forge: #19b69b;
+    --brand-packages: #4f46e5;
+    --brand-outils: #22d3ee;
+    --brand-tailwindcss: #06b6d4;
+    --brand-design: #78350f;
+    --brand-alpinejs: #2d3441;
+    --brand-open-source: #f97316;
+    --brand-freelance: #f43f5e;
+    --brand-salaire: #c7d2fe;
+    --brand-projets: #14b8a6;
+    --brand-entrepreneuriat: #0ea5e9;
+    --brand-paiement-en-ligne: #10b981;
+    --brand-branding: #ec4899;
+    --brand-applications: #0284c7;
+    --brand-developpement: #4d7c0f;
+    --brand-event: #36bffa;
+    --brand-tutoriel: #164e63;
+    --brand-communaute: #dd2590;
+    --brand-astuces: #d6bbfb;
 }
 
 @layer base {
-  :root {
-    --color-text-primary: 5, 150, 105;
-    --color-text-primary-hover: 16, 185, 129;
-    --color-text-link-menu: 107, 114, 128;
-    --color-text-link-menu-hover: 17, 24, 39;
-    --color-text-base: 107, 114, 128;
-    --color-text-muted: 156, 163, 175;
-    --color-text-inverted: 17, 24, 39;
-    --color-text-inverted-muted: 31, 41, 55;
+    :root {
+        --color-text-primary: 5, 150, 105;
+        --color-text-primary-hover: 16, 185, 129;
+        --color-text-link-menu: 107, 114, 128;
+        --color-text-link-menu-hover: 17, 24, 39;
+        --color-text-base: 107, 114, 128;
+        --color-text-muted: 156, 163, 175;
+        --color-text-inverted: 17, 24, 39;
+        --color-text-inverted-muted: 31, 41, 55;
 
-    --color-link-fill: 243, 244, 246;
-    --color-menu-fill: 255, 255, 255;
-    --color-body-fill: 249, 250, 251;
-    --color-footer-fill: var(--color-menu-fill);
-    --color-footer-light-fill: var(--color-body-fill);
-    --color-input-fill: var(--color-menu-fill);
-    --color-button-default: var(--color-menu-fill);
-    --color-card-fill: var(--color-menu-fill);
-    --color-card-gray: 243, 244, 246;
-    --color-card-muted-fill: var(--color-body-fill);
+        --color-link-fill: 243, 244, 246;
+        --color-menu-fill: 255, 255, 255;
+        --color-body-fill: 249, 250, 251;
+        --color-footer-fill: var(--color-menu-fill);
+        --color-footer-light-fill: var(--color-body-fill);
+        --color-input-fill: var(--color-menu-fill);
+        --color-button-default: var(--color-menu-fill);
+        --color-card-fill: var(--color-menu-fill);
+        --color-card-gray: 243, 244, 246;
+        --color-card-muted-fill: var(--color-body-fill);
 
-    --color-input-border: 209, 213, 219;
-    --color-divide: 229, 231, 235;
-    --color-divide-light: 243, 244, 246;
-    --color-border: var(--color-divide);
-    --color-border-light: var(--color-divide-light);
-  }
+        --color-input-border: 209, 213, 219;
+        --color-divide: 229, 231, 235;
+        --color-divide-light: 243, 244, 246;
+        --color-border: var(--color-divide);
+        --color-border-light: var(--color-divide-light);
+    }
 
-  .theme-dark {
-    --color-text-primary: 5, 150, 105;
-    --color-text-primary-hover: 16, 185, 129;
-    --color-text-link-menu: 209, 213, 219;
-    --color-text-link-menu-hover: 255, 255, 255;
-    --color-text-base: 181, 181, 189;
-    --color-text-muted: 107, 114, 128;
-    --color-text-inverted: 255, 255, 255;
-    --color-text-inverted-muted: 156, 163, 175;
+    .theme-dark {
+        --color-text-primary: 5, 150, 105;
+        --color-text-primary-hover: 16, 185, 129;
+        --color-text-link-menu: 209, 213, 219;
+        --color-text-link-menu-hover: 255, 255, 255;
+        --color-text-base: 181, 181, 189;
+        --color-text-muted: 107, 114, 128;
+        --color-text-inverted: 255, 255, 255;
+        --color-text-inverted-muted: 156, 163, 175;
 
-    --color-link-fill: 55, 65, 81;
-    --color-menu-fill: 22, 27, 34;
-    --color-body-fill: 13, 17, 23;
-    --color-footer-fill: var(--color-menu-fill);
-    --color-footer-light-fill: var(--color-footer-fill);
-    --color-input-fill: 31, 41, 55;
-    --color-button-default: 55, 65, 81;
-    --color-card-fill: 22, 27, 34;
-    --color-card-gray: var(--color-menu-fill);
-    --color-card-muted-fill: 17, 22, 29;
+        --color-link-fill: 55, 65, 81;
+        --color-menu-fill: 22, 27, 34;
+        --color-body-fill: 13, 17, 23;
+        --color-footer-fill: var(--color-menu-fill);
+        --color-footer-light-fill: var(--color-footer-fill);
+        --color-input-fill: 31, 41, 55;
+        --color-button-default: 55, 65, 81;
+        --color-card-fill: 22, 27, 34;
+        --color-card-gray: var(--color-menu-fill);
+        --color-card-muted-fill: 17, 22, 29;
 
-    --color-input-border: 31, 41, 55;
-    --color-divide: 55, 65, 81;
-    --color-divide-light: 55, 65, 81;
-    --color-border: 55, 65, 81;
-    --color-border-light: 55, 65, 81;
-  }
+        --color-input-border: 31, 41, 55;
+        --color-divide: 55, 65, 81;
+        --color-divide-light: 55, 65, 81;
+        --color-border: 55, 65, 81;
+        --color-border-light: 55, 65, 81;
+    }
 }

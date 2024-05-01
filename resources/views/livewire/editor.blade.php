@@ -1,6 +1,6 @@
 <div>
     @if ($label)
-        <span class="text-xl text-skin-inverted font-semibold mb-4 block font-sans">
+        <span class="mb-4 block font-sans text-xl font-semibold text-skin-inverted">
             {{ $label }}
         </span>
     @endif
@@ -8,17 +8,17 @@
     <div
         x-data="editorConfig($wire.entangle('body').defer)"
         @editor-control-clicked.window="handleClick($event.detail, $el)"
-        class="rounded-md shadow-md overflow-hidden"
+        class="overflow-hidden rounded-md shadow-md"
     >
-        <div class="relative flex items-center justify-between w-full h-12 overflow-x-hidden bg-skin-card sm:h-10">
-            <div class="flex items-center h-12 sm:h-10">
+        <div class="relative flex h-12 w-full items-center justify-between overflow-x-hidden bg-skin-card sm:h-10">
+            <div class="flex h-12 items-center sm:h-10">
                 <button
                     type="button"
                     @click="mode = 'write'"
-                    class="flex items-center h-full px-4 font-medium text-skin-base cursor-pointer hover:bg-skin-card-muted"
+                    class="flex h-full cursor-pointer items-center px-4 font-medium text-skin-base hover:bg-skin-card-muted"
                     :class="{ 'text-green-500 border-b border-green-500': mode === 'write' }"
                 >
-                    <x-heroicon-o-pencil class="w-4 h-4 mr-2" />
+                    <x-heroicon-o-pencil class="mr-2 h-4 w-4" />
                     <span>Saisi</span>
                 </button>
 
@@ -26,7 +26,7 @@
                     type="button"
                     @click="mode = 'preview'"
                     wire:click="preview"
-                    class="flex items-center h-full px-4 font-medium text-skin-base cursor-pointer hover:bg-skin-card-muted"
+                    class="flex h-full cursor-pointer items-center px-4 font-medium text-skin-base hover:bg-skin-card-muted"
                     :class="{ 'text-green-500 border-b border-green-500': mode === 'preview' }"
                 >
                     Preview
@@ -36,9 +36,9 @@
         </div>
 
         <div x-show="mode === 'write'">
-            <div class="flex flex-col relative">
+            <div class="relative flex flex-col">
                 <textarea
-                    class="w-full h-full min-h-[250px] bg-skin-input leading-loose tracking-tighter text-skin-base hide-scroll resize-none border-none p-5 focus:border focus:border-skin-input focus:outline-none"
+                    class="hide-scroll h-full min-h-[250px] w-full resize-none border-none bg-skin-input p-5 leading-loose tracking-tighter text-skin-base focus:border focus:border-skin-input focus:outline-none"
                     id="body"
                     name="body"
                     aria-label="Body"
@@ -50,12 +50,9 @@
                 ></textarea>
             </div>
 
-            <div class="flex items-center justify-end gap-y-4 gap-x-5">
-
-                @if($hasCancelButton)
-                    <x-default-button type="button" class="inline-flex">
-                        Annuler
-                    </x-default-button>
+            <div class="flex items-center justify-end gap-x-5 gap-y-4">
+                @if ($hasCancelButton)
+                    <x-default-button type="button" class="inline-flex">Annuler</x-default-button>
                 @endif
 
                 @if ($hasButton)
@@ -67,7 +64,10 @@
         </div>
 
         <div x-show="mode === 'preview'" x-cloak>
-            <div class="h-full bg-skin-card relative z-30 p-5 prose prose-green max-w-none break-words" id="editor-preview">
+            <div
+                class="prose prose-green relative z-30 h-full max-w-none break-words bg-skin-card p-5"
+                id="editor-preview"
+            >
                 {!! $this->preview !!}
             </div>
         </div>

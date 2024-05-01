@@ -1,5 +1,4 @@
 @if (session('status'))
-
     <div {{ $attributes->merge(['class' => 'rounded-md bg-green-50 p-4']) }}>
         <div class="flex">
             <div class="shrink-0">
@@ -12,5 +11,4 @@
             </div>
         </div>
     </div>
-
 @endif

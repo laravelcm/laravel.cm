@@ -1,3 +1,3 @@
-<span class="text-base text-green-500 rounded-full bg-green-100 px-3">
+<span class="rounded-full bg-green-100 px-3 text-base text-green-500">
     {{ $count }}
 </span>
