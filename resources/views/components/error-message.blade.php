@@ -1,5 +1,4 @@
 @if (session('error'))
-
     <div {{ $attributes->twMerge(['class' => 'rounded-md bg-red-50 p-4']) }}>
         <div class="flex">
             <div class="shrink-0">
@@ -12,5 +11,4 @@
             </div>
         </div>
     </div>
-
 @endif

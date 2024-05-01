@@ -1,9 +1,12 @@
-@props(['active'])
+@props([
+    'active',
+])
 
 @php
-    $classes = ($active ?? false)
-                ? 'bg-green-100 text-green-800 group flex items-center px-3 py-2 text-sm font-medium font-sans rounded-md transition duration-150 ease-in-out'
-                : 'text-skin-base hover:bg-skin-card group flex items-center px-3 py-2 text-sm font-medium font-sans rounded-md transition duration-150 ease-in-out';
+    $classes =
+        $active ?? false
+            ? 'group flex items-center rounded-md bg-green-100 px-3 py-2 font-sans text-sm font-medium text-green-800 transition duration-150 ease-in-out'
+            : 'group flex items-center rounded-md px-3 py-2 font-sans text-sm font-medium text-skin-base transition duration-150 ease-in-out hover:bg-skin-card';
 @endphp
 
 <a {{ $attributes->twMerge(['class' => $classes]) }}>

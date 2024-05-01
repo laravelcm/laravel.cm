@@ -1,12 +1,16 @@
-@props(['title', 'button', 'url'])
+@props([
+    'title',
+    'button',
+    'url',
+])
 
 <div class="md:flex md:items-center md:justify-between">
-    <div class="flex-1 min-w-0">
-        <h2 class="text-lg font-bold leading-7 text-skin-inverted sm:text-xl sm:truncate font-heading">
+    <div class="min-w-0 flex-1">
+        <h2 class="font-heading text-lg font-bold leading-7 text-skin-inverted sm:truncate sm:text-xl">
             {{ $title }}
         </h2>
     </div>
-    <div class="mt-4 flex md:mt-0 md:ml-4">
+    <div class="mt-4 flex md:ml-4 md:mt-0">
         <x-button :link="$url" class="ml-3">
             {{ $button }}
         </x-button>

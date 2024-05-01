@@ -1,19 +1,20 @@
-<x-app-layout :title="'Discussions ~ ' . $user->username . ' ('. $user->name .')'"
-    :canonical="route('discussions.me')">
-
+<x-app-layout
+    :title="'Discussions ~ ' . $user->username . ' ('. $user->name .')'"
+    :canonical="route('discussions.me')"
+>
     <x-container class="py-12">
         <div>
             <x-status-message class="mb-5" />
 
             <x-user.breadcrumb section="Discussions" />
 
-            <h2 class="text-xl font-bold leading-7 text-skin-inverted sm:text-2xl sm:truncate font-heading">
+            <h2 class="font-heading text-xl font-bold leading-7 text-skin-inverted sm:truncate sm:text-2xl">
                 Discussions
             </h2>
         </div>
 
-        <section class="mt-8 relative lg:grid lg:grid-cols-12 lg:gap-12">
-            <div class="hidden lg:block lg:col-span-3">
+        <section class="relative mt-8 lg:grid lg:grid-cols-12 lg:gap-12">
+            <div class="hidden lg:col-span-3 lg:block">
                 <x-user.sidebar :user="$user" />
             </div>
             <main class="lg:col-span-9">
@@ -24,12 +25,10 @@
                 />
 
                 <div class="mt-5">
-                    @forelse($discussions as $discussion)
+                    @forelse ($discussions as $discussion)
                         <x-discussions.summary :discussion="$discussion" />
                     @empty
-                        <p class="text-skin-base text-base">
-                            Vous n'avez pas encore créé de discussions.
-                        </p>
+                        <p class="text-base text-skin-base">Vous n'avez pas encore créé de discussions.</p>
                     @endforelse
 
                     <div class="pt-5">
@@ -39,5 +38,4 @@
             </main>
         </section>
     </x-container>
-
 </x-app-layout>

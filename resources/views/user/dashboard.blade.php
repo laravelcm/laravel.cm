@@ -2,44 +2,52 @@
     :title="'Tableau de bord ~ '. $user->username . ' (' . $user->name .')'"
     :canonical="route('dashboard')"
 >
-
     <x-container class="py-12">
         <div>
             <x-status-message class="mb-5" />
 
-            <h2 class="text-xl font-bold leading-7 text-skin-inverted sm:text-2xl sm:truncate">
-                Tableau de bord
-            </h2>
+            <h2 class="text-xl font-bold leading-7 text-skin-inverted sm:truncate sm:text-2xl">Tableau de bord</h2>
 
             <x-user.stats :user="$user" />
         </div>
 
-        <section class="mt-8 relative lg:grid lg:grid-cols-12 lg:gap-12">
-            <div class="hidden lg:block lg:col-span-3">
+        <section class="relative mt-8 lg:grid lg:grid-cols-12 lg:gap-12">
+            <div class="hidden lg:col-span-3 lg:block">
                 <x-user.sidebar :user="$user" />
             </div>
             <main class="lg:col-span-9">
                 <x-user.page-heading title="Vos articles" :url="route('articles.new')" button="Nouvel article" />
 
                 <div class="mt-5">
-                    @unless(Auth::user()->hasTwitterAccount())
-                        <div class="bg-blue-500 bg-opacity-10 text-blue-800 text-sm p-3 rounded-md font-normal mb-6">
-                            <svg class="h-5 w-5 inline-block mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                    @unless (Auth::user()->hasTwitterAccount())
+                        <div class="mb-6 rounded-md bg-blue-500 bg-opacity-10 p-3 text-sm font-normal text-blue-800">
+                            <svg
+                                class="mr-1 inline-block h-5 w-5"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                                />
                             </svg>
                             Complétez votre
-                            <a href="{{ route('user.settings') }}" class="underline">
-                                identifiant Twitter
-                            </a>
+                            <a href="{{ route('user.settings') }}" class="underline">identifiant Twitter</a>
                             pour que nous puissions faire un lien vers votre profil lorsque nous tweetons votre article.
                         </div>
                     @endunless
 
-                    @forelse($articles as $article)
-                        <div class="pb-8 mb-8 border-b border-skin-base">
+                    @forelse ($articles as $article)
+                        <div class="mb-8 border-b border-skin-base pb-8">
                             <div class="flex items-center space-x-3">
                                 @if ($article->isNotPublished())
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                    <span
+                                        class="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800"
+                                    >
                                         Brouillon
                                     </span>
                                 @endif
@@ -50,40 +58,54 @@
                             </div>
 
                             <a href="{{ route('articles.show', $article->slug()) }}" class="block">
-                                <div class="mt-4 flex justify-between items-center">
-                                    <h3 class="text-xl leading-7 font-semibold text-skin-inverted font-sans hover:text-skin-primary">
+                                <div class="mt-4 flex items-center justify-between">
+                                    <h3
+                                        class="font-sans text-xl font-semibold leading-7 text-skin-inverted hover:text-skin-primary"
+                                    >
                                         {{ $article->title }}
                                     </h3>
 
-                                    <div class="flex items-center text-skin-muted font-sans">
-                                        @if($article->isPublished())
-                                            <a href="{{ route('articles.show', $article->slug()) }}" class="hover:text-skin-base hover:underline">
+                                    <div class="flex items-center font-sans text-skin-muted">
+                                        @if ($article->isPublished())
+                                            <a
+                                                href="{{ route('articles.show', $article->slug()) }}"
+                                                class="hover:text-skin-base hover:underline"
+                                            >
                                                 Voir
                                             </a>
                                             <span class="mx-1">&middot;</span>
                                         @endif
-                                        <a href="{{ route('articles.edit', $article->slug()) }}" class="hover:text-skin-base hover:underline">
+
+                                        <a
+                                            href="{{ route('articles.edit', $article->slug()) }}"
+                                            class="hover:text-skin-base hover:underline"
+                                        >
                                             Éditer
                                         </a>
                                     </div>
                                 </div>
 
-                                <p class="mt-3 text-base leading-6 text-skin-base font-normal">
+                                <p class="mt-3 text-base font-normal leading-6 text-skin-base">
                                     {{ $article->excerpt() }}
                                 </p>
                             </a>
 
-                            <div class="flex items-center justify-between mt-6">
+                            <div class="mt-6 flex items-center justify-between">
                                 <div class="flex items-center">
                                     <a href="{{ route('profile', $article->user->username) }}" class="shrink-0">
-                                        <img class="h-10 w-10 object-cover rounded-full"
-                                             src="{{ $article->user->profile_photo_url }}"
-                                             alt="{{ $article->user->username }}" />
+                                        <img
+                                            class="h-10 w-10 rounded-full object-cover"
+                                            src="{{ $article->user->profile_photo_url }}"
+                                            alt="{{ $article->user->username }}"
+                                        />
                                     </a>
 
                                     <div class="ml-3 font-sans">
-                                        <p class="text-sm leading-5 font-medium text-skin-inverted-muted">
-                                            <a href="{{ route('profile', $article->user->username) }}" class="hover:underline">
+                                        <p class="text-sm font-medium leading-5 text-skin-inverted-muted">
+                                            <a
+                                                href="{{ route('profile', $article->user->username) }}"
+                                                class="hover:underline"
+                                            >
                                                 {{ $article->user->name }}
                                             </a>
                                         </p>
@@ -98,7 +120,8 @@
                                                     <span>En attente d'approbation</span>
                                                 @else
                                                     <time datetime="{{ $article->updated_at->format('Y-m-d') }}">
-                                                        Rédigé <time-ago time="{{ $article->updated_at->getTimestamp() }}" />
+                                                        Rédigé
+                                                        <time-ago time="{{ $article->updated_at->getTimestamp() }}" />
                                                     </time>
                                                 @endif
                                             @endif
@@ -110,15 +133,13 @@
                                 </div>
 
                                 <div class="flex items-center text-skin-base">
-                                    <span class="text-xl mr-2">👏</span>
+                                    <span class="mr-2 text-xl">👏</span>
                                     {{ count($article->reactions) }}
                                 </div>
                             </div>
                         </div>
                     @empty
-                        <p class="text-skin-base text-base">
-                            Vous n'avez pas encore créé d'articles.
-                        </p>
+                        <p class="text-base text-skin-base">Vous n'avez pas encore créé d'articles.</p>
                     @endforelse
 
                     {{ $articles->links() }}
@@ -126,5 +147,4 @@
             </main>
         </section>
     </x-container>
-
 </x-app-layout>

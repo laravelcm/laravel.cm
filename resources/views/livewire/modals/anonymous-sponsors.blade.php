@@ -2,18 +2,13 @@
     <x-slot name="content">
         <p class="text-sm leading-5 text-skin-base">
             Vous êtes sur le point de soutenir Laravel Cameroun pour la somme de
-            <span class='font-bold text-skin-inverted'>{{ $amount }} F.CFA</span>.
-            Nous vous remercions pour votre don.
+            <span class="font-bold text-skin-inverted">{{ $amount }} F.CFA</span>
+            . Nous vous remercions pour votre don.
         </p>
-        <div class="mt-3 grid gap-4 lg:grid-cols-2 lg:gap-6 lg:mt-5">
+        <div class="mt-3 grid gap-4 lg:mt-5 lg:grid-cols-2 lg:gap-6">
             <div>
                 <x-label for="name">Nom complet</x-label>
-                <x-input
-                    container-class="mt-1"
-                    name="name"
-                    id="name"
-                    wire:model="name"
-                />
+                <x-input container-class="mt-1" name="name" id="name" wire:model="name" />
             </div>
             <div>
                 <x-label for="email">Adresse E-mail</x-label>
@@ -26,8 +21,8 @@
                 />
             </div>
         </div>
-        <div class="mt-4 pt-5 border-t border-skin-base">
-            <h5 class="text-skin-inverted-muted font-medium">Vous êtes ?</h5>
+        <div class="mt-4 border-t border-skin-base pt-5">
+            <h5 class="font-medium text-skin-inverted-muted">Vous êtes ?</h5>
             <div class="mt-2 flex items-center space-x-5">
                 <div class="flex items-center gap-x-3">
                     <input
@@ -37,7 +32,7 @@
                         value="company"
                         type="radio"
                         class="h-4 w-4 border-skin-input text-primary-600 focus:ring-primary-600"
-                    >
+                    />
                     <label for="company" class="block text-sm font-medium leading-6 text-skin-inverted">
                         Entreprise
                     </label>
@@ -50,7 +45,7 @@
                         value="developer"
                         type="radio"
                         class="h-4 w-4 border-skin-input text-primary-600 focus:ring-primary-600"
-                    >
+                    />
                     <label for="developer" class="block text-sm font-medium leading-6 text-skin-inverted">
                         Développeur / Sympathisant
                     </label>
@@ -60,13 +55,7 @@
                 <x-label for="url">
                     {{ $type === 'company' ? 'Lien vers le logo de votre entreprise' : 'Lien vers une photo de vous' }}
                 </x-label>
-                <x-input
-                    container-class="mt-1"
-                    name="url"
-                    id="url"
-                    wire:model="url"
-                    inline-addon="https://"
-                />
+                <x-input container-class="mt-1" name="url" id="url" wire:model="url" inline-addon="https://" />
             </div>
         </div>
     </x-slot>
@@ -79,9 +68,7 @@
             </x-button>
         </span>
         <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <x-default-button wire:click="$dispatch('closeModal')" type="button">
-                Annuler
-            </x-default-button>
+            <x-default-button wire:click="$dispatch('closeModal')" type="button">Annuler</x-default-button>
         </span>
     </x-slot>
 </x-modal>
