@@ -34,6 +34,7 @@ final class MarkdownX extends Component
      * Laravel livewire listeners, learn more at https://laravel-livewire.com/docs/events#event-listeners
      *
      * 'markdown-x-image-upload' => uploads image files from the editor
+     *
      * @var string[]
      */
     protected $listeners = [
@@ -48,11 +49,6 @@ final class MarkdownX extends Component
      * Mount the MarkdownX component, you can pass the current content, the name for the textarea field,
      * and a generic Key. This key can be specified so that way you can include multiple MarkdownX
      * editors in a single page.
-     *
-     * @param  string  $content
-     * @param  string  $name
-     * @param  string  $key
-     * @return void
      */
     public function mount(string $content = '', string $name = '', string $key = ''): void
     {
@@ -81,7 +77,7 @@ final class MarkdownX extends Component
      */
     public function updatedContent(): void
     {
-        $this->emitUp('markdown-x:update', $this->content);
+        $this->dispatch('markdown-x:update', body: $this->content);
     }
 
     /*
@@ -108,8 +104,7 @@ final class MarkdownX extends Component
      *      text: "![" + file.name + "](Uploading...)"
      * }
      *
-     * @param array<mixed> $payload
-     * @return void
+     * @param  array<mixed>  $payload
      */
     public function upload(array $payload): void
     {
@@ -137,7 +132,7 @@ final class MarkdownX extends Component
             $type = explode('/', $type)[1];
 
             if ( ! in_array($type, config('markdownx.image.allowed_file_types'))) {
-                $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
+                $this->dispatch('markdown-x-image-uploaded', [
                     'status' => 400,
                     'message' => 'File type not supported. Must be of type '.implode(', ', config('markdownx.image.allowed_file_types')),
                     'key' => $payload->key,
@@ -149,7 +144,7 @@ final class MarkdownX extends Component
 
             Storage::disk(config('markdownx.storage.disk'))->put($fullPath, base64_decode($file_data), 'public');
 
-            $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
+            $this->dispatch('markdown-x-image-uploaded', [
                 'status' => 200,
                 'message' => __('Successfully uploaded image.'),
                 'path' => str_replace(' ', '%20', Storage::url($fullPath)),
@@ -158,7 +153,7 @@ final class MarkdownX extends Component
                 'name' => $payload->name,
             ]);
         } catch (Exception $e) {
-            $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
+            $this->dispatch('markdown-x-image-uploaded', [
                 'status' => 400,
                 'message' => __('Error when trying to upload.'),
                 'key' => $payload->key,
@@ -183,7 +178,7 @@ final class MarkdownX extends Component
     }
 
     /**
-     * @param array<string> $payload
+     * @param  array<string>  $payload
      */
     public function getGiphyTrendingImages(array $payload): void
     {
@@ -201,7 +196,7 @@ final class MarkdownX extends Component
     }
 
     /**
-     * @param array<string> $payload
+     * @param  array<string>  $payload
      */
     public function getGiphySearchImages(array $payload): void
     {
@@ -219,7 +214,7 @@ final class MarkdownX extends Component
         }
     }
 
-    public function sendResultsToView(mixed $response, string $key = null): void
+    public function sendResultsToView(mixed $response, ?string $key = null): void
     {
         $parse_giphy_results = [];
         foreach ($response->json()['data'] as $result) {
@@ -229,7 +224,7 @@ final class MarkdownX extends Component
             ];
         }
 
-        $this->dispatchBrowserEvent('markdown-x-giphy-results', [
+        $this->dispatch('markdown-x-giphy-results', [
             'status' => 200,
             'message' => __('Successfully returned results.'),
             'results' => $parse_giphy_results,
@@ -238,7 +233,7 @@ final class MarkdownX extends Component
     }
 
     /**
-     * @param array<string> $payload
+     * @param  array<string>  $payload
      */
     public function getTrendingPeoples(array $payload): void
     {
@@ -250,11 +245,12 @@ final class MarkdownX extends Component
                     $people['name'] = $user->name;
                     $people['picture'] = $user->profile_photo_url;
                     $people['username'] = $user->username;
+
                     return $people;
                 }
             );
 
-        $this->dispatchBrowserEvent('markdown-x-peoples-results', [
+        $this->dispatch('markdown-x-peoples-results', [
             'status' => 200,
             'message' => __('Successfully returned results.'),
             'results' => $users->toArray(),
@@ -263,7 +259,7 @@ final class MarkdownX extends Component
     }
 
     /**
-     * @param array<string> $payload
+     * @param  array<string>  $payload
      */
     public function getSearchPeoples(array $payload): void
     {
@@ -280,7 +276,7 @@ final class MarkdownX extends Component
                 return $people;
             });
 
-        $this->dispatchBrowserEvent('markdown-x-peoples-results', [
+        $this->dispatch('markdown-x-peoples-results', [
             'status' => 200,
             'message' => __('Successfully returned results.'),
             'results' => $users->toArray(),

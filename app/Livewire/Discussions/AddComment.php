@@ -20,11 +20,6 @@ final class AddComment extends Component
 
     public string $body = '';
 
-    /**
-     * @var string[]
-     */
-    protected $listeners = ['reloadComment' => '$refresh'];
-
     public function mount(Discussion $discussion): void
     {
         $this->discussion = $discussion;
@@ -39,9 +34,7 @@ final class AddComment extends Component
 
         $comment = CreateReply::run($this->body, auth()->user(), $this->discussion);
 
-        $this->dispatch('reloadComment')->self();
-
-        $this->emitUp('reloadComments');
+        $this->dispatch('$refresh')->self();
 
         $this->dispatch('scrollToComment', ['id' => $comment->id]);
 

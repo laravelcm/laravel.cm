@@ -36,7 +36,7 @@ final class Editor extends Component
 
     public function updatedBody(): void
     {
-        $this->emitUp('editor:update', $this->body);
+        $this->dispatch('editor:update', body: $this->body);
     }
 
     public function render(): View

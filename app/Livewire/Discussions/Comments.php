@@ -8,16 +8,12 @@ use App\Models\Discussion;
 use App\Models\Reply;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 final class Comments extends Component
 {
     public Discussion $discussion;
-
-    /**
-     * @var string[]
-     */
-    public $listeners = ['reloadComments' => '$refresh'];
 
     public function mount(Discussion $discussion): void
     {
@@ -42,6 +38,7 @@ final class Comments extends Component
         return $replies;
     }
 
+    #[On('reloadComments')]
     public function render(): View
     {
         return view('livewire.discussions.comments');

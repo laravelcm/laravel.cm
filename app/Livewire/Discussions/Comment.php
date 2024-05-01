@@ -15,11 +15,6 @@ final class Comment extends Component
 {
     public Reply $comment;
 
-    /**
-     * @var string[]
-     */
-    protected $listeners = ['reloadComment' => '$refresh'];
-
     public function delete(): void
     {
         $this->comment->delete();
@@ -30,7 +25,7 @@ final class Comment extends Component
             ->duration(5000)
             ->send();
 
-        $this->emitUp('reloadComment');
+        $this->dispatch('reloadComment');
     }
 
     public function toggleLike(): void
