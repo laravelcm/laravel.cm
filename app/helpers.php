@@ -91,7 +91,7 @@ if ( ! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.
      *
-     * @param  \App\Models\Thread|\App\Models\Discussion  $replyAble
+     * @param  App\Models\Thread|App\Models\Discussion  $replyAble
      * @return string
      */
     function route_to_reply_able(mixed $replyAble): string
