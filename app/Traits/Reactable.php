@@ -27,9 +27,9 @@ trait Reactable
             ->get();
     }
 
-    public function reacted(User $responder = null): bool
+    public function reacted(?User $responder = null): bool
     {
-        if (null === $responder) {
+        if ($responder === null) {
             /** @var User $responder */
             $responder = auth()->user();
         }

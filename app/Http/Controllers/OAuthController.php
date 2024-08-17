@@ -10,14 +10,14 @@ use App\Traits\HasSocialite;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Contracts\User as SocialUser;
+use Laravel\Socialite\Two\InvalidStateException;
 
 final class OAuthController extends Controller
 {
     use HasSocialite;
 
-    public function redirectToProvider(string $provider): RedirectResponse | \Symfony\Component\HttpFoundation\RedirectResponse
+    public function redirectToProvider(string $provider): RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
     {
         if ( ! in_array($provider, $this->getAcceptedProviders(), true)) {
             return redirect()

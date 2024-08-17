@@ -5,11 +5,6 @@ declare(strict_types=1);
 use App\Models\Activity;
 use App\Models\Discussion;
 use App\Models\Tag;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-uses(RefreshDatabase::class);
-uses(DatabaseMigrations::class);
 
 it('can find by slug', function (): void {
     Discussion::factory()->create(['slug' => 'foo']);

@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 final class ProfileController extends Controller
 {
-    public function show(Request $request, User $user = null): View | RedirectResponse
+    public function show(Request $request, ?User $user = null): View|RedirectResponse
     {
         if ($user) {
             $articles = Article::with('tags')

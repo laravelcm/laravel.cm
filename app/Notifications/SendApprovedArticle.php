@@ -14,9 +14,7 @@ final class SendApprovedArticle extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public Article $article)
-    {
-    }
+    public function __construct(public Article $article) {}
 
     public function via(mixed $notifiable): array
     {

@@ -17,7 +17,6 @@ final class DatabaseSeeder extends Seeder
         $this->call(ReactionSeeder::class);
         $this->call(ChannelSeeder::class);
         $this->call(DeveloperPremiumPlanSeeder::class);
-        $this->call(WorldSeeder::class);
         $this->call(FeatureTableSeeder::class);
 
         if ( ! App::environment('production')) {

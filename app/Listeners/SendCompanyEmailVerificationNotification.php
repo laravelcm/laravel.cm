@@ -14,9 +14,6 @@ final class SendCompanyEmailVerificationNotification implements ShouldQueue
 
     /**
      * Handle the event.
-     *
-     * @param  ApiRegistered  $event
-     * @return void
      */
     public function handle(ApiRegistered $event): void
     {

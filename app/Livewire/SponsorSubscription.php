@@ -60,7 +60,7 @@ final class SponsorSubscription extends Component
                 'transaction_reference' => $payload->transaction->reference,
                 'user_id' => Auth::id(),
                 'fees' => $payload->transaction->fee,
-                'type' => 'one-time' === $this->option
+                'type' => $this->option === 'one-time'
                     ? TransactionType::ONETIME->value
                     : TransactionType::RECURSIVE->value,
                 'metadata' => [

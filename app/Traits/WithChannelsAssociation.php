@@ -17,7 +17,7 @@ trait WithChannelsAssociation
     public array $associateChannels = [];
 
     /**
-     * @param array{value: string} $choices
+     * @param  array{value: string}  $choices
      */
     public function updatedChannelsSelected(array $choices): void
     {

@@ -63,7 +63,7 @@ final class RegisterController extends Controller
 
         if ($user->hasRole('user')) {
             return response()->json([
-                'error' => __('Vous n\'êtes pas autorisé à accéder à cette section avec cette adresse e-mail.')
+                'error' => __('Vous n\'êtes pas autorisé à accéder à cette section avec cette adresse e-mail.'),
             ], 401);
         }
 

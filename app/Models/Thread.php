@@ -118,7 +118,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     public function isSolved(): bool
     {
-        return null !== $this->solution_reply_id;
+        return $this->solution_reply_id !== null;
     }
 
     public function wasResolvedBy(User $user): bool
@@ -191,7 +191,6 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
      * Scope for filtering threads.
      *
      * @param  Builder<Thread>  $builder
-     * @param  Request  $request
      * @param  string[]  $filters
      * @return Builder<Thread>
      */
@@ -255,14 +254,12 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     /**
      * This will calculate the average resolution time in days of all threads marked as resolved.
-     *
-     * @return bool|int
      */
     public static function resolutionTime(): bool|int
     {
         try {
             // @phpstan-ignore-next-line
-            return static::join('replies', 'threads.solution_reply_id', '=', 'replies.id')
+            return self::join('replies', 'threads.solution_reply_id', '=', 'replies.id')
                 ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
                 ->first()
                 ->duration;
@@ -273,8 +270,8 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     public static function getFeedItems(): SupportCollection
     {
-        return static::with(['reactions'])->feedQuery()
-            ->paginate(static::FEED_PAGE_SIZE)
+        return self::with(['reactions'])->feedQuery()
+            ->paginate(self::FEED_PAGE_SIZE)
             ->getCollection();
     }
 
@@ -290,7 +287,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     }
 
     /**
-     * @param int[] $channels
+     * @param  int[]  $channels
      */
     public function syncChannels(array $channels): void
     {

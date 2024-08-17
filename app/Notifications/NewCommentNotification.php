@@ -20,8 +20,7 @@ final class NewCommentNotification extends Notification implements ShouldQueue
         public readonly Reply $reply,
         public readonly Subscribe $subscription,
         public readonly Discussion $discussion
-    ) {
-    }
+    ) {}
 
     /**
      * @return string[]

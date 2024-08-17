@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 trait HasTags
 {
     /**
-     * @param int[] $tags
+     * @param  int[]  $tags
      */
     public function syncTags(array $tags): void
     {

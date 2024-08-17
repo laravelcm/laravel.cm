@@ -13,9 +13,7 @@ abstract class AbstractFilters
 
     protected array $filters = [];
 
-    public function __construct(public Request $request)
-    {
-    }
+    public function __construct(public Request $request) {}
 
     public function filter(Builder $builder): Builder
     {

@@ -17,7 +17,7 @@ trait WithTagsAssociation
     public array $associateTags = [];
 
     /**
-     * @param array{value: string} $choices
+     * @param  array{value: string}  $choices
      */
     public function updatedTagsSelected(array $choices): void
     {

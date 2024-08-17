@@ -16,9 +16,7 @@ final class NewReplyNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public Reply $reply, public Subscribe $subscription)
-    {
-    }
+    public function __construct(public Reply $reply, public Subscribe $subscription) {}
 
     public function via(mixed $notifiable): array
     {

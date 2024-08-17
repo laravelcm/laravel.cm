@@ -44,10 +44,7 @@ final class MarkdownHelper
     }
 
     /**
-     * @param string $html
-     * @param string[] $tagArray
-     * @param string $original_string
-     * @return string
+     * @param  string[]  $tagArray
      */
     public static function replaceYouTubeTag(string $html, array $tagArray, string $original_string): string
     {
@@ -61,17 +58,14 @@ final class MarkdownHelper
     }
 
     /**
-     * @param string $html
-     * @param string[] $tagArray
-     * @param string $original_string
-     * @return string
+     * @param  string[]  $tagArray
      */
     public static function replaceCodePenTag(string $html, array $tagArray, string $original_string): string
     {
         if (isset($tagArray[2])) {
             $codepenEmbedURL = str_replace('/pen/', '/embed/', $tagArray[2]);
             $defaultTag = 'default-tab=result';
-            if (isset($tagArray[3]) && '%}' !== $tagArray[3]) {
+            if (isset($tagArray[3]) && $tagArray[3] !== '%}') {
                 $defaultTag = $tagArray[3];
             }
             $codepenEmbed = '<div class="overflow-hidden border border-skin-light rounded-lg"><iframe loading="lazy" height="600" style="width: 100%;" scrolling="no" src="'.$codepenEmbedURL.'?height=600&theme-id=24057&'.$defaultTag.'" frameborder="no" allowtransparency="true" allowfullscreen="true"></iframe></div>';
@@ -82,18 +76,15 @@ final class MarkdownHelper
     }
 
     /**
-     * @param string $html
-     * @param array<string, mixed> $tagArray
-     * @param string $original_string
-     * @return string
+     * @param  array<string, mixed>  $tagArray
      */
     public static function replaceCodeSandboxTag(string $html, array $tagArray, string $original_string): string
     {
-        if (isset($tagArray[2]) && '%}' !== $tagArray[2]) {
+        if (isset($tagArray[2]) && $tagArray[2] !== '%}') {
             $codesandbox = $tagArray[2];
             $url = parse_url($codesandbox);
             // @phpstan-ignore-next-line
-            if (filter_var($codesandbox, FILTER_VALIDATE_URL) && ('www.codesandbox.io' === $url['host'] || 'codesandbox.io' === $url['host'])) {
+            if (filter_var($codesandbox, FILTER_VALIDATE_URL) && ($url['host'] === 'www.codesandbox.io' || $url['host'] === 'codesandbox.io')) {
                 $codesandboxEmbed = '<iframe src="'.$codesandbox.'" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="rough-field-mykn0" allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking" sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"></iframe>';
                 $html = str_replace($original_string, $codesandboxEmbed, $html);
             }
@@ -103,14 +94,11 @@ final class MarkdownHelper
     }
 
     /**
-     * @param string $html
-     * @param string[] $tagArray
-     * @param string $original_string
-     * @return string
+     * @param  string[]  $tagArray
      */
     public static function replaceBuyMeACoffeeTag(string $html, array $tagArray, string $original_string): string
     {
-        if (isset($tagArray[2]) && '%}' !== $tagArray[2]) {
+        if (isset($tagArray[2]) && $tagArray[2] !== '%}') {
             $buyMeACoffee = $tagArray[2];
             $bmcEmbed = '<div class="text-center"><a href="https://buymeacoffee.com/'.$buyMeACoffee.'"><img style="max-height: 90px;" src="https://cdn.devdojo.com/assets/img/buymeacoffee.png" alt="Buy Me A Coffee '.$buyMeACoffee.'"></a></div>';
             $html = str_replace($original_string, $bmcEmbed, $html);
@@ -120,10 +108,7 @@ final class MarkdownHelper
     }
 
     /**
-     * @param string $html
-     * @param string[] $tagArray
-     * @param string $original_string
-     * @return string
+     * @param  string[]  $tagArray
      */
     public static function replaceGiphyTag(string $html, array $tagArray, string $original_string): string
     {

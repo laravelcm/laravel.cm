@@ -48,7 +48,7 @@ final class Edit extends Component
 
     public function submit(): void
     {
-        $this->alreadySubmitted = null !== $this->article->submitted_at;
+        $this->alreadySubmitted = $this->article->submitted_at !== null;
         $this->submitted_at = $this->article->submitted_at ?? now();
         $this->store();
     }
