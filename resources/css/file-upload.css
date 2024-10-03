@@ -3,15 +3,15 @@
 }
 
 .filepond--panel-root {
-    @apply rounded-lg border border-skin-input bg-skin-input shadow-sm;
+    @apply rounded-lg border border-gray-300 bg-gray-200 shadow-sm;
 }
 
 .filepond--drip-blob {
-    @apply bg-skin-card;
+    @apply bg-white;
 }
 
 .filepond--drop-label {
-    @apply text-skin-muted;
+    @apply text-gray-400 dark:text-gray-500;
 }
 
 /* Compact-only styles, excluding compact circle layouts */

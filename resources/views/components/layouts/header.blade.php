@@ -1,34 +1,31 @@
 <nav
     x-data="{ open: false, flyoutMenu: false }"
-    {{ $attributes->twMerge(['class' => 'relative z-10 bg-skin-menu/50 backdrop-blur-sm']) }}
+    {{ $attributes->twMerge(['class' => 'relative z-10 backdrop-blur-sm']) }}
 >
     <div class="mx-auto max-w-7xl px-2 sm:px-4">
         <div class="flex h-16 justify-between">
             <div class="flex px-2 lg:px-0">
                 <div class="flex shrink-0 items-center">
-                    <a href="{{ route('home') }}">
-                        <x-application-icon class="block h-8 w-auto sm:h-9" />
-                    </a>
+                    <x-link href="{{ route('home') }}">
+                        <x-brand.icon class="block h-8 w-auto sm:h-9" />
+                    </x-link>
                 </div>
-                <div class="hidden font-sans lg:ml-10 lg:flex lg:items-center lg:space-x-6">
-                    <a
-                        href="{{ route('forum.index') }}"
-                        class="{{ active(['forum', 'forum*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }} inline-flex items-center px-1 text-sm font-medium"
-                    >
-                        Forum
-                    </a>
-                    <a
-                        href="{{ route('articles') }}"
-                        class="{{ active(['articles', 'articles*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }} inline-flex items-center px-1 text-sm font-medium"
-                    >
-                        Articles
-                    </a>
-                    <a
-                        href="{{ route('discussions.index') }}"
-                        class="{{ active(['discussions', 'discussions*'], 'text-skin-primary hover:text-skin-primary-hover', 'text-skin-menu hover:text-skin-menu-hover') }} inline-flex items-center px-1 text-sm font-medium"
-                    >
-                        Discussions
-                    </a>
+                <div class="hidden lg:ml-10 lg:flex lg:items-center lg:space-x-6">
+                    <x-nav.item
+                        :href="route('forum.index')"
+                        :active-links="['forum', 'forum*']"
+                        :title="__('global.navigation.forum')"
+                    />
+                    <x-nav.item
+                        :href="route('articles')"
+                        :active-links="['articles', 'articles*']"
+                        :title="__('global.navigation.articles')"
+                    />
+                    <x-nav.item
+                        :href="route('discussions.index')"
+                        :active-links="['discussions', 'discussions*']"
+                        :title="__('global.navigation.discussions')"
+                    />
                     <div class="relative mt-1.5 px-1">
                         <button
                             @click="flyoutMenu =! flyoutMenu"

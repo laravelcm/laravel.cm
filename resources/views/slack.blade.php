@@ -28,7 +28,7 @@
                         </g>
                     </svg>
                     <x-untitledui-switch-horizontal class="h-6 w-6 text-gray-400" />
-                    <x-application-icon class="block h-10 w-auto sm:h-12" />
+                    <x-brand.icon class="block h-10 w-auto sm:h-12" />
                 </div>
                 <h2 class="mt-4 font-heading text-xl font-medium text-skin-inverted">Rejoindre le groupe Slack</h2>
                 <p class="mt-3 leading-6 text-skin-base">

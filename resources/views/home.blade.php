@@ -27,22 +27,18 @@
                     href="{{ route('sponsors') }}"
                     class="inline-flex items-center rounded-full bg-green-700 p-1 pr-2 font-sans text-white sm:text-base lg:text-sm xl:text-base"
                 >
-                    <span
-                        class="rounded-full bg-flag-green px-3 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white"
-                    >
+                    <span class="rounded-full bg-flag-green px-3 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white">
                         ⚡️ Sponsor
                     </span>
                     <span class="ml-4 hidden text-sm sm:block">
                         Soutenez Laravel Cameroun aujourd'hui en sponsorisant
                     </span>
                     <span class="ml-4 text-sm sm:hidden">Soutenez Laravel Cameroun</span>
-                    <x-heroicon-s-chevron-right class="ml-2 h-5 w-5 text-white" />
+                    <x-heroicon-s-chevron-right class="ml-2 h-5 w-5 text-white" aria-hidden="true" />
                 </a>
             </div>
             <div class="mt-10 text-center">
-                <h1
-                    class="font-heading text-4xl font-medium tracking-tight text-skin-primary sm:leading-none lg:text-6xl"
-                >
+                <h1 class="font-heading text-4xl font-medium tracking-tight text-skin-primary sm:leading-none lg:text-6xl">
                     Laravel Cameroun
                 </h1>
                 <p class="mt-3 text-base text-skin-inverted sm:mt-5 sm:text-lg lg:text-xl">
@@ -74,7 +70,7 @@
             </p>
             <div class="mt-5 flex flex-wrap items-center justify-center gap-8">
                 <div class="flex items-center justify-center px-2">
-                    <a href="https://laravelshopper.io" target="_blank" class="flex items-center">
+                    <a href="https://laravelshopper.dev" target="_blank" class="flex items-center">
                         <img
                             class="logo-white h-12"
                             src="{{ asset('/images/sponsors/shopper-logo.svg') }}"
@@ -95,11 +91,6 @@
                 <div class="flex items-center justify-center px-2">
                     <a href="https://notchpay.co" class="flex items-center" target="_blank">
                         <x-icon.notchpay class="h-8 w-auto text-skin-inverted" />
-                    </a>
-                </div>
-                <div class="flex items-center justify-center px-2">
-                    <a href="https://www.dark-code.cm" class="flex items-center" target="_blank">
-                        <x-icon.darkcode class="h-6 w-auto text-skin-inverted" />
                     </a>
                 </div>
                 <div class="flex items-center justify-center px-2">
