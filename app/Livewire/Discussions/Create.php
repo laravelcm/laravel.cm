@@ -4,37 +4,26 @@ declare(strict_types=1);
 
 namespace App\Livewire\Discussions;
 
-use App\Gamify\Points\DiscussionCreated;
-use App\Models\Discussion;
+use App\Actions\Discussion\CreateDiscussionAction;
+use App\Data\Discussion\CreateDiscussionData;
 use App\Models\Tag;
-use App\Notifications\PostDiscussionToTelegram;
 use App\Traits\WithTagsAssociation;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 final class Create extends Component
 {
     use WithTagsAssociation;
 
+    #[Validate('required')]
     public string $title = '';
 
+    #[Validate('required')]
     public string $body = '';
 
-    /**
-     * @var string[]
-     */
-    protected $listeners = ['markdown-x:update' => 'onMarkdownUpdate'];
-
-    /**
-     * @var array<string, string[]|string>
-     */
-    protected $rules = [
-        'title' => ['required', 'max:150'],
-        'body' => ['required'],
-        'tags_selected' => 'nullable|array',
-    ];
-
+    #[On('markdown-x:update')]
     public function onMarkdownUpdate(string $content): void
     {
         $this->body = $content;
@@ -44,24 +33,13 @@ final class Create extends Component
     {
         $this->validate();
 
-        $discussion = Discussion::create([
+        $discussion = app(CreateDiscussionAction::class)->execute(CreateDiscussionData::from([
             'title' => $this->title,
-            'slug' => $this->title,
             'body' => $this->body,
-            'user_id' => Auth::id(),
-        ]);
+            'tags' => $this->associateTags,
+        ]));
 
-        if (collect($this->associateTags)->isNotEmpty()) {
-            $discussion->syncTags($this->associateTags);
-        }
-
-        givePoint(new DiscussionCreated($discussion));
-
-        if (app()->environment('production')) {
-            Auth::user()->notify(new PostDiscussionToTelegram($discussion)); // @phpstan-ignore-line
-        }
-
-        $this->redirectRoute('discussions.show', $discussion);
+        $this->redirectRoute('discussions.show', $discussion, navigate: true);
     }
 
     public function render(): View

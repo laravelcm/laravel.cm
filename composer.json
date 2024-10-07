@@ -38,6 +38,7 @@
     "ramsey/uuid": "^4.7.4",
     "sentry/sentry-laravel": "^3.7",
     "socialiteproviders/twitter": "^4.1.2",
+    "spatie/laravel-data": "^4.10",
     "spatie/laravel-feed": "^4.2.1",
     "spatie/laravel-google-fonts": "^1.2.3",
     "spatie/laravel-medialibrary": "^10.10.0",

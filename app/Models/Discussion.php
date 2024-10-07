@@ -22,7 +22,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 /**
- * @mixin IdeHelperDiscussion
+ * @property int $id
+ * @property int $user_id
+ * @property string $title
+ * @property string $slug
+ * @property string $body
+ * @property bool $is_pinned
+ * @property bool $locked
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  */
 final class Discussion extends Model implements ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
