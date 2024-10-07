@@ -15,6 +15,7 @@ composer.phar
 
 # Laravel Exclude
 #
+/.phpunit.cache
 .phpunit.result.cache
 /public/build
 /public/hot
