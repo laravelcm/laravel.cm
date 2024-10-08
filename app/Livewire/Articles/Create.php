@@ -10,7 +10,6 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Traits\WithArticleAttributes;
 use App\Traits\WithTagsAssociation;
-
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -61,7 +60,6 @@ final class Create extends Component
             'canonical_url' => $this->canonical_url,
             'user_id' => $user->id,
         ]));
-
 
         $user->hasRole('user') ?
             $this->redirectRoute('dashboard') :

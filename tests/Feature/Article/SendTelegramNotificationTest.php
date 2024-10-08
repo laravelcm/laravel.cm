@@ -12,7 +12,7 @@ beforeEach(function (): void {
     $this->user = $this->login();
 });
 
-test('Send notification on telegram after submition on article', function () {
+test('Send notification on telegram after submition on article', function (): void {
 
     // 2- soumission d'article par le user connecté
     $article = Livewire::actingAs($this->user)->test(Create::class)
@@ -37,7 +37,6 @@ test('Send notification on telegram after submition on article', function () {
             notification: PostArticleToTelegram::class
         );
     }
-
 
     Notification::assertCount(1);
 
