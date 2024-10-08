@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace App\Livewire\Articles;
 
-use App\Events\ArticleWasSubmittedForApproval;
-use App\Gamify\Points\PostCreated;
-use App\Models\Article;
+use App\Actions\Article\CreateArticleAction;
+use App\Data\Article\CreateArticleData;
 use App\Models\Tag;
 use App\Models\User;
 use App\Traits\WithArticleAttributes;
 use App\Traits\WithTagsAssociation;
-use Carbon\Carbon;
-use DateTimeInterface;
+
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -52,15 +50,7 @@ final class Create extends Component
         /** @var User $user */
         $user = Auth::user();
 
-        if ($this->published_at && ! ($this->published_at instanceof DateTimeInterface)) {
-            $this->published_at = new Carbon(
-                time: $this->published_at,
-                tz: config('app.timezone')
-            );
-        }
-
-        /** @var Article $article */
-        $article = Article::create([
+        $article = app(CreateArticleAction::class)->execute(CreateArticleData::from([
             'title' => $this->title,
             'slug' => $this->slug,
             'body' => $this->body,
@@ -70,28 +60,8 @@ final class Create extends Component
             'show_toc' => $this->show_toc,
             'canonical_url' => $this->canonical_url,
             'user_id' => $user->id,
-        ]);
+        ]));
 
-        if (collect($this->associateTags)->isNotEmpty()) {
-            $article->syncTags(tags: $this->associateTags);
-        }
-
-        if ($this->file) {
-            $article->addMedia($this->file->getRealPath())->toMediaCollection('media');
-        }
-
-        if ($article->isAwaitingApproval()) {
-            if (app()->environment('production')) {
-                // Envoi de la notification sur le channel Telegram pour la validation de l'article.
-                event(new ArticleWasSubmittedForApproval($article));
-            }
-
-            session()->flash('status', __('Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.'));
-        }
-
-        if ($user->hasAnyRole(['admin', 'moderator'])) {
-            givePoint(new PostCreated($article));
-        }
 
         $user->hasRole('user') ?
             $this->redirectRoute('dashboard') :
