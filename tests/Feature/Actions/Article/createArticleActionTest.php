@@ -1,6 +1,5 @@
 <?php
 
-
 declare(strict_types=1);
 
 use App\Actions\Article\CreateArticleAction;
@@ -8,13 +7,11 @@ use App\Data\Article\CreateArticleData;
 use App\Models\Article;
 use App\Models\Tag;
 
-
 beforeEach(function (): void {
     $this->user = $this->login();
     $this->tagOne = Tag::factory()->create(['name' => 'Tag 1', 'concerns' => ['article']]);
     $this->tagTwo = Tag::factory()->create(['name' => 'Tag 2', 'concerns' => ['article', 'post']]);
 });
-
 
 describe(CreateArticleAction::class, function (): void {
     it('return the created article', function (): void {

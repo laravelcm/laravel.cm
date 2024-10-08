@@ -1,23 +1,22 @@
 <?php
 
-
 declare(strict_types=1);
 
 namespace App\Actions\Article;
 
-use Carbon\Carbon;
-use DateTimeInterface;
 use App\Data\Article\CreateArticleData;
 use App\Gamify\Points\ArticleCreated;
 use App\Models\Article;
 use App\Notifications\PostArticleToTelegram;
+use Carbon\Carbon;
+use DateTimeInterface;
 use Illuminate\Support\Facades\Auth;
 
 final class CreateArticleAction
 {
     public function execute(CreateArticleData $articleData): Article
     {
-        if ($articleData->published_at && !($articleData->published_at instanceof DateTimeInterface)) {
+        if ($articleData->published_at && ! ($articleData->published_at instanceof DateTimeInterface)) {
             $articleData->published_at = new Carbon(
                 time: $articleData->published_at,
                 tz: config('app.timezone')
@@ -54,7 +53,6 @@ final class CreateArticleAction
         if (Auth::user()?->hasAnyRole(['admin', 'moderator'])) {
             givePoint(new ArticleCreated($article));
         }
-
 
         return $article;
     }
