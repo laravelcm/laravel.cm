@@ -23,7 +23,6 @@ final class NotifyPendingArticles extends Command
 
         if ($pendingArticles->isEmpty()) {
             $this->info('❌ No pending articles found.');
-
             return;
         }
 
