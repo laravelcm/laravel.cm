@@ -9,8 +9,8 @@ use App\Models\Tag;
 
 beforeEach(function (): void {
     $this->user = $this->login();
-    $this->tagOne = Tag::factory()->create(['name' => 'Tag 1', 'concerns' => ['article']]);
-    $this->tagTwo = Tag::factory()->create(['name' => 'Tag 2', 'concerns' => ['article', 'post']]);
+    $this->tagOne = Tag::factory()->create(['name' => 'Tag 1', 'concerns' => ['post']]);
+    $this->tagTwo = Tag::factory()->create(['name' => 'Tag 2', 'concerns' => ['tutorial', 'post']]);
 });
 
 describe(CreateArticleAction::class, function (): void {
@@ -18,13 +18,13 @@ describe(CreateArticleAction::class, function (): void {
         $articleDataWithoutTag = CreateArticleData::from([
             'title' => 'Article title',
             'slug' => 'Article slug',
-            'published_at' => Now(),
-            'submitted_at' => null,
-            'approved_at' => null,
-            'show_toc' => 'Article show_toc',
-            'canonical_url' => 'Article canonical_url',
+            'publishedAt' => now(),
+            'submittedAt' => null,
+            'approvedAt' => null,
+            'showToc' => 'Article show_toc',
+            'canonicalUrl' => 'Article canonical_url',
             'body' => 'Article body',
-            'associateTags' => [],
+            'tags' => [$this->tagOne->id, $this->tagTwo->id],
         ]);
 
         $article = app(CreateArticleAction::class)->execute($articleDataWithoutTag);
@@ -32,7 +32,7 @@ describe(CreateArticleAction::class, function (): void {
         expect($article)
             ->toBeInstanceOf(Article::class)
             ->and($article->tags)
-            ->toHaveCount(0)
+            ->toHaveCount(2)
             ->and($article->user_id)
             ->toBe($this->user->id);
     });

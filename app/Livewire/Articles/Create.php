@@ -53,12 +53,11 @@ final class Create extends Component
             'title' => $this->title,
             'slug' => $this->slug,
             'body' => $this->body,
-            'published_at' => $this->published_at,
-            'submitted_at' => $this->submitted_at,
-            'approved_at' => $this->approved_at,
-            'show_toc' => $this->show_toc,
-            'canonical_url' => $this->canonical_url,
-            'user_id' => $user->id,
+            'publishedAt' => $this->published_at,
+            'submittedAt' => $this->submitted_at,
+            'approvedAt' => $this->approved_at,
+            'showToc' => $this->show_toc,
+            'canonicalUrl' => $this->canonical_url,
         ]));
 
         $user->hasRole('user') ?

@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Livewire\Articles\Create;
 use App\Models\Article;
 use App\Notifications\PostArticleToTelegram;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 
@@ -15,6 +16,8 @@ beforeEach(function (): void {
 test('Send notification on telegram after submition on article', function (): void {
 
     // 2- soumission d'article par le user connecté
+    $file = UploadedFile::fake()->image('article.png');
+
     $article = Livewire::actingAs($this->user)->test(Create::class)
         ->set('title', 'Test Article')
         ->set('slug', 'test-article')
@@ -23,8 +26,8 @@ test('Send notification on telegram after submition on article', function (): vo
         ->set('submitted_at', now())
         ->set('approved_at', null)
         ->set('show_toc', true)
+        ->set('file', $file)
         ->set('canonical_url', 'https://laravel.cm')
-        ->set('associateTags', ['tag1', 'tag2'])
         ->call('store');
 
     expect(Article::count())

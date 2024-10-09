@@ -39,6 +39,7 @@ trait WithArticleAttributes
         'tags_selected' => 'nullable|array',
         'canonical_url' => 'nullable|url',
         'file' => 'nullable|image|max:2048', // 1MB Max
+        'show_toc' => 'boolean',
     ];
 
     public function removeImage(): void
