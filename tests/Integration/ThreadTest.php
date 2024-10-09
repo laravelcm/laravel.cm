@@ -8,11 +8,6 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-uses(RefreshDatabase::class);
-uses(DatabaseMigrations::class);
 
 it('can find by slug', function (): void {
     Thread::factory()->create(['slug' => 'foo']);

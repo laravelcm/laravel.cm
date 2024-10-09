@@ -23,6 +23,7 @@ final class Kernel extends ConsoleKernel
             $schedule->command('lcm:post-article-to-telegram')->everyFourHours();
             $schedule->command('lcm:send-unverified-mails')->weeklyOn(1, '8:00');
             $schedule->command('sitemap:generate')->daily();
+            $schedule->command('lcm:notify-pending-articles')->everyTwoDays();
         }
     }
 
