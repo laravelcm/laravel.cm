@@ -1,7 +1,7 @@
 <x-app-layout title="Paramètres">
     <x-container class="py-12">
         <div class="border-b border-skin-base pb-5">
-            <h3 class="font-heading text-3xl font-semibold text-skin-inverted">Paramètres</h3>
+            <h3 class="font-heading text-3xl font-semibold text-gray-900">Paramètres</h3>
         </div>
 
         <section class="relative mt-8 lg:grid lg:grid-cols-11 lg:gap-8">
@@ -11,7 +11,7 @@
                         <x-nav-link :href="route('user.settings')" :active="request()->routeIs('user.settings')">
                             <svg
                                 @class([
-                                    '-ml-1 mr-3 h-6 w-6 shrink-0',
+                                    '-ml-1 mr-3 size-6 shrink-0',
                                     'text-green-600' => request()->routeIs('user.settings'),
                                     'text-skin-muted' => ! request()->routeIs('user.settings'),
                                 ])
@@ -32,7 +32,7 @@
                         <x-nav-link :href="route('user.password')" :active="request()->routeIs('user.password')">
                             <svg
                                 @class([
-                                    '-ml-1 mr-3 h-6 w-6 shrink-0',
+                                    '-ml-1 mr-3 size-6 shrink-0',
                                     'text-green-600' => request()->routeIs('user.password'),
                                     'text-skin-muted' => ! request()->routeIs('user.password'),
                                 ])
@@ -56,7 +56,7 @@
                         >
                             <svg
                                 @class([
-                                    '-ml-1 mr-3 h-6 w-6 shrink-0',
+                                    '-ml-1 mr-3 size-6 shrink-0',
                                     'text-green-600' => request()->routeIs('user.customization'),
                                     'text-skin-muted' => ! request()->routeIs('user.customization'),
                                 ])
@@ -80,7 +80,7 @@
                         >
                             <svg
                                 @class([
-                                    '-ml-1 mr-3 h-6 w-6 shrink-0',
+                                    '-ml-1 mr-3 size-6 shrink-0',
                                     'text-green-600' => request()->routeIs('user.notifications'),
                                     'text-skin-muted' => ! request()->routeIs('user.notifications'),
                                 ])
@@ -101,7 +101,7 @@
                         <x-nav-link href="#" :active="request()->routeIs('user.subscription')">
                             <svg
                                 @class([
-                                    '-ml-1 mr-3 h-6 w-6 shrink-0',
+                                    '-ml-1 mr-3 size-6 shrink-0',
                                     'text-green-600' => request()->routeIs('user.subscription'),
                                     'text-skin-muted' => ! request()->routeIs('user.subscription'),
                                 ])

@@ -10,7 +10,7 @@
         </div>
 
         <div class="mt-6 w-full sm:max-w-md lg:mt-10 lg:max-w-xl">
-            <div class="mb-4 text-center text-sm text-skin-base">
+            <div class="mb-4 text-center text-sm text-gray-500 dark:text-gray-400">
                 Merci pour votre inscription ! Avant de commencer, pourriez-vous vérifier votre adresse e-mail en
                 cliquant sur le lien que nous venons de vous envoyer par e-mail ? Si vous n'avez pas reçu l'e-mail, nous
                 nous ferons un plaisir de vous en envoyer un autre.
@@ -21,7 +21,7 @@
                     <div class="mb-4 rounded-md bg-green-50 p-4">
                         <div class="flex">
                             <div class="shrink-0">
-                                <x-heroicon-s-check-circle class="h-5 w-5 text-green-400" />
+                                <x-heroicon-s-check-circle class="size-5 text-green-400" />
                             </div>
                             <div class="ml-3">
                                 <p class="text-sm font-medium text-green-800">
@@ -47,7 +47,7 @@
 
                         <button
                             type="submit"
-                            class="text-sm text-skin-base underline hover:text-skin-inverted focus:outline-none"
+                            class="text-sm text-gray-500 dark:text-gray-400 underline hover:text-gray-900 focus:outline-none"
                         >
                             Se déconnecter
                         </button>

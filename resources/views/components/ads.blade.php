@@ -11,14 +11,14 @@
         />
     </a>
     <p class="mt-4 font-normal">
-        <a href="{{ $ads['url'] }}" class="text-sm leading-5 text-skin-base">
+        <a href="{{ $ads['url'] }}" class="text-sm leading-5 text-gray-500 dark:text-gray-400">
             {{ $ads['description'] }}
         </a>
     </p>
     <div class="mt-2">
         <a
             href="{{ $ads['url'] }}"
-            class="text-sm font-medium text-skin-primary hover:text-skin-primary-hover hover:underline"
+            class="text-sm font-medium text-primary-600 hover:text-primary-600-hover hover:underline"
         >
             En savoir plus →
         </a>

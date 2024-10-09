@@ -20,19 +20,19 @@
         <div>
             <time
                 datetime="{{ $article->publishedAt()->format('Y-m-d') }}"
-                class="font-sans text-sm capitalize leading-5 text-skin-base"
+                class="font-sans text-sm capitalize leading-5 text-gray-500 dark:text-gray-400"
             >
                 {{ $article->publishedAt()->isoFormat('LL') }}
             </time>
             <a href="{{ route('articles.show', $article) }}" class="group mt-2 flex items-center justify-between">
-                <h4 class="font-sans text-lg font-semibold leading-6 text-skin-inverted group-hover:text-skin-primary">
+                <h4 class="font-sans text-lg font-semibold leading-6 text-gray-900 group-hover:text-primary-600">
                     {{ $article->title }}
                 </h4>
                 @if ($iconLink)
-                    <x-untitledui-link-external-01 class="ml-2 h-5 w-5 text-skin-base" />
+                    <x-untitledui-link-external-01 class="ml-2 size-5 text-gray-500 dark:text-gray-400" />
                 @endif
             </a>
-            <p class="mt-1 font-normal leading-6 text-skin-base">
+            <p class="mt-1 font-normal leading-6 text-gray-500 dark:text-gray-400">
                 {!! $article->excerpt(150) !!}
             </p>
         </div>

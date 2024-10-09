@@ -6,7 +6,7 @@
         <div>
             <x-status-message class="mb-5" />
 
-            <h2 class="text-xl font-bold leading-7 text-skin-inverted sm:truncate sm:text-2xl">Tableau de bord</h2>
+            <h2 class="text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-2xl">Tableau de bord</h2>
 
             <x-user.stats :user="$user" />
         </div>
@@ -22,7 +22,7 @@
                     @unless (Auth::user()->hasTwitterAccount())
                         <div class="mb-6 rounded-md bg-blue-500 bg-opacity-10 p-3 text-sm font-normal text-blue-800">
                             <svg
-                                class="mr-1 inline-block h-5 w-5"
+                                class="mr-1 inline-block size-5"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
@@ -60,7 +60,7 @@
                             <a href="{{ route('articles.show', $article->slug()) }}" class="block">
                                 <div class="mt-4 flex items-center justify-between">
                                     <h3
-                                        class="font-sans text-xl font-semibold leading-7 text-skin-inverted hover:text-skin-primary"
+                                        class="font-sans text-xl font-semibold leading-7 text-gray-900 hover:text-primary-600"
                                     >
                                         {{ $article->title }}
                                     </h3>
@@ -69,7 +69,7 @@
                                         @if ($article->isPublished())
                                             <a
                                                 href="{{ route('articles.show', $article->slug()) }}"
-                                                class="hover:text-skin-base hover:underline"
+                                                class="hover:text-gray-500 dark:text-gray-400 hover:underline"
                                             >
                                                 Voir
                                             </a>
@@ -78,14 +78,14 @@
 
                                         <a
                                             href="{{ route('articles.edit', $article->slug()) }}"
-                                            class="hover:text-skin-base hover:underline"
+                                            class="hover:text-gray-500 dark:text-gray-400 hover:underline"
                                         >
                                             Éditer
                                         </a>
                                     </div>
                                 </div>
 
-                                <p class="mt-3 text-base font-normal leading-6 text-skin-base">
+                                <p class="mt-3 text-base font-normal leading-6 text-gray-500 dark:text-gray-400">
                                     {{ $article->excerpt() }}
                                 </p>
                             </a>
@@ -94,14 +94,14 @@
                                 <div class="flex items-center">
                                     <a href="{{ route('profile', $article->user->username) }}" class="shrink-0">
                                         <img
-                                            class="h-10 w-10 rounded-full object-cover"
+                                            class="size-10 rounded-full object-cover"
                                             src="{{ $article->user->profile_photo_url }}"
                                             alt="{{ $article->user->username }}"
                                         />
                                     </a>
 
                                     <div class="ml-3 font-sans">
-                                        <p class="text-sm font-medium leading-5 text-skin-inverted-muted">
+                                        <p class="text-sm font-medium leading-5 text-gray-700 dark:text-gray-300">
                                             <a
                                                 href="{{ route('profile', $article->user->username) }}"
                                                 class="hover:underline"
@@ -110,7 +110,7 @@
                                             </a>
                                         </p>
 
-                                        <div class="flex text-sm leading-5 text-skin-base">
+                                        <div class="flex text-sm leading-5 text-gray-500 dark:text-gray-400">
                                             @if ($article->isPublished())
                                                 <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
                                                     {{ __('Publié le :date', ['date' => $article->submittedAt()->format('j M, Y')]) }}
@@ -132,14 +132,14 @@
                                     </div>
                                 </div>
 
-                                <div class="flex items-center text-skin-base">
+                                <div class="flex items-center text-gray-500 dark:text-gray-400">
                                     <span class="mr-2 text-xl">👏</span>
                                     {{ count($article->reactions) }}
                                 </div>
                             </div>
                         </div>
                     @empty
-                        <p class="text-base text-skin-base">Vous n'avez pas encore créé d'articles.</p>
+                        <p class="text-base text-gray-500 dark:text-gray-400">Vous n'avez pas encore créé d'articles.</p>
                     @endforelse
 
                     {{ $articles->links() }}

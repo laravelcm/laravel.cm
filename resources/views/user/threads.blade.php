@@ -5,7 +5,7 @@
 
             <x-user.breadcrumb section="Sujets" />
 
-            <h2 class="font-heading text-xl font-bold leading-7 text-skin-inverted sm:truncate sm:text-2xl">Sujets</h2>
+            <h2 class="font-heading text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-2xl">Sujets</h2>
         </div>
 
         <section class="relative mt-8 lg:grid lg:grid-cols-12 lg:gap-12">
@@ -19,7 +19,7 @@
                     @forelse ($threads as $thread)
                         <x-forum.thread-summary :thread="$thread" />
                     @empty
-                        <p class="text-base text-skin-base">Vous n'avez pas encore créé de sujets.</p>
+                        <p class="text-base text-gray-500 dark:text-gray-400">Vous n'avez pas encore créé de sujets.</p>
                     @endforelse
 
                     <div class="pt-5">

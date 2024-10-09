@@ -3,13 +3,13 @@
         <div class="relative flex items-start space-x-3">
             <div class="relative">
                 <img
-                    class="flex h-10 w-10 items-center justify-center rounded-full bg-skin-card ring-8 ring-card"
+                    class="flex size-10 items-center justify-center rounded-full bg-skin-card ring-8 ring-card"
                     src="{{ $user->profile_photo_url }}"
                     alt="Avatar de {{ $user->username }}"
                 />
                 <span class="absolute -bottom-0.5 -right-1 rounded-tl bg-skin-card px-0.5 py-px">
                     <svg
-                        class="h-5 w-5 text-skin-muted"
+                        class="size-5 text-skin-muted"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -29,14 +29,14 @@
                     <div class="text-sm">
                         <a
                             href="{{ route('profile', ['username' => $user->username]) }}"
-                            class="font-sans font-medium text-skin-inverted"
+                            class="font-sans font-medium text-gray-900"
                         >
                             {{ $user->name }}
                         </a>
                     </div>
-                    <p class="mt-0.5 font-sans text-sm text-skin-base">a commenté il y a 2 jours</p>
+                    <p class="mt-0.5 font-sans text-sm text-gray-500 dark:text-gray-400">a commenté il y a 2 jours</p>
                 </div>
-                <div class="mt-2 text-sm font-normal text-skin-inverted-muted">
+                <div class="mt-2 text-sm font-normal text-gray-700 dark:text-gray-300">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt nunc ipsum tempor purus vitae
                         id. Morbi in vestibulum nec varius...

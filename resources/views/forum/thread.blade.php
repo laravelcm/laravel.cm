@@ -5,14 +5,14 @@
                 <x-sticky-content class="space-y-6">
                     <x-button :link="route('forum.new')" class="flex w-full justify-center">
                         Nouveau Sujet
-                        <x-heroicon-o-plus-circle class="ml-2.5 h-4 w-4" />
+                        <x-heroicon-o-plus-circle class="ml-2.5 size-4" />
                     </x-button>
                     <nav>
                         <a
                             href="{{ route('forum.index') }}"
-                            class="inline-flex w-full items-center py-3 text-sm font-medium text-skin-base hover:text-skin-inverted"
+                            class="inline-flex w-full items-center py-3 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900"
                         >
-                            <x-untitledui-menu class="mr-2 h-5 w-5" />
+                            <x-untitledui-menu class="mr-2 size-5" />
                             <span>Tous les sujets</span>
                         </a>
                     </nav>
@@ -25,12 +25,12 @@
                 </x-sticky-content>
             </div>
             <div class="lg:col-span-7 lg:border-l lg:border-skin-base lg:pl-8">
-                <h1 class="font-heading text-xl font-medium tracking-tight text-skin-inverted sm:text-3xl">
+                <h1 class="font-heading text-xl font-medium tracking-tight text-gray-900 sm:text-3xl">
                     {{ $thread->subject() }}
                 </h1>
 
                 <div class="border-b border-skin-base pb-4 pt-2">
-                    <div class="text-sm text-skin-inverted-muted sm:inline-flex sm:items-center">
+                    <div class="text-sm text-gray-700 dark:text-gray-300 sm:inline-flex sm:items-center">
                         <div class="flex items-center">
                             <a
                                 href="{{ route('profile', $thread->user->username) }}"
@@ -38,7 +38,7 @@
                             >
                                 <x-user.avatar
                                     :user="$thread->user"
-                                    class="h-5 w-5"
+                                    class="size-5"
                                     span="-right-1 h-3.5 w-3.5 -top-1 ring-1"
                                     container="mr-1"
                                 />
@@ -74,7 +74,7 @@
                                 <div class="flex items-center">
                                     <span class="mx-2 text-skin-muted">•</span>
                                     <span class="inline-flex items-center gap-x-2 font-medium text-green-500">
-                                        <x-untitledui-check-verified-03 class="h-5 w-5" />
+                                        <x-untitledui-check-verified-03 class="size-5" />
                                         <span>Résolu</span>
                                     </span>
                                 </div>
@@ -121,32 +121,32 @@
                     @endif
                 @else
                     @guest
-                        <p class="py-8 text-center font-sans text-skin-base">
+                        <p class="py-8 text-center font-sans text-gray-500 dark:text-gray-400">
                             Veuillez vous
                             <a
                                 href="{{ route('login') }}"
-                                class="text-skin-primary hover:text-skin-primary-hover hover:underline"
+                                class="text-primary-600 hover:text-primary-600-hover hover:underline"
                             >
                                 connecter
                             </a>
                             ou
                             <a
                                 href="{{ route('register') }}"
-                                class="text-skin-primary hover:text-skin-primary-hover hover:underline"
+                                class="text-primary-600 hover:text-primary-600-hover hover:underline"
                             >
                                 créer un compte
                             </a>
                             pour participer à cette conversation.
                         </p>
                     @else
-                        <div class="mt-10 flex items-center justify-between gap-x-12 text-skin-base">
+                        <div class="mt-10 flex items-center justify-between gap-x-12 text-gray-500 dark:text-gray-400">
                             <p>Vous devrez vérifier votre compte avant de participer à cette conversation.</p>
 
                             <form action="{{ route('verification.send') }}" method="POST" class="block">
                                 @csrf
                                 <x-button type="submit" class="px-3 py-2 text-sm leading-4">
                                     Recevoir un lien
-                                    <x-heroicon-o-arrow-long-right class="ml-1.5 h-5 w-5" />
+                                    <x-heroicon-o-arrow-long-right class="ml-1.5 size-5" />
                                 </x-button>
                             </form>
                         </div>

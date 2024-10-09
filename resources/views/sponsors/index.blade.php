@@ -6,7 +6,7 @@
                 <x-error-message />
 
                 <div class="space-y-10">
-                    <h1 class="font-heading text-2xl font-bold text-skin-inverted lg:text-4xl">
+                    <h1 class="font-heading text-2xl font-bold text-gray-900 lg:text-4xl">
                         Soutenir Laravel Cameroun
                     </h1>
                     <div class="relative flex items-center space-x-5">
@@ -15,37 +15,37 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="focus:outline-none">
-                                <p class="text-sm font-medium text-skin-inverted">Laravel Cameroun</p>
+                                <p class="text-sm font-medium text-gray-900">Laravel Cameroun</p>
                                 <div class="mt-2 flex items-center space-x-4">
-                                    <a href="{{ route('twitter') }}" class="text-skin-muted hover:text-skin-base">
+                                    <a href="{{ route('twitter') }}" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
                                         <span class="sr-only">Twitter</span>
-                                        <x-icon.twitter class="h-5 w-5" />
+                                        <x-icon.twitter class="size-5" />
                                     </a>
 
-                                    <a href="{{ route('facebook') }}" class="text-skin-muted hover:text-skin-base">
+                                    <a href="{{ route('facebook') }}" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
                                         <span class="sr-only">Facebook</span>
-                                        <x-icon.facebook class="h-5 w-5" />
+                                        <x-icon.facebook class="size-5" />
                                     </a>
 
-                                    <a href="{{ route('linkedin') }}" class="text-skin-muted hover:text-skin-base">
+                                    <a href="{{ route('linkedin') }}" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
                                         <span class="sr-only">LinkedIn</span>
-                                        <x-icon.linkedin class="h-5 w-5" />
+                                        <x-icon.linkedin class="size-5" />
                                     </a>
 
-                                    <a href="{{ route('github') }}" class="text-skin-muted hover:text-skin-base">
+                                    <a href="{{ route('github') }}" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
                                         <span class="sr-only">Github</span>
-                                        <x-icon.github class="h-5 w-5" />
+                                        <x-icon.github class="size-5" />
                                     </a>
 
-                                    <a href="{{ route('youtube') }}" class="text-skin-muted hover:text-skin-base">
+                                    <a href="{{ route('youtube') }}" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
                                         <span class="sr-only">YouTube</span>
-                                        <x-icon.youtube class="h-5 w-5" />
+                                        <x-icon.youtube class="size-5" />
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="prose prose-green mx-auto overflow-x-hidden text-skin-base lg:max-w-4xl">
+                    <div class="prose prose-green mx-auto overflow-x-hidden text-gray-500 dark:text-gray-400 lg:max-w-4xl">
                         <p>
                             Bienvenue sur la page de sponsoring de Laravel Cameroun. À travers cette page, vous pouvez
                             aider à soutenir le développement de la plateforme. Laravel.cm est le portail de la
@@ -80,7 +80,7 @@
                         </p>
                     </div>
                     <div class="border-t border-skin-base pt-12">
-                        <h4 class="font-heading text-lg font-medium text-skin-inverted lg:text-xl">Sponsors</h4>
+                        <h4 class="font-heading text-lg font-medium text-gray-900 lg:text-xl">Sponsors</h4>
                         <div class="mt-4 flex flex-wrap items-center gap-6">
                             <a href="https://laravelshopper.io" target="_blank" class="flex items-center">
                                 <img
@@ -95,17 +95,17 @@
                                 />
                             </a>
                             <a href="https://gdg.community.dev/gdg-douala" target="_blank" class="flex items-center">
-                                <x-icon.gdg class="h-6 text-skin-inverted" />
+                                <x-icon.gdg class="h-6 text-gray-900" />
                             </a>
                             <a href="https://notchpay.co" class="flex items-center">
-                                <x-icon.notchpay class="h-6 w-auto text-skin-inverted" />
+                                <x-icon.notchpay class="h-6 w-auto text-gray-900" />
                             </a>
                             <a href="https://dark-code.cm" class="flex items-center">
-                                <x-icon.darkcode class="h-5 w-auto text-skin-inverted" />
+                                <x-icon.darkcode class="h-5 w-auto text-gray-900" />
                             </a>
                             <a href="https://sharuco.lndev.me" class="flex items-center">
-                                <x-icon.sharuco class="h-5 w-auto text-skin-inverted" />
-                                <span class="ml-1 text-xl font-bold text-skin-inverted">Sharuco</span>
+                                <x-icon.sharuco class="h-5 w-auto text-gray-900" />
+                                <span class="ml-1 text-xl font-bold text-gray-900">Sharuco</span>
                             </a>
                         </div>
                         <div class="mt-10 flex flex-wrap items-center">
@@ -121,16 +121,16 @@
             <div class="mt-10 lg:col-span-3 lg:mt-0">
                 <x-sticky-content class="space-y-8">
                     <div class="overflow-hidden rounded-md border border-skin-base">
-                        <div class="flex flex-wrap items-center bg-skin-card px-4 py-3 text-skin-base">
+                        <div class="flex flex-wrap items-center bg-skin-card px-4 py-3 text-gray-500 dark:text-gray-400">
                             @auth
                                 <span>Soutenir comme</span>
                                 <span class="ml-3 inline-flex items-center space-x-2 text-sm">
                                     <x-user.avatar
                                         :user="Auth::user()"
-                                        class="h-5 w-5"
+                                        class="size-5"
                                         span="-right-1 -top-1 w-3.5 h-3.5 ring-1"
                                     />
-                                    <span class="font-medium text-skin-inverted">{{ Auth::user()->username() }}</span>
+                                    <span class="font-medium text-gray-900">{{ Auth::user()->username() }}</span>
                                 </span>
                             @else
                                 <span>
@@ -145,12 +145,12 @@
                             <div class="flex items-center border-t border-skin-base bg-skin-card-muted p-4">
                                 <span class="relative inline-block">
                                     <img
-                                        class="h-10 w-10 rounded-full ring-2 ring-yellow-500"
+                                        class="size-10 rounded-full ring-2 ring-yellow-500"
                                         src="{{ Auth::user()->profile_photo_url }}"
                                         alt="{{ Auth::user()->username() }}"
                                     />
                                     <span
-                                        class="absolute -right-1 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-white ring-2 ring-yellow-500"
+                                        class="absolute -right-1 top-0 flex size-4 items-center justify-center rounded-full bg-white ring-2 ring-yellow-500"
                                     >
                                         <svg
                                             class="h-3 w-3 text-yellow-500"
@@ -166,7 +166,7 @@
                                         </svg>
                                     </span>
                                 </span>
-                                <p class="ml-4 flex-1 text-sm leading-5 text-skin-base">
+                                <p class="ml-4 flex-1 text-sm leading-5 text-gray-500 dark:text-gray-400">
                                     Voici le badge sur votre avatar que vous obtiendrez et qui indique que vous êtes un
                                     sponsor de
                                     @laravelcm.

@@ -29,27 +29,27 @@
         </div>
         <div class="mt-2">
             <a href="{{ route('articles.show', $article) }}" class="group">
-                <h4 class="font-sans text-lg font-semibold leading-7 text-skin-inverted group-hover:text-skin-primary">
+                <h4 class="font-sans text-lg font-semibold leading-7 text-gray-900 group-hover:text-primary-600">
                     {{ $article->title }}
                 </h4>
             </a>
-            <p class="mt-1 text-sm leading-5 text-skin-base">
+            <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">
                 {!! $article->excerpt(130) !!}
             </p>
             <div class="mt-3 flex items-center font-sans">
                 <div class="shrink-0">
                     <a href="{{ route('profile', $article->user->username) }}">
                         <span class="sr-only">{{ $article->user->name }}</span>
-                        <x-user.avatar :user="$article->user" class="h-10 w-10" />
+                        <x-user.avatar :user="$article->user" class="size-10" />
                     </a>
                 </div>
                 <div class="ml-3">
-                    <p class="text-sm font-medium text-skin-inverted">
+                    <p class="text-sm font-medium text-gray-900">
                         <a href="{{ route('profile', $article->user->username) }}" class="hover:underline">
                             {{ $article->user->name }}
                         </a>
                     </p>
-                    <div class="flex space-x-1 text-sm text-skin-base/60">
+                    <div class="flex space-x-1 text-sm text-gray-500 dark:text-gray-400/60">
                         <time class="capitalize" datetime="{{ $article->publishedAt()->format('Y-m-d') }}">
                             {{ $article->publishedAt()->isoFormat('LL') }}
                         </time>

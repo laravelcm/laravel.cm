@@ -2,7 +2,7 @@
     @if ($model->getReactionsSummary()->isEmpty())
         <button
             @click="showReactions = ! showReactions"
-            class="flex items-center text-sm leading-5 text-skin-base hover:underline focus:outline-none focus:ring-0"
+            class="flex items-center text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none focus:ring-0"
         >
             @if ($withPlaceHolder)
                 Soyez le premier à réagir
@@ -14,7 +14,7 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="ml-1.5 h-5 w-5"
+                class="ml-1.5 size-5"
             >
                 <path
                     stroke-linecap="round"
@@ -34,7 +34,7 @@
             <div class="flex items-center justify-center space-x-2">
                 @foreach ($model->getReactionsSummary() as $reaction)
                     <img
-                        class="h-4 w-4"
+                        class="size-4"
                         src="{{ asset("/images/reactions/{$reaction->name}.svg") }}"
                         alt="{{ $reaction->name }} emoji"
                     />
@@ -64,63 +64,63 @@
         style="display: none"
     >
         <div class="rounded-md bg-skin-card p-3 pt-4 shadow-lg">
-            <h5 class="ml-1 text-xs font-medium text-skin-base">Sélectionnez Une:</h5>
+            <h5 class="ml-1 text-xs font-medium text-gray-500 dark:text-gray-400">Sélectionnez Une:</h5>
             <div class="reactions no-load mt-2 grid grid-cols-4 gap-2">
                 <button
                     type="button"
-                    class="col-span-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
+                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
                     wire:click="userReacted('clap')"
                 >
-                    <img src="{{ asset('/images/reactions/clap.svg') }}" class="h-5 w-5" alt="clap emoji" />
+                    <img src="{{ asset('/images/reactions/clap.svg') }}" class="size-5" alt="clap emoji" />
                 </button>
                 <button
                     type="button"
-                    class="col-span-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
+                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
                     wire:click="userReacted('fire')"
                 >
-                    <img src="{{ asset('/images/reactions/fire.svg') }}" class="h-5 w-5" alt="fire emoji" />
+                    <img src="{{ asset('/images/reactions/fire.svg') }}" class="size-5" alt="fire emoji" />
                 </button>
                 <button
                     type="button"
-                    class="col-span-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
+                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
                     wire:click="userReacted('handshake')"
                 >
-                    <img src="{{ asset('/images/reactions/handshake.svg') }}" class="h-5 w-5" alt="handshake emoji" />
+                    <img src="{{ asset('/images/reactions/handshake.svg') }}" class="size-5" alt="handshake emoji" />
                 </button>
                 <button
                     type="button"
-                    class="col-span-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
+                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
                     wire:click="userReacted('joy')"
                 >
-                    <img src="{{ asset('/images/reactions/joy.svg') }}" class="h-5 w-5" alt="joy emoji" />
+                    <img src="{{ asset('/images/reactions/joy.svg') }}" class="size-5" alt="joy emoji" />
                 </button>
                 <button
                     type="button"
-                    class="col-span-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
+                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
                     wire:click="userReacted('love')"
                 >
-                    <img src="{{ asset('/images/reactions/love.svg') }}" class="h-5 w-5" alt="love emoji" />
+                    <img src="{{ asset('/images/reactions/love.svg') }}" class="size-5" alt="love emoji" />
                 </button>
                 <button
                     type="button"
-                    class="col-span-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
+                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
                     wire:click="userReacted('money')"
                 >
-                    <img src="{{ asset('/images/reactions/money.svg') }}" class="h-5 w-5" alt="money emoji" />
+                    <img src="{{ asset('/images/reactions/money.svg') }}" class="size-5" alt="money emoji" />
                 </button>
                 <button
                     type="button"
-                    class="col-span-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
+                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
                     wire:click="userReacted('party')"
                 >
-                    <img src="{{ asset('/images/reactions/party.svg') }}" class="h-5 w-5" alt="party emoji" />
+                    <img src="{{ asset('/images/reactions/party.svg') }}" class="size-5" alt="party emoji" />
                 </button>
                 <button
                     type="button"
-                    class="col-span-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
+                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
                     wire:click="userReacted('pray')"
                 >
-                    <img src="{{ asset('/images/reactions/pray.svg') }}" class="h-5 w-5" alt="pray" />
+                    <img src="{{ asset('/images/reactions/pray.svg') }}" class="size-5" alt="pray" />
                 </button>
             </div>
         </div>

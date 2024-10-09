@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 return [
 
+    'site_name' => 'Laravel Cameroun',
+    'site_description' => 'Bienvenue sur le site de la communauté des développeurs PHP et Laravel du Cameroun, le plus gros rassemblement de développeurs au Cameroun.',
     'by' => 'par',
     'soon' => 'Bientôt',
     'navigation' => [

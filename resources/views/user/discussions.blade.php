@@ -8,7 +8,7 @@
 
             <x-user.breadcrumb section="Discussions" />
 
-            <h2 class="font-heading text-xl font-bold leading-7 text-skin-inverted sm:truncate sm:text-2xl">
+            <h2 class="font-heading text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-2xl">
                 Discussions
             </h2>
         </div>
@@ -28,7 +28,7 @@
                     @forelse ($discussions as $discussion)
                         <x-discussions.summary :discussion="$discussion" />
                     @empty
-                        <p class="text-base text-skin-base">Vous n'avez pas encore créé de discussions.</p>
+                        <p class="text-base text-gray-500 dark:text-gray-400">Vous n'avez pas encore créé de discussions.</p>
                     @endforelse
 
                     <div class="pt-5">

@@ -9,10 +9,10 @@
             type="button"
             wire:click="sortBy('recent')"
             aria-current="{{ $selectedSortBy === 'recent' ? 'page' : 'false' }}"
-            class="{{ $selectedSortBy === 'recent' ? 'bg-skin-link text-skin-inverted' : 'text-skin-base' }} group flex w-full items-center rounded-md px-3 py-2 font-sans text-sm font-medium"
+            class="{{ $selectedSortBy === 'recent' ? 'bg-skin-link text-gray-900' : 'text-gray-500 dark:text-gray-400' }} group flex w-full items-center rounded-md px-3 py-2 font-sans text-sm font-medium"
         >
             <svg
-                class="-ml-1 mr-3 h-6 w-6 shrink-0 text-skin-base"
+                class="-ml-1 mr-3 size-6 shrink-0 text-gray-500 dark:text-gray-400"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -40,10 +40,10 @@
             type="button"
             wire:click="sortBy('popular')"
             aria-current="{{ $selectedSortBy === 'popular' ? 'page' : 'false' }}"
-            class="{{ $selectedSortBy === 'popular' ? 'bg-skin-link text-skin-inverted' : 'text-skin-base' }} group flex w-full items-center rounded-md px-3 py-2 font-sans text-sm font-medium"
+            class="{{ $selectedSortBy === 'popular' ? 'bg-skin-link text-gray-900' : 'text-gray-500 dark:text-gray-400' }} group flex w-full items-center rounded-md px-3 py-2 font-sans text-sm font-medium"
         >
             <svg
-                class="-ml-1 mr-3 h-6 w-6 shrink-0 text-skin-muted group-hover:text-skin-base"
+                class="-ml-1 mr-3 size-6 shrink-0 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -65,10 +65,10 @@
             type="button"
             wire:click="sortBy('trending')"
             aria-current="{{ $selectedSortBy === 'trending' ? 'page' : 'false' }}"
-            class="{{ $selectedSortBy === 'trending' ? 'bg-skin-link text-skin-inverted' : 'text-skin-base' }} group flex w-full items-center rounded-md px-3 py-2 font-sans text-sm font-medium"
+            class="{{ $selectedSortBy === 'trending' ? 'bg-skin-link text-gray-900' : 'text-gray-500 dark:text-gray-400' }} group flex w-full items-center rounded-md px-3 py-2 font-sans text-sm font-medium"
         >
             <svg
-                class="-ml-1 mr-3 h-6 w-6 shrink-0 text-skin-muted group-hover:text-skin-base"
+                class="-ml-1 mr-3 size-6 shrink-0 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -92,7 +92,7 @@
                 type="button"
                 wire:click="sortBy('recent')"
                 aria-current="{{ $selectedSortBy === 'recent' ? 'page' : 'false' }}"
-                class="{{ $selectedSortBy === 'recent' ? 'text-skin-inverted' : 'text-skin-base hover:text-skin-inverted' }} group relative w-full min-w-0 flex-1 overflow-hidden rounded-l-lg bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
+                class="{{ $selectedSortBy === 'recent' ? 'text-gray-900' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900' }} group relative w-full min-w-0 flex-1 overflow-hidden rounded-l-lg bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
             >
                 <span>Récents</span>
                 <span
@@ -105,7 +105,7 @@
                 type="button"
                 wire:click="sortBy('popular')"
                 aria-current="{{ $selectedSortBy === 'popular' ? 'page' : 'false' }}"
-                class="{{ $selectedSortBy === 'popular' ? 'text-skin-inverted' : 'text-skin-base hover:text-skin-inverted' }} group relative w-full min-w-0 flex-1 overflow-hidden bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
+                class="{{ $selectedSortBy === 'popular' ? 'text-gray-900' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900' }} group relative w-full min-w-0 flex-1 overflow-hidden bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
             >
                 <span>Populaire</span>
                 <span
@@ -118,7 +118,7 @@
                 type="button"
                 wire:click="sortBy('trending')"
                 aria-current="{{ $selectedSortBy === 'trending' ? 'page' : 'false' }}"
-                class="{{ $selectedSortBy === 'trending' ? 'text-skin-inverted' : 'text-skin-base hover:text-skin-inverted' }} group relative w-full min-w-0 flex-1 overflow-hidden rounded-r-lg bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
+                class="{{ $selectedSortBy === 'trending' ? 'text-gray-900' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900' }} group relative w-full min-w-0 flex-1 overflow-hidden rounded-r-lg bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
             >
                 <span>Tendance</span>
                 <span

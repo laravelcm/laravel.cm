@@ -11,10 +11,10 @@
                 <div>
                     @csrf
                     @method('PUT')
-                    <h3 class="text-lg font-medium leading-6 text-skin-inverted">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">
                         {{ __('Mot de passe') }}
                     </h3>
-                    <p class="mt-1 max-w-2xl text-sm font-normal text-skin-base">
+                    <p class="mt-1 max-w-2xl text-sm font-normal text-gray-500 dark:text-gray-400">
                         {{ __('Vous devez renseigner votre mot de passe actuel pour changer de mot de passe.') }}
                     </p>
                 </div>
@@ -62,10 +62,10 @@
         </form>
         <div class="mt-5 space-y-8 divide-y divide-skin-base sm:col-span-2 sm:mt-0 sm:space-y-5">
             <div>
-                <h3 class="text-lg font-medium leading-6 text-skin-inverted">
+                <h3 class="text-lg font-medium leading-6 text-gray-900">
                     {{ __('Appareils connectés') }}
                 </h3>
-                <p class="mt-1 max-w-2xl text-sm font-normal text-skin-base">
+                <p class="mt-1 max-w-2xl text-sm font-normal text-gray-500 dark:text-gray-400">
                     {{ __('Nous vous avertirons via :email en cas d\'activité inhabituelle sur votre compte.', ['email' => Auth::user()->email]) }}
                 </p>
             </div>
@@ -80,7 +80,7 @@
                                     viewBox="0 0 24 24"
                                     stroke-width="1.5"
                                     stroke="currentColor"
-                                    class="h-6 w-6 text-skin-muted"
+                                    class="size-6 text-skin-muted"
                                 >
                                     <path
                                         stroke-linecap="round"
@@ -95,7 +95,7 @@
                                     viewBox="0 0 24 24"
                                     stroke-width="1.5"
                                     stroke="currentColor"
-                                    class="h-6 w-6 text-skin-muted"
+                                    class="size-6 text-skin-muted"
                                 >
                                     <path
                                         stroke-linecap="round"
@@ -106,7 +106,7 @@
                             @endif
                             <div class="flex-1 space-y-1">
                                 <div class="flex items-center space-x-2">
-                                    <h3 class="font-sans text-sm font-medium text-skin-inverted">
+                                    <h3 class="font-sans text-sm font-medium text-gray-900">
                                         {{ $session->agent->browser() }} sur {{ $session->agent->platform() }}
                                     </h3>
                                     @if ($session->is_current_device)
@@ -124,7 +124,7 @@
                                         </span>
                                     @endif
                                 </div>
-                                <p class="font-sans text-sm text-skin-base">
+                                <p class="font-sans text-sm text-gray-500 dark:text-gray-400">
                                     @if ($session->location)
                                         {{ $session->location->cityName }}, {{ $session->location->countryName }} •
                                         <time datetime="{{ $session->last_active }}">

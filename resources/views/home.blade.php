@@ -8,14 +8,14 @@
                 <svg
                     viewBox="0 0 1113 440"
                     aria-hidden="true"
-                    class="logo-dark absolute left-1/2 top-0 ml-[-24rem] w-[70.5625rem] fill-green-500 opacity-30 blur-2xl"
+                    class="absolute left-1/2 top-0 ml-[-24rem] w-[70.5625rem] fill-green-500 opacity-30 blur-2xl"
                 >
                     <path d="M.016 439.5s-9.5-300 434-300S882.516 20 882.516 20V0h230.004v439.5H.016Z" />
                 </svg>
                 <svg
                     viewBox="0 0 1113 440"
                     aria-hidden="true"
-                    class="logo-white absolute left-1/2 top-0 ml-[-24rem] w-[70.5625rem] fill-yellow-50 opacity-50 blur-2xl"
+                    class="absolute left-1/2 top-0 ml-[-24rem] w-[70.5625rem] fill-yellow-50 opacity-50 blur-2xl"
                 >
                     <path d="M.016 439.5s-9.5-300 434-300S882.516 20 882.516 20V0h230.004v439.5H.016Z" />
                 </svg>
@@ -23,61 +23,59 @@
         </div>
         <div class="mx-auto max-w-3xl px-4 pb-16 pt-28 sm:pt-32 lg:pt-40">
             <div class="flex justify-center">
-                <a
+                <x-link
                     href="{{ route('sponsors') }}"
                     class="inline-flex items-center rounded-full bg-green-700 p-1 pr-2 font-sans text-white sm:text-base lg:text-sm xl:text-base"
                 >
                     <span class="rounded-full bg-flag-green px-3 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white">
-                        ⚡️ Sponsor
+                        ⚡️ {{ __('pages/home.sponsor.title') }}
                     </span>
                     <span class="ml-4 hidden text-sm sm:block">
-                        Soutenez Laravel Cameroun aujourd'hui en sponsorisant
+                        {{ __('pages/home.sponsor.description') }}
                     </span>
-                    <span class="ml-4 text-sm sm:hidden">Soutenez Laravel Cameroun</span>
-                    <x-heroicon-s-chevron-right class="ml-2 h-5 w-5 text-white" aria-hidden="true" />
-                </a>
+                    <span class="ml-4 text-sm sm:hidden">
+                        {{ __('pages/home.sponsor.description_small') }}
+                    </span>
+                    <x-heroicon-s-chevron-right class="ml-2 size-5 text-white" aria-hidden="true" />
+                </x-link>
             </div>
             <div class="mt-10 text-center">
-                <h1 class="font-heading text-4xl font-medium tracking-tight text-skin-primary sm:leading-none lg:text-6xl">
-                    Laravel Cameroun
+                <h1 class="font-heading text-4xl font-medium tracking-tight text-primary-600 sm:leading-none lg:text-6xl">
+                    {{ __('global.site_name') }}
                 </h1>
-                <p class="mt-3 text-base text-skin-inverted sm:mt-5 sm:text-lg lg:text-xl">
-                    Bienvenue sur le site de la communauté des développeurs PHP et Laravel du Cameroun, le plus gros
-                    rassemblement de développeurs au Cameroun.
+                <p class="mt-3 text-base text-gray-700 dark:text-white sm:mt-5 sm:text-lg">
+                    {{ __('global.site_description') }}
                 </p>
-                <div class="mt-10 gap-x-6 sm:flex sm:items-center sm:justify-center">
+                <div class="mt-10 gap-4 sm:flex sm:items-center sm:justify-center">
                     @auth
-                        <x-button :link="route('forum.new')" class="w-full text-base font-medium sm:w-auto">
-                            Lancer un thread
-                        </x-button>
+                        <x-buttons.primary :link="route('forum.new')" class="w-full sm:w-auto">
+                            {{ __('actions.new_thread') }}
+                        </x-buttons.primary>
                     @else
-                        <x-button :link="route('login')" class="w-full text-base font-medium sm:w-auto">
-                            Rejoindre la communauté
-                        </x-button>
+                        <x-buttons.primary :link="route('login')" class="w-full sm:w-auto">
+                            {{ __('pages/home.join_community') }}
+                        </x-buttons.primary>
                     @endauth
-                    <x-default-button
-                        :link="route('forum.index')"
-                        class="mt-3 w-full text-base font-medium sm:ml-3 sm:mt-0 sm:inline-flex sm:w-auto sm:shrink-0 sm:items-center"
-                    >
-                        Visiter le Forum
-                    </x-default-button>
+                    <x-buttons.default :link="route('forum.index')">
+                        {{ __('pages/home.visit_forum') }}
+                    </x-buttons.default>
                 </div>
             </div>
         </div>
         <div class="mx-auto max-w-7xl px-4 py-10 lg:py-12 xl:pb-14">
-            <p class="text-center text-lg font-medium leading-8 text-skin-inverted-muted">
+            <p class="text-center text-lg font-medium leading-8 text-gray-700 dark:text-gray-300">
                 Nous travaillons avec d’autres communautés et startups
             </p>
             <div class="mt-5 flex flex-wrap items-center justify-center gap-8">
                 <div class="flex items-center justify-center px-2">
                     <a href="https://laravelshopper.dev" target="_blank" class="flex items-center">
                         <img
-                            class="logo-white h-12"
+                            class="h-12 dark:hidden"
                             src="{{ asset('/images/sponsors/shopper-logo.svg') }}"
                             alt="Laravel Shopper"
                         />
                         <img
-                            class="logo-dark h-12"
+                            class="hidden h-12 dark:block"
                             src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}"
                             alt="Laravel Shopper"
                         />
@@ -85,18 +83,18 @@
                 </div>
                 <div class="flex items-center justify-center px-2">
                     <a href="https://gdg.community.dev/gdg-douala" class="flex items-center" target="_blank">
-                        <x-icon.gdg class="h-7 text-skin-inverted" />
+                        <x-icon.gdg class="h-7 text-gray-900 dark:text-white" />
                     </a>
                 </div>
                 <div class="flex items-center justify-center px-2">
                     <a href="https://notchpay.co" class="flex items-center" target="_blank">
-                        <x-icon.notchpay class="h-8 w-auto text-skin-inverted" />
+                        <x-icon.notchpay class="h-8 w-auto text-gray-900 dark:text-white" />
                     </a>
                 </div>
                 <div class="flex items-center justify-center px-2">
                     <a href="https://sharuco.lndev.me" class="flex items-center" target="_blank">
-                        <x-icon.sharuco class="h-7 w-auto text-skin-inverted" />
-                        <span class="ml-1 text-2xl font-bold text-skin-inverted">Sharuco</span>
+                        <x-icon.sharuco class="h-7 w-auto text-gray-900 dark:text-white" />
+                        <span class="ml-1 text-2xl font-bold text-gray-900 dark:text-white">Sharuco</span>
                     </a>
                 </div>
             </div>
@@ -136,10 +134,10 @@
                 </div>
 
                 <div class="mt-10 flex items-center justify-center sm:mt-12 xl:mt-16">
-                    <x-button :link="route('articles')">
+                    <x-buttons.primary :link="route('articles')">
                         Voir tous les articles
-                        <x-heroicon-o-arrow-long-right class="ml-2 h-5 w-5" />
-                    </x-button>
+                        <x-heroicon-o-arrow-long-right class="ml-2 size-5" />
+                    </x-buttons.primary>
                 </div>
             </div>
 
@@ -152,16 +150,16 @@
                     <div class="mt-10 grid gap-10 lg:mt-12 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-12">
                         @foreach ($latestThreads as $thread)
                             <div>
-                                <div class="flex items-center font-sans text-skin-base">
+                                <div class="flex items-center font-sans text-gray-500 dark:text-gray-400">
                                     <a
                                         href="{{ route('profile', $thread->user->username) }}"
                                         class="inline-flex items-center hover:underline"
                                     >
                                         <x-user.avatar
                                             :user="$thread->user"
-                                            class="h-6 w-6"
+                                            class="size-6"
                                             container="mr-1.5"
-                                            span="-right-1 -top-1 w-4 h-4 ring-1"
+                                            span="-right-1 -top-1 size-4 ring-1"
                                         />
                                         <span class="font-sans">{{ '@' . $thread->user->username }}</span>
                                     </a>
@@ -178,10 +176,10 @@
                                     </span>
                                 </div>
                                 <a href="{{ route('forum.show', $thread) }}" class="mt-3 block">
-                                    <p class="font-sans text-xl font-medium text-skin-inverted">
+                                    <p class="font-sans text-xl font-medium text-gray-900">
                                         {{ $thread->subject() }}
                                     </p>
-                                    <p class="mt-3 text-base font-normal text-skin-base">
+                                    <p class="mt-3 text-base font-normal text-gray-500 dark:text-gray-400">
                                         {!! $thread->excerpt() !!}
                                     </p>
                                 </a>
@@ -198,10 +196,10 @@
                     </div>
 
                     <div class="mt-10 flex items-center justify-center sm:mt-12 xl:mt-16">
-                        <x-button :link="route('forum.index')">
+                        <x-buttons.primary :link="route('forum.index')">
                             Voir tous les sujets
-                            <x-heroicon-o-arrow-long-right class="ml-2 h-5 w-5" />
-                        </x-button>
+                            <x-heroicon-o-arrow-long-right class="ml-2 size-5" />
+                        </x-buttons.primary>
                     </div>
                 </div>
             @endif
@@ -216,51 +214,51 @@
                     @foreach ($latestDiscussions as $discussion)
                         <div>
                             <div class="flex items-center font-sans text-sm text-skin-muted">
-                                <a class="shrink-0" href="/user/{{ $discussion->user->username }}">
+                                <x-link class="shrink-0" href="/user/{{ $discussion->user->username }}">
                                     <x-user.avatar
                                         :user="$discussion->user"
-                                        class="h-6 w-6"
+                                        class="size-6"
                                         container="mr-1.5"
-                                        span="-right-1 -top-1 w-4 h-4 ring-1"
+                                        span="-right-1 -top-1 size-4 ring-1"
                                     />
-                                </a>
+                                </x-link>
                                 <span class="ml-2 pr-1">Posté par</span>
                                 <div class="flex items-center space-x-1">
-                                    <a
+                                    <x-link
                                         href="{{ route('profile', $discussion->user->username) }}"
-                                        class="text-skin-inverted hover:underline"
+                                        class="text-gray-900 hover:underline"
                                     >
                                         {{ $discussion->user->name }}
-                                    </a>
+                                    </x-link>
                                     <span aria-hidden="true">&middot;</span>
                                     <time-ago time="{{ $discussion->created_at->getTimestamp() }}" />
                                 </div>
                             </div>
-                            <a href="{{ route('discussions.show', $discussion) }}" class="mt-2 block">
-                                <p class="text-xl font-semibold text-skin-inverted">
+                            <x-link :href="route('discussions.show', $discussion)" class="mt-2 block">
+                                <p class="text-xl font-semibold text-gray-900">
                                     {{ $discussion->title }}
                                 </p>
-                                <p class="mt-3 text-base text-skin-base">
+                                <p class="mt-3 text-base text-gray-500 dark:text-gray-400">
                                     {!! $discussion->excerpt() !!}
                                 </p>
-                            </a>
+                            </x-link>
                             <div class="mt-3">
-                                <a
-                                    href="{{ route('discussions.show', $discussion) }}"
+                                <x-link
+                                    :href="route('discussions.show', $discussion)"
                                     class="text-base font-medium text-flag-green hover:text-green-500 hover:underline"
                                 >
                                     Lire la discussion
-                                </a>
+                                </x-link>
                             </div>
                         </div>
                     @endforeach
                 </div>
 
                 <div class="mt-10 flex items-center justify-center sm:mt-12 xl:mt-16">
-                    <x-button :link="route('discussions.index')">
+                    <x-buttons.primary :link="route('discussions.index')">
                         Voir toutes les discussions
-                        <x-heroicon-o-arrow-long-right class="ml-2 h-5 w-5" />
-                    </x-button>
+                        <x-heroicon-o-arrow-long-right class="ml-2 size-5" />
+                    </x-buttons.primary>
                 </div>
             </div>
         </div>
@@ -290,9 +288,9 @@
                 </p>
                 <p class="mt-5 text-lg text-gray-400">
                     <span class="text-white">
-                        <span class="italic text-skin-primary">"</span>
+                        <span class="italic text-primary-600">"</span>
                         Tout le monde enseigne, tout le monde apprend
-                        <span class="italic text-skin-primary">"</span>
+                        <span class="italic text-primary-600">"</span>
                     </span>
                     . Tel est l'esprit qui est derrière la communauté. Une communauté qui se veut grandissante et qui
                     donne la possibilité à tout le monde de partager ses connaissances et d'apprendre.
@@ -349,7 +347,7 @@
                                 class="inline-flex items-center space-x-2 rounded-md bg-yellow-100 px-2 py-0.5 text-yellow-600"
                             >
                                 <svg
-                                    class="t h-5 w-5"
+                                    class="t size-5"
                                     fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -361,11 +359,11 @@
                                 <h2 class="font-heading text-lg font-semibold">Premium</h2>
                             </div>
                             <h4
-                                class="mt-2 font-heading text-3xl font-bold leading-8 tracking-tight text-skin-inverted sm:text-4xl"
+                                class="mt-2 font-heading text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl"
                             >
                                 Accès illimité avec un abonnement premium
                             </h4>
-                            <p class="mt-4 max-w-2xl text-xl text-skin-base lg:mx-auto">
+                            <p class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400 lg:mx-auto">
                                 Devenir premium c'est soutenir la communauté, les nouveaux contenus chaque semaine et
                                 accéder à du contenu exclusif pour apprendre et progresser.
                             </p>
@@ -378,19 +376,19 @@
                                     class="relative flex flex-col rounded-2xl border border-skin-base bg-skin-card/50 p-8 shadow-sm backdrop-blur-sm"
                                 >
                                     <div class="flex-1">
-                                        <h3 class="text-xl font-semibold text-skin-inverted">
+                                        <h3 class="text-xl font-semibold text-gray-900">
                                             {{ $plan->title }}
                                         </h3>
                                         @if ($plan->slug === 'le-pro')
                                             <p
                                                 class="absolute top-0 inline-flex -translate-y-1/2 transform items-center rounded-full bg-flag-yellow px-4 py-1.5 text-sm font-semibold text-yellow-900"
                                             >
-                                                <x-untitledui-star-06 class="mr-2 h-5 w-5" />
+                                                <x-untitledui-star-06 class="mr-2 size-5" />
                                                 Populaire
                                             </p>
                                         @endif
 
-                                        <p class="mt-4 flex items-baseline text-skin-inverted">
+                                        <p class="mt-4 flex items-baseline text-gray-900">
                                             <span
                                                 class="text-4xl font-bold tracking-tight"
                                                 x-data="{ price: 0 }"
@@ -406,15 +404,15 @@
                                             @foreach ($plan->features as $feature)
                                                 <li class="flex">
                                                     <x-heroicon-o-check
-                                                        class="h-6 w-6 flex-shrink-0 text-primary-500"
+                                                        class="size-6 flex-shrink-0 text-primary-500"
                                                     />
-                                                    <span class="ml-3 text-skin-base">{{ $feature->name }}</span>
+                                                    <span class="ml-3 text-gray-500 dark:text-gray-400">{{ $feature->name }}</span>
                                                 </li>
                                             @endforeach
                                         </ul>
                                     </div>
 
-                                    <x-button link="#" class="mt-10 w-full">Souscrire Maintenant</x-button>
+                                    <x-buttons.primary link="#" class="mt-10 w-full">Souscrire Maintenant</x-buttons.primary>
                                 </div>
                             @endforeach
                         </div>

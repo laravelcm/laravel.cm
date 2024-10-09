@@ -4,10 +4,10 @@
             <div>
                 <x-status-message class="mb-5" />
 
-                <h2 class="text-center font-heading text-3xl font-extrabold text-skin-inverted sm:text-left">
+                <h2 class="text-center font-heading text-3xl font-extrabold text-gray-900 sm:text-left">
                     Réinitialisation du mot de passe
                 </h2>
-                <div class="mt-4 text-sm text-skin-base">
+                <div class="mt-4 text-sm text-gray-500 dark:text-gray-400">
                     Mot de passe oublié ? Aucun problème. Communiquez-nous simplement votre adresse e-mail et nous vous
                     enverrons par e-mail un lien de réinitialisation de mot de passe qui vous permettra d'en choisir un
                     nouveau.

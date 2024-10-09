@@ -10,7 +10,7 @@
             @if ($errors->has($name))aria-invalid="true"@endif
             {{
                 $attributes->class([
-                    'block w-full rounded-md border-skin-input bg-skin-input text-skin-base placeholder-skin-input shadow-sm focus:border-flag-green focus:placeholder-skin-input-focus focus:outline-none focus:ring-flag-green sm:text-sm',
+                    'block w-full rounded-md border-skin-input bg-skin-input text-gray-500 dark:text-gray-400 placeholder-skin-input shadow-sm focus:border-flag-green focus:placeholder-skin-input-focus focus:outline-none focus:ring-flag-green sm:text-sm',
                     'block w-full min-w-0 flex-1 rounded-none rounded-r-md' => $attributes->get('leading-addon'),
                     'pl-16 sm:pl-14' => $attributes->get('inline-addon'),
                     'pl-10' => $attributes->get('leading-icon') || $attributes->get('isPhone'),
@@ -21,7 +21,7 @@
 
         @if ($errors->has($name))
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                <x-untitledui-alert-triangle class="h-5 w-5 text-red-500" />
+                <x-untitledui-alert-triangle class="size-5 text-red-500" />
             </div>
         @endif
     </div>

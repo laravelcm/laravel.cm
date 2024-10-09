@@ -1,7 +1,7 @@
 <x-app-layout title="Foire aux Questions">
     <x-container class="py-10">
         <div class="mb-14">
-            <h2 class="font-heading text-3xl font-extrabold text-skin-inverted lg:text-4xl">Foire aux questions 🤔</h2>
+            <h2 class="font-heading text-3xl font-extrabold text-gray-900 lg:text-4xl">Foire aux questions 🤔</h2>
             <p class="mt-2 text-sm font-normal text-skin-muted lg:text-base">
                 Certaines d'entre elles ne sont pas demandées fréquemment, mais elles sont toujours bonnes à savoir.
             </p>
@@ -10,7 +10,7 @@
         <div id="faq-questions" class="-mx-2 -mt-4 flex text-base">
             <div class="w-full flex-none space-y-4 px-2 md:hidden">
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Qui peut publier des articles/sujets sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Qui peut publier sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Où puis-je retrouver la communauté ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Comment se passe le sponsoring sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Puis-je participer à un podcast ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Comment changer mon nom d'utilisateur Twitter/GitHub ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">Comment devenir Premium ?</h3>
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">Comment devenir Premium ?</h3>
                     <div class="prose prose-sm leading-5">
                         <p>
                             Devenir premium sur Laravel.cm, c'est soutenir la création de nouveaux contenus et accéder à
@@ -138,7 +138,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Existe-t-il un guide sur l'utilisation de l'éditeur Markdown ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -153,7 +153,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">Comment supprimer mon compte ?</h3>
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">Comment supprimer mon compte ?</h3>
                     <div class="prose prose-sm leading-5">
                         <p>
                             Vous trouverez la possibilité de supprimer votre compte dans vos paramètres.
@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Quelles technologies utilisées Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -179,7 +179,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">Comment signaler un abus ?</h3>
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">Comment signaler un abus ?</h3>
                     <div class="prose prose-sm leading-5">
                         <p>
                             Pour un commentaire spécifique : accédez au commentaire et cliquez sur la flèche déroulante
@@ -196,7 +196,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Puis-je suivre les Flux RSS sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -209,7 +209,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Puis-je poster où trouver un job sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -228,7 +228,7 @@
 
             <div class="hidden w-1/2 flex-none space-y-4 px-2 md:block lg:hidden">
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Qui peut publier sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -246,7 +246,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Où puis-je retrouver la communauté ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -272,7 +272,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Comment se passe le sponsoring sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -289,7 +289,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Puis-je participer à un podcast ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -305,7 +305,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Comment changer mon nom d'utilisateur Twitter/GitHub ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -319,7 +319,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">Comment devenir Premium ?</h3>
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">Comment devenir Premium ?</h3>
                     <div class="prose prose-sm leading-5">
                         <p>
                             Devenir premium sur Laravel.cm, c'est soutenir la création de nouveaux contenus et accéder à
@@ -334,7 +334,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Existe-t-il un guide sur l'utilisation de l'éditeur Markdown ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -352,7 +352,7 @@
 
             <div class="hidden w-1/2 flex-none space-y-4 px-2 md:block lg:hidden">
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         {{ __('Qui peut publier des articles/sujets sur Laravel.cm ?') }}
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -374,7 +374,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">Comment supprimer mon compte ?</h3>
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">Comment supprimer mon compte ?</h3>
                     <div class="prose prose-sm leading-5">
                         <p>
                             Vous trouverez la possibilité de supprimer votre compte dans vos paramètres.
@@ -384,7 +384,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Quelles technologies utilisées Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -400,7 +400,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">Comment signaler un abus ?</h3>
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">Comment signaler un abus ?</h3>
                     <div class="prose prose-sm leading-5">
                         <p>
                             Pour un commentaire spécifique : accédez au commentaire et cliquez sur la flèche déroulante
@@ -419,7 +419,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Puis-je suivre les Flux RSS sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -432,7 +432,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Puis-je poster où trouver un job sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -451,7 +451,7 @@
 
             <div class="hidden w-1/3 flex-none space-y-4 px-2 lg:block">
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Qui peut publier sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -469,7 +469,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Où puis-je retrouver la communauté ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -495,7 +495,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Comment se passe le sponsoring sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -512,7 +512,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Puis-je participer à un podcast ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -531,7 +531,7 @@
 
             <div class="hidden w-1/3 flex-none space-y-4 px-2 lg:block">
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Comment changer mon nom d'utilisateur Twitter/GitHub ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -545,7 +545,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">Comment devenir Premium ?</h3>
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">Comment devenir Premium ?</h3>
                     <div class="prose prose-sm leading-5">
                         <p>
                             Devenir premium sur Laravel.cm, c'est soutenir la création de nouveaux contenus et accéder à
@@ -560,7 +560,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Existe-t-il un guide sur l'utilisation de l'éditeur Markdown ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -575,7 +575,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">Comment supprimer mon compte ?</h3>
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">Comment supprimer mon compte ?</h3>
                     <div class="prose prose-sm leading-5">
                         <p>
                             Vous trouverez la possibilité de supprimer votre compte dans vos paramètres.
@@ -585,7 +585,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Quelles technologies utilisées Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -604,7 +604,7 @@
 
             <div class="hidden w-1/3 flex-none space-y-4 px-2 lg:block">
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         {{ __('Qui peut publier des articles/sujets sur Laravel.cm ?') }}
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -626,7 +626,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">Comment signaler un abus ?</h3>
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">Comment signaler un abus ?</h3>
                     <div class="prose prose-sm leading-5">
                         <p>
                             Pour un commentaire spécifique : accédez au commentaire et cliquez sur la flèche déroulante
@@ -643,7 +643,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Puis-je suivre les Flux RSS sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">
@@ -656,7 +656,7 @@
                     </div>
                 </div>
                 <div class="rounded-xl bg-skin-card p-6 ring-1 ring-inset ring-gray-900/10">
-                    <h3 class="mb-2 font-heading font-semibold text-skin-inverted">
+                    <h3 class="mb-2 font-heading font-semibold text-gray-900">
                         Puis-je poster où trouver un job sur Laravel.cm ?
                     </h3>
                     <div class="prose prose-sm leading-5">

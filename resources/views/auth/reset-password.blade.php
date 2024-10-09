@@ -2,7 +2,7 @@
     <div class="flex min-h-full items-center justify-center py-16 sm:py-24">
         <div class="w-full max-w-md">
             <div>
-                <h2 class="text-center font-heading text-3xl font-extrabold text-skin-inverted sm:text-left">
+                <h2 class="text-center font-heading text-3xl font-extrabold text-gray-900 sm:text-left">
                     Réinitialiser votre mot de passe
                 </h2>
             </div>

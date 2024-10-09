@@ -4,7 +4,7 @@
             <x-user.breadcrumb section="Notifications" />
 
             <h2
-                class="inline-flex items-center gap-x-2 font-heading text-xl font-bold leading-7 text-skin-inverted sm:truncate sm:text-2xl"
+                class="inline-flex items-center gap-x-2 font-heading text-xl font-bold leading-7 text-gray-900 sm:truncate sm:text-2xl"
             >
                 Notifications
                 <livewire:notification-count />

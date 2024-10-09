@@ -2,8 +2,8 @@
     <x-container>
         <header class="py-8 sm:py-10 lg:grid lg:grid-cols-2 lg:gap-x-12 lg:py-12">
             <div class="sm:text-center md:mx-auto md:max-w-2xl lg:mx-0 lg:text-left">
-                <h1 class="text-skin-inverted">
-                    <span class="block text-sm font-semibold text-skin-primary sm:text-base lg:text-sm xl:text-base">
+                <h1 class="text-gray-900">
+                    <span class="block text-sm font-semibold text-primary-600 sm:text-base lg:text-sm xl:text-base">
                         À propos
                     </span>
                     <span
@@ -14,11 +14,11 @@
                 </h1>
             </div>
             <div class="mt-8 sm:text-center lg:text-left">
-                <p class="text-base font-normal leading-6 text-skin-base sm:text-lg">
-                    <span class="font-medium text-skin-inverted">
-                        <span class="italic text-skin-primary">"</span>
+                <p class="text-base font-normal leading-6 text-gray-500 dark:text-gray-400 sm:text-lg">
+                    <span class="font-medium text-gray-900">
+                        <span class="italic text-primary-600">"</span>
                         Tout le monde enseigne, tout le monde apprend
-                        <span class="italic text-skin-primary">"</span>
+                        <span class="italic text-primary-600">"</span>
                     </span>
                     . Tel est l'esprit qui est derrière la communauté. Une communauté qui se veut grandissante et qui
                     donne la possibilité à tout le monde de partager ses connaissances et d'apprendre.
@@ -44,8 +44,8 @@
         </section>
 
         <div class="mx-auto max-w-3xl py-8 sm:py-10 lg:max-w-none lg:py-12 xl:pb-20">
-            <h1 class="font-sans text-skin-inverted">
-                <span class="block text-sm font-semibold text-skin-primary sm:text-base lg:text-sm xl:text-base">
+            <h1 class="font-sans text-gray-900">
+                <span class="block text-sm font-semibold text-primary-600 sm:text-base lg:text-sm xl:text-base">
                     Notre histoire
                 </span>
                 <span class="mt-1 block font-heading text-xl font-extrabold tracking-tight sm:text-2xl xl:text-3xl">
@@ -53,7 +53,7 @@
                 </span>
             </h1>
 
-            <div class="prose prose-lg prose-green mt-5 text-skin-base lg:max-w-none">
+            <div class="prose prose-lg prose-green mt-5 text-gray-500 dark:text-gray-400 lg:max-w-none">
                 <div class="lg:grid lg:grid-cols-2 lg:gap-x-12">
                     <div>
                         <p>
@@ -73,7 +73,7 @@
                             </li>
                             <li>
                                 L'entreprise
-                                <span class="font-medium text-skin-primary">Kerawa Cameroun</span>
+                                <span class="font-medium text-primary-600">Kerawa Cameroun</span>
                                 qui a été l'un de nos sponsors.
                             </li>
                             <li>
@@ -168,15 +168,15 @@
             <div class="mt-12 border-t border-skin-base pt-12 sm:mt-14 sm:pt-14">
                 <div class="space-y-12 lg:grid lg:grid-cols-3 lg:gap-24 lg:space-y-0">
                     <div class="font-sans">
-                        <span class="text-sm font-semibold uppercase leading-5 tracking-wide text-skin-primary">
+                        <span class="text-sm font-semibold uppercase leading-5 tracking-wide text-primary-600">
                             Notre équipe
                         </span>
                         <h2
-                            class="mt-2 font-heading text-2xl font-extrabold tracking-tight text-skin-inverted sm:text-3xl"
+                            class="mt-2 font-heading text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl"
                         >
                             Équipe de direction
                         </h2>
-                        <p class="mt-5 text-lg text-skin-base">
+                        <p class="mt-5 text-lg text-gray-500 dark:text-gray-400">
                             Laravel Cameroun est une idée qui a été initiée puis transformée en une communauté par 2
                             développeurs parmi les plus influents au Cameroun.
                         </p>
@@ -193,17 +193,17 @@
                                         src="https://avatars.githubusercontent.com/u/14105989?v=4"
                                         alt="Arthur Monney"
                                     />
-                                    <div class="space-y-1 text-lg font-medium leading-6 text-skin-inverted">
+                                    <div class="space-y-1 text-lg font-medium leading-6 text-gray-900">
                                         <h3>Arthur Monney</h3>
                                         <p class="font-sans text-base text-green-600">Développeur Web Fullstack</p>
                                     </div>
                                     <div class="text-lg">
-                                        <p class="text-skin-base">
+                                        <p class="text-gray-500 dark:text-gray-400">
                                             Créateur de
                                             <a
                                                 href="https://github.com/shopperlabs/shopper"
                                                 target="_blank"
-                                                class="text-skin-primary hover:text-skin-primary-hover"
+                                                class="text-primary-600 hover:text-primary-600-hover"
                                             >
                                                 @laravelshopper
                                             </a>
@@ -217,28 +217,28 @@
                                         <li>
                                             <a
                                                 href="https://twitter.com/MonneyArthur"
-                                                class="text-skin-muted hover:text-skin-base"
+                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">Twitter</span>
-                                                <x-icon.twitter class="h-6 w-6" />
+                                                <x-icon.twitter class="size-6" />
                                             </a>
                                         </li>
                                         <li>
                                             <a
                                                 href="https://github.com/mckenziearts"
-                                                class="text-skin-muted hover:text-skin-base"
+                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">Github</span>
-                                                <x-icon.github class="h-6 w-6" />
+                                                <x-icon.github class="size-6" />
                                             </a>
                                         </li>
                                         <li>
                                             <a
                                                 href="https://www.linkedin.com/in/arthurmonney"
-                                                class="text-skin-muted hover:text-skin-base"
+                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">LinkedIn</span>
-                                                <x-icon.linkedin class="h-6 w-6" />
+                                                <x-icon.linkedin class="size-6" />
                                             </a>
                                         </li>
                                     </ul>
@@ -251,14 +251,14 @@
                                         src="https://avatars.githubusercontent.com/u/4902424?v=4"
                                         alt="Fabrice Yopa"
                                     />
-                                    <div class="space-y-1 text-lg font-medium leading-6 text-skin-inverted">
+                                    <div class="space-y-1 text-lg font-medium leading-6 text-gray-900">
                                         <h3>Fabrice Yopa</h3>
                                         <p class="font-sans text-base text-green-600">
                                             Co-Founder & CTO IS Dev Experts
                                         </p>
                                     </div>
                                     <div class="text-lg">
-                                        <p class="font-normal text-skin-base">
+                                        <p class="font-normal text-gray-500 dark:text-gray-400">
                                             CTO at
                                             @isdevexperts
                                             , Expert Lead Dev Web. Laravel Cameroon Organizer
@@ -270,28 +270,28 @@
                                         <li>
                                             <a
                                                 href="https://twitter.com/yopafabrice"
-                                                class="text-skin-muted hover:text-skin-base"
+                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">Twitter</span>
-                                                <x-icon.twitter class="h-6 w-6" />
+                                                <x-icon.twitter class="size-6" />
                                             </a>
                                         </li>
                                         <li>
                                             <a
                                                 href="https://github.com/fabriceyopa"
-                                                class="text-skin-muted hover:text-skin-base"
+                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">Github</span>
-                                                <x-icon.github class="h-6 w-6" />
+                                                <x-icon.github class="size-6" />
                                             </a>
                                         </li>
                                         <li>
                                             <a
                                                 href="https://www.linkedin.com/in/fabriceyopa"
-                                                class="text-skin-muted hover:text-skin-base"
+                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">LinkedIn</span>
-                                                <x-icon.linkedin class="h-6 w-6" />
+                                                <x-icon.linkedin class="size-6" />
                                             </a>
                                         </li>
                                     </ul>

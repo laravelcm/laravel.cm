@@ -3,14 +3,14 @@
         <div class="flex items-center space-x-3 divide-x divide-skin-light">
             <a
                 href="{{ route('articles') }}"
-                class="flex items-center font-sans text-base font-medium text-skin-primary hover:text-skin-primary-hover"
+                class="flex items-center font-sans text-base font-medium text-primary-600 hover:text-primary-600-hover"
             >
-                <x-heroicon-o-chevron-left class="mr-1.5 h-5 w-5" />
+                <x-heroicon-o-chevron-left class="mr-1.5 size-5" />
                 {{ __('Tous les articles') }}
             </a>
             <a
                 href="{{ route('dashboard') }}"
-                class="flex items-center pl-3 font-sans text-base font-medium text-skin-base"
+                class="flex items-center pl-3 font-sans text-base font-medium text-gray-500 dark:text-gray-400"
             >
                 {{ __('Mes articles') }}
             </a>
@@ -48,7 +48,7 @@
                                 x-bind:aria-expanded="open.toString()"
                             >
                                 <span class="sr-only">{{ __('Ouvrir les options') }}</span>
-                                <x-heroicon-s-chevron-down class="h-5 w-5" />
+                                <x-heroicon-s-chevron-down class="size-5" />
                             </button>
 
                             <div
@@ -74,7 +74,7 @@
                                     <button
                                         type="button"
                                         wire:click="submit"
-                                        class="block px-4 py-2 text-sm text-skin-inverted-muted hover:text-skin-inverted"
+                                        class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900"
                                         role="menuitem"
                                         tabindex="-1"
                                         id="option-menu-item-0"
@@ -85,7 +85,7 @@
                                     <button
                                         type="button"
                                         wire:click="store"
-                                        class="block px-4 py-2 text-sm text-skin-inverted-muted hover:text-skin-inverted"
+                                        class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900"
                                         role="menuitem"
                                         tabindex="-1"
                                         id="option-menu-item-1"
@@ -108,9 +108,9 @@
             <button
                 type="button"
                 @click="open = true;"
-                class="inline-flex justify-center px-4 py-2 text-skin-base hover:text-skin-muted focus:outline-none"
+                class="inline-flex justify-center px-4 py-2 text-gray-500 dark:text-gray-400 hover:text-skin-muted focus:outline-none"
             >
-                <x-heroicon-o-cog class="h-5 w-5" />
+                <x-heroicon-o-cog class="size-5" />
             </button>
         </div>
     </nav>
@@ -140,13 +140,13 @@
                         <div class="flex h-full flex-col overflow-y-scroll bg-skin-card py-6 shadow-xl lg:pb-12">
                             <div class="px-4 sm:px-6">
                                 <div class="flex items-start justify-between">
-                                    <h2 class="text-lg font-medium text-skin-inverted" id="slide-over-title">
+                                    <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
                                         {{ __('Paramètres avancés') }}
                                     </h2>
                                     <div class="ml-3 flex h-7 items-center">
                                         <button
                                             type="button"
-                                            class="rounded-md bg-skin-card text-skin-muted hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-body"
+                                            class="rounded-md bg-skin-card text-skin-muted hover:text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-body"
                                             @click="open = false"
                                         >
                                             <span class="sr-only">{{ __('Fermer') }}</span>
@@ -156,7 +156,7 @@
                                                 viewBox="0 0 24 24"
                                                 stroke-width="1.5"
                                                 stroke="currentColor"
-                                                class="h-6 w-6"
+                                                class="size-6"
                                             >
                                                 <path
                                                     stroke-linecap="round"
@@ -189,7 +189,7 @@
                                         class="mt-8 flex flex-grow items-center justify-between"
                                     >
                                         <div>
-                                            <dt class="text-sm font-semibold leading-7 text-skin-base">
+                                            <dt class="text-sm font-semibold leading-7 text-gray-500 dark:text-gray-400">
                                                 Afficher le Sommaire
                                             </dt>
                                         </div>
@@ -208,7 +208,7 @@
                                             <span class="sr-only">Afficher le sommaire</span>
                                             <span
                                                 aria-hidden="true"
-                                                class="pointer-events-none inline-block h-5 w-5 translate-x-0 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                                                class="pointer-events-none inline-block size-5 translate-x-0 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
                                                 x-state:on="Enabled"
                                                 x-state:off="Not Enabled"
                                                 :class="{ 'translate-x-5': on, 'translate-x-0': !(on) }"
@@ -226,7 +226,7 @@
                                                 x-on:keydown.escape="datePickerOpen = false"
                                                 id="published_at"
                                                 name="published_at"
-                                                class="block w-full rounded-md border-skin-input bg-skin-input text-skin-base placeholder-skin-input shadow-sm focus:border-flag-green focus:placeholder-skin-input-focus focus:outline-none focus:ring-flag-green sm:text-sm"
+                                                class="block w-full rounded-md border-skin-input bg-skin-input text-gray-500 dark:text-gray-400 placeholder-skin-input shadow-sm focus:border-flag-green focus:placeholder-skin-input-focus focus:outline-none focus:ring-flag-green sm:text-sm"
                                                 type="text"
                                                 autocomplete="off"
                                                 readonly
@@ -234,10 +234,10 @@
                                             <button
                                                 type="button"
                                                 @click="datePickerOpen =! datePickerOpen; if(datePickerOpen) { $refs.datePickerInput.focus() }"
-                                                class="absolute right-0 top-0 cursor-pointer px-3 py-2 text-skin-muted hover:text-skin-base"
+                                                class="absolute right-0 top-0 cursor-pointer px-3 py-2 text-skin-muted hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <svg
-                                                    class="h-6 w-6"
+                                                    class="size-6"
                                                     fill="none"
                                                     viewBox="0 0 24 24"
                                                     stroke="currentColor"
@@ -260,11 +260,11 @@
                                                     <div>
                                                         <span
                                                             x-text="datePickerMonthNames[datePickerMonth]"
-                                                            class="text-lg font-bold text-skin-inverted"
+                                                            class="text-lg font-bold text-gray-900"
                                                         ></span>
                                                         <span
                                                             x-text="datePickerYear"
-                                                            class="ml-1 text-lg font-normal text-skin-base"
+                                                            class="ml-1 text-lg font-normal text-gray-500 dark:text-gray-400"
                                                         ></span>
                                                     </div>
                                                     <div>
@@ -274,7 +274,7 @@
                                                             class="focus:shadow-outline inline-flex cursor-pointer rounded-full p-1 transition duration-100 ease-in-out hover:bg-skin-card focus:outline-none"
                                                         >
                                                             <svg
-                                                                class="inline-flex h-6 w-6 text-skin-muted"
+                                                                class="inline-flex size-6 text-skin-muted"
                                                                 fill="none"
                                                                 viewBox="0 0 24 24"
                                                                 stroke="currentColor"
@@ -293,7 +293,7 @@
                                                             class="focus:shadow-outline inline-flex cursor-pointer rounded-full p-1 transition duration-100 ease-in-out hover:bg-skin-card focus:outline-none"
                                                         >
                                                             <svg
-                                                                class="inline-flex h-6 w-6 text-skin-muted"
+                                                                class="inline-flex size-6 text-skin-muted"
                                                                 fill="none"
                                                                 viewBox="0 0 24 24"
                                                                 stroke="currentColor"
@@ -313,7 +313,7 @@
                                                         <div class="px-0.5">
                                                             <div
                                                                 x-text="day"
-                                                                class="text-center text-xs font-medium text-skin-inverted/80"
+                                                                class="text-center text-xs font-medium text-gray-900/80"
                                                             ></div>
                                                         </div>
                                                     </template>
@@ -334,7 +334,7 @@
                                                                 @click="datePickerDayClicked(day); $wire.set('published_at', datePickerRealValue)"
                                                                 :class="{
                                                                     'bg-skin-card': datePickerIsToday(day) == true,
-                                                                    'text-skin-base hover:bg-skin-card-gray': datePickerIsToday(day) == false && datePickerIsSelectedDate(day) == false,
+                                                                    'text-gray-500 dark:text-gray-400 hover:bg-skin-card-gray': datePickerIsToday(day) == false && datePickerIsSelectedDate(day) == false,
                                                                     'bg-primary-800 text-white hover:bg-opacity-75': datePickerIsSelectedDate(day) == true
                                                                 }"
                                                                 class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full text-center text-sm leading-none"
@@ -417,16 +417,16 @@
                 wire:model="title"
                 name="title"
                 id="title"
-                class="block h-auto w-full appearance-none border-0 bg-transparent px-0 py-4 text-3xl font-bold leading-normal text-skin-inverted placeholder-skin-input shadow-none focus:placeholder-skin-input-focus focus:ring-0 sm:text-4xl"
+                class="block h-auto w-full appearance-none border-0 bg-transparent px-0 py-4 text-3xl font-bold leading-normal text-gray-900 placeholder-skin-input shadow-none focus:placeholder-skin-input-focus focus:ring-0 sm:text-4xl"
                 placeholder="Titre de votre article..."
                 aria-label="Titre"
                 autofocus
                 autocomplete="off"
             />
             <livewire:markdown-x :content="$body" />
-            <div class="mt-6 text-right text-skin-base">
+            <div class="mt-6 text-right text-gray-500 dark:text-gray-400">
                 Temps de lecture estimé :
-                <span class="text-skin-inverted">{{ $reading_time }} min</span>
+                <span class="text-gray-900">{{ $reading_time }} min</span>
             </div>
         </div>
     </main>

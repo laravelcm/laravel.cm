@@ -9,16 +9,16 @@
                 @csrf
                 @method('PUT')
                 <div>
-                    <h3 class="text-lg font-medium leading-6 text-skin-inverted">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">
                         {{ __('Profil') }}
                     </h3>
-                    <p class="mt-1 max-w-2xl text-sm font-normal text-skin-base">
+                    <p class="mt-1 max-w-2xl text-sm font-normal text-gray-500 dark:text-gray-400">
                         {{ __('Vous trouverez ci-dessous les informations de votre profil pour votre compte.') }}
                     </p>
                 </div>
                 <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-skin-base sm:pt-5">
-                        <x-label for="username" class="text-skin-inverted-muted sm:mt-px sm:pt-2">
+                        <x-label for="username" class="text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2">
                             {{ __('Pseudo') }}
                         </x-label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-skin-base sm:pt-5">
-                        <x-label for="about" class="text-skin-inverted-muted sm:mt-px sm:pt-2">
+                        <x-label for="about" class="text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2">
                             {{ __('Bio') }}
                         </x-label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
@@ -56,7 +56,7 @@
                         class="sm:grid sm:grid-cols-3 sm:items-center sm:gap-4 sm:border-t sm:border-skin-base sm:pt-5"
                     >
                         <div class="sm:mt-px sm:pt-2">
-                            <x-label for="photo" class="text-skin-inverted-muted">{{ __('Photo') }}</x-label>
+                            <x-label for="photo" class="text-gray-700 dark:text-gray-300">{{ __('Photo') }}</x-label>
                             <p class="hidden text-sm font-normal text-skin-muted sm:block">
                                 {{ __('Celle-ci sera affiché sur votre profil.') }}
                             </p>
@@ -71,7 +71,7 @@
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-skin-base sm:pt-5">
                         <label
                             for="website"
-                            class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2"
                         >
                             {{ __('Votre site web') }}
                         </label>
@@ -91,16 +91,16 @@
             </div>
             <div class="space-y-6 pt-8 sm:space-y-5 sm:pt-10">
                 <div>
-                    <h3 class="text-lg font-medium leading-6 text-skin-inverted">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">
                         {{ __('Informations personnelles') }}
                     </h3>
-                    <p class="mt-1 text-sm font-normal text-skin-base">
+                    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                         {{ __('Mettez à jour vos informations personnelles. Votre adresse ne sera jamais accessible au public.') }}
                     </p>
                 </div>
                 <div class="space-y-6 sm:space-y-5">
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-skin-base sm:pt-5">
-                        <label for="name" class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2">
                             {{ __('Nom') }}
                         </label>
                         <div class="relative mt-1 sm:col-span-2 sm:mt-0">
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-skin-base sm:pt-5">
-                        <label for="email" class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
+                        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2">
                             {{ __('Adresse E-mail') }}
                         </label>
                         <div class="relative mt-1 sm:col-span-2 sm:mt-0">
@@ -131,16 +131,16 @@
                                 />
 
                                 @unless (Auth::user()->hasVerifiedEmail())
-                                    <x-untitledui-alert-triangle class="h-6 w-6 text-yellow-500" />
+                                    <x-untitledui-alert-triangle class="size-6 text-yellow-500" />
                                 @endunless
                             </div>
                             @unless (Auth::user()->hasVerifiedEmail())
-                                <p class="mt-2 font-sans text-sm text-skin-base">
+                                <p class="mt-2 font-sans text-sm text-gray-500 dark:text-gray-400">
                                     {{ __('Cette adresse mail n\'est pas vérifiée.') }}
 
                                     <a
                                         href="{{ route('verification.notice') }}"
-                                        class="text-skin-primary underline hover:text-skin-primary-hover"
+                                        class="text-primary-600 underline hover:text-primary-600-hover"
                                     >
                                         {{ __('Renvoyer l\'e-mail de vérification.') }}
                                     </a>
@@ -152,7 +152,7 @@
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-skin-base sm:pt-5">
                         <label
                             for="location"
-                            class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2"
                         >
                             {{ __('Localisation') }}
                         </label>
@@ -174,7 +174,7 @@
                     >
                         <label
                             for="phone_number"
-                            class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2"
+                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2"
                         >
                             {{ __('Numéro de téléphone') }}
                         </label>
@@ -193,16 +193,16 @@
             </div>
             <div class="space-y-6 pt-8 sm:space-y-5 sm:pt-10">
                 <div>
-                    <h3 class="text-lg font-medium leading-6 text-skin-inverted">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">
                         {{ __('Réseaux sociaux') }}
                     </h3>
-                    <p class="mt-1 max-w-2xl text-sm font-normal text-skin-base">
+                    <p class="mt-1 max-w-2xl text-sm font-normal text-gray-500 dark:text-gray-400">
                         {{ __('Faites savoir à tout le monde où ils peuvent vous trouver.') }}
                     </p>
                 </div>
                 <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-skin-base sm:pt-5">
-                        <label class="block text-sm font-medium text-skin-inverted-muted sm:mt-px sm:pt-2">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2">
                             {{ __('Entrez votre pseudo Twitter sans le symbole @ en tête.') }}
                         </label>
                         <div class="mt-1 space-y-4 sm:col-span-2 sm:mt-0">

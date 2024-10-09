@@ -7,7 +7,7 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="ml-2.5 h-4 w-4"
+            class="ml-2.5 size-4"
         >
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
@@ -39,7 +39,7 @@
     </div>
     <ul class="hidden sm:block sm:space-y-3">
         <li>
-            <a href="{{ route('forum.index') }}" class="truncate text-skin-base hover:text-skin-primary">
+            <a href="{{ route('forum.index') }}" class="truncate text-gray-500 dark:text-gray-400 hover:text-primary-600">
                 Tous les sujets
             </a>
         </li>
@@ -54,7 +54,7 @@
                     ></div>
                     <a
                         href="{{ route('forum.channels', $channel) }}"
-                        class="{{ url()->route('forum.channels', $channel) === request()->fullUrl() ? 'text-skin-primary hover:text-skin-primary-hover' : 'text-skin-inverted-muted hover:text-skin-inverted' }} truncate font-medium"
+                        class="{{ url()->route('forum.channels', $channel) === request()->fullUrl() ? 'text-primary-600 hover:text-primary-600-hover' : 'text-gray-700 dark:text-gray-300 hover:text-gray-900' }} truncate font-medium"
                     >
                         {{ $channel->name }}
                     </a>
@@ -66,7 +66,7 @@
                             <li>
                                 <a
                                     href="{{ route('forum.channels', $item) }}"
-                                    class="{{ url()->route('forum.channels', $item) === request()->fullUrl() ? 'text-skin-primary hover:text-skin-primary-hover' : 'text-skin-base hover:text-skin-inverted' }} truncate"
+                                    class="{{ url()->route('forum.channels', $item) === request()->fullUrl() ? 'text-primary-600 hover:text-primary-600-hover' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900' }} truncate"
                                 >
                                     {{ $item->name }}
                                 </a>

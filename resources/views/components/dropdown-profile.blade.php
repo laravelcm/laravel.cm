@@ -11,7 +11,7 @@
             x-bind:aria-expanded="open.toString()"
         >
             <span class="sr-only">Ouverture du menu</span>
-            <x-user.avatar :user="Auth::user()" class="h-8 w-8" />
+            <x-user.avatar :user="Auth::user()" class="size-8" />
         </button>
     </div>
 
@@ -35,8 +35,8 @@
         style="display: none"
     >
         <div class="px-3.5 py-3" role="none">
-            <p class="text-xs font-normal text-skin-base" role="none">Connecté en tant que</p>
-            <p class="truncate text-sm font-medium text-skin-inverted" role="none">
+            <p class="text-xs font-normal text-gray-500 dark:text-gray-400" role="none">Connecté en tant que</p>
+            <p class="truncate text-sm font-medium text-gray-900" role="none">
                 {{ Auth::user()->email }}
             </p>
         </div>
@@ -45,13 +45,13 @@
             <div class="px-3.5 py-1.5" role="none">
                 <a
                     href="{{ route('filament.admin.pages.dashboard') }}"
-                    class="group flex items-center py-1.5 text-sm font-normal text-skin-base hover:text-skin-primary"
+                    class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
                     role="menuitem"
                     tabindex="-1"
                     id="user-menu-item-0"
                 >
                     <x-untitledui-monitor
-                        class="mr-3 h-5 w-5 flex-none text-skin-muted group-hover:text-skin-primary"
+                        class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
                     />
                     Administration
                 </a>
@@ -61,7 +61,7 @@
         @feature('job_profile')
             <div class="px-3.5 py-2" role="none">
                 <div class="flex items-center justify-between">
-                    <h5 class="text-sm leading-5 text-skin-base">Profil Développeur</h5>
+                    <h5 class="text-sm leading-5 text-gray-500 dark:text-gray-400">Profil Développeur</h5>
                     <span
                         class="inline-flex items-center rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-800"
                     >
@@ -74,58 +74,58 @@
                 <div class="5 py-1">
                     <a
                         href="#"
-                        class="group flex items-center py-1.5 text-sm font-normal text-skin-base hover:text-skin-primary"
+                        class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
                         role="menuitem"
                         tabindex="-1"
                         id="user-menu-item-0"
                     >
                         <x-icon.user-edit
-                            class="mr-3 h-5 w-5 flex-none text-skin-muted group-hover:text-skin-primary"
+                            class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
                         />
                         Mon compte
                     </a>
                     <a
                         href="#"
-                        class="group flex items-center py-1.5 text-sm font-normal text-skin-base hover:text-skin-primary"
+                        class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
                         role="menuitem"
                         tabindex="-1"
                         id="user-menu-item-0"
                     >
                         <x-icon.file-attachment
-                            class="mr-3 h-5 w-5 flex-none text-skin-muted group-hover:text-skin-primary"
+                            class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
                         />
                         Mes candidatures
                     </a>
                     <a
                         href="#"
-                        class="group flex items-center py-1.5 text-sm font-normal text-skin-base hover:text-skin-primary"
+                        class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
                         role="menuitem"
                         tabindex="-1"
                         id="user-menu-item-0"
                     >
                         <x-icon.clipboard-document
-                            class="mr-3 h-5 w-5 flex-none text-skin-muted group-hover:text-skin-primary"
+                            class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
                         />
                         Mes compétences
                     </a>
                     <a
                         href="#"
-                        class="group flex items-center py-1.5 text-sm font-normal text-skin-base hover:text-skin-primary"
+                        class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
                         role="menuitem"
                         tabindex="-1"
                         id="user-menu-item-0"
                     >
                         <x-icon.adjustments
-                            class="mr-3 h-5 w-5 flex-none text-skin-muted group-hover:text-skin-primary"
+                            class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
                         />
                         Préférences
                     </a>
                 </div>
                 <div class="my-2 rounded-md border border-skin-base px-3 py-2.5">
-                    <h6 class="inline-flex items-center text-sm font-medium leading-5 text-skin-inverted-muted">
+                    <h6 class="inline-flex items-center text-sm font-medium leading-5 text-gray-700 dark:text-gray-300">
                         Profil incomplet !
                         <svg
-                            class="ml-1.5 h-4 w-4 text-sky-500"
+                            class="ml-1.5 size-4 text-sky-500"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
                             fill="currentColor"
@@ -137,12 +137,12 @@
                             />
                         </svg>
                     </h6>
-                    <p class="mt-1 text-sm leading-5 text-skin-base">
+                    <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">
                         Nous avons besoin de plus d'informations pour vous mettre en relation avec les entreprises.
                     </p>
                     <a
                         href="#"
-                        class="mt-3 inline-block w-full rounded-md border border-skin-base px-1.5 py-2 text-center text-sm font-medium leading-4 text-skin-base hover:text-skin-inverted-muted"
+                        class="mt-3 inline-block w-full rounded-md border border-skin-base px-1.5 py-2 text-center text-sm font-medium leading-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:text-gray-300"
                     >
                         Compléter mon profil
                     </a>
@@ -153,46 +153,46 @@
         <div class="px-3.5 py-1.5" role="none">
             <a
                 href="{{ route('dashboard') }}"
-                class="group flex items-center py-1.5 text-sm font-normal text-skin-base hover:text-skin-primary"
+                class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
                 role="menuitem"
                 tabindex="-1"
                 id="user-menu-item-0"
             >
-                <x-untitledui-grid class="mr-3 h-5 w-5 flex-none text-skin-muted group-hover:text-skin-primary" />
+                <x-untitledui-grid class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600" />
                 Tableau de bord
             </a>
             <a
                 href="{{ route('profile') }}"
-                class="group flex items-center py-1.5 text-sm font-normal text-skin-base hover:text-skin-primary"
+                class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
                 role="menuitem"
                 tabindex="-1"
                 id="user-menu-item-1"
             >
                 <x-untitledui-user-circle
-                    class="mr-3 h-5 w-5 flex-none text-skin-muted group-hover:text-skin-primary"
+                    class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
                 />
                 Mon profil
             </a>
             <a
                 href="{{ route('user.settings') }}"
-                class="group flex items-center py-1.5 text-sm font-normal text-skin-base hover:text-skin-primary"
+                class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
                 role="menuitem"
                 tabindex="-1"
                 id="user-menu-item-2"
             >
-                <x-untitledui-sliders class="mr-3 h-5 w-5 flex-none text-skin-muted group-hover:text-skin-primary" />
+                <x-untitledui-sliders class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600" />
                 Paramètres
             </a>
             <form method="POST" action="{{ route('logout') }}" role="form">
                 @csrf
                 <button
                     type="submit"
-                    class="group flex w-full items-center py-1.5 text-left text-sm font-normal text-skin-base hover:text-skin-primary"
+                    class="group flex w-full items-center py-1.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
                     role="menuitem"
                     tabindex="-1"
                     id="logout"
                 >
-                    <x-icon.logout class="mr-3 h-5 w-5 flex-none text-skin-muted group-hover:text-skin-primary" />
+                    <x-icon.logout class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600" />
                     Se déconnecter
                 </button>
             </form>

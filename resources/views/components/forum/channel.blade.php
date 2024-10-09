@@ -3,7 +3,7 @@
 ])
 
 <span
-    class="inline-flex items-center rounded-full border border-skin-input px-2.5 py-1 font-sans text-sm font-medium leading-none text-skin-inverted"
+    class="inline-flex items-center rounded-full border border-skin-input px-2.5 py-1 font-sans text-sm font-medium leading-none text-gray-900"
 >
     <svg
         class="mr-1.5 h-2 w-2"

@@ -4,7 +4,7 @@
     <div class="block">
         <x-label for="title">Titre</x-label>
         <x-input id="title" class="mt-1 block w-full" wire:model="title" name="title" required />
-        <p class="mt-2 text-sm text-skin-base">Maximum de 160 caractères.</p>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Maximum de 160 caractères.</p>
     </div>
 
     <div class="standard relative z-50 block" wire:ignore>

@@ -33,7 +33,7 @@
                             class="group inline-flex items-center rounded-md font-medium text-skin-menu hover:text-skin-menu-hover focus:outline-none focus:ring-0"
                             :class="{ 'text-skin-menu-hover': flyoutMenu, 'text-skin-menu': !(flyoutMenu) }"
                         >
-                            <x-untitledui-dots-horizontal class="h-5 w-5" />
+                            <x-untitledui-dots-horizontal class="size-5" />
                         </button>
                         <div
                             x-show="flyoutMenu"
@@ -55,13 +55,13 @@
                                         class="-m-3 flex items-start rounded-lg p-3 hover:bg-skin-card-muted"
                                     >
                                         <div
-                                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-green-500 text-white sm:h-12 sm:w-12"
+                                            class="flex size-10 shrink-0 items-center justify-center rounded-md bg-green-500 text-white sm:size-12"
                                         >
-                                            <x-untitledui-brackets class="h-6 w-6" />
+                                            <x-untitledui-brackets class="size-6" />
                                         </div>
                                         <div class="ml-4">
-                                            <p class="font-sans text-base font-medium text-skin-inverted">Snippets</p>
-                                            <p class="mt-1 text-sm font-normal text-skin-base">
+                                            <p class="font-sans text-base font-medium text-gray-900">Snippets</p>
+                                            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                                                 Créer et partagez des codes sources publiquement accessibles par tous.
                                             </p>
                                         </div>
@@ -72,13 +72,13 @@
                                         class="-m-3 flex items-start rounded-lg p-3 hover:bg-skin-card-muted"
                                     >
                                         <div
-                                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-green-500 text-white sm:h-12 sm:w-12"
+                                            class="flex size-10 shrink-0 items-center justify-center rounded-md bg-green-500 text-white sm:size-12"
                                         >
-                                            <x-untitledui-book-open class="h-6 w-6" />
+                                            <x-untitledui-book-open class="size-6" />
                                         </div>
                                         <div class="ml-4">
-                                            <p class="font-sans text-base font-medium text-skin-inverted">Guides</p>
-                                            <p class="mt-1 text-sm font-normal text-skin-base">
+                                            <p class="font-sans text-base font-medium text-gray-900">Guides</p>
+                                            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                                                 Découvrez le code de conduite pour l’utilisation du site.
                                             </p>
                                         </div>
@@ -86,18 +86,18 @@
 
                                     <a href="#" class="-m-3 flex items-start rounded-lg p-3 hover:bg-skin-card-muted">
                                         <div
-                                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-green-500 text-white sm:h-12 sm:w-12"
+                                            class="flex size-10 shrink-0 items-center justify-center rounded-md bg-green-500 text-white sm:size-12"
                                         >
-                                            <x-untitledui-microphone class="h-6 w-6" />
+                                            <x-untitledui-microphone class="size-6" />
                                         </div>
                                         <div class="ml-4">
                                             <p
-                                                class="inline-flex items-center font-sans text-base font-medium text-skin-inverted"
+                                                class="inline-flex items-center font-sans text-base font-medium text-gray-900"
                                             >
                                                 Podcasts
                                                 <x-soon />
                                             </p>
-                                            <p class="mt-1 text-sm font-normal text-skin-base">
+                                            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                                                 Toutes les discussions sur le développement de Laravel et PHP.
                                             </p>
                                         </div>
@@ -105,18 +105,18 @@
 
                                     <a href="#" class="-m-3 flex items-start rounded-lg p-3 hover:bg-skin-card-muted">
                                         <div
-                                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-green-500 text-white sm:h-12 sm:w-12"
+                                            class="flex size-10 shrink-0 items-center justify-center rounded-md bg-green-500 text-white sm:size-12"
                                         >
-                                            <x-untitledui-check-verified-02 class="h-6 w-6" />
+                                            <x-untitledui-check-verified-02 class="size-6" />
                                         </div>
                                         <div class="ml-4">
                                             <p
-                                                class="inline-flex items-center font-sans text-base font-medium text-skin-inverted"
+                                                class="inline-flex items-center font-sans text-base font-medium text-gray-900"
                                             >
                                                 Badges
                                                 <x-soon />
                                             </p>
-                                            <p class="mt-1 text-sm font-normal text-skin-base">
+                                            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                                                 Obtenez des badges et débloquez différentes fonctionnalités.
                                             </p>
                                         </div>
@@ -124,10 +124,10 @@
 
                                     <a href="#" class="-m-3 flex items-start rounded-lg p-3 hover:bg-skin-card-muted">
                                         <div
-                                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-flag-yellow to-flag-red text-white sm:h-12 sm:w-12"
+                                            class="flex size-10 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-flag-yellow to-flag-red text-white sm:size-12"
                                         >
                                             <svg
-                                                class="h-6 w-6"
+                                                class="size-6"
                                                 fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24"
@@ -141,7 +141,7 @@
                                             <p class="font-sans text-base font-medium text-yellow-500">
                                                 Devenez Premium
                                             </p>
-                                            <p class="mt-1 text-sm font-normal text-skin-base">
+                                            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                                                 Devenez prémium et soutenez la production de contenu du site.
                                             </p>
                                         </div>
@@ -149,18 +149,18 @@
 
                                     <a href="#" class="-m-3 flex items-start rounded-lg p-3 hover:bg-skin-card-muted">
                                         <div
-                                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-green-500 text-white sm:h-12 sm:w-12"
+                                            class="flex size-10 shrink-0 items-center justify-center rounded-md bg-green-500 text-white sm:size-12"
                                         >
-                                            <x-heroicon-o-briefcase class="h-6 w-6" />
+                                            <x-heroicon-o-briefcase class="size-6" />
                                         </div>
                                         <div class="ml-4">
                                             <p
-                                                class="inline-flex items-center font-sans text-base font-medium text-skin-inverted"
+                                                class="inline-flex items-center font-sans text-base font-medium text-gray-900"
                                             >
                                                 Jobs
                                                 <x-soon />
                                             </p>
-                                            <p class="mt-1 text-sm font-normal text-skin-base">
+                                            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                                                 Les offres pour développeurs PHP & Laravel dans la zone CEMAC.
                                             </p>
                                         </div>
@@ -178,7 +178,7 @@
                 <!-- Mobile menu button -->
                 <button
                     type="button"
-                    class="inline-flex items-center justify-center rounded-md p-2 text-skin-muted hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
+                    class="inline-flex items-center justify-center rounded-md p-2 text-skin-muted hover:text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
                     aria-controls="mobile-menu"
                     @click="open = !open"
                     aria-expanded="false"
@@ -186,7 +186,7 @@
                 >
                     <span class="sr-only">Open main menu</span>
                     <svg
-                        class="block h-6 w-6"
+                        class="block size-6"
                         :class="{ 'hidden': open, 'block': !(open) }"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -202,7 +202,7 @@
                         />
                     </svg>
                     <svg
-                        class="hidden h-6 w-6"
+                        class="hidden size-6"
                         :class="{ 'block': open, 'hidden': !(open) }"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -223,10 +223,10 @@
                 @auth
                     <a
                         href="{{ route('notifications') }}"
-                        class="relative shrink-0 rounded-full p-1 text-skin-muted hover:bg-skin-body hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-body"
+                        class="relative shrink-0 rounded-full p-1 text-skin-muted hover:bg-skin-body hover:text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-body"
                     >
                         <span class="sr-only">Voir les notifications</span>
-                        <x-untitledui-bell class="h-5 w-5" />
+                        <x-untitledui-bell class="size-5" />
                         <livewire:notification-indicator />
                     </a>
 
@@ -240,11 +240,11 @@
                         <div>
                             <button
                                 type="button"
-                                class="shrink-0 rounded-full p-1 text-skin-muted hover:bg-skin-card hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-body"
+                                class="shrink-0 rounded-full p-1 text-skin-muted hover:bg-skin-card hover:text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-body"
                                 x-ref="button"
                                 @click="open =! open"
                             >
-                                <x-untitledui-plus class="h-5 w-5" />
+                                <x-untitledui-plus class="size-5" />
                             </button>
                         </div>
 
@@ -270,7 +270,7 @@
                             <div class="py-1" role="none">
                                 <a
                                     href="{{ route('articles.new') }}"
-                                    class="flex items-center px-3 py-1.5 text-sm font-normal text-skin-base hover:bg-skin-primary hover:text-white"
+                                    class="flex items-center px-3 py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:bg-skin-primary hover:text-white"
                                     role="menuitem"
                                     tabindex="-1"
                                 >
@@ -278,7 +278,7 @@
                                 </a>
                                 <a
                                     href="{{ route('forum.new') }}"
-                                    class="flex items-center px-3 py-1.5 text-sm font-normal text-skin-base hover:bg-skin-primary hover:text-white"
+                                    class="flex items-center px-3 py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:bg-skin-primary hover:text-white"
                                     role="menuitem"
                                     tabindex="-1"
                                 >
@@ -286,7 +286,7 @@
                                 </a>
                                 <a
                                     href="{{ route('discussions.new') }}"
-                                    class="flex items-center px-3 py-1.5 text-sm font-normal text-skin-base hover:bg-skin-primary hover:text-white"
+                                    class="flex items-center px-3 py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:bg-skin-primary hover:text-white"
                                     role="menuitem"
                                     tabindex="-1"
                                 >
@@ -322,19 +322,19 @@
         <div class="space-y-1 pb-3 pt-2">
             <a
                 href="{{ route('forum.index') }}"
-                class="hover:border-skin {{ active(['forum', 'forum*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }} block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium hover:bg-skin-card-muted"
+                class="hover:border-skin {{ active(['forum', 'forum*'], 'bg-green-50 border-green-500 text-primary-600', 'text-skin-menu hover:text-skin-menu-hover') }} block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium hover:bg-skin-card-muted"
             >
                 Forum
             </a>
             <a
                 href="{{ route('articles') }}"
-                class="hover:border-skin {{ active(['articles', 'articles*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }} block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium hover:bg-skin-card-muted"
+                class="hover:border-skin {{ active(['articles', 'articles*'], 'bg-green-50 border-green-500 text-primary-600', 'text-skin-menu hover:text-skin-menu-hover') }} block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium hover:bg-skin-card-muted"
             >
                 Articles
             </a>
             <a
                 href="{{ route('discussions.index') }}"
-                class="hover:border-skin {{ active(['discussions', 'discussions*'], 'bg-green-50 border-green-500 text-skin-primary', 'text-skin-menu hover:text-skin-menu-hover') }} block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium hover:bg-skin-card-muted"
+                class="hover:border-skin {{ active(['discussions', 'discussions*'], 'bg-green-50 border-green-500 text-primary-600', 'text-skin-menu hover:text-skin-menu-hover') }} block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium hover:bg-skin-card-muted"
             >
                 Discussions
             </a>
@@ -342,31 +342,31 @@
         <div class="border-skin-light border-t px-3 py-4">
             <h4 class="text-sm font-medium uppercase leading-5 tracking-wide text-skin-muted">Autres</h4>
             <div class="mt-5 space-y-6">
-                <a href="https://snippets.laravel.cm" class="flex items-center text-skin-base">
-                    <x-untitledui-brackets class="mr-2 h-6 w-6" />
+                <a href="https://snippets.laravel.cm" class="flex items-center text-gray-500 dark:text-gray-400">
+                    <x-untitledui-brackets class="mr-2 size-6" />
                     Snippets
                 </a>
 
-                <a href="{{ route('rules') }}" class="flex items-center text-skin-base">
-                    <x-untitledui-bookmark class="-ml-1 mr-3 h-6 w-6" />
+                <a href="{{ route('rules') }}" class="flex items-center text-gray-500 dark:text-gray-400">
+                    <x-untitledui-bookmark class="-ml-1 mr-3 size-6" />
                     Guides
                 </a>
 
-                <a href="#" class="flex items-center text-skin-base">
-                    <x-untitledui-microphone class="mr-2 h-6 w-6" />
+                <a href="#" class="flex items-center text-gray-500 dark:text-gray-400">
+                    <x-untitledui-microphone class="mr-2 size-6" />
                     Podcasts
                     <x-soon />
                 </a>
 
-                <a href="#" class="flex items-center text-skin-base">
-                    <x-untitledui-check-verified-02 class="mr-2 h-6 w-6" />
+                <a href="#" class="flex items-center text-gray-500 dark:text-gray-400">
+                    <x-untitledui-check-verified-02 class="mr-2 size-6" />
                     Badges
                     <x-soon />
                 </a>
 
                 <a href="#" class="flex items-center text-yellow-500 hover:text-yellow-600">
                     <svg
-                        class="mr-2 h-6 w-6"
+                        class="mr-2 size-6"
                         fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -379,8 +379,8 @@
                     <x-soon />
                 </a>
 
-                <a href="#" class="flex items-center text-skin-base">
-                    <x-heroicon-o-briefcase class="-ml-1 mr-3 h-6 w-6" />
+                <a href="#" class="flex items-center text-gray-500 dark:text-gray-400">
+                    <x-heroicon-o-briefcase class="-ml-1 mr-3 size-6" />
                     Jobs
                     <x-soon />
                 </a>
@@ -391,20 +391,20 @@
                 <div class="flex items-center px-4">
                     <div class="shrink-0">
                         <img
-                            class="h-10 w-10 rounded-full"
+                            class="size-10 rounded-full"
                             src="{{ Auth::user()->profile_photo_url }}"
                             alt="{{ Auth::user()->name }}"
                         />
                     </div>
                     <div class="ml-3">
-                        <div class="text-base font-medium text-skin-inverted">{{ Auth::user()->name }}</div>
+                        <div class="text-base font-medium text-gray-900">{{ Auth::user()->name }}</div>
                         <div class="text-sm font-medium text-skin-muted">{{ Auth::user()->email }}</div>
                     </div>
                     <button
-                        class="ml-auto shrink-0 rounded-full bg-skin-card p-1 text-skin-muted hover:text-skin-base focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                        class="ml-auto shrink-0 rounded-full bg-skin-card p-1 text-skin-muted hover:text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                     >
                         <span class="sr-only">Voir les notifications</span>
-                        <x-untitledui-bell class="h-6 w-6" />
+                        <x-untitledui-bell class="size-6" />
                     </button>
                 </div>
                 <div class="mt-3 space-y-1">
@@ -425,7 +425,7 @@
                             @csrf
                             <button
                                 type="submit"
-                                class="group flex w-full items-center text-base font-medium text-skin-base hover:text-skin-menu-hover"
+                                class="group flex w-full items-center text-base font-medium text-gray-500 dark:text-gray-400 hover:text-skin-menu-hover"
                                 role="menuitem"
                                 tabindex="-1"
                                 id="logout-mobile"

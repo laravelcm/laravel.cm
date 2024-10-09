@@ -1,6 +1,6 @@
 <div class="space-y-4">
     <div class="flex items-center justify-between">
-        <h3 class="text-lg font-medium leading-6 text-skin-inverted">Choisir une option</h3>
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Choisir une option</h3>
         <span class="isolate inline-flex rounded-md shadow-sm">
             <x-default-button
                 type="button"
@@ -29,8 +29,8 @@
     <div class="overflow-hidden rounded-md border border-skin-base bg-skin-card">
         @if ($option === 'monthly')
             <div class="flex items-start p-4">
-                <x-untitledui-alert-triangle class="h-10 w-10 text-yellow-400" />
-                <p class="ml-4 text-base leading-6 text-skin-base">
+                <x-untitledui-alert-triangle class="size-10 text-yellow-400" />
+                <p class="ml-4 text-base leading-6 text-gray-500 dark:text-gray-400">
                     Les choix pour cette option ne sont pas encore disponible.
                 </p>
             </div>
@@ -42,7 +42,7 @@
                             aria-label="Montant"
                             name="amount"
                             wire:model="amount"
-                            class="block w-full rounded-md border-skin-input bg-skin-input pr-16 text-skin-base placeholder-skin-input shadow-sm focus:border-flag-green focus:placeholder-skin-input-focus focus:outline-none focus:ring-flag-green sm:text-sm"
+                            class="block w-full rounded-md border-skin-input bg-skin-input pr-16 text-gray-500 dark:text-gray-400 placeholder-skin-input shadow-sm focus:border-flag-green focus:placeholder-skin-input-focus focus:outline-none focus:ring-flag-green sm:text-sm"
                             type="number"
                             required
                         />
@@ -52,7 +52,7 @@
                                 wire:model="currency"
                                 id="currency"
                                 name="currency"
-                                class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-skin-base focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm"
+                                class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 dark:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm"
                             >
                                 <option value="XAF">XAF</option>
                                 <option value="USD">USD</option>
@@ -69,7 +69,7 @@
                     <p class="mt-2 text-sm text-red-500">Votre montant est requis.</p>
                 @enderror
 
-                <dd class="mt-1.5 text-sm leading-5 text-skin-base">
+                <dd class="mt-1.5 text-sm leading-5 text-gray-500 dark:text-gray-400">
                     Choisissez un montant personnalisé. Aucune récompense n'est associée à ce parrainage.
                 </dd>
             </div>

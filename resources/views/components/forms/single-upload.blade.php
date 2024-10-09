@@ -9,7 +9,7 @@
         <div class="relative shrink-0 overflow-hidden rounded-md">
             <img class="h-56 w-full rounded-md object-cover" src="{{ $preview }}" alt="" />
             <div
-                class="absolute right-0 top-0 z-20 mr-2 mt-2 flex h-5 w-5 cursor-pointer justify-center rounded-full bg-gray-700 text-sm leading-tight text-white opacity-25 hover:opacity-50"
+                class="absolute right-0 top-0 z-20 mr-2 mt-2 flex size-5 cursor-pointer justify-center rounded-full bg-gray-700 text-sm leading-tight text-white opacity-25 hover:opacity-50"
                 wire:click="$set('preview', '')"
             >
                 ×
@@ -21,7 +21,7 @@
         <div class="relative shrink-0 overflow-hidden rounded-md">
             <img class="h-56 w-full rounded-md object-cover" src="{{ $file->temporaryUrl() }}" alt="" />
             <div
-                class="absolute right-0 top-0 z-20 mr-2 mt-2 flex h-5 w-5 cursor-pointer justify-center rounded-full bg-gray-700 text-sm leading-tight text-white opacity-25 hover:opacity-50"
+                class="absolute right-0 top-0 z-20 mr-2 mt-2 flex size-5 cursor-pointer justify-center rounded-full bg-gray-700 text-sm leading-tight text-white opacity-25 hover:opacity-50"
                 wire:click="$set('file', '')"
             >
                 ×
@@ -33,7 +33,7 @@
             class="group flex h-full cursor-pointer items-center justify-center overflow-hidden rounded-md border-2 border-dashed border-skin-input"
         >
             <div class="text-center" wire:loading.remove wire:target="file">
-                <svg class="mx-auto h-12 w-12 text-skin-muted" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                <svg class="mx-auto size-12 text-skin-muted" stroke="currentColor" fill="none" viewBox="0 0 48 48">
                     <path
                         d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
                         stroke-width="2"
@@ -41,7 +41,7 @@
                         stroke-linejoin="round"
                     />
                 </svg>
-                <p class="mt-1 text-sm text-skin-base">
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
                     <span
                         class="font-medium text-green-500 transition duration-150 ease-in-out focus:underline focus:outline-none"
                     >

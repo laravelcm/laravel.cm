@@ -1,8 +1,8 @@
 <div class="pb-20">
     <div class="flex items-center">
         <div class="flex-1">
-            <h3 class="text-lg font-medium leading-6 text-skin-inverted">Profil</h3>
-            <p class="mt-1 max-w-2xl text-sm font-normal text-skin-base">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Profil</h3>
+            <p class="mt-1 max-w-2xl text-sm font-normal text-gray-500 dark:text-gray-400">
                 Vous trouverez ci-dessous les informations de votre profil pour votre compte.
             </p>
         </div>
@@ -40,10 +40,10 @@
                             <div class="text-sm">
                                 <div
                                     id="theme-0-label"
-                                    class="flex items-center space-x-3 font-medium text-skin-inverted"
+                                    class="flex items-center space-x-3 font-medium text-gray-900"
                                 >
                                     <h4 class="flex items-center items-center">
-                                        <x-heroicon-o-sun class="mr-2 h-5 w-5 text-yellow-500" />
+                                        <x-heroicon-o-sun class="mr-2 size-5 text-yellow-500" />
                                         Thème Light
                                     </h4>
                                     @if ($theme === 'theme-light')
@@ -92,10 +92,10 @@
                             <div class="text-sm">
                                 <div
                                     id="theme-1-label"
-                                    class="flex items-center space-x-3 font-medium text-skin-inverted"
+                                    class="flex items-center space-x-3 font-medium text-gray-900"
                                 >
                                     <h4 class="flex items-center items-center">
-                                        <x-heroicon-o-moon class="mr-2 h-5 w-5 text-skin-inverted-muted" />
+                                        <x-heroicon-o-moon class="mr-2 size-5 text-gray-700 dark:text-gray-300" />
                                         Thème Dark
                                     </h4>
                                     @if ($theme === 'theme-dark')

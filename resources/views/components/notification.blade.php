@@ -32,19 +32,19 @@
                 <div class="p-4">
                     <div class="flex items-start">
                         <div class="shrink-0">
-                            <x-heroicon-o-check-circle class="h-6 w-6 text-green-400" x-show="status === 'success'" />
-                            <x-untitledui-x-circle class="h-6 w-6 text-red-400" x-show="status === 'error'" />
+                            <x-heroicon-o-check-circle class="size-6 text-green-400" x-show="status === 'success'" />
+                            <x-untitledui-x-circle class="size-6 text-red-400" x-show="status === 'error'" />
                         </div>
                         <div class="ml-3 w-0 flex-1 pt-0.5">
-                            <p x-text="title" class="text-sm font-medium leading-5 text-skin-inverted"></p>
-                            <p x-text="message" class="mt-1 text-sm font-medium leading-5 text-skin-base"></p>
+                            <p x-text="title" class="text-sm font-medium leading-5 text-gray-900"></p>
+                            <p x-text="message" class="mt-1 text-sm font-medium leading-5 text-gray-500 dark:text-gray-400"></p>
                         </div>
                         <div class="ml-4 flex shrink-0">
                             <button
                                 @click="remove(message)"
-                                class="inline-flex text-skin-muted focus:text-skin-base focus:outline-none"
+                                class="inline-flex text-skin-muted focus:text-gray-500 dark:text-gray-400 focus:outline-none"
                             >
-                                <x-untitledui-x class="h-5 w-5" />
+                                <x-untitledui-x class="size-5" />
                             </button>
                         </div>
                     </div>
