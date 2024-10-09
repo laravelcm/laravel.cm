@@ -5,15 +5,15 @@
                 <header class="space-y-5 border-b border-skin-base">
                     <div>
                         <h1
-                            class="font-heading text-2xl font-extrabold tracking-tight text-skin-inverted sm:text-3xl sm:leading-8"
+                            class="text-2xl font-extrabold tracking-tight font-heading text-skin-inverted sm:text-3xl sm:leading-8"
                         >
                             {{ $discussion->title }}
                         </h1>
                         <div class="mt-2 space-x-4 sm:flex sm:items-center">
                             <span
-                                class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-skin-card-gray text-skin-base"
+                                class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-skin-card-gray text-skin-base"
                             >
-                                <x-heroicon-s-tag class="h-5 w-5" />
+                                <x-heroicon-s-tag class="w-5 h-5" />
                             </span>
                             @if ($discussion->tags->isNotEmpty())
                                 <div class="flex items-center space-x-2">
@@ -29,13 +29,13 @@
                             <div class="flex items-center sm:items-start">
                                 <div class="relative">
                                     <img
-                                        class="h-10 w-10 rounded-full bg-skin-card-gray object-cover ring-8 ring-body"
+                                        class="object-cover w-10 h-10 rounded-full bg-skin-card-gray ring-8 ring-body"
                                         src="{{ $discussion->user->profile_photo_url }}"
                                         alt="{{ $discussion->user->name }}"
                                     />
                                     <span class="absolute -right-1 top-5 rounded-tl bg-skin-body px-0.5 py-px">
                                         <svg
-                                            class="h-5 w-5 text-skin-muted"
+                                            class="w-5 h-5 text-skin-muted"
                                             xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 24 24"
                                             fill="currentColor"
@@ -57,7 +57,7 @@
                                             @endif
                                         </h4>
                                     </a>
-                                    <div class="whitespace-nowrap text-sm font-normal text-skin-muted">
+                                    <div class="text-sm font-normal whitespace-nowrap text-skin-muted">
                                         <time
                                             class="sr-only"
                                             datetime="{{ $discussion->created_at->format('Y-m-d') }}"
@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="min-w-0 flex-1">
+                            <div class="flex-1 min-w-0">
                                 <div class="hidden sm:block">
                                     <a href="{{ route('profile', $discussion->user->username) }}">
                                         <h4 class="inline-flex items-center text-sm font-medium text-skin-inverted">
@@ -79,7 +79,7 @@
                                             @endif
                                         </h4>
                                     </a>
-                                    <div class="whitespace-nowrap text-sm font-normal text-skin-muted">
+                                    <div class="text-sm font-normal whitespace-nowrap text-skin-muted">
                                         <time
                                             class="sr-only"
                                             datetime="{{ $discussion->created_at->format('Y-m-d') }}"
@@ -91,10 +91,10 @@
                                     </div>
                                 </div>
                                 <x-markdown-content
-                                    class="prose prose-green mx-auto mt-3 max-w-none text-sm text-skin-base md:prose-lg"
+                                    class="mx-auto mt-3 text-sm prose prose-green max-w-none text-skin-base md:prose-lg"
                                     :content="$discussion->body"
                                 />
-                                <div class="relative mt-3 inline-flex">
+                                <div class="relative inline-flex mt-3">
                                     <livewire:reactions
                                         wire:key="{{ $discussion->id }}"
                                         :model="$discussion"
@@ -103,7 +103,7 @@
                                     />
                                 </div>
                                 @can(App\Policies\DiscussionPolicy::UPDATE, $discussion)
-                                    <div class="mt-2 flex items-center space-x-2">
+                                    <div class="flex items-center mt-2 space-x-2">
                                         <a
                                             href="{{ route('discussions.edit', $discussion) }}"
                                             class="font-sans text-sm leading-5 text-skin-base hover:underline focus:outline-none"
@@ -116,7 +116,7 @@
                                             type="button"
                                             class="font-sans text-sm leading-5 text-red-500 hover:underline focus:outline-none"
                                         >
-                                            {{ __('Supprimer' }) }}
+                                            {{ __('Supprimer') }}
                                         </button>
                                     </div>
                                 @endcan
