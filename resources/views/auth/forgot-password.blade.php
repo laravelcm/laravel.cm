@@ -31,9 +31,13 @@
                 </div>
 
                 <div class="mt-4 flex items-center justify-end">
-                    <x-button type="submit" class="relative w-full">Réinitialisation du mot de passe</x-button>
+                    <x-buttons.primary type="submit" class="relative w-full">
+                        Réinitialisation du mot de passe
+                    </x-buttons.primary>
                 </div>
             </form>
         </div>
     </div>
+
+    <x-join-sponsors :title="__('global.sponsor_thanks')" />
 </x-app-layout>

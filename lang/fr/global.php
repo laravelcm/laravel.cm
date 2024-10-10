@@ -32,5 +32,12 @@ return [
         'title' => 'Rejoignez nous',
         'description' => 'Intégrez nos différentes plateformes de communication, recevez des tutoriels, articles et podcasts sur le design et la programmation web.',
     ],
+    'ask' => 'a posé',
+    'posted_by' => 'Posté par',
+    'members' => 'Membres',
+    'developers' => 'Développeurs PHP & Laravel',
+    'event_rates' => 'Taux de participation aux événements',
+    'stars' => 'stars',
+    'sponsor_thanks' => 'Nous disons à merci à ces entreprises et communautés pour leur soutien',
 
 ];

@@ -8,7 +8,7 @@
             </div>
             <form class="space-y-6" action="{{ route('login') }}" method="POST">
                 @csrf
-                <div class="space-y-4 rounded-md shadow-sm">
+                <div class="space-y-4 rounded-lg">
                     <div>
                         <label for="email-address" class="sr-only">Adresse E-mail</label>
                         <x-email
@@ -37,37 +37,36 @@
                             id="remember_me"
                             name="remember_me"
                             type="checkbox"
-                            class="size-4 rounded border-skin-input bg-skin-input text-green-600 focus:ring-green-500"
+                            class="size-4 rounded border-gray-300 bg-white text-green-600 focus:ring-green-500"
                         />
-                        <label for="remember_me" class="ml-2 block cursor-pointer text-sm font-normal text-gray-500 dark:text-gray-400">
+                        <label for="remember_me" class="ml-2 block cursor-pointer text-sm text-gray-500 dark:text-gray-400">
                             Se souvenir de moi
                         </label>
                     </div>
 
                     <div class="text-sm">
-                        <a
+                        <x-link
                             href="{{ route('password.request') }}"
                             class="font-medium text-green-600 hover:text-green-500"
                         >
                             Mot de passe oublié ?
-                        </a>
+                        </x-link>
                     </div>
                 </div>
 
                 <div>
-                    <button
-                        type="submit"
-                        class="button group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-                    >
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <x-buttons.primary type="submit" class="group relative w-full">
+                        <span class="absolute pointer-events-none inset-y-0 left-0 flex items-center pl-3">
                             <x-heroicon-s-lock-closed class="size-5 text-green-500 group-hover:text-green-400" />
                         </span>
                         Se connecter
-                    </button>
+                    </x-buttons.primary>
                 </div>
             </form>
 
             @include('partials._socials-link')
         </div>
     </div>
+
+    <x-join-sponsors :title="__('global.sponsor_thanks')" />
 </x-app-layout>

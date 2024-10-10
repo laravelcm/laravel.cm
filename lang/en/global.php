@@ -32,5 +32,12 @@ return [
         'title' => 'Join us',
         'description' => 'Integrate our various communication platforms, receive tutorials, articles and podcasts on web design and programming.',
     ],
+    'ask' => 'asked',
+    'posted_by' => 'Posted by',
+    'members' => 'Members',
+    'developers' => 'Développeurs PHP & Laravel',
+    'event_rates' => 'Taux de participation aux événements',
+    'stars' => 'stars',
+    'sponsor_thanks' => "We'd like to thank these amazing companies for supporting us",
 
 ];

@@ -1,5 +1,5 @@
 <x-app-layout title="Créer un compte">
-    <div class="mx-auto flex w-full items-center justify-between py-6 sm:max-w-4xl sm:py-9">
+    <div class="mx-auto flex w-full items-center justify-between py-12 sm:max-w-4xl sm:py-16">
         <div class="hidden lg:block lg:w-90">
             <h3 class="text-lg font-semibold leading-6 text-gray-900">
                 Ouvrez votre esprit pour découvrir de nouveaux horizons.
@@ -130,4 +130,6 @@
             @include('partials._socials-link')
         </div>
     </div>
+
+    <x-join-sponsors :title="__('global.sponsor_thanks')" />
 </x-app-layout>
