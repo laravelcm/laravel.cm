@@ -34,23 +34,17 @@ final class PendingArticlesNotification extends Notification
 
     private function content(): string
     {
-        $message = __("Pending approval articles:\n");
+        $message = __("Pending approval articles:\n\n");
         foreach ($this->pendingArticles as $article) {
-            $url = route('articles.show', $article->slug);
-            
-            $message .= __("• Title: [:title](:url)\n", [
-                'title' => $article->title,
-                'url' => $url,
-            ]);
-
-            $message .= __("• By: [@:username](:profile_url)\n", [
-                'username' => $article->user?->username,
-                'profile_url' => route('profile', $article->user?->username),
-            ]);
-
-            $message .= __("• Submitted on: :date\n\n", [
-                'date' => $article->submitted_at->translatedFormat('d/m/Y'),
-            ]);
+            $message .= __(
+                "[@:username](:profile_url) submitted the article [:title](:url) on: :date\n\n", [
+                    'username' => $article->user?->username,
+                    'profile_url' => route('profile', $article->user?->username),
+                    'title' => $article->title,
+                    'url' => route('articles.show', $article->slug),
+                    'date' => $article->submitted_at->translatedFormat('d/m/Y')
+                ]
+            );
         }
 
         return $message;

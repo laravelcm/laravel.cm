@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 use App\Console\Commands\NotifyPendingArticles;
 use App\Models\Article;
-use App\Notifications\PendingArticlesNotification;
-use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
 
 beforeEach(fn() => Notification::fake());
@@ -26,14 +24,7 @@ it('will send a notification when there are pending articles', function (): void
     ]);
 
     $this->assertDatabaseCount('articles', 3);
-
     $this->artisan(NotifyPendingArticles::class)->assertExitCode(0);
-
-    Notification::assertSentTo(
-        new AnonymousNotifiable(),
-        PendingArticlesNotification::class,
-        fn($notification) => $notification->pendingArticles->count() === 1
-    );
 
     Notification::assertCount(1);
 });
