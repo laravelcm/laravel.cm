@@ -1,7 +1,7 @@
 @props(['activeLinks', 'title', 'href' => '#'])
 
-<a
-    href="{{ $href }}"
+<x-link
+    :href="$href"
     class="{{ active(
         $activeLinks,
         'text-primary-600 hover:text-primary-500',
@@ -9,4 +9,4 @@
    ) }} inline-flex items-center px-1 text-sm font-medium"
 >
     {{ $title }}
-</a>
+</x-link>

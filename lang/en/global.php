@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
 
     'site_name' => 'Laravel Cameroon',
-    'site_description' => 'Bienvenue sur le site de la communauté des développeurs PHP et Laravel du Cameroun, le plus gros rassemblement de développeurs au Cameroun.',
+    'site_description' => 'Welcome to the Cameroon PHP and Laravel developer community, the largest gathering of developers in Cameroon.',
     'by' => 'by',
     'soon' => 'Soon',
     'navigation' => [
@@ -25,7 +25,7 @@ return [
     'footer' => [
         'title' => 'Footer',
         'copyright' => '© 2018 - :date Laravel Cameroon. All rights reserved.',
-        'legal' => 'Légal',
+        'legal' => 'Legal',
         'resources' => 'Resources',
     ],
     'joins_us' => [
@@ -35,9 +35,12 @@ return [
     'ask' => 'asked',
     'posted_by' => 'Posted by',
     'members' => 'Members',
-    'developers' => 'Développeurs PHP & Laravel',
-    'event_rates' => 'Taux de participation aux événements',
+    'developers' => 'PHP & Laravel developers',
+    'event_rates' => 'Event participation rates',
     'stars' => 'stars',
     'sponsor_thanks' => "We'd like to thank these amazing companies for supporting us",
+    'search' => 'Search',
+    'search_placeholder' => 'Search content...',
+    'logout' => 'Logout',
 
 ];

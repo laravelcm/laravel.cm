@@ -39,5 +39,8 @@ return [
     'event_rates' => 'Taux de participation aux événements',
     'stars' => 'stars',
     'sponsor_thanks' => 'Nous disons à merci à ces entreprises et communautés pour leur soutien',
+    'search' => 'Recherche',
+    'search_placeholder' => 'Rechercher un contenu...',
+    'logout' => 'Se déconnecter',
 
 ];

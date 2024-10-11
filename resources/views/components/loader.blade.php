@@ -1,5 +1,5 @@
 <svg
-    {{ $attributes->twMerge(['class' => 'animate-spin -ml-1 mr-3 size-5']) }}
+    {{ $attributes->twMerge(['class' => 'animate-spin size-5']) }}
     fill="none"
     viewBox="0 0 24 24"
 >
