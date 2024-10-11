@@ -27,11 +27,11 @@
                             />
                         </g>
                     </svg>
-                    <x-untitledui-switch-horizontal class="h-6 w-6 text-gray-400" />
-                    <x-application-icon class="block h-10 w-auto sm:h-12" />
+                    <x-untitledui-switch-horizontal class="size-6 text-gray-400" />
+                    <x-brand.icon class="block h-10 w-auto sm:h-12" />
                 </div>
-                <h2 class="mt-4 font-heading text-xl font-medium text-skin-inverted">Rejoindre le groupe Slack</h2>
-                <p class="mt-3 leading-6 text-skin-base">
+                <h2 class="mt-4 font-heading text-xl font-medium text-gray-900">Rejoindre le groupe Slack</h2>
+                <p class="mt-3 leading-6 text-gray-500 dark:text-gray-400">
                     Rejoignez notre slack pour discuter a propos de Laravel, Javascript, Design, comment démarrer et
                     mener un projet de bout en bout, et découvrez l'univers du développement au Cameroun.
                 </p>
@@ -55,10 +55,10 @@
 
     <x-container class="max-w-6xl pb-12">
         <section class="mx-auto max-w-3xl text-center">
-            <h2 class="mb-3 text-center font-heading text-2xl font-bold leading-7 tracking-tight text-skin-inverted">
+            <h2 class="mb-3 text-center font-heading text-2xl font-bold leading-7 tracking-tight text-gray-900">
                 Les autres groupes
             </h2>
-            <p class="mx-auto max-w-3xl text-center leading-6 text-skin-base">
+            <p class="mx-auto max-w-3xl text-center leading-6 text-gray-500 dark:text-gray-400">
                 Que vous soyez un débutant ou un développeur expérimenté, vous impliquez dans la communauté Laravel
                 Cameroun est un excellent moyen d'entrer en contact avec des personnes partageant les mêmes idées et qui
                 construisent des choses géniales avec le framework.
@@ -67,11 +67,11 @@
         <ul class="mt-12 grid grid-cols-1 items-start gap-x-8 gap-y-10 xl:grid-cols-3">
             <li class="relative flex flex-col items-start sm:flex-row xl:flex-col">
                 <div class="order-1 sm:ml-6 xl:ml-0">
-                    <h3 class="mb-1 font-medium text-skin-inverted">
+                    <h3 class="mb-1 font-medium text-gray-900">
                         <span class="mb-1 block leading-6 text-[#28D146]">WhatsApp</span>
                         Groupe accessible à tous mais limité à moins de 500 personnes
                     </h3>
-                    <p class="text-sm leading-5 text-skin-inverted-muted/60">
+                    <p class="text-sm leading-5 text-gray-700 dark:text-gray-300/60">
                         Si vous êtes un habitué de WhatsApp, nous avons un groupe qui regroupe près de 350 développeurs
                         junior et senior qui pourront discuter et échanger avec vous.
                     </p>
@@ -85,11 +85,11 @@
             </li>
             <li class="relative flex flex-col items-start sm:flex-row xl:flex-col">
                 <div class="order-1 sm:ml-6 xl:ml-0">
-                    <h3 class="mb-1 font-medium text-skin-inverted">
+                    <h3 class="mb-1 font-medium text-gray-900">
                         <span class="mb-1 block leading-6 text-[#27A7E7]">Telegram</span>
                         La plus grosse communauté de Laravel Cameroun
                     </h3>
-                    <p class="text-sm leading-5 text-skin-inverted-muted/60">
+                    <p class="text-sm leading-5 text-gray-700 dark:text-gray-300/60">
                         Avec le plus grand nombre de membres c'est la plateforme qui nous affectionne le plus alors
                         n'hésitez surtout pas à nous rejoindre.
                     </p>
@@ -106,11 +106,11 @@
             </li>
             <li class="relative flex flex-col items-start sm:flex-row xl:flex-col">
                 <div class="order-1 sm:ml-6 xl:ml-0">
-                    <h3 class="mb-1 font-medium text-skin-inverted">
+                    <h3 class="mb-1 font-medium text-gray-900">
                         <span class="mb-1 block leading-6 text-[#5865F2]">Discord</span>
                         Le tout dernier venu, mais notre plus grand coup de cœur
                     </h3>
-                    <p class="text-sm leading-5 text-skin-inverted-muted/60">
+                    <p class="text-sm leading-5 text-gray-700 dark:text-gray-300/60">
                         Discord est le dernier réseau rejoint par la communauté, vous pouvez nous rejoindre et
                         participer à toutes nos activités.
                     </p>

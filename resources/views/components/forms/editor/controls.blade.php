@@ -1,12 +1,12 @@
-<div class="relative flex h-full items-center space-x-4 px-4 font-medium text-skin-base">
+<div class="relative flex h-full items-center space-x-4 px-4 font-medium text-gray-500 dark:text-gray-400">
     <button
         x-data
         title="Codepen"
         type="button"
-        class="cursor-pointer text-skin-base hover:text-skin-inverted-muted focus:outline-none"
+        class="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:text-gray-300 focus:outline-none"
         @click="$dispatch('editor-control-clicked', 'codepen')"
     >
-        <svg class="h-5 w-5 fill-current text-skin-menu" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <svg class="size-5 fill-current text-skin-menu" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <g fill="none" fill-rule="evenodd">
                 <circle fill="#374151" cx="100" cy="100" r="100" />
                 <path
@@ -21,27 +21,27 @@
         x-data
         title="Code sample"
         type="button"
-        class="cursor-pointer text-skin-base hover:text-skin-inverted-muted focus:outline-none"
+        class="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:text-gray-300 focus:outline-none"
         @click="$dispatch('editor-control-clicked', 'code')"
     >
-        <x-untitledui-code class="h-5 w-5" />
+        <x-untitledui-code class="size-5" />
     </button>
     <button
         x-data
         title="Link"
         type="button"
-        class="cursor-pointer text-skin-base hover:text-skin-inverted-muted focus:outline-none"
+        class="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:text-gray-300 focus:outline-none"
         @click="$dispatch('editor-control-clicked', 'link')"
     >
-        <x-heroicon-o-link class="h-5 w-5" />
+        <x-heroicon-o-link class="size-5" />
     </button>
     <button
         x-data
         title="Image"
         type="button"
-        class="cursor-pointer text-skin-base hover:text-skin-inverted-muted focus:outline-none"
+        class="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:text-gray-300 focus:outline-none"
         @click="$dispatch('editor-control-clicked', 'image')"
     >
-        <x-untitledui-image class="h-5 w-5" />
+        <x-untitledui-image class="size-5" />
     </button>
 </div>

@@ -4,9 +4,9 @@
         <div class="relative flex items-start space-x-3">
             <div>
                 <div class="relative px-1">
-                    <div class="flex h-8 w-8 items-center justify-center rounded-full bg-skin-card ring-8 ring-card">
+                    <div class="flex size-8 items-center justify-center rounded-full bg-skin-card ring-8 ring-card">
                         <svg
-                            class="h-6 w-6 text-skin-base"
+                            class="size-6 text-gray-500 dark:text-gray-400"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -23,15 +23,15 @@
                 </div>
             </div>
             <div class="min-w-0 flex-1 py-1.5">
-                <div class="text-sm text-skin-base">
+                <div class="text-sm text-gray-500 dark:text-gray-400">
                     <a
                         href="{{ route('profile', ['username' => $user->username]) }}"
-                        class="font-sans font-medium text-skin-inverted"
+                        class="font-sans font-medium text-gray-900"
                     >
                         {{ $user->name }}
                     </a>
                     a commencé a suivre
-                    <a href="#" class="font-sans font-medium text-skin-inverted">Fabrice Yopa</a>
+                    <a href="#" class="font-sans font-medium text-gray-900">Fabrice Yopa</a>
                     <span class="whitespace-nowrap font-sans">il y a 3h</span>
                 </div>
             </div>

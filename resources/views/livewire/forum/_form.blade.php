@@ -4,7 +4,7 @@
     <div class="block">
         <x-label for="title">Titre</x-label>
         <x-input id="title" class="mt-1 block w-full" wire:model="title" name="title" required />
-        <p class="mt-2 text-sm text-skin-base">Maximum de 75 caractères.</p>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Maximum de 75 caractères.</p>
     </div>
 
     <div class="standard relative z-50 block" wire:ignore>
@@ -34,12 +34,12 @@
             'height' => 'h-[350px]',
         ]"
         />
-        <p class="text-sm leading-5 text-skin-base">
+        <p class="text-sm leading-5 text-gray-500 dark:text-gray-400">
             Pour le formatage du code (couleur syntaxique, langage, etc) nous utilisons
             <a
                 href="https://torchlight.dev/docs/overview"
                 target="_blank"
-                class="font-medium text-skin-primary underline hover:text-skin-primary-hover"
+                class="font-medium text-primary-600 underline hover:text-primary-600-hover"
             >
                 Torchlight
             </a>

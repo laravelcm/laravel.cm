@@ -2,7 +2,7 @@
     <a
         href="{{ url(request()->url() . '?sortBy=recent') }}"
         aria-current="{{ $filter === 'recent' ? 'page' : 'false' }}"
-        class="{{ $filter === 'recent' ? 'text-skin-inverted' : 'text-skin-base hover:text-skin-inverted' }} group relative w-full min-w-0 flex-1 overflow-hidden rounded-l-lg bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
+        class="{{ $filter === 'recent' ? 'text-gray-900' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900' }} group relative w-full min-w-0 flex-1 overflow-hidden rounded-l-lg bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
     >
         <span>{{ __('Récent') }}</span>
         <span
@@ -14,7 +14,7 @@
     <a
         href="{{ url(request()->url() . '?sortBy=resolved') }}"
         aria-current="{{ $filter === 'resolved' ? 'page' : 'false' }}"
-        class="{{ $filter === 'resolved' ? 'text-skin-inverted' : 'text-skin-base hover:text-skin-inverted' }} group relative w-full min-w-0 flex-1 overflow-hidden bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
+        class="{{ $filter === 'resolved' ? 'text-gray-900' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900' }} group relative w-full min-w-0 flex-1 overflow-hidden bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
     >
         <span>{{ __('Résolu') }}</span>
         <span
@@ -26,7 +26,7 @@
     <a
         href="{{ url(request()->url() . '?sortBy=unresolved') }}"
         aria-current="{{ $filter === 'unresolved' ? 'page' : 'false' }}"
-        class="{{ $filter === 'unresolved' ? 'text-skin-inverted' : 'text-skin-base hover:text-skin-inverted' }} group relative w-full min-w-0 flex-1 overflow-hidden rounded-r-lg bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
+        class="{{ $filter === 'unresolved' ? 'text-gray-900' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900' }} group relative w-full min-w-0 flex-1 overflow-hidden rounded-r-lg bg-skin-card p-4 text-center text-sm font-medium hover:bg-skin-card-muted focus:z-10 sm:px-6"
     >
         <span>{{ __('Non résolu') }}</span>
         <span

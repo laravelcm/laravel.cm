@@ -1,133 +1,138 @@
-<x-app-layout title="Créer un compte">
-    <div class="mx-auto flex w-full items-center justify-between py-6 sm:max-w-4xl sm:py-9">
-        <div class="hidden lg:block lg:w-90">
-            <h3 class="text-lg font-semibold leading-6 text-skin-inverted">
-                Ouvrez votre esprit pour découvrir de nouveaux horizons.
-            </h3>
-            <dl class="mt-6 space-y-4">
-                <div class="relative">
-                    <dt>
-                        <x-icon.podcast class="absolute h-6 w-6" />
-                    </dt>
-                    <dd class="ml-9 mt-2 text-base text-skin-base">
-                        <span class="font-medium text-skin-inverted">Podcast.</span>
-                        <span>
-                            Suivez des podcasts sur différentes thématiques avec des freelances, développeurs,
-                            entrepreneurs etc.
-                        </span>
-                    </dd>
-                </div>
-                <div class="relative">
-                    <dt>
-                        <x-icon.discussion class="absolute h-6 w-6" />
-                    </dt>
-                    <dd class="ml-9 mt-2 text-base text-skin-base">
-                        <span class="font-medium text-skin-inverted">Discussions.</span>
-                        <span>Participez à des discussions et débats ouverts avec plusieurs autres participants.</span>
-                    </dd>
-                </div>
-                <div class="relative">
-                    <dt>
-                        <x-icon.code-snippet class="absolute h-6 w-6" />
-                    </dt>
-                    <dd class="ml-9 mt-2 text-base text-skin-base">
-                        <span class="font-medium text-skin-inverted">Code Snippets.</span>
-                        <span>
-                            Partagez des codes sources de différents langages pour venir en aide à d’autres
-                            développeurs.
-                        </span>
-                    </dd>
-                </div>
-                <div class="relative">
-                    <dt>
-                        <x-icon.premium class="absolute h-6 w-6" />
-                    </dt>
-                    <dd class="ml-9 mt-2 text-base text-skin-base">
-                        <span class="font-medium text-skin-inverted">Premium.</span>
-                        <span>
-                            Devenez premium, supporter la communauté et accéder à des contenus et codes sources privés.
-                        </span>
-                    </dd>
-                </div>
-            </dl>
-        </div>
-        <div class="mx-auto max-w-md space-y-8 lg:mx-0">
-            <div class="space-y-3">
-                <h2 class="font-heading text-3xl font-extrabold text-skin-inverted">Rejoindre Laravel Cameroun</h2>
-                <x-profile-users />
-                <p class="text-base leading-6 text-skin-base">
-                    Rejoignez plus de 200 développeurs et designers. Parce qu’il ny’a pas que le code dans la vie.
-                </p>
-            </div>
-            <div>
-                <x-status-message />
-
-                <form class="space-y-6" action="{{ route('register') }}" method="POST">
-                    @csrf
-                    <div class="space-y-3">
-                        <x-input
-                            id="name"
-                            name="name"
-                            autocomplete="name"
-                            placeholder="Nom complet"
-                            aria-label="Nom complet"
-                            required
-                        />
-                        <x-email
-                            id="email"
-                            name="email"
-                            autocomplete="email"
-                            required
-                            placeholder="Adresse E-mail"
-                            aria-label="Adresse E-mail"
-                        />
-                        <x-input
-                            id="username"
-                            name="username"
-                            autocomplete="current-password"
-                            required
-                            placeholder="Pseudo"
-                            aria-label="Pseudo"
-                        />
-                        <x-password
-                            id="password"
-                            name="password"
-                            autocomplete="current-password"
-                            required
-                            placeholder="Mot de passe (min. 6 caratères)"
-                            aria-label="Mot de passe"
-                        />
-                    </div>
-
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input
-                                id="opt_in"
-                                name="opt_in"
-                                type="checkbox"
-                                class="h-4 w-4 rounded border-skin-input bg-skin-input text-green-600 focus:ring-green-500"
-                            />
-                            <label for="opt_in" class="ml-2 block text-sm font-normal text-skin-base">
-                                Je veux recevoir la newsletter
-                            </label>
-                        </div>
-                    </div>
-
-                    <div>
-                        <button
-                            type="submit"
-                            class="group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+<x-app-layout :title="__('pages/auth.register.page_title')">
+    <x-container class="py-12 sm:py-16 lg:pt-20">
+        <div class="lg:grid lg:gap-12 lg:grid-cols-2">
+            <div class="hidden items-center justify-center lg:flex">
+                <div>
+                    <h3 class="text-lg font-semibold leading-6 text-gray-700 dark:text-gray-300">
+                        {{ __('pages/auth.register.advantages.heading') }}
+                    </h3>
+                    <dl class="mt-10 grid gap-6 grid-cols-2">
+                        <x-site-feature
+                            :title="__('pages/auth.register.advantages.podcast')"
+                            :description="__('pages/auth.register.advantages.podcast_description')"
                         >
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                                <x-heroicon-s-lock-closed class="h-5 w-5 text-green-500 group-hover:text-green-400" />
-                            </span>
-                            Créer mon compte
-                        </button>
-                    </div>
-                </form>
-            </div>
+                            <x-slot:icon>
+                                <x-icon.podcast class="size-8" aria-hidden="true" />
+                            </x-slot:icon>
+                        </x-site-feature>
 
-            @include('partials._socials-link')
+                        <x-site-feature
+                            :title="__('pages/auth.register.advantages.discussion')"
+                            :description="__('pages/auth.register.advantages.discussion_description')"
+                        >
+                            <x-slot:icon>
+                                <x-icon.discussion class="size-8" aria-hidden="true" />
+                            </x-slot:icon>
+                        </x-site-feature>
+
+                        <x-site-feature
+                            :title="__('pages/auth.register.advantages.snippet')"
+                            :description="__('pages/auth.register.advantages.snippet_description')"
+                        >
+                            <x-slot:icon>
+                                <x-icon.code-snippet class="size-8" aria-hidden="true" />
+                            </x-slot:icon>
+                        </x-site-feature>
+
+                        <x-site-feature
+                            :title="__('pages/auth.register.advantages.premium')"
+                            :description="__('pages/auth.register.advantages.premium_description')"
+                        >
+                            <x-slot:icon>
+                                <x-icon.premium class="size-8" aria-hidden="true" />
+                            </x-slot:icon>
+                        </x-site-feature>
+                    </dl>
+
+                    <div class="mt-16 relative text-sm space-y-4 max-w-lg mx-auto">
+                        <svg class="absolute left-0 top-0 size-7 -translate-x-8 -translate-y-2 rotate-12 transform text-green-600" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+                            <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                        </svg>
+                        <p class="relative text-gray-600 dark:text-gray-400">
+                            {{ __('pages/auth.register.advantages.quote') }}
+                        </p>
+                        <p class="mt-2 text-gray-900 dark:text-white">
+                            <span class="italic text-gray-400 dark:text-gray-500">"The Pragmatic Programmer"</span> {{ __('pages/auth.register.advantages.quote_authors') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="mx-auto max-w-md space-y-8">
+                <div class="space-y-3 text-center">
+                    <h2 class="font-heading text-3xl font-extrabold text-gray-900 dark:text-white">
+                        {{ __('pages/auth.register.join_us') }}
+                    </h2>
+                    <x-profile-users />
+                    <p class="leading-6 text-gray-500 dark:text-gray-400">
+                        {{ __('pages/auth.register.joins_description') }}
+                    </p>
+                </div>
+                <div>
+                    <x-status-message />
+
+                    <form class="space-y-6" action="{{ route('register') }}" method="POST">
+                        @csrf
+                        <div class="space-y-3">
+                            <x-filament::input.wrapper>
+                                <x-filament::input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    required="true"
+                                    autocomplete="name"
+                                    aria-label="{{ __('validation.attributes.name') }}"
+                                    :placeholder="__('validation.attributes.name')"
+                                />
+                            </x-filament::input.wrapper>
+                            <x-filament::input.wrapper>
+                                <x-filament::input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required="true"
+                                    autocomplete="email"
+                                    aria-label="{{ __('validation.attributes.email') }}"
+                                    :placeholder="__('validation.attributes.email')"
+                                />
+                            </x-filament::input.wrapper>
+                            <x-filament::input.wrapper>
+                                <x-filament::input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    required="true"
+                                    autocomplete="username"
+                                    aria-label="{{ __('validation.attributes.username') }}"
+                                    :placeholder="__('validation.attributes.username')"
+                                />
+                            </x-filament::input.wrapper>
+                            <x-filament::input.wrapper>
+                                <x-filament::input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    required="true"
+                                    aria-label="{{ __('validation.attributes.password') }}"
+                                    :placeholder="__('pages/auth.register.password_placeholder')"
+                                />
+                            </x-filament::input.wrapper>
+                        </div>
+
+                        <div>
+                            <x-buttons.primary type="submit" class="group w-full relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <x-untitledui-lock class="size-5 text-green-500 group-hover:text-green-600" aria-hidden="true" />
+                                </span>
+                                {{ __('pages/auth.register.submit') }}
+                            </x-buttons.primary>
+                        </div>
+                    </form>
+                </div>
+
+                @include('partials._socials-link')
+            </div>
         </div>
-    </div>
+    </x-container>
+
+    <x-join-sponsors :title="__('global.sponsor_thanks')" />
 </x-app-layout>

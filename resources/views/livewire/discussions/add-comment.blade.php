@@ -3,7 +3,7 @@
         <div class="flex-shrink-0">
             <div class="relative">
                 <img
-                    class="flex h-10 w-10 items-center justify-center rounded-full bg-skin-card-gray object-cover ring-8 ring-body"
+                    class="flex size-10 items-center justify-center rounded-full bg-skin-card-gray object-cover ring-8 ring-body"
                     src="{{ $authenticate->profile_photo_url }}"
                     alt="{{ $authenticate->name }}"
                 />
@@ -14,7 +14,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="h-5 w-5 text-skin-muted"
+                        class="size-5 text-skin-muted"
                     >
                         <path
                             stroke-linecap="round"
@@ -42,9 +42,9 @@
         />
         <div class="mt-4 sm:flex sm:items-center sm:justify-between sm:space-x-4">
             @if ($isRoot)
-                <p class="max-w-xl text-sm font-normal text-skin-base">
+                <p class="max-w-xl text-sm font-normal text-gray-500 dark:text-gray-400">
                     {{ __('Veuillez vous assurer d\'avoir lu nos') }}
-                    <a href="{{ route('rules') }}" class="font-medium text-skin-primary hover:text-skin-primary-hover">
+                    <a href="{{ route('rules') }}" class="font-medium text-primary-600 hover:text-primary-600-hover">
                         {{ __('règles de conduite') }}
                     </a>
                     {{ __('avant de répondre à ce fil de conversation.') }}
@@ -65,15 +65,15 @@
     </div>
     @guest
         <div class="absolute inset-0 flex items-center justify-center bg-skin-card bg-opacity-10 py-8">
-            <p class="text-center font-sans text-skin-base">
+            <p class="text-center font-sans text-gray-500 dark:text-gray-400">
                 {{ __('Veuillez vous') }}
-                <a href="{{ route('login') }}" class="text-skin-primary hover:text-skin-primary-hover hover:underline">
+                <a href="{{ route('login') }}" class="text-primary-600 hover:text-primary-600-hover hover:underline">
                     {{ __('connecter') }}
                 </a>
                 {{ __('ou') }}
                 <a
                     href="{{ route('register') }}"
-                    class="text-skin-primary hover:text-skin-primary-hover hover:underline"
+                    class="text-primary-600 hover:text-primary-600-hover hover:underline"
                 >
                     {{ __('créer un compte') }}
                 </a>

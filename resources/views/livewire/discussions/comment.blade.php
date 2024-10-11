@@ -6,27 +6,27 @@
 
         <div class="relative flex space-x-3">
             <div class="flex-shrink-0">
-                <img class="h-10 w-10 rounded-full" src="{{ $comment->user->profile_photo_url }}" alt="" />
+                <img class="size-10 rounded-full" src="{{ $comment->user->profile_photo_url }}" alt="" />
             </div>
             <div class="flex-1">
                 <div class="text-sm sm:flex sm:items-center">
                     <a
                         href="{{ route('profile', $comment->user->username) }}"
-                        class="font-sans font-medium text-skin-primary hover:text-skin-primary-hover"
+                        class="font-sans font-medium text-primary-600 hover:text-primary-600-hover"
                     >
                         {{ $comment->user->name }}
                     </a>
                     <span
-                        class="mx-1.5 inline-flex items-center rounded-md bg-skin-card-gray px-2.5 py-0.5 text-xs font-medium text-skin-inverted-muted"
+                        class="mx-1.5 inline-flex items-center rounded-md bg-skin-card-gray px-2.5 py-0.5 text-xs font-medium text-gray-700 dark:text-gray-300"
                     >
                         {{ $comment->user->getPoints() }} XP
                     </span>
-                    <span wire:ignore class="mx-2 text-sm text-skin-base">
+                    <span wire:ignore class="mx-2 text-sm text-gray-500 dark:text-gray-400">
                         <time-ago time="{{ $comment->created_at->getTimestamp() }}" />
                     </span>
                     @can(App\Policies\ReplyPolicy::UPDATE, $comment)
                         <div class="mt-1 flex sm:mt-0">
-                            <span class="hidden font-medium text-skin-base sm:inline-block">·</span>
+                            <span class="hidden font-medium text-gray-500 dark:text-gray-400 sm:inline-block">·</span>
                             <div class="flex items-center space-x-2 divide-x divide-skin-base pl-2">
                                 <button
                                     type="button"
@@ -41,7 +41,7 @@
                 </div>
                 <x-markdown-content
                     :content="$comment->body"
-                    class="prose prose-green mt-2 max-w-none text-sm text-skin-base"
+                    class="prose prose-green mt-2 max-w-none text-sm text-gray-500 dark:text-gray-400"
                 />
                 <div class="mt-4 space-x-4 text-sm">
                     <button
@@ -50,13 +50,13 @@
                         @class([
                             'inline-flex items-center justify-center text-sm font-normal hover:text-rose-500',
                             'text-rose-500' => $count > 0,
-                            'text-skin-base' => $count === 0,
+                            'text-gray-500 dark:text-gray-400' => $count === 0,
                         ])
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
-                            class="-ml-1 mr-2 h-5 w-5 fill-current"
+                            class="-ml-1 mr-2 size-5 fill-current"
                         >
                             <path
                                 opacity="0.4"

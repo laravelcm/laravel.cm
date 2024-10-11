@@ -12,7 +12,7 @@
 
                 <div class="lg:grid lg:grid-cols-3 lg:gap-10">
                     <div class="hidden items-center lg:flex">
-                        <h3 class="font-heading text-xl text-skin-inverted">
+                        <h3 class="font-heading text-xl text-gray-900">
                             {{ number_format($threads->total()) }} Sujets
                         </h3>
                     </div>

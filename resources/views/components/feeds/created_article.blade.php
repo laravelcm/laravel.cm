@@ -9,10 +9,10 @@
             <div class="relative flex space-x-3">
                 <div>
                     <span
-                        class="flex h-8 w-8 items-center justify-center rounded-full bg-skin-card-gray ring-8 ring-body"
+                        class="flex size-8 items-center justify-center rounded-full bg-skin-card-gray ring-8 ring-body"
                     >
                         <svg
-                            class="h-5 w-5 text-skin-inverted-muted"
+                            class="size-5 text-gray-700 dark:text-gray-300"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -29,11 +29,11 @@
                 </div>
                 <div class="min-w-0 flex-1">
                     <div>
-                        <p class="text-sm text-skin-base">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
                             {{ __('a créé l\'article') }}
                             <a
                                 href="{{ route('articles.show', $activity->subject) }}"
-                                class="font-medium text-skin-primary hover:text-skin-primary-hover"
+                                class="font-medium text-primary-600 hover:text-primary-600-hover"
                             >
                                 {{ $activity->subject->title }}
                             </a>

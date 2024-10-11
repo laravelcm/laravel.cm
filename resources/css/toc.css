@@ -1,8 +1,8 @@
 .toc li a {
-    @apply relative flex items-center rounded-md py-1.5 text-sm font-medium leading-5 text-skin-base transition duration-150 ease-in-out;
+    @apply relative flex items-center rounded-md py-1.5 text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out dark:text-gray-400;
 }
 .toc li a:hover {
-    @apply text-skin-inverted;
+    @apply text-gray-700;
 }
 .toc li a:focus {
     @apply outline-none;
@@ -11,8 +11,8 @@
     @apply pl-4;
 }
 .toc li.active > a {
-    @apply text-skin-primary;
+    @apply text-primary-500;
 }
 .toc li:not(.active) > ul > li.active a {
-    @apply text-skin-primary;
+    @apply text-primary-500;
 }

@@ -6,7 +6,7 @@
 
 <div class="md:flex md:items-center md:justify-between">
     <div class="min-w-0 flex-1">
-        <h2 class="font-heading text-lg font-bold leading-7 text-skin-inverted sm:truncate sm:text-xl">
+        <h2 class="font-heading text-lg font-bold leading-7 text-gray-900 sm:truncate sm:text-xl">
             {{ $title }}
         </h2>
     </div>

@@ -1,6 +1,6 @@
 @props([
     'user',
-    'span' => '-right-1 top-0 h-4 w-4 ring-2',
+    'span' => '-right-1 top-0 size-4 ring-2',
     'container' => '',
 ])
 

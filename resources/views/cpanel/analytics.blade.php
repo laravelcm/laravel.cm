@@ -3,10 +3,10 @@
         <div class="divide-y divide-skin-base">
             <div class="pb-10">
                 <div>
-                    <h3 class="font-heading text-3xl font-semibold leading-8 text-skin-inverted">
+                    <h3 class="font-heading text-3xl font-semibold leading-8 text-gray-900">
                         Rapport Hebdomadaires
                     </h3>
-                    <p class="mt-2 max-w-4xl text-lg leading-6 text-skin-base">
+                    <p class="mt-2 max-w-4xl text-lg leading-6 text-gray-500 dark:text-gray-400">
                         Toutes les informations pour le rapport hebdomadaire pour la semaine (
                         <span class="font-medium capitalize text-green-500">
                             {{ __(':start - :end', ['start' => now()->startOfWeek()->isoFormat('DD MMMM'),'end' => now()->endOfWeek()->isoFormat('DD MMMM'),]) }}

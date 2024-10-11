@@ -15,7 +15,7 @@
                     <div>
                         <button
                             type="button"
-                            class="-m-2 flex items-center rounded-full p-2 text-skin-muted hover:text-skin-base"
+                            class="-m-2 flex items-center rounded-full p-2 text-skin-muted hover:text-gray-500 dark:text-gray-400"
                             x-ref="button"
                             @click="open = !open"
                             aria-expanded="false"
@@ -29,7 +29,7 @@
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="h-5 w-5"
+                                class="size-5"
                             >
                                 <path
                                     stroke-linecap="round"
@@ -63,12 +63,12 @@
                             @can(App\Policies\ThreadPolicy::UPDATE, $thread)
                                 <a
                                     href="{{ route('forum.edit', $thread) }}"
-                                    class="group flex px-4 py-2 text-sm text-skin-inverted-muted hover:text-skin-inverted"
+                                    class="group flex px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900"
                                     role="menuitem"
                                     tabindex="-1"
                                 >
                                     <svg
-                                        class="mr-3 h-5 w-5 text-skin-muted group-hover:text-skin-base"
+                                        class="mr-3 size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
@@ -89,12 +89,12 @@
                                 <button
                                     type="button"
                                     onclick="Livewire.dispatch('openModal', {component: 'modals.delete-thread', arguments: {{ json_encode([$thread->id]) }} })"
-                                    class="group flex px-4 py-2 text-sm text-skin-inverted-muted hover:text-skin-inverted"
+                                    class="group flex px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900"
                                     role="menuitem"
                                     tabindex="-1"
                                 >
                                     <x-untitledui-trash-03
-                                        class="mr-3 h-5 w-5 text-skin-muted group-hover:text-skin-base"
+                                        class="mr-3 size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
                                     />
                                     <span>Supprimer</span>
                                 </button>
@@ -102,11 +102,11 @@
 
                             <a
                                 href="#"
-                                class="group flex px-4 py-2 text-sm text-skin-inverted-muted hover:text-skin-inverted"
+                                class="group flex px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900"
                                 role="menuitem"
                                 tabindex="-1"
                             >
-                                <x-heroicon-s-flag class="mr-3 h-5 w-5 text-skin-muted group-hover:text-skin-base" />
+                                <x-heroicon-s-flag class="mr-3 size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400" />
                                 <span>Signaler contenu</span>
                             </a>
                         </div>
@@ -116,7 +116,7 @@
         </div>
     @endcanany
 
-    <div class="prose prose-base prose-green max-w-none text-skin-base">
+    <div class="prose prose-base prose-green max-w-none text-gray-500 dark:text-gray-400">
         <x-markdown-content :content="$thread->body" />
     </div>
     <div class="mt-6">

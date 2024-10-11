@@ -8,17 +8,17 @@
             <div class="lg:flex lg:space-x-3">
                 <div class="flex flex-1 items-center space-x-3">
                     <div class="shrink-0">
-                        <x-user.avatar :user="$thread->user" class="h-8 w-8" />
+                        <x-user.avatar :user="$thread->user" class="size-8" />
                     </div>
                     <div class="flex min-w-0 flex-1 items-center space-x-1 font-sans">
-                        <p class="text-sm font-medium text-skin-inverted">
+                        <p class="text-sm font-medium text-gray-900">
                             <a href="{{ route('profile', $thread->user->username) }}" class="group block">
                                 <span class="group-hover:underline">{{ $thread->user->name }}</span>
                                 <span class="text-skin-muted">{{ '@' . $thread->user->username }}</span>
                             </a>
                         </p>
                         <span aria-hidden="true">&middot;</span>
-                        <p class="text-sm text-skin-base">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
                             <time-ago time="{{ $thread->created_at->getTimestamp() }}" />
                         </p>
                     </div>
@@ -35,27 +35,27 @@
                     @endif
                 </div>
             </div>
-            <h2 id="question-title-{{ $thread->id }}" class="mt-4 font-sans text-base font-medium text-skin-inverted">
+            <h2 id="question-title-{{ $thread->id }}" class="mt-4 font-sans text-base font-medium text-gray-900">
                 <a href="{{ route('forum.show', $thread) }}" class="hover:underline">{{ $thread->subject() }}</a>
             </h2>
         </div>
-        <div class="mt-2 text-sm font-normal text-skin-inverted-muted">
+        <div class="mt-2 text-sm font-normal text-gray-700 dark:text-gray-300">
             <a href="{{ route('forum.show', $thread) }}">{!! $thread->excerpt() !!}</a>
         </div>
         <div class="mt-6 flex justify-between space-x-8">
             <div class="flex items-center space-x-4">
-                <div class="flex items-center text-sm font-normal text-skin-inverted-muted">
+                <div class="flex items-center text-sm font-normal text-gray-700 dark:text-gray-300">
                     <span class="mr-2 text-base">👏</span>
                     {{ count($thread->reactions) }}
                 </div>
-                <p class="inline-flex space-x-2 text-sm text-skin-base">
+                <p class="inline-flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="h-5 w-5"
+                        class="size-5"
                     >
                         <path
                             stroke-linecap="round"
@@ -63,7 +63,7 @@
                             d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
                         />
                     </svg>
-                    <span class="font-normal text-skin-inverted-muted">{{ count($thread->replies) }}</span>
+                    <span class="font-normal text-gray-700 dark:text-gray-300">{{ count($thread->replies) }}</span>
                     <span class="sr-only">{{ __('réponses') }}</span>
                 </p>
             </div>
@@ -80,7 +80,7 @@
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="h-5 w-5"
+                                class="size-5"
                             >
                                 <path
                                     stroke-linecap="round"

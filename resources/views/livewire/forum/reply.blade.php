@@ -9,10 +9,10 @@
     <div class="sm:flex sm:space-x-3" id="reply-{{ $reply->id }}">
         <div class="flex items-center font-sans sm:items-start">
             <div class="shrink-0">
-                <x-user.avatar :user="$reply->user" class="h-10 w-10" />
+                <x-user.avatar :user="$reply->user" class="size-10" />
             </div>
             <div class="ml-4 space-y-1 text-sm sm:hidden">
-                <a href="{{ route('profile', $reply->user->username) }}" class="block font-medium text-skin-inverted">
+                <a href="{{ route('profile', $reply->user->username) }}" class="block font-medium text-gray-900">
                     {{ $reply->user->name }}
                     <span class="inline-flex text-skin-muted">{{ '@' . $reply->user->username }}</span>
                 </a>
@@ -28,14 +28,14 @@
         <div x-show="!open" class="flex-1 overflow-hidden">
             <div class="flex items-start">
                 <div class="hidden flex-1 space-x-2 font-sans text-sm sm:flex sm:items-center">
-                    <a href="{{ route('profile', $reply->user->username) }}" class="font-medium text-skin-inverted">
+                    <a href="{{ route('profile', $reply->user->username) }}" class="font-medium text-gray-900">
                         {{ $reply->user->name }}
                         <span class="inline-flex text-skin-muted">{{ '@' . $reply->user->username }}</span>
                     </a>
 
                     <x-user.points :author="$reply->user" />
 
-                    <span class="font-medium text-skin-base">·</span>
+                    <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
                     <time
                         datetime="{{ $reply->created_at }}"
                         title="{{ $thread->created_at->format('j M, Y \à h:i') }}"
@@ -45,12 +45,12 @@
                     </time>
 
                     @can(App\Policies\ReplyPolicy::UPDATE, $reply)
-                        <span class="font-medium text-skin-base">·</span>
+                        <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
                         <div class="flex items-center divide-x divide-skin-base">
                             <button
                                 @click="open = true"
                                 type="button"
-                                class="pr-2 font-sans text-sm leading-5 text-skin-base hover:underline focus:outline-none"
+                                class="pr-2 font-sans text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
                             >
                                 Éditer
                             </button>
@@ -74,7 +74,7 @@
                                 type="button"
                                 class="inline-flex transform items-center justify-center rounded-full bg-red-500 bg-opacity-10 p-2.5 text-sm leading-5 text-red-600 transition-all hover:scale-125 focus:outline-none"
                             >
-                                <x-untitledui-x class="h-6 w-6" />
+                                <x-untitledui-x class="size-6" />
                             </button>
                             <span class="ml-2 font-sans text-sm text-red-500 sm:hidden">Retirer comme solution</span>
                         </div>
@@ -85,7 +85,7 @@
                                 type="button"
                                 class="inline-flex transform items-center justify-center rounded-full bg-green-500 bg-opacity-10 p-2.5 text-sm leading-5 text-green-600 transition-all hover:scale-125 focus:outline-none"
                             >
-                                <x-heroicon-s-check-circle class="h-6 w-6" />
+                                <x-heroicon-s-check-circle class="size-6" />
                             </button>
                             <span class="ml-2 font-sans text-sm text-green-500 sm:hidden">Marquer comme solution</span>
                         </div>
@@ -95,13 +95,13 @@
                         <span
                             class="absolute -top-3 right-3 z-20 ml-4 inline-flex items-center rounded-full bg-green-500 px-3 py-0.5 text-sm font-medium text-green-900"
                         >
-                            <x-heroicon-o-check-circle class="mr-1.5 h-4 w-4" />
+                            <x-heroicon-o-check-circle class="mr-1.5 size-4" />
                             Réponse acceptée
                         </span>
                     @endif
                 @endcan
             </div>
-            <div class="prose prose-green mt-1 overflow-x-auto font-normal text-skin-base sm:prose-base sm:max-w-none">
+            <div class="prose prose-green mt-1 overflow-x-auto font-normal text-gray-500 dark:text-gray-400 sm:prose-base sm:max-w-none">
                 <x-markdown-content :content="$reply->body" />
             </div>
         </div>

@@ -4,7 +4,7 @@
             <div>
                 <h2
                     id="notification-date-{{ Str::slug($date) }}"
-                    class="inline-flex inline-flex items-center gap-x-3 rounded-full bg-skin-primary bg-opacity-20 px-2.5 py-1.5 font-sans text-sm font-medium text-skin-primary"
+                    class="inline-flex inline-flex items-center gap-x-3 rounded-full bg-skin-primary bg-opacity-20 px-2.5 py-1.5 font-sans text-sm font-medium text-primary-600"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +12,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="h-5 w-5"
+                        class="size-5"
                     >
                         <path
                             stroke-linecap="round"
@@ -43,7 +43,7 @@
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="mx-auto h-10 w-10 text-skin-primary"
+                    class="mx-auto size-10 text-primary-600"
                 >
                     <path
                         stroke-linecap="round"
@@ -51,27 +51,27 @@
                         d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
                     />
                 </svg>
-                <p class="mt-1 text-sm leading-5 text-skin-base">Vous n'avez pas de notifications non lues.</p>
+                <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">Vous n'avez pas de notifications non lues.</p>
             </div>
         </div>
 
         <div class="mx-auto mt-10 max-w-lg">
-            <h2 class="font-sans text-lg font-medium text-skin-inverted">Lancer un nouveau contenu ?</h2>
-            <p class="mt-1 text-sm font-normal text-skin-base">
+            <h2 class="font-sans text-lg font-medium text-gray-900">Lancer un nouveau contenu ?</h2>
+            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                 Commencer par choisir quel type de contenu vous voulez créer.
             </p>
             <ul role="list" class="mt-6 divide-y divide-skin-base border-b border-t border-skin-base">
                 <li>
                     <div class="group relative flex items-start space-x-3 py-4">
                         <div class="shrink-0">
-                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-flag-green">
+                            <span class="inline-flex size-10 items-center justify-center rounded-lg bg-flag-green">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke-width="1.5"
                                     stroke="currentColor"
-                                    class="h-6 w-6 text-white"
+                                    class="size-6 text-white"
                                 >
                                     <path
                                         stroke-linecap="round"
@@ -82,13 +82,13 @@
                             </span>
                         </div>
                         <div class="min-w-0 flex-1">
-                            <div class="font-sans text-sm font-medium text-skin-inverted">
+                            <div class="font-sans text-sm font-medium text-gray-900">
                                 <a href="{{ route('articles.new') }}">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
                                     Rédiger un article
                                 </a>
                             </div>
-                            <p class="text-sm font-normal text-skin-base">
+                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                 Partager un tutoriel ou une information importante.
                             </p>
                         </div>
@@ -99,7 +99,7 @@
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="h-5 w-5 text-skin-muted group-hover:text-skin-base"
+                                class="size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
                             >
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>
@@ -110,14 +110,14 @@
                 <li>
                     <div class="group relative flex items-start space-x-3 py-4">
                         <div class="shrink-0">
-                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-flag-red">
+                            <span class="inline-flex size-10 items-center justify-center rounded-lg bg-flag-red">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke-width="1.5"
                                     stroke="currentColor"
-                                    class="h-6 w-6 text-white"
+                                    class="size-6 text-white"
                                 >
                                     <path
                                         stroke-linecap="round"
@@ -128,13 +128,13 @@
                             </span>
                         </div>
                         <div class="min-w-0 flex-1">
-                            <div class="font-sans text-sm font-medium text-skin-inverted">
+                            <div class="font-sans text-sm font-medium text-gray-900">
                                 <a href="{{ route('discussions.new') }}">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
                                     Démarrer une discussion
                                 </a>
                             </div>
-                            <p class="text-sm font-normal text-skin-base">
+                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                 Vous souhaitez apporter une pierre à l'édifice.
                             </p>
                         </div>
@@ -145,7 +145,7 @@
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="h-5 w-5 text-skin-muted group-hover:text-skin-base"
+                                class="size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
                             >
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>
@@ -156,14 +156,14 @@
                 <li>
                     <div class="group relative flex items-start space-x-3 py-4">
                         <div class="shrink-0">
-                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-500">
+                            <span class="inline-flex size-10 items-center justify-center rounded-lg bg-yellow-500">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke-width="1.5"
                                     stroke="currentColor"
-                                    class="h-6 w-6 text-white"
+                                    class="size-6 text-white"
                                 >
                                     <path
                                         stroke-linecap="round"
@@ -174,13 +174,13 @@
                             </span>
                         </div>
                         <div class="min-w-0 flex-1">
-                            <div class="text-sm font-medium text-skin-inverted">
+                            <div class="text-sm font-medium text-gray-900">
                                 <a href="{{ route('forum.new') }}">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
                                     Demander de l'aide
                                 </a>
                             </div>
-                            <p class="text-sm font-normal text-skin-base">
+                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                 Vous avez un problème ? Trouvons ensemble une solution.
                             </p>
                         </div>
@@ -191,7 +191,7 @@
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="h-5 w-5 text-skin-muted group-hover:text-skin-base"
+                                class="size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
                             >
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>

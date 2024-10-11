@@ -27,15 +27,15 @@ input::-webkit-inner-spin-button {
 }
 
 .standard .choices__inner {
-    @apply flex h-12 w-full items-center rounded border border-skin-input bg-skin-input p-2 !important;
+    @apply flex h-12 w-full items-center rounded border border-gray-300 bg-white p-2 !important;
 }
 
 .standard .choices__list--dropdown {
-    @apply border-2 border-skin-input !important;
+    @apply border-2 border-gray-300 !important;
 }
 
 .standard .choices__list--dropdown .choices__list {
-    @apply border border-skin-base bg-skin-input !important;
+    @apply border border-gray-500 bg-white !important;
 }
 
 .standard .choices__list--single {
@@ -43,7 +43,7 @@ input::-webkit-inner-spin-button {
 }
 
 .standard .choices__item {
-    @apply my-0 cursor-pointer rounded border-0 bg-skin-footer px-2 py-1 text-sm text-skin-base !important;
+    @apply my-0 cursor-pointer rounded border-0 bg-white px-2 py-1 text-sm text-gray-500 !important;
 }
 
 .standard .choices__item.choices__item--choice {
@@ -51,11 +51,11 @@ input::-webkit-inner-spin-button {
 }
 
 .standard .choices__item.choices__item--choice.choices__item--selectable {
-    @apply rounded-none bg-skin-input p-2 text-skin-base !important;
+    @apply rounded-none bg-white p-2 text-gray-500 !important;
 }
 
 .standard .choices__item.choices__item--choice.choices__item--selectable:hover {
-    @apply bg-skin-card !important;
+    @apply bg-white !important;
 }
 
 .standard .choices__item.choices__item--selectable {
@@ -71,7 +71,7 @@ input::-webkit-inner-spin-button {
 }
 
 .standard .choices[data-type*='select-one'] .choices__input {
-    @apply rounded-none border-b-2 border-skin-input !important;
+    @apply rounded-none border-b-2 border-gray-300 !important;
 }
 
 .standard .choices__item.choices__item--choice.choices__item--selectable.is-highlighted,

@@ -11,14 +11,14 @@
             @endif
             <div class="{{ $headerClasses }}">
                 @if(isset($title))
-                    <h3 class="flex items-center text-lg leading-6 font-medium text-skin-inverted">
+                    <h3 class="flex items-center text-lg leading-6 font-medium text-gray-900">
                         {{ $title }}
                     </h3>
                 @endif
 
                 @if(isset($subtitle))
                     <div class="mt-2">
-                        <p class="text-sm leading-5 text-skin-base">
+                        <p class="text-sm leading-5 text-gray-500 dark:text-gray-400">
                             {{ $subtitle }}
                         </p>
                     </div>
