@@ -42,5 +42,8 @@ return [
     'search' => 'Recherche',
     'search_placeholder' => 'Rechercher un contenu...',
     'logout' => 'Se déconnecter',
+    'sponsored' => 'Sponsorisé',
+    'read_time' => ':time min de lecture',
+    'page_views' => ':number vues',
 
 ];
