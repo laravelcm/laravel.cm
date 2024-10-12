@@ -4,6 +4,7 @@
   "Verify Email Address": "Vérifier l'adresse e-mail",
   "Please click the button below to verify your email address.": "Veuillez cliquer sur le bouton ci-dessous pour vérifier votre adresse email.",
   "If you did not create an account, no further action is required.": "Si vous n'avez pas créé de compte, aucune autre action n'est requise.",
-  "Pending approval articles:" : "Articles soumis en attente d'approbation:",
-  "[@:username](:profile_url) submitted the article [:title](:url) on: :date" : "[@:username](:profile_url) a soumit l'article [:title](:url) le: :date"
+  "Articles soumis en attente d'approbation:" : "Articles soumis en attente d'approbation:",
+  "[@:username](:profile_url) a soumit l'article [:title](:url) le: :date" : "[@:username](:profile_url) a soumit l'article [:title](:url) le: :date",
+  "Voir l'article": "Voir l'article"
 }
