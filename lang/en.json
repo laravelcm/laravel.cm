@@ -4,6 +4,7 @@
   "Verify Email Address": "Verify Email Address",
   "Please click the button below to verify your email address.": "Please click the button below to verify your email address.",
   "If you did not create an account, no further action is required.": "If you did not create an account, no further action is required.",
-  "Pending approval articles:" : "Pending approval articles:",
-  "[@:username](:profile_url) submitted the article [:title](:url) on: :date" : "[@:username](:profile_url) submitted the article [:title](:url) on: :date"
+  "Articles soumis en attente d'approbation:" : "Pending approval articles:",
+  "[@:username](:profile_url) a soumit l'article :title le: :date" : "[@:username](:profile_url) submitted the article :title on: :date",
+  "Voir l'article" : "Voir l'article"
 }

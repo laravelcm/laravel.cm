@@ -6,7 +6,7 @@ use App\Console\Commands\NotifyPendingArticles;
 use App\Models\Article;
 use Illuminate\Support\Facades\Notification;
 
-beforeEach(fn() => Notification::fake());
+beforeEach(fn () => Notification::fake());
 
 it('will send a notification when there are pending articles', function (): void {
     Article::factory()->createMany([
