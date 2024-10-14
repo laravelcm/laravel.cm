@@ -6,11 +6,10 @@ namespace App\Notifications;
 
 use App\Models\Article;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-final class SendApprovedArticle extends Notification implements ShouldQueue
+final class SendApprovedArticle extends Notification
 {
     use Queueable;
 
