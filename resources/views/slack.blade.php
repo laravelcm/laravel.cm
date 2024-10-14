@@ -75,7 +75,7 @@
                         Si vous êtes un habitué de WhatsApp, nous avons un groupe qui regroupe près de 350 développeurs
                         junior et senior qui pourront discuter et échanger avec vous.
                     </p>
-                    <x-default-button :link="route('whatsapp')" target="_blank" class="mt-6 w-auto font-normal">
+                    <x-default-button :href="route('whatsapp')" target="_blank" class="mt-6 w-auto font-normal">
                         Rejoindre
                     </x-default-button>
                 </div>
@@ -93,7 +93,7 @@
                         Avec le plus grand nombre de membres c'est la plateforme qui nous affectionne le plus alors
                         n'hésitez surtout pas à nous rejoindre.
                     </p>
-                    <x-default-button :link="route('telegram')" target="_blank" class="mt-6 w-auto font-normal">
+                    <x-default-button :href="route('telegram')" target="_blank" class="mt-6 w-auto font-normal">
                         Rejoindre
                     </x-default-button>
                 </div>
@@ -114,7 +114,7 @@
                         Discord est le dernier réseau rejoint par la communauté, vous pouvez nous rejoindre et
                         participer à toutes nos activités.
                     </p>
-                    <x-default-button :link="route('discord')" target="_blank" class="mt-6 w-auto font-normal">
+                    <x-default-button :href="route('discord')" target="_blank" class="mt-6 w-auto font-normal">
                         Rejoindre
                     </x-default-button>
                 </div>

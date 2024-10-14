@@ -10,7 +10,7 @@
             aria-haspopup="true"
             x-bind:aria-expanded="open.toString()"
         >
-            <span class="sr-only">Ouverture du menu</span>
+            <span class="sr-only">{{ __('global.open_navigation') }}</span>
             <x-user.avatar :user="Auth::user()" class="size-8" />
         </button>
     </div>
@@ -24,7 +24,7 @@
         x-transition:leave-start="scale-100 transform opacity-100"
         x-transition:leave-end="scale-95 transform opacity-0"
         class="absolute right-0 mt-2 w-60 origin-top-right divide-y divide-skin-light rounded-md bg-skin-menu py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-        x-ref="menu-items"
+        x-ref="menu"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="user-menu-button"

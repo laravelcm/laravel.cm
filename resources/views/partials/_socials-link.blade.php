@@ -12,7 +12,7 @@
 
     <div class="mt-6">
         <div>
-            <x-buttons.default :link="route('social.auth', ['provider' => 'github'])" class="w-full gap-2">
+            <x-buttons.default :href="route('social.auth', ['provider' => 'github'])" class="w-full gap-2">
                 <span class="sr-only">{{ __('pages/auth.continue_with', ['social' => 'Github']) }}</span>
                 <x-icon.github class="size-5" aria-hidden="true" />
                 Github
