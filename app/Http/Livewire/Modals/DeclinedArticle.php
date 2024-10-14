@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Modals;
+declare(strict_types=1);
 
+namespace App\Http\Livewire\Modals;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Notifications\SendDeclinedArticle;
@@ -10,7 +11,7 @@ use LivewireUI\Modal\ModalComponent;
 use App\Policies\ArticlePolicy;
 use App\Models\Article;
 
-class DeclinedArticle extends ModalComponent
+final class DeclinedArticle extends ModalComponent
 {
     use AuthorizesRequests;
 

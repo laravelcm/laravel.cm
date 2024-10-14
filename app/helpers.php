@@ -91,12 +91,12 @@ if ( ! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.
      *
-     * @param  \App\Models\Thread|\App\Models\Discussion  $replyAble
+     * @param  App\Models\Thread|App\Models\Discussion  $replyAble
      * @return string
      */
     function route_to_reply_able(mixed $replyAble): string
     {
-        return $replyAble instanceof \App\Models\Thread ?
+        return $replyAble instanceof App\Models\Thread ?
             route('forum.show', $replyAble->slug()) :
             route('discussions.show', $replyAble->slug());
     }

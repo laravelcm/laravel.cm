@@ -353,7 +353,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
     /**
      * Route notifications for the Slack channel.
      *
-     * @param  \Illuminate\Notifications\Notification  $notification
+     * @param  Notification  $notification
      * @return string
      */
     public function routeNotificationForSlack(Notification $notification): string
