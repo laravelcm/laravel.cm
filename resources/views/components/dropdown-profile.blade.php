@@ -1,4 +1,4 @@
-<div @keydown.escape.stop="open = false;" @click.outside="open = false;" class="relative ml-4 shrink-0">
+<div @keydown.escape.stop="open = false;" @click.outside="open = false;" class="relative">
     <div>
         <button
             type="button"

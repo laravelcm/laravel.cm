@@ -39,72 +39,6 @@
                             </x-slot:title>
                         </x-nav.item>
 
-                        <!-- Actions dropdown -->
-                        <div
-                            x-data="{ open: false }"
-                            @keydown.escape.stop="open = false;"
-                            @click.outside="open = false;"
-                            class="relative ml-4 shrink-0"
-                        >
-                            <div>
-                                <button
-                                    type="button"
-                                    class="shrink-0 rounded-full p-1 text-gray-400 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900"
-                                    x-ref="button"
-                                    @click="open =! open"
-                                >
-                                    <x-untitledui-plus class="size-5" aria-hidden="true" />
-                                </button>
-                            </div>
-
-                            <div
-                                x-show="open"
-                                x-transition:enter="transition duration-100 ease-out"
-                                x-transition:enter-start="scale-95 transform opacity-0"
-                                x-transition:enter-end="scale-100 transform opacity-100"
-                                x-transition:leave="transition duration-75 ease-in"
-                                x-transition:leave-start="scale-100 transform opacity-100"
-                                x-transition:leave-end="scale-95 transform opacity-0"
-                                class="absolute right-0 mt-2 w-56 origin-top divide-y divide-skin-light rounded-md bg-skin-menu py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                x-ref="menu"
-                                role="menu"
-                                aria-orientation="vertical"
-                                aria-labelledby="menu-button"
-                                tabindex="-1"
-                                @keydown.tab="open = false"
-                                @keydown.enter.prevent="open = false;"
-                                @keyup.space.prevent="open = false;"
-                                style="display: none"
-                            >
-                                <div class="py-1" role="none">
-                                    <a
-                                        href="{{ route('articles.new') }}"
-                                        class="flex items-center px-3 py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:bg-skin-primary hover:text-white"
-                                        role="menuitem"
-                                        tabindex="-1"
-                                    >
-                                        Nouvel article
-                                    </a>
-                                    <a
-                                        href="{{ route('forum.new') }}"
-                                        class="flex items-center px-3 py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:bg-skin-primary hover:text-white"
-                                        role="menuitem"
-                                        tabindex="-1"
-                                    >
-                                        Nouveau sujet
-                                    </a>
-                                    <a
-                                        href="{{ route('discussions.new') }}"
-                                        class="flex items-center px-3 py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:bg-skin-primary hover:text-white"
-                                        role="menuitem"
-                                        tabindex="-1"
-                                    >
-                                        Nouvelle discussion
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Profile dropdown -->
                         <x-dropdown-profile />
                     @endguest
@@ -161,56 +95,43 @@
                             </div>
                             <div class="p-4">
                                 @auth
-                                    <div class="flex items-center px-4">
+                                    <div class="flex items-center gap-2">
                                         <div class="shrink-0">
-                                            <img
-                                                class="size-10 rounded-full"
-                                                src="{{ Auth::user()->profile_photo_url }}"
-                                                alt="{{ Auth::user()->name }}"
+                                            <x-user.avatar
+                                                :user="\Illuminate\Support\Facades\Auth::user()"
+                                                class="size-8"
                                             />
                                         </div>
-                                        <div class="ml-3">
-                                            <div class="font-medium text-gray-900 dark:text-white">
-                                                {{ Auth::user()->name }}
+                                        <div class="leading-4">
+                                            <div class="text-sm font-medium text-gray-900 dark:text-white">
+                                                {{ \Illuminate\Support\Facades\Auth::user()->name }}
                                             </div>
                                             <div class="text-sm text-gray-400 dark:text-gray-500">
-                                                {{ Auth::user()->email }}
+                                                {{ \Illuminate\Support\Facades\Auth::user()->email }}
                                             </div>
                                         </div>
-                                        <button
-                                            class="ml-auto shrink-0 rounded-full bg-skin-card p-1 text-skin-muted hover:text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-                                        >
-                                            <span class="sr-only">{{ __('global.view_notifications') }}</span>
-                                            <x-untitledui-bell class="size-6" aria-hidden="true" />
-                                        </button>
                                     </div>
-                                    <div class="mt-3 space-y-1">
+                                    <div class="mt-6 flex flex-col space-y-4">
                                         <x-nav.item
                                             :href="route('profile')"
-                                            class="block px-4 py-2 font-medium text-gray-500 hover:text-gray-700"
-                                        >
-                                            Mon profil
-                                        </x-nav.item>
-                                        <a
-                                            href="{{ route('user.settings') }}"
-                                            class="block px-4 py-2 font-medium text-gray-500 hover:text-gray-700"
-                                        >
-                                            Paramètres
-                                        </a>
-                                        <div class="px-4 py-2" role="form">
-                                            <form method="POST" action="{{ route('logout') }}" role="form">
-                                                @csrf
-                                                <button
-                                                    type="submit"
-                                                    class="group flex w-full items-center font-medium text-gray-500 hover:text-gray-400 dark:text-gray-400 dark:hover:text-white"
-                                                    role="menuitem"
-                                                    tabindex="-1"
-                                                    id="logout-mobile"
-                                                >
-                                                    {{ __('global.logout') }}
-                                                </button>
-                                            </form>
-                                        </div>
+                                            :title="__('Mon profil')"
+                                        />
+                                        <x-nav.item
+                                            :href="route('user.settings')"
+                                            :title="__('Paramètres')"
+                                        />
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button
+                                                type="submit"
+                                                class="group flex w-full items-center text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
+                                                role="menuitem"
+                                                tabindex="-1"
+                                                id="logout-mobile"
+                                            >
+                                                {{ __('global.logout') }}
+                                            </button>
+                                        </form>
                                     </div>
                                 @else
                                     <div class="flex flex-col space-y-4">
@@ -219,7 +140,7 @@
                                             :title="__('pages/auth.login.page_title')"
                                         />
                                         <x-nav.item
-                                            href="{{ route('register') }}"
+                                            :href="route('register')"
                                             :title="__('pages/auth.register.page_title')"
                                         />
                                     </div>
