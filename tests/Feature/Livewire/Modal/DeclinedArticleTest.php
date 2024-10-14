@@ -14,7 +14,7 @@ beforeEach(function (): void {
     $this->moderatorUser = User::factory()->create();
     Role::create(['name' => 'moderator']);
     $this->moderatorUser->assignRole('moderator');
-    $this->article =Article::factory()->create();
+    $this->article = Article::factory()->create();
 
     $this->actingAs($this->moderatorUser);
 });
@@ -32,7 +32,8 @@ describe(DeclinedArticle::class, function (): void {
             ->call('declined');
 
         Notification::assertSentTo(
-            [$this->article->user], SendDeclinedArticle::class
+            [$this->article->user],
+            SendDeclinedArticle::class
         );
 
 

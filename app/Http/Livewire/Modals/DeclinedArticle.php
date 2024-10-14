@@ -12,7 +12,6 @@ use LivewireUI\Modal\ModalComponent;
 use App\Policies\ArticlePolicy;
 use App\Models\Article;
 
-
 final class DeclinedArticle extends ModalComponent
 {
     use AuthorizesRequests;
