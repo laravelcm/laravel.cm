@@ -7,9 +7,11 @@ namespace App\Http\Livewire\Modals;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Notifications\SendDeclinedArticle;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\View\View;
 use LivewireUI\Modal\ModalComponent;
 use App\Policies\ArticlePolicy;
 use App\Models\Article;
+
 
 final class DeclinedArticle extends ModalComponent
 {
@@ -21,7 +23,7 @@ final class DeclinedArticle extends ModalComponent
 
     public ?Article $article = null;
 
-    protected $rules = [
+    protected array $rules = [
         'raison' => 'required|string|min:6',
         'description' => 'required|string',
     ];
@@ -54,7 +56,7 @@ final class DeclinedArticle extends ModalComponent
     }
 
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.modals.declined-article');
     }
