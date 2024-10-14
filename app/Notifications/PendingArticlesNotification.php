@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
@@ -42,7 +40,7 @@ final class PendingArticlesNotification extends Notification
                     'profile_url' => route('profile', $article->user?->username),
                     'title' => $article->title,
                     'url' => route('articles.show', $article->slug),
-                    'date' => $article->submitted_at->translatedFormat('d/m/Y')
+                    'date' => $article->submitted_at->translatedFormat('d/m/Y'),
                 ]
             );
         }

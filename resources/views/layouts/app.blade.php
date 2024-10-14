@@ -32,7 +32,7 @@
 </head>
 <body class="h-full bg-gray-50 font-sans text-gray-500 antialiased dark:text-gray-400 dark:bg-gray-900">
     <div class="flex min-h-screen flex-col justify-between">
-        <x-layouts.header class="header" />
+        <x-layouts.header {{ $attributes->class($attributes->get('header-class')) }} />
 
         <main class="relative z-0 w-full flex-1">
             {{ $slot }}

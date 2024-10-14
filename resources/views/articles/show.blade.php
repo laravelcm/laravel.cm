@@ -289,7 +289,7 @@
                         <div class="relative flex justify-center">
                             <span class="relative z-0 inline-flex -space-x-px rounded-md shadow-sm">
                                 <x-buttons.default
-                                    link="{{ route('articles.edit', $article) }}"
+                                    :href="route('articles.edit', $article)"
                                     class="relative inline-flex items-center rounded-none rounded-l-lg border border-gray-300"
                                 >
                                     <span class="sr-only">{{ __('actions.edit') }}</span>

@@ -1,12 +1,20 @@
-@props(['activeLinks', 'title', 'href' => '#'])
+@props([
+    'title',
+    'activeLinks' => [],
+    'href' => '#',
+])
+
+@php
+    $activeClasses = active(
+        routes: $activeLinks,
+        activeClass: 'text-primary-600 hover:text-primary-500',
+        defaultClass: 'text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white'
+   );
+@endphp
 
 <x-link
     :href="$href"
-    class="{{ active(
-        $activeLinks,
-        'text-primary-600 hover:text-primary-500',
-        'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
-   ) }} inline-flex items-center px-1 text-sm font-medium"
+    {{ $attributes->class(['inline-flex items-center text-sm font-medium', $activeClasses]) }}
 >
     {{ $title }}
 </x-link>

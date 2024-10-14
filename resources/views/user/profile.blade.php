@@ -34,7 +34,7 @@
                     </div>
                     <div class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
                         @if ($user->isLoggedInUser())
-                            <x-default-button :link="route('user.settings')">
+                            <x-default-button :href="route('user.settings')">
                                 <svg
                                     class="-ml-1 mr-2 size-5 text-skin-muted"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -233,7 +233,7 @@
                                     <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">
                                         {{ __(':name ne possède aucun badge', ['name' => $user->name]) }}
                                     </p>
-                                    <x-button link="#" class="mt-4">Voir tous les badges</x-button>
+                                    <x-button href="#" class="mt-4">Voir tous les badges</x-button>
                                 </div>
                             </div>
                         </div>

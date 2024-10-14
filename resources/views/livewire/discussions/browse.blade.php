@@ -16,7 +16,7 @@
             @auth
                 <div class="space-y-3 py-6">
                     <h4 class="font-heading text-sm leading-5 text-gray-500 dark:text-gray-400">Vous avez un sujet passionnant ?</h4>
-                    <x-button :link="route('discussions.new')">Nouvelle discussion</x-button>
+                    <x-button :href="route('discussions.new')">Nouvelle discussion</x-button>
                 </div>
             @endauth
         </x-sticky-content>

@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="py-12 lg:grid lg:grid-cols-3 lg:gap-8 lg:py-16">
             <div class="space-y-3">
-                <x-brand class="h-12 w-auto text-white sm:h-16" />
+                <x-brand class="h-12 w-auto text-white sm:h-16" aria-hidden="true" />
                 <p class="inline-flex flex-wrap items-center text-gray-400 text-sm">
                     <a href="https://github.com/caneco/laravel-country-logomarks" class="font-medium text-gray-300 underline">
                         Laravel Country Logomarks
@@ -23,9 +23,8 @@
                     </h3>
                     <ul class="mt-6 space-y-3">
                         <x-footer-link :title="__('global.navigation.about')" :url="route('about')" />
-                        <x-footer-link :title="__('global.navigation.podcasts')" url="#" soon />
-                        <x-footer-link :title="__('global.navigation.jobs')" url="#" soon />
                         <x-footer-link :title="__('global.navigation.sponsors')" :url="route('sponsors')" />
+                        <x-footer-link :title="__('global.navigation.snippets')" url="https://snippets.laravel.cm" />
                         <x-footer-link
                             :title="__('global.navigation.branding')"
                             url="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md"

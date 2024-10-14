@@ -11,7 +11,7 @@
         </h2>
     </div>
     <div class="mt-4 flex md:ml-4 md:mt-0">
-        <x-button :link="$url" class="ml-3">
+        <x-button :href="$url" class="ml-3">
             {{ $button }}
         </x-button>
     </div>

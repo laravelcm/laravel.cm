@@ -13,7 +13,7 @@
         />
         <span @class(['absolute flex items-center justify-center rounded-full bg-white p-1 ring-yellow-500', $span])>
             <svg
-                class="h-full w-full text-yellow-500"
+                class="size-full text-yellow-500"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
