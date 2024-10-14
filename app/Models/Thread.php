@@ -191,7 +191,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
      * Scope for filtering threads.
      *
      * @param  Builder<Thread>  $builder
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  string[]  $filters
      * @return Builder<Thread>
      */

@@ -24,7 +24,7 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $subject
-     * @property-read \App\Models\User $user
+     * @property-read User $user
      * @method static \Database\Factories\ActivityFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|Activity newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Activity newQuery()
@@ -74,7 +74,7 @@ namespace App\Models{
      * @property-read int|null $reactions_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
      * @property-read int|null $tags_count
-     * @property-read \App\Models\User $user
+     * @property-read User $user
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
      * @property-read int|null $views_count
      * @method static \Illuminate\Database\Eloquent\Builder|Article approved()
@@ -176,7 +176,7 @@ namespace App\Models{
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activity
      * @property-read int|null $activity_count
      * @property-read int $count_all_replies_with_child
-     * @property-read \App\Models\Reply|null $latestReply
+     * @property-read Reply|null $latestReply
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Reaction> $reactions
      * @property-read int|null $reactions_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Reply> $replies
@@ -185,7 +185,7 @@ namespace App\Models{
      * @property-read int|null $subscribes_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
      * @property-read int|null $tags_count
-     * @property-read \App\Models\User $user
+     * @property-read User $user
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
      * @property-read int|null $views_count
      * @method static \Illuminate\Database\Eloquent\Builder|Discussion active()
@@ -241,7 +241,7 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
      * @property-read int|null $media_count
-     * @property-read \App\Models\User $owner
+     * @property-read User $owner
      * @method static \Illuminate\Database\Eloquent\Builder|Enterprise certified()
      * @method static \Database\Factories\EnterpriseFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|Enterprise featured()
@@ -491,8 +491,8 @@ namespace App\Models\Premium{
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $deleted_at
-     * @property-read \App\Models\Premium\Feature $feature
-     * @property-read \App\Models\Premium\Subscription $subscription
+     * @property-read Feature $feature
+     * @property-read Subscription $subscription
      * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscriptionUsage byFeatureSlug(string $featureSlug)
      * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage newQuery()
@@ -559,8 +559,8 @@ namespace App\Models{
      * @property-read \Illuminate\Database\Eloquent\Collection<int, Reply> $replies
      * @property-read int|null $replies_count
      * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $replyAble
-     * @property-read \App\Models\Thread|null $solutionTo
-     * @property-read \App\Models\User $user
+     * @property-read Thread|null $solutionTo
+     * @property-read User $user
      * @method static \Database\Factories\ReplyFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|Reply isSolution()
      * @method static \Illuminate\Database\Eloquent\Builder|Reply newModelQuery()
@@ -621,7 +621,7 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $subscribeAble
-     * @property-read \App\Models\User $user
+     * @property-read User $user
      * @method static \Illuminate\Database\Eloquent\Builder|Subscribe newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Subscribe newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Subscribe query()
@@ -684,18 +684,18 @@ namespace App\Models{
      * @property-read int|null $activity_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Channel> $channels
      * @property-read int|null $channels_count
-     * @property-read \App\Models\Reply|null $latestReply
+     * @property-read Reply|null $latestReply
      * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
      * @property-read int|null $notifications_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Reaction> $reactions
      * @property-read int|null $reactions_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Reply> $replies
      * @property-read int|null $replies_count
-     * @property-read \App\Models\User|null $resolvedBy
-     * @property-read \App\Models\Reply|null $solutionReply
+     * @property-read User|null $resolvedBy
+     * @property-read Reply|null $solutionReply
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Subscribe> $subscribes
      * @property-read int|null $subscribes_count
-     * @property-read \App\Models\User $user
+     * @property-read User $user
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
      * @property-read int|null $views_count
      * @method static \Illuminate\Database\Eloquent\Builder|Thread active()
@@ -744,7 +744,7 @@ namespace App\Models{
      * @property array|null $metadata
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
-     * @property-read \App\Models\User $user
+     * @property-read User $user
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction complete()
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction newQuery()
@@ -803,7 +803,7 @@ namespace App\Models{
      * @property-read int|null $badges_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Discussion> $discussions
      * @property-read int|null $discussions_count
-     * @property-read \App\Models\Enterprise|null $enterprise
+     * @property-read Enterprise|null $enterprise
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \LaravelFeature\Model\Feature> $features
      * @property-read int|null $features_count
      * @property-read bool $is_sponsor
