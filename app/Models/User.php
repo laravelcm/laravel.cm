@@ -207,8 +207,8 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
                 'name' => $socialUser->getName() ?? $socialUser->getNickName() ?? $socialUser->getId(),
                 'email' => $socialEmail,
                 'username' => $socialUser->getNickName() ?? $socialUser->getId(),
-                'github_profile' => $provider === 'github' ? $socialUser->getNickName() : null,
-                'twitter_profile' => $provider === 'twitter' ? $socialUser->getNickName() : null,
+                'github_profile' => 'github' === $provider ? $socialUser->getNickName() : null,
+                'twitter_profile' => 'twitter' === $provider ? $socialUser->getNickName() : null,
                 'email_verified_at' => now(),
                 'avatar_type' => $provider,
             ]);
@@ -425,6 +425,7 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
      * Scope for most submissions in the last days.
      *
      * @param  Builder<User>  $query
+     * @param  int  $days
      * @return Builder<User>
      */
     public function scopeMostSubmissionsInLastDays(Builder $query, int $days): Builder

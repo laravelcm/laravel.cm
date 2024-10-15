@@ -1,70 +1,62 @@
 <x-app-layout title="Créer un compte">
-
-    <div class="w-full mx-auto flex items-center justify-between py-6 sm:py-9 sm:max-w-4xl">
+    <div class="mx-auto flex w-full items-center justify-between py-6 sm:max-w-4xl sm:py-9">
         <div class="hidden lg:block lg:w-90">
-            <h3 class="text-lg leading-6 font-semibold text-skin-inverted">
+            <h3 class="text-lg font-semibold leading-6 text-skin-inverted">
                 Ouvrez votre esprit pour découvrir de nouveaux horizons.
             </h3>
             <dl class="mt-6 space-y-4">
                 <div class="relative">
                     <dt>
-                        <x-icon.podcast class="absolute h-6 w-6"/>
+                        <x-icon.podcast class="absolute h-6 w-6" />
                     </dt>
-                    <dd class="mt-2 ml-9 text-base text-skin-base">
-                        <span class="text-skin-inverted font-medium">Podcast.</span>
+                    <dd class="ml-9 mt-2 text-base text-skin-base">
+                        <span class="font-medium text-skin-inverted">Podcast.</span>
                         <span>
-                            Suivez des podcasts sur différentes thématiques avec
-                            des freelances, développeurs, entrepreneurs etc.
+                            Suivez des podcasts sur différentes thématiques avec des freelances, développeurs,
+                            entrepreneurs etc.
                         </span>
                     </dd>
                 </div>
                 <div class="relative">
                     <dt>
-                        <x-icon.discussion class="absolute h-6 w-6"/>
+                        <x-icon.discussion class="absolute h-6 w-6" />
                     </dt>
-                    <dd class="mt-2 ml-9 text-base text-skin-base">
-                        <span class="text-skin-inverted font-medium">Discussions.</span>
-                        <span>
-                            Participez à des discussions et débats ouverts avec
-                            plusieurs autres participants.
-                        </span>
+                    <dd class="ml-9 mt-2 text-base text-skin-base">
+                        <span class="font-medium text-skin-inverted">Discussions.</span>
+                        <span>Participez à des discussions et débats ouverts avec plusieurs autres participants.</span>
                     </dd>
                 </div>
                 <div class="relative">
                     <dt>
                         <x-icon.code-snippet class="absolute h-6 w-6" />
                     </dt>
-                    <dd class="mt-2 ml-9 text-base text-skin-base">
-                        <span class="text-skin-inverted font-medium">Code Snippets.</span>
+                    <dd class="ml-9 mt-2 text-base text-skin-base">
+                        <span class="font-medium text-skin-inverted">Code Snippets.</span>
                         <span>
-                            Partagez des codes sources de différents langages
-                            pour venir en aide à d’autres développeurs.
+                            Partagez des codes sources de différents langages pour venir en aide à d’autres
+                            développeurs.
                         </span>
                     </dd>
                 </div>
                 <div class="relative">
                     <dt>
-                        <x-icon.premium class="absolute h-6 w-6"/>
+                        <x-icon.premium class="absolute h-6 w-6" />
                     </dt>
-                    <dd class="mt-2 ml-9 text-base text-skin-base">
-                        <span class="text-skin-inverted font-medium">Premium.</span>
+                    <dd class="ml-9 mt-2 text-base text-skin-base">
+                        <span class="font-medium text-skin-inverted">Premium.</span>
                         <span>
-                            Devenez premium, supporter la communauté et accéder
-                            à des contenus et codes sources privés.
+                            Devenez premium, supporter la communauté et accéder à des contenus et codes sources privés.
                         </span>
                     </dd>
                 </div>
             </dl>
         </div>
-        <div class="mx-auto max-w-md lg:mx-0 space-y-8">
+        <div class="mx-auto max-w-md space-y-8 lg:mx-0">
             <div class="space-y-3">
-                <h2 class="text-3xl font-extrabold text-skin-inverted font-heading">
-                    Rejoindre Laravel Cameroun
-                </h2>
+                <h2 class="font-heading text-3xl font-extrabold text-skin-inverted">Rejoindre Laravel Cameroun</h2>
                 <x-profile-users />
                 <p class="text-base leading-6 text-skin-base">
-                    Rejoignez plus de 200 développeurs et designers.
-                    Parce qu’il ny’a pas que le code dans la vie.
+                    Rejoignez plus de 200 développeurs et designers. Parce qu’il ny’a pas que le code dans la vie.
                 </p>
             </div>
             <div>
@@ -113,17 +105,20 @@
                                 id="opt_in"
                                 name="opt_in"
                                 type="checkbox"
-                                class="h-4 w-4 bg-skin-input text-green-600 focus:ring-green-500 border-skin-input rounded"
-                            >
-                            <label for="opt_in" class="ml-2 block text-sm text-skin-base font-normal">
+                                class="h-4 w-4 rounded border-skin-input bg-skin-input text-green-600 focus:ring-green-500"
+                            />
+                            <label for="opt_in" class="ml-2 block text-sm font-normal text-skin-base">
                                 Je veux recevoir la newsletter
                             </label>
                         </div>
                     </div>
 
                     <div>
-                        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                        <button
+                            type="submit"
+                            class="group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                        >
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                                 <x-heroicon-s-lock-closed class="h-5 w-5 text-green-500 group-hover:text-green-400" />
                             </span>
                             Créer mon compte
@@ -135,5 +130,4 @@
             @include('partials._socials-link')
         </div>
     </div>
-
 </x-app-layout>

@@ -1,11 +1,17 @@
-@props(['article'])
+@props([
+    'article',
+])
 
-<article id="article-title-{{ $article->id }}" class="space-y-4 lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0">
+<article
+    id="article-title-{{ $article->id }}"
+    class="space-y-4 lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0"
+>
     <a href="{{ route('articles.show', $article) }}" class="group">
-        <div class="aspect-w-3 aspect-h-2">
-            <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75"
-                 src="{{ $article->getFirstMediaUrl('media') }}"
-                 alt="{{ $article->title }}"
+        <div class="aspect-h-2 aspect-w-3">
+            <img
+                class="rounded-lg object-cover shadow-lg group-hover:opacity-75"
+                src="{{ $article->getFirstMediaUrl('media') }}"
+                alt="{{ $article->title }}"
             />
         </div>
     </a>
@@ -23,11 +29,11 @@
         </div>
         <div class="mt-2">
             <a href="{{ route('articles.show', $article) }}" class="group">
-                <h4 class="text-lg leading-7 font-semibold font-sans text-skin-inverted group-hover:text-skin-primary">
+                <h4 class="font-sans text-lg font-semibold leading-7 text-skin-inverted group-hover:text-skin-primary">
                     {{ $article->title }}
                 </h4>
             </a>
-            <p class="mt-1 text-sm text-skin-base leading-5">
+            <p class="mt-1 text-sm leading-5 text-skin-base">
                 {!! $article->excerpt(130) !!}
             </p>
             <div class="mt-3 flex items-center font-sans">
@@ -44,7 +50,9 @@
                         </a>
                     </p>
                     <div class="flex space-x-1 text-sm text-skin-base/60">
-                        <time class="capitalize" datetime="{{ $article->publishedAt()->format('Y-m-d') }}">{{ $article->publishedAt()->isoFormat('LL') }}</time>
+                        <time class="capitalize" datetime="{{ $article->publishedAt()->format('Y-m-d') }}">
+                            {{ $article->publishedAt()->isoFormat('LL') }}
+                        </time>
                         <span aria-hidden="true">&middot;</span>
                         <span>{{ __(':time min de lecture', ['time' => $article->readTime()]) }}</span>
                     </div>

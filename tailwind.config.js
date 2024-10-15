@@ -1,5 +1,9 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
+import { fontFamily } from 'tailwindcss/defaultTheme'
+import colors from 'tailwindcss/colors'
+import aspectRatio from '@tailwindcss/aspect-ratio'
+import forms from '@tailwindcss/forms'
+import typography from '@tailwindcss/typography'
+import preset from './vendor/filament/support/tailwind.config.preset'
 
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
@@ -11,8 +15,9 @@ function withOpacity(variableName) {
 }
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: 'class',
+  presets: [preset],
   content: [
     './app/**/*.php',
     './config/markdown.php',
@@ -24,7 +29,7 @@ module.exports = {
   ],
   safelist: [
     {
-      pattern: /max-w-(xl|2xl|3xl|4xl)/,
+      pattern: /max-w-(xl|2xl|3xl|4xl|5xl|6xl)/,
       variants: ['sm', 'md', 'lg'],
     },
   ],
@@ -78,10 +83,7 @@ module.exports = {
         body: 'rgb(var(--color-body-fill))',
         card: 'rgb(var(--color-card-fill))',
         green: colors.emerald,
-        danger: colors.rose,
         primary: colors.emerald,
-        success: colors.green,
-        warning: colors.yellow,
       },
       fontFamily: {
         heading: ['Lexend', ...fontFamily.sans],
@@ -182,9 +184,5 @@ module.exports = {
       })
     },
   },
-  plugins: [
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [aspectRatio, forms, typography],
 }

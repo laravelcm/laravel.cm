@@ -1,4 +1,3 @@
 @push('scripts')
     {{ $slot }}
 @endpush
-

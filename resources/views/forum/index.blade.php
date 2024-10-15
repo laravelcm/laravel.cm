@@ -1,10 +1,9 @@
-@php($subTitle = isset($channel) ? $channel->name : null)
+@php(($subTitle = isset($channel) ? $channel->name : null))
 
 <x-app-layout :title="'Forum' . (isset($subTitle) ? ' ~ ' . $subTitle : '')">
-
     <x-container class="py-12">
         <div class="relative lg:grid lg:grid-cols-12 lg:gap-8">
-            <div class="lg:block lg:col-span-2">
+            <div class="lg:col-span-2 lg:block">
                 @include('forum._channels')
             </div>
 
@@ -12,8 +11,8 @@
                 <x-status-message />
 
                 <div class="lg:grid lg:grid-cols-3 lg:gap-10">
-                    <div class="hidden lg:flex items-center">
-                        <h3 class="text-skin-inverted text-xl font-heading">
+                    <div class="hidden items-center lg:flex">
+                        <h3 class="font-heading text-xl text-skin-inverted">
                             {{ number_format($threads->total()) }} Sujets
                         </h3>
                     </div>
@@ -21,7 +20,7 @@
                         <x-forum.filters :filter="$filter" />
                     </div>
                 </div>
-                <div class="my-10 lg:mb-32 space-y-6 sm:space-y-5">
+                <div class="my-10 space-y-6 sm:space-y-5 lg:mb-32">
                     @foreach ($threads as $thread)
                         <x-forum.thread-overview :thread="$thread" />
                     @endforeach
@@ -32,7 +31,7 @@
                 </div>
             </div>
 
-            <div class="hidden relative mt-10 lg:block lg:col-span-2 xl:col-span-3">
+            <div class="relative mt-10 hidden lg:col-span-2 lg:block xl:col-span-3">
                 <x-sticky-content class="space-y-10">
                     <x-sponsors />
 
@@ -43,5 +42,4 @@
             </div>
         </div>
     </x-container>
-
 </x-app-layout>

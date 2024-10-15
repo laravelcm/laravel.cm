@@ -1,26 +1,19 @@
-import Alpine from 'alpinejs'
+import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm'
+
 import intersect from '@alpinejs/intersect'
-import AlpineFloatingUI from '@awcodes/alpine-floating-ui'
 import Tooltip from '@ryangjchandler/alpine-tooltip'
 
-import internationalNumber from './plugins/internationalNumber'
-import datepicker from './plugins/datepicker'
-import { registerHeader } from './helpers/header'
-import './helpers/helpers'
-import './helpers/scrollspy'
 import './elements'
-import './utils/editor'
-import './utils/filepond'
+import { registerHeader } from './utils/header'
+import './utils/helpers'
+import './utils/scrollspy'
 import './utils/clipboard'
 
 registerHeader()
 
-Alpine.plugin(AlpineFloatingUI)
 Alpine.plugin(intersect)
 Alpine.plugin(Tooltip)
-Alpine.data('internationalNumber', internationalNumber)
-Alpine.data('datepicker', datepicker)
 
 window.Alpine = Alpine
 
-Alpine.start()
+Livewire.start()

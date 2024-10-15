@@ -7,8 +7,11 @@
                         {{ $image ?? '' }}
                     </td>
                     <td class="card-description">
-                        <a href="{{ $url }}" style="display: inline-block;">
-                            <span style="position: absolute; top: 0; left: 0; right: 0; bottom: 0" aria-hidden="true"></span>
+                        <a href="{{ $url }}" style="display: inline-block">
+                            <span
+                                style="position: absolute; top: 0; left: 0; right: 0; bottom: 0"
+                                aria-hidden="true"
+                            ></span>
                             <p class="card-title">{{ $title }}</p>
                         </a>
                     </td>
@@ -17,4 +20,3 @@
         </td>
     </tr>
 </table>
-

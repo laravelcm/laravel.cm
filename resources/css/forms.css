@@ -1,81 +1,80 @@
 .iti {
-  display: block;
+    display: block;
 }
 
 .iti__selected-flag {
-  padding: 0 10px;
+    padding: 0 10px;
 }
 
-
-input[type=number] {
-  -moz-appearance: textfield; /* Firefox */
+input[type='number'] {
+    -moz-appearance: textfield; /* Firefox */
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
-  -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 /** Choices.js **/
 .choices {
-  margin-top: 8px;
+    margin-top: 8px;
 }
 
 .standard .choices__input.choices__input--cloned {
-  @apply hidden;
+    @apply hidden;
 }
 
 .standard .choices__inner {
-  @apply rounded border border-skin-input w-full bg-skin-input h-12 p-2 flex items-center !important;
+    @apply flex h-12 w-full items-center rounded border border-skin-input bg-skin-input p-2 !important;
 }
 
 .standard .choices__list--dropdown {
-  @apply border-2 border-skin-input !important;
+    @apply border-2 border-skin-input !important;
 }
 
 .standard .choices__list--dropdown .choices__list {
-  @apply bg-skin-input border border-skin-base !important;
+    @apply border border-skin-base bg-skin-input !important;
 }
 
 .standard .choices__list--single {
-  @apply p-0 !important;
+    @apply p-0 !important;
 }
 
 .standard .choices__item {
-  @apply text-sm bg-skin-footer text-skin-base cursor-pointer rounded px-2 py-1 my-0 border-0 !important;
+    @apply my-0 cursor-pointer rounded border-0 bg-skin-footer px-2 py-1 text-sm text-skin-base !important;
 }
 
 .standard .choices__item.choices__item--choice {
-  @apply rounded-none py-2 !important;
+    @apply rounded-none py-2 !important;
 }
 
 .standard .choices__item.choices__item--choice.choices__item--selectable {
-  @apply bg-skin-input rounded-none text-skin-base p-2 !important;
+    @apply rounded-none bg-skin-input p-2 text-skin-base !important;
 }
 
 .standard .choices__item.choices__item--choice.choices__item--selectable:hover {
-  @apply bg-skin-card !important;
+    @apply bg-skin-card !important;
 }
 
 .standard .choices__item.choices__item--selectable {
-  @apply bg-green-500 border-green-500 text-white !important;
+    @apply border-green-500 bg-green-500 text-white !important;
 }
 
 .standard .choices__item.is-highlighted {
-  @apply bg-green-600 border-green-600 text-white !important;
+    @apply border-green-600 bg-green-600 text-white !important;
 }
 
 .standard .choices[data-type*='select-one']:after {
-  border-color: var(--color-input-border) transparent transparent transparent !important;
+    border-color: var(--color-input-border) transparent transparent transparent !important;
 }
 
 .standard .choices[data-type*='select-one'] .choices__input {
-  @apply rounded-none border-b-2 border-skin-input !important;
+    @apply rounded-none border-b-2 border-skin-input !important;
 }
 
 .standard .choices__item.choices__item--choice.choices__item--selectable.is-highlighted,
 .standard .choices__item.choices__item--choice.is-selected.choices__item--selectable {
-  @apply bg-green-500 border-green-500 text-white !important;
+    @apply border-green-500 bg-green-500 text-white !important;
 }

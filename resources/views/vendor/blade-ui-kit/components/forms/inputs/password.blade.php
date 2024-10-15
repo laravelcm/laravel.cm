@@ -1,5 +1,1 @@
-<x-input
-    name="{{ $name }}"
-    type="password"
-    {{ $attributes }}
-/>
+<x-input name="{{ $name }}" type="password" {{ $attributes }} />
