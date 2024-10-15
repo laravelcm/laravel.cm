@@ -2,11 +2,11 @@
     <div class="hidden lg:col-span-2 lg:block">
         <x-sticky-content class="divide-y divide-skin-base">
             <div class="pb-8">
-                <h4 class="text-base font-medium leading-6 text-skin-inverted">Affichage des articles</h4>
+                <h4 class="text-base font-medium leading-6 text-gray-900">Affichage des articles</h4>
                 <div class="mt-5 flex items-center space-x-3">
                     <x-view-mode mode="list" :isViewMode="$viewMode === 'list'">
                         <svg
-                            class="mr-2 h-5 w-5 text-skin-base/60"
+                            class="mr-2 size-5 text-gray-500 dark:text-gray-400/60"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -28,7 +28,7 @@
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
                             stroke="currentColor"
-                            class="mr-2 h-5 w-5 text-skin-base/60"
+                            class="mr-2 size-5 text-gray-500 dark:text-gray-400/60"
                         >
                             <path
                                 stroke-linecap="round"
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="py-8">
-                <h4 class="text-base font-medium leading-6 text-skin-inverted">Tous les tags</h4>
+                <h4 class="text-base font-medium leading-6 text-gray-900">Tous les tags</h4>
                 <x-tags :tags="$tags" :selected-tag="$selectedTag" :showTagsColor="false" showTagsIcon />
             </div>
         </x-sticky-content>
@@ -49,8 +49,8 @@
     <div x-data x-intersect="@this.call('loadMore')" class="lg:col-span-7 lg:grid lg:grid-cols-8 lg:gap-8">
         <div class="lg:col-span-6">
             <div class="border-b border-skin-base pb-5">
-                <h1 class="font-heading text-3xl font-extrabold leading-8 text-skin-inverted">Récentes publications</h1>
-                <p class="mt-2 max-w-4xl leading-5 text-skin-base">Tous les articles récemment publiés.</p>
+                <h1 class="font-heading text-3xl font-extrabold leading-8 text-gray-900">Récentes publications</h1>
+                <p class="mt-2 max-w-4xl leading-5 text-gray-500 dark:text-gray-400">Tous les articles récemment publiés.</p>
             </div>
 
             <div class="mx-auto max-w-lg space-y-8 py-12 sm:space-y-10 lg:max-w-none">
@@ -66,7 +66,7 @@
             @if ($articles->hasMorePages())
                 <div x-data x-intersect="@this.call('loadMore')" class="mt-5 flex justify-center">
                     <p class="flex items-center">
-                        <x-loader class="text-skin-primary" />
+                        <x-loader class="text-primary-600" />
                         Chargement...
                     </p>
                 </div>

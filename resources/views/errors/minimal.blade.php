@@ -32,30 +32,30 @@
             </div>
             <div class="mx-auto max-w-xl py-16 sm:py-24">
                 <div class="text-center">
-                    <p class="font-sans text-sm font-semibold uppercase tracking-wide text-skin-primary">
+                    <p class="font-sans text-sm font-semibold uppercase tracking-wide text-primary-600">
                         Erreur
                         @yield('code')
                     </p>
-                    <h1 class="mt-2 font-sans text-4xl font-extrabold tracking-tight text-skin-inverted sm:text-5xl">
+                    <h1 class="mt-2 font-sans text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
                         @yield('message')
                     </h1>
-                    <p class="mt-2 text-lg font-normal text-skin-base">
+                    <p class="mt-2 text-lg font-normal text-gray-500 dark:text-gray-400">
                         Il semble y avoir un problème en ce moment ! Veuillez réessayer plus tard.
                     </p>
                 </div>
                 <div class="mt-12">
-                    <h2 class="font-sans text-sm font-semibold uppercase tracking-wide text-skin-base">
+                    <h2 class="font-sans text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">
                         Pages Populaires
                     </h2>
                     <ul role="list" class="mt-4 divide-y divide-skin-base border-b border-t border-skin-base">
                         <li class="relative flex items-start space-x-4 py-6">
                             <div class="shrink-0">
-                                <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-50">
-                                    <x-heroicon-o-book-open class="h-6 w-6 text-green-700" />
+                                <span class="flex size-12 items-center justify-center rounded-lg bg-green-50">
+                                    <x-heroicon-o-book-open class="size-6 text-green-700" />
                                 </span>
                             </div>
                             <div class="min-w-0 flex-1">
-                                <h3 class="font-sans text-base font-medium text-skin-inverted">
+                                <h3 class="font-sans text-base font-medium text-gray-900">
                                     <span
                                         class="rounded-sm focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2"
                                     >
@@ -65,21 +65,21 @@
                                         </a>
                                     </span>
                                 </h3>
-                                <p class="text-base text-skin-base">Apprenez, découvrez, partagez dans le Forum.</p>
+                                <p class="text-base text-gray-500 dark:text-gray-400">Apprenez, découvrez, partagez dans le Forum.</p>
                             </div>
                             <div class="shrink-0 self-center">
-                                <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />
+                                <x-heroicon-s-chevron-right class="size-5 text-skin-muted" />
                             </div>
                         </li>
 
                         <li class="relative flex items-start space-x-4 py-6">
                             <div class="shrink-0">
-                                <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-50">
-                                    <x-heroicon-o-microphone class="h-6 w-6 text-green-700" />
+                                <span class="flex size-12 items-center justify-center rounded-lg bg-green-50">
+                                    <x-heroicon-o-microphone class="size-6 text-green-700" />
                                 </span>
                             </div>
                             <div class="min-w-0 flex-1">
-                                <h3 class="font-sans text-base font-medium text-skin-inverted">
+                                <h3 class="font-sans text-base font-medium text-gray-900">
                                     <span
                                         class="rounded-sm focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2"
                                     >
@@ -89,21 +89,21 @@
                                         </a>
                                     </span>
                                 </h3>
-                                <p class="text-base text-skin-base">Des émissions radios pour la culture.</p>
+                                <p class="text-base text-gray-500 dark:text-gray-400">Des émissions radios pour la culture.</p>
                             </div>
                             <div class="shrink-0 self-center">
-                                <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />
+                                <x-heroicon-s-chevron-right class="size-5 text-skin-muted" />
                             </div>
                         </li>
 
                         <li class="relative flex items-start space-x-4 py-6">
                             <div class="shrink-0">
-                                <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-50">
-                                    <x-untitledui-bookmark class="h-6 w-6 text-green-700" />
+                                <span class="flex size-12 items-center justify-center rounded-lg bg-green-50">
+                                    <x-untitledui-bookmark class="size-6 text-green-700" />
                                 </span>
                             </div>
                             <div class="min-w-0 flex-1">
-                                <h3 class="font-sans text-base font-medium text-skin-inverted">
+                                <h3 class="font-sans text-base font-medium text-gray-900">
                                     <span
                                         class="rounded-sm focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2"
                                     >
@@ -113,21 +113,21 @@
                                         </a>
                                     </span>
                                 </h3>
-                                <p class="text-base text-skin-base">Guide d'utilisation et paramétrage du site.</p>
+                                <p class="text-base text-gray-500 dark:text-gray-400">Guide d'utilisation et paramétrage du site.</p>
                             </div>
                             <div class="shrink-0 self-center">
-                                <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />
+                                <x-heroicon-s-chevron-right class="size-5 text-skin-muted" />
                             </div>
                         </li>
 
                         <li class="relative flex items-start space-x-4 py-6">
                             <div class="shrink-0">
-                                <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-50">
-                                    <x-heroicon-o-rss class="h-6 w-6 text-green-700" />
+                                <span class="flex size-12 items-center justify-center rounded-lg bg-green-50">
+                                    <x-heroicon-o-rss class="size-6 text-green-700" />
                                 </span>
                             </div>
                             <div class="min-w-0 flex-1">
-                                <h3 class="font-sans text-base font-medium text-skin-inverted">
+                                <h3 class="font-sans text-base font-medium text-gray-900">
                                     <span
                                         class="rounded-sm focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2"
                                     >
@@ -137,17 +137,17 @@
                                         </a>
                                     </span>
                                 </h3>
-                                <p class="text-base text-skin-base">Lisez les dernières nouvelles et articles.</p>
+                                <p class="text-base text-gray-500 dark:text-gray-400">Lisez les dernières nouvelles et articles.</p>
                             </div>
                             <div class="shrink-0 self-center">
-                                <x-heroicon-s-chevron-right class="h-5 w-5 text-skin-muted" />
+                                <x-heroicon-s-chevron-right class="size-5 text-skin-muted" />
                             </div>
                         </li>
                     </ul>
                     <div class="mt-8">
                         <a
                             href="{{ url('/') }}"
-                            class="text-base font-medium text-skin-primary hover:text-skin-primary-hover"
+                            class="text-base font-medium text-primary-600 hover:text-primary-600-hover"
                         >
                             Ou retourner à l'accueil
                             <span aria-hidden="true">&rarr;</span>

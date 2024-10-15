@@ -1,7 +1,7 @@
 <x-sticky-content class="space-y-12">
     <div>
-        <h4 class="font-heading text-lg font-semibold leading-6 text-skin-inverted">Top Contributeurs</h4>
-        <p class="mt-3 text-sm text-skin-base">Les personnes qui ont lancé le plus de discussions sur le site.</p>
+        <h4 class="font-heading text-lg font-semibold leading-6 text-gray-900">Top Contributeurs</h4>
+        <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">Les personnes qui ont lancé le plus de discussions sur le site.</p>
         <div class="mt-6">
             <ul role="list" class="divide-y divide-skin-base">
                 @foreach ($topContributors as $contributor)
@@ -12,26 +12,26 @@
                                 class="flex min-w-0 flex-1 items-center"
                             >
                                 <div class="shrink-0">
-                                    <x-user.avatar :user="$contributor" class="h-8 w-8" />
+                                    <x-user.avatar :user="$contributor" class="size-8" />
                                 </div>
                                 <div class="ml-3.5 font-sans">
-                                    <p class="truncate text-sm font-medium text-skin-inverted">
+                                    <p class="truncate text-sm font-medium text-gray-900">
                                         {{ $contributor->name }}
                                     </p>
-                                    <p class="truncate text-sm text-skin-base">
+                                    <p class="truncate text-sm text-gray-500 dark:text-gray-400">
                                         {{ '@' . $contributor->username }}
                                     </p>
                                 </div>
                             </a>
                             <div>
-                                <span class="inline-flex items-center text-sm font-medium leading-5 text-skin-inverted">
+                                <span class="inline-flex items-center text-sm font-medium leading-5 text-gray-900">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke-width="1.5"
                                         stroke="currentColor"
-                                        class="mr-1 h-5 w-5 text-skin-muted"
+                                        class="mr-1 size-5 text-skin-muted"
                                     >
                                         <path
                                             stroke-linecap="round"
@@ -50,8 +50,8 @@
     </div>
 
     <div>
-        <h4 class="font-heading text-lg font-semibold leading-6 text-skin-inverted">Discussions sans commentaires</h4>
-        <p class="mt-3 text-sm text-skin-base">
+        <h4 class="font-heading text-lg font-semibold leading-6 text-gray-900">Discussions sans commentaires</h4>
+        <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
             Les discussions / sujets qui n’ont pas encore eu de commentaires. Soyez le premier à apporter votre
             contribution.
         </p>
@@ -62,13 +62,13 @@
                     <li class="py-4">
                         <div class="flex space-x-3">
                             <img
-                                class="h-6 w-6 rounded-full object-cover"
+                                class="size-6 rounded-full object-cover"
                                 src="{{ $discussion->user->profile_photo_url }}"
                                 alt=""
                             />
                             <div class="flex-1 space-y-1">
                                 <div class="flex items-center justify-between">
-                                    <h3 class="font-heading text-sm font-medium text-skin-inverted">
+                                    <h3 class="font-heading text-sm font-medium text-gray-900">
                                         <a
                                             href="{{ route('profile', $discussion->user->username) }}"
                                             class="hover:underline"
@@ -82,7 +82,7 @@
                                 </div>
                                 <a
                                     href="{{ route('discussions.show', $discussion) }}"
-                                    class="inline-flex text-sm leading-5 text-skin-base hover:text-skin-inverted"
+                                    class="inline-flex text-sm leading-5 text-gray-500 dark:text-gray-400 hover:text-gray-900"
                                 >
                                     {{ $discussion->title }}
                                 </a>

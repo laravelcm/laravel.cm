@@ -12,13 +12,13 @@
                 <div class="flex">
                     <x-user.avatar
                         :user="$user"
-                        class="h-24 w-24 !ring-4 ring-card sm:h-32 sm:w-32"
-                        span="right-1 top-0 ring-4 h-6 w-6"
+                        class="size-24 !ring-4 ring-card sm:size-32"
+                        span="right-1 top-0 ring-4 size-6"
                     />
                 </div>
                 <div class="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                     <div class="mt-6 min-w-0 flex-1 sm:hidden md:block">
-                        <h1 class="inline-flex items-center truncate text-2xl font-bold text-skin-inverted">
+                        <h1 class="inline-flex items-center truncate text-2xl font-bold text-gray-900">
                             <span class="font-heading">{{ $user->name }}</span>
 
                             <x-user.points :author="$user" />
@@ -27,7 +27,7 @@
                                 <x-user.status />
                             @endif
                         </h1>
-                        <p class="text-sm font-normal text-skin-base">
+                        <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                             {{ __('Inscrit') }}
                             <time-ago time="{{ $user->created_at->getTimestamp() }}" />
                         </p>
@@ -36,7 +36,7 @@
                         @if ($user->isLoggedInUser())
                             <x-default-button :link="route('user.settings')">
                                 <svg
-                                    class="-ml-1 mr-2 h-5 w-5 text-skin-muted"
+                                    class="-ml-1 mr-2 size-5 text-skin-muted"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -56,10 +56,10 @@
                 </div>
             </div>
             <div class="mt-6 hidden min-w-0 flex-1 sm:block md:hidden">
-                <h1 class="truncate font-sans text-2xl font-bold text-skin-inverted">
+                <h1 class="truncate font-sans text-2xl font-bold text-gray-900">
                     {{ $user->name }}
                 </h1>
-                <p class="text-sm font-normal text-skin-base">
+                <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                     {{ __('Inscrit') }}
                     <time-ago time="{{ $user->created_at->getTimestamp() }}" />
                 </p>
@@ -70,35 +70,35 @@
     <x-container class="py-10">
         <div class="space-y-6 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0">
             <div>
-                <h3 class="font-sans text-lg font-medium leading-6 text-skin-inverted">{{ __('Biographie') }}</h3>
-                <p class="mt-2 font-normal text-skin-base">
+                <h3 class="font-sans text-lg font-medium leading-6 text-gray-900">{{ __('Biographie') }}</h3>
+                <p class="mt-2 font-normal text-gray-500 dark:text-gray-400">
                     {{ $user->bio ?? '...' }}
                 </p>
                 <div class="mb-6 mt-4 flex items-center gap-x-4">
                     @if ($user->githubUsername())
                         <a
                             href="https://github.com/{{ $user->githubUsername() }}"
-                            class="text-skin-base hover:text-skin-inverted"
+                            class="text-gray-500 dark:text-gray-400 hover:text-gray-900"
                         >
-                            <x-icon.github class="h-6 w-6" />
+                            <x-icon.github class="size-6" />
                         </a>
                     @endif
 
                     @if ($user->twitter())
                         <a
                             href="https://twitter.com/{{ $user->twitter() }}"
-                            class="text-skin-base hover:text-[#29aaec]"
+                            class="text-gray-500 dark:text-gray-400 hover:text-[#29aaec]"
                         >
-                            <x-icon.twitter class="h-6 w-6" />
+                            <x-icon.twitter class="size-6" />
                         </a>
                     @endif
 
                     @if ($user->linkedin())
                         <a
                             href="https://www.linkedin.com/in/{{ $user->linkedin() }}"
-                            class="text-skin-base hover:text-[#004182]"
+                            class="text-gray-500 dark:text-gray-400 hover:text-[#004182]"
                         >
-                            <x-icon.linkedin class="h-6 w-6" />
+                            <x-icon.linkedin class="size-6" />
                         </a>
                     @endif
                 </div>
@@ -106,23 +106,23 @@
             <div>
                 <dl class="grid grid-cols-1 gap-x-3 gap-y-6 sm:grid-cols-2">
                     <div class="sm:col-span-1">
-                        <dt class="font-sans text-sm font-medium text-skin-base">Localisation</dt>
-                        <dd class="mt-1 font-normal text-skin-inverted-muted">
+                        <dt class="font-sans text-sm font-medium text-gray-500 dark:text-gray-400">Localisation</dt>
+                        <dd class="mt-1 font-normal text-gray-700 dark:text-gray-300">
                             {{ $user->location ?? '...' }}
                         </dd>
                     </div>
                     <div class="sm:col-span-1">
-                        <dt class="font-sans text-sm font-medium text-skin-base">Site internet</dt>
-                        <dd class="mt-1 font-normal text-skin-inverted-muted">
+                        <dt class="font-sans text-sm font-medium text-gray-500 dark:text-gray-400">Site internet</dt>
+                        <dd class="mt-1 font-normal text-gray-700 dark:text-gray-300">
                             @if ($user->website)
                                 <a
                                     href="{{ $user->website }}"
                                     target="_blank"
-                                    class="inline-flex items-center text-skin-primary hover:text-skin-primary-hover"
+                                    class="inline-flex items-center text-primary-600 hover:text-primary-600-hover"
                                 >
                                     {{ $user->website }}
                                     <svg
-                                        class="ml-1.5 h-5 w-5"
+                                        class="ml-1.5 size-5"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
@@ -170,7 +170,7 @@
                 <div class="relative w-full">
                     <div
                         x-ref="tabButtons"
-                        class="relative inline-grid h-10 w-full w-full select-none grid-cols-3 items-center justify-center rounded-lg bg-skin-card p-1 text-skin-base lg:max-w-md"
+                        class="relative inline-grid h-10 w-full w-full select-none grid-cols-3 items-center justify-center rounded-lg bg-skin-card p-1 text-gray-500 dark:text-gray-400 lg:max-w-md"
                     >
                         <button
                             :id="$id(tabId)"
@@ -217,7 +217,7 @@
                             >
                                 <div class="mx-auto max-w-sm text-center">
                                     <svg
-                                        class="mx-auto h-10 w-10 text-skin-primary"
+                                        class="mx-auto size-10 text-primary-600"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
@@ -230,7 +230,7 @@
                                             d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
                                         />
                                     </svg>
-                                    <p class="mt-1 text-sm leading-5 text-skin-base">
+                                    <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">
                                         {{ __(':name ne possède aucun badge', ['name' => $user->name]) }}
                                     </p>
                                     <x-button link="#" class="mt-4">Voir tous les badges</x-button>

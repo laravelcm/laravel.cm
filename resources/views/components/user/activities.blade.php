@@ -4,7 +4,7 @@
 ])
 
 <div class="flow-root">
-    <h3 class="mt-4 font-heading text-lg font-medium leading-6 text-skin-inverted">
+    <h3 class="mt-4 font-heading text-lg font-medium leading-6 text-gray-900">
         Dernières activités de {{ $user->name }}
     </h3>
     <ul role="list" class="-mb-8 mt-6">

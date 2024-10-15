@@ -1,8 +1,8 @@
 <x-modal footerClasses="px-4 pb-5 sm:px-4 sm:flex sm:flex-row-reverse">
     <x-slot name="content">
-        <p class="text-sm leading-5 text-skin-base">
+        <p class="text-sm leading-5 text-gray-500 dark:text-gray-400">
             Vous êtes sur le point de soutenir Laravel Cameroun pour la somme de
-            <span class="font-bold text-skin-inverted">{{ $amount }} F.CFA</span>
+            <span class="font-bold text-gray-900">{{ $amount }} F.CFA</span>
             . Nous vous remercions pour votre don.
         </p>
         <div class="mt-3 grid gap-4 lg:mt-5 lg:grid-cols-2 lg:gap-6">
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="mt-4 border-t border-skin-base pt-5">
-            <h5 class="font-medium text-skin-inverted-muted">Vous êtes ?</h5>
+            <h5 class="font-medium text-gray-700 dark:text-gray-300">Vous êtes ?</h5>
             <div class="mt-2 flex items-center space-x-5">
                 <div class="flex items-center gap-x-3">
                     <input
@@ -31,9 +31,9 @@
                         wire:model="type"
                         value="company"
                         type="radio"
-                        class="h-4 w-4 border-skin-input text-primary-600 focus:ring-primary-600"
+                        class="size-4 border-skin-input text-primary-600 focus:ring-primary-600"
                     />
-                    <label for="company" class="block text-sm font-medium leading-6 text-skin-inverted">
+                    <label for="company" class="block text-sm font-medium leading-6 text-gray-900">
                         Entreprise
                     </label>
                 </div>
@@ -44,9 +44,9 @@
                         wire:model="type"
                         value="developer"
                         type="radio"
-                        class="h-4 w-4 border-skin-input text-primary-600 focus:ring-primary-600"
+                        class="size-4 border-skin-input text-primary-600 focus:ring-primary-600"
                     />
-                    <label for="developer" class="block text-sm font-medium leading-6 text-skin-inverted">
+                    <label for="developer" class="block text-sm font-medium leading-6 text-gray-900">
                         Développeur / Sympathisant
                     </label>
                 </div>

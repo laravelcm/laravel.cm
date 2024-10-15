@@ -3,8 +3,8 @@
         <div>
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="font-heading text-xl font-semibold text-skin-inverted">{{ __('Utilisateurs') }}</h1>
-                    <p class="mt-2 text-sm text-skin-inverted-muted">
+                    <h1 class="font-heading text-xl font-semibold text-gray-900">{{ __('Utilisateurs') }}</h1>
+                    <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
                         {{ __('Une liste de tous les utilisateurs de votre compte, avec leur nom, leur titre, leur email et leur rôle.') }}
                     </p>
                 </div>
@@ -21,25 +21,25 @@
                                     <tr>
                                         <th
                                             scope="col"
-                                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-skin-inverted sm:pl-6"
+                                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
                                         >
                                             {{ __('Nom') }}
                                         </th>
                                         <th
                                             scope="col"
-                                            class="px-3 py-3.5 text-left text-sm font-semibold text-skin-inverted"
+                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                         >
                                             {{ __('Email') }}
                                         </th>
                                         <th
                                             scope="col"
-                                            class="px-3 py-3.5 text-left text-sm font-semibold text-skin-inverted"
+                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                         >
                                             {{ __('Role') }}
                                         </th>
                                         <th
                                             scope="col"
-                                            class="px-3 py-3.5 text-left text-sm font-semibold text-skin-inverted"
+                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                                         >
                                             {{ __('Inscription') }}
                                         </th>
@@ -52,18 +52,18 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td
-                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-skin-inverted sm:pl-6"
+                                                class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"
                                             >
                                                 <div class="flex items-center">
-                                                    <div class="h-10 w-10 flex-shrink-0">
+                                                    <div class="size-10 flex-shrink-0">
                                                         <img
-                                                            class="h-10 w-10 rounded-full"
+                                                            class="size-10 rounded-full"
                                                             src="{{ $user->profile_photo_url }}"
                                                             alt="{{ $user->username }}"
                                                         />
                                                     </div>
                                                     <div class="ml-4">
-                                                        <div class="flex items-center font-medium text-skin-inverted">
+                                                        <div class="flex items-center font-medium text-gray-900">
                                                             {{ $user->name }}
                                                             @if ($user->isLoggedInUser())
                                                                 <span
@@ -73,17 +73,17 @@
                                                                 </span>
                                                             @endif
                                                         </div>
-                                                        <div class="text-skin-base">{{ $user->username }}</div>
+                                                        <div class="text-gray-500 dark:text-gray-400">{{ $user->username }}</div>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-skin-base">
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
                                                 {{ $user->email }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-skin-base">
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
                                                 {{ $user->roles_label }}
                                             </td>
-                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-skin-base">
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-400">
                                                 {{ $user->created_at->diffForHumans() }}
                                             </td>
                                             <td

@@ -42,7 +42,7 @@
             class="mt-8 inline-flex items-center text-flag-green hover:text-primary-800"
         >
             {{ __('Lire l\'article') }}
-            <x-untitledui-link-external-01 class="ml-2.5 h-5 w-5" />
+            <x-untitledui-link-external-01 class="ml-2.5 size-5" />
         </a>
     </div>
 </div>

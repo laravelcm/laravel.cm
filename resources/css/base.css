@@ -1,38 +1,17 @@
 html,
-body {
-    height: 100%;
-}
-input {
-    width: 100%;
-}
-.hide-scroll::-webkit-scrollbar {
-    display: none;
-}
+body { height: 100%; }
+input { width: 100%; }
+
 [x-cloak] {
     display: none !important;
 }
 
-.affiliate img {
-    margin-bottom: 0 !important;
-    margin-top: 0 !important;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+.hide-scroll::-webkit-scrollbar {
+    display: none;
 }
 
 .prose iframe {
     @apply w-full;
-}
-
-.logo-dark {
-    display: none;
-}
-
-.theme-dark .logo-white {
-    display: none;
-}
-
-.theme-dark .logo-dark {
-    display: block;
 }
 
 .animate-scroll-slow:nth-child(2) {

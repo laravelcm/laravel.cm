@@ -9,9 +9,10 @@ use App\Models\Discussion;
 use App\Models\Plan;
 use App\Models\Thread;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
-final class HomeController extends Controller
+final class HomeController
 {
     public function __invoke(): View
     {
@@ -21,37 +22,31 @@ final class HomeController extends Controller
                 ->get();
         });
 
-        $latestArticles = Cache::remember('latestArticles', now()->addHour(), function () {
-            return Article::with(['tags', 'user', 'user.transactions'])
-                ->published()
-                ->orderByDesc('sponsored_at')
-                ->orderByDesc('published_at')
-                ->orderByViews()
-                ->trending()
-                ->limit(4)
-                ->get();
-        });
+        $latestArticles = Cache::remember('latestArticles', now()->addMinute(), fn (): Collection => Article::with(['tags', 'user', 'user.transactions'])
+            ->published()
+            ->orderByDesc('sponsored_at')
+            ->orderByDesc('published_at')
+            ->orderByViews()
+            ->trending()
+            ->limit(4)
+            ->get());
 
-        $latestThreads = Cache::remember('latestThreads', now()->addHour(), function () {
-            return Thread::with(['user', 'user.transactions'])->whereNull('solution_reply_id')
-                ->whereBetween('threads.created_at', [now()->subMonths(3), now()])
-                ->inRandomOrder()
-                ->limit(4)
-                ->get();
-        });
+        $latestThreads = Cache::remember('latestThreads', now()->addMinute(), fn (): Collection => Thread::with(['user', 'user.transactions'])->whereNull('solution_reply_id')
+            ->whereBetween('threads.created_at', [now()->subMonths(3), now()])
+            ->inRandomOrder()
+            ->limit(4)
+            ->get());
 
-        $latestDiscussions = Cache::remember('latestDiscussions', now()->addHour(), function () {
-            return Discussion::with(['user', 'user.transactions'])
-                ->recent()
-                ->orderByViews()
-                ->limit(3)
-                ->get();
-        });
+        $latestDiscussions = Cache::remember('latestDiscussions', now()->addMinute(), fn (): Collection => Discussion::with(['user', 'user.transactions'])
+            ->recent()
+            ->orderByViews()
+            ->limit(3)
+            ->get());
 
         // @phpstan-ignore-next-line
         seo()
-            ->description('Laravel Cameroun est le portail de la communauté de développeurs PHP & Laravel au Cameroun, On partage, on apprend, on découvre et on construit une grande communauté.')
-            ->twitterDescription('Laravel Cameroun est le portail de la communauté de développeurs PHP & Laravel au Cameroun, On partage, on apprend, on découvre et on construit une grande communauté.')
+            ->description(__('pages/home.description'))
+            ->twitterDescription(__('pages/home.description'))
             ->image(asset('/images/socialcard.png'))
             ->twitterSite('laravelcm')
             ->withUrl();

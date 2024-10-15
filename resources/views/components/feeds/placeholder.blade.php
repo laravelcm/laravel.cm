@@ -1,7 +1,7 @@
 <li>
     <div class="flex items-center">
         <svg
-            class="h-10 w-10 text-skin-muted"
+            class="size-10 text-skin-muted"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -15,8 +15,8 @@
             />
         </svg>
         <div class="ml-4">
-            <h3 class="font-sans text-sm font-medium text-skin-inverted">{{ __('Activités') }}</h3>
-            <p class="text-sm font-normal text-skin-base">
+            <h3 class="font-sans text-sm font-medium text-gray-900">{{ __('Activités') }}</h3>
+            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                 {{ __('Aucune activité pour le moment.') }}
             </p>
         </div>

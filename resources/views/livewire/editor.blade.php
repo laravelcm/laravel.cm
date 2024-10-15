@@ -1,6 +1,6 @@
 <div>
     @if ($label)
-        <span class="mb-4 block font-sans text-xl font-semibold text-skin-inverted">
+        <span class="mb-4 block font-sans text-xl font-semibold text-gray-900">
             {{ $label }}
         </span>
     @endif
@@ -15,10 +15,10 @@
                 <button
                     type="button"
                     @click="mode = 'write'"
-                    class="flex h-full cursor-pointer items-center px-4 font-medium text-skin-base hover:bg-skin-card-muted"
+                    class="flex h-full cursor-pointer items-center px-4 font-medium text-gray-500 dark:text-gray-400 hover:bg-skin-card-muted"
                     :class="{ 'text-green-500 border-b border-green-500': mode === 'write' }"
                 >
-                    <x-heroicon-o-pencil class="mr-2 h-4 w-4" />
+                    <x-heroicon-o-pencil class="mr-2 size-4" />
                     <span>Saisi</span>
                 </button>
 
@@ -26,7 +26,7 @@
                     type="button"
                     @click="mode = 'preview'"
                     wire:click="preview"
-                    class="flex h-full cursor-pointer items-center px-4 font-medium text-skin-base hover:bg-skin-card-muted"
+                    class="flex h-full cursor-pointer items-center px-4 font-medium text-gray-500 dark:text-gray-400 hover:bg-skin-card-muted"
                     :class="{ 'text-green-500 border-b border-green-500': mode === 'preview' }"
                 >
                     Preview
@@ -38,7 +38,7 @@
         <div x-show="mode === 'write'">
             <div class="relative flex flex-col">
                 <textarea
-                    class="hide-scroll h-full min-h-[250px] w-full resize-none border-none bg-skin-input p-5 leading-loose tracking-tighter text-skin-base focus:border focus:border-skin-input focus:outline-none"
+                    class="hide-scroll h-full min-h-[250px] w-full resize-none border-none bg-skin-input p-5 leading-loose tracking-tighter text-gray-500 dark:text-gray-400 focus:border focus:border-skin-input focus:outline-none"
                     id="body"
                     name="body"
                     aria-label="Body"
