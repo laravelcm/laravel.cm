@@ -4,7 +4,6 @@
 npm-debug.log
 yarn-error.log
 yarn.lock
-package-lock.json
 
 /vendor
 composer.phar
@@ -22,6 +21,7 @@ composer.phar
 /public/hot
 /public/storage
 /public/media
+/public/**/filament
 /public/sitemap.xml
 /storage/*.key
 /storage/framework/cache
