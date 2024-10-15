@@ -32,9 +32,6 @@ use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
-/**
- * @mixin IdeHelperThread
- */
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
     use HasAuthor;

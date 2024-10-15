@@ -20,9 +20,6 @@ use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-/**
- * @mixin IdeHelperArticle
- */
 final class Article extends Model implements HasMedia, ReactableInterface, Viewable
 {
     use HasAuthor;

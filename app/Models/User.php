@@ -32,9 +32,6 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
-/**
- * @mixin IdeHelperUser
- */
 final class User extends Authenticatable implements FeaturableInterface, FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
     use Featurable;

@@ -21,9 +21,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-/**
- * @mixin IdeHelperDiscussion
- */
 final class Discussion extends Model implements ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
     use HasAuthor;

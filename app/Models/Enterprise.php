@@ -15,9 +15,6 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-/**
- * @mixin IdeHelperEnterprise
- */
 final class Enterprise extends Model implements HasMedia
 {
     use HasFactory;

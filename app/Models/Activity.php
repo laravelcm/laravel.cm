@@ -10,9 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Collection;
 
-/**
- * @mixin IdeHelperActivity
- */
 final class Activity extends Model
 {
     use HasFactory;
