@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
+use Livewire\Attributes\Validate;
+
 trait WithTagsAssociation
 {
     /**
      * @var array<string, string>
      */
+    #[Validate('nullable|array')]
     public array $tags_selected = [];
 
     /**
