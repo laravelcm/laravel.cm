@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 final class HttpsProtocol
 {
-    public function handle(Request $request, Closure $next): RedirectResponse | Response | JsonResponse | BinaryFileResponse
+    public function handle(Request $request, Closure $next): RedirectResponse|Response|JsonResponse|BinaryFileResponse
     {
         if (app()->environment('production') && ! $request->isSecure()) {
             return redirect()->secure($request->getRequestUri());

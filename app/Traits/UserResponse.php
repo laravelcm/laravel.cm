@@ -11,7 +11,6 @@ use App\Models\User;
 trait UserResponse
 {
     /**
-     * @param User $user
      * @return array{
      *      user: AuthenticateUserResource,
      *      token: string,

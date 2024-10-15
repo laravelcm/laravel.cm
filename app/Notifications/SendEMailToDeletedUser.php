@@ -20,7 +20,7 @@ final class SendEMailToDeletedUser extends Notification implements ShouldQueue
 
     public function toMail(): MailMessage
     {
-        return (new MailMessage())
+        return (new MailMessage)
             ->subject(__('Suppression de compte | Laravel Cameroun'))
             ->line(__('Pour des raisons de validité et d\'authenticité de votre adresse email'))
             ->line(__('Nous avons supprimé votre compte après 10 jours d\'inscription sans validation de votre adresse email.'))

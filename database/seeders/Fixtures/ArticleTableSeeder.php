@@ -22,7 +22,7 @@ final class ArticleTableSeeder extends Seeder
             ->whereJsonContains('concerns', ['post'])
             ->get()
             ->modelKeys();
-        $faker = new Faker();
+        $faker = new Faker;
 
         /** @var Article $article1 */
         $article1 = Article::create([

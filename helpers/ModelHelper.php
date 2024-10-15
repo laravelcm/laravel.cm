@@ -25,6 +25,7 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $subject
      * @property-read User $user
+     *
      * @method static \Database\Factories\ActivityFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|Activity newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Activity newQuery()
@@ -37,11 +38,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Activity whereType($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Activity whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Activity whereUserId($value)
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperActivity
-    {
-    }
+    final class IdeHelperActivity {}
 }
 
 namespace App\Models{
@@ -77,6 +77,7 @@ namespace App\Models{
      * @property-read User $user
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
      * @property-read int|null $views_count
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|Article approved()
      * @method static \Illuminate\Database\Eloquent\Builder|Article awaitingApproval()
      * @method static \Illuminate\Database\Eloquent\Builder|Article declined()
@@ -119,11 +120,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Article whereUserId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Article withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperArticle
-    {
-    }
+    final class IdeHelperArticle {}
 }
 
 namespace App\Models{
@@ -142,6 +142,7 @@ namespace App\Models{
      * @property-read Channel|null $parent
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Thread> $threads
      * @property-read int|null $threads_count
+     *
      * @method static \Database\Factories\ChannelFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|Channel newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Channel newQuery()
@@ -153,11 +154,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Channel whereParentId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Channel whereSlug($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Channel whereUpdatedAt($value)
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperChannel
-    {
-    }
+    final class IdeHelperChannel {}
 }
 
 namespace App\Models{
@@ -188,6 +188,7 @@ namespace App\Models{
      * @property-read User $user
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
      * @property-read int|null $views_count
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|Discussion active()
      * @method static \Database\Factories\DiscussionFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|Discussion forTag(string $tag)
@@ -211,11 +212,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Discussion whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Discussion whereUserId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Discussion withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperDiscussion
-    {
-    }
+    final class IdeHelperDiscussion {}
 }
 
 namespace App\Models{
@@ -242,6 +242,7 @@ namespace App\Models{
      * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
      * @property-read int|null $media_count
      * @property-read User $owner
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|Enterprise certified()
      * @method static \Database\Factories\EnterpriseFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|Enterprise featured()
@@ -267,11 +268,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereUserId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Enterprise whereWebsite($value)
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperEnterprise
-    {
-    }
+    final class IdeHelperEnterprise {}
 }
 
 namespace App\Models{
@@ -283,6 +283,7 @@ namespace App\Models{
      * @property int $is_enabled
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|Feature newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Feature newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Feature query()
@@ -291,11 +292,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Feature whereIsEnabled($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Feature whereName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Feature whereUpdatedAt($value)
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperFeature
-    {
-    }
+    final class IdeHelperFeature {}
 }
 
 namespace App\Models\Premium{
@@ -318,6 +318,7 @@ namespace App\Models\Premium{
      * @property-read \App\Models\Plan $plan
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Premium\SubscriptionUsage> $usage
      * @property-read int|null $usage_count
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|PlanFeature byPlanId(int $planId)
      * @method static \Illuminate\Database\Eloquent\Builder|Feature newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Feature newQuery()
@@ -338,11 +339,10 @@ namespace App\Models\Premium{
      * @method static \Illuminate\Database\Eloquent\Builder|Feature whereValue($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Feature withTrashed()
      * @method static \Illuminate\Database\Eloquent\Builder|Feature withoutTrashed()
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperFeature
-    {
-    }
+    final class IdeHelperFeature {}
 }
 
 namespace App\Models\Premium{use App\Models\Plan;
@@ -378,6 +378,7 @@ namespace App\Models\Premium{use App\Models\Plan;
      * @property-read array $translations
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Premium\Subscription> $subscriptions
      * @property-read int|null $subscriptions_count
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|Plan developer()
      * @method static \Illuminate\Database\Eloquent\Builder|Plan enterprise()
      * @method static \Illuminate\Database\Eloquent\Builder|Plan newModelQuery()
@@ -410,11 +411,10 @@ namespace App\Models\Premium{use App\Models\Plan;
      * @method static \Illuminate\Database\Eloquent\Builder|Plan whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Plan withTrashed()
      * @method static \Illuminate\Database\Eloquent\Builder|Plan withoutTrashed()
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperPlan
-    {
-    }
+    final class IdeHelperPlan {}
 }
 
 namespace App\Models\Premium{
@@ -442,6 +442,7 @@ namespace App\Models\Premium{
      * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $subscriber
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Premium\SubscriptionUsage> $usage
      * @property-read int|null $usage_count
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription byPlanId(int $planId)
      * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription findActive()
      * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscription findEndedPeriod()
@@ -471,11 +472,10 @@ namespace App\Models\Premium{
      * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Subscription withTrashed()
      * @method static \Illuminate\Database\Eloquent\Builder|Subscription withoutTrashed()
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperSubscription
-    {
-    }
+    final class IdeHelperSubscription {}
 }
 
 namespace App\Models\Premium{
@@ -493,6 +493,7 @@ namespace App\Models\Premium{
      * @property \Illuminate\Support\Carbon|null $deleted_at
      * @property-read Feature $feature
      * @property-read Subscription $subscription
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|PlanSubscriptionUsage byFeatureSlug(string $featureSlug)
      * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage newQuery()
@@ -509,11 +510,10 @@ namespace App\Models\Premium{
      * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage whereValidUntil($value)
      * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage withTrashed()
      * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionUsage withoutTrashed()
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperSubscriptionUsage
-    {
-    }
+    final class IdeHelperSubscriptionUsage {}
 }
 
 namespace App\Models{
@@ -524,6 +524,7 @@ namespace App\Models{
      * @property string $name
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|Reaction newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Reaction newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Reaction query()
@@ -531,11 +532,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Reaction whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Reaction whereName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Reaction whereUpdatedAt($value)
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperReaction
-    {
-    }
+    final class IdeHelperReaction {}
 }
 
 namespace App\Models{
@@ -561,6 +561,7 @@ namespace App\Models{
      * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $replyAble
      * @property-read Thread|null $solutionTo
      * @property-read User $user
+     *
      * @method static \Database\Factories\ReplyFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|Reply isSolution()
      * @method static \Illuminate\Database\Eloquent\Builder|Reply newModelQuery()
@@ -573,11 +574,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Reply whereReplyableType($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Reply whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Reply whereUserId($value)
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperReply
-    {
-    }
+    final class IdeHelperReply {}
 }
 
 namespace App\Models{
@@ -592,6 +592,7 @@ namespace App\Models{
      * @property string|null $avatar
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|SocialAccount newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|SocialAccount newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|SocialAccount query()
@@ -603,11 +604,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|SocialAccount whereToken($value)
      * @method static \Illuminate\Database\Eloquent\Builder|SocialAccount whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|SocialAccount whereUserId($value)
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperSocialAccount
-    {
-    }
+    final class IdeHelperSocialAccount {}
 }
 
 namespace App\Models{
@@ -622,6 +622,7 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $subscribeAble
      * @property-read User $user
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|Subscribe newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Subscribe newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Subscribe query()
@@ -631,11 +632,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Subscribe whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Subscribe whereUserId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Subscribe whereUuid($value)
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperSubscribe
-    {
-    }
+    final class IdeHelperSubscribe {}
 }
 
 namespace App\Models{
@@ -649,6 +649,7 @@ namespace App\Models{
      * @property array $concerns
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Article> $articles
      * @property-read int|null $articles_count
+     *
      * @method static \Database\Factories\TagFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|Tag newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Tag newQuery()
@@ -658,11 +659,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Tag whereId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Tag whereName($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Tag whereSlug($value)
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperTag
-    {
-    }
+    final class IdeHelperTag {}
 }
 
 namespace App\Models{
@@ -698,6 +698,7 @@ namespace App\Models{
      * @property-read User $user
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
      * @property-read int|null $views_count
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|Thread active()
      * @method static \Database\Factories\ThreadFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|Thread feedQuery()
@@ -723,11 +724,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Thread whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Thread whereUserId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Thread withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperThread
-    {
-    }
+    final class IdeHelperThread {}
 }
 
 namespace App\Models{
@@ -745,6 +745,7 @@ namespace App\Models{
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property-read User $user
+     *
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction complete()
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction newQuery()
@@ -759,11 +760,10 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereType($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUserId($value)
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperTransaction
-    {
-    }
+    final class IdeHelperTransaction {}
 }
 
 namespace App\Models{
@@ -833,6 +833,7 @@ namespace App\Models{
      * @property-read int|null $tokens_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Transaction> $transactions
      * @property-read int|null $transactions_count
+     *
      * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
      * @method static \Illuminate\Database\Eloquent\Builder|User hasActivity()
      * @method static \Illuminate\Database\Eloquent\Builder|User moderators()
@@ -875,9 +876,8 @@ namespace App\Models{
      * @method static \Illuminate\Database\Eloquent\Builder|User whereWebsite($value)
      * @method static \Illuminate\Database\Eloquent\Builder|User withCounts()
      * @method static \Illuminate\Database\Eloquent\Builder|User withoutRole()
+     *
      * @mixin \Eloquent
      */
-    final class IdeHelperUser
-    {
-    }
+    final class IdeHelperUser {}
 }

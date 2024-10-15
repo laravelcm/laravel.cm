@@ -15,9 +15,7 @@ final class NewSponsorPaymentNotification extends Notification implements Should
 {
     use Queueable;
 
-    public function __construct(public readonly Transaction $transaction)
-    {
-    }
+    public function __construct(public readonly Transaction $transaction) {}
 
     public function via(mixed $notifiable): array
     {

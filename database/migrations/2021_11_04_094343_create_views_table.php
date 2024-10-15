@@ -17,8 +17,6 @@ final class CreateViewsTable extends Migration
 
     /**
      * The table name.
-     *
-     * @var string
      */
     protected string $table;
 

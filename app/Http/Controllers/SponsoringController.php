@@ -21,7 +21,7 @@ final class SponsoringController extends Controller
         );
 
         return view('sponsors.index', [
-            'sponsors' => $sponsors
+            'sponsors' => $sponsors,
         ]);
     }
 }

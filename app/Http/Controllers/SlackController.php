@@ -15,7 +15,7 @@ final class SlackController extends Controller
     {
         $request->validate(['email' => 'required|email']);
 
-        $client = new Client();
+        $client = new Client;
         $team = config('lcm.slack.team');
         $email = $request->input('email');
 

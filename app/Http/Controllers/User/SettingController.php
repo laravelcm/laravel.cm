@@ -87,7 +87,7 @@ final class SettingController extends Controller
 
     protected function createAgent(mixed $session): mixed
     {
-        return tap(new Agent(), function ($agent) use ($session): void {
+        return tap(new Agent, function ($agent) use ($session): void {
             $agent->setUserAgent($session->user_agent);
         });
     }

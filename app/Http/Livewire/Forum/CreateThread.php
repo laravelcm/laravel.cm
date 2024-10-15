@@ -55,7 +55,7 @@ final class CreateThread extends Component
         $thread->syncChannels($this->associateChannels);
 
         // Subscribe author to the thread.
-        $subscription = new \App\Models\Subscribe();
+        $subscription = new \App\Models\Subscribe;
         $subscription->uuid = Uuid::uuid4()->toString();
         $subscription->user()->associate($author);
         $subscription->subscribeAble()->associate($thread);

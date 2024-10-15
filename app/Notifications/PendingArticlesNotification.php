@@ -14,9 +14,7 @@ final class PendingArticlesNotification extends Notification
 {
     use Queueable;
 
-    public function __construct(public Collection $pendingArticles)
-    {
-    }
+    public function __construct(public Collection $pendingArticles) {}
 
     public function via(mixed $notifiable): array
     {

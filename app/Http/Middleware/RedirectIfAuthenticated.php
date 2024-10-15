@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 final class RedirectIfAuthenticated
 {
-    public function handle(Request $request, Closure $next, ...$guards): Response | RedirectResponse
+    public function handle(Request $request, Closure $next, ...$guards): Response|RedirectResponse
     {
         $guards = empty($guards) ? [null] : $guards;
 

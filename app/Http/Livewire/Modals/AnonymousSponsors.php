@@ -76,7 +76,7 @@ final class AnonymousSponsors extends ModalComponent
                 'transaction_reference' => $payload->transaction->reference,
                 'user_id' => $adminUser->id,
                 'fees' => $payload->transaction->fee,
-                'type' => 'one-time' === $this->option
+                'type' => $this->option === 'one-time'
                     ? TransactionType::ONETIME->value
                     : TransactionType::RECURSIVE->value,
                 'metadata' => [
@@ -91,7 +91,7 @@ final class AnonymousSponsors extends ModalComponent
                     'initiated_at' => $payload->transaction->initiated_at,
                     'description' => $payload->transaction->description,
                     'for' => PaymentType::SPONSORING->value,
-                ]
+                ],
             ]);
 
             $this->redirect($payload->authorization_url); // @phpstan-ignore-line

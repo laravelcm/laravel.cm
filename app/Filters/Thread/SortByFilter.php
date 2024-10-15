@@ -21,7 +21,6 @@ final class SortByFilter extends AbstractFilter
 
     /**
      * @param  Builder<Thread>  $builder
-     * @param  mixed  $value
      * @return Builder<Thread>
      */
     public function filter(Builder $builder, mixed $value): Builder

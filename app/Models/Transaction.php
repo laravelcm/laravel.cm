@@ -35,7 +35,7 @@ final class Transaction extends Model
         return $query->where('status', TransactionStatus::COMPLETE->value);
     }
 
-    public function getMetadata(string $name, string $default = ''): string | array
+    public function getMetadata(string $name, string $default = ''): string|array
     {
         if ($this->metadata && array_key_exists($name, $this->metadata)) {
             return $this->metadata[$name];

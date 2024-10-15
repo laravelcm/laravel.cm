@@ -29,7 +29,7 @@ final class Subscribe extends Component
     {
         $this->authorize(DiscussionPolicy::SUBSCRIBE, $this->discussion);
 
-        $subscribe = new SubscribeModel();
+        $subscribe = new SubscribeModel;
         $subscribe->uuid = Uuid::uuid4()->toString();
         $subscribe->user()->associate(Auth::user());
         $this->discussion->subscribes()->save($subscribe);

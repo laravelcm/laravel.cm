@@ -35,7 +35,7 @@ final class Channel extends Model
     {
         parent::boot();
 
-        static::saving(function ($channel): void {
+        self::saving(function ($channel): void {
             if ($channel->parent_id) {
                 if ($record = self::find($channel->parent_id)) {
                     if ($record->exists() && $record->parent_id) { // @phpstan-ignore-line

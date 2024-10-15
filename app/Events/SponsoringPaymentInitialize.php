@@ -11,7 +11,5 @@ final class SponsoringPaymentInitialize
 {
     use SerializesModels;
 
-    public function __construct(public Transaction $transaction)
-    {
-    }
+    public function __construct(public Transaction $transaction) {}
 }

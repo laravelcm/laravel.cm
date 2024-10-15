@@ -36,7 +36,7 @@ trait HasUsername
         return $username;
     }
 
-    private function usernameExists(string $username, int $ignoreId = null): bool
+    private function usernameExists(string $username, ?int $ignoreId = null): bool
     {
         $query = $this->where('username', $username);
 

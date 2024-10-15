@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Feature;
+use Illuminate\Database\Seeder;
 
 final class FeatureTableSeeder extends Seeder
 {

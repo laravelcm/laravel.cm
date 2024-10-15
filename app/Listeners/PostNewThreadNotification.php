@@ -13,6 +13,6 @@ final class PostNewThreadNotification
     {
         $thread = $event->thread;
 
-        $thread->notify(new PostThreadToTelegram());
+        $thread->notify(new PostThreadToTelegram);
     }
 }
