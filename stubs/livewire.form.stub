@@ -1,0 +1,13 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DummyNamespace;
+
+use Livewire\Attributes\Validate;
+use Livewire\Form;
+
+final class DummyClass extends Form
+{
+    //
+}

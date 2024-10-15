@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Feature;
 use Illuminate\Database\Seeder;
+use LaravelFeature\Facade\Feature;
 
 final class FeatureTableSeeder extends Seeder
 {

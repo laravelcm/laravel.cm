@@ -1,4 +1,5 @@
 import { fontFamily } from 'tailwindcss/defaultTheme'
+import plugin from 'tailwindcss/plugin'
 import colors from 'tailwindcss/colors'
 import aspectRatio from '@tailwindcss/aspect-ratio'
 import forms from '@tailwindcss/forms'
@@ -184,5 +185,16 @@ export default {
       })
     },
   },
-  plugins: [aspectRatio, forms, typography],
+  plugins: [
+    aspectRatio,
+    forms,
+    typography,
+    plugin(({ matchUtilities }) => {
+      matchUtilities({
+        replace: (value) => ({
+          [`@apply ${value.replaceAll(',', ' ')}`]: {},
+        }),
+      })
+    }),
+  ],
 }

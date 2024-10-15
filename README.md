@@ -4,7 +4,7 @@
 
 <p align="center">
     <a href="https://laravel.com">
-        <img alt="Laravel v9.x" src="https://img.shields.io/badge/Laravel-v9.x-FF2D20">
+        <img alt="Laravel v10.x" src="https://img.shields.io/badge/Laravel-v10.x-FF2D20">
     </a>
     <a href="https://github.com/laravelcm/laravel.cm/actions">
         <img src="https://github.com/laravelcm/laravel.cm/workflows/Tests/badge.svg" alt="Build Status" />
@@ -29,10 +29,9 @@ Vous pouvez rejoindre la communauté ou nous suivre via nos différentes platefo
 ## Sponsors
 Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainage. Si vous souhaitez devenir sponsor, veuillez visiter <a href="https://laravel.cm/sponsors">la page Laravel.cm de Sponsoring</a>.
 
-- **[Laravel Shopper](https://laravelshopper.io)**
+- **[Laravel Shopper](https://laravelshopper.dev)**
 - [GDG Douala](https://gdg.community.dev/gdg-douala) 
 - [NotchPay](https://notchpay.co) 
-- [Dark Code](https://dark-code.cm) 
 - [Sharuco](https://sharuco.lndev.me) 
 
 ## Caractéristiques Serveur
@@ -90,11 +89,11 @@ TELEGRAM_CHANNEL=
 ```
 
 ## Commands
-Command | Description
---- | ---
-**`composer pest`** | Exécuter les tests
-`php artisan migrate:fresh --seed` | Reset la base de données
-`yarn run watch` | Surveillez les changements dans les fichiers CSS et JS
+| Command                            | Description                                            |
+|------------------------------------|--------------------------------------------------------|
+| **`composer test`**                | Exécuter les tests                                     |
+| `php artisan migrate:fresh --seed` | Reset la base de données                               |
+| `yarn && yarn watch`               | Surveillez les changements dans les fichiers CSS et JS |
 
 ## Maintainers
 

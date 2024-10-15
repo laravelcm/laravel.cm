@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dab182e81677756c85628727b8758fe9",
+    "content-hash": "24ea409b78b8e776528349107db1b5ea",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -6330,72 +6330,6 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.3.1"
             },
             "time": "2024-10-08T18:51:32+00:00"
-        },
-        {
-            "name": "nnjeim/world",
-            "version": "1.1.31",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nnjeim/world.git",
-                "reference": "5d76a937d37723d5f57842bb3b3d11b6375354d6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nnjeim/world/zipball/5d76a937d37723d5f57842bb3b3d11b6375354d6",
-                "reference": "5d76a937d37723d5f57842bb3b3d11b6375354d6",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.4"
-            },
-            "require-dev": {
-                "orchestra/testbench": ">=v4.0.0",
-                "phpunit/phpunit": ">=8.5.8"
-            },
-            "type": "laravel-package",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Nnjeim\\World\\WorldServiceProvider"
-                    ],
-                    "aliases": {
-                        "Country": "Nnjeim\\World\\World"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Nnjeim\\World\\": "src/",
-                    "Nnjeim\\World\\Database\\Seeders\\": "src/Database/Seeders/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Najm Njeim",
-                    "email": "najm@njeim.net",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Laravel countries, states, cities and currencies",
-            "homepage": "https://github.com/nnjeim/world.git",
-            "keywords": [
-                "cities",
-                "countries",
-                "currencies",
-                "laravel",
-                "lumen",
-                "states",
-                "timezones"
-            ],
-            "support": {
-                "issues": "https://github.com/nnjeim/world/issues",
-                "source": "https://github.com/nnjeim/world/tree/1.1.31"
-            },
-            "time": "2024-07-15T03:36:17+00:00"
         },
         {
             "name": "notchpay/notchpay-php",
