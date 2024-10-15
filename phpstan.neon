@@ -13,8 +13,6 @@ parameters:
         - app/Http/Controllers/OAuthController.php
         - app/Http/Controllers/Api/Auth/LoginController.php
         - app/Markdown/MarkdownHelper.php
-    scanDirectories:
-        - ./helpers
     ignoreErrors:
         - "#^Cannot access property \\$transaction on array\\|object\\.$#"
     checkGenericClassInNonGenericObjectType: false
