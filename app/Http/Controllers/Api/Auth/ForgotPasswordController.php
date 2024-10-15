@@ -17,7 +17,7 @@ final class ForgotPasswordController extends Controller
             $request->only('email')
         );
 
-        return Password::RESET_LINK_SENT === $status
+        return $status === Password::RESET_LINK_SENT
                     ? response()->json(['message' => __('L\'e-mail de réinitialisation du mot de passe a été envoyé avec succès !')])
                     : response()->json(['error' => __('Un courriel ne pourrait être envoyé à cette adresse électronique !')], 401);
     }

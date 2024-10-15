@@ -19,7 +19,7 @@ final class UpdateUserPassword implements UpdatesUserPasswords
             'current_password' => ['required', 'string'],
             'password' => $this->passwordRules(),
         ])->after(function ($validator) use ($user, $input): void {
-            if ( ! isset($input['current_password']) || ! Hash::check($input['current_password'], $user->password)) {
+            if (! isset($input['current_password']) || ! Hash::check($input['current_password'], $user->password)) {
                 $validator->errors()->add('current_password', __('Le mot de passe fourni ne correspond pas à votre mot de passe actuel.'));
             }
         })->validateWithBag('updatePassword');

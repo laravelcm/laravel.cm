@@ -1,25 +1,30 @@
 name: Tests
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  tests:
-    runs-on: ubuntu-latest
+  pest:
+    runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout code
+      - name: 👀 Checkout
         uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.2
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
-          tools: composer:v2
-          coverage: none
-
-      - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-interaction
-
-      - name: Execute tests
-        run: composer pest
+      - name: 🪄 Setup
+        uses: ./.github/actions/setup
+      - name: 🔮 Install Composer Dependencies
+        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+      - name: 🧶 Install Node Dependencies
+        run: yarn install --frozen-lockfile --no-progress
+      - name: 🧱 Build JS Dependencies
+        run: yarn build
+      - name: 🕵️‍♂️ Run Pest Tests
+        run: composer test:pest

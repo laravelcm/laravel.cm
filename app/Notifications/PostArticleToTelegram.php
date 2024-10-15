@@ -14,9 +14,7 @@ final class PostArticleToTelegram extends Notification
 {
     use Queueable;
 
-    public function __construct(public Article $article)
-    {
-    }
+    public function __construct(public Article $article) {}
 
     public function via(mixed $notifiable): array
     {

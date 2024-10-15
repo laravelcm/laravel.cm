@@ -26,7 +26,7 @@ final class DeleteOldUnverifiedUsers extends Command
 
         if ($users->isNotEmpty()) {
             foreach ($users as $user) {
-                $user->notify((new SendEMailToDeletedUser())->delay(now()->addMinutes(5)));
+                $user->notify((new SendEMailToDeletedUser)->delay(now()->addMinutes(5)));
             }
         }
 

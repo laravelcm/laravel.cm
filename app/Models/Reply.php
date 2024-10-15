@@ -19,9 +19,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
-/**
- * @mixin IdeHelperReply
- */
 final class Reply extends Model implements ReactableInterface, ReplyInterface
 {
     use HasAuthor;

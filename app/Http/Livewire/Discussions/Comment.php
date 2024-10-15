@@ -35,7 +35,7 @@ final class Comment extends Component
 
     public function toggleLike(): void
     {
-        if ( ! Auth::check()) {
+        if (! Auth::check()) {
             Notification::make()
                 ->title(__('Vous devez être connecté pour liker un commentaire.'))
                 ->danger()

@@ -11,7 +11,5 @@ final class ThreadTableSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    public function run(): void
-    {
-    }
+    public function run(): void {}
 }

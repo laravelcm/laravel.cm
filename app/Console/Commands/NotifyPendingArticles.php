@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Models\Article;
+use App\Notifications\PendingArticlesNotification;
 use Illuminate\Console\Command;
 use Illuminate\Notifications\AnonymousNotifiable;
-use App\Notifications\PendingArticlesNotification;
 
 final class NotifyPendingArticles extends Command
 {

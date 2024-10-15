@@ -36,10 +36,7 @@ trait RecordsActivity
     }
 
     /**
-     * @param string $event
-     * @param bool $useDefaultEvent
-     * @param array<string, mixed> $data
-     * @return void
+     * @param  array<string, mixed>  $data
      */
     protected function recordActivity(string $event, bool $useDefaultEvent = true, array $data = []): void
     {

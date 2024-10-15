@@ -22,7 +22,7 @@ final class SendNewCommentNotification
                 // @phpstan-ignore-next-line
                 $subscription->user->notify(new NewCommentNotification(
                     reply: $event->reply,
-                    subscription:  $subscription,
+                    subscription: $subscription,
                     discussion: $discussion
                 ));
             }

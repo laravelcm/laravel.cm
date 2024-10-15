@@ -32,10 +32,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
-/**
- * @mixin IdeHelperUser
- */
-final class User extends Authenticatable implements MustVerifyEmail, HasMedia, FeaturableInterface, FilamentUser, HasName, HasAvatar
+final class User extends Authenticatable implements FeaturableInterface, FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
     use Featurable;
     use Gamify;
@@ -92,7 +89,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
     ];
 
     protected $withCount = [
-        'transactions'
+        'transactions',
     ];
 
     public function hasProvider(string $provider): bool
@@ -113,7 +110,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
 
     public function hasEnterprise(): bool
     {
-        return null !== $this->enterprise;
+        return $this->enterprise !== null;
     }
 
     public function getRolesLabelAttribute(): string
@@ -196,22 +193,22 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
 
     public static function findByEmailAddress(string $emailAddress): self
     {
-        return static::where('email', $emailAddress)->firstOrFail();
+        return self::where('email', $emailAddress)->firstOrFail();
     }
 
     public static function findOrCreateSocialUserProvider(SocialUser $socialUser, string $provider, string $role = 'user'): self
     {
         $socialEmail = $socialUser->getEmail() ?? "{$socialUser->getId()}@{$provider}.com";
 
-        $user = static::where('email', $socialEmail)->first();
+        $user = self::where('email', $socialEmail)->first();
 
-        if ( ! $user) {
+        if (! $user) {
             $user = self::create([
                 'name' => $socialUser->getName() ?? $socialUser->getNickName() ?? $socialUser->getId(),
                 'email' => $socialEmail,
                 'username' => $socialUser->getNickName() ?? $socialUser->getId(),
-                'github_profile' => 'github' === $provider ? $socialUser->getNickName() : null,
-                'twitter_profile' => 'twitter' === $provider ? $socialUser->getNickName() : null,
+                'github_profile' => $provider === 'github' ? $socialUser->getNickName() : null,
+                'twitter_profile' => $provider === 'twitter' ? $socialUser->getNickName() : null,
                 'email_verified_at' => now(),
                 'avatar_type' => $provider,
             ]);
@@ -331,7 +328,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
     {
         $password = $this->getAuthPassword();
 
-        return '' !== $password && null !== $password;
+        return $password !== '' && $password !== null;
     }
 
     public function delete(): ?bool
@@ -352,9 +349,6 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
 
     /**
      * Route notifications for the Slack channel.
-     *
-     * @param  \Illuminate\Notifications\Notification  $notification
-     * @return string
      */
     public function routeNotificationForSlack(Notification $notification): string
     {
@@ -391,7 +385,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
         return $this->threads()->count();
     }
 
-    public function scopeMostSolutions(Builder $query, int $inLastDays = null): Builder
+    public function scopeMostSolutions(Builder $query, ?int $inLastDays = null): Builder
     {
         return $query->withCount(['replyAble as solutions_count' => function ($query) use ($inLastDays) {
             $query->where('replyable_type', 'threads')
@@ -405,7 +399,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
         }])->orderBy('solutions_count', 'desc');
     }
 
-    public function scopeMostSubmissions(Builder $query, int $inLastDays = null): Builder
+    public function scopeMostSubmissions(Builder $query, ?int $inLastDays = null): Builder
     {
         return $query->withCount(['articles as articles_count' => function ($query) use ($inLastDays) {
             if ($inLastDays) {
@@ -420,7 +414,6 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
      * Scope of most solutions in last days
      *
      * @param  Builder<User>  $query
-     * @param  int  $days
      * @return Builder<User>
      */
     public function scopeMostSolutionsInLastDays(Builder $query, int $days): Builder
@@ -432,7 +425,6 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia, F
      * Scope for most submissions in the last days.
      *
      * @param  Builder<User>  $query
-     * @param  int  $days
      * @return Builder<User>
      */
     public function scopeMostSubmissionsInLastDays(Builder $query, int $days): Builder

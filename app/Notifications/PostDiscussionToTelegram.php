@@ -14,9 +14,7 @@ final class PostDiscussionToTelegram extends Notification
 {
     use Queueable;
 
-    public function __construct(public Discussion $discussion)
-    {
-    }
+    public function __construct(public Discussion $discussion) {}
 
     public function via(mixed $notifiable): array
     {

@@ -15,9 +15,6 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-/**
- * @mixin IdeHelperEnterprise
- */
 final class Enterprise extends Model implements HasMedia
 {
     use HasFactory;
@@ -81,10 +78,8 @@ final class Enterprise extends Model implements HasMedia
     }
 
     /**
-     * @param Builder<Enterprise> $query
-     * @param Request $request
-     * @param string[] $filters
-     * @return Builder
+     * @param  Builder<Enterprise>  $query
+     * @param  string[]  $filters
      */
     public function scopeFilters(Builder $query, Request $request, array $filters = []): Builder
     {

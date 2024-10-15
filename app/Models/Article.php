@@ -20,10 +20,7 @@ use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-/**
- * @mixin IdeHelperArticle
- */
-final class Article extends Model implements ReactableInterface, HasMedia, Viewable
+final class Article extends Model implements HasMedia, ReactableInterface, Viewable
 {
     use HasAuthor;
     use HasFactory;
@@ -148,7 +145,7 @@ final class Article extends Model implements ReactableInterface, HasMedia, Viewa
 
     public function isNotSubmitted(): bool
     {
-        return null === $this->submitted_at;
+        return $this->submitted_at === null;
     }
 
     public function isApproved(): bool
@@ -158,7 +155,7 @@ final class Article extends Model implements ReactableInterface, HasMedia, Viewa
 
     public function isNotApproved(): bool
     {
-        return null === $this->approved_at;
+        return $this->approved_at === null;
     }
 
     public function isSponsored(): bool
@@ -168,7 +165,7 @@ final class Article extends Model implements ReactableInterface, HasMedia, Viewa
 
     public function isNotSponsored(): bool
     {
-        return null === $this->sponsored_at;
+        return $this->sponsored_at === null;
     }
 
     public function isDeclined(): bool
@@ -178,7 +175,7 @@ final class Article extends Model implements ReactableInterface, HasMedia, Viewa
 
     public function isNotDeclined(): bool
     {
-        return null === $this->declined_at;
+        return $this->declined_at === null;
     }
 
     public function isPublished(): bool
@@ -198,7 +195,7 @@ final class Article extends Model implements ReactableInterface, HasMedia, Viewa
 
     public function isNotShared(): bool
     {
-        return null === $this->shared_at;
+        return $this->shared_at === null;
     }
 
     public function isShared(): bool

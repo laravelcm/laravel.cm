@@ -20,7 +20,7 @@ final class DatabaseSeeder extends Seeder
         $this->call(WorldSeeder::class);
         $this->call(FeatureTableSeeder::class);
 
-        if ( ! App::environment('production')) {
+        if (! App::environment('production')) {
             $this->call(UserSeeder::class);
         }
     }

@@ -13,9 +13,7 @@ abstract class AbstractFilters
 
     protected array $filters = [];
 
-    public function __construct(public Request $request)
-    {
-    }
+    public function __construct(public Request $request) {}
 
     public function filter(Builder $builder): Builder
     {
@@ -35,7 +33,7 @@ abstract class AbstractFilters
 
     public function resolverFilter(string $filter): mixed
     {
-        return new $this->filters[$filter]();
+        return new $this->filters[$filter];
     }
 
     public function getFilters(): array

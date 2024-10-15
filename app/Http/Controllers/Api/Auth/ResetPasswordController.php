@@ -29,7 +29,7 @@ final class ResetPasswordController extends Controller
             }
         );
 
-        return Password::PASSWORD_RESET === $status
+        return $status === Password::PASSWORD_RESET
             ? response()->json(['message' => __('Votre mot de passe a été réinitialisé avec succès !')])
             : response()->json(['error' => __('Le jeton de réinitialisation du mot de passe est invalide !')], 401);
     }

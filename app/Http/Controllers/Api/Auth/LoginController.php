@@ -31,13 +31,13 @@ final class LoginController extends Controller
             'password' => $request->input('password'),
         ];
 
-        if ( ! $user || ! Auth::attempt($sanitized)) {
+        if (! $user || ! Auth::attempt($sanitized)) {
             throw ValidationException::withMessages([
                 'email' => __('Les informations d\'identification fournies sont incorrectes.'),
             ]);
         }
 
-        if ( ! $user->tokens()) {
+        if (! $user->tokens()) {
             $user->tokens()->delete();
         }
 

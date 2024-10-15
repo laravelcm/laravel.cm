@@ -17,11 +17,11 @@ trait WithChannelsAssociation
     public array $associateChannels = [];
 
     /**
-     * @param array{value: string} $choices
+     * @param  array{value: string}  $choices
      */
     public function updatedChannelsSelected(array $choices): void
     {
-        if ( ! in_array($choices['value'], $this->associateChannels)) {
+        if (! in_array($choices['value'], $this->associateChannels)) {
             $this->associateChannels[] = (int) $choices['value'];
         } else {
             $key = array_search($choices['value'], $this->associateChannels);

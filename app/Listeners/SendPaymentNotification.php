@@ -10,9 +10,7 @@ use Illuminate\Notifications\AnonymousNotifiable;
 
 final readonly class SendPaymentNotification
 {
-    public function __construct(private AnonymousNotifiable $notifiable)
-    {
-    }
+    public function __construct(private AnonymousNotifiable $notifiable) {}
 
     public function handle(SponsoringPaymentInitialize $event): void
     {

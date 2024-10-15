@@ -11,9 +11,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * @mixin IdeHelperTransaction
- */
 final class Transaction extends Model
 {
     use HasFactory;
@@ -35,7 +32,7 @@ final class Transaction extends Model
         return $query->where('status', TransactionStatus::COMPLETE->value);
     }
 
-    public function getMetadata(string $name, string $default = ''): string | array
+    public function getMetadata(string $name, string $default = ''): string|array
     {
         if ($this->metadata && array_key_exists($name, $this->metadata)) {
             return $this->metadata[$name];

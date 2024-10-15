@@ -6,13 +6,9 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Output\RenderedContentInterface;
 
-if ( ! function_exists('active')) {
+if (! function_exists('active')) {
     /**
-     * @param array<string> $routes
-     * @param string $activeClass
-     * @param string $defaultClass
-     * @param bool $condition
-     * @return string
+     * @param  array<string>  $routes
      */
     function active(array $routes, string $activeClass = 'active', string $defaultClass = '', bool $condition = true): string
     {
@@ -20,7 +16,7 @@ if ( ! function_exists('active')) {
     }
 }
 
-if ( ! function_exists('is_active')) {
+if (! function_exists('is_active')) {
     /**
      * Determines if the given routes are active.
      */
@@ -30,14 +26,14 @@ if ( ! function_exists('is_active')) {
     }
 }
 
-if ( ! function_exists('md_to_html')) {
+if (! function_exists('md_to_html')) {
     function md_to_html(string $markdown): RenderedContentInterface
     {
         return Markdown::convert($markdown);
     }
 }
 
-if ( ! function_exists('replace_links')) {
+if (! function_exists('replace_links')) {
     function replace_links(string $markdown): string
     {
         return (new LinkFinder([
@@ -46,7 +42,7 @@ if ( ! function_exists('replace_links')) {
     }
 }
 
-if ( ! function_exists('get_current_theme')) {
+if (! function_exists('get_current_theme')) {
     function get_current_theme(): string
     {
         return Auth::user() ?
@@ -55,16 +51,14 @@ if ( ! function_exists('get_current_theme')) {
     }
 }
 
-if ( ! function_exists('canonical')) {
+if (! function_exists('canonical')) {
     /**
-     * @param string $route
-     * @param array<string> $params
-     * @return string
+     * @param  array<string>  $params
      */
     function canonical(string $route, array $params = []): string
     {
         $page = app('request')->get('page');
-        $params = array_merge($params, ['page' => 1 !== $page ? $page : null]);
+        $params = array_merge($params, ['page' => $page !== 1 ? $page : null]);
 
         ksort($params);
 
@@ -72,12 +66,9 @@ if ( ! function_exists('canonical')) {
     }
 }
 
-if ( ! function_exists('getFilter')) {
+if (! function_exists('getFilter')) {
     /**
-     * @param string $key
-     * @param array<string> $filters
-     * @param string $default
-     * @return string
+     * @param  array<string>  $filters
      */
     function getFilter(string $key, array $filters = [], string $default = 'recent'): string
     {
@@ -87,16 +78,15 @@ if ( ! function_exists('getFilter')) {
     }
 }
 
-if ( ! function_exists('route_to_reply_able')) {
+if (! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.
      *
-     * @param  \App\Models\Thread|\App\Models\Discussion  $replyAble
-     * @return string
+     * @param  App\Models\Thread|App\Models\Discussion  $replyAble
      */
     function route_to_reply_able(mixed $replyAble): string
     {
-        return $replyAble instanceof \App\Models\Thread ?
+        return $replyAble instanceof App\Models\Thread ?
             route('forum.show', $replyAble->slug()) :
             route('discussions.show', $replyAble->slug());
     }

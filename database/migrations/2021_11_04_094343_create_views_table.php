@@ -11,14 +11,12 @@ final class CreateViewsTable extends Migration
     /**
      * The database schema.
      *
-     * @var \Illuminate\Support\Facades\Schema
+     * @var Schema
      */
     protected $schema;
 
     /**
      * The table name.
-     *
-     * @var string
      */
     protected string $table;
 

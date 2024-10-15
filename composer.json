@@ -52,8 +52,6 @@
     "yarri/link-finder": "^2.7.10"
   },
   "require-dev": {
-    "barryvdh/laravel-debugbar": "^3.8.1",
-    "barryvdh/laravel-ide-helper": "^2.13",
     "fakerphp/faker": "^1.23.0",
     "laravel/pint": "^1.10.3",
     "laravel/sail": "^1.23.0",
@@ -86,13 +84,10 @@
   "scripts": {
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-      "@php artisan package:discover --ansi",
-      "@php artisan vendor:publish --force --tag=livewire-assets --ansi"
+      "@php artisan package:discover --ansi"
     ],
     "post-update-cmd": [
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-      "@php artisan ide-helper:generate",
-      "@php artisan ide-helper:meta",
       "@php artisan filament:upgrade"
     ],
     "post-root-package-install": [
@@ -101,20 +96,12 @@
     "post-create-project-cmd": [
       "@php artisan key:generate --ansi"
     ],
-    "pest": [
-      "./vendor/bin/pest"
-    ],
-    "pint": [
-      "./vendor/bin/pint"
-    ],
-    "stan": [
-      "./vendor/bin/phpstan analyse --memory-limit=3g"
-    ],
+    "lint": "./vendor/bin/pint",
+    "test:pest": "pest --parallel",
+    "test:phpstan": "phpstan analyse --memory-limit=-1",
     "test": [
-      "@php artisan test"
-    ],
-    "models:doc": [
-      "@php artisan ide-helper:models -F helpers/ModelHelper.php -M"
+      "@test:phpstan",
+      "@test:pest"
     ],
     "setup": [
       "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",

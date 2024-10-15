@@ -12,9 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * @mixin IdeHelperChannel
- */
 final class Channel extends Model
 {
     use HasFactory;
@@ -35,7 +32,7 @@ final class Channel extends Model
     {
         parent::boot();
 
-        static::saving(function ($channel): void {
+        self::saving(function ($channel): void {
             if ($channel->parent_id) {
                 if ($record = self::find($channel->parent_id)) {
                     if ($record->exists() && $record->parent_id) { // @phpstan-ignore-line

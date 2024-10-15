@@ -31,17 +31,17 @@ return [
     */
 
     'commands' => [
-        \App\Spotlight\Article::class,
-        \App\Spotlight\Articles::class,
-        \App\Spotlight\Discussion::class,
-        \App\Spotlight\Discussions::class,
-        \App\Spotlight\FAQs::class,
-        \App\Spotlight\Forum::class,
-        \App\Spotlight\Guides::class,
-        \App\Spotlight\Slack::class,
-        \App\Spotlight\Sujet::class,
-        \App\Spotlight\Telegram::class,
-        \App\Spotlight\User::class,
+        App\Spotlight\Article::class,
+        App\Spotlight\Articles::class,
+        App\Spotlight\Discussion::class,
+        App\Spotlight\Discussions::class,
+        App\Spotlight\FAQs::class,
+        App\Spotlight\Forum::class,
+        App\Spotlight\Guides::class,
+        App\Spotlight\Slack::class,
+        App\Spotlight\Sujet::class,
+        App\Spotlight\Telegram::class,
+        App\Spotlight\User::class,
     ],
 
     /*
