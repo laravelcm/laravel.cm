@@ -15,7 +15,9 @@ final class ArticleSubmitted extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(private readonly Article $article) {}
+    public function __construct(private readonly Article $article)
+    {
+    }
 
     public function via(mixed $notifiable): array
     {
