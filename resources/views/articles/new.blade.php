@@ -1,9 +1,7 @@
-@title('Créer un nouvel article')
+<x-app-layout title="Créer un nouvel article">
 
-@extends('layouts.master')
+    <x-container>
+        <livewire:articles.create />
+    </x-container>
 
-@section('content')
-
-    <livewire:articles.create />
-
-@endsection
+</x-app-layout>

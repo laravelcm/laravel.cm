@@ -17,6 +17,7 @@
     "filament/filament": "^3.0",
     "filament/notifications": "^3.0",
     "francescomalatesta/laravel-feature": "dev-l10-compatibility",
+    "gehrisandro/tailwind-merge-laravel": "^1.0",
     "graham-campbell/markdown": "^15.0",
     "guzzlehttp/guzzle": "^7.7.0",
     "jenssegers/agent": "^2.6.4",

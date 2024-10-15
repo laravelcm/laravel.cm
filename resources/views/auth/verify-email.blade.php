@@ -1,8 +1,4 @@
-@title('Vérification de l\'adresse e-mail')
-
-@extends('layouts.master')
-
-@section('content')
+<x-app-layout title="Vérification de l'adresse e-mail">
 
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
         <div>
@@ -12,7 +8,9 @@
 
         <div class="w-full sm:max-w-md lg:max-w-xl mt-6 lg:mt-10">
             <div class="mb-4 text-sm text-skin-base text-center">
-                {{ __('Merci pour votre inscription! Avant de commencer, pourriez-vous vérifier votre adresse e-mail en cliquant sur le lien que nous venons de vous envoyer par e-mail? Si vous n\'avez pas reçu l\'e-mail, nous nous ferons un plaisir de vous en envoyer un autre.') }}
+                Merci pour votre inscription ! Avant de commencer, pourriez-vous vérifier
+                votre adresse e-mail en cliquant sur le lien que nous venons de vous envoyer par e-mail ?
+                Si vous n'avez pas reçu l'e-mail, nous nous ferons un plaisir de vous en envoyer un autre.
             </div>
 
             <div class="mt-8 px-6 py-4 bg-skin-card shadow-md overflow-hidden sm:rounded-lg">
@@ -24,7 +22,8 @@
                             </div>
                             <div class="ml-3">
                                 <p class="text-sm font-medium text-green-800">
-                                    {{ __('Un nouveau lien de vérification a été envoyé à l\'adresse e-mail que vous avez fournie lors de l\'inscription ou la modification de votre adresse.') }}
+                                    Un nouveau lien de vérification a été envoyé à l'adresse e-mail
+                                    que vous avez fournie lors de l'inscription ou la modification de votre adresse.
                                 </p>
                             </div>
                         </div>
@@ -37,7 +36,7 @@
 
                         <div>
                             <x-button type="submit">
-                                {{ __('Renvoyer l\'e-mail de vérification') }}
+                                Renvoyer l'e-mail de vérification
                             </x-button>
                         </div>
                     </form>
@@ -46,7 +45,7 @@
                         @csrf
 
                         <button type="submit" class="underline text-sm text-skin-base hover:text-skin-inverted focus:outline-none">
-                            {{ __('Se déconnecter') }}
+                            Se déconnecter
                         </button>
                     </form>
                 </div>
@@ -54,4 +53,4 @@
         </div>
     </div>
 
-@endsection
+</x-app-layout>

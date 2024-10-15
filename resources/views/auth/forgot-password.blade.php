@@ -1,19 +1,17 @@
-@title('Réinitialisation du mot de passe')
-
-@extends('layouts.default')
-
-@section('body')
+<x-app-layout title="Réinitialisation du mot de passe">
 
     <div class="flex items-center justify-center min-h-full py-16 sm:py-24">
         <div class="max-w-md w-full">
             <div>
                 <x-status-message class="mb-5" />
 
-                <h2 class="text-center text-3xl font-extrabold text-skin-inverted font-sans sm:text-left font-heading">
-                    {{ __('Réinitialisation du mot de passe') }}
+                <h2 class="text-center text-3xl font-extrabold text-skin-inverted sm:text-left font-heading">
+                    Réinitialisation du mot de passe
                 </h2>
                 <div class="mt-4 text-sm text-skin-base">
-                    {{ __('Mot de passe oublié? Aucun problème. Communiquez-nous simplement votre adresse e-mail et nous vous enverrons par e-mail un lien de réinitialisation de mot de passe qui vous permettra d\'en choisir un nouveau.') }}
+                    Mot de passe oublié ? Aucun problème. Communiquez-nous simplement votre adresse e-mail
+                    et nous vous enverrons par e-mail un lien de réinitialisation de mot de passe
+                    qui vous permettra d'en choisir un nouveau.
                 </div>
             </div>
 
@@ -27,11 +25,11 @@
 
                 <div class="flex items-center justify-end mt-4">
                     <x-button type="submit" class="relative w-full">
-                        {{ __('Email Password Reset Link') }}
+                        Réinitialisation du mot de passe
                     </x-button>
                 </div>
             </form>
         </div>
     </div>
 
-@stop
+</x-app-layout>

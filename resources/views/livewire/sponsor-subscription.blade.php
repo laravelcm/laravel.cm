@@ -1,7 +1,7 @@
 <div class="space-y-4">
     <div class="flex items-center justify-between">
         <h3 class="text-lg font-medium leading-6 text-skin-inverted">
-            {{ __('Choisir une option') }}
+            Choisir une option
         </h3>
         <span class="isolate inline-flex rounded-md shadow-sm">
           <x-default-button
@@ -13,7 +13,7 @@
               ])
               wire:click="chooseOption('monthly')"
           >
-              {{ __('Mensuel') }}
+              Mensuel
           </x-default-button>
           <x-default-button
               type="button"
@@ -24,7 +24,7 @@
              ])
               wire:click="chooseOption('one-time')"
           >
-              {{ __('Une fois') }}
+              Une fois
           </x-default-button>
         </span>
     </div>
@@ -33,7 +33,7 @@
             <div class="p-4 flex items-start">
                 <x-untitledui-alert-triangle class="w-10 h-10 text-yellow-400" />
                 <p class="ml-4 text-base leading-6 text-skin-base">
-                    {{ __('Les choix pour cette option ne sont pas encore disponible.') }}
+                    Les choix pour cette option ne sont pas encore disponible.
                 </p>
             </div>
         @else
@@ -41,7 +41,7 @@
                 <dt class="flex items-center">
                     <div class="relative flex items-center">
                         <input
-                            aria-label="{{ __('Montant') }}"
+                            aria-label="Montant"
                             name="amount"
                             wire:model.defer="amount"
                             class="bg-skin-input shadow-sm focus:ring-flag-green focus:border-flag-green block w-full placeholder-skin-input focus:outline-none focus:placeholder-skin-input-focus text-skin-base sm:text-sm border-skin-input rounded-md pr-16"
@@ -49,7 +49,7 @@
                             required
                         />
                         <div class="absolute inset-y-0 right-0 flex items-center">
-                            <label for="currency" class="sr-only">{{ __('Devise') }}</label>
+                            <label for="currency" class="sr-only">Devise</label>
                             <select wire:model="currency" id="currency" name="currency" class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-skin-base focus:ring-2 focus:ring-inset focus:ring-primary-600 sm:text-sm">
                                 <option value="XAF">XAF</option>
                                 <option value="USD">USD</option>
@@ -59,14 +59,16 @@
                     </div>
                     <x-default-button wire:click="subscribe" class="ml-4">
                         <x-loader wire:loading class="text-white" wire:target="subscribe" />
-                        {{ __('Choisir') }}
+                        Choisir
                     </x-default-button>
                 </dt>
                 @error('amount')
-                    <p class="mt-2 text-sm text-red-500">{{ __('Votre montant est requis') }}</p>
+                    <p class="mt-2 text-sm text-red-500">
+                        Votre montant est requis.
+                    </p>
                 @enderror
                 <dd class="mt-1.5 text-sm leading-5 text-skin-base">
-                    {{ __("Choisissez un montant personnalisé. Aucune récompense n'est associée à ce parrainage.") }}
+                    Choisissez un montant personnalisé. Aucune récompense n'est associée à ce parrainage.
                 </dd>
             </div>
         @endif

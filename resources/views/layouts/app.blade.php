@@ -1,3 +1,5 @@
+@props(['title' => null, 'canonical' => null])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full scroll-smooth {{ get_current_theme() }}">
 <head>
@@ -48,7 +50,13 @@
 <body class="h-full font-sans antialiased bg-skin-body text-skin-base">
 
     <div class="min-h-screen flex flex-col justify-between">
-        @yield('content')
+        <x-layouts.header class="header" />
+
+        <main class="relative z-0 flex-1 w-full">
+            {{ $slot }}
+        </main>
+
+        <x-layouts.footer />
     </div>
 
     @livewire('livewire-ui-modal')

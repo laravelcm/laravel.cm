@@ -13,7 +13,10 @@
 
     <div class="flex justify-between items-start mt-4 gap-x-8 lg:items-center">
         <p class="font-normal text-skin-base">
-            Assurez-vous d'avoir lu nos <a href="{{ route('rules') }}" class="font-medium text-skin-primary hover:text-skin-primary-hover">règles de conduite</a> avant de répondre a ce thread.
+            Assurez-vous d'avoir lu nos
+            <a href="{{ route('rules') }}" class="font-medium text-skin-primary hover:text-skin-primary-hover">
+                règles de conduite
+            </a> avant de répondre à ce thread.
         </p>
     </div>
 
