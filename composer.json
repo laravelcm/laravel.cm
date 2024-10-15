@@ -101,9 +101,13 @@
     "post-create-project-cmd": [
       "@php artisan key:generate --ansi"
     ],
-    "lint": "pint",
+    "lint": "./vendor/bin/pint",
+    "test:pest": "pest --parallel",
     "test:phpstan": "phpstan analyse --memory-limit=-1",
-    "test": "pest",
+    "test": [
+      "@test:phpstan",
+      "@test:pest"
+    ],
     "models:doc": [
       "@php artisan ide-helper:models -F helpers/ModelHelper.php -M"
     ],
