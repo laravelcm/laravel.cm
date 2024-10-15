@@ -75,13 +75,10 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
         return 'slug';
     }
 
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
-
 
     public function excerpt(int $limit = 110): string
     {

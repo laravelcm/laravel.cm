@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Actions;
 
 use Filament\Actions\Concerns\CanCustomizeProcess;
-use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Model;
 
-class ApprovedAction extends \Filament\Tables\Actions\Action
+final class ApprovedAction extends \Filament\Tables\Actions\Action
 {
     use CanCustomizeProcess;
+
     public static function getDefaultName(): ?string
     {
         return 'approved';
@@ -28,7 +30,7 @@ class ApprovedAction extends \Filament\Tables\Actions\Action
 
         $this->color('success');
 
-        $this->icon( 'heroicon-s-x-mark');
+        $this->icon('heroicon-s-x-mark');
 
         $this->requiresConfirmation();
 
@@ -37,7 +39,7 @@ class ApprovedAction extends \Filament\Tables\Actions\Action
         $this->action(function (): void {
             $result = $this->process(static fn (Model $record) => $record->update(['approved_at' => now(), 'declined_at' => null]));
 
-            if (! $result) {
+            if ( ! $result) {
                 $this->failure();
 
                 return;
