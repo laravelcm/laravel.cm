@@ -12,10 +12,12 @@ return [
         'forum' => 'Forum',
         'articles' => 'Articles',
         'discussions' => 'Discussions',
+        'community' => 'Communauté',
         'about' => 'A propos',
         'podcasts' => 'Podcasts',
         'jobs' => 'Offres',
         'sponsors' => 'Soutien',
+        'snippets' => 'Snippets',
         'branding' => 'Branding',
         'faq' => 'FAQ',
         'rules' => 'Code de conduite',
@@ -45,5 +47,8 @@ return [
     'sponsored' => 'Sponsorisé',
     'read_time' => ':time min de lecture',
     'page_views' => ':number vues',
+    'open_navigation' => 'Ouvrir le menu',
+    'close_navigation' => 'Fermer le menu',
+    'view_notifications' => 'Voir les notifications',
 
 ];

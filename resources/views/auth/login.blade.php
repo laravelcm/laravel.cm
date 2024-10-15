@@ -1,5 +1,5 @@
 <x-app-layout :title="__('pages/auth.login.page_title')">
-    <div class="flex min-h-full items-center justify-center py-16 sm:py-24">
+    <x-container class="flex min-h-full items-center justify-center py-16 sm:pt-24">
         <div class="w-full max-w-md space-y-8">
             <div>
                 <h2 class="text-center font-heading text-3xl font-extrabold text-gray-900 dark:text-white">
@@ -62,7 +62,7 @@
 
             @include('partials._socials-link')
         </div>
-    </div>
+    </x-container>
 
     <x-join-sponsors :title="__('global.sponsor_thanks')" />
 </x-app-layout>

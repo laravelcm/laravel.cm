@@ -1,30 +1,9 @@
 <x-app-layout>
-    <div class="relative isolate -mt-16 pt-14">
-        <div class="absolute inset-0 -z-10 mx-0 max-w-none overflow-hidden">
-            <div class="absolute left-1/2 top-0 ml-[-32rem] h-[32rem] w-[84.25rem]">
-                <div
-                    class="absolute inset-0 bg-gradient-to-r from-flag-red to-flag-yellow opacity-40 [mask-image:radial-gradient(farthest-side_at_top,white,transparent)]"
-                ></div>
-                <svg
-                    viewBox="0 0 1113 440"
-                    aria-hidden="true"
-                    class="absolute left-1/2 top-0 ml-[-24rem] w-[70.5625rem] fill-green-500 opacity-30 blur-2xl"
-                >
-                    <path d="M.016 439.5s-9.5-300 434-300S882.516 20 882.516 20V0h230.004v439.5H.016Z" />
-                </svg>
-                <svg
-                    viewBox="0 0 1113 440"
-                    aria-hidden="true"
-                    class="absolute left-1/2 top-0 ml-[-24rem] w-[70.5625rem] fill-yellow-50 opacity-50 blur-2xl"
-                >
-                    <path d="M.016 439.5s-9.5-300 434-300S882.516 20 882.516 20V0h230.004v439.5H.016Z" />
-                </svg>
-            </div>
-        </div>
-        <div class="mx-auto max-w-3xl px-4 pb-16 pt-28 sm:pt-32 lg:pt-40">
+    <div class="relative isolate">
+        <x-container class="mx-auto max-w-3xl py-16 sm:pt-32 lg:pb-20 lg:pt-40">
             <div class="flex justify-center">
                 <x-link
-                    href="{{ route('sponsors') }}"
+                    :href="route('sponsors')"
                     class="inline-flex items-center rounded-full bg-green-700 p-1 pr-2 text-white sm:text-base lg:text-sm xl:text-base"
                 >
                     <span class="rounded-full bg-flag-green px-3 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white">
@@ -48,20 +27,20 @@
                 </p>
                 <div class="mt-10 gap-4 sm:flex sm:items-center sm:justify-center">
                     @auth
-                        <x-buttons.primary :link="route('forum.new')" class="w-full sm:w-auto">
+                        <x-buttons.primary :href="route('forum.new')" class="w-full sm:w-auto">
                             {{ __('actions.new_thread') }}
                         </x-buttons.primary>
                     @else
-                        <x-buttons.primary :link="route('login')" class="w-full sm:w-auto">
+                        <x-buttons.primary :href="route('login')" class="w-full sm:w-auto">
                             {{ __('pages/home.join_community') }}
                         </x-buttons.primary>
                     @endauth
-                    <x-buttons.default :link="route('forum.index')">
+                    <x-buttons.default :href="route('forum.index')" class="mt-4 w-full sm:mt-0 sm:w-auto">
                         {{ __('pages/home.visit_forum') }}
                     </x-buttons.default>
                 </div>
             </div>
-        </div>
+        </x-container>
 
         <x-join-sponsors :title="__('pages/home.work_associations')" />
     </div>
@@ -90,7 +69,7 @@
                 </div>
 
                 <div class="mt-10 flex items-center justify-center sm:mt-12 xl:mt-16">
-                    <x-buttons.primary :link="route('articles')" class="gap-2">
+                    <x-buttons.primary :href="route('articles')" class="gap-2">
                         {{ __('pages/home.view_posts') }}
                         <x-heroicon-o-arrow-long-right class="size-5" aria-hidden="true" />
                     </x-buttons.primary>
@@ -143,7 +122,7 @@
                     </div>
 
                     <div class="mt-10 flex items-center justify-center sm:mt-12 xl:mt-16">
-                        <x-buttons.primary :link="route('forum.index')" class="gap-2">
+                        <x-buttons.primary :href="route('forum.index')" class="gap-2">
                             {{ __('pages/home.threads.show_all') }}
                             <x-heroicon-o-arrow-long-right class="size-5" aria-hidden="true" />
                         </x-buttons.primary>
@@ -195,7 +174,7 @@
                 </div>
 
                 <div class="mt-10 flex items-center justify-center sm:mt-12 xl:mt-16">
-                    <x-buttons.primary :link="route('discussions.index')" class="gap-2">
+                    <x-buttons.primary :href="route('discussions.index')" class="gap-2">
                         {{ __('pages/home.discussions.show_all') }}
                         <x-heroicon-o-arrow-long-right class="size-5" aria-hidden="true" />
                     </x-buttons.primary>
@@ -350,7 +329,7 @@
                                         </ul>
                                     </div>
 
-                                    <x-buttons.primary link="#" class="mt-10 w-full">Souscrire Maintenant</x-buttons.primary>
+                                    <x-buttons.primary href="#" class="mt-10 w-full">Souscrire Maintenant</x-buttons.primary>
                                 </div>
                             @endforeach
                         </div>

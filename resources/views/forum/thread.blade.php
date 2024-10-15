@@ -3,7 +3,7 @@
         <div class="relative lg:grid lg:grid-cols-9 lg:gap-10">
             <div class="relative hidden lg:col-span-2 lg:block">
                 <x-sticky-content class="space-y-6">
-                    <x-button :link="route('forum.new')" class="flex w-full justify-center">
+                    <x-button :href="route('forum.new')" class="flex w-full justify-center">
                         Nouveau Sujet
                         <x-heroicon-o-plus-circle class="ml-2.5 size-4" />
                     </x-button>

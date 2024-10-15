@@ -1,5 +1,5 @@
 <nav class="space-y-6">
-    <x-button :link="route('forum.new')" class="flex w-full justify-between">
+    <x-button :href="route('forum.new')" class="flex w-full justify-between">
         Nouveau Sujet
         <svg
             xmlns="http://www.w3.org/2000/svg"

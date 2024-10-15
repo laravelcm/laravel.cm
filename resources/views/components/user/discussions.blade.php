@@ -31,7 +31,7 @@
                     {{ $user->name }} n'a pas encore posté de discussions
                 </p>
                 @if ($user->isLoggedInUser())
-                    <x-button :link="route('discussions.new')" class="mt-4">
+                    <x-button :href="route('discussions.new')" class="mt-4">
                         <svg
                             class="-ml-1 mr-2 size-5"
                             xmlns="http://www.w3.org/2000/svg"
