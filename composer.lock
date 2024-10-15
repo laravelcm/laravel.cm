@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c0eaf46dae1627cc479ad1e1ca429cd8",
+    "content-hash": "f727200b435e84393c6d3c41519b81d6",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -8551,16 +8551,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.32.0",
+            "version": "1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "6ca22b154efdd9e3c68c56f5d94670920a1c19a4"
+                "reference": "82a311fd3690fb2bf7b64d5c98f912b3dd746140"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/6ca22b154efdd9e3c68c56f5d94670920a1c19a4",
-                "reference": "6ca22b154efdd9e3c68c56f5d94670920a1c19a4",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/82a311fd3690fb2bf7b64d5c98f912b3dd746140",
+                "reference": "82a311fd3690fb2bf7b64d5c98f912b3dd746140",
                 "shasum": ""
             },
             "require": {
@@ -8592,9 +8592,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.32.0"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.33.0"
             },
-            "time": "2024-09-26T07:23:32+00:00"
+            "time": "2024-10-13T11:25:22+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -14528,16 +14528,16 @@
         },
         {
             "name": "wire-elements/modal",
-            "version": "2.0.11",
+            "version": "2.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wire-elements/modal.git",
-                "reference": "1af56472af185d1196bff518c3751268ae5cc707"
+                "reference": "cacff22fda2bffe23dfc6194d6f0ea88165aa15f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wire-elements/modal/zipball/1af56472af185d1196bff518c3751268ae5cc707",
-                "reference": "1af56472af185d1196bff518c3751268ae5cc707",
+                "url": "https://api.github.com/repos/wire-elements/modal/zipball/cacff22fda2bffe23dfc6194d6f0ea88165aa15f",
+                "reference": "cacff22fda2bffe23dfc6194d6f0ea88165aa15f",
                 "shasum": ""
             },
             "require": {
@@ -14580,7 +14580,7 @@
             ],
             "support": {
                 "issues": "https://github.com/wire-elements/modal/issues",
-                "source": "https://github.com/wire-elements/modal/tree/2.0.11"
+                "source": "https://github.com/wire-elements/modal/tree/2.0.12"
             },
             "funding": [
                 {
@@ -14588,7 +14588,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-07T18:51:03+00:00"
+            "time": "2024-10-14T10:54:05+00:00"
         },
         {
             "name": "wire-elements/spotlight",
@@ -14666,16 +14666,16 @@
         },
         {
             "name": "yarri/link-finder",
-            "version": "v2.7.11",
+            "version": "v2.7.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yarri/LinkFinder.git",
-                "reference": "0d4e0274eaa161fc914c94ac03341d96282a54e8"
+                "reference": "933a64ac8a0604f00541ceb25b50e30554837d01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yarri/LinkFinder/zipball/0d4e0274eaa161fc914c94ac03341d96282a54e8",
-                "reference": "0d4e0274eaa161fc914c94ac03341d96282a54e8",
+                "url": "https://api.github.com/repos/yarri/LinkFinder/zipball/933a64ac8a0604f00541ceb25b50e30554837d01",
+                "reference": "933a64ac8a0604f00541ceb25b50e30554837d01",
                 "shasum": ""
             },
             "require": {
@@ -14713,9 +14713,9 @@
             ],
             "support": {
                 "issues": "https://github.com/yarri/LinkFinder/issues",
-                "source": "https://github.com/yarri/LinkFinder/tree/v2.7.11"
+                "source": "https://github.com/yarri/LinkFinder/tree/v2.7.12"
             },
-            "time": "2023-12-06T09:25:12+00:00"
+            "time": "2024-10-12T17:11:25+00:00"
         }
     ],
     "packages-dev": [
