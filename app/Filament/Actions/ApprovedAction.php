@@ -1,13 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Actions;
 
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Illuminate\Database\Eloquent\Model;
 
-class ApprovedAction extends \Filament\Tables\Actions\Action
+final class ApprovedAction extends \Filament\Tables\Actions\Action
 {
     use CanCustomizeProcess;
+
     public static function getDefaultName(): ?string
     {
         return 'approved';
@@ -27,7 +30,7 @@ class ApprovedAction extends \Filament\Tables\Actions\Action
 
         $this->color('success');
 
-        $this->icon( 'heroicon-s-check');
+        $this->icon('heroicon-s-check');
 
         $this->requiresConfirmation();
 

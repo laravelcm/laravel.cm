@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Filament\Resources\ArticleResource;
-use Filament\Tables\Actions\DeleteAction;
 use App\Models\Article;
 use Livewire\Livewire;
 
@@ -39,9 +38,8 @@ describe(ArticleResource::class, function (): void {
 
         expect($article->approved_at)
             ->not
-            ->toBe(null);
-
-        expect($article->declined_at)
+            ->toBe(null)
+            ->and($article->declined_at)
             ->toBe(null);
     });
 
@@ -55,20 +53,9 @@ describe(ArticleResource::class, function (): void {
 
         expect($article->declined_at)
             ->not
-            ->toBe(null);
-
-        expect($article->approved_at)
+            ->toBe(null)
+            ->and($article->approved_at)
             ->toBe(null);
     });
 
-    // it('admin user can deleted article', function () {
-    //     $article = Article::factory()->create(['submitted_at' => now()]);
-
-    //     Livewire::test(ArticleResource\Pages\ListArticles::class)
-    //         ->callTableAction('delete', $article);
-    //         //->callAction(DeleteAction::class);
-
-    //     expect(Article::find($article->id))
-    //         ->toBe(null);
-    // });
 })->group('articles');

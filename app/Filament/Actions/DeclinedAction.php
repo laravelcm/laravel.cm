@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Actions;
 
 use Filament\Actions\Concerns\CanCustomizeProcess;
-use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Model;
 
-class DeclinedAction extends \Filament\Tables\Actions\Action
+final class DeclinedAction extends \Filament\Tables\Actions\Action
 {
     use CanCustomizeProcess;
+
     public static function getDefaultName(): ?string
     {
         return 'declined';
@@ -28,7 +30,7 @@ class DeclinedAction extends \Filament\Tables\Actions\Action
 
         $this->color('warning');
 
-        $this->icon( 'heroicon-s-x-mark');
+        $this->icon('heroicon-s-x-mark');
 
         $this->requiresConfirmation();
 
