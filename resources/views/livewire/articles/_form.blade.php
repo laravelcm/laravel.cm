@@ -17,10 +17,10 @@
         </div>
         <div class="mt-3 flex items-center space-x-2 sm:mt-0">
             @hasanyrole('admin|moderator')
-                <x-button type="button" wire:click="store">
+                <x-buttons.primary type="button" wire:click="store">
                     <x-loader class="text-white" wire:loading wire:target="store" />
                     {{ isset($article) ? __('Enregistrer') : __('Publier') }}
-                </x-button>
+                </x-buttons.primary>
             @else
                 @if (isset($article))
                     <span class="relative z-20 inline-flex rounded-md shadow-sm">
@@ -98,10 +98,10 @@
                         </span>
                     </span>
                 @else
-                    <x-button type="button" wire:click="submit">
+                    <x-buttons.default type="button" wire:click="submit">
                         <x-loader class="text-white" wire:loading wire:target="submit" />
                         {{ __('Enregistrer') }}
-                    </x-button>
+                    </x-buttons.default>
                 @endif
             @endhasanyrole
 
