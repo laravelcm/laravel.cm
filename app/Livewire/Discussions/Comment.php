@@ -40,7 +40,7 @@ final class Comment extends Component
             return;
         }
 
-        LikeReply::run(auth()->user(), $this->comment);
+        app(LikeReply::class)->handle(auth()->user(), $this->comment);
 
         $this->dispatch('reloadComment')->self();
     }
