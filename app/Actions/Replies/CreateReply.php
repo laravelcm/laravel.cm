@@ -9,12 +9,9 @@ use App\Gamify\Points\ReplyCreated;
 use App\Models\Reply;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Lorisleiva\Actions\Concerns\AsAction;
 
 final class CreateReply
 {
-    use AsAction;
-
     public function handle(string $body, User $user, Model $model): Reply
     {
         $reply = new Reply(['body' => $body]);

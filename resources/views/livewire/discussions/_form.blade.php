@@ -38,10 +38,10 @@
 
     <div class="border-t border-skin-base pt-5">
         <div class="flex justify-end">
-            <x-button type="button" class="inline-flex" wire:click="store">
+            <x-buttons.primary type="button" class="inline-flex" wire:click="store">
                 <x-loader class="text-white" wire:loading wire:target="store" />
                 Enregistrer
-            </x-button>
+            </x-buttons.primary>
         </div>
     </div>
 </div>

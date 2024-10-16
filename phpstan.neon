@@ -15,5 +15,5 @@ parameters:
         - app/Markdown/MarkdownHelper.php
     ignoreErrors:
         - "#^Cannot access property \\$transaction on array\\|object\\.$#"
-    checkGenericClassInNonGenericObjectType: false
-    checkMissingIterableValueType: false
+        - identifier: missingType.iterableValue
+        - identifier: missingType.generics

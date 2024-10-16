@@ -8,6 +8,7 @@ use App\Actions\Replies\CreateReply;
 use App\Models\Discussion;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 final class AddComment extends Component
@@ -32,7 +33,7 @@ final class AddComment extends Component
             ['body.required' => __('Votre commentaire ne peut pas être vide')]
         );
 
-        $comment = CreateReply::run($this->body, auth()->user(), $this->discussion);
+        $comment = app(CreateReply::class)->handle($this->body, Auth::user(), $this->discussion); // @phpstan-ignore-line
 
         $this->dispatch('$refresh')->self();
 
