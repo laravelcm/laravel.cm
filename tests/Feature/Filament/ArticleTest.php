@@ -58,4 +58,24 @@ describe(ArticleResource::class, function (): void {
             ->toBe(null);
     });
 
+    it('admin user can bulk approved articles', function (): void {
+        $articles = Article::factory()->count(5)->create(['submitted_at' => now()]);
+
+        Livewire::test(ArticleResource\Pages\ListArticles::class)
+            ->callTableBulkAction('approved', $articles);
+
+        expect(Article::whereNotNull('approved_at')->count())
+            ->toBe(5);
+    });
+
+    it('admin user can bulk declined articles', function (): void {
+        $articles = Article::factory()->count(5)->create(['submitted_at' => now()]);
+
+        Livewire::test(ArticleResource\Pages\ListArticles::class)
+            ->callTableBulkAction('declined', $articles);
+
+        expect(Article::whereNotNull('declined_at')->count())
+            ->toBe(5);
+    });
+
 })->group('articles');

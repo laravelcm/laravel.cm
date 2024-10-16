@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
-use App\Filament\Actions\ApprovedAction;
-use App\Filament\Actions\DeclinedAction;
 use App\Filament\Resources\ArticleResource\Pages;
 use App\Models\Article;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 final class ArticleResource extends Resource
 {
@@ -63,14 +64,62 @@ final class ArticleResource extends Resource
 
             ->actions([
                 ActionGroup::make([
-                    ApprovedAction::make('approved'),
-                    DeclinedAction::make('declined'),
+                    Action::make('approved')
+                        ->label('Approuver')
+                        ->icon('heroicon-s-check')
+                        ->color('success')
+                        ->modalHeading(__('Voulez vous approuver cet article'))
+                        ->successNotificationTitle(__('Opération effectuée avec succès'))
+                        ->requiresConfirmation()
+                        ->modalIcon('heroicon-s-check')
+                        ->action(function ($record): void {
+                            $record->approved_at = now();
+                            $record->declined_at = null;
+                            $record->save();
+                        }),
+                    Action::make('declined')
+                        ->label('Décliner')
+                        ->icon('heroicon-s-x-mark')
+                        ->color('warning')
+                        ->modalHeading(__('Voulez vous décliner cet article'))
+                        ->successNotificationTitle(__('Opération effectuée avec succès'))
+                        ->requiresConfirmation()
+                        ->modalIcon('heroicon-s-x-mark')
+                        ->action(function ($record): void {
+                            $record->declined_at = now();
+                            $record->approved_at = null;
+                            $record->save();
+                        }),
+                    // DeclinedAction::make('declined'),
                     Tables\Actions\DeleteAction::make('delete'),
                 ]),
 
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                    BulkAction::make('approved')
+                        ->label('Approuver la sélection')
+                        ->icon('heroicon-s-check')
+                        ->color('success')
+                        ->action(fn (Collection $records) => $records->each->update(['approved_at' => now(), 'declined_at' => null]))
+                        ->deselectRecordsAfterCompletion()
+                        ->requiresConfirmation()
+                        ->modalIcon('heroicon-s-check')
+                        ->modalHeading('Approuver')
+                        ->modalSubheading('Voulez-vous vraiment approuver ces articles ?')
+                        ->modalButton('Confirmer'),
+                    BulkAction::make('declined')
+                        ->label('Décliner la sélection')
+                        ->icon('heroicon-s-x-mark')
+                        ->color('warning')
+                        ->action(fn (Collection $records) => $records->each->update(['declined_at' => now(), 'approved_at' => null]))
+                        ->deselectRecordsAfterCompletion()
+                        ->requiresConfirmation()
+                        ->modalIcon('heroicon-s-x-mark')
+                        ->modalHeading('Décliner')
+                        ->modalSubheading('Voulez-vous vraiment décliner ces articles ?')
+                        ->modalButton('Confirmer'),
+
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
