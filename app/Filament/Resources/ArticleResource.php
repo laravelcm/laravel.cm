@@ -97,7 +97,6 @@ final class ArticleResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     BulkAction::make('approved')
-                        ->visible(fn (?Collection $records) => ! empty($records) || $records?->contains(fn ($record) => $record->submitted_at))
                         ->label('Approuver la sélection')
                         ->icon('heroicon-s-check')
                         ->color('success')
@@ -109,7 +108,6 @@ final class ArticleResource extends Resource
                         ->modalSubheading('Voulez-vous vraiment approuver ces articles ?')
                         ->modalButton('Confirmer'),
                     BulkAction::make('declined')
-                        ->visible(fn (?Collection $records) => ! empty($records) || $records?->contains(fn ($record) => $record->submitted_at))
                         ->label('Décliner la sélection')
                         ->icon('heroicon-s-x-mark')
                         ->color('warning')
