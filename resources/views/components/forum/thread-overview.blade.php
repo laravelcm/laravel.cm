@@ -26,9 +26,9 @@
                     @if (count($channels = $thread->channels->load('parent')))
                         <div class="mt-2 flex flex-wrap gap-2 lg:mt-0 lg:gap-x-3">
                             @foreach ($channels as $channel)
-                                <a href="{{ route('forum.channels', $channel) }}" class="flex gap-2">
+                                <x-link href="{{ route('forum.channels', $channel) }}" class="flex gap-2">
                                     <x-forum.channel :channel="$channel" />
-                                </a>
+                                </x-link>
                             @endforeach
                         </div>
                     @endif

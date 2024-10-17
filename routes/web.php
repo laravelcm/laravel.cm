@@ -51,14 +51,7 @@ Route::prefix('discussions')->as('discussions.')->group(function (): void {
 });
 
 // Forum
-Route::prefix('forum')->as('forum.')->group(function (): void {
-    Route::redirect('/channels', '/forum');
-    Route::get('/', [ThreadController::class, 'index'])->name('index');
-    Route::get('/channels/{channel}', [ThreadController::class, 'channel'])->name('channels');
-    Route::get('/new-thread', [ThreadController::class, 'create'])->name('new');
-    Route::get('/{thread}', [ThreadController::class, 'show'])->name('show');
-    Route::get('/{thread}/edit', [ThreadController::class, 'edit'])->name('edit');
-});
+Route::prefix('forum')->as('forum.')->group(base_path('routes/forum.php'));
 
 // Replies
 Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->name('replyable');

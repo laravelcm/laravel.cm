@@ -147,7 +147,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
         $this->save();
     }
 
-    public function scopeForChannel(Builder $query, Channel $channel): Builder
+    public function scopeChannel(Builder $query, Channel $channel): Builder
     {
         return $query->whereHas('channels', function ($query) use ($channel): void {
             if ($channel->hasItems()) {
