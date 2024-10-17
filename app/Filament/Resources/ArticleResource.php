@@ -65,6 +65,7 @@ final class ArticleResource extends Resource
             ->actions([
                 ActionGroup::make([
                     Action::make('approved')
+                        ->visible(fn ($record) => $record->submitted_at && (! $record->declined_at && ! $record->approved_at))
                         ->label('Approuver')
                         ->icon('heroicon-s-check')
                         ->color('success')
@@ -74,10 +75,10 @@ final class ArticleResource extends Resource
                         ->modalIcon('heroicon-s-check')
                         ->action(function ($record): void {
                             $record->approved_at = now();
-                            $record->declined_at = null;
                             $record->save();
                         }),
                     Action::make('declined')
+                        ->visible(fn ($record) => $record->submitted_at && (! $record->declined_at && ! $record->approved_at))
                         ->label('Décliner')
                         ->icon('heroicon-s-x-mark')
                         ->color('warning')
@@ -87,10 +88,8 @@ final class ArticleResource extends Resource
                         ->modalIcon('heroicon-s-x-mark')
                         ->action(function ($record): void {
                             $record->declined_at = now();
-                            $record->approved_at = null;
                             $record->save();
                         }),
-                    // DeclinedAction::make('declined'),
                     Tables\Actions\DeleteAction::make('delete'),
                 ]),
 
@@ -98,10 +97,11 @@ final class ArticleResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     BulkAction::make('approved')
+                        ->visible(fn (?Collection $records) => ! empty($records) || $records?->contains(fn ($record) => $record->submitted_at))
                         ->label('Approuver la sélection')
                         ->icon('heroicon-s-check')
                         ->color('success')
-                        ->action(fn (Collection $records) => $records->each->update(['approved_at' => now(), 'declined_at' => null]))
+                        ->action(fn (Collection $records) => $records->each->update(['approved_at' => now()]))
                         ->deselectRecordsAfterCompletion()
                         ->requiresConfirmation()
                         ->modalIcon('heroicon-s-check')
@@ -109,10 +109,11 @@ final class ArticleResource extends Resource
                         ->modalSubheading('Voulez-vous vraiment approuver ces articles ?')
                         ->modalButton('Confirmer'),
                     BulkAction::make('declined')
+                        ->visible(fn (?Collection $records) => ! empty($records) || $records?->contains(fn ($record) => $record->submitted_at))
                         ->label('Décliner la sélection')
                         ->icon('heroicon-s-x-mark')
                         ->color('warning')
-                        ->action(fn (Collection $records) => $records->each->update(['declined_at' => now(), 'approved_at' => null]))
+                        ->action(fn (Collection $records) => $records->each->update(['declined_at' => now()]))
                         ->deselectRecordsAfterCompletion()
                         ->requiresConfirmation()
                         ->modalIcon('heroicon-s-x-mark')
