@@ -89,21 +89,6 @@ Route::get('/user/{username?}', [User\ProfileController::class, 'show'])->name('
 // Notifications
 Route::view('notifications', 'user.notifications')->name('notifications')->middleware('auth');
 
-// Redirect Route
-Route::redirectMap([
-    '.env' => 'https://www.youtube.com/watch?v=M8ogFbLP9XQ',
-    'wp-login' => 'https://www.youtube.com/watch?v=M8ogFbLP9XQ',
-    'wp-admin' => 'https://www.youtube.com/watch?v=M8ogFbLP9XQ',
-    'facebook' => 'https://facebook.com/laravelcm',
-    'twitter' => 'https://twitter.com/laravelcm',
-    'telegram' => 'https://t.me/laravelcameroun',
-    'linkedin' => 'https://www.linkedin.com/company/laravel-cameroun',
-    'github' => 'https://github.com/laravelcm',
-    'whatsapp' => 'https://chat.whatsapp.com/G8e98Ms0MgSLEOGd3Uai1i',
-    'discord' => 'https://discord.gg/KNp6brbyVD',
-    'youtube' => 'https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw',
-]);
-
 Route::feeds();
 
 Route::get('sponsors', [SponsoringController::class, 'sponsors'])->name('sponsors');

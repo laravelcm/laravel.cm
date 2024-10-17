@@ -20,9 +20,16 @@ final class GenerateSitemap extends Command
      * @var array|string[]
      */
     private array $noIndexPaths = [
-        '',
-        '/forum/*',
+        '/forum/channels',
+        '/forum/channels/*',
+        '/user',
         '/user/*',
+        '/dashboard/*',
+        '/rules',
+        '/terms',
+        '/privacy',
+        '/faq',
+        '/auth/github',
     ];
 
     public function handle(): void

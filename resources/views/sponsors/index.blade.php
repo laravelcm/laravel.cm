@@ -21,27 +21,27 @@
                         <div class="focus:outline-none">
                             <p class="text-sm font-medium text-skin-inverted">{{ __('Laravel Cameroun') }}</p>
                             <div class="mt-2 flex items-center space-x-4">
-                                <a href="{{ route('twitter') }}" class="text-skin-muted hover:text-skin-base">
+                                <a href="https://twitter.com/laravelcm" class="text-skin-muted hover:text-skin-base">
                                     <span class="sr-only">{{ __('Twitter') }}</span>
                                     <x-icon.twitter class="h-5 w-5" />
                                 </a>
 
-                                <a href="{{ route('facebook') }}" class="text-skin-muted hover:text-skin-base">
+                                <a href="https://facebook.com/laravelcm" class="text-skin-muted hover:text-skin-base">
                                     <span class="sr-only">{{ __('Facebook') }}</span>
                                     <x-icon.facebook class="h-5 w-5" />
                                 </a>
 
-                                <a href="{{ route('linkedin') }}" class="text-skin-muted hover:text-skin-base">
+                                <a href="https://www.linkedin.com/company/laravel-cameroun" class="text-skin-muted hover:text-skin-base">
                                     <span class="sr-only">{{ __('LinkedIn') }}</span>
                                     <x-icon.linkedin class="h-5 w-5" />
                                 </a>
 
-                                <a href="{{ route('github') }}" class="text-skin-muted hover:text-skin-base">
+                                <a href="https://github.com/laravelcm" class="text-skin-muted hover:text-skin-base">
                                     <span class="sr-only">{{ __('GitHub') }}</span>
                                     <x-icon.github class="h-5 w-5" />
                                 </a>
 
-                                <a href="{{ route('youtube') }}" class="text-skin-muted hover:text-skin-base">
+                                <a href="https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw" class="text-skin-muted hover:text-skin-base">
                                     <span class="sr-only">{{ __('YouTube') }}</span>
                                     <x-icon.youtube class="h-5 w-5" />
                                 </a>

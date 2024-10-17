@@ -56,7 +56,7 @@
                         reste le groupe <a href="{{ route('slack') }}">Slack</a>. Vous pouvez rejoindre slack en vous rendant sur cette <a href="{{ route('slack') }}">page</a>.
                     </p>
                     <p>
-                        Mais la communauté dispose aussi d'un groupe <a href="{{ route('telegram') }}">Telegram</a> et d'un groupe WhatsApp
+                        Mais la communauté dispose aussi d'un groupe <a href="https://t.me/laravelcameroun">Telegram</a> et d'un groupe WhatsApp
                         (limite par les règles de gestion de groupe de WhatsApp) qui sont accessibles par tous.
                     </p>
                     <p>Ceci dit, nous recommandons plus de rejoindre le groupe Slack.</p>
@@ -214,7 +214,7 @@
                         Vous pouvez rejoindre slack en vous rendant sur cette <a href="{{ route('slack') }}">page</a>.
                     </p>
                     <p>
-                        Mais la communauté dispose aussi d'un groupe <a href="{{ route('telegram') }}">Telegram</a> et d'un groupe WhatsApp
+                        Mais la communauté dispose aussi d'un groupe <a href="https://t.me/laravelcameroun">Telegram</a> et d'un groupe WhatsApp
                         (limite par les règles de gestion de groupe de WhatsApp) qui sont accessibles par tous.
                     </p>
                     <p>Ceci dit, nous recommandons plus de rejoindre le groupe Slack.</p>
@@ -392,7 +392,7 @@
                         Vous pouvez rejoindre slack en vous rendant sur cette <a href="{{ route('slack') }}">page</a>.
                     </p>
                     <p>
-                        Mais la communauté dispose aussi d'un groupe <a href="{{ route('telegram') }}">Telegram</a> et d'un groupe WhatsApp
+                        Mais la communauté dispose aussi d'un groupe <a href="https://t.me/laravelcameroun">Telegram</a> et d'un groupe WhatsApp
                         (limite par les règles de gestion de groupe de WhatsApp) qui sont accessibles par tous.
                     </p>
                     <p>Ceci dit nous, recommandons plus de rejoindre le groupe Slack.</p>

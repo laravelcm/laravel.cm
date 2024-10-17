@@ -1,2 +1,17 @@
 User-agent: *
-Disallow:
+
+# User
+Disallow: /user
+Disallow: /user/*
+Disallow: /dashboard/*
+
+# Forum
+Disallow: /forum/channels
+Disallow: /forum/channels/*
+Disallow: /rules
+Disallow: /terms
+Disallow: /privacy
+Disallow: /auth/github
+
+# Sitemap
+Sitemap: https://laravel.cm/sitemap.xml
