@@ -1,28 +1,42 @@
-<x-container class="py-12">
-    <div class="relative lg:grid lg:grid-cols-9 lg:gap-8">
-        <div class="lg:col-span-2 lg:block">
-            <nav class="space-y-6">
-                <x-buttons.primary :href="route('forum.new')" class="gap-2 justify-between">
-                    {{ __('pages/forum.new_thread') }}
-                    <x-untitledui-plus class="size-4" stroke-width="1.5" aria-hidden="true" />
-                </x-buttons.primary>
-            </nav>
+<div>
+    <x-slot:buttons>
+        <x-buttons.primary :href="route('forum.new')" class="gap-2 w-full justify-center py-2.5">
+            {{ __('pages/forum.new_thread') }}
+            <span class="absolute pointer-events-none right-0 pr-3">
+                <x-untitledui-plus class="size-5" aria-hidden="true" />
+            </span>
+        </x-buttons.primary>
+    </x-slot:buttons>
+
+    <div class="flex items-center justify-between gap-6">
+        <livewire:components.channels-selector />
+        <form wire:submit="launchSearch">
+            <x-filament::input.wrapper class="relative max-w-60 w-full">
+                <span class="pointer-events-none absolute top-2.5 left-0 pl-2.5">
+                    <x-untitledui-search-md class="size-4 text-gray-400 dark:text-gray-500" aria-hidden="true" />
+                </span>
+                <x-filament::input
+                    type="search"
+                    id="thread-search"
+                    name="search"
+                    class="pl-8"
+                    wire:model="search"
+                    aria-label="{{ __('global.search') }}"
+                    :placeholder="__('pages/forum.thread_search')"
+                />
+            </x-filament::input.wrapper>
+        </form>
+    </div>
+
+    <div class="mt-6 lg:mb-12">
+        <div class="space-y-6">
+            @foreach ($threads as $thread)
+                <x-forum.thread-overview :thread="$thread" />
+            @endforeach
         </div>
 
-        <div class="mt-6 sm:mt-0 lg:col-span-7">
-            <div class="flex items-center gap-6">
-                <livewire:components.channels-selector />
-            </div>
-
-            <div class="mt-6 space-y-6 sm:space-y-5 lg:mb-32">
-                @foreach ($threads as $thread)
-                    <x-forum.thread-overview :thread="$thread" />
-                @endforeach
-
-                <div class="mt-10">
-                    {{ $threads->links() }}
-                </div>
-            </div>
+        <div class="mt-10">
+            {{ $threads->links() }}
         </div>
     </div>
-</x-container>
+</div>

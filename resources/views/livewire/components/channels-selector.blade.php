@@ -49,7 +49,7 @@
                         @click="reset()"
                         class="flex items-center w-full py-2 px-4 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
                     >
-                        {{ __('pages/forum.reset_channel') }}
+                        {{ __('global.reset') }}
                     </button>
                 </div>
             @endisset

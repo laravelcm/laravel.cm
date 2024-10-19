@@ -13,9 +13,9 @@ beforeEach(function (): void {
     $this->user = $this->login();
 });
 
-test('Send notification on telegram after submition on article', function (): void {
+test('Send notification on telegram after submission on article', function (): void {
+    Notification::fake();
 
-    // 2- soumission d'article par le user connecté
     $file = UploadedFile::fake()->image('article.png');
 
     $article = Livewire::actingAs($this->user)->test(Create::class)
@@ -30,10 +30,9 @@ test('Send notification on telegram after submition on article', function (): vo
         ->set('canonical_url', 'https://laravel.cm')
         ->call('store');
 
-    expect(Article::count())
+    expect(Article::query()->count())
         ->toBe(1);
 
-    // 3- Envois de la notification au modérateur sur un channel telegram
     if ($article->submitted_at) {
         Notification::assertSentTo(
             notifiable: $this->user,
@@ -42,5 +41,4 @@ test('Send notification on telegram after submition on article', function (): vo
     }
 
     Notification::assertCount(1);
-
 });

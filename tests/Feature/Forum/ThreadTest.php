@@ -8,6 +8,7 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 it('can find by slug', function (): void {
     Thread::factory()->create(['slug' => 'foo']);
@@ -47,7 +48,7 @@ it('records activity when a thread is created', function (): void {
         'subject_type' => 'thread',
     ]);
 
-    $activity = Activity::first();
+    $activity = Activity::query()->first();
 
     $this->assertEquals($activity->subject->id, $thread->id);
 
@@ -146,45 +147,3 @@ it('generates a slug when invalid url characters provided', function (): void {
     // When providing a slug with invalid url characters, a random 5 character string is returned.
     expect($thread->slug())->toMatch('/\w{5}/');
 });
-
-// Helpers
-function createThreadFromToday(): Thread
-{
-    $today = Carbon::now();
-
-    return Thread::factory()->create(['created_at' => $today]);
-}
-
-function createThreadFromYesterday(): Thread
-{
-    $yesterday = Carbon::yesterday();
-
-    return Thread::factory()->create(['created_at' => $yesterday]);
-}
-
-function createThreadFromTwoDaysAgo(): Thread
-{
-    $twoDaysAgo = Carbon::now()->subDays(2);
-
-    return Thread::factory()->create(['created_at' => $twoDaysAgo]);
-}
-
-function createResolvedThread(): Thread
-{
-    $thread = createThreadFromToday();
-    $reply = Reply::factory()->create();
-    $user = User::factory()->create();
-    $thread->markSolution($reply, $user);
-
-    return $thread;
-}
-
-function createActiveThread(): Thread
-{
-    $thread = createThreadFromToday();
-    $reply = Reply::factory()->create();
-    $reply->to($thread);
-    $reply->save();
-
-    return $thread;
-}

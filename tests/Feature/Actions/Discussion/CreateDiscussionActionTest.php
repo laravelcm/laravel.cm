@@ -6,8 +6,11 @@ use App\Actions\Discussion\CreateDiscussionAction;
 use App\Data\Discussion\CreateDiscussionData;
 use App\Models\Discussion;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Notification;
 
 beforeEach(function (): void {
+    Notification::fake();
+
     $this->user = $this->login();
     $this->tagOne = Tag::factory()->create(['name' => 'Tag 1', 'concerns' => ['discussion']]);
     $this->tagTwo = Tag::factory()->create(['name' => 'Tag 2', 'concerns' => ['discussion', 'post']]);

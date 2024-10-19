@@ -47,8 +47,12 @@ return [
     'sponsored' => 'Sponsored',
     'read_time' => ':time min reading',
     'page_views' => ':number views',
+    'views' => 'views',
     'open_navigation' => 'Open main menu',
     'close_navigation' => 'Close menu',
     'view_notifications' => 'View notifications',
+    'reset' => 'Reset',
+    'answers' => 'answers',
+    'first_to_react' => 'Be the first to react',
 
 ];

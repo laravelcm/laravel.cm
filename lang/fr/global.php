@@ -47,8 +47,12 @@ return [
     'sponsored' => 'Sponsorisé',
     'read_time' => ':time min de lecture',
     'page_views' => ':number vues',
+    'views' => 'vues',
     'open_navigation' => 'Ouvrir le menu',
     'close_navigation' => 'Fermer le menu',
     'view_notifications' => 'Voir les notifications',
+    'reset' => 'Réinitialiser',
+    'answers' => 'réponses',
+    'first_to_react' => 'Soyez le premier à réagir',
 
 ];

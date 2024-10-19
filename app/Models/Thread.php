@@ -32,6 +32,18 @@ use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
+/**
+ * @property-read int $id
+ * @property string $title
+ * @property string $slug
+ * @property string $body
+ * @property int $user_id
+ * @property bool $locked
+ * @property Carbon | null $last_posted_at
+ * @property int | null $resolved_by
+ * @property User | null $resolvedBy
+ * @property User $user
+ */
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
     use HasAuthor;
@@ -81,10 +93,10 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     public function getPathUrl(): string
     {
-        return "/forum/{$this->slug()}";
+        return '/forum/'.$this->slug();
     }
 
-    public function excerpt(int $limit = 100): string
+    public function excerpt(int $limit = 200): string
     {
         return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
     }

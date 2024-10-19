@@ -1,5 +1,5 @@
 <div class="overflow-hidden">
-    <a href="{{ route('discord') }}">
+    <a href="https://discord.gg/KNp6brbyVD">
         <svg
             class="h-12 w-auto text-[#5865F2]"
             fill="currentColor"

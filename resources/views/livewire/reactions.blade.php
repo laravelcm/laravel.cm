@@ -1,34 +1,25 @@
-<div class="relative" x-data="{ showReactions: false }">
+<div class="relative inline-flex items-center" x-data="{ showReactions: false }">
+    @php
+        $buttonClasses = 'inline-flex items-center justify-center size-6 rounded-full bg-white hover:bg-gray-100 dark:bg-gray-900 dark:hover:bg-white/10 focus:outline-none';
+    @endphp
+
     @if ($model->getReactionsSummary()->isEmpty())
         <button
             @click="showReactions = ! showReactions"
-            class="flex items-center text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none focus:ring-0"
+            class="inline-flex items-center gap-2 text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
         >
             @if ($withPlaceHolder)
-                Soyez le premier à réagir
+                {{ __('global.first_to_react') }}
             @endif
 
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="ml-1.5 size-5"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"
-                />
-            </svg>
+            <x-untitledui-face-smile class="size-4" stroke-width="1.5" aria-hidden="true" />
         </button>
     @else
         <button
             @click="showReactions = ! showReactions"
             @class([
-                'relative flex h-8 cursor-pointer items-center justify-between',
-                'rounded-md rounded-md bg-skin-card px-3 py-2 shadow hover:bg-skin-card-muted' => $withBackground,
+                'relative flex items-center h-8 cursor-pointer items-center justify-between',
+                'rounded-lg bg-white px-3 py-2 shadow hover:bg-gray-50' => $withBackground,
             ])
         >
             <div class="flex items-center justify-center space-x-2">
@@ -56,70 +47,33 @@
         x-transition:leave="transition duration-75 ease-in"
         x-transition:leave-start="scale-100 transform opacity-100"
         x-transition:leave-end="scale-95 transform opacity-0"
-        @class([
-            'absolute z-30 mt-4 w-56 origin-top rounded-md shadow-lg',
-            'left-0' => $direction === 'right',
-            'right-0' => $direction !== 'right',
-        ])
+        class="absolute z-30 left-6 w-auto origin-top-left"
         style="display: none"
     >
-        <div class="rounded-md bg-skin-card p-3 pt-4 shadow-lg">
-            <h5 class="ml-1 text-xs font-medium text-gray-500 dark:text-gray-400">Sélectionnez Une:</h5>
-            <div class="reactions no-load mt-2 grid grid-cols-4 gap-2">
-                <button
-                    type="button"
-                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
-                    wire:click="userReacted('clap')"
-                >
+        <div class="rounded-full bg-white ring-1 ring-inset ring-gray-100 px-3 py-1.5 dark:bg-gray-800 dark:ring-white/10">
+            <div class="reactions flex items-center gap-4">
+                <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('clap')">
                     <img src="{{ asset('/images/reactions/clap.svg') }}" class="size-5" alt="clap emoji" />
                 </button>
-                <button
-                    type="button"
-                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
-                    wire:click="userReacted('fire')"
-                >
+                <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('fire')">
                     <img src="{{ asset('/images/reactions/fire.svg') }}" class="size-5" alt="fire emoji" />
                 </button>
-                <button
-                    type="button"
-                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
-                    wire:click="userReacted('handshake')"
-                >
+                <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('handshake')">
                     <img src="{{ asset('/images/reactions/handshake.svg') }}" class="size-5" alt="handshake emoji" />
                 </button>
-                <button
-                    type="button"
-                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
-                    wire:click="userReacted('joy')"
-                >
+                <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('joy')">
                     <img src="{{ asset('/images/reactions/joy.svg') }}" class="size-5" alt="joy emoji" />
                 </button>
-                <button
-                    type="button"
-                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
-                    wire:click="userReacted('love')"
-                >
+                <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('love')">
                     <img src="{{ asset('/images/reactions/love.svg') }}" class="size-5" alt="love emoji" />
                 </button>
-                <button
-                    type="button"
-                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
-                    wire:click="userReacted('money')"
-                >
+                <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('money')">
                     <img src="{{ asset('/images/reactions/money.svg') }}" class="size-5" alt="money emoji" />
                 </button>
-                <button
-                    type="button"
-                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
-                    wire:click="userReacted('party')"
-                >
+                <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('party')">
                     <img src="{{ asset('/images/reactions/party.svg') }}" class="size-5" alt="party emoji" />
                 </button>
-                <button
-                    type="button"
-                    class="col-span-1 flex size-8 cursor-pointer items-center justify-center rounded-md hover:bg-skin-card-muted focus:outline-none"
-                    wire:click="userReacted('pray')"
-                >
+                <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('pray')">
                     <img src="{{ asset('/images/reactions/pray.svg') }}" class="size-5" alt="pray" />
                 </button>
             </div>
