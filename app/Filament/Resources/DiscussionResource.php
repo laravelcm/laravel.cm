@@ -30,8 +30,8 @@ final class DiscussionResource extends Resource
                     ->label('Vérrouillé')
                     ->getStateUsing(fn ($record) => ($record->locked) ? 'Oui' : 'Non')
                     ->colors([
-                        'success' => 'OUI',
-                        'danger' => 'NON',
+                        'success' => 'Oui',
+                        'danger' => 'Non',
                     ])
                     ->badge(),
                 TextColumn::make('is_pinned')
