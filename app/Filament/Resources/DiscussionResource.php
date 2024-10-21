@@ -26,14 +26,16 @@ final class DiscussionResource extends Resource
                 TextColumn::make('title')
                     ->label('Titre')
                     ->sortable(),
-                TextColumn::make('Vérrouillé')
+                TextColumn::make('locked')
+                    ->label(label: 'Vérrouillé')
                     ->getStateUsing(fn ($record) => ($record->locked) ? 'OUI' : 'NON')
                     ->colors([
                         'success' => 'OUI',
                         'danger' => 'NON',
                     ])
                     ->badge(),
-                TextColumn::make('Epinglé')
+                TextColumn::make('is_pinned')
+                    ->label(label: 'Epinglé')
                     ->getStateUsing(fn ($record) => ($record->is_pinned) ? 'OUI' : 'NON')
                     ->colors([
                         'success' => 'OUI',
@@ -51,7 +53,7 @@ final class DiscussionResource extends Resource
                 Filter::make('is_locked')->query(fn (Builder $query) => $query->where('locked', true))->label('Vérrouillé'),
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make('delete'),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

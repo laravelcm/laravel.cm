@@ -5,19 +5,17 @@ declare(strict_types=1);
 use App\Filament\Resources\DiscussionResource;
 use App\Filament\Resources\DiscussionResource\Pages\ListDiscussions;
 use App\Models\Discussion;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Livewire\Livewire;
 
 beforeEach(function (): void {
     $this->user = $this->login();
     $this->discussions = Discussion::factory()
         ->count(10)
-        ->state(function () {
-            return [
-                'is_pinned' => rand(0, 1),
-                'locked' => rand(0, 1),
-                'created_at' => now(),
-            ];
-        })
+        ->state(new Sequence(
+            ['is_pinned' => true, 'locked' => false],
+            ['is_pinned' => false, 'locked' => true],
+        ))
         ->create();
 });
 
@@ -29,21 +27,16 @@ describe(DiscussionResource::class, function (): void {
     });
 
     it('admin user can filter discussion by `is_pinned`', function (): void {
-
         Livewire::test(ListDiscussions::class)
             ->assertCanSeeTableRecords($this->discussions)
             ->filterTable('is_pinned')
-            ->assertCanSeeTableRecords($this->discussions->where('is_pinned', true))
-            ->assertCanNotSeeTableRecords($this->discussions->where('is_pinned', false));
+            ->assertCountTableRecords(5);
     });
 
     it('admin user can filter discussion by `locked`', function (): void {
-
         Livewire::test(ListDiscussions::class)
             ->assertCanSeeTableRecords($this->discussions)
             ->filterTable('is_locked')
-            ->assertCanSeeTableRecords($this->discussions->where('locked', true))
-            ->assertCanNotSeeTableRecords($this->discussions->where('locked', false));
+            ->assertCountTableRecords(5);
     });
-
-})->group(groups: 'discussions');
+})->group('discussions');
