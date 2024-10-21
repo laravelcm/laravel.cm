@@ -27,19 +27,19 @@ final class DiscussionResource extends Resource
                     ->label('Titre')
                     ->sortable(),
                 TextColumn::make('locked')
-                    ->label(label: 'Vérrouillé')
-                    ->getStateUsing(fn ($record) => ($record->locked) ? 'OUI' : 'NON')
+                    ->label('Vérrouillé')
+                    ->getStateUsing(fn ($record) => ($record->locked) ? 'Oui' : 'Non')
                     ->colors([
                         'success' => 'OUI',
                         'danger' => 'NON',
                     ])
                     ->badge(),
                 TextColumn::make('is_pinned')
-                    ->label(label: 'Epinglé')
-                    ->getStateUsing(fn ($record) => ($record->is_pinned) ? 'OUI' : 'NON')
+                    ->label('Epinglé')
+                    ->getStateUsing(fn ($record) => ($record->is_pinned) ? 'Oui' : 'Non')
                     ->colors([
-                        'success' => 'OUI',
-                        'danger' => 'NON',
+                        'success' => 'Oui',
+                        'danger' => 'Non',
                     ])
                     ->badge(),
                 TextColumn::make('created_at')
