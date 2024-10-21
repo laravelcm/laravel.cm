@@ -20,16 +20,8 @@ describe(ArticleResource::class, function (): void {
             ->assertCanSeeTableRecords($this->articles);
     });
 
-    it('table can render columns', function (): void {
-        Livewire::test(ArticleResource\Pages\ListArticles::class)
-            ->assertCanRenderTableColumn('title')
-            ->assertCanRenderTableColumn('status')
-            ->assertCanRenderTableColumn('status')
-            ->assertCanRenderTableColumn('submitted_at');
-    });
-
-    it('admin user  can approved article', function (): void {
-        $article = Article::factory()->create(['submitted_at' => now()]);
+    it('admin user can approved article', function (): void {
+        $article = $this->articles->first();
 
         Livewire::test(ArticleResource\Pages\ListArticles::class)
             ->callTableAction('approved', $article);
@@ -41,10 +33,14 @@ describe(ArticleResource::class, function (): void {
             ->toBe(null)
             ->and($article->declined_at)
             ->toBe(null);
+
+        Livewire::test(ArticleResource\Pages\ListArticles::class)
+            ->assertTableActionHidden('approved', $article)
+            ->assertTableActionHidden('declined', $article);
     });
 
     it('admin user can declined article', function (): void {
-        $article = Article::factory()->create(['submitted_at' => now()]);
+        $article = $this->articles->first();
 
         Livewire::test(ArticleResource\Pages\ListArticles::class)
             ->callTableAction('declined', $article);
@@ -56,5 +52,10 @@ describe(ArticleResource::class, function (): void {
             ->toBe(null)
             ->and($article->approved_at)
             ->toBe(null);
+
+        Livewire::test(ArticleResource\Pages\ListArticles::class)
+            ->assertTableActionHidden('approved', $article)
+            ->assertTableActionHidden('declined', $article);
+
     });
 })->group('articles');

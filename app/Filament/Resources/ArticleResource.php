@@ -65,7 +65,7 @@ final class ArticleResource extends Resource
             ->actions([
                 ActionGroup::make([
                     Action::make('approved')
-                        ->visible(fn ($record) => $record->submitted_at && (! $record->declined_at && ! $record->approved_at))
+                        ->visible(fn (Article $record) => $record->isAwaitingApproval())
                         ->label('Approuver')
                         ->icon('heroicon-s-check')
                         ->color('success')
@@ -78,7 +78,7 @@ final class ArticleResource extends Resource
                             $record->save();
                         }),
                     Action::make('declined')
-                        ->visible(fn ($record) => $record->submitted_at && (! $record->declined_at && ! $record->approved_at))
+                        ->visible(fn (Article $record) => $record->isAwaitingApproval())
                         ->label('Décliner')
                         ->icon('heroicon-s-x-mark')
                         ->color('warning')
