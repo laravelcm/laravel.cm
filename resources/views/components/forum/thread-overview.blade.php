@@ -2,7 +2,7 @@
     'thread',
 ])
 
-<article class="rounded-xl cursor-pointer bg-white p-4 ring-1 ring-inset ring-gray-100 dark:bg-gray-800 dark:ring-white/10 lg:py-5 lg:px-6" aria-labelledby="{{ $thread->slug }}">
+<article class="rounded-xl cursor-pointer bg-white p-4 ring-1 ring-inset ring-gray-200/60 dark:bg-gray-800 dark:ring-white/10 lg:py-5 lg:px-6" aria-labelledby="{{ $thread->slug }}">
     @if (count($channels = $thread->channels->load('parent')))
         <div class="hidden mb-2 lg:flex flex-wrap lg:gap-1.5">
             @foreach ($channels as $channel)

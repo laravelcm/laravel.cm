@@ -1,6 +1,6 @@
 <div>
     <x-slot:buttons>
-        <x-buttons.primary :href="route('forum.new')" class="gap-2 w-full justify-center py-2.5">
+        <x-buttons.primary type="button" onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })" class="gap-2 w-full justify-center py-2.5">
             {{ __('pages/forum.new_thread') }}
             <span class="absolute pointer-events-none right-0 pr-3">
                 <x-untitledui-plus class="size-5" aria-hidden="true" />
@@ -19,7 +19,7 @@
                     type="search"
                     id="thread-search"
                     name="search"
-                    class="pl-8"
+                    class="!pl-8"
                     wire:model="search"
                     aria-label="{{ __('global.search') }}"
                     :placeholder="__('pages/forum.thread_search')"

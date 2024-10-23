@@ -21,7 +21,7 @@ describe(Create::class, function (): void {
             ->set('body', '## My Discussion content')
             ->call('store');
 
-        expect(Discussion::count())
+        expect(Discussion::query()->count())
             ->toBe(1);
 
         Notification::assertSentTo(

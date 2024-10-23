@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42f558fa0f8ae1e1ed438d0842232bcf",
+    "content-hash": "2f61037f9a5ce54e25cb939458b800e0",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -5442,6 +5442,66 @@
                 }
             ],
             "time": "2024-07-24T04:08:22+00:00"
+        },
+        {
+            "name": "laravelcm/livewire-slide-overs",
+            "version": "v1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravelcm/livewire-slide-overs.git",
+                "reference": "eaacf38da9bf159707b1f66a08f06361df2299a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravelcm/livewire-slide-overs/zipball/eaacf38da9bf159707b1f66a08f06361df2299a8",
+                "reference": "eaacf38da9bf159707b1f66a08f06361df2299a8",
+                "shasum": ""
+            },
+            "require": {
+                "livewire/livewire": "^3.4",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.15"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.1",
+                "orchestra/testbench": "^8.5",
+                "pestphp/pest": "^2.34",
+                "pestphp/pest-plugin-livewire": "^2.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravelcm\\LivewireSlideOvers\\LivewireSlideOverServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravelcm\\LivewireSlideOvers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arthur Monney",
+                    "email": "monneylobe@gmail.com"
+                }
+            ],
+            "description": "Livewire component that provides drawers (slide overs) that support multiple children while maintaining state.",
+            "keywords": [
+                "laravel",
+                "livewire",
+                "slide-overs"
+            ],
+            "support": {
+                "issues": "https://github.com/laravelcm/livewire-slide-overs/issues",
+                "source": "https://github.com/laravelcm/livewire-slide-overs/tree/v1.0.8"
+            },
+            "time": "2024-07-12T23:00:38+00:00"
         },
         {
             "name": "league/commonmark",
