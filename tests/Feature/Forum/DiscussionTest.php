@@ -44,7 +44,7 @@ it('records activity when a discussion is created', function (): void {
         'subject_type' => 'discussion',
     ]);
 
-    $activity = Activity::first();
+    $activity = Activity::query()->first();
 
     $this->assertEquals($activity->subject->id, $discussion->id);
 

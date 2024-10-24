@@ -68,9 +68,9 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface
         return $matches[1];
     }
 
-    public function to(ReplyInterface $replyAble): void
+    public function to(ReplyInterface $replyable): void
     {
-        $this->replyAble()->associate($replyAble);
+        $this->replyAble()->associate($replyable);
     }
 
     public function allChildReplies(): MorphMany

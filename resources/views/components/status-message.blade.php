@@ -1,5 +1,5 @@
 @if (session('status'))
-    <div {{ $attributes->merge(['class' => 'rounded-md bg-green-50 p-4']) }}>
+    <div {{ $attributes->merge(['class' => 'rounded-lg bg-green-50 p-4 dark:bg-green-800/20']) }}>
         <div class="flex">
             <div class="shrink-0">
                 <x-heroicon-s-check-circle class="size-5 text-green-400" aria-hidden="true" />

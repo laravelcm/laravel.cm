@@ -18,7 +18,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <a href="{{ route('facebook') }}" target="_blank">
+                                    <a href="https://facebook.com/laravelcm" target="_blank">
                                         <svg
                                             class="social-icon"
                                             fill="currentColor"
@@ -35,7 +35,7 @@
                                 </td>
                                 <td width="30" style="font-size: 1px; line-height: 1px"></td>
                                 <td>
-                                    <a href="{{ route('twitter') }}" target="_blank">
+                                    <a href="https://twitter.com/laravelcm" target="_blank">
                                         <svg
                                             class="social-icon"
                                             viewBox="0 0 1200 1227"
@@ -50,7 +50,7 @@
                                 </td>
                                 <td width="30" style="font-size: 1px; line-height: 1px"></td>
                                 <td>
-                                    <a href="{{ route('youtube') }}" target="_blank">
+                                    <a href="https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw" target="_blank">
                                         <svg
                                             class="social-icon"
                                             fill="currentColor"
@@ -65,7 +65,7 @@
                                 </td>
                                 <td width="30" style="font-size: 1px; line-height: 1px"></td>
                                 <td>
-                                    <a href="{{ route('linkedin') }}" target="_blank">
+                                    <a href="https://www.linkedin.com/company/laravel-cameroun" target="_blank">
                                         <svg
                                             class="social-icon"
                                             fill="currentColor"
@@ -80,7 +80,7 @@
                                 </td>
                                 <td width="30" style="font-size: 1px; line-height: 1px"></td>
                                 <td>
-                                    <a href="{{ route('github') }}" target="_blank">
+                                    <a href="https://github.com/laravelcm" target="_blank">
                                         <svg
                                             class="social-icon"
                                             fill="currentColor"
@@ -97,7 +97,7 @@
                                 </td>
                                 <td width="30" style="font-size: 1px; line-height: 1px"></td>
                                 <td>
-                                    <a href="{{ route('telegram') }}" target="_blank">
+                                    <a href="https://t.me/laravelcameroun" target="_blank">
                                         <svg
                                             class="social-icon"
                                             fill="currentColor"

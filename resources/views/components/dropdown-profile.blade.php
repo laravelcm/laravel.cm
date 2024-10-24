@@ -58,7 +58,7 @@
             </div>
         @endif
 
-        @feature('job_profile')
+        {{--@feature('job_profile')
             <div class="px-3.5 py-2" role="none">
                 <div class="flex items-center justify-between">
                     <h5 class="text-sm leading-5 text-gray-500 dark:text-gray-400">Profil Développeur</h5>
@@ -148,7 +148,7 @@
                     </a>
                 </div>
             </div>
-        @endfeature
+        @endfeature--}}
 
         <div class="px-3.5 py-1.5" role="none">
             <a

@@ -32,6 +32,14 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * @property-read int $id
+ * @property string $name
+ * @property string $email
+ * @property string $username
+ * @property string $bio
+ * @property Collection | Activity[] $activities
+ */
 final class User extends Authenticatable implements FeaturableInterface, FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
     use Featurable;

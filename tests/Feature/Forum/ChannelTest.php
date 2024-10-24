@@ -5,16 +5,20 @@ declare(strict_types=1);
 use App\Exceptions\CannotAddChannelToChild;
 use App\Models\Channel;
 
-test('channel can have children', function (): void {
-    $channel = Channel::factory()->create();
-    Channel::factory()->count(2)->create(['parent_id' => $channel->id]);
+describe(Channel::class, function (): void {
+    test('channel can have children', function (): void {
+        $channel = Channel::factory()->create();
+        Channel::factory()->count(2)
+            ->create(['parent_id' => $channel->id]);
 
-    expect($channel->items->count())->toEqual(2);
+        expect($channel->items->count())->toEqual(2);
+    });
+
+    test('child channel can be a parent', function (): void {
+        $channel = Channel::factory()->create();
+        $child = Channel::factory()->create(['parent_id' => $channel->id]);
+
+        Channel::factory()->create(['parent_id' => $child->id]);
+    })->throws(CannotAddChannelToChild::class);
 });
 
-test('child channel can be a parent', function (): void {
-    $channel = Channel::factory()->create();
-    $child = Channel::factory()->create(['parent_id' => $channel->id]);
-
-    Channel::factory()->create(['parent_id' => $child->id]);
-})->throws(CannotAddChannelToChild::class);

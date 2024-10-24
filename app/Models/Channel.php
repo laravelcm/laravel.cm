@@ -12,6 +12,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property-read int $id
+ * @property string $name
+ * @property string $slug
+ * @property string $color
+ * @property int | null $parent_id
+ */
 final class Channel extends Model
 {
     use HasFactory;

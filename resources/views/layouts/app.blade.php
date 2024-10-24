@@ -44,6 +44,7 @@
     {{-- @livewire('livewire-ui-spotlight') --}}
     @livewire('wire-elements-modal')
     @livewire(\Filament\Notifications\Livewire\Notifications::class)
+    @livewire(\Laravelcm\LivewireSlideOvers\SlideOverPanel::class)
 
     @filamentScripts
     @livewireScriptConfig

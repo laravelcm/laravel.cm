@@ -8,5 +8,7 @@ return [
     'edit' => 'Éditer',
     'approve' => 'Approuver',
     'delete' => 'Supprimer',
+    'cancel' => 'Annuler',
+    'save' => 'Enregistrer',
 
 ];

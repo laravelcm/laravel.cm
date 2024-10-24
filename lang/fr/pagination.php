@@ -17,5 +17,10 @@ return [
 
     'previous' => '&laquo; Précédent',
     'next' => 'Suivant &raquo;',
+    'go_to_page' => 'Aller à la page :page',
+    'results' => 'résultats',
+    'showing' => 'Affichage de',
+    'to' => 'à',
+    'of' => 'sur',
 
 ];

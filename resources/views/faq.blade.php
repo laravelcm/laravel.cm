@@ -68,7 +68,7 @@
                         </p>
                         <p>
                             Mais la communauté dispose aussi d'un groupe
-                            <a href="{{ route('telegram') }}">Telegram</a>
+                            <a href="https://t.me/laravelcameroun">Telegram</a>
                             et d'un groupe WhatsApp (limite par les règles de gestion de groupe de WhatsApp) qui sont
                             accessibles par tous.
                         </p>
@@ -264,7 +264,7 @@
                         </p>
                         <p>
                             Mais la communauté dispose aussi d'un groupe
-                            <a href="{{ route('telegram') }}">Telegram</a>
+                            <a href="https://t.me/laravelcameroun">Telegram</a>
                             et d'un groupe WhatsApp (limite par les règles de gestion de groupe de WhatsApp) qui sont
                             accessibles par tous.
                         </p>
@@ -487,7 +487,7 @@
                         </p>
                         <p>
                             Mais la communauté dispose aussi d'un groupe
-                            <a href="{{ route('telegram') }}">Telegram</a>
+                            <a href="https://t.me/laravelcameroun">Telegram</a>
                             et d'un groupe WhatsApp (limite par les règles de gestion de groupe de WhatsApp) qui sont
                             accessibles par tous.
                         </p>

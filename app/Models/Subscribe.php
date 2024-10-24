@@ -10,6 +10,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+/**
+ * @property string $uuid
+ * @property int $user_id
+ * @property int $subscribeable_id
+ * @property string $subscribeable_type
+ * @property User $user
+ */
 final class Subscribe extends Model
 {
     use HasFactory;
