@@ -67,6 +67,7 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
         'email_verified_at',
         'published_at',
         'opt_in',
+        'last_active_at'
     ];
 
     protected $hidden = [
@@ -80,6 +81,7 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
         'email_verified_at' => 'datetime',
         'last_login_at' => 'datetime',
         'settings' => 'array',
+        'last_active_at' => 'datetime',
     ];
 
     protected $appends = [
