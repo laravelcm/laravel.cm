@@ -43,6 +43,7 @@ use Spatie\Feed\FeedItem;
  * @property int | null $resolved_by
  * @property User | null $resolvedBy
  * @property User $user
+ * @property \Illuminate\Database\Eloquent\Collection | Channel[] $channels
  */
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
@@ -228,7 +229,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
             ->summary($this->body)
             ->updated($updatedAt)
             ->link(route('forum.show', $this->slug))
-            ->authorName($this->user->name); // @phpstan-ignore-line
+            ->authorName($this->user->name);
     }
 
     /**

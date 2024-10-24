@@ -54,5 +54,15 @@ return [
     'reset' => 'Réinitialiser',
     'answers' => 'réponses',
     'first_to_react' => 'Soyez le premier à réagir',
+    'rule_advise' => "Assurez-vous d'avoir lu nos règles avant de continuer.",
+    'read_rules' => 'Consulter les règles',
+    'error_title' => 'Erreur',
+    'error_description' => 'Il semble y avoir un problème en ce moment ! Veuillez réessayer plus tard.',
+    'forum_description' => 'Apprenez, découvrez, partagez dans le Forum.',
+    'podcasts_description' => "Des émissions radios pour dans le domaine du développement et de l'IT en général.",
+    'rules_description' => "Guide d'utilisation et paramétrage du site.",
+    'articles_description' => 'Les dernières nouveautés, informations sur le Blog.',
+    'popular_pages' => 'Pages Populaires',
+    'back_home' => "Ou retourner à l'accueil",
 
 ];

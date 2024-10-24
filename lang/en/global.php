@@ -54,5 +54,15 @@ return [
     'reset' => 'Reset',
     'answers' => 'answers',
     'first_to_react' => 'Be the first to react',
+    'rule_advise' => "Make sure you've read our rules before proceeding.",
+    'read_rules' => 'Learn about rules',
+    'error_title' => 'Error',
+    'error_description' => 'There seems to be a problem right now! Please try again later.',
+    'forum_description' => 'Learn, discover and share in the Forum.',
+    'podcasts_description' => 'Radio programs on development and IT in general.',
+    'rules_description' => 'User guide and site settings.',
+    'articles_description' => 'The latest news and information on the Blog.',
+    'popular_pages' => 'Popular pages',
+    'back_home' => 'Or return to homepage',
 
 ];

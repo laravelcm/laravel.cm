@@ -21,12 +21,7 @@ trait HasAuthor
         return $this->belongsTo(User::class);
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function isAuthoredBy(User $user): ?bool
+    public function isAuthoredBy(User $user): bool
     {
         return $this->user?->is($user);
     }

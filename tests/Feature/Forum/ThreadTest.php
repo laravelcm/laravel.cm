@@ -17,83 +17,95 @@ it('can find by slug', function (): void {
 });
 
 it('can give an excerpt of its body', function (): void {
+    /** @var Thread $thread */
     $thread = Thread::factory()->make(['body' => 'This is a pretty long text.']);
 
     expect($thread->excerpt(7))->toEqual('This is...');
 });
 
 test('html in excerpts is markdown converted', function (): void {
+    /** @var Thread $thread */
     $thread = Thread::factory()->make(['body' => '<p>Thread body</p>']);
 
     expect($thread->excerpt())->toEqual("Thread body\n");
 });
 
 it('can have many channels', function (): void {
-    $channels = Channel::factory()->count(3)->create();
+    /** @var Thread $thread */
     $thread = Thread::factory()->create();
+    $channels = Channel::factory()->count(3)->create();
+
     $thread->channels()->attach($channels->modelKeys());
 
     expect($thread->channels->count())->toEqual(3);
-})->skip();
+});
 
 it('records activity when a thread is created', function (): void {
-    $user = $this->createUser();
+    $user = $this->login();
 
-    $thread = Thread::factory()->create(['user_id' => $user->id]);
-
-    Activity::factory()->create([
-        'type' => 'created_thread',
-        'user_id' => $user->id,
-        'subject_id' => $thread->id,
-        'subject_type' => 'thread',
-    ]);
-
+    Thread::factory()->create(['user_id' => $user->id]);
     $activity = Activity::query()->first();
 
-    $this->assertEquals($activity->subject->id, $thread->id);
-
-    $this->assertEquals($user->activities->count(), 1);
-})->skip();
+    expect($activity->subject)
+        ->toBeInstanceOf(Thread::class)
+        ->and($activity->type)
+        ->toEqual('created_thread')
+        ->and($user->activities->count())
+        ->toEqual(1);
+});
 
 test('its conversation is old when the oldest reply was six months ago', function (): void {
+    /** @var Thread $thread */
     $thread = Thread::factory()->create();
     $thread->replies()->save(Reply::factory()->make(['created_at' => now()->subMonths(7)]));
 
     expect($thread->isConversationOld())->toBeTrue();
 
-    $thread = Thread::factory()->create();
-    $thread->replies()->save(Reply::factory()->make());
+    /** @var Thread $newThread */
+    $newThread = Thread::factory()->create();
+    $newThread->replies()->save(Reply::factory()->make());
 
-    expect($thread->isConversationOld())->toBeFalse();
+    expect($newThread->isConversationOld())->toBeFalse();
 });
 
 test('its conversation is old when there are no replies but the creation date was six months ago', function (): void {
+    /** @var Thread $thread */
     $thread = Thread::factory()->create(['created_at' => now()->subMonths(7)]);
 
     expect($thread->isConversationOld())->toBeTrue();
 
-    $thread = Thread::factory()->create();
+    /** @var Thread $anotherThread */
+    $anotherThread = Thread::factory()->create();
 
-    expect($thread->isConversationOld())->toBeFalse();
+    expect($anotherThread->isConversationOld())->toBeFalse();
 });
 
 test('we can mark and unmark a reply as the solution', function (): void {
-    $thread = Thread::factory()->create();
-    $reply = Reply::factory()->create(['replyable_id' => $thread->id]);
     $user = $this->createUser();
 
-    expect($thread->isSolutionReply($reply))->toBeFalse();
-    expect($thread->fresh()->wasResolvedBy($user))->toBeFalse();
+    /** @var Thread $thread */
+    $thread = Thread::factory()->create();
+    /** @var Reply $reply */
+    $reply = Reply::factory()->create(['replyable_id' => $thread->id]);
+
+    expect($thread->isSolutionReply($reply))
+        ->toBeFalse()
+        ->and($thread->fresh()?->wasResolvedBy($user))
+        ->toBeFalse();
 
     $thread->markSolution($reply, $user);
 
-    expect($thread->isSolutionReply($reply))->toBeTrue();
-    expect($thread->wasResolvedBy($user))->toBeTrue();
+    expect($thread->isSolutionReply($reply))
+        ->toBeTrue()
+        ->and($thread->wasResolvedBy($user))
+        ->toBeTrue();
 
     $thread->unmarkSolution();
 
-    expect($thread->isSolutionReply($reply))->toBeFalse();
-    expect($thread->fresh()->wasResolvedBy($user))->toBeFalse();
+    expect($thread->isSolutionReply($reply))
+        ->toBeFalse()
+        ->and($thread->fresh()?->wasResolvedBy($user))
+        ->toBeFalse();
 });
 
 it('can retrieve the latest threads in a correct order', function (): void {
@@ -110,12 +122,15 @@ it('can retrieve the latest threads in a correct order', function (): void {
 
 it('can retrieve only resolved threads', function (): void {
     createThreadFromToday();
+    /** @var Thread $resolvedThread */
     $resolvedThread = createResolvedThread();
 
-    $threads = Thread::resolved()->get();
+    $threads = Thread::query()->scopes('resolved')->get();
 
-    expect($threads)->toHaveCount(1);
-    expect($resolvedThread->is($threads->first()))->toBeTrue();
+    expect($threads)
+        ->toHaveCount(1)
+        ->and($resolvedThread->is($threads->first()))
+        ->toBeTrue();
 });
 
 it('can retrieve only active threads', function (): void {
@@ -124,8 +139,10 @@ it('can retrieve only active threads', function (): void {
 
     $threads = Thread::feedQuery()->active()->get();
 
-    expect($threads)->toHaveCount(1);
-    expect($activeThread->is($threads->first()))->toBeTrue();
+    expect($threads)
+        ->toHaveCount(1)
+        ->and($activeThread->is($threads->first()))
+        ->toBeTrue();
 });
 
 it('generates a slug when valid url characters provided', function (): void {
@@ -135,10 +152,10 @@ it('generates a slug when valid url characters provided', function (): void {
 });
 
 it('generates a unique slug when valid url characters provided', function (): void {
-    $threadOne = Thread::factory()->create(['slug' => 'Help with eloquent']);
-    $threadTwo = Thread::factory()->create(['slug' => 'Help with eloquent']);
+    Thread::factory()->create(['slug' => 'Help with eloquent']);
+    $thread = Thread::factory()->create(['slug' => 'Help with eloquent']);
 
-    expect($threadTwo->slug())->toEqual('help-with-eloquent-1');
+    expect($thread->slug())->toEqual('help-with-eloquent-1');
 });
 
 it('generates a slug when invalid url characters provided', function (): void {
