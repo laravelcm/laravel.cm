@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Models\Activity;
-use App\Models\Article;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Article;
+use App\Models\Activity;
+use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\TrackLastActiveAt;
 
 it('records activity when an article is created', function (): void {
     $user = $this->createUser();
@@ -39,3 +42,31 @@ it('get feed from any user', function (): void {
         Carbon::now()->subWeek()->format('Y-m-d')
     ));
 })->skip();
+
+it('updates the last activity for authenticated users', function () {
+    $user = User::factory()->create([
+        'last_active_at' => Carbon::now()->subMinutes(10),
+    ]);
+
+    $this->actingAs($user);
+
+    Route::middleware(TrackLastActiveAt::class)->get('/activity-user', function () {
+        return 'ok';
+    });
+
+    $this->get('/activity-user')->assertOk();
+
+    $user->refresh();
+
+    expect($user->last_active_at->greaterThan(Carbon::now()->subMinutes(1)))->toBeTrue();
+});
+
+it('does not update the last activity for unauthenticated users', function () {
+    Route::middleware(TrackLastActiveAt::class)->get('/activity-user', function () {
+        return 'ok';
+    });
+
+    $this->get('/activity-user')->assertOk();
+
+    $this->assertDatabaseMissing('users', ['last_active_at' => now()]);
+});
