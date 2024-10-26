@@ -91,3 +91,16 @@ if (! function_exists('route_to_reply_able')) {
             route('discussions.show', $replyAble->slug());
     }
 }
+
+if(! function_exists('getAvatar')) {
+	/**
+	 * @param $title
+	 * @param  bool  $rounded
+	 *
+	 * @return string
+	 */
+    function getAvatar($title,bool $rounded=false): string
+    {
+        return 'https://ui-avatars.com/api/?name=' . urlencode($title). '&background=random&bold=true&format=svg&size=512&rounded='.$rounded;
+    }
+}
