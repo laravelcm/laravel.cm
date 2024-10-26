@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\Livewire\Components\Slideovers;
 
 use App\Actions\Forum\SubscribeToThreadAction;
+use App\Events\ThreadWasCreated;
 use App\Exceptions\UnverifiedUserException;
+use App\Gamify\Points\ThreadCreated;
+use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Thread;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -14,6 +17,8 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
@@ -23,6 +28,7 @@ use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 final class ThreadForm extends SlideOverComponent implements HasForms
 {
     use InteractsWithForms;
+    use WithAuthenticatedUser;
 
     public ?Thread $thread = null;
 
@@ -30,10 +36,6 @@ final class ThreadForm extends SlideOverComponent implements HasForms
 
     public function mount(?int $threadId = null): void
     {
-        if (! Auth::check()) {
-            $this->redirect(route('login'), navigate: true);
-        }
-
         $this->thread = $threadId
             ? Thread::query()->findOrFail($threadId)
             : new Thread;
@@ -81,6 +83,15 @@ final class ThreadForm extends SlideOverComponent implements HasForms
                     ->label(__('validation.attributes.content'))
                     ->required()
                     ->minLength(20),
+                Forms\Components\Placeholder::make('')
+                    ->content(fn () => new HtmlString(Blade::render(<<<'Blade'
+                        <p class="-mt-2 text-sm leading-5 text-gray-500 dark:text-gray-400">
+                            {{ __('pages/forum.torchlight') }}
+                            <a href="https://torchlight.dev/docs/overview" target="_blank" class="font-medium text-primary-600 underline hover:text-primary-500">
+                                Torchlight
+                            </a>
+                        </p>
+                Blade))),
             ])
             ->statePath('data')
             ->model($this->thread);
@@ -109,6 +120,9 @@ final class ThreadForm extends SlideOverComponent implements HasForms
             $this->form->model($thread)->saveRelationships();
 
             app(SubscribeToThreadAction::class)->execute($thread);
+
+            givePoint(new ThreadCreated($thread));
+            event(new ThreadWasCreated($thread));
         }
 
         Notification::make()

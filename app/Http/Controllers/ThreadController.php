@@ -16,21 +16,6 @@ final class ThreadController extends Controller
         $this->middleware(['auth', 'verified'], ['only' => ['create', 'edit']]);
     }
 
-    public function index(Request $request): View
-    {
-        $filter = getFilter('sortBy', ['recent', 'resolved', 'unresolved']);
-        $threads = Thread::filter($request)
-            ->withviewscount()
-            ->orderByDesc('created_at')
-            ->paginate(10);
-
-        return view('forum.index', [
-            'channel' => null,
-            'threads' => $threads,
-            'filter' => $filter,
-        ]);
-    }
-
     public function channel(Request $request, Channel $channel): View
     {
         $filter = getFilter('sortBy', ['recent', 'resolved', 'unresolved']);
@@ -41,11 +26,6 @@ final class ThreadController extends Controller
             ->paginate(10);
 
         return view('forum.index', compact('channel', 'threads', 'filter'));
-    }
-
-    public function create(): View
-    {
-        return view('forum.create');
     }
 
     public function show(Thread $thread): View

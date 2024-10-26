@@ -24,7 +24,7 @@ final class Index extends Component
 
     public string $search = '';
 
-    public int $perPage = 10;
+    public int $perPage = 20;
 
     public function launchSearch(): void
     {

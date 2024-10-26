@@ -4,64 +4,51 @@ declare(strict_types=1);
 
 namespace App\Livewire\Forum;
 
-use App\Models\Subscribe as SubscribeModel;
+use App\Actions\Forum\SubscribeToThreadAction;
 use App\Models\Thread;
-use App\Policies\ThreadPolicy;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
-use Ramsey\Uuid\Uuid;
 
 final class Subscribe extends Component
 {
-    use AuthorizesRequests;
-
     public Thread $thread;
-
-    /**
-     * @var string[]
-     */
-    protected $listeners = ['refresh' => '$refresh'];
 
     public function subscribe(): void
     {
-        $this->authorize(ThreadPolicy::SUBSCRIBE, $this->thread);
+        $this->authorize('subscribe', $this->thread);
 
-        $subscribe = new SubscribeModel;
-        $subscribe->uuid = Uuid::uuid4()->toString();
-        $subscribe->user()->associate(Auth::user());
-        $this->thread->subscribes()->save($subscribe);
+        app(SubscribeToThreadAction::class)->execute($this->thread);
 
         Notification::make()
-            ->title(__('Abonnement'))
-            ->body(__('Vous êtes maintenant abonné à ce sujet.'))
+            ->title(__('Vous êtes maintenant abonné à ce sujet.'))
             ->success()
             ->duration(5000)
             ->send();
 
-        $this->dispatch('refresh')->self();
+        $this->dispatch('subscription.update')->self();
     }
 
     public function unsubscribe(): void
     {
-        $this->authorize(ThreadPolicy::UNSUBSCRIBE, $this->thread);
+        $this->authorize('unsubscribe', $this->thread);
 
         $this->thread->subscribes()
             ->where('user_id', Auth::id())
             ->delete();
 
         Notification::make()
-            ->title(__('Désabonnement'))
-            ->body(__('Vous vous êtes désabonné de ce sujet.'))
+            ->title(__('Vous vous êtes désabonné de ce sujet.'))
             ->success()
             ->duration(5000)
             ->send();
 
-        $this->dispatch('refresh')->self();
+        $this->dispatch('subscription.update')->self();
     }
 
+    #[On('subscription.update')]
     public function render(): View
     {
         return view('livewire.forum.subscribe');

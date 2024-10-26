@@ -41,7 +41,7 @@ final class CreateReply extends Component
 
     public function save(): void
     {
-        $this->authorize(ReplyPolicy::CREATE, Reply::class);
+        $this->authorize('create', Reply::class);
 
         $this->validate();
 

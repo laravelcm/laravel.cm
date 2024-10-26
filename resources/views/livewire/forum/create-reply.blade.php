@@ -1,36 +1,25 @@
-<div class="mt-8 border-t border-skin-base pt-5">
-    <h3 class="mb-6 font-sans text-lg font-medium text-gray-900 sm:text-xl">Laissez votre réponse</h3>
-
-    <livewire:markdown-x
-        :content="$body"
-        :autofocus="false"
-        key="create-reply"
-        :style="[
-        'textarea' => 'w-full h-full border border-skin-input focus:border-skin-base focus:outline-none p-4 rounded-b-lg',
-        'height' => 'h-[250px]',
-    ]"
-    />
-
-    @error('body')
-        <p class="mt-2 text-sm font-normal leading-5 text-red-500">{{ $message }}</p>
-    @enderror
-
-    <div class="mt-4 flex items-start justify-between gap-x-8 lg:items-center">
-        <p class="font-normal text-gray-500 dark:text-gray-400">
-            Assurez-vous d'avoir lu nos
-            <a href="{{ route('rules') }}" class="font-medium text-primary-600 hover:text-primary-600-hover">
-                règles de conduite
-            </a>
-            avant de répondre à ce thread.
-        </p>
-    </div>
-
-    <div class="mt-5">
-        <div class="flex justify-end">
-            <x-button type="button" class="inline-flex" wire:click="save">
-                <x-loader class="text-white" wire:loading wire:target="save" />
-                Enregistrer
-            </x-button>
+<div x-data="{ open: false }" class="mt-10 flex items-center justify-center lg:mt-16">
+    <div class="w-full max-w-3xl mx-auto">
+        <button type="button" class="relative bg-white rounded-xl px-6 py-5 ring-1 ring-gray-200/60 flex items-center w-full gap-5 hover:ring-gray-300 dark:bg-white/20 dark:bg-gray-800 dark:hover:bg-white/10 focus:outline transition duration-200 ease-in-out">
+            <x-user.avatar
+                :user="\Illuminate\Support\Facades\Auth::user()"
+                class="size-10 ring-4 ring-white dark:ring-white/20"
+                span="-right-1 size-3.5 -top-1"
+            />
+            <span class="text-sm leading-6 text-gray-500 dark:text-gray-400">
+                {{ __('Laissez votre réponse') }}
+            </span>
+        </button>
+        <div class="mt-5 text-center">
+            <p class="text-sm leading-5 text-gray-500 dark:text-gray-400">
+                Assurez-vous d'avoir lu nos
+                <x-link :href="route('rules')" class="font-medium text-primary-600 hover:text-primary-500">
+                    règles de conduite
+                </x-link>
+                avant de répondre à ce thread.
+            </p>
         </div>
     </div>
+
+    <div></div>
 </div>

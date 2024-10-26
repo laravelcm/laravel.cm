@@ -52,13 +52,13 @@
 
             <div class="flex items-center justify-end gap-x-5 gap-y-4">
                 @if ($hasCancelButton)
-                    <x-default-button type="button" class="inline-flex">Annuler</x-default-button>
+                    <x-buttons.default type="button" class="inline-flex">Annuler</x-buttons.default>
                 @endif
 
                 @if ($hasButton)
-                    <x-button type="{{ $buttonType }}">
+                    <x-buttons.primary type="{{ $buttonType }}">
                         {{ $buttonLabel }}
-                    </x-button>
+                    </x-buttons.primary>
                 @endif
             </div>
         </div>

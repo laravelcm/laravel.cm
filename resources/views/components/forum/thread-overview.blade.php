@@ -2,12 +2,19 @@
     'thread',
 ])
 
-<article class="rounded-xl cursor-pointer bg-white p-4 ring-1 ring-inset ring-gray-200/60 dark:bg-gray-800 dark:ring-white/10 lg:py-5 lg:px-6" aria-labelledby="{{ $thread->slug }}">
+<article class="rounded-xl cursor-pointer bg-white p-4 ring-1 ring-inset ring-gray-200/60 transition duration-200 ease-in-out dark:bg-gray-800 dark:ring-white/10 dark:hover:bg-white/10 lg:py-5 lg:px-6" aria-labelledby="{{ $thread->slug }}">
     @if (count($channels = $thread->channels->load('parent')))
-        <div class="hidden mb-2 lg:flex flex-wrap lg:gap-1.5">
+        <div class="flex mb-2 flex-wrap lg:gap-1.5">
             @foreach ($channels as $channel)
-                <x-link href="{{ route('forum.channels', $channel) }}" class="flex gap-2">
-                    <x-forum.channel :channel="$channel" class="text-xs" />
+                @php
+                    $color = $channel->parent_id ? $channel->parent->color : $channel->color;
+                @endphp
+                <x-link :href="route('forum.channels', $channel)" class="flex gap-2">
+                    <x-forum.channel
+                        :channel="$channel"
+                        class="text-xs is-channel is-{{ $channel->slug }}"
+                        style="--channel-color: {{ $color }}"
+                    />
                 </x-link>
             @endforeach
         </div>
@@ -22,9 +29,9 @@
         @if ($thread->isSolved())
             <x-link
                 :href="route('forum.show', $thread->slug). '#' .$thread->solution_reply_id"
-                class="inline-flex items-center rounded-xl gap-2 font-medium bg-green-50 ring-1 ring-green-200 text-green-700"
+                class="inline-flex items-center rounded-xl gap-1 px-2 py-0.5 font-medium bg-primary-50 ring-1 ring-primary-200 text-primary-700 dark:bg-primary-800/20 dark:text-primary-500 dark:ring-primary-800"
             >
-                <x-untitledui-check-verified class="size-5" stroke-width="1.5" aria-hidden="true" />
+                <x-untitledui-check-verified class="size-3.5 text-primary-600" stroke-width="1.5" aria-hidden="true" />
                 <span class="text-xs">{{ __('pages/forum.navigation.solve') }}</span>
             </x-link>
         @endif
@@ -42,24 +49,14 @@
                     {{ '@' . $thread->user->username }}
                 </span>
             </x-link>
-            <span aria-hidden="true">·</span>
-            <span class="text-sm text-gray-500 dark:text-gray-400">
-                <time-ago time="{{ $thread->created_at->getTimestamp() }}" />
+            <span class="flex items-center text-xs text-gray-500 flex-wrap gap-x-1 dark:text-gray-400">
+                <span>{{ __('global.ask') }}</span>
+                <time datetime="{{ $thread->created_at }}">
+                    {{ $thread->created_at->diffForHumans() }}
+                </time>
             </span>
         </div>
 
-        <div class="flex items-center gap-2">
-            <p class="inline-flex items-center gap-1 text-sm">
-                <x-untitledui-message-text-square-02 class="size-5 text-gray-400 dark:text-gray-500" stroke-width="1.5" aria-hidden="true" />
-                <span class="text-gray-500 dark:text-gray-400">{{ count($thread->replies) }}</span>
-                <span class="sr-only">{{ __('global.answers') }}</span>
-            </p>
-
-            <p class="inline-flex items-center gap-1 text-sm">
-                <x-untitledui-eye class="size-5 text-gray-400 dark:text-gray-500" stroke-width="1.5" aria-hidden="true" />
-                <span class="text-gray-500 dark:text-gray-400">{{ $thread->views_count }}</span>
-                <span class="sr-only">{{ __('global.views') }}</span>
-            </p>
-        </div>
+        <x-forum.thread-metadata :thread="$thread" />
     </div>
 </article>

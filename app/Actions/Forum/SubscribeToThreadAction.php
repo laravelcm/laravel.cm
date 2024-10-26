@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Actions\Forum;
 
-use App\Events\ThreadWasCreated;
-use App\Gamify\Points\ThreadCreated;
 use App\Models\Subscribe;
 use App\Models\Thread;
 use Illuminate\Support\Facades\Auth;
@@ -21,8 +19,5 @@ final class SubscribeToThreadAction
         $subscription->subscribeAble()->associate($thread);
 
         $thread->subscribes()->save($subscription);
-
-        givePoint(new ThreadCreated($thread));
-        event(new ThreadWasCreated($thread));
     }
 }

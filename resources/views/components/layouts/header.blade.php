@@ -12,11 +12,7 @@
                 </div>
             </div>
 
-            <div
-                x-data="{ open: false }"
-                @keydown.window.escape="open = false"
-                class="flex items-center gap-6"
-            >
+            <div x-data class="flex items-center gap-6">
                 @include('partials._search')
 
                 <!-- Large screen authenticate links -->

@@ -9,20 +9,19 @@ use App\Models\User;
 
 final class ReplyPolicy
 {
-    public const CREATE = 'create';
-
-    public const UPDATE = 'update';
-
-    public const DELETE = 'delete';
-
     public function create(User $user): bool
     {
         return $user->hasVerifiedEmail();
     }
 
-    public function update(User $user, Reply $reply): bool
+    public function manage(User $user, Reply $reply): bool
     {
         return $reply->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+    }
+
+    public function update(User $user, Reply $reply): bool
+    {
+        return $reply->isAuthoredBy($user) && $user->hasVerifiedEmail();
     }
 
     public function delete(User $user, Reply $reply): bool

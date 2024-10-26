@@ -23,6 +23,9 @@ return [
         'rules' => 'Code de conduite',
         'privacy' => 'Confidentialité',
         'terms' => 'Conditions d’utilisation',
+        'settings' => 'Paramètres',
+        'profile' => 'Mon profil',
+        'dashboard' => 'Tableau de bord',
     ],
     'footer' => [
         'title' => 'Pied de page',
@@ -35,6 +38,7 @@ return [
         'description' => 'Intégrez nos différentes plateformes de communication, recevez des tutoriels, articles et podcasts sur le design et la programmation web.',
     ],
     'ask' => 'a posé',
+    'posted' => 'a répondu',
     'posted_by' => 'Posté par',
     'members' => 'Membres',
     'developers' => 'Développeurs PHP & Laravel',
@@ -64,5 +68,13 @@ return [
     'articles_description' => 'Les dernières nouveautés, informations sur le Blog.',
     'popular_pages' => 'Pages Populaires',
     'back_home' => "Ou retourner à l'accueil",
+    'signed_as' => 'Connecté en tant que',
+    'view_more' => 'En savoir plus →',
+    'or' => 'ou',
+    'need' => 'Il faut',
+    'discord' => [
+        'title' => 'Rejoindre Discord',
+        'description' => 'Rejoignez le serveur Discord de la communauté et connectez-vous avec d\'autres développeurs.',
+    ],
 
 ];

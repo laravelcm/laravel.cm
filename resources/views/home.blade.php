@@ -27,7 +27,7 @@
                 </p>
                 <div class="mt-10 gap-4 sm:flex sm:items-center sm:justify-center">
                     @auth
-                        <x-buttons.primary :href="route('forum.new')" class="w-full sm:w-auto">
+                        <x-buttons.primary :href="route('forum.index')" class="w-full sm:w-auto">
                             {{ __('actions.new_thread') }}
                         </x-buttons.primary>
                     @else

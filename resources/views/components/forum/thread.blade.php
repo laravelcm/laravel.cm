@@ -2,7 +2,7 @@
     'thread',
 ])
 
-<div class="thread mt-5 rounded-md bg-skin-card p-3 shadow sm:p-4">
+{{--<div class="thread mt-5 rounded-md bg-skin-card p-3 shadow sm:p-4">
     @canany([App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE], $thread)
         <div class="mb-4 flex items-center justify-end">
             <div class="flex shrink-0 self-center">
@@ -115,16 +115,4 @@
             </div>
         </div>
     @endcanany
-
-    <div class="prose prose-base prose-green max-w-none text-gray-500 dark:text-gray-400">
-        <x-markdown-content :content="$thread->body" />
-    </div>
-    <div class="mt-6">
-        <livewire:reactions
-            wire:key="$thread->id"
-            :model="$thread"
-            :with-place-holder="false"
-            :with-background="false"
-        />
-    </div>
-</div>
+</div>--}}

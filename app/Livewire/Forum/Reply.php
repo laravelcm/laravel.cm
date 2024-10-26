@@ -11,14 +11,11 @@ use App\Policies\ReplyPolicy;
 use App\Policies\ThreadPolicy;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 final class Reply extends Component
 {
-    use AuthorizesRequests;
-
     public ReplyModel $reply;
 
     public Thread $thread;

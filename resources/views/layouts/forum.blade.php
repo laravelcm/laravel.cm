@@ -1,14 +1,18 @@
 <x-app-layout :title="$title ?? null">
+    @php
+        $isLogged = \Illuminate\Support\Facades\Auth::check();
+    @endphp
+
     <x-container class="py-12">
-        <div class="relative lg:grid lg:grid-cols-9 lg:gap-12">
-            <div class="lg:col-span-2 lg:block">
+        <div class="relative lg:grid lg:grid-cols-10 lg:gap-12">
+            <div class="hidden lg:col-span-2 lg:block">
                 <nav class="sticky top-10 space-y-6">
                     @isset($buttons)
                         {{ $buttons }}
                     @endisset
 
                     <div class="space-y-2">
-                        <x-nav.forum-link icon="untitledui-file-02">
+                        <x-nav.forum-link :href="route('forum.index')" icon="untitledui-file-02">
                             {{ __('pages/forum.navigation.threads') }}
                         </x-nav.forum-link>
                         <x-nav.forum-link icon="untitledui-git-branch">
@@ -39,9 +43,22 @@
                 </nav>
             </div>
 
-            <div class="mt-6 sm:mt-0 lg:col-span-7">
+            <div @class([
+                'mt-6 sm:mt-0',
+                'lg:col-span-8' => $isLogged,
+                'lg:col-span-6' => ! $isLogged,
+            ])>
                 {{ $slot }}
             </div>
+
+            @guest
+                <aside class="hidden lg:block lg:col-span-2">
+                    <x-sticky-content class="space-y-10">
+                        <x-ads />
+                        <x-discord />
+                    </x-sticky-content>
+                </aside>
+            @endguest
         </div>
     </x-container>
 </x-app-layout>

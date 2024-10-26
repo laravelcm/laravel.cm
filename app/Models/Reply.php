@@ -19,6 +19,12 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
+/**
+ * @property-read int $id
+ * @property string $body
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ */
 final class Reply extends Model implements ReactableInterface, ReplyInterface
 {
     use HasAuthor;
@@ -53,7 +59,7 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface
 
     public function wasJustPublished(): bool
     {
-        return $this->created_at->gt(Carbon::now()->subMinute()); // @phpstan-ignore-line
+        return $this->created_at->gt(Carbon::now()->subMinute());
     }
 
     public function excerpt(int $limit = 100): string
