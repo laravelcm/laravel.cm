@@ -28,7 +28,7 @@ final class ArticlesController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        views($article)->record();
+        views($article)->cooldown(now()->addHours(2))->record();
 
         /** @var Article $article */
         $article = Cache::remember('post-'.$article->id, now()->addHour(), fn () => $article);

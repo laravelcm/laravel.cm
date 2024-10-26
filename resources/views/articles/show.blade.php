@@ -8,6 +8,7 @@
         $next = $article->nextArticle();
         $previous = $article->previousArticle();
         $user = $article->user;
+        
     @endphp
 
     <article class="relative lg:grid lg:grid-cols-9 lg:gap-10" xmlns:livewire="http://www.w3.org/1999/html">
