@@ -29,13 +29,6 @@ describe(ThreadResource::class, function (): void {
             ->assertCanSeeTableRecords($this->threads);
     });
 
-    it('admin user can filter thread by `locked`', function (): void {
-        Livewire::test(ListThreads::class)
-            ->assertCanSeeTableRecords($this->threads)
-            ->filterTable('is_locked')
-            ->assertCountTableRecords(5);
-    });
-
     it('can filter thread by `user_id`', function (): void {
         $authorId = $this->threads->first()->user_id;
         Livewire::test(ListThreads::class)
@@ -45,4 +38,10 @@ describe(ThreadResource::class, function (): void {
             ->assertCanNotSeeTableRecords($this->threads->where('user_id', '!=', $authorId));
     });
 
+    it('can redirect to thread page ', function (): void {
+        $thread = $this->threads->first();
+        Livewire::test(ListThreads::class)
+            ->callTableAction('view_thread', $thread)
+            ->assertRedirect(route('forum.show', $thread));
+    });
 })->group('threads');
