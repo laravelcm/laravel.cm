@@ -69,7 +69,7 @@
                             <div>
                                 <h2 class="text-xs leading-5 font-medium tracking-wide uppercase text-skin-base">Article suivant</h2>
                                 <a href="{{ route('articles.show', $next) }}" class="mt-3 flex items-start space-x-2">
-                                    <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $next->getFirstMediaUrl('media') }}" alt="{{ $next->slug }}">
+                                    <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $next->getFirstMediaUrl('media') }}" alt="{{ $next->slug }}" onerror="this.onerror=null;this.src='{{ asset('images/socialcard.png') }}'">
                                     <span class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2">{{ $next->title }}</span>
                                 </a>
                             </div>
@@ -79,7 +79,7 @@
                             <div>
                                 <h2 class="text-xs leading-5 font-medium tracking-wide uppercase text-skin-base">Article précédent</h2>
                                 <a href="{{ route('articles.show', $previous) }}" class="mt-3 flex items-start space-x-2">
-                                    <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $previous->getFirstMediaUrl('media') }}" alt="{{ $previous->slug }}">
+                                    <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $previous->getFirstMediaUrl('media') }}" alt="{{ $previous->slug }}" onerror="this.onerror=null;this.src='{{ asset('images/socialcard.png') }}'">
                                     <span class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2">{{ $previous->title }}</span>
                                 </a>
                             </div>
@@ -229,7 +229,7 @@
                             </a>
                             @if($article->isNotApproved())
                                 @hasanyrole('admin|moderator')
-                                    <button onclick="Livewire.emit('openModal', 'modals.approved-article', {{ json_encode([$article->id]) }})" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-skin-base bg-skin-card text-sm font-medium text-green-500 hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:border-green-500 focus:ring-offset-body">
+                                    <button onclick="Livewire.emit('openModal', 'modals.approved-article', {{ json_encode([$article->id]) }})" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-skin-base bg-skin-card text-sm font-medium text-green-500 hover:bg-skin-card-muted focus:z-10 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 focus:ring-offset-body">
                                         <span class="sr-only">{{ __('Approuver') }}</span>
                                         <x-untitledui-check-verified-02 class="h-5 w-5" />
                                     </button>
@@ -251,7 +251,7 @@
                             <div>
                                 <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">{{ __('Article suivant') }}</h2>
                                 <div class="mt-3 flex items-start space-x-2">
-                                    <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $next->getFirstMediaUrl('media') ?? asset('images/socialcard.png') }}" alt="{{ $next->slug }}" onerror="this.onerror=null;this.src='{{ getAvatar($next->title) }}'">
+                                    <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $next->getFirstMediaUrl('media') ?? asset('images/socialcard.png') }}" alt="{{ $next->slug }}" onerror="this.onerror=null;this.src='{{ asset('images/socialcard.png') }}'">
                                     <div class="flex flex-col space-y-1">
                                         <a class="text-base font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2" href="{{ route('articles.show', $next) }}">{{ $next->title }}</a>
                                         <span class="text-sm text-skin-muted">{{ __(':time min de lecture', ['time' => $next->readTime()]) }}</span>
@@ -264,7 +264,7 @@
                             <div>
                                 <h2 class="text-xs leading-5 tracking-wide uppercase text-skin-base">{{ __('Article précédent') }}</h2>
                                 <div class="mt-3 flex items-start space-x-2">
-                                    <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $previous->getFirstMediaUrl('media') ?? asset('images/socialcard.png') }}" alt="{{ $previous->slug }}" onerror="this.onerror=null;this.src='{{ getAvatar($previous->title) }}'">
+                                    <img class="h-10 w-10 object-cover shadow-lg rounded-md" src="{{ $previous->getFirstMediaUrl('media') ?? asset('images/socialcard.png') }}" alt="{{ $previous->slug }}" onerror="this.onerror=null; this.src='{{ asset('images/socialcard.png') }}'">
                                     <div class="flex flex-col space-y-1">
                                         <a class="text-base font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2" href="{{ route('articles.show', $previous) }}">{{ $previous->title }}</a>
                                         <span class="text-sm text-skin-muted">{{ __(':time min de lecture', ['time' => $previous->readTime()]) }}</span>

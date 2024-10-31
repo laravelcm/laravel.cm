@@ -12,7 +12,7 @@
 >
     <a href="{{ route('articles.show', $article) }}" class="group">
         <div class="aspect-w-3 aspect-h-2">
-            <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}" onerror="this.onerror=null;this.src='{{ getAvatar($article->title) }}'"  />
+            <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}" onerror="this.onerror=null;this.src='{{ asset('images/socialcard.png') }}'"  />
         </div>
     </a>
     <div

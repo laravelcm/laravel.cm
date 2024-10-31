@@ -5,7 +5,7 @@
         <div class="aspect-w-3 aspect-h-2">
             <img class="object-cover shadow-lg rounded-lg group-hover:opacity-75"
                  src="{{ $article->getFirstMediaUrl('media') }}"
-                 alt="{{ $article->title }}"
+                 alt="{{ $article->title }}" onerror="this.src='{{ asset('images/socialcard.png') }}'"
             />
         </div>
     </a>

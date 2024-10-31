@@ -22,7 +22,7 @@
                             {{ __('Enregistrer') }}
                         </button>
                         <span x-data="{ open: false }" @keydown.escape.stop="open = false;" @click.away="open = false" class="-ml-px relative block">
-                            <button type="button" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-transparent text-sm font-medium text-white text-white bg-green-600 hover:bg-green-700 focus:z-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500"
+                            <button type="button" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-transparent text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:z-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-body focus:ring-green-500"
                                     id="option-menu-button"
                                     x-ref="button"
                                     @click="open = !open"
@@ -253,7 +253,7 @@
                 wire:model="title"
                 name="title"
                 id="title"
-                class="block w-full h-auto px-0 py-4 text-3xl sm:text-4xl font-bold placeholder-skin-input focus:placeholder-skin-input-focus font-normal text-skin-inverted bg-transparent border-0 leading-normal border-0 appearance-none focus:ring-0 shadow-none"
+                class="block w-full h-auto px-0 py-4 text-3xl sm:text-4xl font-bold placeholder-skin-input focus:placeholder-skin-input-focus font-normal text-skin-inverted bg-transparent leading-normal border-0 appearance-none focus:ring-0 shadow-none"
                 placeholder="Titre de votre article..."
                 autofocus
                 autocomplete="off"
