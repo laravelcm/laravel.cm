@@ -37,17 +37,17 @@ Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderC
 // Articles
 Route::prefix('articles')->group(function (): void {
     Route::get('/', [ArticlesController::class, 'index'])->name('articles');
-    Route::get('/new', [ArticlesController::class, 'create'])->name('articles.new');
+    Route::get('/new', [ArticlesController::class, 'create'])->name('articles.new')->middleware(['auth','verified']);
     Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
-    Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
+    Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit')->middleware(['auth','verified']);
 });
 
 // Discussions
 Route::prefix('discussions')->as('discussions.')->group(function (): void {
     Route::get('/', [DiscussionController::class, 'index'])->name('index');
-    Route::get('/new', [DiscussionController::class, 'create'])->name('new');
+    Route::get('/new', [DiscussionController::class, 'create'])->name('new')->middleware(['auth','verified']);
     Route::get('/{discussion}', [DiscussionController::class, 'show'])->name('show');
-    Route::get('/{discussion}/edit', [DiscussionController::class, 'edit'])->name('edit');
+    Route::get('/{discussion}/edit', [DiscussionController::class, 'edit'])->name('edit')->middleware(['auth','verified']);
 });
 
 // Forum
@@ -55,9 +55,9 @@ Route::prefix('forum')->as('forum.')->group(function (): void {
     Route::redirect('/channels', '/forum');
     Route::get('/', [ThreadController::class, 'index'])->name('index');
     Route::get('/channels/{channel}', [ThreadController::class, 'channel'])->name('channels');
-    Route::get('/new-thread', [ThreadController::class, 'create'])->name('new');
+    Route::get('/new-thread', [ThreadController::class, 'create'])->name('new')->middleware(['auth','verified']);
     Route::get('/{thread}', [ThreadController::class, 'show'])->name('show');
-    Route::get('/{thread}/edit', [ThreadController::class, 'edit'])->name('edit');
+    Route::get('/{thread}/edit', [ThreadController::class, 'edit'])->name('edit')->middleware(['auth','verified']);
 });
 
 // Replies
