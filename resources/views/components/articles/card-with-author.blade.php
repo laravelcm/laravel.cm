@@ -24,7 +24,7 @@
             {!! $article->excerpt(175) !!}
         </p>
         <div class="relative h-96 overflow-hidden">
-            <img class="w-full h-full object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}" />
+            <img class="w-full h-full object-cover shadow-lg rounded-lg group-hover:opacity-75" src="{{ $article->getFirstMediaUrl('media') }}" alt="{{ $article->title }}">
         </div>
         <div class="flex justify-between space-x-8">
             <div class="flex space-x-6">

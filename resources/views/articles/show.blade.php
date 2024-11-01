@@ -69,7 +69,7 @@
                             <div>
                                 <h2 class="text-xs leading-5 font-medium tracking-wide uppercase text-skin-base">Article suivant</h2>
                                 <a href="{{ route('articles.show', $next) }}" class="mt-3 flex items-start space-x-2">
-                                    <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $next->getFirstMediaUrl('media') }}" alt="{{ $next->slug }}">
+                                    <img class="h-8 w-8 object-cover shadow-lg rounded-md" src="{{ $next->getFirstMediaUrl('media') }}" alt="{{ $next->slug }}" onerror="this.onerror=null;this.src='{{ asset('images/socialcard.png') }}'">
                                     <span class="text-sm font-medium leading-4 text-skin-inverted hover:text-skin-primary-hover line-clamp-2">{{ $next->title }}</span>
                                 </a>
                             </div>

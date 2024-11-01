@@ -51,7 +51,7 @@ final class AddComment extends Component
             ->duration(5000)
             ->send();
 
-        $this->reset();
+        $this->reset('body');
     }
 
     public function render(): View
