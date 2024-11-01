@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Tests\Feature\Filament;
 
 use App\Filament\Resources\ThreadResource;
-use App\Filament\Resources\ThreadResource\Pages\ListThreads;
-use App\Models\Channel;
 use App\Models\Thread;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Livewire\Livewire;
