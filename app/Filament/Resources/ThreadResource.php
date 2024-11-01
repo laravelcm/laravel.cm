@@ -51,17 +51,16 @@ final class ThreadResource extends Resource
                     ->label('Auteur'),
             ])
             ->filters([
-                SelectFilter::make('Auteur')->relationship('user', 'name')->searchable()->preload(),
+                SelectFilter::make('Channels')->relationship('channels', 'name')->searchable()->preload(),
             ])
             ->actions([
                 ActionGroup::make([
-                    Action::make('view_thread')
+                    Action::make('view')
                         ->label('Voir le thread')
                         ->icon('heroicon-o-eye')
                         ->color('success')
-                        ->action(function ($record): void {
-                            redirect()->route('forum.show', $record);
-                        }),
+                        ->url(fn (Thread $record): string => route('forum.show', $record))
+                        ->openUrlInNewTab(),
                     Tables\Actions\DeleteAction::make(),
                 ]),
             ])
