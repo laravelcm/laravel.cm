@@ -32,7 +32,7 @@
                 <p class="mt-1 text-xs text-skin-muted">
                     {{ __('PNG, JPG, GIF up to 1MB') }}
                 </p>
-                <input @focus="focused = true" @blur="focused = false" class="sr-only" type="file" accept="image/jpg, image/jpeg, image/png" {{ $attributes }} />
+                <input @focus="focused = true" @blur="focused = false" class="sr-only" type="file" {{ $attributes }} />
             </div>
             <div class="w-full h-full hidden flex items-center justify-center" wire:loading.class.remove="hidden" wire:target="file">
                 <x-loader wire:loading wire:target="file" class="text-green-600" />
