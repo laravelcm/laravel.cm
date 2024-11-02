@@ -8,6 +8,9 @@ use App\Models\Thread;
 use App\Models\User;
 use QCod\Gamify\PointType;
 
+/**
+ * @method Thread getSubject()
+ */
 final class ThreadCreated extends PointType
 {
     public int $points = 55;
@@ -19,7 +22,6 @@ final class ThreadCreated extends PointType
 
     public function payee(): User
     {
-        // @phpstan-ignore-next-line
         return $this->getSubject()->user;
     }
 }

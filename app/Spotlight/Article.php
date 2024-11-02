@@ -31,14 +31,14 @@ final class Article extends SpotlightCommand
 
     public function searchArticle(string $query): Collection
     {
-        return ArticleModel::published()
-            ->with('user')
+        return ArticleModel::with('user')
+            ->scopes('published')
             ->where('title', 'like', "%{$query}%")
             ->get()
             ->map(fn (ArticleModel $article) => new SpotlightSearchResult(
                 $article->slug(),
                 $article->title,
-                sprintf('par @%s', $article->user?->username)
+                sprintf('par @%s', $article->user->username)
             ));
     }
 

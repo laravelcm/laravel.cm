@@ -35,5 +35,8 @@ return [
     'torchlight' => 'For code formatting (syntax color, language, etc.) we use',
     'old_thread' => 'The last reply to this topic was more than six months ago. Consider opening a new topic if you have a similar question.',
     'best_answer' => 'Best answer',
+    'mark_answer' => 'Mark as solution',
+    'report_spam' => 'Report spam',
+    'max_thread_length' => '100 characters maximum',
 
 ];

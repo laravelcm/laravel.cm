@@ -111,6 +111,14 @@ export default {
             },
           },
         },
+        'heading-off': {
+          css: {
+            'h1, h2, h3, h4, h5': {
+              margin: '10px 0',
+              fontSize: theme('fontSize.base')
+            },
+          },
+        },
       })
     },
   },

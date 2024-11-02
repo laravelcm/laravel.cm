@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Livewire\Forum;
 
+use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Gamify\Points\BestReply;
 use App\Models\Reply as ReplyModel;
 use App\Models\Thread;
-use App\Policies\ReplyPolicy;
-use App\Policies\ThreadPolicy;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 final class Reply extends Component
@@ -20,44 +20,13 @@ final class Reply extends Component
 
     public Thread $thread;
 
-    public string $body = '';
-
-    public bool $isUpdating = false;
-
-    /**
-     * @var string[]
-     */
-    protected $listeners = [
-        'refresh' => '$refresh',
-        'editor:update' => 'onEditorUpdate',
-    ];
-
-    /**
-     * @var string[]
-     */
-    protected $rules = [
-        'body' => 'required',
-    ];
-
-    public function mount(ReplyModel $reply, Thread $thread): void
-    {
-        $this->thread = $thread;
-        $this->reply = $reply;
-        $this->body = $reply->body;
-    }
-
-    public function onEditorUpdate(string $body): void
-    {
-        $this->body = $body;
-    }
-
     public function edit(): void
     {
-        $this->authorize(ReplyPolicy::UPDATE, $this->reply);
+        $this->authorize('update', $this->reply);
 
         $this->validate();
 
-        $this->reply->update(['body' => $this->body]);
+        // $this->reply->update(['body' => $this->body]);
 
         Notification::make()
             ->title(__('Réponse modifiée'))
@@ -66,32 +35,15 @@ final class Reply extends Component
             ->duration(5000)
             ->send();
 
-        $this->isUpdating = false;
-
-        $this->dispatch('refresh')->self();
+        $this->dispatch('reply.updated');
     }
 
-    public function UnMarkAsSolution(): void
-    {
-        $this->authorize(ThreadPolicy::UPDATE, $this->thread);
-
-        undoPoint(new BestReply($this->reply));
-
-        $this->thread->unmarkSolution();
-
-        $this->dispatch('refresh')->self();
-
-        Notification::make()
-            ->title(__('Réponse rejetée'))
-            ->body(__('Vous avez retiré cette réponse comme solution pour ce sujet.'))
-            ->success()
-            ->duration(5000)
-            ->send();
-    }
-
+    /**
+     * @throws CouldNotMarkReplyAsSolution
+     */
     public function markAsSolution(): void
     {
-        $this->authorize(ThreadPolicy::UPDATE, $this->thread);
+        $this->authorize('manage', $this->thread);
 
         if ($this->thread->isSolved()) {
             undoPoint(new BestReply($this->thread->solutionReply));
@@ -101,16 +53,16 @@ final class Reply extends Component
 
         givePoint(new BestReply($this->reply));
 
-        $this->dispatch('refresh')->self();
-
         Notification::make()
-            ->title(__('Réponse acceptée'))
-            ->body(__('Vous avez accepté cette solution pour ce sujet.'))
+            ->title(__('notifications.thread.best_reply'))
             ->success()
             ->duration(5000)
             ->send();
+
+        $this->dispatch('thread.save.{$thread->id}');
     }
 
+    #[On('reply.updated')]
     public function render(): View
     {
         return view('livewire.forum.reply');

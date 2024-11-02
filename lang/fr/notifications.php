@@ -12,6 +12,7 @@ return [
         'created' => 'Votre sujet à été crée.',
         'updated' => 'Votre sujet à été modifié.',
         'deleted' => 'Le sujet a été supprimé.',
+        'best_reply' => 'Vous avez accepté cette solution comme meilleure réponse pour ce sujet.',
     ],
 
     'exceptions' => [

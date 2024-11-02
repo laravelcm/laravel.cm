@@ -22,8 +22,12 @@ use Illuminate\Support\Str;
 /**
  * @property-read int $id
  * @property string $body
+ * @property int $user_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property User $user
+ * @property int $replyable_id
+ * @property string $replyable_type
  */
 final class Reply extends Model implements ReactableInterface, ReplyInterface
 {

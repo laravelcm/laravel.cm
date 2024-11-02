@@ -19,7 +19,7 @@ final class Reactions extends Component
 
     public bool $withBackground = true;
 
-    public string $direction = 'right';
+    public string $direction = 'horizontal';
 
     public function userReacted(string $reaction): void
     {

@@ -42,7 +42,7 @@ final class Sujet extends SpotlightCommand
             ->map(fn (Thread $thread) => new SpotlightSearchResult(
                 $thread->slug(),
                 $thread->title,
-                sprintf('par @%s', $thread->user?->username)
+                sprintf('par @%s', $thread->user->username)
             ));
     }
 

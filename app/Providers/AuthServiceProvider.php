@@ -15,7 +15,6 @@ use App\Policies\ReplyPolicy;
 use App\Policies\ThreadPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Notifications\DatabaseNotification as Notification;
-use Illuminate\Support\Facades\Gate;
 
 final class AuthServiceProvider extends ServiceProvider
 {
@@ -35,7 +34,5 @@ final class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
-
-        Gate::before(fn ($user) => $user->hasRole('admin') ? true : null);
     }
 }

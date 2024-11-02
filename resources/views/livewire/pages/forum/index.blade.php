@@ -14,6 +14,7 @@
 
     <div class="flex items-center justify-between gap-6">
         <livewire:components.channels-selector />
+
         <x-filament::input.wrapper class="relative max-w-60 w-full">
             <span class="pointer-events-none absolute top-2.5 left-0 pl-2.5">
                 <x-untitledui-search-md class="size-4 text-gray-400 dark:text-gray-500" aria-hidden="true" />
@@ -33,7 +34,7 @@
     <div class="mt-6 lg:mb-12">
         <div class="space-y-6">
             @foreach ($threads as $thread)
-                <x-forum.thread-overview :thread="$thread" />
+                <x-forum.thread :thread="$thread" />
             @endforeach
         </div>
 

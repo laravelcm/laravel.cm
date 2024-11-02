@@ -1,40 +1,60 @@
-<div class="relative inline-flex items-center" x-data="{ showReactions: false }">
+<div @class([
+    'relative inline-flex items-center',
+    'justify-center' => $direction === 'vertical',
+]) x-data="{ showReactions: false }">
     @php
-        $buttonClasses = 'inline-flex items-center justify-center size-6 rounded-full bg-white hover:bg-gray-100 dark:bg-gray-900 dark:hover:bg-white/10 focus:outline-none';
+        $buttonClasses = 'inline-flex items-center justify-center size-6 rounded-full focus:outline-none';
     @endphp
 
     @if ($model->getReactionsSummary()->isEmpty())
         <button
             @click="showReactions = ! showReactions"
-            class="inline-flex items-center gap-2 text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
+            class="group inline-flex items-center gap-2 text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
         >
             @if ($withPlaceHolder)
                 {{ __('global.first_to_react') }}
             @endif
 
-            <x-untitledui-face-smile class="size-4" stroke-width="1.5" aria-hidden="true" />
+            <x-untitledui-heart
+                class="size-5 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300"
+                stroke-width="1.5"
+                aria-hidden="true"
+            />
         </button>
     @else
         <button
             @click="showReactions = ! showReactions"
             @class([
-                'relative flex items-center h-8 cursor-pointer items-center justify-between',
+                'group relative flex items-center h-8 cursor-pointer items-center justify-between',
                 'rounded-lg bg-white px-3 py-2 shadow hover:bg-gray-50' => $withBackground,
             ])
         >
-            <div class="flex items-center justify-center space-x-2">
-                @foreach ($model->getReactionsSummary() as $reaction)
-                    <img
-                        class="size-4"
-                        src="{{ asset("/images/reactions/{$reaction->name}.svg") }}"
-                        alt="{{ $reaction->name }} emoji"
+            @if($direction === 'vertical')
+                <div class="flex flex-col items-center justify-center gap-y-1">
+                    <x-untitledui-heart
+                        class="size-5 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300"
+                        stroke-width="1.5"
+                        aria-hidden="true"
                     />
-                @endforeach
+                    <span class="text-xs text-gray-500 dark:text-gray-400">
+                        {{ $model->getReactionsSummary()->sum('count') }}
+                    </span>
+                </div>
+            @else
+                <div class="flex items-center justify-center space-x-2">
+                    @foreach ($model->getReactionsSummary() as $reaction)
+                        <img
+                            class="size-4"
+                            src="{{ asset("/images/reactions/{$reaction->name}.svg") }}"
+                            alt="{{ $reaction->name }} emoji"
+                        />
+                    @endforeach
 
-                <span class="ml-3 text-sm font-medium text-green-500">
-                    {{ $model->getReactionsSummary()->sum('count') }}
-                </span>
-            </div>
+                    <span class="ml-3 text-sm font-medium text-green-500">
+                        {{ $model->getReactionsSummary()->sum('count') }}
+                    </span>
+                </div>
+            @endif
         </button>
     @endif
 

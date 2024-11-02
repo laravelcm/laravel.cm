@@ -1,9 +1,9 @@
 @php($ads = Illuminate\Support\Arr::random(config('lcm.ads')))
 
 <div id="laravelcm-ads">
-    <a href="{{ $ads['url'] }}" class="block rounded-lg overflow-hidden ring-1 ring-gray-100 shadow dark:ring-white/20">
+    <a href="{{ $ads['url'] }}" target="_blank" class="block aspect-[2/1] rounded-lg overflow-hidden ring-1 ring-gray-200/50 shadow dark:ring-white/20">
         <img
-            class="aspect-[3/2] object-cover"
+            class="size-full object-cover"
             src="{{ asset("/images/ads/{$ads['image']}.png") }}"
             alt="{{ $ads['alt'] }}"
         />
@@ -14,6 +14,7 @@
     <div class="mt-2">
         <a
             href="{{ $ads['url'] }}"
+            target="_blank"
             class="text-sm font-medium text-primary-600 hover:text-primary-600-hover hover:underline"
         >
             {{ __('global.view_more') }}

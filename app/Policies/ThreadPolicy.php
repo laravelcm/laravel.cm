@@ -9,13 +9,10 @@ use App\Models\User;
 
 final class ThreadPolicy
 {
-    public const UPDATE = 'update';
-
-    public const DELETE = 'delete';
-
-    public const SUBSCRIBE = 'subscribe';
-
-    public const UNSUBSCRIBE = 'unsubscribe';
+    public function manage(User $user, Thread $thread): bool
+    {
+        return $thread->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+    }
 
     public function update(User $user, Thread $thread): bool
     {

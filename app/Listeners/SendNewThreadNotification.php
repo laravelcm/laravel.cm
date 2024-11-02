@@ -13,6 +13,6 @@ final class SendNewThreadNotification
     {
         $thread = $event->thread;
 
-        $thread->user->notify(new PostThreadToSlack($thread)); // @phpstan-ignore-line
+        $thread->user->notify(new PostThreadToSlack($thread));
     }
 }

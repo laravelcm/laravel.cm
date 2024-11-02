@@ -37,7 +37,7 @@ final class Discussion extends SpotlightCommand
             ->map(fn (DiscussionModel $discussion) => new SpotlightSearchResult(
                 $discussion->slug(),
                 $discussion->title,
-                sprintf('par @%s', $discussion->user?->username)
+                sprintf('par @%s', $discussion->user->username)
             ));
     }
 

@@ -12,10 +12,11 @@ return [
         'created' => 'Thread was successfully created.',
         'updated' => 'Thread was successfully updated.',
         'deleted' => 'Thread was successfully deleted.',
+        'best_reply' => 'You have accepted this solution as the best answer for this thread.',
     ],
 
     'exceptions' => [
-        'unverified_user' => "Vous n'êtes pas autorisé à effectuer cette. Votre e-mail n'est pas vérifiée",
+        'unverified_user' => 'You are not authorized to do this. Your e-mail is not verified',
     ],
 
 ];

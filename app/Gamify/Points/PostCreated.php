@@ -8,6 +8,9 @@ use App\Models\Article;
 use App\Models\User;
 use QCod\Gamify\PointType;
 
+/**
+ * @method Article getSubject()
+ */
 final class PostCreated extends PointType
 {
     public int $points = 50;
@@ -19,7 +22,6 @@ final class PostCreated extends PointType
 
     public function payee(): User
     {
-        // @phpstan-ignore-next-line
         return $this->getSubject()->user;
     }
 }

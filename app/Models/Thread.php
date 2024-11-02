@@ -38,8 +38,11 @@ use Spatie\Feed\FeedItem;
  * @property string $slug
  * @property string $body
  * @property int $user_id
+ * @property int $solution_reply_id
  * @property bool $locked
  * @property Carbon | null $last_posted_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property int | null $resolved_by
  * @property User | null $resolvedBy
  * @property User $user
@@ -69,10 +72,6 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     protected $casts = [
         'locked' => 'boolean',
         'last_posted_at' => 'datetime',
-    ];
-
-    protected $with = [
-        'channels',
     ];
 
     protected bool $removeViewsOnDelete = true;

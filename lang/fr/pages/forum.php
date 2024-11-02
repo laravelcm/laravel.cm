@@ -35,5 +35,8 @@ return [
     'torchlight' => 'Pour le formatage du code (couleur syntaxique, langage, etc) nous utilisons',
     'old_thread' => 'La dernière réponse à ce sujet remonte à plus de six mois. Pensez à ouvrir un nouveau sujet si vous avez une question similaire.',
     'best_answer' => 'Meilleure réponse',
+    'mark_answer' => 'Marquer comme réponse',
+    'report_spam' => 'Signaler un spam',
+    'max_thread_length' => 'Maximum de 100 caractères.',
 
 ];

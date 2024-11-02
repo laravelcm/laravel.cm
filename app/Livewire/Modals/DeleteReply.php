@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Livewire\Modals;
 
 use App\Models\Reply;
-use App\Policies\ReplyPolicy;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LivewireUI\Modal\ModalComponent;
@@ -20,15 +19,15 @@ final class DeleteReply extends ModalComponent
 
     public function mount(int $id, string $slug): void
     {
-        $this->reply = Reply::find($id);
+        $this->reply = Reply::query()->find($id);
         $this->slug = $slug;
     }
 
     public function delete(): void
     {
-        $this->authorize(ReplyPolicy::DELETE, $this->reply);
+        $this->authorize('delete', $this->reply);
 
-        $this->reply->delete(); // @phpstan-ignore-line
+        $this->reply?->delete();
 
         session()->flash('status', __('La réponse a ete supprimée avec succès.'));
 

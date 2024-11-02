@@ -24,12 +24,7 @@ final class Index extends Component
 
     public string $search = '';
 
-    public int $perPage = 20;
-
-    public function launchSearch(): void
-    {
-        //
-    }
+    public int $perPage = 30;
 
     #[On('channelUpdated')]
     public function reloadThreads(?int $channelId): void
@@ -40,12 +35,13 @@ final class Index extends Component
             $this->currentChannel = null;
         }
 
+        $this->resetPage();
         $this->dispatch('render');
     }
 
     public function render(): View
     {
-        $query = Thread::query()
+        $query = Thread::with('channels')
             ->orderByDesc('created_at');
 
         if ($this->currentChannel?->id) {

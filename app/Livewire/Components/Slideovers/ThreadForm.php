@@ -40,7 +40,10 @@ final class ThreadForm extends SlideOverComponent implements HasForms
             ? Thread::query()->findOrFail($threadId)
             : new Thread;
 
-        $this->form->fill(array_merge($this->thread->toArray(), ['user_id' => Auth::id()]));
+        $this->form->fill(array_merge(
+            $this->thread->toArray(),
+            ['user_id' => $this->thread->user_id ?? Auth::id()]
+        ));
     }
 
     public static function panelMaxWidth(): string
@@ -55,21 +58,21 @@ final class ThreadForm extends SlideOverComponent implements HasForms
                 Forms\Components\Hidden::make('user_id'),
                 Forms\Components\TextInput::make('title')
                     ->label(__('validation.attributes.title'))
-                    ->helperText(__('Maximum de 75 caractères.'))
+                    ->helperText(__('pages/forum.max_thread_length'))
                     ->required()
                     ->live(onBlur: true)
                     ->afterStateUpdated(function (string $operation, $state, Forms\Set $set): void {
                         $set('slug', Str::slug($state));
                     })
-                    ->maxLength(75),
+                    ->maxLength(100),
                 Forms\Components\Hidden::make('slug'),
                 Forms\Components\Select::make('channels')
-                    ->relationship(name: 'channels', titleAttribute: 'name')
+                    ->multiple()
+                    ->relationship(titleAttribute: 'name')
                     ->searchable()
                     ->required()
                     ->minItems(1)
-                    ->maxItems(3)
-                    ->multiple(),
+                    ->maxItems(3),
                 Forms\Components\MarkdownEditor::make('body')
                     ->fileAttachmentsDisk('public')
                     ->toolbarButtons([
@@ -134,11 +137,9 @@ final class ThreadForm extends SlideOverComponent implements HasForms
             ->success()
             ->send();
 
-        $this->dispatch('thread.save');
+        $this->dispatch('thread.save.{$thread->id}');
 
-        $this->closePanel();
-
-        $this->form->fill();
+        $this->redirect(route('forum.show', ['thread' => $thread ?? $this->thread]), navigate: true);
     }
 
     public function render(): View

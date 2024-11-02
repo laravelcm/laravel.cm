@@ -27,16 +27,4 @@ final class ThreadController extends Controller
 
         return view('forum.index', compact('channel', 'threads', 'filter'));
     }
-
-    public function show(Thread $thread): View
-    {
-        views($thread)->record();
-
-        return view('forum.thread', compact('thread'));
-    }
-
-    public function edit(Thread $thread): View
-    {
-        return view('forum.edit', compact('thread'));
-    }
 }
