@@ -2,20 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\Fortify;
+namespace App\Actions\Breeze;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
-final class UpdateUserProfileInformation implements UpdatesUserProfileInformation
+final class UpdateBreezeUserProfileInformation
 {
     public function update(User $user, array $input): void
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-
             'email' => [
                 'required',
                 'string',

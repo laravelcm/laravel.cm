@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\Fortify;
+namespace App\Actions\Breeze;
 
 use Illuminate\Validation\Rules;
 

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\Fortify;
+namespace App\Actions\Breeze;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use App\Actions\Breeze\PasswordValidationRules;
 
-final class CreateNewUser implements CreatesNewUsers
+final class CreateNewUser
 {
     use PasswordValidationRules;
 
@@ -37,7 +37,6 @@ final class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        /** @var User $user */
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],

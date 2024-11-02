@@ -22,7 +22,6 @@
     "jenssegers/agent": "^2.6.4",
     "laravel-notification-channels/telegram": "^4.0",
     "laravel-notification-channels/twitter": "^8.0",
-    "laravel/fortify": "^1.17.4",
     "laravel/framework": "^10.0",
     "laravel/sanctum": "^3.2.5",
     "laravel/slack-notification-channel": "^2.5",
@@ -53,6 +52,7 @@
   },
   "require-dev": {
     "fakerphp/faker": "^1.23.0",
+    "laravel/breeze": "^1.29",
     "laravel/pint": "^1.10.3",
     "laravel/sail": "^1.23.0",
     "mockery/mockery": "^1.6.2",
