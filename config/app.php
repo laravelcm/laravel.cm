@@ -167,7 +167,6 @@ return [
         /*
          * Package Service Providers...
          */
-        App\Providers\FortifyServiceProvider::class,
         App\Providers\Filament\AdminPanelProvider::class,
         LaravelFeature\Provider\FeatureServiceProvider::class,
 
