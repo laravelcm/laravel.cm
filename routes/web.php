@@ -2,19 +2,20 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\ArticlesController;
-use App\Http\Controllers\DiscussionController;
-use App\Http\Controllers\FileUploadController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\NotchPayCallBackController;
-use App\Http\Controllers\OAuthController;
-use App\Http\Controllers\ReplyAbleController;
-use App\Http\Controllers\SlackController;
-use App\Http\Controllers\SponsoringController;
-use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OAuthController;
+use App\Http\Controllers\SlackController;
+use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\ReplyAbleController;
+use App\Http\Controllers\DiscussionController;
+use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\SponsoringController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\NotchPayCallBackController;
 
 Route::get('/', HomeController::class)->name('home');
 
@@ -75,7 +76,7 @@ Route::prefix('settings')->as('user.')->middleware('auth')->group(function (): v
     Route::view('/customization', 'user.settings.customization')->name('customization')->middleware('verified');
     Route::view('/notifications', 'user.settings.notifications')->name('notifications')->middleware('verified');
     Route::get('/password', [User\SettingController::class, 'password'])->name('password')->middleware('verified');
-    Route::put('/password', [User\SettingController::class, 'updatePassword'])->name('password.update');
+    Route::put('/password', [PasswordController::class, 'update'])->name('password.update');
 });
 
 // User
