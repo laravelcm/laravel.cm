@@ -23,22 +23,13 @@ class RegisteredUserController extends Controller
         $this->createNewUser = $createNewUser;
     }
 
-    /**
-     * Display the registration view.
-     */
     public function create(): View
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request): RedirectResponse
     {
-        // Utiliser CreateNewUser pour créer l'utilisateur
         $user = $this->createNewUser->create($request->only(['name', 'email', 'username', 'password']));
 
         event(new Registered($user));
