@@ -46,7 +46,7 @@ use Spatie\Feed\FeedItem;
  * @property int | null $resolved_by
  * @property User | null $resolvedBy
  * @property User $user
- * @property Reply $solutionReply
+ * @property Reply | null $solutionReply
  * @property \Illuminate\Database\Eloquent\Collection | Channel[] $channels
  */
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
@@ -94,7 +94,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     public function getPathUrl(): string
     {
-        return '/forum/'.$this->slug();
+        return route('forum.show', $this->slug());
     }
 
     public function excerpt(int $limit = 200): string

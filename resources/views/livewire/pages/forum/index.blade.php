@@ -13,7 +13,7 @@
     </x-slot:buttons>
 
     <div class="flex items-center justify-between gap-6">
-        <livewire:components.channels-selector />
+        <livewire:components.channels-selector :slug="$channel" />
 
         <x-filament::input.wrapper class="relative max-w-60 w-full">
             <span class="pointer-events-none absolute top-2.5 left-0 pl-2.5">

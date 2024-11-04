@@ -11,11 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * @property-read int $id
  * @property string $name
  * @property string $slug
+ * @property array $description
  * @property string $color
  * @property int | null $parent_id
  */
@@ -23,17 +25,17 @@ final class Channel extends Model
 {
     use HasFactory;
     use HasSlug;
+    use HasTranslations;
 
     protected $fillable = [
         'name',
         'slug',
+        'description',
         'parent_id',
         'color',
     ];
 
-    protected $withCount = [
-        'threads',
-    ];
+    public array $translatable = ['description'];
 
     protected static function boot(): void
     {

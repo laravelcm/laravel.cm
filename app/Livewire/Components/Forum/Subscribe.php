@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire\Forum;
+namespace App\Livewire\Components\Forum;
 
 use App\Actions\Forum\SubscribeToThreadAction;
 use App\Models\Thread;
@@ -23,7 +23,7 @@ final class Subscribe extends Component
         app(SubscribeToThreadAction::class)->execute($this->thread);
 
         Notification::make()
-            ->title(__('Vous êtes maintenant abonné à ce sujet.'))
+            ->title(__('notifications.thread.subscribe'))
             ->success()
             ->duration(5000)
             ->send();
@@ -40,7 +40,7 @@ final class Subscribe extends Component
             ->delete();
 
         Notification::make()
-            ->title(__('Vous vous êtes désabonné de ce sujet.'))
+            ->title(__('notifications.thread.unsubscribe'))
             ->success()
             ->duration(5000)
             ->send();
@@ -51,6 +51,6 @@ final class Subscribe extends Component
     #[On('subscription.update')]
     public function render(): View
     {
-        return view('livewire.forum.subscribe');
+        return view('livewire.components.forum.subscribe');
     }
 }

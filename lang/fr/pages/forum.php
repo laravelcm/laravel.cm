@@ -39,5 +39,6 @@ return [
     'report_spam' => 'Signaler un spam',
     'max_thread_length' => 'Maximum de 100 caractères.',
     'answer_reply' => 'Répondre au sujet',
+    'threads_count' => ':count messages',
 
 ];

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Livewire\Forum\ReplyForm;
+use App\Livewire\Components\Forum\ReplyForm;
 use App\Livewire\Pages\Forum\DetailThread;
 use App\Models\Thread;
 use Livewire\Livewire;

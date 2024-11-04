@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire\Forum;
+namespace App\Livewire\Components\Forum;
 
 use App\Actions\Forum\CreateReplyAction;
 use App\Models\Reply;
@@ -116,6 +116,6 @@ final class ReplyForm extends Component implements HasForms
 
     public function render(): View
     {
-        return view('livewire.forum.reply-form');
+        return view('livewire.components.forum.reply-form');
     }
 }

@@ -15,28 +15,63 @@
                         <x-nav.forum-link :href="route('forum.index')" icon="untitledui-file-02">
                             {{ __('pages/forum.navigation.threads') }}
                         </x-nav.forum-link>
-                        <x-nav.forum-link icon="untitledui-git-branch">
+                        <x-nav.forum-link
+                            :href="route('forum.channels')"
+                            :active="request()->routeIs('forum.channels')"
+                            icon="untitledui-git-branch"
+                        >
                             {{ __('pages/forum.navigation.channels') }}
                         </x-nav.forum-link>
-                        <x-nav.forum-link icon="untitledui-user-left">
-                            {{ __('pages/forum.navigation.me') }}
-                        </x-nav.forum-link>
-                        <x-nav.forum-link icon="untitledui-bell-ringing-03">
-                            {{ __('pages/forum.navigation.following') }}
-                        </x-nav.forum-link>
-                        <x-nav.forum-link icon="untitledui-heart">
+                        @auth
+                            <x-nav.forum-link
+                                :href="route('forum.index') . '?me=true'"
+                                :active="request()->getUri() === route('forum.index') . '?me=true'"
+                                icon="untitledui-user-left"
+                            >
+                                {{ __('pages/forum.navigation.me') }}
+                            </x-nav.forum-link>
+                            <x-nav.forum-link
+                                :href="route('forum.index') . '?follow=true'"
+                                :active="request()->getUri() === route('forum.index') . '?follow=true'"
+                                icon="untitledui-bell-ringing-03"
+                            >
+                                {{ __('pages/forum.navigation.following') }}
+                            </x-nav.forum-link>
+                        @endauth
+                        <x-nav.forum-link
+                            :href="route('forum.index') . '?popular=true'"
+                            :active="request()->getUri() === route('forum.index') . '?popular=true'"
+                            icon="untitledui-heart"
+                            class="hidden"
+                        >
                             {{ __('pages/forum.navigation.popular') }}
                         </x-nav.forum-link>
-                        <x-nav.forum-link icon="untitledui-check-verified">
+                        <x-nav.forum-link
+                            :href="route('forum.index') . '?solved=yes'"
+                            :active="request()->getUri() === route('forum.index') . '?solved=yes'"
+                            icon="untitledui-check-verified"
+                        >
                             {{ __('pages/forum.navigation.solve') }}
                         </x-nav.forum-link>
-                        <x-nav.forum-link icon="untitledui-help-circle">
+                        <x-nav.forum-link
+                            :href="route('forum.index') . '?solved=no'"
+                            :active="request()->getUri() === route('forum.index') . '?solved=no'"
+                            icon="untitledui-help-circle"
+                        >
                             {{ __('pages/forum.navigation.unresolved') }}
                         </x-nav.forum-link>
-                        <x-nav.forum-link icon="untitledui-message-x-square">
+                        <x-nav.forum-link
+                            :href="route('forum.index') . '?no-replies=true'"
+                            :active="request()->getUri() === route('forum.index') . '?no-replies'"
+                            icon="untitledui-message-x-square"
+                        >
                             {{ __('pages/forum.navigation.no_reply') }}
                         </x-nav.forum-link>
-                        <x-nav.forum-link icon="untitledui-trophy-02">
+                        <x-nav.forum-link
+                            :active="request()->routeIs('forum.leaderboard')"
+                            icon="untitledui-trophy-02"
+                            class="hidden"
+                        >
                             {{ __('pages/forum.navigation.leaderboard') }}
                         </x-nav.forum-link>
                     </div>

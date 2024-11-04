@@ -7,6 +7,7 @@ namespace App\Console\Commands;
 use App\Gamify\Points\BestReply;
 use App\Models\Thread;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 
 final class UpdateUserBestRepliesPoints extends Command
 {
@@ -18,10 +19,11 @@ final class UpdateUserBestRepliesPoints extends Command
     {
         $this->info('Updating users bests replies reputations...');
 
-        $resolvedThread = Thread::resolved()->with('solutionReply')->get();
+        /** @var Collection | Thread[] $resolvedThread */
+        $resolvedThread = Thread::with('solutionReply')->scopes('resolved')->get();
 
         foreach ($resolvedThread as $thread) {
-            givePoint(new BestReply($thread->solutionReply));
+            givePoint(new BestReply($thread->solutionReply)); // @phpstan-ignore-line
         }
 
         $this->info('All done!');

@@ -2,7 +2,7 @@
     'thread',
 ])
 
-<article class="rounded-xl cursor-pointer bg-white p-4 ring-1 ring-inset ring-gray-200/60 transition duration-200 ease-in-out dark:bg-gray-800 dark:ring-white/10 dark:hover:bg-white/10 lg:py-5 lg:px-6" aria-labelledby="{{ $thread->slug }}">
+<article class="rounded-xl cursor-pointer bg-white p-4 ring-1 ring-inset ring-gray-200/60 transition duration-200 ease-in-out dark:bg-gray-800 dark:ring-gray-800 dark:hover:bg-white/10 lg:py-5 lg:px-6" aria-labelledby="{{ $thread->slug }}">
     <x-forum.thread-channels :thread="$thread" />
 
     <div class="flex items-center gap-4">

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire\Forum;
+namespace App\Livewire\Components\Forum;
 
 use App\Gamify\Points\BestReply;
 use App\Models\Reply as ReplyModel;
@@ -83,6 +83,6 @@ final class Reply extends Component implements HasActions, HasForms
     #[On('reply.save.{reply.id}')]
     public function render(): View
     {
-        return view('livewire.forum.reply');
+        return view('livewire.components.forum.reply');
     }
 }

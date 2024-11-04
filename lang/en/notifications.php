@@ -13,6 +13,8 @@ return [
         'updated' => 'Thread was successfully updated.',
         'deleted' => 'Thread was successfully deleted.',
         'best_reply' => 'You have accepted this solution as the best answer for this thread.',
+        'subscribe' => 'You are now subscribed to this thread.',
+        'unsubscribe' => 'You have unsubscribed from this thread.',
     ],
 
     'exceptions' => [

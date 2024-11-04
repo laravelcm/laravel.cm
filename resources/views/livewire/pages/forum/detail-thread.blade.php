@@ -10,7 +10,7 @@
             </x-buttons.primary>
 
             @auth
-                <livewire:forum.subscribe :thread="$thread" />
+                <livewire:components.forum.subscribe :thread="$thread" />
             @endauth
         </div>
     </x-slot:buttons>
@@ -90,7 +90,7 @@
 
                 @if ($thread->replies->isNotEmpty())
                     @foreach ($thread->replies as $reply)
-                        <livewire:forum.reply wire:key="$reply->id" :thread="$thread" :reply="$reply" />
+                        <livewire:components.forum.reply wire:key="$reply->id" :thread="$thread" :reply="$reply" />
                     @endforeach
                 @endif
             </div>
@@ -114,7 +114,7 @@
                     </p>
                 </x-info-panel>
             @else
-                <livewire:forum.reply-form :thread="$thread" />
+                <livewire:components.forum.reply-form :thread="$thread" />
             @endif
         @else
             @guest
