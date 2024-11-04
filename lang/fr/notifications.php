@@ -19,4 +19,9 @@ return [
         'unverified_user' => "Vous n'êtes pas autorisé à effectuer cette. Votre e-mail n'est pas vérifiée",
     ],
 
+    'reply' => [
+        'created' => 'Réponse ajoutée avec succès!',
+        'updated' => 'Réponse modifiée avec succès.',
+    ],
+
 ];

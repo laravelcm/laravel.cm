@@ -9,5 +9,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Forum\Index::class)->name('index');
 Route::get('/channels/{channel}', [ThreadController::class, 'channel'])->name('channels');
 Route::get('/{thread}', Forum\DetailThread::class)->name('show');
-
-Route::get('/{thread}/edit', [ThreadController::class, 'edit'])->name('edit');

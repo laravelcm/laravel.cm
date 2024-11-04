@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Livewire\Forum\ReplyForm;
 use App\Livewire\Pages\Forum\DetailThread;
 use App\Models\Thread;
 use Livewire\Livewire;
@@ -33,4 +34,30 @@ it('user cannot delete a thread of another user', function (): void {
 
     Livewire::test(DetailThread::class, ['thread' => $thread])
         ->assertActionHidden('delete');
+});
+
+it('can view the reply form when logged', function (): void {
+    $this->login();
+
+    $thread = Thread::factory()->create();
+
+    Livewire::test(DetailThread::class, ['thread' => $thread])
+        ->assertSee(__('pages/forum.answer_reply'));
+
+    Livewire::test(ReplyForm::class, ['thread' => $thread])
+        ->assertSuccessful();
+});
+
+it('user can reply to thread', function (): void {
+    $user = $this->login();
+    $thread = Thread::factory()->create();
+
+    Livewire::test(ReplyForm::class, ['thread' => $thread])
+        ->set('body', 'This is a reply body')
+        ->call('createReply');
+
+    expect($thread->replies->count())
+        ->toBe(1)
+        ->and($thread->replies->first()->user->id)
+        ->toBe($user->id);
 });

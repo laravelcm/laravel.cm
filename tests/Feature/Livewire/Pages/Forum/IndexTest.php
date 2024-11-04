@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Livewire\Components\Slideovers\ThreadForm;
 use App\Livewire\Pages\Forum\Index;
 use App\Models\Thread;
 use Livewire\Livewire;

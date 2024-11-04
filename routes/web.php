@@ -12,7 +12,6 @@ use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\SlackController;
 use App\Http\Controllers\SponsoringController;
 use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
 

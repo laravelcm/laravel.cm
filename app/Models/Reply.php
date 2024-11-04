@@ -85,7 +85,9 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface
 
     public function allChildReplies(): MorphMany
     {
-        return $this->replies()->with('allChildReplies')->where('replyable_type', 'reply');
+        return $this->replies()
+            ->with('allChildReplies')
+            ->where('replyable_type', 'reply');
     }
 
     /**

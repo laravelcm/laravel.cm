@@ -2,7 +2,7 @@
     $isSolution = $thread->isSolutionReply($reply);
 @endphp
 
-<div class="relative pb-8" id="reply-{{ $reply->id }}">
+<div x-data class="relative pb-8" id="reply-{{ $reply->id }}">
     <span class="hidden absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-100 dark:bg-white/20 lg:block" aria-hidden="true"></span>
     <div class="relative flex items-start gap-6">
         <div class="hidden sticky top-10 lg:block">
@@ -48,39 +48,21 @@
                 @endif
             </div>
             <x-markdown-content
-                class="mt-5 prose prose-sm prose-green !prose-heading-off max-w-none space-y-3 text-gray-500 dark:text-gray-400"
+                class="mt-5 prose prose-green !prose-heading-off max-w-none space-y-3 text-gray-500 dark:text-gray-400 dark:prose-invert"
                 :content="$reply->body"
             />
             <div class="mt-4 flex items-center justify-between">
                 @if(! $thread->isSolutionReply($reply))
                     @can('manage', $reply)
-                        <x-filament::dropdown class="inline-flex" placement="top-start">
-                            <x-slot name="trigger" class="-mx-2">
-                                <button type="button" class="inline-flex items-center rounded-lg px-2 py-1.5 text-gray-400 dark:text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-900 focus:outline-none">
-                                    <x-untitledui-dots-horizontal class="size-5" aria-hidden="true" />
-                                </button>
-                            </x-slot>
-
-                            <x-filament::dropdown.list>
-                                @can('update', $reply)
-                                    <x-filament::dropdown.list.item wire:click="openEditModal">
-                                        {{ __('actions.edit') }}
-                                    </x-filament::dropdown.list.item>
-                                @endcan
-
-                                @can('manage', $thread)
-                                    <x-filament::dropdown.list.item color="success" wire:click="markAsSolution">
-                                        {{ __('pages/forum.mark_answer') }}
-                                    </x-filament::dropdown.list.item>
-                                @endcan
-
-                                @can('delete', $reply)
-                                    <x-filament::dropdown.list.item color="danger" wire:click="openDeleteModal">
-                                        {{ __('actions.delete') }}
-                                    </x-filament::dropdown.list.item>
-                                @endcan
-                            </x-filament::dropdown.list>
-                        </x-filament::dropdown>
+                        <x-filament-actions::group
+                            icon="untitledui-dots-horizontal"
+                            color="gray"
+                            :actions="[
+                                $this->editAction,
+                                $this->solutionAction,
+                                $this->deleteAction,
+                            ]"
+                        />
                     @endcan
                 @endif
                 <div class="opacity-0 group-hover:opacity-100">
@@ -91,4 +73,8 @@
             </div>
         </div>
     </div>
+
+    <template x-teleport="body">
+        <x-filament-actions::modals />
+    </template>
 </div>

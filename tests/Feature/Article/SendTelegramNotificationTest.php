@@ -18,7 +18,7 @@ test('Send notification on telegram after submission on article', function (): v
 
     $file = UploadedFile::fake()->image('article.png');
 
-    $article = Livewire::actingAs($this->user)->test(Create::class)
+    $article = Livewire::test(Create::class)
         ->set('title', 'Test Article')
         ->set('slug', 'test-article')
         ->set('body', 'This is a test article')

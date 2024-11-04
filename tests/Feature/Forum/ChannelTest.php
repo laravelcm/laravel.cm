@@ -21,4 +21,3 @@ describe(Channel::class, function (): void {
         Channel::factory()->create(['parent_id' => $child->id]);
     })->throws(CannotAddChannelToChild::class);
 });
-

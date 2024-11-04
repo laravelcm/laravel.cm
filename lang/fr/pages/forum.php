@@ -38,5 +38,6 @@ return [
     'mark_answer' => 'Marquer comme réponse',
     'report_spam' => 'Signaler un spam',
     'max_thread_length' => 'Maximum de 100 caractères.',
+    'answer_reply' => 'Répondre au sujet',
 
 ];

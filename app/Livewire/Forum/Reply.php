@@ -4,65 +4,83 @@ declare(strict_types=1);
 
 namespace App\Livewire\Forum;
 
-use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Gamify\Points\BestReply;
 use App\Models\Reply as ReplyModel;
 use App\Models\Thread;
+use Filament\Actions\Action;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-final class Reply extends Component
+final class Reply extends Component implements HasActions, HasForms
 {
+    use InteractsWithActions;
+    use InteractsWithForms;
+
     public ReplyModel $reply;
 
     public Thread $thread;
 
-    public function edit(): void
+    public function editAction(): Action
     {
-        $this->authorize('update', $this->reply);
-
-        $this->validate();
-
-        // $this->reply->update(['body' => $this->body]);
-
-        Notification::make()
-            ->title(__('Réponse modifiée'))
-            ->body(__('Vous avez modifié cette solution avec succès.'))
-            ->success()
-            ->duration(5000)
-            ->send();
-
-        $this->dispatch('reply.updated');
+        return Action::make('edit')
+            ->label(__('actions.edit'))
+            ->color('gray')
+            ->authorize('update', $this->reply)
+            ->action(
+                fn () => $this->dispatch(
+                    'replyForm',
+                    replyId: $this->reply->id
+                )->to(ReplyForm::class)
+            );
     }
 
-    /**
-     * @throws CouldNotMarkReplyAsSolution
-     */
-    public function markAsSolution(): void
+    public function deleteAction(): Action
     {
-        $this->authorize('manage', $this->thread);
+        return Action::make('delete')
+            ->label(__('actions.delete'))
+            ->color('danger')
+            ->authorize('delete', $this->reply)
+            ->requiresConfirmation()
+            ->action(function (): void {
+                $this->reply->delete();
 
-        if ($this->thread->isSolved()) {
-            undoPoint(new BestReply($this->thread->solutionReply));
-        }
-
-        $this->thread->markSolution($this->reply, Auth::user()); // @phpstan-ignore-line
-
-        givePoint(new BestReply($this->reply));
-
-        Notification::make()
-            ->title(__('notifications.thread.best_reply'))
-            ->success()
-            ->duration(5000)
-            ->send();
-
-        $this->dispatch('thread.save.{$thread->id}');
+                $this->redirectRoute('forum.show', $this->thread, navigate: true);
+            });
     }
 
-    #[On('reply.updated')]
+    public function solutionAction(): Action
+    {
+        return Action::make('solution')
+            ->label(__('pages/forum.mark_answer'))
+            ->color('success')
+            ->authorize('manage', $this->thread)
+            ->action(function (): void {
+                if ($this->thread->isSolved()) {
+                    undoPoint(new BestReply($this->thread->solutionReply));
+                }
+
+                $this->thread->markSolution($this->reply, Auth::user()); // @phpstan-ignore-line
+
+                givePoint(new BestReply($this->reply));
+
+                Notification::make()
+                    ->title(__('notifications.thread.best_reply'))
+                    ->success()
+                    ->duration(5000)
+                    ->send();
+
+                $this->redirect(route('forum.show', $this->thread).$this->reply->getPathUrl(), navigate: true);
+            });
+    }
+
+    #[On('reply.save.{reply.id}')]
     public function render(): View
     {
         return view('livewire.forum.reply');

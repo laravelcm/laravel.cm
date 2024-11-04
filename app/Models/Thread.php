@@ -46,6 +46,7 @@ use Spatie\Feed\FeedItem;
  * @property int | null $resolved_by
  * @property User | null $resolvedBy
  * @property User $user
+ * @property Reply $solutionReply
  * @property \Illuminate\Database\Eloquent\Collection | Channel[] $channels
  */
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable

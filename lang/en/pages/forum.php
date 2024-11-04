@@ -38,5 +38,6 @@ return [
     'mark_answer' => 'Mark as solution',
     'report_spam' => 'Report spam',
     'max_thread_length' => '100 characters maximum',
+    'answer_reply' => 'Answer to',
 
 ];

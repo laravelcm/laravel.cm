@@ -19,4 +19,9 @@ return [
         'unverified_user' => 'You are not authorized to do this. Your e-mail is not verified',
     ],
 
+    'reply' => [
+        'created' => 'Answer successfully added.',
+        'updated' => 'Successfully updated answer.',
+    ],
+
 ];

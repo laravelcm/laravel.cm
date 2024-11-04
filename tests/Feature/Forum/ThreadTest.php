@@ -6,9 +6,6 @@ use App\Models\Activity;
 use App\Models\Channel;
 use App\Models\Reply;
 use App\Models\Thread;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Support\Collection;
 
 it('can find by slug', function (): void {
     Thread::factory()->create(['slug' => 'foo']);
@@ -25,7 +22,7 @@ it('can give an excerpt of its body', function (): void {
 
 test('html in excerpts is markdown converted', function (): void {
     /** @var Thread $thread */
-    $thread = Thread::factory()->make(['body' => '<p>Thread body</p>']);
+    $thread = Thread::factory()->make(['body' => 'Thread body']);
 
     expect($thread->excerpt())->toEqual("Thread body\n");
 });

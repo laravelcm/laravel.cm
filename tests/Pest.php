@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
 uses(Tests\TestCase::class, RefreshDatabase::class)
     ->in('Feature');
 
-function createThreadFromToday(int $count = 1): Thread | Collection
+function createThreadFromToday(int $count = 1): Thread|Collection
 {
     $today = Carbon::now();
 

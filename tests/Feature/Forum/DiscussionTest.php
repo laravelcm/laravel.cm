@@ -35,21 +35,14 @@ it('can have many tags', function (): void {
 it('records activity when a discussion is created', function (): void {
     $user = $this->login();
 
-    $discussion = Discussion::factory()->create(['user_id' => $user->id]);
-
-    Activity::factory()->create([
-        'type' => 'created_discussion',
-        'user_id' => $user->id,
-        'subject_id' => $discussion->id,
-        'subject_type' => 'discussion',
-    ]);
+    $discussion = Discussion::factory(['user_id' => $user->id])->create();
 
     $activity = Activity::query()->first();
 
     $this->assertEquals($activity->subject->id, $discussion->id);
 
     $this->assertEquals($user->activities->count(), 1);
-})->skip();
+});
 
 it('generates a slug when valid url characters provided', function (): void {
     $discussion = Discussion::factory()->make(['slug' => 'Help with eloquent']);
