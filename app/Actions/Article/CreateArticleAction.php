@@ -9,14 +9,13 @@ use App\Gamify\Points\ArticleCreated;
 use App\Models\Article;
 use App\Notifications\PostArticleToTelegram;
 use Carbon\Carbon;
-use DateTimeInterface;
 use Illuminate\Support\Facades\Auth;
 
 final class CreateArticleAction
 {
     public function execute(CreateArticleData $articleData): Article
     {
-        if ($articleData->publishedAt && ! ($articleData->publishedAt instanceof DateTimeInterface)) {
+        if ($articleData->publishedAt) {
             $articleData->publishedAt = new Carbon(
                 time: $articleData->publishedAt,
                 tz: config('app.timezone')
@@ -41,12 +40,14 @@ final class CreateArticleAction
         }
 
         if ($articleData->file) {
-            $article->addMedia($articleData->file->getRealPath())->toMediaCollection('media');
+            $article->addMedia($articleData->file->getRealPath())
+                ->toMediaCollection('media');
         }
 
         if ($article->isAwaitingApproval()) {
             // Envoi de la notification sur le channel Telegram pour la validation de l'article.
             Auth::user()?->notify(new PostArticleToTelegram($article));
+
             session()->flash('status', __('notifications.article.created'));
         }
 

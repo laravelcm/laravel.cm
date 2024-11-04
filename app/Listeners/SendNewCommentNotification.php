@@ -17,9 +17,7 @@ final class SendNewCommentNotification
 
         foreach ($discussion->subscribes as $subscription) {
             /** @var Subscribe $subscription */
-            // @phpstan-ignore-next-line
             if ($this->replyAuthorDoesNotMatchSubscriber(author: $event->reply->user, subscription: $subscription)) {
-                // @phpstan-ignore-next-line
                 $subscription->user->notify(new NewCommentNotification(
                     reply: $event->reply,
                     subscription: $subscription,

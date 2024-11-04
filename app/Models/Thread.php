@@ -32,6 +32,23 @@ use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
+/**
+ * @property-read int $id
+ * @property string $title
+ * @property string $slug
+ * @property string $body
+ * @property int $user_id
+ * @property int $solution_reply_id
+ * @property bool $locked
+ * @property Carbon | null $last_posted_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property int | null $resolved_by
+ * @property User | null $resolvedBy
+ * @property User $user
+ * @property Reply | null $solutionReply
+ * @property \Illuminate\Database\Eloquent\Collection | Channel[] $channels
+ */
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
     use HasAuthor;
@@ -58,10 +75,6 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
         'last_posted_at' => 'datetime',
     ];
 
-    protected $with = [
-        'channels',
-    ];
-
     protected bool $removeViewsOnDelete = true;
 
     public function getRouteKeyName(): string
@@ -81,10 +94,10 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     public function getPathUrl(): string
     {
-        return "/forum/{$this->slug()}";
+        return route('forum.show', $this->slug());
     }
 
-    public function excerpt(int $limit = 100): string
+    public function excerpt(int $limit = 200): string
     {
         return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
     }
@@ -147,7 +160,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
         $this->save();
     }
 
-    public function scopeForChannel(Builder $query, Channel $channel): Builder
+    public function scopeChannel(Builder $query, Channel $channel): Builder
     {
         return $query->whereHas('channels', function ($query) use ($channel): void {
             if ($channel->hasItems()) {
@@ -216,7 +229,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
             ->summary($this->body)
             ->updated($updatedAt)
             ->link(route('forum.show', $this->slug))
-            ->authorName($this->user->name); // @phpstan-ignore-line
+            ->authorName($this->user->name);
     }
 
     /**

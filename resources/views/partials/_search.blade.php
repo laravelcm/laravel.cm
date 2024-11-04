@@ -1,7 +1,7 @@
 <button
     type="button"
     @click="$dispatch('toggle-spotlight')"
-    class="inline-flex items-center gap-4 relative rounded-lg ring-1 ring-gray-200 bg-white p-1.5 text-sm leading-5 text-gray-400 dark:text-gray-500 dark:bg-gray-800 dark:border-white/20 lg:py-2 lg:px-3"
+    class="inline-flex items-center gap-4 relative rounded-lg ring-1 ring-gray-200 bg-white p-1.5 text-sm leading-5 text-gray-400 dark:text-gray-500 dark:bg-gray-800 dark:ring-white/20 lg:py-2 lg:px-3"
 >
     <span class="sr-only">{{ __('global.search') }}</span>
     <div class="lg:hidden">

@@ -20,6 +20,14 @@ use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
+/**
+ * @property-read int $id
+ * @property string $title
+ * @property string $slug
+ * @property string $body
+ * @property int $user_id
+ * @property User $user
+ */
 final class Article extends Model implements HasMedia, ReactableInterface, Viewable
 {
     use HasAuthor;
@@ -36,7 +44,6 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
         'body',
         'slug',
         'canonical_url',
-        'cover_image',
         'show_toc',
         'is_pinned',
         'user_id',
@@ -428,7 +435,7 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
 
     public function markAsPublish(): void
     {
-        $this->update(['tweet_id' => $this->user->id]); // @phpstan-ignore-line
+        $this->update(['tweet_id' => $this->user->id]);
     }
 
     public function delete(): ?bool

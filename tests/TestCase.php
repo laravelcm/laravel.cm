@@ -6,7 +6,6 @@ namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Notification;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -18,7 +17,5 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
 
         Artisan::call('config:clear');
-
-        Notification::fake();
     }
 }

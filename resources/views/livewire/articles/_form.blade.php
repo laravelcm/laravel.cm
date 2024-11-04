@@ -170,9 +170,9 @@
                             </div>
                             <div class="relative mt-6 flex-1 px-4 sm:px-6">
                                 <div class="h-full" aria-hidden="true">
-                                    <x-label for="cover_photo">
+                                    <label for="cover_photo">
                                         {{ __('Image de couverture') }}
-                                    </x-label>
+                                    </label>
                                     <div class="mt-2">
                                         <x-forms.single-upload
                                             id="file"
@@ -217,7 +217,7 @@
                                     </div>
 
                                     <div class="mt-8" x-data="datepicker" wire:ignore>
-                                        <x-label for="published_at">Date de publication</x-label>
+                                        <label for="published_at">Date de publication</label>
                                         <div class="relative mt-1" wire:model="published_at">
                                             <input
                                                 x-ref="datePickerInput"
@@ -347,8 +347,8 @@
                                     </div>
 
                                     <div class="mt-8">
-                                        <x-label for="slug">URL Slug</x-label>
-                                        <x-input
+                                        <label for="slug">URL Slug</label>
+                                        <input
                                             wire:model.debounce.500ms="slug"
                                             id="slug"
                                             name="slug"
@@ -360,12 +360,12 @@
                                     </div>
 
                                     <div class="mt-8">
-                                        <x-label for="canonical_url">Canonical URL</x-label>
+                                        <label for="canonical_url">Canonical URL</label>
                                         <span class="text-xs leading-3 text-skin-muted">
                                             Modifiez si l'article a été publié pour la première fois ailleurs (comme sur
                                             votre propre blog).
                                         </span>
-                                        <x-input
+                                        <input
                                             wire:model="canonical_url"
                                             id="canonical_url"
                                             name="canonical_url"
@@ -376,7 +376,7 @@
                                     </div>
 
                                     <div class="standard mt-8" wire:ignore>
-                                        <x-label for="tags_selected">Tags</x-label>
+                                        <label for="tags_selected">Tags</label>
                                         <x-forms.select
                                             wire:model="tags_selected"
                                             id="tags_selected"

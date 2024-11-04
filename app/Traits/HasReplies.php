@@ -55,11 +55,9 @@ trait HasReplies
 
         if ($reply = $this->replies()->latest()->first()) {
             /** @var $reply Reply */
-            // @phpstan-ignore-next-line
             return $reply->created_at->lt($sixMonthsAgo);
         }
 
-        // @phpstan-ignore-next-line
         return $this->created_at->lt($sixMonthsAgo);
     }
 }

@@ -86,8 +86,8 @@ if (! function_exists('route_to_reply_able')) {
      */
     function route_to_reply_able(mixed $replyAble): string
     {
-        return $replyAble instanceof \App\Models\Thread ?
-            route('forum.show', $replyAble->slug()) :
-            route('discussions.show', $replyAble->slug());
+        $routeName = $replyAble instanceof \App\Models\Thread ? 'forum.show' : 'discussions.show';
+
+        return route($routeName, $replyAble->slug());
     }
 }

@@ -7,11 +7,11 @@
 @if ($user->is_sponsor)
     <span @class(['relative inline-block', $container])>
         <img
-            {{ $attributes->twMerge(['class' => 'object-cover rounded-full ring-2 ring-yellow-500']) }}
+            {{ $attributes->twMerge(['class' => 'object-cover bg-gray-100 dark:bg-gray-900 rounded-full ring-2 !ring-flag-yellow']) }}
             src="{{ $user->profile_photo_url }}"
             alt="{{ $user->username() }}"
         />
-        <span @class(['absolute flex items-center justify-center rounded-full bg-white p-1 ring-yellow-500', $span])>
+        <span @class(['absolute flex items-center justify-center rounded-full bg-white p-1 ring-flag-yellow', $span])>
             <svg
                 class="size-full text-yellow-500"
                 xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@
     </span>
 @else
     <img
-        {{ $attributes->merge(['class' => 'object-cover rounded-full ']) }}
+        {{ $attributes->merge(['class' => 'object-cover rounded-full bg-gray-100 dark:bg-gray-900']) }}
         src="{{ $user->profile_photo_url }}"
         alt="{{ $user->username() }}"
     />

@@ -1,4 +1,4 @@
-<header {{ $attributes->twMerge(['class' => 'relative z-10 backdrop-blur-sm bg-white lg:bg-transparent']) }}>
+<header {{ $attributes->twMerge(['class' => 'relative z-10 bg-white lg:bg-transparent']) }}>
     <x-container>
         <nav class="flex h-16 items-center justify-between">
             <div class="flex flex-1 items-center">
@@ -12,11 +12,7 @@
                 </div>
             </div>
 
-            <div
-                x-data="{ open: false }"
-                @keydown.window.escape="open = false"
-                class="flex items-center gap-4"
-            >
+            <div x-data="{ open: false }" class="flex items-center gap-6">
                 @include('partials._search')
 
                 <!-- Large screen authenticate links -->

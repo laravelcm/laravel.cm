@@ -12,7 +12,6 @@ use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\SlackController;
 use App\Http\Controllers\SponsoringController;
 use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
 
@@ -51,14 +50,7 @@ Route::prefix('discussions')->as('discussions.')->group(function (): void {
 });
 
 // Forum
-Route::prefix('forum')->as('forum.')->group(function (): void {
-    Route::redirect('/channels', '/forum');
-    Route::get('/', [ThreadController::class, 'index'])->name('index');
-    Route::get('/channels/{channel}', [ThreadController::class, 'channel'])->name('channels');
-    Route::get('/new-thread', [ThreadController::class, 'create'])->name('new');
-    Route::get('/{thread}', [ThreadController::class, 'show'])->name('show');
-    Route::get('/{thread}/edit', [ThreadController::class, 'edit'])->name('edit');
-});
+Route::prefix('forum')->as('forum.')->group(base_path('routes/forum.php'));
 
 // Replies
 Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->name('replyable');
@@ -88,21 +80,6 @@ Route::get('/user/{username?}', [User\ProfileController::class, 'show'])->name('
 
 // Notifications
 Route::view('notifications', 'user.notifications')->name('notifications')->middleware('auth');
-
-// Redirect Route
-Route::redirectMap([
-    '.env' => 'https://www.youtube.com/watch?v=M8ogFbLP9XQ',
-    'wp-login' => 'https://www.youtube.com/watch?v=M8ogFbLP9XQ',
-    'wp-admin' => 'https://www.youtube.com/watch?v=M8ogFbLP9XQ',
-    'facebook' => 'https://facebook.com/laravelcm',
-    'twitter' => 'https://twitter.com/laravelcm',
-    'telegram' => 'https://t.me/laravelcameroun',
-    'linkedin' => 'https://www.linkedin.com/company/laravel-cameroun',
-    'github' => 'https://github.com/laravelcm',
-    'whatsapp' => 'https://chat.whatsapp.com/G8e98Ms0MgSLEOGd3Uai1i',
-    'discord' => 'https://discord.gg/KNp6brbyVD',
-    'youtube' => 'https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw',
-]);
 
 Route::feeds();
 

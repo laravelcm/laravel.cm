@@ -17,27 +17,27 @@
                             <div class="focus:outline-none">
                                 <p class="text-sm font-medium text-gray-900">Laravel Cameroun</p>
                                 <div class="mt-2 flex items-center space-x-4">
-                                    <a href="{{ route('twitter') }}" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
+                                    <a href="https://twitter.com/laravelcm" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
                                         <span class="sr-only">Twitter</span>
                                         <x-icon.twitter class="size-5" />
                                     </a>
 
-                                    <a href="{{ route('facebook') }}" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
+                                    <a href="https://facebook.com/laravelcm" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
                                         <span class="sr-only">Facebook</span>
                                         <x-icon.facebook class="size-5" />
                                     </a>
 
-                                    <a href="{{ route('linkedin') }}" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
+                                    <a href="https://www.linkedin.com/company/laravel-cameroun" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
                                         <span class="sr-only">LinkedIn</span>
                                         <x-icon.linkedin class="size-5" />
                                     </a>
 
-                                    <a href="{{ route('github') }}" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
+                                    <a href="https://github.com/laravelcm" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
                                         <span class="sr-only">Github</span>
                                         <x-icon.github class="size-5" />
                                     </a>
 
-                                    <a href="{{ route('youtube') }}" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
+                                    <a href="https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw" class="text-skin-muted hover:text-gray-500 dark:text-gray-400">
                                         <span class="sr-only">YouTube</span>
                                         <x-icon.youtube class="size-5" />
                                     </a>

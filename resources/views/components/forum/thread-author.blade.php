@@ -1,3 +1,5 @@
+{{-- @deprecated: A supprimer --}}
+
 @props([
     'author',
 ])

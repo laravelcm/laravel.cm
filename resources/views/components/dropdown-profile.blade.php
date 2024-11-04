@@ -1,8 +1,17 @@
-<div @keydown.escape.stop="open = false;" @click.outside="open = false;" class="relative">
+@php
+    $user = \Illuminate\Support\Facades\Auth::user();
+@endphp
+
+<div x-data="{ open: false }"
+     @keydown.window.escape="open = false"
+     @keydown.escape.stop="open = false;"
+     @click.outside="open = false;"
+     class="relative"
+>
     <div>
         <button
             type="button"
-            class="flex rounded-full bg-skin-menu text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+            class="flex rounded-full bg-white text-sm dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
             id="user-menu-button"
             x-ref="button"
             @click="open =! open"
@@ -11,7 +20,7 @@
             x-bind:aria-expanded="open.toString()"
         >
             <span class="sr-only">{{ __('global.open_navigation') }}</span>
-            <x-user.avatar :user="Auth::user()" class="size-8" />
+            <x-user.avatar :user="$user" class="size-8" />
         </button>
     </div>
 
@@ -23,7 +32,7 @@
         x-transition:leave="transition duration-75 ease-in"
         x-transition:leave-start="scale-100 transform opacity-100"
         x-transition:leave-end="scale-95 transform opacity-0"
-        class="absolute right-0 mt-2 w-60 origin-top-right divide-y divide-skin-light rounded-md bg-skin-menu py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+        class="absolute -right-4 mt-2 w-60 origin-top-right divide-y divide-gray-200 dark:divide-white/20 rounded-lg bg-white py-1 shadow ring-1 ring-black ring-opacity-5 dark:bg-gray-800 dark:ring-white/20 focus:outline-none"
         x-ref="menu"
         role="menu"
         aria-orientation="vertical"
@@ -34,31 +43,34 @@
         @keyup.space.prevent="open = false;"
         style="display: none"
     >
-        <div class="px-3.5 py-3" role="none">
-            <p class="text-xs font-normal text-gray-500 dark:text-gray-400" role="none">Connecté en tant que</p>
-            <p class="truncate text-sm font-medium text-gray-900" role="none">
-                {{ Auth::user()->email }}
+        <div class="px-3.5 py-3">
+            <p class="text-xs text-gray-500 dark:text-gray-400">
+                {{ __('global.signed_as') }}
+            </p>
+            <p class="truncate text-sm font-medium text-gray-900 dark:text-white">
+                {{ $user->email }}
             </p>
         </div>
 
-        @if (Auth::user()->hasRole(['admin', 'moderator']))
-            <div class="px-3.5 py-1.5" role="none">
-                <a
-                    href="{{ route('filament.admin.pages.dashboard') }}"
-                    class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
+        @if ($user->hasRole(['admin', 'moderator']))
+            <div class="px-3.5 py-1.5" role="menu">
+                <x-link
+                    :href="route('filament.admin.pages.dashboard')"
+                    class="group flex items-center gap-2 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
                     role="menuitem"
                     tabindex="-1"
-                    id="user-menu-item-0"
                 >
                     <x-untitledui-monitor
-                        class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
+                        class="size-5 text-gray-400 dark:gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-300"
+                        stroke-width="1.5"
+                        aria-hidden="true"
                     />
                     Administration
-                </a>
+                </x-link>
             </div>
         @endif
 
-        @feature('job_profile')
+        {{--@feature('job_profile')
             <div class="px-3.5 py-2" role="none">
                 <div class="flex items-center justify-between">
                     <h5 class="text-sm leading-5 text-gray-500 dark:text-gray-400">Profil Développeur</h5>
@@ -80,7 +92,8 @@
                         id="user-menu-item-0"
                     >
                         <x-icon.user-edit
-                            class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
+                            class="mr-3 size-5 flex-none text-gray-400 dark:gray-500 group-hover:text-primary-600"
+                            aria-hidden="true"
                         />
                         Mon compte
                     </a>
@@ -92,7 +105,8 @@
                         id="user-menu-item-0"
                     >
                         <x-icon.file-attachment
-                            class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
+                            class="mr-3 size-5 flex-none text-gray-400 dark:gray-500 group-hover:text-primary-600"
+                            aria-hidden="true"
                         />
                         Mes candidatures
                     </a>
@@ -104,7 +118,8 @@
                         id="user-menu-item-0"
                     >
                         <x-icon.clipboard-document
-                            class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
+                            class="mr-3 size-5 flex-none text-gray-400 dark:gray-500 group-hover:text-primary-600"
+                            aria-hidden="true"
                         />
                         Mes compétences
                     </a>
@@ -116,7 +131,8 @@
                         id="user-menu-item-0"
                     >
                         <x-icon.adjustments
-                            class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
+                            class="mr-3 size-5 flex-none text-gray-400 dark:gray-500 group-hover:text-primary-600"
+                            aria-hidden="true"
                         />
                         Préférences
                     </a>
@@ -148,52 +164,61 @@
                     </a>
                 </div>
             </div>
-        @endfeature
+        @endfeature--}}
 
-        <div class="px-3.5 py-1.5" role="none">
-            <a
-                href="{{ route('dashboard') }}"
-                class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
+        <div class="px-3.5 space-y-1.5 py-1.5" role="menu">
+            <x-link
+                :href="route('dashboard')"
+                class="group flex items-center gap-2 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
                 role="menuitem"
                 tabindex="-1"
-                id="user-menu-item-0"
             >
-                <x-untitledui-grid class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600" />
-                Tableau de bord
-            </a>
-            <a
-                href="{{ route('profile') }}"
-                class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
+                <x-untitledui-grid
+                    class="size-5 text-gray-400 dark:gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-300"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                />
+                {{ __('global.navigation.dashboard') }}
+            </x-link>
+            <x-link
+                :href="route('profile')"
+                class="group flex items-center gap-2 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
                 role="menuitem"
                 tabindex="-1"
-                id="user-menu-item-1"
             >
                 <x-untitledui-user-circle
-                    class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600"
+                    class="size-5 text-gray-400 dark:gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-300"
+                    stroke-width="1.5"
+                    aria-hidden="true"
                 />
-                Mon profil
-            </a>
-            <a
-                href="{{ route('user.settings') }}"
-                class="group flex items-center py-1.5 text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
-                role="menuitem"
+                {{ __('global.navigation.profile') }}
+            </x-link>
+            <x-link
+                :href="route('user.settings')"
+                class="group flex items-center gap-2 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
                 tabindex="-1"
-                id="user-menu-item-2"
             >
-                <x-untitledui-sliders class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600" />
-                Paramètres
-            </a>
-            <form method="POST" action="{{ route('logout') }}" role="form">
+                <x-untitledui-sliders
+                    class="size-5 text-gray-400 dark:gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-300"
+                    stroke-width="1.5"
+                    aria-hidden="true"
+                />
+                {{ __('global.navigation.settings') }}
+            </x-link>
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button
                     type="submit"
-                    class="group flex w-full items-center py-1.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 hover:text-primary-600"
-                    role="menuitem"
+                    class="group flex w-full items-center gap-2 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
                     tabindex="-1"
                     id="logout"
                 >
-                    <x-icon.logout class="mr-3 size-5 flex-none text-skin-muted group-hover:text-primary-600" />
-                    Se déconnecter
+                    <x-icon.logout
+                        class="size-5 text-gray-400 dark:gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-300"
+                        stroke-width="1.5"
+                        aria-hidden="true"
+                    />
+                    {{ __('global.logout') }}
                 </button>
             </form>
         </div>

@@ -14,12 +14,14 @@ beforeEach(function (): void {
 
 describe(Create::class, function (): void {
     it('should save a discussion and send Telegram notification', function (): void {
+        Notification::fake();
+
         Livewire::test(Create::class)
             ->set('title', 'My Discussion')
             ->set('body', '## My Discussion content')
             ->call('store');
 
-        expect(Discussion::count())
+        expect(Discussion::query()->count())
             ->toBe(1);
 
         Notification::assertSentTo(

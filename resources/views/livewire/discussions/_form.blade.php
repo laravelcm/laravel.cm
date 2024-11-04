@@ -2,13 +2,13 @@
     <x-validation-errors />
 
     <div class="block">
-        <x-label for="title">Titre</x-label>
-        <x-input id="title" class="mt-1 block w-full" wire:model="title" name="title" required />
+        <label for="title">Titre</label>
+        <input id="title" class="mt-1 block w-full" wire:model="title" name="title" required />
         <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Maximum de 160 caractères.</p>
     </div>
 
     <div class="standard relative z-50 block" wire:ignore>
-        <x-label for="channels_selected">Tags</x-label>
+        <label for="channels_selected">Tags</label>
         <x-forms.select
             wire:model="tags_selected"
             id="tags_selected"
@@ -26,13 +26,13 @@
     </div>
 
     <div class="block space-y-2">
-        <x-label for="body">Votre contenu</x-label>
+        <label for="body">Votre contenu</label>
         <livewire:markdown-x
             :content="$body"
             :style="[
-            'textarea' => 'w-full h-full border border-skin-input focus:border-skin-base focus:outline-none p-4 rounded-b-lg',
-            'height' => 'h-[450px]',
-        ]"
+                'textarea' => 'w-full h-full border border-skin-input focus:border-skin-base focus:outline-none p-4 rounded-b-lg',
+                'height' => 'h-[450px]',
+            ]"
         />
     </div>
 

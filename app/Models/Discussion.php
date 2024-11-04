@@ -14,6 +14,7 @@ use App\Traits\HasSubscribers;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
+use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,6 +22,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+/**
+ * @property-read int $id
+ * @property string $title
+ * @property string $slug
+ * @property string $body
+ * @property bool $locked
+ * @property bool $is_pinned
+ * @property int $user_id
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property User $user
+ */
 final class Discussion extends Model implements ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
 {
     use HasAuthor;

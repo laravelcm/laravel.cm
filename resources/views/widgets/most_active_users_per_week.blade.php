@@ -7,7 +7,7 @@
             {{ $users->count() }}
         </span>
     </div>
-    <div class="items-centerheroicon-o flex justify-between bg-skin-body px-4 py-3">
+    <div class="items-center heroicon-o flex justify-between bg-skin-body px-4 py-3">
         <span class="text-xs uppercase leading-4 tracking-wider text-gray-700 dark:text-gray-300">Utilisateur</span>
         <span class="text-xs uppercase leading-4 tracking-wider text-gray-700 dark:text-gray-300">Profil</span>
     </div>

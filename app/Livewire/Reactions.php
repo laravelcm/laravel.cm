@@ -19,7 +19,7 @@ final class Reactions extends Component
 
     public bool $withBackground = true;
 
-    public string $direction = 'right';
+    public string $direction = 'horizontal';
 
     public function userReacted(string $reaction): void
     {
@@ -33,6 +33,7 @@ final class Reactions extends Component
         } else {
             /** @var Reaction $react */
             $react = Reaction::query()->where('name', $reaction)->first();
+
             Auth::user()->reactTo($this->model, $react); // @phpstan-ignore-line
         }
     }
