@@ -1,7 +1,9 @@
 <div {{ $attributes->twMerge(['class' => 'text-right']) }}>
-    <h4 class="font-sans text-sm font-semibold uppercase leading-5 tracking-wide text-gray-900">Sponsors</h4>
+    <h4 class="font-sans text-sm font-semibold uppercase leading-5 tracking-wide text-gray-900">
+        Sponsors
+    </h4>
     <div class="mt-5 space-y-5">
-        <a href="https://laravelshopper.io" class="flex items-center justify-end">
+        <a href="https://laravelshopper.dev" class="flex items-center justify-end">
             <img
                 class="logo-white h-10"
                 src="{{ asset('/images/sponsors/shopper-logo.svg') }}"

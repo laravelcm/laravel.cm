@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Actions\Article\CreateArticleAction;
-use App\Data\Article\CreateArticleData;
+use App\Data\CreateArticleData;
 use App\Models\Article;
 use App\Models\Tag;
 

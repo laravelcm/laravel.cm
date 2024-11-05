@@ -67,10 +67,6 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
         'is_pinned' => 'boolean',
     ];
 
-    protected $with = [
-        'media',
-    ];
-
     protected bool $removeViewsOnDelete = true;
 
     public function getRouteKeyName(): string
@@ -113,11 +109,6 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
         $this->addMediaCollection('media')
             ->singleFile()
             ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png']);
-    }
-
-    public function showToc(): bool
-    {
-        return $this->show_toc;
     }
 
     public function submittedAt(): ?Carbon

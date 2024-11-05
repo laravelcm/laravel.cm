@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions\Article;
 
-use App\Data\Article\CreateArticleData;
+use App\Data\CreateArticleData;
 use App\Gamify\Points\ArticleCreated;
 use App\Models\Article;
 use App\Notifications\PostArticleToTelegram;

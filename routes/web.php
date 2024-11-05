@@ -13,6 +13,7 @@ use App\Http\Controllers\SlackController;
 use App\Http\Controllers\SponsoringController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\User;
+use App\Livewire\Pages\Articles;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -35,9 +36,11 @@ Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderC
 
 // Articles
 Route::prefix('articles')->group(function (): void {
-    Route::get('/', [ArticlesController::class, 'index'])->name('articles');
+    Route::get('/', Articles\Index::class)->name('articles');
+    Route::get('/tags/{tag:slug}', Articles\SingleTag::class)->name('articles.tag');
+    Route::get('/{article}', Articles\SinglePost::class)->name('articles.show');
+
     Route::get('/new', [ArticlesController::class, 'create'])->name('articles.new');
-    Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
     Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
 });
 

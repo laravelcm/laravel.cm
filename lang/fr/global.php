@@ -9,6 +9,7 @@ return [
     'by' => 'par',
     'soon' => 'Bientôt',
     'navigation' => [
+        'home' => 'Accueil',
         'forum' => 'Forum',
         'articles' => 'Articles',
         'discussions' => 'Discussions',
@@ -72,9 +73,13 @@ return [
     'view_more' => 'En savoir plus →',
     'or' => 'ou',
     'need' => 'Il faut',
+    'loading' => 'Chargement...',
     'discord' => [
         'title' => 'Rejoindre Discord',
         'description' => 'Rejoignez le serveur Discord de la communauté et connectez-vous avec d\'autres développeurs.',
+    ],
+    'ads' => [
+        'ln_ui' => 'Une collection interactives de petits composants bien codés pour optimiser votre temps de développement.',
     ],
 
 ];

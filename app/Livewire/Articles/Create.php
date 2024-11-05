@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Articles;
 
 use App\Actions\Article\CreateArticleAction;
-use App\Data\Article\CreateArticleData;
+use App\Data\CreateArticleData;
 use App\Models\Tag;
 use App\Models\User;
 use App\Traits\WithArticleAttributes;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Article;
+namespace App\Data;
 
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;

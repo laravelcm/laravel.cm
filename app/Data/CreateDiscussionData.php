@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Discussion;
+namespace App\Data;
 
 use Spatie\LaravelData\Data;
 

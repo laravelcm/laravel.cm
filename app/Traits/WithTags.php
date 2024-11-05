@@ -24,6 +24,6 @@ trait WithTags
 
     public function tagExists(string $tag): bool
     {
-        return Tag::where('slug', $tag)->exists();
+        return Tag::query()->where('slug', $tag)->exists();
     }
 }

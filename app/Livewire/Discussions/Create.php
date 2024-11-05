@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Discussions;
 
 use App\Actions\Discussion\CreateDiscussionAction;
-use App\Data\Discussion\CreateDiscussionData;
+use App\Data\CreateDiscussionData;
 use App\Models\Tag;
 use App\Traits\WithTagsAssociation;
 use Illuminate\Contracts\View\View;
