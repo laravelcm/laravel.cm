@@ -105,7 +105,7 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
     {
         $this->addMediaCollection('media')
             ->singleFile()
-            ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png']);
+            ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png', 'image/webp', 'image/svg+xml']);
     }
 
     public function showToc(): bool
