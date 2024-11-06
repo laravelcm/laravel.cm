@@ -53,7 +53,7 @@
                     :content="__('pages/home.popular_posts.description')"
                 />
                 <div
-                    class="mx-auto mt-8 grid max-w-xl gap-10 lg:mt-10 lg:max-w-none lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-3 lg:gap-x-8"
+                    class="mx-auto mt-8 grid max-w-xl gap-10 lg:mt-10 lg:max-w-none lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-3 lg:gap-x-12"
                 >
                     @foreach ($latestArticles as $article)
                         @if ($loop->first)

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions\Discussion;
 
-use App\Data\Discussion\CreateDiscussionData;
+use App\Data\CreateDiscussionData;
 use App\Gamify\Points\DiscussionCreated;
 use App\Models\Discussion;
 use App\Notifications\PostDiscussionToTelegram;

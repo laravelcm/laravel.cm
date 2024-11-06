@@ -3,7 +3,7 @@
         <div class="space-y-3">
             <x-buttons.primary
                 type="button"
-                onclick="Livewire.dispatchTo('forum.reply-form', 'replyForm')"
+                onclick="Livewire.dispatchTo('components.forum.reply-form', 'replyForm')"
                 class="gap-2 w-full justify-center py-2.5"
             >
                 {{ __('pages/forum.reply_thread') }}

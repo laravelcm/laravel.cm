@@ -9,6 +9,7 @@ return [
     'by' => 'by',
     'soon' => 'Soon',
     'navigation' => [
+        'home' => 'Home',
         'forum' => 'Forum',
         'articles' => 'Posts',
         'discussions' => 'Discussions',
@@ -72,9 +73,13 @@ return [
     'view_more' => 'View more →',
     'or' => 'or',
     'need' => 'You need',
+    'loading' => 'Loading...',
     'discord' => [
         'title' => 'Join discord',
         'description' => 'Join the community Discord server and connect with other developers.',
+    ],
+    'ads' => [
+        'ln_ui' => 'A fun collection of small, well-coded components to streamline your development process.',
     ],
 
 ];
