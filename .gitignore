@@ -16,20 +16,15 @@ composer.phar
 #
 .phpunit.cache
 .phpunit.result.cache
-/public/build
 /public/**/filament
 /public/hot
 /public/storage
 /public/media
-/public/**/filament
 /public/sitemap.xml
 /storage/*.key
 /storage/framework/cache
 .env
 .env.backup
-.phpstorm.meta.php
-_ide_helper.php
-_ide_helper_models.php
 
 # OSX
 #
