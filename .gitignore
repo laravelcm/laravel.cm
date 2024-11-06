@@ -16,6 +16,7 @@ composer.phar
 #
 .phpunit.cache
 .phpunit.result.cache
+/public/build
 /public/**/filament
 /public/hot
 /public/storage
