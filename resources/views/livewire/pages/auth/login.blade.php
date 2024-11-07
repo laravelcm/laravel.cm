@@ -1,12 +1,39 @@
-<x-app-layout :title="__('pages/auth.login.page_title')">
+<?php
+
+declare(strict_types=1);
+
+use App\Livewire\Forms\LoginForm;
+use Illuminate\Support\Facades\Session;
+use Livewire\Attributes\Title;
+use Livewire\Volt\Component;
+
+new class extends Component
+{
+    public LoginForm $form;
+
+    public function login(): void
+    {
+        $this->validate();
+
+        $this->form->authenticate();
+
+        Session::regenerate();
+
+        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+    }
+}; ?>
+
+<div>
     <x-container class="flex min-h-full items-center justify-center py-16 sm:pt-24">
         <div class="w-full max-w-md space-y-8">
             <div>
+                <x-validation-errors />
+
                 <h2 class="text-center font-heading text-3xl font-extrabold text-gray-900 dark:text-white">
                     {{ __('pages/auth.login.title') }}
                 </h2>
             </div>
-            <form class="space-y-6" action="{{ route('login') }}" method="POST">
+            <form class="space-y-6" wire:submit="login">
                 @csrf
                 <div class="space-y-4">
                     <x-filament::input.wrapper>
@@ -16,6 +43,7 @@
                             name="email"
                             autocomplete="email"
                             required="true"
+                            wire:model="form.email"
                             aria-label="{{ __('validation.attributes.email') }}"
                             :placeholder="__('validation.attributes.email')"
                         />
@@ -26,6 +54,7 @@
                             id="password"
                             name="password"
                             required="true"
+                            wire:model="form.password" 
                             aria-label="{{ __('validation.attributes.password') }}"
                             :placeholder="__('validation.attributes.password')"
                         />
@@ -65,4 +94,4 @@
     </x-container>
 
     <x-join-sponsors :title="__('global.sponsor_thanks')" />
-</x-app-layout>
+</div>

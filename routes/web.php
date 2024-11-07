@@ -62,3 +62,5 @@ Route::get('sponsors', [SponsoringController::class, 'sponsors'])->name('sponsor
 Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');
 
 require __DIR__.'/features/account.php';
+
+require __DIR__.'/auth.php';
