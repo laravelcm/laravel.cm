@@ -30,8 +30,6 @@ final class UserResource extends Resource
                     ->label('Nom'),
                 TextColumn::make('email')
                     ->label('Email'),
-                TextColumn::make('username')
-                    ->label('Username'),
                 TextColumn::make(name: 'Points')
                     ->getStateUsing(fn (User $user) => $user->getPoints().' XP')
                     ->sortable(),
