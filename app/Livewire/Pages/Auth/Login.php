@@ -1,18 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Pages\Auth;
 
+use Illuminate\View\View;
 use App\Livewire\Forms\LoginForm;
 use Illuminate\Support\Facades\Session;
-use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Livewire\Component;
 
 // #[Layout('layouts.guest')]
-class Login extends Component
+final class Login extends Component
 {
     public LoginForm $form;
 
-    public function boot()
+    public function boot(): void
     {
         $this->form = new LoginForm($this);
     }
@@ -32,7 +35,7 @@ class Login extends Component
         $this->redirectIntended(route('dashboard'));
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.pages.auth.login');
     }
