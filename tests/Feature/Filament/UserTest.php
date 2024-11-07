@@ -15,7 +15,6 @@ beforeEach(function (): void {
 describe(UserResource::class, function (): void {
 
     it('page can display table with records without admin', function (): void {
-
         $users = User::factory()
             ->count(5)
             ->create();
@@ -25,11 +24,9 @@ describe(UserResource::class, function (): void {
         Livewire::test(ListUsers::class)
             ->assertCanSeeTableRecords($users)
             ->assertCountTableRecords(5);
-
     });
 
     it('page can display table with records without moderator', function (): void {
-
         $users = User::factory()
             ->count(3)
             ->create();
@@ -39,6 +36,5 @@ describe(UserResource::class, function (): void {
         Livewire::test(ListUsers::class)
             ->assertCanSeeTableRecords($users)
             ->assertCountTableRecords(3);
-
     });
 })->group('users');
