@@ -205,22 +205,8 @@
                 />
                 {{ __('global.navigation.settings') }}
             </x-link>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button
-                    type="submit"
-                    class="group flex w-full items-center gap-2 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
-                    tabindex="-1"
-                    id="logout"
-                >
-                    <x-icon.logout
-                        class="size-5 text-gray-400 dark:gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-300"
-                        stroke-width="1.5"
-                        aria-hidden="true"
-                    />
-                    {{ __('global.logout') }}
-                </button>
-            </form>
+
+            <livewire:components.logout />
         </div>
     </div>
 </div>

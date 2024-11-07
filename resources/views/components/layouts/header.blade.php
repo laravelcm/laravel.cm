@@ -116,18 +116,7 @@
                                             :href="route('user.settings')"
                                             :title="__('Paramètres')"
                                         />
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
-                                            <button
-                                                type="submit"
-                                                class="group flex w-full items-center text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
-                                                role="menuitem"
-                                                tabindex="-1"
-                                                id="logout-mobile"
-                                            >
-                                                {{ __('global.logout') }}
-                                            </button>
-                                        </form>
+                                        <livewire:components.logout />
                                     </div>
                                 @else
                                     <div class="flex flex-col space-y-4">
