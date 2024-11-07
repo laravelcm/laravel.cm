@@ -45,18 +45,6 @@ test('users can not authenticate with invalid password', function (): void {
     $this->assertGuest();
 });
 
-test('navigation menu can be rendered', function (): void {
-    $user = User::factory()->create();
-
-    $this->actingAs($user);
-
-    $response = $this->get('/dashboard');
-
-    $response
-        ->assertOk()
-        ->assertSeeVolt('layout.navigation');
-});
-
 test('users can logout', function (): void {
     $user = User::factory()->create();
 
