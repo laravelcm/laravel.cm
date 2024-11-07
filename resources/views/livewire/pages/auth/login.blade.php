@@ -34,7 +34,6 @@ new class extends Component
                 </h2>
             </div>
             <form class="space-y-6" wire:submit="login">
-                @csrf
                 <div class="space-y-4">
                     <x-filament::input.wrapper>
                         <x-filament::input
@@ -54,7 +53,7 @@ new class extends Component
                             id="password"
                             name="password"
                             required="true"
-                            wire:model="form.password" 
+                            wire:model="form.password"
                             aria-label="{{ __('validation.attributes.password') }}"
                             :placeholder="__('validation.attributes.password')"
                         />
@@ -80,12 +79,12 @@ new class extends Component
                 </div>
 
                 <div>
-                    <x-buttons.primary type="submit" class="group relative w-full">
+                    <x-buttons.submit class="group w-full">
                         <span class="absolute pointer-events-none inset-y-0 left-0 flex items-center pl-3">
                             <x-untitledui-lock class="size-5 text-green-500 group-hover:text-green-600" aria-hidden="true" />
                         </span>
                         {{ __('pages/auth.login.submit') }}
-                    </x-buttons.primary>
+                    </x-buttons.submit>
                 </div>
             </form>
 

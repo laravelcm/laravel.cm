@@ -12,11 +12,13 @@
                 </div>
             </div>
 
-            <form method="POST" action="{{ route('password.email') }}" class="mt-8">
+            <form class="mt-8">
                 @csrf
 
                 <div class="block">
-                    <x-label for="email">{{ __('validation.attributes.email') }}</x-label>
+                    <x-filament-forms::field-wrapper.label for="email">
+                        {{ __('validation.attributes.email') }}
+                    </x-filament-forms::field-wrapper.label>
                     <x-filament::input.wrapper>
                         <x-filament::input
                             type="text"

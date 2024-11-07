@@ -26,4 +26,6 @@ return [
         'updated' => 'Successfully updated answer.',
     ],
 
+    'error' => 'Oops! You\'ve got errors.',
+
 ];

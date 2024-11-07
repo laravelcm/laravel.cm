@@ -1,4 +1,4 @@
-<x-layouts.cp title="Statistiques">
+<x-app-layout title="Statistiques">
     <x-container class="mx-auto max-w-7xl px-4 sm:px-6">
         <div class="divide-y divide-skin-base">
             <div class="pb-10">
@@ -24,4 +24,4 @@
             <div class="py-10"></div>
         </div>
     </x-container>
-</x-layouts.cp>
+</x-app-layout>

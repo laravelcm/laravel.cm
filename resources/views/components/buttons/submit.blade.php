@@ -10,6 +10,6 @@
         {{ $title ?? $slot }}
     </span>
     <span class="[[data-loading]>&]:opacity-100 opacity-0 absolute inset-0 flex items-center justify-center">
-        <x-loader class="bg-white" />
+        <x-loader class="text-white" aria-hidden="true" />
     </span>
 </x-buttons.primary>

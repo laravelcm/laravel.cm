@@ -26,4 +26,6 @@ return [
         'updated' => 'Réponse modifiée avec succès.',
     ],
 
+    'error' => 'Oups! Nous avons rencontré des erreurs.',
+
 ];

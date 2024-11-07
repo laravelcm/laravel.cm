@@ -10,7 +10,6 @@ use App\Traits\HasSlug;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
-use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Builder;
@@ -25,8 +24,74 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property string $title
  * @property string $slug
  * @property string $body
+ * @property string | null $canonical_url
+ * @property bool $show_toc
+ * @property bool $is_pinned
+ * @property int $is_sponsored
+ * @property int | null $tweet_id
  * @property int $user_id
- * @property User $user
+ * @property \Illuminate\Support\Carbon|null $published_at
+ * @property \Illuminate\Support\Carbon|null $submitted_at
+ * @property \Illuminate\Support\Carbon|null $approved_at
+ * @property \Illuminate\Support\Carbon|null $shared_at
+ * @property \Illuminate\Support\Carbon|null $declined_at
+ * @property \Illuminate\Support\Carbon|null $sponsored_at
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activity
+ * @property-read int|null $activity_count
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Reaction> $reactions
+ * @property-read int|null $reactions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
+ * @property-read int|null $tags_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \CyrildeWit\EloquentViewable\View> $views
+ * @property-read int|null $views_count
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Article approved()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article awaitingApproval()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article declined()
+ * @method static \Database\Factories\ArticleFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Article forTag(string $tag)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article notApproved()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article notDeclined()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article notPinned()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article notPublished()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article notShared()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article orderByUniqueViews(string $direction = 'desc', $period = null, ?string $collection = null, string $as = 'unique_views_count')
+ * @method static \Illuminate\Database\Eloquent\Builder|Article orderByViews(string $direction = 'desc', ?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
+ * @method static \Illuminate\Database\Eloquent\Builder|Article pinned()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article popular()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article published()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article recent()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article shared()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article sponsored()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article submitted()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article trending()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereApprovedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCanonicalUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereDeclinedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereIsPinned($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereIsSponsored($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article wherePublishedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSharedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereShowToc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSponsoredAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSubmittedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereTweetId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withViewsCount(?\CyrildeWit\EloquentViewable\Support\Period $period = null, ?string $collection = null, bool $unique = false, string $as = 'views_count')
  */
 final class Article extends Model implements HasMedia, ReactableInterface, Viewable
 {
@@ -111,31 +176,6 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
             ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png']);
     }
 
-    public function submittedAt(): ?Carbon
-    {
-        return $this->submitted_at;
-    }
-
-    public function approvedAt(): ?Carbon
-    {
-        return $this->approved_at;
-    }
-
-    public function createdAt(): ?Carbon
-    {
-        return $this->created_at;
-    }
-
-    public function sponsoredAt(): ?Carbon
-    {
-        return $this->sponsored_at;
-    }
-
-    public function publishedAt(): ?Carbon
-    {
-        return $this->published_at;
-    }
-
     public function isSubmitted(): bool
     {
         return ! $this->isNotSubmitted();
@@ -178,7 +218,7 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
 
     public function isPublished(): bool
     {
-        return ! $this->isNotPublished() && ($this->publishedAt() && $this->publishedAt()->lessThanOrEqualTo(now()));
+        return ! $this->isNotPublished() && ($this->published_at && $this->published_at->lessThanOrEqualTo(now()));
     }
 
     public function isNotPublished(): bool
