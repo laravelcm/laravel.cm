@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="mt-10 flex items-center justify-center sm:mt-12 xl:mt-16">
-                    <x-buttons.primary :href="route('articles')" class="gap-2">
+                    <x-buttons.primary :href="route('articles.index')" class="gap-2">
                         {{ __('pages/home.view_posts') }}
                         <x-heroicon-o-arrow-long-right class="size-5" aria-hidden="true" />
                     </x-buttons.primary>

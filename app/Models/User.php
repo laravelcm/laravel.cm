@@ -90,16 +90,6 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
         'settings' => 'array',
     ];
 
-    protected $appends = [
-        'profile_photo_url',
-        'roles_label',
-        'is_sponsor',
-    ];
-
-    protected $withCount = [
-        'transactions',
-    ];
-
     public function hasProvider(string $provider): bool
     {
         foreach ($this->providers as $p) {

@@ -2,7 +2,7 @@
     <nav class="justify-between px-4 py-4 sm:flex sm:items-center sm:px-6">
         <div class="flex items-center space-x-3 divide-x divide-skin-light">
             <a
-                href="{{ route('articles') }}"
+                href="{{ route('articles.index') }}"
                 class="flex items-center font-sans text-base font-medium text-primary-600 hover:text-primary-600-hover"
             >
                 <x-heroicon-o-chevron-left class="mr-1.5 size-5" />

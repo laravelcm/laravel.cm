@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\HomeController;
@@ -12,8 +11,6 @@ use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\SlackController;
 use App\Http\Controllers\SponsoringController;
 use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\User;
-use App\Livewire\Pages\Articles;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
@@ -35,14 +32,7 @@ Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->n
 Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderCallback']);
 
 // Articles
-Route::prefix('articles')->group(function (): void {
-    Route::get('/', Articles\Index::class)->name('articles');
-    Route::get('/tags/{tag:slug}', Articles\SingleTag::class)->name('articles.tag');
-    Route::get('/{article}', Articles\SinglePost::class)->name('articles.show');
-
-    Route::get('/new', [ArticlesController::class, 'create'])->name('articles.new');
-    Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
-});
+Route::prefix('articles')->as('articles.')->group(base_path('routes/features/article.php'));
 
 // Discussions
 Route::prefix('discussions')->as('discussions.')->group(function (): void {
@@ -53,7 +43,7 @@ Route::prefix('discussions')->as('discussions.')->group(function (): void {
 });
 
 // Forum
-Route::prefix('forum')->as('forum.')->group(base_path('routes/forum.php'));
+Route::prefix('forum')->as('forum.')->group(base_path('routes/features/forum.php'));
 
 // Replies
 Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->name('replyable');
@@ -63,24 +53,6 @@ Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::
     ->name('subscriptions.unsubscribe');
 Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
 
-// Settings
-Route::prefix('settings')->as('user.')->middleware('auth')->group(function (): void {
-    Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
-    Route::put('/', [User\SettingController::class, 'update'])->name('settings.update');
-    Route::view('/customization', 'user.settings.customization')->name('customization')->middleware('verified');
-    Route::view('/notifications', 'user.settings.notifications')->name('notifications')->middleware('verified');
-    Route::get('/password', [User\SettingController::class, 'password'])->name('password')->middleware('verified');
-    Route::put('/password', [User\SettingController::class, 'updatePassword'])->name('password.update');
-});
-
-// User
-Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function (): void {
-    Route::get('/', [User\DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::get('/threads', [User\DashboardController::class, 'threads'])->name('threads.me');
-    Route::get('/discussions', [User\DashboardController::class, 'discussions'])->name('discussions.me');
-});
-Route::get('/user/{username?}', [User\ProfileController::class, 'show'])->name('profile');
-
 // Notifications
 Route::view('notifications', 'user.notifications')->name('notifications')->middleware('auth');
 
@@ -88,3 +60,5 @@ Route::feeds();
 
 Route::get('sponsors', [SponsoringController::class, 'sponsors'])->name('sponsors');
 Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');
+
+require __DIR__.'/features/account.php';
