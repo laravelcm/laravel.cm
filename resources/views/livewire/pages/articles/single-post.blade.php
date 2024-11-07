@@ -18,7 +18,7 @@
                     aria-hidden="true"
                 />
             </span>
-            <x-link :href="route('articles')" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white">
+            <x-link :href="route('articles.index')" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white">
                 {{ __('global.navigation.articles') }}
             </x-link>
         </nav>
@@ -95,27 +95,24 @@
                             <div class="mt-4 flex flex-wrap gap-2">
                                 <a
                                     href="https://twitter.com/share?text={{ urlencode('"' . $article->title . '" par ' . ($article->user->twitter() ? '@' . $article->user->twitter() : $article->user->name) . ' #caparledev - ') }}&url={{ urlencode(route('articles.show', $article)) }}"
-                                    class="inline-flex items-center gap-2 py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
+                                    class="inline-flex items-center py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
                                     target="_blank"
                                 >
                                     <x-icon.twitter class="size-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />
-                                    Twitter
                                 </a>
                                 <a
                                     href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('articles.show', $article)) }}&quote={{ urlencode('"' . $article->title . '" par ' . $article->user->name . ' - ') }}"
-                                    class="inline-flex items-center gap-2 py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
+                                    class="inline-flex items-center py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
                                     target="_blank"
                                 >
                                     <x-icon.facebook class="size-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />
-                                    Facebook
                                 </a>
                                 <a
                                     href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(route('articles.show', $article)) }}&title={{ urlencode('"' . $article->title . '" par ' . $article->user->name . ' - ') }}"
-                                    class="inline-flex items-center gap-2 py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
+                                    class="inline-flex items-center py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
                                     target="_blank"
                                 >
                                     <x-icon.linkedin class="size-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />
-                                    LinkedIn
                                 </a>
                             </div>
                         </div>

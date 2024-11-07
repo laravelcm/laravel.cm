@@ -16,7 +16,7 @@
                 <x-user.sidebar :user="$user" />
             </div>
             <main class="lg:col-span-9">
-                <x-user.page-heading title="Vos articles" :url="route('articles.new')" button="Nouvel article" />
+                <x-user.page-heading title="Vos articles" :url="route('articles.index')" button="Nouvel article" />
 
                 <div class="mt-5">
                     @unless (Auth::user()->hasTwitterAccount())

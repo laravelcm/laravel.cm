@@ -4,8 +4,8 @@
     :title="__('global.navigation.forum')"
 />
 <x-nav.item
-    :href="route('articles')"
-    :active-links="['articles', 'articles*']"
+    :href="route('articles.index')"
+    :active-links="['articles.index', 'articles*']"
     :title="__('global.navigation.articles')"
 />
 <x-nav.item

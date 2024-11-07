@@ -11,17 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 final class DashboardController extends Controller
 {
-    public function dashboard(): View
-    {
-        return view('user.dashboard', [
-            'user' => $user = User::scopes('withCounts')->find(Auth::id()),
-            'articles' => $user->articles()
-                ->orderByDesc('created_at')
-                ->orderBy('submitted_at')
-                ->paginate(5),
-        ]);
-    }
-
     public function threads(): View
     {
         return view('user.threads', [
