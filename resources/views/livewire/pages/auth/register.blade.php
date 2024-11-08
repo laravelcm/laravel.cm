@@ -21,7 +21,7 @@ new class extends Component
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', Password::min(8)
             ->uncompromised()
             ->numbers()
@@ -33,8 +33,6 @@ new class extends Component
         event(new Registered(User::create($validated)));
 
         session()->flash('status', __('pages/auth.register.email_verification_status'));
-
-        $this->redirect(route('register'), navigate: true);
     }
 }; ?>
 <div>
@@ -113,10 +111,8 @@ new class extends Component
                     
                     <x-validation-errors />
 
-                    <!-- Formulaire Livewire -->
-                    <form wire:submit.prevent="register" class="space-y-6">
+                    <form wire:submit="register" class="space-y-6">
                         <div class="space-y-3">
-                            <!-- Name -->
                             <x-filament::input.wrapper>
                                 <x-filament::input
                                     type="text"
@@ -129,7 +125,6 @@ new class extends Component
                                 />
                             </x-filament::input.wrapper>
 
-                            <!-- Email -->
                             <x-filament::input.wrapper>
                                 <x-filament::input
                                     type="email"
@@ -142,7 +137,6 @@ new class extends Component
                                 />
                             </x-filament::input.wrapper>
 
-                            <!-- Username -->
                             <x-filament::input.wrapper>
                                 <x-filament::input
                                     type="text"
@@ -153,10 +147,8 @@ new class extends Component
                                     aria-label="{{ __('validation.attributes.username') }}"
                                     :placeholder="__('validation.attributes.username')"
                                 />
-                                {{-- <x-input-error :messages="$errors->get('username')" class="mt-2" /> --}}
                             </x-filament::input.wrapper>
 
-                            <!-- Password -->
                             <x-filament::input.wrapper>
                                 <x-filament::input
                                     type="password"
@@ -166,11 +158,9 @@ new class extends Component
                                     aria-label="{{ __('validation.attributes.password') }}"
                                     :placeholder="__('pages/auth.register.password_placeholder')"
                                 />
-                                {{-- <x-input-error :messages="$errors->get('password')" class="mt-2" /> --}}
                             </x-filament::input.wrapper>
                         </div>
 
-                        <!-- Submit Button -->
                         <div>
                             <x-buttons.primary type="submit" class="group w-full relative">
                                 <span class="absolute inset-y-0 left-0 flex items-center pl-3">
