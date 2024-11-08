@@ -46,7 +46,7 @@
     "spatie/laravel-translatable": "^6.8",
     "stevebauman/location": "^6.6.2",
     "symfony/http-client": "^6.3.1",
-    "symfony/mailgun-mailer": "^6.3",
+    "symfony/mailgun-mailer": "^7.1",
     "torchlight/torchlight-commonmark": "^0.5.5",
     "wire-elements/modal": "^2.0",
     "wire-elements/spotlight": "^2.0",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d98f3b5e6ff77c53df36fc4ed451bf4c",
+    "content-hash": "8d3e5c2bae9f6e791b1fa5293cbc708a",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -12240,28 +12240,28 @@
         },
         {
             "name": "symfony/mailgun-mailer",
-            "version": "v6.4.13",
+            "version": "v7.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailgun-mailer.git",
-                "reference": "ad4e79798a5eb80af99004a4871b4fe5effe33a3"
+                "reference": "b0117bf42b6dd8dfcfcab2a7e18508b594520b5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailgun-mailer/zipball/ad4e79798a5eb80af99004a4871b4fe5effe33a3",
-                "reference": "ad4e79798a5eb80af99004a4871b4fe5effe33a3",
+                "url": "https://api.github.com/repos/symfony/mailgun-mailer/zipball/b0117bf42b6dd8dfcfcab2a7e18508b594520b5a",
+                "reference": "b0117bf42b6dd8dfcfcab2a7e18508b594520b5a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1",
-                "symfony/mailer": "^5.4.21|^6.2.7|^7.0"
+                "php": ">=8.2",
+                "symfony/mailer": "^6.4|^7.0"
             },
             "conflict": {
-                "symfony/http-foundation": "<6.2"
+                "symfony/http-foundation": "<6.4"
             },
             "require-dev": {
-                "symfony/http-client": "^6.3|^7.0",
-                "symfony/webhook": "^6.3|^7.0"
+                "symfony/http-client": "^6.4|^7.0",
+                "symfony/webhook": "^6.4|^7.0"
             },
             "type": "symfony-mailer-bridge",
             "autoload": {
@@ -12289,7 +12289,7 @@
             "description": "Symfony Mailgun Mailer Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/mailgun-mailer/tree/v6.4.13"
+                "source": "https://github.com/symfony/mailgun-mailer/tree/v7.1.6"
             },
             "funding": [
                 {
@@ -12305,7 +12305,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-25T14:18:03+00:00"
+            "time": "2024-09-25T14:20:29+00:00"
         },
         {
             "name": "symfony/mime",
