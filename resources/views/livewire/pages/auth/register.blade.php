@@ -1,4 +1,38 @@
-<x-app-layout :title="__('pages/auth.register.page_title')">
+<?php
+
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
+use Livewire\Volt\Component;
+use Illuminate\Validation\Rules\Password;
+
+new class extends Component
+{
+    public string $name = '';
+    public string $email = '';
+    public string $username = '';
+    public string $password = '';
+
+    public function register(): void
+    {
+        $validated = $this->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', Password::min(8)
+            ->uncompromised()
+            ->numbers()
+            ->mixedCase()],
+        ]);
+
+        $validated['password'] = Hash::make($validated['password']);
+
+        event(new Registered(User::create($validated)));
+
+        session()->flash('status', __('pages/auth.register.email_verification_status'));
+    }
+}; ?>
+<div>
     <x-container class="py-12 sm:py-16 lg:pt-20">
         <div class="lg:grid lg:gap-12 lg:grid-cols-2">
             <div class="hidden items-center justify-center lg:flex">
@@ -57,6 +91,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="mx-auto max-w-md space-y-8">
                 <div class="space-y-3 text-center">
                     <h2 class="font-heading text-3xl font-extrabold text-gray-900 dark:text-white">
@@ -67,51 +102,56 @@
                         {{ __('pages/auth.register.joins_description') }}
                     </p>
                 </div>
+
                 <div>
                     <x-status-message />
+                    
+                    <x-validation-errors />
 
-                    <form class="space-y-6" action="{{ route('register') }}" method="POST">
-                        @csrf
+                    <form wire:submit="register" class="space-y-6">
                         <div class="space-y-3">
                             <x-filament::input.wrapper>
                                 <x-filament::input
                                     type="text"
                                     id="name"
-                                    name="name"
-                                    required="true"
+                                    wire:model="name"
+                                    required
                                     autocomplete="name"
                                     aria-label="{{ __('validation.attributes.name') }}"
                                     :placeholder="__('validation.attributes.name')"
                                 />
                             </x-filament::input.wrapper>
+
                             <x-filament::input.wrapper>
                                 <x-filament::input
                                     type="email"
                                     id="email"
-                                    name="email"
-                                    required="true"
+                                    wire:model="email"
+                                    required
                                     autocomplete="email"
                                     aria-label="{{ __('validation.attributes.email') }}"
                                     :placeholder="__('validation.attributes.email')"
                                 />
                             </x-filament::input.wrapper>
+
                             <x-filament::input.wrapper>
                                 <x-filament::input
                                     type="text"
                                     id="username"
-                                    name="username"
-                                    required="true"
+                                    wire:model="username"
+                                    required
                                     autocomplete="username"
                                     aria-label="{{ __('validation.attributes.username') }}"
                                     :placeholder="__('validation.attributes.username')"
                                 />
                             </x-filament::input.wrapper>
+
                             <x-filament::input.wrapper>
                                 <x-filament::input
                                     type="password"
                                     id="password"
-                                    name="password"
-                                    required="true"
+                                    wire:model="password"
+                                    required
                                     aria-label="{{ __('validation.attributes.password') }}"
                                     :placeholder="__('pages/auth.register.password_placeholder')"
                                 />
@@ -135,4 +175,4 @@
     </x-container>
 
     <x-join-sponsors :title="__('global.sponsor_thanks')" />
-</x-app-layout>
+</div>
