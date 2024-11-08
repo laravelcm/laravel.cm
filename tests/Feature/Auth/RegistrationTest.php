@@ -22,10 +22,8 @@ test('new users can register', function (): void {
 
     $component->call('register');
 
-    // Assert that the user is not authenticated
     $this->assertGuest();
 
-    // Assert that a flash message is set
     $this->assertSessionHas('status', __('pages/auth.register.email_verification_status'));
 
     $this->assertAuthenticated();
