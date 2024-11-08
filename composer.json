@@ -32,7 +32,6 @@
     "livewire/livewire": "^2.12.3",
     "lorisleiva/laravel-actions": "^2.6",
     "mckenziearts/blade-untitledui-icons": "^1.2",
-    "nnjeim/world": "^1.1.27",
     "notchpay/notchpay-php": "^1.3",
     "qcod/laravel-gamify": "1.0.7",
     "ramsey/uuid": "^4.7.4",
