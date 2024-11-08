@@ -15,7 +15,10 @@ test('registration screen can be rendered', function (): void {
 });
 
 test('new users can register', function (): void {
-    $component = Volt::test('pages.auth.register');
+    $component = Volt::test('pages.auth.register')
+        ->set('name', 'Test User')
+        ->set('email', 'test@example.com')
+        ->set('password', 'password');
 
     $component->call('register');
 
