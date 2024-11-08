@@ -30,11 +30,11 @@ new class extends Component
 
         $validated['password'] = Hash::make($validated['password']);
 
-        event(new Registered($user = User::create($validated)));
+        event(new Registered(User::create($validated)));
 
         session()->flash('status', __('pages/auth.register.email_verification_status'));
 
-        $this->redirect(route('dashboard'), navigate: true);
+        $this->redirect(route('register'), navigate: true);
     }
 }; ?>
 <div>
@@ -110,10 +110,11 @@ new class extends Component
 
                 <div>
                     <x-status-message />
+                    
+                    <x-validation-errors />
 
                     <!-- Formulaire Livewire -->
                     <form wire:submit.prevent="register" class="space-y-6">
-                        @csrf
                         <div class="space-y-3">
                             <!-- Name -->
                             <x-filament::input.wrapper>
