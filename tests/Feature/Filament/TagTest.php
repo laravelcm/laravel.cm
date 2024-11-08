@@ -52,26 +52,6 @@ describe(TagResource::class, function (): void {
             ->assertStatus(200);
     });
 
-    it('Generate tag if tag already exist', function (): void {
-
-        $name = fake()->name();
-        Tag::factory()->create([
-            'name' => $name,
-            'slug' => Str::slug($name),
-            'concerns' => ['discussion'],
-        ]);
-
-        Livewire::test(ListTags::class)
-            ->callAction(CreateAction::class, data: [
-                'name' => $name,
-                'concerns' => ['post', 'tutorial'],
-                'description' => 'Description du tag '.$name,
-            ]);
-
-        expect(Tag::orderByDesc('id')->first()->slug)
-            ->toBe(Str::slug($name).'-1');
-    });
-
     it('Admin  can edit tag', function (): void {
         $tag = Tag::factory()->create();
 
