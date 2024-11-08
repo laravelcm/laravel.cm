@@ -15,7 +15,6 @@ new class extends Component
     public string $email = '';
     public string $username = '';
     public string $password = '';
-    public string $password_confirmation = '';
 
     public function register(): void
     {
@@ -23,7 +22,7 @@ new class extends Component
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'string', 'confirmed', Password::min(8)
+            'password' => ['required', 'string', Password::min(8)
             ->uncompromised()
             ->numbers()
             ->mixedCase()],
@@ -33,7 +32,7 @@ new class extends Component
 
         event(new Registered($user = User::create($validated)));
 
-        Auth::login($user);
+        session()->flash('status', __('pages/auth.register.email_verification_status'));
 
         $this->redirect(route('dashboard'), navigate: true);
     }
@@ -127,7 +126,6 @@ new class extends Component
                                     aria-label="{{ __('validation.attributes.name') }}"
                                     :placeholder="__('validation.attributes.name')"
                                 />
-                                {{-- <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
                             </x-filament::input.wrapper>
 
                             <!-- Email -->
@@ -141,7 +139,6 @@ new class extends Component
                                     aria-label="{{ __('validation.attributes.email') }}"
                                     :placeholder="__('validation.attributes.email')"
                                 />
-                                {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
                             </x-filament::input.wrapper>
 
                             <!-- Username -->
@@ -169,19 +166,6 @@ new class extends Component
                                     :placeholder="__('pages/auth.register.password_placeholder')"
                                 />
                                 {{-- <x-input-error :messages="$errors->get('password')" class="mt-2" /> --}}
-                            </x-filament::input.wrapper>
-
-                            <!-- Confirm Password -->
-                            <x-filament::input.wrapper>
-                                <x-filament::input
-                                    type="password"
-                                    id="password_confirmation"
-                                    wire:model="password_confirmation"
-                                    required
-                                    aria-label="{{ __('validation.attributes.password_confirmation') }}"
-                                    :placeholder="__('pages/auth.register.password_confirmation_placeholder')"
-                                />
-                                {{-- <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" /> --}}
                             </x-filament::input.wrapper>
                         </div>
 

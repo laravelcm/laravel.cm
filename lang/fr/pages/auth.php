@@ -17,7 +17,7 @@ return [
         'join_us' => 'Rejoindre Laravel Cameroun',
         'joins_description' => 'Rejoignez près de 1000 développeurs et designers. Parce qu’il n y’a pas que le code dans la vie.',
         'password_placeholder' => 'Mot de passe (min. 8 caractères)',
-        'password_confirmation_placeholder'=> "Confirmation du mot de passe",
+        'email_verification_status' => 'Veuillez verifier votre email pour pouvoir vous connecter',
         'submit' => 'Créer mon compte',
         'advantages' => [
             'heading' => 'Ouvrez votre esprit pour découvrir de nouveaux horizons.',

@@ -15,15 +15,15 @@ test('registration screen can be rendered', function (): void {
 });
 
 test('new users can register', function (): void {
-    $component = Volt::test('pages.auth.register')
-        ->set('name', 'Test User')
-        ->set('email', 'test@example.com')
-        ->set('password', 'password')
-        ->set('password_confirmation', 'password');
+    $component = Volt::test('pages.auth.register');
 
     $component->call('register');
 
-    $component->assertRedirect(route('dashboard', absolute: false));
+    // Assert that the user is not authenticated
+    $this->assertGuest();
+
+    // Assert that a flash message is set
+    $this->assertSessionHas('status', __('pages/auth.register.email_verification_status'));
 
     $this->assertAuthenticated();
 });

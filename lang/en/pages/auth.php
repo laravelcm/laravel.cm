@@ -17,7 +17,7 @@ return [
         'join_us' => 'Join Laravel Cameroon',
         'joins_description' => "Join nearly 1000 developers and designers. Because there's more to life than code.",
         'password_placeholder' => 'Password (min. 8 characters)',
-        'password_confirmation_placeholder'=> "Password Confirmation",
+        'email_verification_status' => 'Please check your e-mail address to log in.',
         'submit' => 'Create account',
         'advantages' => [
             'heading' => 'Open your mind and discover new horizons.',
