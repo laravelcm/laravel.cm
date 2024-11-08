@@ -44,7 +44,7 @@
             {{ __('pages/account.dashboard.stats.experience') }}
         </dt>
         <dd class="mt-2 text-3xl font-semibold font-mono slashed-zero tabular-nums text-gray-900 dark:text-white">
-            0
+            {{ $user->getPoints() }}
         </dd>
         <span class="absolute z-0 -bottom-2 right-0 text-primary-600/50 rotate-12 transform transition duration-200 ease-in-out group-hover:scale-105 group-hover:rotate-[10deg]">
             <x-untitledui-trophy-02 class="size-20" stroke-width="1.5" aria-hidden="true" />
