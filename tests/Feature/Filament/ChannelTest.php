@@ -3,35 +3,39 @@
 declare(strict_types=1);
 
 use App\Filament\Resources\ChannelResource;
-use App\Filament\Resources\ChannelResource\Pages\CreateChannel;
 use App\Filament\Resources\ChannelResource\Pages\ListChannels;
 use App\Models\Channel;
+use Filament\Actions\CreateAction;
 use Filament\Actions\EditAction;
 use Livewire\Livewire;
 
 beforeEach(function (): void {
     $this->user = $this->login();
-    $this->channels = Channel::factory()
-        ->count(10)
-        ->create();
 });
 
 describe(ChannelResource::class, function (): void {
-
     it('page can display table with records', function (): void {
+        $channels = Channel::factory()
+            ->count(10)
+            ->create();
         Livewire::test(ListChannels::class)
-            ->assertCanSeeTableRecords($this->channels);
+            ->assertCanSeeTableRecords($channels);
     });
 
     it('Admin user can create channel', function (): void {
-        $name = 'my channel';
-
-        Livewire::test(CreateChannel::class)
-            ->fillForm([
-                'name' => $name,
+        Livewire::test(ListChannels::class)
+            ->callAction(CreateAction::class, data: [
+                'name' => $name = 'my channel',
                 'color' => '#FFFFFF',
             ])
-            ->call('create');
+            ->assertHasNoActionErrors()
+            ->assertStatus(200);
+
+        $channel = Channel::first();
+
+        expect($channel)
+            ->toBeInstanceOf(Channel::class)
+            ->and($channel->name)->toBe($name);
     });
 
     it('Admin user can edit channel', function (): void {

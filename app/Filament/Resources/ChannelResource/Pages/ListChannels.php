@@ -7,6 +7,7 @@ namespace App\Filament\Resources\ChannelResource\Pages;
 use App\Filament\Resources\ChannelResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Support\Enums\MaxWidth;
 
 final class ListChannels extends ListRecords
 {
@@ -15,7 +16,9 @@ final class ListChannels extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->slideOver()
+                ->modalWidth(MaxWidth::Large),
         ];
     }
 }
