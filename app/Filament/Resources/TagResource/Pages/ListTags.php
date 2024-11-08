@@ -7,6 +7,7 @@ namespace App\Filament\Resources\TagResource\Pages;
 use App\Filament\Resources\TagResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Support\Enums\MaxWidth;
 
 final class ListTags extends ListRecords
 {
@@ -15,7 +16,9 @@ final class ListTags extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->slideOver()
+                ->modalWidth(MaxWidth::Large),
         ];
     }
 }
