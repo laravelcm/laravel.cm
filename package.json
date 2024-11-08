@@ -17,7 +17,7 @@
     "autoprefixer": "^10.4.16",
     "highlight.js": "^11.7.0",
     "intl-tel-input": "^17.0.13",
-    "laravel-vite-plugin": "^0.7.8",
+    "laravel-vite-plugin": "^1.0.5",
     "lodash": "^4.17.19",
     "postcss": "^8.4.32",
     "postcss-loader": "^6.2.1",
