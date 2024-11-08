@@ -164,6 +164,7 @@ new class extends Component
             'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'string', 'confirmed', Password::min(8)
             ->uncompromised()
+            ->numbers()
             ->mixedCase()],
         ]);
 
