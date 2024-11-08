@@ -9,9 +9,8 @@ use App\Models\Tag;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
@@ -29,19 +28,20 @@ final class TagResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state): void {
-                        if (($get('slug') ?? '') !== Str::slug($old)) {
-                            return;
-                        }
+                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set): void {
                         $set('slug', Str::slug($state));
-                    }),
+                    })
+                    ->columnSpanFull(),
                 Forms\Components\TextInput::make('slug')
-                    ->required(),
+                    ->readOnly()
+                    ->required()
+                    ->helperText(__('Cette valeur est générée dynamiquement en fonction du Name.'))
+                    ->columnSpanFull(),
                 Select::make('concerns')
                     ->multiple()
                     ->options([
                         'post' => 'Post',
-                        'tutorial' => 'Tutorial',
+                        'tutorial' => 'Tutoriel',
                         'discussion' => 'Discussion',
                     ])
                     ->required()
@@ -68,7 +68,8 @@ final class TagResource extends Resource
                 \Filament\Tables\Actions\ActionGroup::make([
                     Tables\Actions\DeleteAction::make(),
                     Tables\Actions\EditAction::make()
-                        ->color('warning'),
+                        ->slideOver()
+                        ->modalWidth(MaxWidth::Large),
                 ]),
             ])
             ->bulkActions([
@@ -82,8 +83,6 @@ final class TagResource extends Resource
     {
         return [
             'index' => Pages\ListTags::route('/'),
-            'create' => Pages\CreateTag::route('/create'),
-            'edit' => Pages\EditTag::route('/{record}/edit'),
         ];
     }
 }
