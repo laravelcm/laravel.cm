@@ -21,7 +21,7 @@
     "guzzlehttp/guzzle": "^7.7.0",
     "jenssegers/agent": "^2.6.4",
     "laravel-notification-channels/telegram": "^4.0",
-    "laravel-notification-channels/twitter": "^8.0",
+    "laravel-notification-channels/twitter": "^8.1",
     "laravel/framework": "^10.0",
     "laravel/sanctum": "^3.2.5",
     "laravel/slack-notification-channel": "^2.5",
