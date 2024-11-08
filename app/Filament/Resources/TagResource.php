@@ -26,8 +26,12 @@ final class TagResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
                     ->live(onBlur: true)
+                    ->required()
+                    ->unique()
+                    ->validationMessages([
+                        'unique' => 'Cette valeur existe déjà',
+                    ])
                     ->afterStateUpdated(function (string $operation, $state, Forms\Set $set): void {
                         $set('slug', Str::slug($state));
                     })
