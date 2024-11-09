@@ -10,14 +10,13 @@ use App\Models\Discussion;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
-use App\View\Composers\AuthUserComposer;
-use App\View\Composers\ChannelsComposer;
 use App\View\Composers\InactiveDiscussionsComposer;
-use App\View\Composers\ModeratorsComposer;
 use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
-use App\View\Composers\TopMembersComposer;
 use Carbon\Carbon;
+use Filament\Support\Enums\MaxWidth;
+use Filament\Support\Facades\FilamentIcon;
+use Filament\Tables;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
@@ -43,6 +42,26 @@ final class AppServiceProvider extends ServiceProvider
         $this->bootEloquentMorphs();
 
         ReplyResource::withoutWrapping();
+
+        FilamentIcon::register([
+            'panels::pages.dashboard.navigation-item' => 'untitledui-home-line',
+            'actions::delete-action' => 'untitledui-trash-03',
+            'actions::edit-action' => 'untitledui-edit-03',
+        ]);
+
+        Tables\Actions\CreateAction::configureUsing(
+            fn (Tables\Actions\Action $action) => $action->iconButton()
+                ->modalWidth(MaxWidth::ExtraLarge)
+                ->slideOver()
+        );
+
+        Tables\Actions\EditAction::configureUsing(
+            fn (Tables\Actions\Action $action) => $action->iconButton()
+                ->modalWidth(MaxWidth::ExtraLarge)
+                ->slideOver()
+        );
+
+        Tables\Actions\DeleteAction::configureUsing(fn (Tables\Actions\Action $action) => $action->icon('untitledui-trash-03'));
     }
 
     public function registerBladeDirective(): void
@@ -64,13 +83,9 @@ final class AppServiceProvider extends ServiceProvider
 
     public function bootViewsComposer(): void
     {
-        View::composer('forum._channels', ChannelsComposer::class);
-        View::composer('forum._top-members', TopMembersComposer::class);
-        View::composer('forum._moderators', ModeratorsComposer::class);
         View::composer('discussions._contributions', TopContributorsComposer::class);
         View::composer('discussions._contributions', InactiveDiscussionsComposer::class);
         View::composer('components.profile-users', ProfileUsersComposer::class);
-        View::composer('*', AuthUserComposer::class);
     }
 
     public function bootEloquentMorphs(): void

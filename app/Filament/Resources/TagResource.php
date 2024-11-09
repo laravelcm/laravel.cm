@@ -19,7 +19,12 @@ final class TagResource extends Resource
 {
     protected static ?string $model = Tag::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationIcon = 'untitledui-tag-03';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Contenu');
+    }
 
     public static function form(Form $form): Form
     {

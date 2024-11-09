@@ -17,7 +17,12 @@ final class DiscussionResource extends Resource
 {
     protected static ?string $model = Discussion::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
+    protected static ?string $navigationIcon = 'untitledui-message-chat-square';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Contenu');
+    }
 
     public static function table(Table $table): Table
     {

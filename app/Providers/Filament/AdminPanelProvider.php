@@ -33,7 +33,9 @@ final class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Green,
             ])
-            ->darkMode(false)
+            ->sidebarWidth('18.75rem')
+            ->viteTheme('resources/css/filament/admin/theme.css')
+            ->brandLogo(fn () => view('filament.brand'))
             ->favicon(asset('images/favicons/favicon-32x32.png'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -51,6 +53,7 @@ final class AdminPanelProvider extends PanelProvider
             )
             ->databaseNotifications()
             ->databaseNotificationsPolling('3600s')
+            ->spa()
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

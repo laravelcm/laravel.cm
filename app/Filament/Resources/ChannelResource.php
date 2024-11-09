@@ -20,11 +20,11 @@ final class ChannelResource extends Resource
 {
     protected static ?string $model = Channel::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-queue-list';
+    protected static ?string $navigationIcon = 'untitledui-git-branch';
 
-    public static function getLabel(): string
+    public static function getNavigationGroup(): ?string
     {
-        return __('Channels');
+        return __('Forum');
     }
 
     public static function form(Form $form): Form
