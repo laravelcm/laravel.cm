@@ -15,6 +15,7 @@
     "doctrine/dbal": "^3.6.4",
     "filament/filament": "^3.0",
     "filament/notifications": "^3.0",
+    "filament/spatie-laravel-media-library-plugin": "^3.2",
     "francescomalatesta/laravel-feature": "dev-l10-compatibility",
     "gehrisandro/tailwind-merge-laravel": "^1.1",
     "graham-campbell/markdown": "^15.2",

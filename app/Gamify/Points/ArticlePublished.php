@@ -7,7 +7,7 @@ namespace App\Gamify\Points;
 use App\Models\Article;
 use QCod\Gamify\PointType;
 
-final class ArticleCreated extends PointType
+final class ArticlePublished extends PointType
 {
     public int $points = 50;
 

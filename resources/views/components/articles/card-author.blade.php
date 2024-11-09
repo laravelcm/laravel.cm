@@ -52,8 +52,8 @@
                     {{ $article->user->name }}
                 </x-link>
                 <div class="w-[1px] h-4 border-l border-gray-200 dark:border-white/20"></div>
-                <time class="capitalize text-gray-500 dark:text-gray-400" datetime="{{ $article->publishedAt()->format('Y-m-d') }}">
-                    {{ $article->publishedAt()->isoFormat('LL') }}
+                <time class="capitalize text-gray-500 dark:text-gray-400" datetime="{{ $article->published_at->format('Y-m-d') }}">
+                    {{ $article->published_at->isoFormat('LL') }}
                 </time>
             </div>
         </div>

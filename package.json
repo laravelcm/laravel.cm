@@ -7,6 +7,7 @@
     "prettier": "npx prettier --write ./resources"
   },
   "devDependencies": {
+    "@alpinejs/collapse": "^3.14.3",
     "@alpinejs/intersect": "^3.6.1",
     "@awcodes/alpine-floating-ui": "^3.5.0",
     "@ryangjchandler/alpine-tooltip": "^2.0.1",

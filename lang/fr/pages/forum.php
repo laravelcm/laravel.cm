@@ -37,7 +37,7 @@ return [
     'best_answer' => 'Meilleure réponse',
     'mark_answer' => 'Marquer comme réponse',
     'report_spam' => 'Signaler un spam',
-    'max_thread_length' => 'Maximum de 100 caractères.',
+    'min_thread_length' => 'Minimum de 10 caractères.',
     'answer_reply' => 'Répondre au sujet',
     'threads_count' => ':count messages',
 

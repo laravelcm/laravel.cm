@@ -81,5 +81,13 @@ return [
     'ads' => [
         'ln_ui' => 'A fun collection of small, well-coded components to streamline your development process.',
     ],
+    'launch_modal' => [
+        'forum_action' => 'Create thread',
+        'forum_description' => 'Do you have a question? Ask it in the forum',
+        'post_action' => 'Writing an article',
+        'post_description' => 'Share your discoveries with thousands of developers',
+        'discussion_action' => 'Start a discussion',
+        'discussion_description' => 'Discuss and debate different themes and ideas',
+    ],
 
 ];

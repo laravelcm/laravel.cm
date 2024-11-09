@@ -81,5 +81,13 @@ return [
     'ads' => [
         'ln_ui' => 'Une collection interactives de petits composants bien codés pour optimiser votre temps de développement.',
     ],
+    'launch_modal' => [
+        'forum_action' => 'Créer un sujet',
+        'forum_description' => 'Vous avez une question? Posez là dans le forum',
+        'article_action' => 'Rédiger un article',
+        'article_description' => 'Partagez vos découvertes à des milliers de développeurs',
+        'discussion_action' => 'Démarrer une discussion',
+        'discussion_description' => 'Échangez, débattez sur différentes thématiques et idées.',
+    ],
 
 ];

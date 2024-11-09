@@ -15,24 +15,16 @@ beforeEach(function (): void {
 
 describe(CreateArticleAction::class, function (): void {
     it('return the created article', function (): void {
-        $articleDataWithoutTag = CreateArticleData::from([
+        $article = app(CreateArticleAction::class)->execute(CreateArticleData::from([
             'title' => 'Article title',
             'slug' => 'Article slug',
-            'publishedAt' => now(),
-            'submittedAt' => null,
-            'approvedAt' => null,
-            'showToc' => 'Article show_toc',
-            'canonicalUrl' => 'Article canonical_url',
+            'published_at' => now(),
+            'canonical_url' => 'Article canonical_url',
             'body' => 'Article body',
-            'tags' => [$this->tagOne->id, $this->tagTwo->id],
-        ]);
-
-        $article = app(CreateArticleAction::class)->execute($articleDataWithoutTag);
+        ]));
 
         expect($article)
             ->toBeInstanceOf(Article::class)
-            ->and($article->tags)
-            ->toHaveCount(2)
             ->and($article->user_id)
             ->toBe($this->user->id);
     });

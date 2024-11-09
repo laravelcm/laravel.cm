@@ -31,10 +31,10 @@
                 'flex-col justify-between gap-2' => $isSummary,
             ])>
                 <time
-                    datetime="{{ $article->publishedAt()->format('Y-m-d') }}"
+                    datetime="{{ $article->published_at->format('Y-m-d') }}"
                     class="text-sm capitalize leading-5 text-gray-500 dark:text-gray-400"
                 >
-                    {{ $article->publishedAt()->isoFormat('LL') }}
+                    {{ $article->published_at->isoFormat('LL') }}
                 </time>
                 @if ($article->tags->isNotEmpty())
                     <div class="flex items-center gap-2">
