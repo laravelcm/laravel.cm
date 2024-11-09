@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
 use App\Contracts\SubscribeInterface;
+use App\Models\Builders\DiscussionQueryBuilder;
 use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
 use App\Traits\HasSlug;
@@ -18,6 +19,7 @@ use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -30,6 +32,7 @@ use Illuminate\Support\Str;
  * @property bool $locked
  * @property bool $is_pinned
  * @property int $user_id
+ * @property-read int $count_all_replies_with_child
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property User $user
@@ -66,6 +69,11 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
 
     protected bool $removeViewsOnDelete = true;
 
+    public function newEloquentBuilder($query): DiscussionQueryBuilder
+    {
+        return new DiscussionQueryBuilder($query);
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -83,7 +91,7 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
 
     public function getPathUrl(): string
     {
-        return "/discussions/{$this->slug()}";
+        return route('discussions.show', $this);
     }
 
     public function excerpt(int $limit = 110): string
@@ -101,52 +109,20 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
         return $this->locked;
     }
 
-    public function getCountAllRepliesWithChildAttribute(): int
+    public function countAllRepliesWithChild(): Attribute
     {
-        $count = $this->replies->count();
+        return Attribute::make(
+            get: function () {
+                $count = $this->replies->count();
 
-        foreach ($this->replies()->withCount('allChildReplies')->get() as $reply) {
-            /** @var Reply $reply */
-            $count += $reply->all_child_replies_count;
-        }
+                foreach ($this->replies()->withCount('allChildReplies')->get() as $reply) {
+                    /** @var Reply $reply */
+                    $count += $reply->all_child_replies_count;
+                }
 
-        return $count;
-    }
-
-    public function scopePinned(Builder $query): Builder
-    {
-        return $query->where('is_pinned', true);
-    }
-
-    public function scopeNotPinned(Builder $query): Builder
-    {
-        return $query->where('is_pinned', false);
-    }
-
-    public function scopeRecent(Builder $query): Builder
-    {
-        return $query->orderBy('is_pinned', 'desc')
-            ->orderBy('created_at', 'desc');
-    }
-
-    public function scopePopular(Builder $query): Builder
-    {
-        return $query->withCount('reactions')
-            ->orderBy('reactions_count', 'desc');
-    }
-
-    public function scopeActive(Builder $query): Builder
-    {
-        return $query->withCount(['replies' => function ($query): void {
-            $query->where('created_at', '>=', now()->subWeek());
-        }])
-            ->orderBy('replies_count', 'desc');
-    }
-
-    public function scopeNoComments(Builder $query): Builder
-    {
-        return $query->whereDoesntHave('replies')
-            ->orderByDesc('created_at');
+                return $count;
+            }
+        );
     }
 
     public function lockedDiscussion(): void
