@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 use Livewire\Livewire;
 
 beforeEach(function (): void {
-    $this->user = $this->login();
+    $this->user = $this->login(['email' => 'joe@laravel.cm']);
     $this->discussions = Discussion::factory()
         ->count(10)
         ->state(new Sequence(

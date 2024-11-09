@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Models\Thread;
 
 return [
+
     'feeds' => [
         'forum' => [
             /*
@@ -30,4 +31,5 @@ return [
             'title' => 'Laravel.cm Forum RSS Feed',
         ],
     ],
+
 ];

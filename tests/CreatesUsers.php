@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests;
 
 use App\Models\User;
-use Spatie\Permission\Models\Role;
 
 trait CreatesUsers
 {
@@ -31,13 +30,5 @@ trait CreatesUsers
             'email' => 'john@example.com',
             'password' => bcrypt('password'),
         ], $attributes));
-    }
-
-    public function createAndAssignRole(string $role, User $user): User
-    {
-        Role::create(['name' => $role]);
-        $this->createUser(['name' => $role, 'email' => $role.'@example.com']);
-
-        return $user->assignRole($role);
     }
 }

@@ -10,9 +10,9 @@ declare(strict_types=1);
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use App\Markdown\Extensions\TorchlightExtension;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\Mention\MentionExtension;
-use Torchlight\Commonmark\V2\TorchlightExtension;
 
 return [
 
