@@ -3,7 +3,7 @@
         <nav class="flex h-16 items-center justify-between">
             <div class="flex flex-1 items-center">
                 <div class="flex shrink-0 items-center">
-                    <x-link href="{{ route('home') }}">
+                    <x-link :href="route('home')">
                         <x-brand.icon class="block h-8 w-auto sm:h-9" aria-hidden="true" />
                     </x-link>
                 </div>
@@ -34,6 +34,8 @@
                                 <livewire:notification-indicator />
                             </x-slot:title>
                         </x-nav.item>
+
+                        <x-launch-content />
 
                         <!-- Profile dropdown -->
                         <x-dropdown-profile />
@@ -91,30 +93,31 @@
                             </div>
                             <div class="p-4">
                                 @auth
+                                    @php
+                                        $user = \Illuminate\Support\Facades\Auth::user();
+                                    @endphp
+
                                     <div class="flex items-center gap-2">
                                         <div class="shrink-0">
-                                            <x-user.avatar
-                                                :user="\Illuminate\Support\Facades\Auth::user()"
-                                                class="size-8"
-                                            />
+                                            <x-user.avatar :user="$user" class="size-8" />
                                         </div>
                                         <div class="leading-4">
                                             <div class="text-sm font-medium text-gray-900 dark:text-white">
-                                                {{ \Illuminate\Support\Facades\Auth::user()->name }}
+                                                {{ $user->name }}
                                             </div>
                                             <div class="text-sm text-gray-400 dark:text-gray-500">
-                                                {{ \Illuminate\Support\Facades\Auth::user()->email }}
+                                                {{ $user->email }}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mt-6 flex flex-col space-y-4">
                                         <x-nav.item
                                             :href="route('profile')"
-                                            :title="__('Mon profil')"
+                                            :title="__('global.navigation.profile')"
                                         />
                                         <x-nav.item
                                             :href="route('user.settings')"
-                                            :title="__('Paramètres')"
+                                            :title="__('global.navigation.settings')"
                                         />
                                         <livewire:components.logout />
                                     </div>

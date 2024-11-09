@@ -19,6 +19,11 @@ final class DiscussionPolicy
 
     public const UNSUBSCRIBE = 'unsubscribe';
 
+    public function create(User $user): bool
+    {
+        return $user->hasVerifiedEmail();
+    }
+
     public function update(User $user, Discussion $discussion): bool
     {
         return $discussion->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();

@@ -9,6 +9,11 @@ use App\Models\User;
 
 final class ThreadPolicy
 {
+    public function create(User $user): bool
+    {
+        return $user->hasVerifiedEmail();
+    }
+
     public function manage(User $user, Thread $thread): bool
     {
         return $thread->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();

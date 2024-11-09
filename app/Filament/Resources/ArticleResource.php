@@ -30,31 +30,12 @@ final class ArticleResource extends Resource
                 TextColumn::make('title')
                     ->label('Titre')
                     ->sortable(),
-                TextColumn::make('status')
-                    ->getStateUsing(function ($record) {
-                        if ($record->approved_at) {
-                            return 'Approuver';
-                        } elseif ($record->declined_at) {
-                            return 'Décliner';
-                        } elseif ($record->submitted_at) {
-                            return 'Soumis';
-                        } else {
-                            return 'Brouillon';
-                        }
-                    })
-                    ->colors([
-                        'success' => 'Approuver',
-                        'danger' => 'Décliner',
-                        'warning' => 'Soumis',
-                        'default' => 'Brouillon',
-                    ])
-                    ->badge(),
-                TextColumn::make('submitted_at')
-                    ->label('Date de soumission')
-                    ->dateTime(),
                 TextColumn::make('user.name')
                     ->label('Auteur')
                     ->sortable(),
+                TextColumn::make('submitted_at')
+                    ->label('Date de soumission')
+                    ->dateTime(),
             ])
             ->filters([
                 Filter::make('submitted_at')->query(fn (Builder $query) => $query->whereNotNull('submitted_at'))->label('Soumis'),
@@ -90,9 +71,8 @@ final class ArticleResource extends Resource
                             $record->declined_at = now();
                             $record->save();
                         }),
-                    Tables\Actions\DeleteAction::make('delete'),
+                    Tables\Actions\DeleteAction::make(),
                 ]),
-
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -105,8 +85,8 @@ final class ArticleResource extends Resource
                         ->requiresConfirmation()
                         ->modalIcon('heroicon-s-check')
                         ->modalHeading('Approuver')
-                        ->modalSubheading('Voulez-vous vraiment approuver ces articles ?')
-                        ->modalButton('Confirmer'),
+                        ->modalDescription('Voulez-vous vraiment approuver ces articles ?')
+                        ->modalSubmitActionLabel('Confirmer'),
                     BulkAction::make('declined')
                         ->label('Décliner la sélection')
                         ->icon('heroicon-s-x-mark')
@@ -116,8 +96,8 @@ final class ArticleResource extends Resource
                         ->requiresConfirmation()
                         ->modalIcon('heroicon-s-x-mark')
                         ->modalHeading('Décliner')
-                        ->modalSubheading('Voulez-vous vraiment décliner ces articles ?')
-                        ->modalButton('Confirmer'),
+                        ->modalDescription('Voulez-vous vraiment décliner ces articles ?')
+                        ->modalSubmitActionLabel('Confirmer'),
 
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),

@@ -9,19 +9,14 @@ use App\Models\User;
 
 final class ArticlePolicy
 {
-    public const UPDATE = 'update';
-
-    public const DELETE = 'delete';
-
-    public const APPROVE = 'approve';
-
-    public const DISAPPROVE = 'disapprove';
-
-    public const PINNED = 'togglePinnedStatus';
+    public function create(User $user): bool
+    {
+        return $user->hasVerifiedEmail();
+    }
 
     public function update(User $user, Article $article): bool
     {
-        return $article->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+        return $article->isAuthoredBy($user);
     }
 
     public function delete(User $user, Article $article): bool

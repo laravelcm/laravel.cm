@@ -14,7 +14,6 @@ beforeEach(function (): void {
 });
 
 describe(ArticleResource::class, function (): void {
-
     it('page can display table with records', function (): void {
         Livewire::test(ArticleResource\Pages\ListArticles::class)
             ->assertCanSeeTableRecords($this->articles);
