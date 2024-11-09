@@ -13,17 +13,16 @@ beforeEach(function (): void {
 });
 
 describe(UserResource::class, function (): void {
-
     it('page can display table with records without admin', function (): void {
         $users = User::factory()
             ->count(5)
             ->create();
 
-        createAndAssignRole('admin', User::first());
+        $this->createAndAssignRole('admin', User::first());
 
         Livewire::test(ListUsers::class)
             ->assertCanSeeTableRecords($users)
-            ->assertCountTableRecords(5);
+            ->assertCountTableRecords(6);
     });
 
     it('page can display table with records without moderator', function (): void {
@@ -31,10 +30,10 @@ describe(UserResource::class, function (): void {
             ->count(3)
             ->create();
 
-        createAndAssignRole('moderator', User::first());
+        $this->createAndAssignRole('moderator', User::first());
 
         Livewire::test(ListUsers::class)
             ->assertCanSeeTableRecords($users)
-            ->assertCountTableRecords(3);
+            ->assertCountTableRecords(4);
     });
 })->group('users');

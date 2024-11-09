@@ -8,7 +8,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Collection;
-use Spatie\Permission\Models\Role;
 
 uses(Tests\TestCase::class, RefreshDatabase::class)
     ->in('Feature');
@@ -59,11 +58,4 @@ function createActiveThread(): Thread
     $reply->save();
 
     return $thread;
-}
-
-function createAndAssignRole(string $role, User $user): User
-{
-    Role::create(['name' => $role]);
-
-    return $user->assignRole($role);
 }
