@@ -8,6 +8,7 @@ use App\Filament\Resources\ChannelResource\Pages;
 use App\Models\Channel;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
@@ -18,6 +19,8 @@ use Illuminate\Support\Str;
 
 final class ChannelResource extends Resource
 {
+    use Translatable;
+
     protected static ?string $model = Channel::class;
 
     protected static ?string $navigationIcon = 'untitledui-git-branch';
@@ -31,28 +34,33 @@ final class ChannelResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make()
-                    ->schema([
-                        Forms\Components\TextInput::make('name')
-                            ->required()
-                            ->live(onBlur: true)
-                            ->afterStateUpdated(function (string $operation, $state, Forms\Set $set): void {
-                                $set('slug', Str::slug($state));
-                            }),
-                        Forms\Components\TextInput::make('slug')
-                            ->readOnly()
-                            ->helperText(__('Cette valeur est générée dynamiquement en fonction du Name.')),
-                        Forms\Components\Select::make('parent_id')
-                            ->relationship('parent', 'name', fn (Builder $query) => $query->whereNull('parent_id'))
-                            ->default(null),
-                        Forms\Components\TextInput::make('color')
-                            ->maxLength(255)
-                            ->type('color'),
-                        Forms\Components\Textarea::make('description.fr')
-                            ->label('Description')
-                            ->columnSpanFull(),
-                    ])
-                    ->columnSpan(['lg' => 2]),
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state)))
+                    ->columnSpanFull(),
+                Forms\Components\TextInput::make('slug')
+                    ->readOnly()
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\Select::make('parent_id')
+                    ->relationship(
+                        name: 'parent',
+                        titleAttribute: 'name',
+                        modifyQueryUsing: fn (Builder $query) => $query->whereNull('parent_id')
+                    )
+                    ->live()
+                    ->default(null)
+                    ->columnSpanFull(),
+                Forms\Components\ColorPicker::make('color')
+                    ->label('Couleur')
+                    ->hex()
+                    ->live()
+                    ->columnSpanFull()
+                    ->required(fn (Forms\Get $get): bool => $get('parent_id') === null),
+                Forms\Components\Textarea::make('description')
+                    ->rows(4)
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -61,19 +69,21 @@ final class ChannelResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
+                    ->label('Nom')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('parent.name')
-                    ->numeric()
+                    ->label('Parent')
+                    ->placeholder('N/A')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('thread_number')
-                    ->label('Nombre de thead')
+                    ->label('Nombre de sujets')
                     ->getStateUsing(fn ($record) => $record->threads()->count()),
-                Tables\Columns\TextColumn::make('color')
-                    ->searchable(),
+                Tables\Columns\ColorColumn::make('color')
+                    ->label('Couleur')
+                    ->placeholder('N/A'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Date')
+                    ->date()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
@@ -81,17 +91,12 @@ final class ChannelResource extends Resource
 
             ])
             ->actions([
-                ActionGroup::make([
-                    Tables\Actions\DeleteAction::make(),
-                    Tables\Actions\EditAction::make()
-                        ->slideOver()
-                        ->modalWidth(MaxWidth::Large),
-                ]),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->iconButton(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
