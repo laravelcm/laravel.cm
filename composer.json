@@ -10,6 +10,7 @@
     "ext-json": "*",
     "archtechx/laravel-seo": "^0.10",
     "arrilot/laravel-widgets": "^3.13.2",
+    "awcodes/filament-badgeable-column": "^2.3",
     "blade-ui-kit/blade-heroicons": "^2.0",
     "cyrildewit/eloquent-viewable": "^7.0",
     "doctrine/dbal": "^3.6.4",

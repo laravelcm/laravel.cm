@@ -17,6 +17,7 @@ export default {
     './storage/framework/views/*.php',
     './vendor/filament/**/*.blade.php',
     './vendor/wire-elements/modal/resources/views/*.blade.php',
+    './vendor/awcodes/filament-badgeable-column/resources/**/*.blade.php',
   ],
   safelist: [
     {
