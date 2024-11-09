@@ -52,7 +52,7 @@ describe(TagResource::class, function (): void {
             ->assertStatus(200);
     });
 
-    it('Admin  can edit tag', function (): void {
+    it('Admin can edit tag', function (): void {
         $tag = Tag::factory()->create();
 
         Livewire::test(ListTags::class)
