@@ -17,7 +17,7 @@ final class CreateArticleAction
         if ($articleData->published_at) {
             $articleData->published_at = new Carbon(
                 time: $articleData->published_at,
-                tz: config('app.timezone')
+                timezone: config('app.timezone')
             );
         }
 

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 use Livewire\Livewire;
 
 beforeEach(function (): void {
-    $this->user = $this->login();
+    $this->user = $this->login(['email' => 'joe@laravel.cm']);
     $this->tags = Tag::factory()
         ->count(10)
         ->state(new Sequence(
@@ -63,8 +63,7 @@ describe(TagResource::class, function (): void {
 
         $tag->refresh();
 
-        expect($tag->name)
-            ->toBe('Edited tag');
+        expect($tag->name)->toBe('Edited tag');
     });
 
 })->group('tags');

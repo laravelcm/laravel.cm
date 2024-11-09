@@ -26,8 +26,6 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Socialite\Contracts\User as SocialUser;
 use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
-use LaravelFeature\Featurable\Featurable;
-use LaravelFeature\Featurable\FeaturableInterface;
 use QCod\Gamify\Gamify;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -51,9 +49,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon | null $last_login_at
  * @property Collection | Activity[] $activities
  */
-final class User extends Authenticatable implements FeaturableInterface, FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
+final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
-    use Featurable;
     use Gamify;
     use HasApiTokens;
     use HasFactory;

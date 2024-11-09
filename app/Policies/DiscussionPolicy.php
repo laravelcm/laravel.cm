@@ -6,9 +6,12 @@ namespace App\Policies;
 
 use App\Models\Discussion;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 final class DiscussionPolicy
 {
+    use HandlesAuthorization;
+
     public const UPDATE = 'update';
 
     public const DELETE = 'delete';

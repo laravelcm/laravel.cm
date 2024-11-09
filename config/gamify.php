@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 return [
+
     // Model which will be having points, generally it will be User
     'payee_model' => App\Models\User::class,
 
@@ -36,4 +37,5 @@ return [
 
     // Default level
     'badge_default_level' => 1,
+
 ];

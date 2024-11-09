@@ -10,7 +10,7 @@ use Filament\Actions\EditAction;
 use Livewire\Livewire;
 
 beforeEach(function (): void {
-    $this->user = $this->login();
+    $this->user = $this->login(['email' => 'joe@laravel.cm']);
 });
 
 describe(ChannelResource::class, function (): void {
@@ -31,11 +31,12 @@ describe(ChannelResource::class, function (): void {
             ->assertHasNoActionErrors()
             ->assertStatus(200);
 
-        $channel = Channel::first();
+        $channel = Channel::query()->first();
 
         expect($channel)
             ->toBeInstanceOf(Channel::class)
-            ->and($channel->name)->toBe($name);
+            ->and($channel->name)
+            ->toBe($name);
     });
 
     it('Admin user can edit channel', function (): void {
@@ -44,13 +45,13 @@ describe(ChannelResource::class, function (): void {
         Livewire::test(ListChannels::class)
             ->callTableAction(EditAction::class, $channel, data: [
                 'name' => 'Edited channel',
+                'color' => '#FFFFFF',
             ])
             ->assertHasNoTableActionErrors();
 
         $channel->refresh();
 
-        expect($channel->name)
-            ->toBe('Edited channel');
+        expect($channel->name)->toBe('Edited channel');
     });
 
 })->group('channels');

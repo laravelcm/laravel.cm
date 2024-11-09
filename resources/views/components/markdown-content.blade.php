@@ -3,5 +3,5 @@
 ])
 
 <div {{ $attributes }}>
-    {!! replace_links(\App\Markdown\MarkdownHelper::parseLiquidTags(Markdown::convert($content))) !!}
+    {!! replace_links(\App\Markdown\MarkdownHelper::parseLiquidTags(\GrahamCampbell\Markdown\Facades\Markdown::convert($content))) !!}
 </div>
