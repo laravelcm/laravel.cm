@@ -34,22 +34,16 @@ final class TagResource extends Resource
                     ->live(onBlur: true)
                     ->required()
                     ->unique()
-                    ->validationMessages([
-                        'unique' => 'Cette valeur existe déjà',
-                    ])
-                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set): void {
-                        $set('slug', Str::slug($state));
-                    })
+                    ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state)))
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('slug')
                     ->readOnly()
                     ->required()
-                    ->helperText(__('Cette valeur est générée dynamiquement en fonction du Name.'))
                     ->columnSpanFull(),
                 Select::make('concerns')
                     ->multiple()
                     ->options([
-                        'post' => 'Post',
+                        'post' => 'Article',
                         'tutorial' => 'Tutoriel',
                         'discussion' => 'Discussion',
                     ])
@@ -66,20 +60,12 @@ final class TagResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make(name: 'concerns'),
             ])
-            ->filters([
-                //
-            ])
             ->actions([
-                \Filament\Tables\Actions\ActionGroup::make([
-                    Tables\Actions\DeleteAction::make(),
-                    Tables\Actions\EditAction::make()
-                        ->slideOver()
-                        ->modalWidth(MaxWidth::Large),
-                ]),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->iconButton(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
