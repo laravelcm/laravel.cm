@@ -19,7 +19,7 @@ final class PostArticleToTwitter extends Command
     {
         if ($article = Article::nextForSharing()) {
             $notifiable->notify(new PostArticleToTwitterNotification($article));
-            
+
             $article->markAsShared();
         }
     }
