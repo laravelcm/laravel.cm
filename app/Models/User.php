@@ -4,32 +4,34 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Enums\TransactionStatus;
-use App\Traits\HasProfilePhoto;
+use App\Traits\Reacts;
+use QCod\Gamify\Gamify;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
-use App\Traits\Reacts;
-use Carbon\Carbon;
-use Filament\Models\Contracts\FilamentUser;
-use Filament\Models\Contracts\HasAvatar;
-use Filament\Models\Contracts\HasName;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
+use App\Events\UserBannedEvent;
+use App\Traits\HasProfilePhoto;
+use App\Enums\TransactionStatus;
+use App\Events\UserUnbannedEvent;
 use Laravel\Sanctum\HasApiTokens;
-use Laravel\Socialite\Contracts\User as SocialUser;
-use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
-use QCod\Gamify\Gamify;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Support\Facades\Auth;
+use Filament\Models\Contracts\HasName;
 use Spatie\Permission\Traits\HasRoles;
+use Filament\Models\Contracts\HasAvatar;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Notifications\Notification;
+use Filament\Models\Contracts\FilamentUser;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Socialite\Contracts\User as SocialUser;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
 
 /**
  * @property-read int $id
@@ -45,8 +47,10 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string | null $linkedin_profile
  * @property string | null $bio
  * @property string | null $website
+ * @property string | null $banned_reason
  * @property Carbon | null $email_verified_at
  * @property Carbon | null $last_login_at
+ * @property Carbon | null $banned_at
  * @property Collection | Activity[] $activities
  */
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
@@ -81,6 +85,8 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'last_login_at',
         'last_login_ip',
         'email_verified_at',
+        'banned_at',
+        'banned_reason',
         'opt_in',
     ];
 
@@ -94,6 +100,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_login_at' => 'datetime',
+        'banned_at' => 'datetime',
         'settings' => 'array',
     ];
 
@@ -466,5 +473,25 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     public function scopeTopContributors(Builder $query): Builder
     {
         return $query->withCount(['discussions'])->orderByDesc('discussions_count');
+    }
+
+    public function ban($reason = null)
+    {
+        $this->update([
+            'banned_at' => now(),
+            'banned_reason' => $reason,
+        ]);
+
+        event(new UserBannedEvent($this));
+    }
+
+    public function unban()
+    {
+        $this->update([
+            'banned_at' => null,
+            'banned_reason' => null,
+        ]);
+        
+        event(new UserUnbannedEvent($this));
     }
 }

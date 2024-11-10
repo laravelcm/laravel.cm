@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
-use Awcodes\FilamentBadgeableColumn\Components\Badge;
-use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
-use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\ActionGroup;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\UserResource\Pages;
+use Awcodes\FilamentBadgeableColumn\Components\Badge;
+use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
 
 final class UserResource extends Resource
 {
@@ -64,8 +67,36 @@ final class UserResource extends Resource
                     ->nullable(),
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make()
-                    ->iconButton(),
+                ActionGroup::make([
+                    Action::make('ban')
+                        ->label(__('actions.ban'))
+                        ->icon('untitledui-archive')
+                        ->color('warning')
+                        ->visible(fn ($record) => $record->banned_at == null)
+                        ->modalHeading(__('Bannir l\'utilisateur'))
+                        ->modalDescription(__('Veuillez entrer la raison du bannissement.'))
+                        ->form([
+                            TextInput::make('banned_reason')
+                                ->label(__('Raison du bannissement'))
+                                ->required(),
+                        ])
+                        ->action(function ($record, array $data) {
+                            $record->ban($data['banned_reason']);
+                        })
+                        ->requiresConfirmation(),
+                    
+                    Action::make('unban')
+                        ->label(__('actions.unban'))
+                        ->icon('heroicon-o-check-circle')
+                        ->color('success')
+                        ->visible(fn ($record) => $record->banned_at !== null)
+                        ->action(function ($record) {
+                            $record->unban();
+                        })
+                        ->requiresConfirmation(),
+                
+                    Tables\Actions\DeleteAction::make(),
+                ])->icon('heroicon-m-ellipsis-horizontal'),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
