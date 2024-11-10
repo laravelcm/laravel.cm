@@ -52,19 +52,15 @@
             </p>
         </div>
 
-        @if ($user->hasRole(['admin', 'moderator']))
+        @if ($user->isAdmin() || $user->isModerator())
             <div class="px-3.5 py-1.5" role="menu">
                 <x-link
                     :href="route('filament.admin.pages.dashboard')"
-                    class="group flex items-center gap-2 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
+                    class="group flex items-center gap-2 py-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
                     role="menuitem"
                     tabindex="-1"
                 >
-                    <x-untitledui-monitor
-                        class="size-5 text-gray-400 dark:gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-300"
-                        stroke-width="1.5"
-                        aria-hidden="true"
-                    />
+                    <img class="size-5 object-cover" src="{{ asset('images/filament-icon.png') }}" alt="Filament icon" />
                     Administration
                 </x-link>
             </div>

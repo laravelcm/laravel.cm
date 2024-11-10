@@ -35,6 +35,7 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+            'throw' => false,
         ],
 
         'public' => [
@@ -42,6 +43,7 @@ return [
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
+            'throw' => false,
         ],
 
         's3' => [
@@ -52,6 +54,7 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
+            'throw' => false,
         ],
 
         'media' => [
@@ -59,6 +62,7 @@ return [
             'root' => public_path('media'),
             'url' => env('APP_URL').'/media',
             'visibility' => 'public',
+            'throw' => false,
         ],
 
     ],

@@ -4,7 +4,6 @@
 npm-debug.log
 yarn-error.log
 yarn.lock
-
 /vendor
 composer.phar
 

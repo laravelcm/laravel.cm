@@ -11,11 +11,14 @@ use Filament\Support\Enums\MaxWidth;
 
 final class ListChannels extends ListRecords
 {
+    use ListRecords\Concerns\Translatable;
+
     protected static string $resource = ChannelResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
+            Actions\LocaleSwitcher::make(),
             Actions\CreateAction::make()
                 ->slideOver()
                 ->modalWidth(MaxWidth::Large),

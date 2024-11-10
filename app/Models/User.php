@@ -21,12 +21,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Socialite\Contracts\User as SocialUser;
 use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
-use LaravelFeature\Featurable\Featurable;
-use LaravelFeature\Featurable\FeaturableInterface;
 use QCod\Gamify\Gamify;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -37,12 +36,21 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string $name
  * @property string $email
  * @property string $username
- * @property string $bio
+ * @property string $avatar_type
+ * @property string $profile_photo_url
+ * @property string | null $location
+ * @property string | null $phone_number
+ * @property string | null $github_profile
+ * @property string | null $twitter_profile
+ * @property string | null $linkedin_profile
+ * @property string | null $bio
+ * @property string | null $website
+ * @property Carbon | null $email_verified_at
+ * @property Carbon | null $last_login_at
  * @property Collection | Activity[] $activities
  */
-final class User extends Authenticatable implements FeaturableInterface, FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
+final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
-    use Featurable;
     use Gamify;
     use HasApiTokens;
     use HasFactory;
@@ -73,7 +81,6 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
         'last_login_at',
         'last_login_ip',
         'email_verified_at',
-        'published_at',
         'opt_in',
     ];
 

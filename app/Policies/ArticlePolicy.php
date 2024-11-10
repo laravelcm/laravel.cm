@@ -6,22 +6,20 @@ namespace App\Policies;
 
 use App\Models\Article;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 final class ArticlePolicy
 {
-    public const UPDATE = 'update';
+    use HandlesAuthorization;
 
-    public const DELETE = 'delete';
-
-    public const APPROVE = 'approve';
-
-    public const DISAPPROVE = 'disapprove';
-
-    public const PINNED = 'togglePinnedStatus';
+    public function create(User $user): bool
+    {
+        return $user->hasVerifiedEmail();
+    }
 
     public function update(User $user, Article $article): bool
     {
-        return $article->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+        return $article->isAuthoredBy($user);
     }
 
     public function delete(User $user, Article $article): bool

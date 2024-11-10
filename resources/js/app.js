@@ -3,6 +3,7 @@ import '../../vendor/laravelcm/livewire-slide-overs/resources/js/slide-over';
 
 import intersect from '@alpinejs/intersect'
 import Tooltip from '@ryangjchandler/alpine-tooltip'
+import collapse from '@alpinejs/collapse'
 
 import './elements'
 import { registerHeader } from './utils/header'
@@ -14,6 +15,7 @@ registerHeader()
 
 Alpine.plugin(intersect)
 Alpine.plugin(Tooltip)
+Alpine.plugin(collapse)
 
 window.Alpine = Alpine
 

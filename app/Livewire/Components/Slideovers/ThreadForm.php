@@ -51,6 +51,16 @@ final class ThreadForm extends SlideOverComponent implements HasForms
         return '2xl';
     }
 
+    public static function closePanelOnEscape(): bool
+    {
+        return false;
+    }
+
+    public static function closePanelOnClickAway(): bool
+    {
+        return false;
+    }
+
     public function form(Form $form): Form
     {
         return $form
@@ -58,13 +68,13 @@ final class ThreadForm extends SlideOverComponent implements HasForms
                 Forms\Components\Hidden::make('user_id'),
                 Forms\Components\TextInput::make('title')
                     ->label(__('validation.attributes.title'))
-                    ->helperText(__('pages/forum.max_thread_length'))
+                    ->helperText(__('pages/forum.min_thread_length'))
                     ->required()
                     ->live(onBlur: true)
                     ->afterStateUpdated(function (string $operation, $state, Forms\Set $set): void {
                         $set('slug', Str::slug($state));
                     })
-                    ->maxLength(100),
+                    ->minLength(10),
                 Forms\Components\Hidden::make('slug'),
                 Forms\Components\Select::make('channels')
                     ->multiple()
@@ -88,13 +98,8 @@ final class ThreadForm extends SlideOverComponent implements HasForms
                     ->minLength(20),
                 Forms\Components\Placeholder::make('')
                     ->content(fn () => new HtmlString(Blade::render(<<<'Blade'
-                        <p class="-mt-2 text-sm leading-5 text-gray-500 dark:text-gray-400">
-                            {{ __('pages/forum.torchlight') }}
-                            <a href="https://torchlight.dev/docs/overview" target="_blank" class="font-medium text-primary-600 underline hover:text-primary-500">
-                                Torchlight
-                            </a>
-                        </p>
-                Blade))),
+                        <x-torchlight />
+                    Blade))),
             ])
             ->statePath('data')
             ->model($this->thread);
@@ -109,17 +114,19 @@ final class ThreadForm extends SlideOverComponent implements HasForms
             );
         }
 
-        $this->validate();
-
         if ($this->thread?->id) {
             $this->authorize('update', $this->thread);
         }
 
+        $this->validate();
+
+        $validated = $this->form->getState();
+
         if ($this->thread?->id) {
-            $this->thread->update($this->form->getState());
+            $this->thread->update($validated);
             $this->form->model($this->thread)->saveRelationships();
         } else {
-            $thread = Thread::query()->create($this->form->getState());
+            $thread = Thread::query()->create($validated);
             $this->form->model($thread)->saveRelationships();
 
             app(SubscribeToThreadAction::class)->execute($thread);
@@ -136,8 +143,6 @@ final class ThreadForm extends SlideOverComponent implements HasForms
             )
             ->success()
             ->send();
-
-        $this->dispatch('thread.save.{$thread->id}');
 
         $this->redirect(route('forum.show', ['thread' => $thread ?? $this->thread]), navigate: true);
     }

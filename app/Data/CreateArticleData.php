@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Data;
 
 use Carbon\Carbon;
-use Illuminate\Http\UploadedFile;
 use Spatie\LaravelData\Data;
 
 final class CreateArticleData extends Data
@@ -14,12 +13,8 @@ final class CreateArticleData extends Data
         public string $title,
         public string $slug,
         public string $body,
-        public string $showToc,
-        public string $canonicalUrl,
-        public ?Carbon $publishedAt,
-        public ?Carbon $submittedAt,
-        public ?Carbon $approvedAt,
-        public ?UploadedFile $file,
-        public array $tags = [],
+        public string $canonical_url,
+        public ?Carbon $published_at,
+        public bool $is_draft = false,
     ) {}
 }

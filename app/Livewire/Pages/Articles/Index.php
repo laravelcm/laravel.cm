@@ -19,9 +19,10 @@ final class Index extends Component
         return view('livewire.pages.articles.index', [
             'articles' => Article::with(['tags', 'user', 'user.transactions'])
                 ->withCount(['views', 'reactions'])
-                ->scopes(['published', 'notPinned'])
                 ->orderByDesc('sponsored_at')
                 ->orderByDesc('published_at')
+                ->published()
+                ->notPinned()
                 ->paginate($this->perPage),
             'tags' => Tag::query()->whereHas('articles', function ($query): void {
                 $query->published();

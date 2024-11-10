@@ -6,9 +6,12 @@ namespace App\Policies;
 
 use App\Models\Discussion;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 final class DiscussionPolicy
 {
+    use HandlesAuthorization;
+
     public const UPDATE = 'update';
 
     public const DELETE = 'delete';
@@ -18,6 +21,11 @@ final class DiscussionPolicy
     public const SUBSCRIBE = 'subscribe';
 
     public const UNSUBSCRIBE = 'unsubscribe';
+
+    public function create(User $user): bool
+    {
+        return $user->hasVerifiedEmail();
+    }
 
     public function update(User $user, Discussion $discussion): bool
     {

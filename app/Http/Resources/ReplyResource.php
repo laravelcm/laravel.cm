@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-use App\Models\IdeHelperReply;
+use App\Models\Reply;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin IdeHelperReply
+ * @mixin Reply
  */
 final class ReplyResource extends JsonResource
 {
@@ -23,7 +23,6 @@ final class ReplyResource extends JsonResource
             'author' => new UserResource($this->user),
             'experience' => $this->user->getPoints(),
             'has_replies' => $this->allChildReplies->isNotEmpty(),
-            // @phpstan-ignore-next-line
             'likes_count' => $this->getReactionsSummary()->sum('count'),
         ];
     }

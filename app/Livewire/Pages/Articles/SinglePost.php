@@ -40,7 +40,7 @@ final class SinglePost extends Component
             ->twitterDescription($article->excerpt(150))
             ->twitterImage($image)
             ->twitterSite('laravelcm')
-            ->withUrl();
+            ->url($article->canonicalUrl());
 
         $this->article = $article;
     }

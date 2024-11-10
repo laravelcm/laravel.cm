@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-use App\Models\IdeHelperEnterprise;
+use App\Models\Enterprise;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin IdeHelperEnterprise
+ * @mixin Enterprise
  */
 final class EnterpriseResource extends JsonResource
 {

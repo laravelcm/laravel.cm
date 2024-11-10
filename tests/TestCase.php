@@ -5,17 +5,16 @@ declare(strict_types=1);
 namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\App;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
     use CreatesUsers;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        Artisan::call('config:clear');
+        App::setLocale('fr');
     }
 }
