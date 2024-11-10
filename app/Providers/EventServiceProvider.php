@@ -5,22 +5,26 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Events\ApiRegistered;
-use App\Events\ArticleWasSubmittedForApproval;
 use App\Events\CommentWasAdded;
 use App\Events\ReplyWasCreated;
-use App\Events\SponsoringPaymentInitialize;
+use App\Events\UserBannedEvent;
 use App\Events\ThreadWasCreated;
+use App\Events\UserUnbannedEvent;
+use Illuminate\Auth\Events\Registered;
 use App\Listeners\NotifyMentionedUsers;
-use App\Listeners\PostNewThreadNotification;
 // use App\Listeners\SendCompanyEmailVerificationNotification;
+use App\Listeners\SendPaymentNotification;
+use App\Events\SponsoringPaymentInitialize;
+use App\Listeners\SendNewReplyNotification;
+use App\Listeners\PostNewThreadNotification;
+use App\Listeners\SendNewThreadNotification;
+// use App\Listeners\SendWelcomeCompanyNotification;
 use App\Listeners\SendNewArticleNotification;
 use App\Listeners\SendNewCommentNotification;
-use App\Listeners\SendNewReplyNotification;
-use App\Listeners\SendNewThreadNotification;
-use App\Listeners\SendPaymentNotification;
-// use App\Listeners\SendWelcomeCompanyNotification;
+use App\Events\ArticleWasSubmittedForApproval;
+use App\Listeners\SendBanNotificationListener;
 use App\Listeners\SendWelcomeMailNotification;
-use Illuminate\Auth\Events\Registered;
+use App\Listeners\SendUnbanNotificationListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -59,6 +63,12 @@ final class EventServiceProvider extends ServiceProvider
 
         SponsoringPaymentInitialize::class => [
             SendPaymentNotification::class,
+        ],
+        UserBannedEvent::class => [
+            SendBanNotificationListener::class,
+        ],
+        UserUnbannedEvent::class => [
+            SendUnbanNotificationListener::class,
         ],
     ];
 }

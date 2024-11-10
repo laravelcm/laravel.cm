@@ -20,7 +20,7 @@ Route::middleware('guest')->group(function (): void {
         ->name('password.reset');
 });
 
-Route::middleware('auth')->group(function (): void {
+Route::middleware(['auth', 'checkIfBanned'])->group(function (): void {
     Volt::route('verify-email', 'pages.auth.verify-email')
         ->name('verification.notice');
 
