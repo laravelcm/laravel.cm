@@ -19,16 +19,12 @@ final class MostActiveUsersPerWeek
 
     /**
      * The number of seconds before each reload.
-     *
-     * @var int|float
      */
     public int|float $reloadTimeout = 60 * 60 * 24 * 2; // 2 days
 
     /**
      * The number of minutes before cache expires.
      * False means no caching at all.
-     *
-     * @var int|float|bool
      */
     public int|float|bool $cacheTime = 0;
 

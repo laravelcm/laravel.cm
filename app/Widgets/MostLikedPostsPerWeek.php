@@ -18,16 +18,12 @@ final class MostLikedPostsPerWeek
 
     /**
      * The number of seconds before each reload.
-     *
-     * @var int|float
      */
     public int|float $reloadTimeout = 172800; // 2 days
 
     /**
      * The number of minutes before cache expires.
      * False means no caching at all.
-     *
-     * @var int|float|bool
      */
     public int|float|bool $cacheTime = 0;
 
