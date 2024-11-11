@@ -1,5 +1,5 @@
 @component('mail::message')
-    **{{ '@' . $reply->user->username }}** a répondu à ce sujet.
+    <b>{{ '@' . $reply->user->username }}</b> a répondu à ce sujet.
 
     @component('mail::panel')
         {{ $reply->excerpt(200) }}
