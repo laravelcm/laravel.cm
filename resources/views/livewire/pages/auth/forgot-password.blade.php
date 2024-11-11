@@ -1,4 +1,37 @@
-<x-app-layout :title="__('pages/auth.forgot.page_title')">
+<?php
+
+use Illuminate\Support\Facades\Password;
+use Livewire\Attributes\Layout;
+use Livewire\Volt\Component;
+
+new class extends Component
+{
+    public string $email = '';
+
+    public function sendPasswordResetLink(): void
+    {
+        $this->validate([
+            'email' => ['required', 'string', 'email'],
+        ]);
+
+        $status = Password::sendResetLink(
+            $this->only('email')
+        );
+
+        if ($status != Password::RESET_LINK_SENT) {
+            $this->addError('email', __($status));
+
+            return;
+        }
+
+        $this->reset('email');
+
+        session()->flash('status', __($status));
+    }
+}; ?>
+
+
+<div>
     <div class="flex min-h-full items-center justify-center py-16 sm:py-24">
         <div class="w-full max-w-md">
             <div>
@@ -12,8 +45,7 @@
                 </div>
             </div>
 
-            <form class="mt-8">
-                @csrf
+            <form class="mt-8" wire:submit="sendPasswordResetLink">
 
                 <div class="block">
                     <x-filament-forms::field-wrapper.label for="email">
@@ -24,6 +56,7 @@
                             type="text"
                             id="email"
                             name="email"
+                            wire:model="email"
                             autocomplete="email"
                             required="true"
                             :value="old('email')"
@@ -42,4 +75,4 @@
     </div>
 
     <x-join-sponsors :title="__('global.sponsor_thanks')" />
-</x-app-layout>
+</div>
