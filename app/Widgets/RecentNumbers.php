@@ -6,20 +6,19 @@ namespace App\Widgets;
 
 use App\Models\Article;
 use App\Models\User;
-use Arrilot\Widgets\AbstractWidget;
 use CyrildeWit\EloquentViewable\Support\Period;
 use Illuminate\Contracts\View\View;
 
-final class RecentNumbers extends AbstractWidget
+final class RecentNumbers
 {
-    protected $config = [];
+    protected array $config = [];
 
     /**
      * The number of seconds before each reload.
      *
      * @var int|float
      */
-    public $reloadTimeout = 5400;
+    public int|float $reloadTimeout = 5400;
 
     /**
      * The number of minutes before cache expires.
@@ -27,7 +26,7 @@ final class RecentNumbers extends AbstractWidget
      *
      * @var int|float|bool
      */
-    public $cacheTime = 90;
+    public int|float|bool $cacheTime = 90;
 
     public function run(): View
     {

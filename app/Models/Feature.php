@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use LaravelFeature\Model\Feature as Model;
+use Illuminate\Database\Eloquent\Model;
 
 final class Feature extends Model
 {

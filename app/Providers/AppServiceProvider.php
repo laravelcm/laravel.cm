@@ -62,8 +62,8 @@ final class AppServiceProvider extends ServiceProvider
 
     public function bootViewsComposer(): void
     {
-        View::composer('discussions._contributions', TopContributorsComposer::class);
-        View::composer('discussions._contributions', InactiveDiscussionsComposer::class);
+        View::composer('partials._contributions', TopContributorsComposer::class);
+        View::composer('partials._contributions', InactiveDiscussionsComposer::class);
         View::composer('components.profile-users', ProfileUsersComposer::class);
     }
 

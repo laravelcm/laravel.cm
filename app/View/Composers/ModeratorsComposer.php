@@ -12,6 +12,13 @@ final class ModeratorsComposer
 {
     public function compose(View $view): void
     {
-        $view->with('moderators', Cache::remember('moderators', now()->addYear(), fn () => User::moderators()->get()));
+        $view->with(
+            'moderators',
+            Cache::remember(
+                key: 'moderators',
+                ttl: now()->addMonths(6),
+                callback: fn () => User::moderators()->get()
+            )
+        );
     }
 }

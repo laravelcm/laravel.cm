@@ -12,6 +12,13 @@ final class ProfileUsersComposer
 {
     public function compose(View $view): void
     {
-        $view->with('users', Cache::remember('avatar_users', now()->addWeek(), fn () => User::verifiedUsers()->inRandomOrder()->take(10)->get()));
+        $view->with(
+            'users',
+            Cache::remember(
+                key: 'avatar_users',
+                ttl: now()->addWeek(),
+                callback: fn () => User::verifiedUsers()->inRandomOrder()->take(10)->get()
+            )
+        );
     }
 }

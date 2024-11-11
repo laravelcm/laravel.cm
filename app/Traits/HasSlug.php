@@ -18,7 +18,7 @@ trait HasSlug
         $this->attributes['slug'] = $this->generateUniqueSlug($slug);
     }
 
-    public static function findBySlug(string $slug): self
+    public static function findBySlug(string $slug): static
     {
         return static::where('slug', $slug)->firstOrFail();
     }
