@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
@@ -45,7 +47,7 @@ new class extends Component
                     {{ __('pages/auth.forgot.description') }}
                 </div>
             </div>
-                                
+
             <form class="mt-8" wire:submit="sendPasswordResetLink">
                 <div class="block">
                     <x-filament-forms::field-wrapper.label for="email">

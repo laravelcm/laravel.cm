@@ -21,8 +21,8 @@
                 <div class="space-y-6 pt-6 sm:space-y-5 sm:pt-5">
                     @if (Auth::user()->hasPassword())
                         <div class="block">
-                            <x-label for="current_password">{{ __('Mot de passe actuel') }}</x-label>
-                            <x-password
+                            <label for="current_password">{{ __('Mot de passe actuel') }}</label>
+                            <input
                                 id="current_password"
                                 class="mt-1 block w-full"
                                 name="current_password"
@@ -33,16 +33,16 @@
                     @endif
 
                     <div class="block">
-                        <x-label for="password">{{ __('Nouveau mot de passe') }}</x-label>
-                        <x-password id="password" class="mt-1 block w-full" name="password" required />
+                        <label for="password">{{ __('Nouveau mot de passe') }}</label>
+                        <input id="password" class="mt-1 block w-full" name="password" required />
                         <p class="mt-2 text-sm font-normal text-skin-muted">
                             {{ __('Votre nouveau mot de passe doit comporter plus de 8 caractères.') }}
                         </p>
                     </div>
 
                     <div class="block">
-                        <x-label for="password_confirmation">{{ __('Confirmer nouveau mot de passe') }}</x-label>
-                        <x-password
+                        <label for="password_confirmation">{{ __('Confirmer nouveau mot de passe') }}</label>
+                        <input
                             id="password_confirmation"
                             class="mt-1 block w-full"
                             name="password_confirmation"
@@ -54,9 +54,9 @@
 
             <div class="pt-5">
                 <div class="flex justify-end">
-                    <x-button type="submit" class="inline-flex">
+                    <x-buttons.primary type="submit" class="inline-flex">
                         {{ __('Enregistrer') }}
-                    </x-button>
+                    </x-buttons.primary>
                 </div>
             </div>
         </form>

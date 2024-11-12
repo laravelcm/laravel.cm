@@ -7,12 +7,12 @@
         </p>
         <div class="mt-3 grid gap-4 lg:mt-5 lg:grid-cols-2 lg:gap-6">
             <div>
-                <x-label for="name">Nom complet</x-label>
-                <x-input container-class="mt-1" name="name" id="name" wire:model="name" />
+                <label for="name">Nom complet</label>
+                <input container-class="mt-1" name="name" id="name" wire:model="name" />
             </div>
             <div>
-                <x-label for="email">Adresse E-mail</x-label>
-                <x-email
+                <label for="email">Adresse E-mail</label>
+                <input
                     container-class="mt-1"
                     name="email"
                     id="email"
@@ -52,23 +52,23 @@
                 </div>
             </div>
             <div class="mt-1.5">
-                <x-label for="url">
+                <label for="url">
                     {{ $type === 'company' ? 'Lien vers le logo de votre entreprise' : 'Lien vers une photo de vous' }}
-                </x-label>
-                <x-input container-class="mt-1" name="url" id="url" wire:model="url" inline-addon="https://" />
+                </label>
+                <input container-class="mt-1" name="url" id="url" wire:model="url" inline-addon="https://" />
             </div>
         </div>
     </x-slot>
 
     <x-slot name="buttons">
         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-            <x-button wire:click="submit" type="button">
+            <x-buttons.primary wire:click="submit" type="button">
                 <x-loader class="text-white" wire:loading wire:target="submit" />
                 Valider
-            </x-button>
+            </x-buttons.primary>
         </span>
         <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <x-default-button wire:click="$dispatch('closeModal')" type="button">Annuler</x-default-button>
+            <x-buttons.default wire:click="$dispatch('closeModal')" type="button">Annuler</x-buttons.default>
         </span>
     </x-slot>
 </x-modal>

@@ -1,11 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rules;
-use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
 use Livewire\Volt\Component;
 use Illuminate\Support\Facades\Password;
@@ -26,7 +25,7 @@ new class extends Component
     {
         $this->token = $token;
 
-        $this->email = request()->string('email');
+        $this->email = (string) request()->string('email');
     }
 
     /**
@@ -37,15 +36,20 @@ new class extends Component
         $this->validate([
             'token' => ['required'],
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string', 'confirmed', PasswordRules::min(8)
-            ->uncompromised()
-            ->numbers()
-            ->mixedCase()],
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                PasswordRules::min(8)
+                    ->uncompromised()
+                    ->numbers()
+                    ->mixedCase(),
+            ],
         ]);
 
         $status = Password::reset(
-            $this->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user) {
+            credentials: $this->only('email', 'password', 'password_confirmation', 'token'),
+            callback: function ($user): void {
                 $user->forceFill([
                     'password' => Hash::make($this->password),
                     'remember_token' => Str::random(60),
@@ -61,7 +65,7 @@ new class extends Component
             return;
         }
 
-        Session::flash('status', __($status));
+        session()->flash('status', __($status));
 
         $this->redirectRoute('login', navigate: true);
     }

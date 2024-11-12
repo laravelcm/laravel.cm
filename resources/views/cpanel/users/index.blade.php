@@ -9,7 +9,7 @@
                     </p>
                 </div>
                 <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <x-button type="button">{{ __('Inviter') }}</x-button>
+                    <x-buttons.primary type="button">{{ __('Inviter') }}</x-buttons.primary>
                 </div>
             </div>
             <div class="mt-8 flex flex-col">

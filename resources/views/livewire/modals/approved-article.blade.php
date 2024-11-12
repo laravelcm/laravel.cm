@@ -22,13 +22,13 @@
 
     <x-slot name="buttons">
         <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-            <x-button wire:click="approved" type="button">
+            <x-buttons.primary wire:click="approved" type="button">
                 <x-loader class="text-white" wire:loading wire:target="approved" />
                 Approuver
-            </x-button>
+            </x-buttons.primary>
         </span>
         <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-            <x-default-button wire:click="$dispatch('closeModal')" type="button">Annuler</x-default-button>
+            <x-buttons.default wire:click="$dispatch('closeModal')" type="button">Annuler</x-buttons.default>
         </span>
     </x-slot>
 </x-modal>

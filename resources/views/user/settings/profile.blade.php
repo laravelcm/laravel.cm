@@ -18,12 +18,12 @@
                 </div>
                 <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-skin-base sm:pt-5">
-                        <x-label for="username" class="text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2">
+                        <label for="username" class="text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2">
                             {{ __('Pseudo') }}
-                        </x-label>
+                        </label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
                             <div class="flex max-w-lg rounded-md shadow-sm">
-                                <x-input
+                                <input
                                     type="text"
                                     name="username"
                                     id="username"
@@ -39,13 +39,13 @@
                     </div>
 
                     <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-skin-base sm:pt-5">
-                        <x-label for="about" class="text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2">
+                        <label for="about" class="text-gray-700 dark:text-gray-300 sm:mt-px sm:pt-2">
                             {{ __('Bio') }}
-                        </x-label>
+                        </label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
-                            <x-textarea id="about" name="bio" rows="3" class="max-w-lg" maxlength="160">
+                            <textarea id="about" name="bio" rows="3" class="max-w-lg" maxlength="160">
                                 {{ Auth::user()->bio }}
-                            </x-textarea>
+                            </textarea>
                             <p class="mt-2 text-sm font-normal text-skin-muted">
                                 {{ __('Écrivez quelques phrases sur vous-même.') }}
                             </p>
@@ -56,7 +56,7 @@
                         class="sm:grid sm:grid-cols-3 sm:items-center sm:gap-4 sm:border-t sm:border-skin-base sm:pt-5"
                     >
                         <div class="sm:mt-px sm:pt-2">
-                            <x-label for="photo" class="text-gray-700 dark:text-gray-300">{{ __('Photo') }}</x-label>
+                            <label for="photo" class="text-gray-700 dark:text-gray-300">{{ __('Photo') }}</label>
                             <p class="hidden text-sm font-normal text-skin-muted sm:block">
                                 {{ __('Celle-ci sera affiché sur votre profil.') }}
                             </p>
@@ -76,7 +76,7 @@
                             {{ __('Votre site web') }}
                         </label>
                         <div class="mt-1 sm:col-span-2 sm:mt-0">
-                            <x-input
+                            <input
                                 id="website"
                                 name="website"
                                 type="url"
@@ -104,7 +104,7 @@
                             {{ __('Nom') }}
                         </label>
                         <div class="relative mt-1 sm:col-span-2 sm:mt-0">
-                            <x-input
+                            <input
                                 type="text"
                                 name="name"
                                 id="name"
@@ -121,7 +121,7 @@
                         </label>
                         <div class="relative mt-1 sm:col-span-2 sm:mt-0">
                             <div class="flex items-center space-x-3">
-                                <x-email
+                                <input
                                     name="email"
                                     id="email"
                                     container-class="flex-1"
@@ -157,7 +157,7 @@
                             {{ __('Localisation') }}
                         </label>
                         <div class="relative mt-1 sm:col-span-2 sm:mt-0">
-                            <x-input
+                            <input
                                 id="location"
                                 name="location"
                                 type="text"
@@ -179,7 +179,7 @@
                             {{ __('Numéro de téléphone') }}
                         </label>
                         <div class="relative mt-1 sm:col-span-2 sm:mt-0">
-                            <x-input
+                            <input
                                 type="tel"
                                 name="phone_number"
                                 id="phone_number"
@@ -207,7 +207,7 @@
                         </label>
                         <div class="mt-1 space-y-4 sm:col-span-2 sm:mt-0">
                             <div class="flex max-w-lg">
-                                <x-input
+                                <input
                                     type="text"
                                     name="twitter_profile"
                                     id="twitter_profile"
@@ -219,7 +219,7 @@
                                 />
                             </div>
                             <div class="flex max-w-lg">
-                                <x-input
+                                <input
                                     type="text"
                                     name="github_profile"
                                     id="github_profile"
@@ -231,7 +231,7 @@
                                 />
                             </div>
                             <div class="flex max-w-lg">
-                                <x-input
+                                <input
                                     type="text"
                                     name="linkedin_profile"
                                     id="linkedin_profile"
@@ -250,9 +250,9 @@
 
         <div class="pt-5">
             <div class="flex justify-end">
-                <x-button type="submit" class="inline-flex">
+                <links.primary type="submit" class="inline-flex">
                     {{ __('Enregistrer') }}
-                </x-button>
+                </x-buttons.primary>
             </div>
         </div>
     </form>
