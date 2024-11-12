@@ -53,15 +53,11 @@ new class extends Component
                 @endif
 
                 <div class="flex items-center justify-between">
-                    <form method="POST" action="{{ route('verification.send') }}">
-                        @csrf
-
+                    <form wire:click="sendVerification">
                         <x-buttons.submit>{{ __('pages/auth.verify.submit') }}</x-buttons.submit>
                     </form>
 
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-
+                    <form wire:click="logout">
                         <button
                             type="submit"
                             class="text-sm text-gray-500 dark:text-gray-400 underline hover:text-gray-900 focus:outline-none"
