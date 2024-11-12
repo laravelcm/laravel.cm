@@ -4,32 +4,30 @@ declare(strict_types=1);
 
 use Carbon\Carbon;
 use App\Models\User;
+use function Pest\Laravel\get;
 use App\Events\UserBannedEvent;
 use App\Events\UserUnbannedEvent;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Queue;
 use App\Filament\Resources\UserResource;
-use Illuminate\Support\Facades\Notification;
-use App\Filament\Resources\UserResource\Pages\ListUsers;
-
 
 beforeEach(function (): void {
     Event::fake();
-    Notification::fake();
-    Queue::fake();
-    $this->user = $this->login();
+    $this->user = User::factory(['email' => 'user@laravel.cm'])->create();
+    Role::create(['name' => 'admin']);
+    $this->user->assignRole(['admin']);
+    $this->actingAs($this->user, 'web');
 });
 
 describe(UserResource::class, function() {
-    it('only admin can ban a user and send a ban notification', function () {
+    it('can render admin page', function (): void {
+        get(UserResource::getUrl())->assertSuccessful();
+    });
 
-        Role::create(['name' => 'user']);
-        $admin = $this->user->assignRole('user');
+    it('only admin can ban a user and send a ban notification', function () {
+        $this->get('/cp')->assertSuccessful();
 
         $user = User::factory()->create();
-
-        // $this->actingAs($admin);
 
         UserResource::BanUserAction($user, 'Violation des règles de la communauté');
 
@@ -42,15 +40,12 @@ describe(UserResource::class, function() {
     });
 
     it('can unban a user and send a unban notification', function () {
-        Role::create(['name' => 'admin']);
-        $admin = $this->user->assignRole('admin');
-
+        $this->get('/cp')->assertSuccessful();
+        
         $user = User::factory()->create([
             'banned_at' => now(),
             'banned_reason' => 'Violation des règles de la communauté'
         ]);
-
-        $this->actingAs($admin);
 
         UserResource::UnbanUserAction($user);
 
@@ -60,6 +55,17 @@ describe(UserResource::class, function() {
             ->and($user->banned_reason)->toBeNull();
     
         Event::assertDispatched(UserUnbannedEvent::class);
+    });
+
+    it('does not ban an already banned user', function () {
+        $this->get('/cp')->assertSuccessful();
+        
+        $user = User::factory()->create(['banned_at' => now()]);
+    
+        UserResource::BanUserAction($user, 'Violation des règles');
+    
+        expect($user->banned_reason)->not->toBe('Violation des règles')
+            ->and($user->banned_at)->not->toBeNull();
     });
 
     it('prevents a banned user from logging in', function () {
@@ -72,4 +78,4 @@ describe(UserResource::class, function() {
             ->assertRedirect(route('login'))  
             ->assertSessionHasErrors(['email']);
     });
-});
+})->group('users');
