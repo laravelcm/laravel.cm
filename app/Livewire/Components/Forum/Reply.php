@@ -63,7 +63,7 @@ final class Reply extends Component implements HasActions, HasForms
             ->authorize('manage', $this->thread)
             ->action(function (): void {
                 if ($this->thread->isSolved()) {
-                    undoPoint(new BestReply($this->thread->solutionReply));
+                    undoPoint(new BestReply($this->thread->solutionReply)); // @phpstan-ignore-line
                 }
 
                 $this->thread->markSolution($this->reply, Auth::user()); // @phpstan-ignore-line

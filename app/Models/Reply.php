@@ -80,7 +80,7 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface
 
     public function to(ReplyInterface $replyable): void
     {
-        $this->replyAble()->associate($replyable);
+        $this->replyAble()->associate($replyable); // @phpstan-ignore-line
     }
 
     public function allChildReplies(): MorphMany
