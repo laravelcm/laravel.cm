@@ -30,14 +30,13 @@ new class extends Component
     }
 }; ?>
 
-
 <div>
     <div class="flex min-h-full items-center justify-center py-16 sm:py-24">
         <div class="w-full max-w-md">
-            <div>
-                <x-status-message class="mb-5" />
+            <div class="space-y-5">
+                <x-status-message />
 
-                <x-validation-errors class="mb-5"/>
+                <x-validation-errors />
 
                 <h2 class="text-center font-heading text-3xl font-extrabold text-gray-900 dark:text-white sm:text-left">
                     {{ __('pages/auth.forgot.page_title') }}
@@ -48,7 +47,6 @@ new class extends Component
             </div>
                                 
             <form class="mt-8" wire:submit="sendPasswordResetLink">
-
                 <div class="block">
                     <x-filament-forms::field-wrapper.label for="email">
                         {{ __('validation.attributes.email') }}

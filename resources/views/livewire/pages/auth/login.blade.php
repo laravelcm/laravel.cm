@@ -26,10 +26,10 @@ new class extends Component
 <div>
     <x-container class="flex min-h-full items-center justify-center py-16 sm:pt-24">
         <div class="w-full max-w-md space-y-8">
-            <div>
-                <x-validation-errors class="mb-5" />
+            <div class="space-y-5">
+                <x-validation-errors />
 
-                <x-status-message class="mb-5" />
+                <x-status-message />
 
                 <h2 class="text-center font-heading text-3xl font-extrabold text-gray-900 dark:text-white">
                     {{ __('pages/auth.login.title') }}
