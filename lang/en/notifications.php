@@ -30,4 +30,19 @@ return [
 
     'error' => 'Oops! You\'ve got errors.',
 
+    'user' => [
+        'banned' => [
+            'title' => 'The user has been banned.',
+            'body' => 'The user has been notified that he has been banned'
+        ],
+        'unbanned' => [
+            'title' => 'The user has been un-banned',
+            'body' => 'The user has been notified that he can log in again.'
+        ],
+        'cannot' => [
+            'title' => 'Unable to ban',
+            'body' => 'This user is already banned.',
+            'ban_admin' => 'You cannot ban an administrator.',
+        ]
+    ]
 ];

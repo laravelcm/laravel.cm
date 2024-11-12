@@ -30,4 +30,19 @@ return [
 
     'error' => 'Oups! Nous avons rencontré des erreurs.',
 
+    'user' => [
+        'banned' => [
+            'title' => 'L\'utilisateur à été banni.',
+            'body' => 'L\'utilisateur à été notifier qu\'il à été banni'
+        ],
+        'unbanned' => [
+            'title' => 'L\'utilisateur à été dé-banni',
+            'body' => 'L\'utilisateur à été notifier qu\'il peut de nouveau se connecter'
+        ],
+        'cannot' => [
+            'title' => 'Impossible de bannir',
+            'body' => 'Cet utilisateur est déjà banni.',
+            'ban_admin' => 'Vous ne pouvez pas bannir un administrateur.',
+        ]
+    ]
 ];
