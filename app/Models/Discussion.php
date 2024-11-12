@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
+use App\Contracts\SpamReportableContract;
 use App\Contracts\SubscribeInterface;
 use App\Models\Builders\DiscussionQueryBuilder;
 use App\Traits\HasAuthor;
@@ -21,6 +22,8 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 /**
@@ -35,8 +38,9 @@ use Illuminate\Support\Str;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property User $user
+ * @property Collection | SpamReport[] $spamReports
  */
-final class Discussion extends Model implements ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
+final class Discussion extends Model implements ReactableInterface, ReplyInterface, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;
     use HasFactory;
@@ -127,6 +131,11 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     public function lockedDiscussion(): void
     {
         $this->update(['locked' => true]);
+    }
+
+    public function spamReports(): MorphMany
+    {
+        return $this->morphMany(SpamReport::class, 'reportable');
     }
 
     public function delete(): ?bool

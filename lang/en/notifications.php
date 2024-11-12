@@ -21,6 +21,7 @@ return [
 
     'exceptions' => [
         'unverified_user' => 'You are not authorized to do this. Your e-mail is not verified',
+        'spam_exist' => 'Spam already reported.',
     ],
 
     'reply' => [
