@@ -1,13 +1,16 @@
+@php
+    $user = \Illuminate\Support\Facades\Auth::user();
+@endphp
+
 <div class="relative flex space-x-3">
-    @auth
-        <div class="flex-shrink-0">
-            <div class="relative">
-                <img
-                    class="flex size-10 items-center justify-center rounded-full bg-skin-card-gray object-cover ring-8 ring-body"
-                    src="{{ $authenticate->profile_photo_url }}"
-                    alt="{{ $authenticate->name }}"
-                />
-                <span class="absolute -bottom-0.5 -right-1 rounded-tl bg-skin-body px-0.5 py-px">
+    <div class="flex-shrink-0">
+        <div class="relative">
+            <img
+                class="flex size-10 items-center justify-center rounded-full bg-skin-card-gray object-cover ring-8 ring-body"
+                src="{{ $authenticate->profile_photo_url }}"
+                alt="{{ $authenticate->name }}"
+            />
+            <span class="absolute -bottom-0.5 -right-1 rounded-tl bg-skin-body px-0.5 py-px">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -23,23 +26,19 @@
                         />
                     </svg>
                 </span>
-            </div>
         </div>
-    @endauth
+    </div>
 
-    <div @class([
-        'min-w-0 flex-1',
-        'blur-sm filter' => ! $authenticate,
-    ])>
+    <div class="min-w-0 flex-1">
         <label for="body" class="sr-only">{{ __('Commentaire') }}</label>
-        <x-textarea
+        <textarea
             wire:model="body"
             name="body"
             id="body"
             placeholder="{{ __('Laisser un commentaire, vous pouvez utilise du **Markdown**') }}"
             rows="4"
             :disabled="$authenticate === null"
-        />
+        ></textarea>
         <div class="mt-4 sm:flex sm:items-center sm:justify-between sm:space-x-4">
             @if ($isRoot)
                 <p class="max-w-xl text-sm font-normal text-gray-500 dark:text-gray-400">
@@ -53,13 +52,13 @@
 
             <div class="mt-3 flex items-center justify-end space-x-3 sm:mt-0">
                 @if ($isReply)
-                    <x-default-button type="reset" wire:click="cancel">{{ __('Annuler') }}</x-default-button>
+                    <x-buttons.default type="reset" wire:click="cancel">{{ __('Annuler') }}</x-buttons.default>
                 @endif
 
-                <x-button type="button" class="inline-flex" wire:click="saveComment">
+                <x-buttons.primary type="button" class="inline-flex" wire:click="saveComment">
                     <x-loader class="text-white" wire:loading wire:target="saveComment" />
                     {{ __('Commenter') }}
-                </x-button>
+                </x-buttons.primary>
             </div>
         </div>
     </div>

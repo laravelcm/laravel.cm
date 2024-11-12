@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace App\Widgets;
 
 use App\Models\Article;
-use Arrilot\Widgets\AbstractWidget;
 use Illuminate\Contracts\View\View;
 
-final class RecentPostsPerWeek extends AbstractWidget
+final class RecentPostsPerWeek
 {
     /**
      * @var array<string>
      */
-    protected $config = [];
+    protected array $config = [];
 
     public function run(): View
     {

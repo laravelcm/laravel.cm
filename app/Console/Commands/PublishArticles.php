@@ -20,6 +20,7 @@ final class PublishArticles extends Command
         $articles = Article::submitted()->approved()->whereNull('published_at')->get();
 
         foreach ($articles as $article) {
+            /** @var Article $article */
             $article->published_at = $article->submitted_at;
             $article->save();
         }

@@ -24,7 +24,7 @@
                     <span wire:ignore class="mx-2 text-sm text-gray-500 dark:text-gray-400">
                         <time-ago time="{{ $comment->created_at->getTimestamp() }}" />
                     </span>
-                    @can(App\Policies\ReplyPolicy::UPDATE, $comment)
+                    @can('update', $comment)
                         <div class="mt-1 flex sm:mt-0">
                             <span class="hidden font-medium text-gray-500 dark:text-gray-400 sm:inline-block">·</span>
                             <div class="flex items-center space-x-2 divide-x divide-skin-base pl-2">

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotchPayCallBackController;
@@ -33,16 +32,7 @@ Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderC
 
 // Articles
 Route::prefix('articles')->as('articles.')->group(base_path('routes/features/article.php'));
-
-// Discussions
-Route::prefix('discussions')->as('discussions.')->group(function (): void {
-    Route::get('/', [DiscussionController::class, 'index'])->name('index');
-    Route::get('/new', [DiscussionController::class, 'create'])->name('new');
-    Route::get('/{discussion}', [DiscussionController::class, 'show'])->name('show');
-    Route::get('/{discussion}/edit', [DiscussionController::class, 'edit'])->name('edit');
-});
-
-// Forum
+Route::prefix('discussions')->as('discussions.')->group(base_path('routes/features/discussion.php'));
 Route::prefix('forum')->as('forum.')->group(base_path('routes/features/forum.php'));
 
 // Replies

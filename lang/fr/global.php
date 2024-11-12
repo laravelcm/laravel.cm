@@ -89,5 +89,6 @@ return [
         'discussion_action' => 'Démarrer une discussion',
         'discussion_description' => 'Échangez, débattez sur différentes thématiques et idées.',
     ],
+    'moderator' => 'Modérateur',
 
 ];

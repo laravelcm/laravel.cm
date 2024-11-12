@@ -1,5 +1,5 @@
 <span
-    class="ml-2 inline-flex items-center rounded-md bg-green-500 bg-opacity-10 px-2.5 py-0.5 font-sans text-sm font-medium text-green-500"
+    class="ml-2 inline-flex items-center rounded-lg bg-green-100/50 px-2.5 py-0.5 text-sm font-medium text-green-500 dark:bg-green-800/20 dark:text-green-500"
 >
-    Modérateur
+    {{ __('global.moderator') }}
 </span>
