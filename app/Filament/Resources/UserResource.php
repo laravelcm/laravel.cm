@@ -123,6 +123,16 @@ final class UserResource extends Resource
 
     public static function BanUserAction(User $record, $reason): void
     {
+        if ($record->banned_at !== null) {
+            Notification::make()
+                ->warning()
+                ->title(__('Impossible de bannir'))
+                ->body(__('Cet utilisateur est déjà banni.'))
+                ->send();
+    
+            return;
+        }
+        
         $record->banned_at = Carbon::now();
         $record->banned_reason = $reason;
         $record->save();
