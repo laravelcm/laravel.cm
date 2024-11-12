@@ -104,6 +104,8 @@ final class ArticleResource extends Resource
                         ->requiresConfirmation()
                         ->modalIcon('heroicon-s-x-mark')
                         ->action(function ($record): void {
+                            Gate::authorize('decline', $record);
+
                             $record->declined_at = now();
                             $record->save();
                         }),

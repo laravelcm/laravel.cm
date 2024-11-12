@@ -32,7 +32,7 @@ final class ArticlePolicy
         return $user->isModerator() || $user->isAdmin();
     }
 
-    public function disapprove(User $user, Article $article): bool
+    public function decline(User $user, Article $article): bool
     {
         return $user->isModerator() || $user->isAdmin();
     }
