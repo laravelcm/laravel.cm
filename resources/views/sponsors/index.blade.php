@@ -11,7 +11,7 @@
                     </h1>
                     <div class="relative flex items-center space-x-5">
                         <div class="shrink-0">
-                            <x-application-icon class="block h-12 w-auto sm:h-14" />
+                            <x-brand.icon class="block h-12 w-auto sm:h-14" />
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="focus:outline-none">

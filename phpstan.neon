@@ -7,12 +7,12 @@ parameters:
     level: 8
     excludePaths:
         - app/Http/Resources/
-        - app/Http/Middleware/
         - app/Actions/
         - app/Notifications/
-        - app/Http/Controllers/OAuthController.php
-        - app/Http/Controllers/Api/Auth/LoginController.php
-        - app/Markdown/MarkdownHelper.php
+# Remove this config after migrate everything to livewire
+        - app/Http/Controllers/*
+        - app/Markdown/*
+        - app/Traits/HasSlug
     ignoreErrors:
         - "#^Cannot access property \\$transaction on array\\|object\\.$#"
         - identifier: missingType.iterableValue

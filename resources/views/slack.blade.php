@@ -40,7 +40,7 @@
             <form action="{{ route('slack.send') }}" method="POST" class="mt-6 flex">
                 @csrf
                 <label for="email" class="sr-only">Adresse email</label>
-                <x-email
+                <input
                     type="email"
                     name="email"
                     id="email"
@@ -48,7 +48,7 @@
                     placeholder="Renseigner votre email"
                     required
                 />
-                <x-button type="submit" class="ml-4">Rejoindre</x-button>
+                <x-buttons.primary type="submit" class="ml-4">Rejoindre</x-buttons.primary>
             </form>
         </div>
     </div>
@@ -75,9 +75,9 @@
                         Si vous êtes un habitué de WhatsApp, nous avons un groupe qui regroupe près de 350 développeurs
                         junior et senior qui pourront discuter et échanger avec vous.
                     </p>
-                    <x-default-button :href="route('whatsapp')" target="_blank" class="mt-6 w-auto font-normal">
+                    <x-buttons.default :href="route('whatsapp')" target="_blank" class="mt-6 w-auto font-normal">
                         Rejoindre
-                    </x-default-button>
+                    </x-buttons.default>
                 </div>
                 <x-social-group-card class="from-[#28D146] to-[#5FFC7B]">
                     <img class="h-auto w-1/2" src="{{ asset('images/brands/whatsapp.svg') }}" alt="WhatsApp" />
@@ -93,9 +93,9 @@
                         Avec le plus grand nombre de membres c'est la plateforme qui nous affectionne le plus alors
                         n'hésitez surtout pas à nous rejoindre.
                     </p>
-                    <x-default-button :href="route('telegram')" target="_blank" class="mt-6 w-auto font-normal">
+                    <x-buttons.default :href="route('telegram')" target="_blank" class="mt-6 w-auto font-normal">
                         Rejoindre
-                    </x-default-button>
+                    </x-buttons.default>
                 </div>
                 <x-social-group-card class="from-[#27A7E7] to-[#0088cc]">
                     <div class="flex items-center">
@@ -114,9 +114,9 @@
                         Discord est le dernier réseau rejoint par la communauté, vous pouvez nous rejoindre et
                         participer à toutes nos activités.
                     </p>
-                    <x-default-button :href="route('discord')" target="_blank" class="mt-6 w-auto font-normal">
+                    <x-buttons.default :href="route('discord')" target="_blank" class="mt-6 w-auto font-normal">
                         Rejoindre
-                    </x-default-button>
+                    </x-buttons.default>
                 </div>
                 <x-social-group-card class="from-[#5865F2] to-[#1928D5]">
                     <img class="h-auto w-1/2" src="{{ asset('images/brands/discord.svg') }}" alt="Discord" />

@@ -2,7 +2,7 @@
     <div class="flex items-center justify-between">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Choisir une option</h3>
         <span class="isolate inline-flex rounded-md shadow-sm">
-            <x-default-button
+            <x-buttons.default
                 type="button"
                 @class([
                     'relative text-sm leading-5 inline-flex items-center rounded-r-none px-2.5 py-2 ring-0 focus:z-10',
@@ -12,8 +12,8 @@
                 wire:click="chooseOption('monthly')"
             >
                 Mensuel
-            </x-default-button>
-            <x-default-button
+            </x-buttons.default>
+            <x-buttons.default
                 type="button"
                 @class([
                     'relative text-sm leading-5 -ml-px inline-flex items-center rounded-l-none px-2.5 py-2 ring-0 focus:z-10',
@@ -23,7 +23,7 @@
                 wire:click="chooseOption('one-time')"
             >
                 Une fois
-            </x-default-button>
+            </x-buttons.default>
         </span>
     </div>
     <div class="overflow-hidden rounded-md border border-skin-base bg-skin-card">
@@ -60,10 +60,10 @@
                             </select>
                         </div>
                     </div>
-                    <x-default-button wire:click="subscribe" class="ml-4">
+                    <x-buttons.default wire:click="subscribe" class="ml-4">
                         <x-loader wire:loading class="text-white" wire:target="subscribe" />
                         Choisir
-                    </x-default-button>
+                    </x-buttons.default>
                 </dt>
                 @error('amount')
                     <p class="mt-2 text-sm text-red-500">Votre montant est requis.</p>

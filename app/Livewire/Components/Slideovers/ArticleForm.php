@@ -37,14 +37,17 @@ final class ArticleForm extends SlideOverComponent implements HasForms
 
     public function mount(?int $articleId = null): void
     {
-        $this->article = $articleId
+        /** @var Article $article */
+        $article = $articleId
             ? Article::query()->findOrFail($articleId)
             : new Article;
 
-        $this->form->fill(array_merge($this->article->toArray(), [
-            'is_draft' => ! $this->article->published_at,
-            'published_at' => $this->article->published_at,
+        $this->form->fill(array_merge($article->toArray(), [
+            'is_draft' => ! $article->published_at,
+            'published_at' => $article->published_at,
         ]));
+
+        $this->article = $article;
     }
 
     public static function panelMaxWidth(): string

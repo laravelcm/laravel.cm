@@ -13,11 +13,11 @@
                 <x-user.sidebar :user="$user" />
             </div>
             <main class="lg:col-span-9">
-                <x-user.page-heading title="Vos sujets" :url="route('forum.new')" :button="__('Nouveau sujet')" />
+                <x-user.page-heading title="Vos sujets" url="#" :button="__('Nouveau sujet')" />
 
                 <div class="mt-5">
                     @forelse ($threads as $thread)
-                        <x-forum.thread-summary :thread="$thread" />
+                        <x-forum.thread :thread="$thread" />
                     @empty
                         <p class="text-base text-gray-500 dark:text-gray-400">Vous n'avez pas encore créé de sujets.</p>
                     @endforelse

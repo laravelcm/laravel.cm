@@ -8,7 +8,7 @@
             <div class="hidden lg:col-span-2 lg:block">
                 <nav aria-label="Sidebar" class="sticky top-4">
                     <div class="space-y-2">
-                        <x-nav-link :href="route('user.settings')" :active="request()->routeIs('user.settings')">
+                        <x-link :href="route('user.settings')" :active="request()->routeIs('user.settings')">
                             <svg
                                 @class([
                                     '-ml-1 mr-3 size-6 shrink-0',
@@ -27,9 +27,9 @@
                                 />
                             </svg>
                             Mon profil
-                        </x-nav-link>
+                        </x-link>
 
-                        <x-nav-link :href="route('user.password')" :active="request()->routeIs('user.password')">
+                        <x-link :href="route('user.password')" :active="request()->routeIs('user.password')">
                             <svg
                                 @class([
                                     '-ml-1 mr-3 size-6 shrink-0',
@@ -48,9 +48,9 @@
                                 />
                             </svg>
                             Mot de passe
-                        </x-nav-link>
+                        </x-link>
 
-                        <x-nav-link
+                        <x-link
                             :href="route('user.customization')"
                             :active="request()->routeIs('user.customization')"
                         >
@@ -72,9 +72,9 @@
                                 />
                             </svg>
                             Apparence
-                        </x-nav-link>
+                        </x-link>
 
-                        <x-nav-link
+                        <x-link
                             :href="route('user.notifications')"
                             :active="request()->routeIs('user.notifications')"
                         >
@@ -96,9 +96,9 @@
                                 />
                             </svg>
                             Notifications
-                        </x-nav-link>
+                        </x-link>
 
-                        <x-nav-link href="#" :active="request()->routeIs('user.subscription')">
+                        <x-link href="#" :active="request()->routeIs('user.subscription')">
                             <svg
                                 @class([
                                     '-ml-1 mr-3 size-6 shrink-0',
@@ -117,7 +117,7 @@
                                 />
                             </svg>
                             Abonnement
-                        </x-nav-link>
+                        </x-link>
                     </div>
                 </nav>
             </div>

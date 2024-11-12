@@ -31,7 +31,7 @@
                 </svg>
                 <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">{{ $user->name }} n'a pas encore posté d'articles</p>
                 @if ($user->isLoggedInUser())
-                    <x-button :href="route('articles.new')" class="mt-4">
+                    <x-buttons.primary href="#" class="mt-4">
                         <svg
                             class="-ml-1 mr-2 size-5"
                             xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
                         Nouvel Article
-                    </x-button>
+                    </x-buttons.primary>
                 @endif
             </div>
         </div>

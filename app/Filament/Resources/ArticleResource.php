@@ -17,6 +17,7 @@ use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Gate;
 
 final class ArticleResource extends Resource
 {
@@ -86,6 +87,8 @@ final class ArticleResource extends Resource
                         ->requiresConfirmation()
                         ->modalIcon('heroicon-s-check')
                         ->action(function ($record): void {
+                            Gate::authorize('approve', $record);
+
                             $record->approved_at = now();
                             $record->save();
 
@@ -101,6 +104,8 @@ final class ArticleResource extends Resource
                         ->requiresConfirmation()
                         ->modalIcon('heroicon-s-x-mark')
                         ->action(function ($record): void {
+                            Gate::authorize('decline', $record);
+
                             $record->declined_at = now();
                             $record->save();
                         }),

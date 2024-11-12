@@ -19,13 +19,17 @@ new class extends Component
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', Password::min(8)
-            ->uncompromised()
-            ->numbers()
-            ->mixedCase()],
+            'password' => [
+                'required',
+                'string',
+                Password::min(8)
+                    ->uncompromised()
+                    ->numbers()
+                    ->mixedCase(),
+            ],
         ]);
 
-        $user = User::create($validated);
+        $user = User::query()->create($validated);
 
         $user->assignRole('user');
 
@@ -107,7 +111,7 @@ new class extends Component
 
                 <div>
                     <x-status-message />
-                    
+
                     <x-validation-errors />
 
                     <form wire:submit="register" class="space-y-6">

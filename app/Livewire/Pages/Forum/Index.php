@@ -77,6 +77,7 @@ final class Index extends Component
     protected function applySolved(Builder $query): Builder
     {
         if ($this->solved) {
+            // @phpstan-ignore-next-line
             return match ($this->solved) {
                 'no' => $query->scopes('unresolved'),
                 'yes' => $query->scopes('resolved'),

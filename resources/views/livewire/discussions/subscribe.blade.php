@@ -1,7 +1,7 @@
 <div>
     <span class="inline-flex rounded-md shadow-sm">
         @can(App\Policies\DiscussionPolicy::UNSUBSCRIBE, $discussion)
-            <x-button type="button" wire:click="unsubscribe" wire:loading.attr="disabled">
+            <x-buttons.primary type="button" wire:click="unsubscribe" wire:loading.attr="disabled">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -18,9 +18,9 @@
                 </svg>
                 <span class="mx-2">Se désabonner</span>
                 <x-loader class="mx-0 text-white" wire:loading wire:target="unsubscribe" />
-            </x-button>
+            </x-buttons.primary>
         @elsecan(App\Policies\DiscussionPolicy::SUBSCRIBE, $discussion)
-            <x-default-button type="button" wire:click="subscribe" wire:loading.attr="disabled">
+            <x-buttons.default type="button" wire:click="subscribe" wire:loading.attr="disabled">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -37,7 +37,7 @@
                 </svg>
                 <span class="mx-2">S'abonner</span>
                 <x-loader class="mx-0 text-white" wire:loading wire:target="subscribe" />
-            </x-default-button>
+            </x-buttons.default>
         @endcan
     </span>
 </div>
