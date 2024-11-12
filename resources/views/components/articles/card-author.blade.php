@@ -8,7 +8,7 @@
         : asset('images/socialcard.png')
 @endphp
 
-<article class="relative group" wire:key="{{ $article->slug() }}">
+<article class="relative" wire:key="{{ $article->slug() }}">
     <div class="relative w-full">
         <img
             src="{{ $media }}"

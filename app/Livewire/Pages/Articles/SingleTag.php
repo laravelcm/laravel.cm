@@ -24,9 +24,10 @@ final class SingleTag extends Component
                     $query->where('id', $this->tag->id);
                 })
                 ->withCount(['views', 'reactions'])
-                ->scopes(['published', 'notPinned'])
                 ->orderByDesc('sponsored_at')
                 ->orderByDesc('published_at')
+                ->published()
+                ->notPinned()
                 ->paginate($this->perPage),
         ])->title($this->tag->name);
     }
