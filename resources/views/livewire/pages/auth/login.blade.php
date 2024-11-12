@@ -26,13 +26,16 @@ new class extends Component
 <div>
     <x-container class="flex min-h-full items-center justify-center py-16 sm:pt-24">
         <div class="w-full max-w-md space-y-8">
-            <div>
+            <div class="space-y-5">
                 <x-validation-errors />
+
+                <x-status-message />
 
                 <h2 class="text-center font-heading text-3xl font-extrabold text-gray-900 dark:text-white">
                     {{ __('pages/auth.login.title') }}
                 </h2>
             </div>
+
             <form class="space-y-6" wire:submit="login">
                 <div class="space-y-4">
                     <x-filament::input.wrapper>
