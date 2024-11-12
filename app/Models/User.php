@@ -475,23 +475,25 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         return $query->withCount(['discussions'])->orderByDesc('discussions_count');
     }
 
-    public function ban($reason = null)
+    /**
+     * Get the banned user.
+     * 
+     * @param  Builder<User>  $query
+     * @return Builder<User>
+     */
+    public function scopeIsBanned(Builder $query): Builder
     {
-        $this->update([
-            'banned_at' => now(),
-            'banned_reason' => $reason,
-        ]);
-
-        event(new UserBannedEvent($this));
+        return $query->whereNotNull('banned_at');
     }
 
-    public function unban()
+    /**
+     * Get the unbanned user.
+     *
+     * @param  Builder<User>  $query
+     * @return Builder<User>
+     */
+    public function scopeIsNotBanned(Builder $query): Builder
     {
-        $this->update([
-            'banned_at' => null,
-            'banned_reason' => null,
-        ]);
-        
-        event(new UserUnbannedEvent($this));
+        return $query->whereNull('banned_at');
     }
 }

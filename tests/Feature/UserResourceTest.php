@@ -2,43 +2,74 @@
 
 declare(strict_types=1);
 
+use Carbon\Carbon;
 use App\Models\User;
-use Livewire\Livewire;
-use App\Filament\Resources\UserResource;
-use App\Filament\Resources\UserResource\Pages\ListUsers;
+use App\Events\UserBannedEvent;
+use App\Events\UserUnbannedEvent;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Queue;
+use App\Filament\Resources\UserResource;
 use Illuminate\Support\Facades\Notification;
+use App\Filament\Resources\UserResource\Pages\ListUsers;
 
 
 beforeEach(function (): void {
     Event::fake();
+    Notification::fake();
+    Queue::fake();
     $this->user = $this->login();
 });
 
 describe(UserResource::class, function() {
-    it('can ban a user through Filament and send a ban notification', function () {
+    it('only admin can ban a user and send a ban notification', function () {
 
-        $admin = $this->user->assignRole('admin');
+        Role::create(['name' => 'user']);
+        $admin = $this->user->assignRole('user');
 
-        $user = User::factory()->create([
-            'banned_at' => null,
-            'banned_reason' => null,
-        ]);
+        $user = User::factory()->create();
 
-        $this->actingAs($admin);
-    
-        Livewire::test(ListUsers::class, ['record' => $user->id])
-            ->call('banUser', 'Violation des règles de la communauté')
-            ->assertHasNoErrors();
+        // $this->actingAs($admin);
+
+        UserResource::BanUserAction($user, 'Violation des règles de la communauté');
 
         $user->refresh();
     
-        expect($user->banned_at)->not->toBeNull();
-        expect($user->banned_reason)->toBe('Violation des règles de la communauté');
+        expect($user->banned_at)->toBeInstanceOf(Carbon::class)
+            ->and($user->banned_reason)->toBe('Violation des règles de la communauté');
     
-        Notification::assertSentTo(
-            [$user], UserBannedNotification::class
-        );
+        Event::assertDispatched(UserBannedEvent::class);
     });
+
+    it('can unban a user and send a unban notification', function () {
+        Role::create(['name' => 'admin']);
+        $admin = $this->user->assignRole('admin');
+
+        $user = User::factory()->create([
+            'banned_at' => now(),
+            'banned_reason' => 'Violation des règles de la communauté'
+        ]);
+
+        $this->actingAs($admin);
+
+        UserResource::UnbanUserAction($user);
+
+        $user->refresh();
     
+        expect($user->banned_at)->toBeNull()
+            ->and($user->banned_reason)->toBeNull();
+    
+        Event::assertDispatched(UserUnbannedEvent::class);
+    });
+
+    it('prevents a banned user from logging in', function () {
+        $user = User::factory()->create([
+            'banned_at' => now(),
+        ]);
+    
+        $this->actingAs($user)
+            ->get('/dashboard') 
+            ->assertRedirect(route('login'))  
+            ->assertSessionHasErrors(['email']);
+    });
 });

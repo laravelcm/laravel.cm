@@ -11,6 +11,6 @@ return [
     'cancel' => 'Annuler',
     'save' => 'Enregistrer',
     'ban' => 'Bannir',
-    'unban' => 'Annuler le bannissement',
+    'unban' => 'Dé-bannir',
     
 ];
