@@ -56,16 +56,16 @@ final class UserResource extends Resource
                     ->icon('untitledui-inbox')
                     ->description(fn ($record): ?string => $record->phone_number),
                 Tables\Columns\TextColumn::make('email_verified_at')
-                    ->label('Validation Email')
+                    ->label(__('global.ban.label.validate_email'))
                     ->placeholder('N/A')
                     ->date(),
                 Tables\Columns\TextColumn::make(name: 'created_at')
-                    ->label('Inscription')
+                    ->label(__('global.ban.label.inscription'))
                     ->date(),
             ])
             ->filters([
                 Tables\Filters\TernaryFilter::make('email_verified_at')
-                    ->label('Email Vérifiée')
+                    ->label(__('global.ban.label.email_verified'))
                     ->nullable(),
             ])
             ->actions([
@@ -74,20 +74,20 @@ final class UserResource extends Resource
                         ->icon('untitledui-archive')
                         ->color('warning')
                         ->visible(fn ($record) => $record->banned_at == null)
-                        ->modalHeading(__('Bannir l\'utilisateur'))
-                        ->modalDescription(__('Veuillez entrer la raison du bannissement.'))
+                        ->modalHeading(__('global.ban.heading'))
+                        ->modalDescription(__('global.ban.description'))
                         ->form([
                             
                     TextInput::make('banned_reason')
-                                ->label(__('Raison du bannissement'))
+                                ->label(__('global.ban.reason'))
                                 ->required(),
                         ])
                         ->action(function (User $record, array $data) {
                             if (!self::canBanUser($record)) {
                                 Notification::make()
                                     ->warning()
-                                    ->title(__('Impossible de bannir'))
-                                    ->body(__('Vous ne pouvez pas bannir un administrateur.'))
+                                    ->title(__('notifications.user.cannot.title'))
+                                    ->body(__('notifications.user.cannot.ban_admin'))
                                     ->duration(5000)
                                     ->send();
                 
@@ -126,8 +126,8 @@ final class UserResource extends Resource
         if ($record->banned_at !== null) {
             Notification::make()
                 ->warning()
-                ->title(__('Impossible de bannir'))
-                ->body(__('Cet utilisateur est déjà banni.'))
+                ->title(__('notifications.user.cannot.title'))
+                ->body(__('notifications.user.cannot.body'))
                 ->send();
     
             return;
@@ -140,8 +140,8 @@ final class UserResource extends Resource
         Notification::make()
             ->success()
             ->duration(5000)
-            ->title(__('L\'utilisateur à été banni'))
-            ->body(__('L\'utilisateur à été notifier qu\'il à été banni'))
+            ->title(__('notifications.user.banned.title'))
+            ->body(__('notifications.user.banned.body'))
             ->send();
         
         event(new UserBannedEvent($record));
@@ -155,9 +155,9 @@ final class UserResource extends Resource
 
         Notification::make()
             ->success()
-            ->title(__('L\'utilisateur à été dé-banni'))
+            ->title(__('notifications.user.unbanned.title'))
             ->duration(5000)
-            ->body(__('L\'utilisateur à été notifier qu\'il peut de nouveau se connecter'))
+            ->body(__('notifications.user.unbanned.body'))
             ->send();
 
         event(new UserUnbannedEvent($record));

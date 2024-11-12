@@ -15,12 +15,12 @@ final class ListUsers extends ListRecords
     public function getTabs() : array
     {
         return [
-          __('Tout') => Tab::make('Tout'),
-          __("Bannis") => Tab::make(__('Bannis'))
+          __('global.ban.all') => Tab::make(__('global.ban.all')),
+          __('global.ban.banned') => Tab::make(__('global.ban.banned'))
             ->modifyQueryUsing(function ($query) {
                 return $query->isBanned();
             }),
-        __("Non Bannis") => Tab::make(__('Non Bannis'))
+        __('global.ban.not_banned') => Tab::make(__('global.ban.not_banned'))
             ->modifyQueryUsing(function ($query) {
                 return $query->isNotBanned();
             }),

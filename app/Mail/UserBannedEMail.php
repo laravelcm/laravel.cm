@@ -21,7 +21,7 @@ final class UserBannedEMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: __('Notification de bannissement Laravelcm'),
+            subject: __('global.ban.ban_email_subject'),
         );
     }
 
