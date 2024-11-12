@@ -1,4 +1,41 @@
-<x-app-layout :title="__('pages/auth.verify.page_title')">
+<?php
+
+use App\Livewire\Actions\Logout;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Livewire\Attributes\Layout;
+use Livewire\Volt\Component;
+
+new class extends Component
+{
+    /**
+     * Send an email verification notification to the user.
+     */
+    public function sendVerification(): void
+    {
+        if (Auth::user()->hasVerifiedEmail()) {
+            $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+
+            return;
+        }
+
+        Auth::user()->sendEmailVerificationNotification();
+
+        Session::flash('status', 'verification-link-sent');
+    }
+
+    /**
+     * Log the current user out of the application.
+     */
+    public function logout(Logout $logout): void
+    {
+        $logout();
+
+        $this->redirect('/', navigate: true);
+    }
+}; ?>
+
+<div>
     <div class="flex min-h-screen flex-col items-center pt-6 sm:justify-center sm:pt-0">
         <div class="mt-6 w-full sm:max-w-md lg:mt-10 lg:max-w-xl">
             <p class="mb-4 text-center text-sm text-gray-500 dark:text-gray-400">
@@ -44,4 +81,4 @@
     </div>
 
     <x-join-sponsors :title="__('global.sponsor_thanks')" />
-</x-app-layout>
+</div>

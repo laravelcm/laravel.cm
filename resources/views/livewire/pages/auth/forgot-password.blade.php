@@ -37,6 +37,8 @@ new class extends Component
             <div>
                 <x-status-message class="mb-5" />
 
+                <x-validation-errors class="mb-5"/>
+
                 <h2 class="text-center font-heading text-3xl font-extrabold text-gray-900 dark:text-white sm:text-left">
                     {{ __('pages/auth.forgot.page_title') }}
                 </h2>
@@ -44,7 +46,7 @@ new class extends Component
                     {{ __('pages/auth.forgot.description') }}
                 </div>
             </div>
-
+                                
             <form class="mt-8" wire:submit="sendPasswordResetLink">
 
                 <div class="block">

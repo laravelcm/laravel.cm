@@ -25,9 +25,11 @@ new class extends Component
             ->mixedCase()],
         ]);
 
-        $validated['password'] = Hash::make($validated['password']);
+        $user = User::create($validated);
 
-        event(new Registered(User::create($validated)));
+        $user->assignRole('user');
+
+        event(new Registered($user));
 
         session()->flash('status', __('pages/auth.register.email_verification_status'));
     }
