@@ -21,7 +21,7 @@ final class CheckIfBanned
                 Auth::logout();
                 
                 return redirect()->route('login')->withErrors([
-                    'email' => __('global.ban.message'),
+                    'email' => __('user.ban.message'),
                 ]);
             }
         }
