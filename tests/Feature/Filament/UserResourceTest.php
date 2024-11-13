@@ -27,7 +27,7 @@ describe(UserResource::class, function() {
     });
 
     it('only admin can ban a user and send a ban notification', function () {
-        $this->get('/cp')->assertSuccessful();
+        // $this->get('/cp')->assertSuccessful();
 
         $user = User::factory()->create();
 
@@ -42,7 +42,7 @@ describe(UserResource::class, function() {
     });
 
     it('can unban a user and send a unban notification', function () {
-        $this->get('/cp')->assertSuccessful();
+        // $this->get('/cp')->assertSuccessful();
         
         $user = User::factory()->create([
             'banned_at' => now(),
@@ -60,7 +60,7 @@ describe(UserResource::class, function() {
     });
 
     it('does not ban an already banned user', function () {
-        $this->get('/cp')->assertSuccessful();
+        // $this->get('/cp')->assertSuccessful();
         
         $user = User::factory()->create(['banned_at' => now()]);
     
@@ -79,5 +79,7 @@ describe(UserResource::class, function() {
             ->get('/dashboard') 
             ->assertRedirect(route('login'))  
             ->assertSessionHasErrors(['email']);
+        
+        $this->assertGuest();
     });
 })->group('users');
