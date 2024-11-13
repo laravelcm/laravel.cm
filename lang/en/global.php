@@ -90,20 +90,8 @@ return [
         'discussion_description' => 'Discuss and debate different themes and ideas',
     ],
     'moderator' => 'Moderator',
-    'ban' => [
-        'reason' => 'Reason for banning',
-        'heading' => 'Ban the user',
-        'description' => 'Please enter the reason for banning.',
-        'all' => 'All',
-        'banned' => 'Banned',
-        'not_banned' => 'Not banned',
-        'ban_email_subject' => 'Laravelcm ban notification',
-        'unban_email_subject' => 'Laravelcm unbanning notification',
-        'message' => 'Your account has been banned. Contact the administrator for more information.',
-        'label' => [
-            'email_verified' => 'Email verified',
-            'inscription' => 'Inscription',
-            'validate_email' => 'Validation Email'
-        ],
-    ],
+    'all' => 'All',
+    'banned' => 'Banned',
+    'unbanned' => 'Unbanned',
+    
 ];

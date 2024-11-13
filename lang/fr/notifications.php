@@ -31,18 +31,12 @@ return [
     'error' => 'Oups! Nous avons rencontré des erreurs.',
 
     'user' => [
-        'banned' => [
-            'title' => 'L\'utilisateur à été banni.',
-            'body' => 'L\'utilisateur à été notifier qu\'il à été banni'
-        ],
-        'unbanned' => [
-            'title' => 'L\'utilisateur à été dé-banni',
-            'body' => 'L\'utilisateur à été notifier qu\'il peut de nouveau se connecter'
-        ],
-        'cannot' => [
-            'title' => 'Impossible de bannir',
-            'body' => 'Cet utilisateur est déjà banni.',
-            'ban_admin' => 'Vous ne pouvez pas bannir un administrateur.',
-        ]
+        'banned_title' => 'L\'utilisateur à été banni.',
+        'banned_body' => 'L\'utilisateur à été notifier qu\'il à été banni',
+        'unbanned_title' => 'L\'utilisateur à été dé-banni',
+        'unbanned_body' => 'L\'utilisateur à été notifier qu\'il peut de nouveau se connecter',
+        'cannot_ban_title' => 'Impossible de bannir',
+        'cannot_ban_body' => 'Cet utilisateur est déjà banni.',
+        'cannot_ban_admin' => 'Vous ne pouvez pas bannir un administrateur.',
     ]
 ];

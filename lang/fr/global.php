@@ -90,21 +90,8 @@ return [
         'discussion_description' => 'Échangez, débattez sur différentes thématiques et idées.',
     ],
     'moderator' => 'Modérateur',
-    'ban' => [
-        'reason' => 'Raison du bannissement',
-        'heading' => 'Bannir l\'utilisateur',
-        'description' => 'Veuillez entrer la raison du bannissement.',
-        'all' => 'Tout',
-        'banned' => 'Bannis',
-        'not_banned' => 'Non bannis',
-        'ban_email_subject' => 'Notification de bannissement Laravelcm',
-        'unban_email_subject' => 'Notification de dé-baannissement Laravelcm',
-        'message' => 'Votre compte a été banni. Contactez l\'administrateur pour plus d\'informations.',
-        'label' => [
-            'email_verified' => 'Email verified',
-            'inscription' => 'Inscription',
-            'validate_email' => 'Validation Email'
-        ],
-    ]
+    'all' => 'Tout',
+    'banned' => 'Bannis',
+    'unbanned' => 'Non bannis',
 
 ];

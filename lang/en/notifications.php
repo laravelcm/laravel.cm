@@ -31,18 +31,12 @@ return [
     'error' => 'Oops! You\'ve got errors.',
 
     'user' => [
-        'banned' => [
-            'title' => 'The user has been banned.',
-            'body' => 'The user has been notified that he has been banned'
-        ],
-        'unbanned' => [
-            'title' => 'The user has been un-banned',
-            'body' => 'The user has been notified that he can log in again.'
-        ],
-        'cannot' => [
-            'title' => 'Unable to ban',
-            'body' => 'This user is already banned.',
-            'ban_admin' => 'You cannot ban an administrator.',
-        ]
+        'banned_title' => 'The user has been banned.',
+        'banned_body' => 'The user has been notified that he has been banned',
+        'unbanned_title' => 'The user has been un-banned',
+        'unbanned_body' => 'The user has been notified that he can log in again.',
+        'cannot_ban_title' => 'Unable to ban',
+        'cannot_ban_body' => 'This user is already banned.',
+        'cannot_ban_admin' => 'You cannot ban an administrator.',
     ]
 ];
