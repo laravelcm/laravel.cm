@@ -12,6 +12,7 @@ use App\Actions\User\BanUserAction;
 use App\Actions\User\UnBanUserAction;
 use Illuminate\Support\Facades\Event;
 use App\Filament\Resources\UserResource;
+use App\Exceptions\UserAlreadyBannedException;
 
 beforeEach(function (): void {
     Event::fake();
@@ -63,9 +64,11 @@ describe(UserResource::class, function() {
         // $this->get('/cp')->assertSuccessful();
         
         $user = User::factory()->create(['banned_at' => now()]);
-    
+
+        $this->expectException(UserAlreadyBannedException::class);
+        
         app(BanUserAction::class)->execute($user, 'Violation des règles');
-    
+
         expect($user->banned_reason)->not->toBe('Violation des règles')
             ->and($user->banned_at)->not->toBeNull();
     });

@@ -36,7 +36,7 @@ final class UserResource extends Resource
         return $table
             ->modifyQueryUsing(function (Builder $query): void {
                 $query->whereHas('roles', function (Builder $query): void {
-                    $query->whereNotIn('name', ['admin', 'moderator']);
+                    $query->whereNotIn('name', ['moderator']);
                 })
                     ->latest();
             })
@@ -85,26 +85,6 @@ final class UserResource extends Resource
                                 ->required(),
                         ])
                         ->action(function (User $record, array $data) {
-                            if (!self::canBanUser($record)) {
-                                Notification::make()
-                                    ->warning()
-                                    ->title(__('notifications.user.cannot_ban_title'))
-                                    ->body(__('notifications.user.cannot_ban_admin'))
-                                    ->duration(5000)
-                                    ->send();
-                
-                                return;
-                            }
-                            
-                            if ($record->banned_at !== null) {
-                                Notification::make()
-                                    ->warning()
-                                    ->title(__('notifications.user.cannot_ban_title'))
-                                    ->body(__('notifications.user.cannot_ban_body'))
-                                    ->send();
-                        
-                                return;
-                            }
                             
                             app(BanUserAction::class)->execute($record, $data['banned_reason']);
 
@@ -146,10 +126,5 @@ final class UserResource extends Resource
         return [
             'index' => Pages\ListUsers::route('/'),
         ];
-    }
-
-    public static function canBanUser(User $record): bool
-    {
-        return !$record->hasRole('admin');
     }
 }

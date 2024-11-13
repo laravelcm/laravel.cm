@@ -9,9 +9,10 @@ final class UnBanUserAction
 {
     public function execute(User $user) : void
     {
-        $user->banned_at = null;
-        $user->banned_reason = null;
-        $user->save();
+        $user->update([
+            'banned_at' => null,
+            'banned_reason' => null
+        ]);
         
         event(new UserUnbannedEvent($user));
     }
