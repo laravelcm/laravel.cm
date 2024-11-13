@@ -19,8 +19,7 @@ return new class () extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('banned_at');
-            $table->dropColumn('banned_reason');
+            $table->dropColumn(['banned_at','banned_reason']);
         });
     }
 };

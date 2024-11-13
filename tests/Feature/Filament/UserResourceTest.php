@@ -8,6 +8,8 @@ use function Pest\Laravel\get;
 use App\Events\UserBannedEvent;
 use App\Events\UserUnbannedEvent;
 use Spatie\Permission\Models\Role;
+use App\Actions\User\BanUserAction;
+use App\Actions\User\UnBanUserAction;
 use Illuminate\Support\Facades\Event;
 use App\Filament\Resources\UserResource;
 
@@ -29,7 +31,7 @@ describe(UserResource::class, function() {
 
         $user = User::factory()->create();
 
-        UserResource::BanUserAction($user, 'Violation des règles de la communauté');
+        app(BanUserAction::class)->execute($user, 'Violation des règles de la communauté');
 
         $user->refresh();
     
@@ -47,7 +49,7 @@ describe(UserResource::class, function() {
             'banned_reason' => 'Violation des règles de la communauté'
         ]);
 
-        UserResource::UnbanUserAction($user);
+        app(UnBanUserAction::class)->execute($user);
 
         $user->refresh();
     
@@ -62,7 +64,7 @@ describe(UserResource::class, function() {
         
         $user = User::factory()->create(['banned_at' => now()]);
     
-        UserResource::BanUserAction($user, 'Violation des règles');
+        app(BanUserAction::class)->execute($user, 'Violation des règles');
     
         expect($user->banned_reason)->not->toBe('Violation des règles')
             ->and($user->banned_at)->not->toBeNull();

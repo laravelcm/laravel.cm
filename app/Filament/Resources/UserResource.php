@@ -11,6 +11,8 @@ use Filament\Tables\Table;
 use App\Events\UserBannedEvent;
 use Filament\Resources\Resource;
 use App\Events\UserUnbannedEvent;
+use App\Actions\User\BanUserAction;
+use App\Actions\User\UnBanUserAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
@@ -56,16 +58,16 @@ final class UserResource extends Resource
                     ->icon('untitledui-inbox')
                     ->description(fn ($record): ?string => $record->phone_number),
                 Tables\Columns\TextColumn::make('email_verified_at')
-                    ->label(__('global.ban.label.validate_email'))
+                    ->label(__('user.validate_email'))
                     ->placeholder('N/A')
                     ->date(),
                 Tables\Columns\TextColumn::make(name: 'created_at')
-                    ->label(__('global.ban.label.inscription'))
+                    ->label(__('use.inscription'))
                     ->date(),
             ])
             ->filters([
                 Tables\Filters\TernaryFilter::make('email_verified_at')
-                    ->label(__('global.ban.label.email_verified'))
+                    ->label(__('user.email_verified'))
                     ->nullable(),
             ])
             ->actions([
@@ -74,26 +76,44 @@ final class UserResource extends Resource
                         ->icon('untitledui-archive')
                         ->color('warning')
                         ->visible(fn ($record) => $record->banned_at == null)
-                        ->modalHeading(__('global.ban.heading'))
-                        ->modalDescription(__('global.ban.description'))
+                        ->modalHeading(__('user.ban.heading'))
+                        ->modalDescription(__('user.ban.description'))
                         ->form([
                             
                     TextInput::make('banned_reason')
-                                ->label(__('global.ban.reason'))
+                                ->label(__('user.ban.reason'))
                                 ->required(),
                         ])
                         ->action(function (User $record, array $data) {
                             if (!self::canBanUser($record)) {
                                 Notification::make()
                                     ->warning()
-                                    ->title(__('notifications.user.cannot.title'))
-                                    ->body(__('notifications.user.cannot.ban_admin'))
+                                    ->title(__('notifications.user.cannot_ban_title'))
+                                    ->body(__('notifications.user.cannot_ban_admin'))
                                     ->duration(5000)
                                     ->send();
                 
                                 return;
                             }
-                            self::BanUserAction($record, $data['banned_reason']);
+                            
+                            if ($record->banned_at !== null) {
+                                Notification::make()
+                                    ->warning()
+                                    ->title(__('notifications.user.cannot_ban_title'))
+                                    ->body(__('notifications.user.cannot_ban_body'))
+                                    ->send();
+                        
+                                return;
+                            }
+                            
+                            app(BanUserAction::class)->execute($record, $data['banned_reason']);
+
+                            Notification::make()
+                                ->success()
+                                ->duration(5000)
+                                ->title(__('notifications.user.banned_title'))
+                                ->body(__('notifications.user.banned_body'))
+                                ->send();
                         })
                         ->requiresConfirmation(),
                     
@@ -103,7 +123,14 @@ final class UserResource extends Resource
                         ->color('success')
                         ->visible(fn ($record) => $record->banned_at !== null)
                         ->action(function (User $record) {
-                            self::UnbanUserAction($record);
+                            app(UnBanUserAction::class)->execute($record);
+                            
+                            Notification::make()
+                                ->success()
+                                ->title(__('notifications.user.unbanned_title'))
+                                ->duration(5000)
+                                ->body(__('notifications.user.unbanned_body'))
+                                ->send();
                         })
                         ->requiresConfirmation(),
                 
@@ -119,48 +146,6 @@ final class UserResource extends Resource
         return [
             'index' => Pages\ListUsers::route('/'),
         ];
-    }
-
-    public static function BanUserAction(User $record, $reason): void
-    {
-        if ($record->banned_at !== null) {
-            Notification::make()
-                ->warning()
-                ->title(__('notifications.user.cannot.title'))
-                ->body(__('notifications.user.cannot.body'))
-                ->send();
-    
-            return;
-        }
-        
-        $record->banned_at = Carbon::now();
-        $record->banned_reason = $reason;
-        $record->save();
-
-        Notification::make()
-            ->success()
-            ->duration(5000)
-            ->title(__('notifications.user.banned.title'))
-            ->body(__('notifications.user.banned.body'))
-            ->send();
-        
-        event(new UserBannedEvent($record));
-    }
-
-    public static function UnbanUserAction(User $record): void
-    {
-        $record->banned_at = null;
-        $record->banned_reason = null;
-        $record->save();
-
-        Notification::make()
-            ->success()
-            ->title(__('notifications.user.unbanned.title'))
-            ->duration(5000)
-            ->body(__('notifications.user.unbanned.body'))
-            ->send();
-
-        event(new UserUnbannedEvent($record));
     }
 
     public static function canBanUser(User $record): bool

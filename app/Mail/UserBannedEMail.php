@@ -21,14 +21,14 @@ final class UserBannedEMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: __('global.ban.ban_email_subject'),
+            subject: __('user.ban.email_subject'),
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.send-user-banned-message',
+            markdown: 'emails.send-banned-message',
         );
     }
 }
