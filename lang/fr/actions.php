@@ -10,5 +10,7 @@ return [
     'delete' => 'Supprimer',
     'cancel' => 'Annuler',
     'save' => 'Enregistrer',
+    'ban' => 'Bannir',
+    'unban' => 'Dé-bannir',
 
 ];

@@ -9,7 +9,6 @@ use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
 use App\Traits\Reacts;
-use Carbon\Carbon;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
@@ -22,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Socialite\Contracts\User as SocialUser;
@@ -45,8 +45,10 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string | null $linkedin_profile
  * @property string | null $bio
  * @property string | null $website
+ * @property string | null $banned_reason
  * @property Carbon | null $email_verified_at
  * @property Carbon | null $last_login_at
+ * @property Carbon | null $banned_at
  * @property Collection | Activity[] $activities
  */
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
@@ -81,6 +83,8 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'last_login_at',
         'last_login_ip',
         'email_verified_at',
+        'banned_at',
+        'banned_reason',
         'opt_in',
     ];
 
@@ -94,6 +98,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_login_at' => 'datetime',
+        'banned_at' => 'datetime',
         'settings' => 'array',
     ];
 
@@ -466,5 +471,37 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     public function scopeTopContributors(Builder $query): Builder
     {
         return $query->withCount(['discussions'])->orderByDesc('discussions_count');
+    }
+
+    /**
+     * Get the banned user.
+     *
+     * @param  Builder<User>  $query
+     * @return Builder<User>
+     */
+    public function scopeIsBanned(Builder $query): Builder
+    {
+        return $query->whereNotNull('banned_at');
+    }
+
+    /**
+     * Get the unbanned user.
+     *
+     * @param  Builder<User>  $query
+     * @return Builder<User>
+     */
+    public function scopeIsNotBanned(Builder $query): Builder
+    {
+        return $query->whereNull('banned_at');
+    }
+
+    public function isBanned(): bool
+    {
+        return $this->banned_at !== null;
+    }
+
+    public function isNotBanned(): bool
+    {
+        return ! $this->isBanned();
     }
 }

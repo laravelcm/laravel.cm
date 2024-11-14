@@ -90,5 +90,8 @@ return [
         'discussion_description' => 'Échangez, débattez sur différentes thématiques et idées.',
     ],
     'moderator' => 'Modérateur',
+    'all' => 'Tout',
+    'banned' => 'Bannis',
+    'unbanned' => 'Non bannis',
 
 ];

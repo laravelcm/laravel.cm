@@ -10,5 +10,7 @@ return [
     'delete' => 'Delete',
     'cancel' => 'Cancel',
     'save' => 'Save',
+    'ban' => 'Ban',
+    'unban' => 'Cancel ban',
 
 ];

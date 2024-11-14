@@ -7,7 +7,7 @@ use App\Livewire\Pages\Account;
 use Illuminate\Support\Facades\Route;
 
 // Settings
-Route::prefix('settings')->as('user.')->middleware('auth')->group(function (): void {
+Route::prefix('settings')->as('user.')->middleware(['auth', 'checkIfBanned'])->group(function (): void {
     Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
     Route::put('/', [User\SettingController::class, 'update'])->name('settings.update');
     Route::view('/customization', 'user.settings.customization')->name('customization')->middleware('verified');
@@ -17,7 +17,7 @@ Route::prefix('settings')->as('user.')->middleware('auth')->group(function (): v
 });
 
 // User
-Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function (): void {
+Route::prefix('dashboard')->middleware(['auth', 'checkIfBanned', 'verified'])->group(function (): void {
     Route::get('/', Account\Dashboard::class)->name('dashboard');
     // Route::get('/', [User\DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/threads', [User\DashboardController::class, 'threads'])->name('threads.me');
