@@ -12,6 +12,7 @@ use App\Events\UserBannedEvent;
 use Filament\Resources\Resource;
 use App\Events\UserUnbannedEvent;
 use App\Actions\User\BanUserAction;
+use Illuminate\Support\Facades\Gate;
 use App\Actions\User\UnBanUserAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
@@ -36,7 +37,7 @@ final class UserResource extends Resource
         return $table
             ->modifyQueryUsing(function (Builder $query): void {
                 $query->whereHas('roles', function (Builder $query): void {
-                    $query->whereNotIn('name', ['moderator']);
+                    $query->whereNotIn('name', ['admin', 'moderator']);
                 })
                     ->latest();
             })
@@ -78,6 +79,7 @@ final class UserResource extends Resource
                         ->visible(fn ($record) => $record->banned_at == null)
                         ->modalHeading(__('user.ban.heading'))
                         ->modalDescription(__('user.ban.description'))
+                        ->authorize(fn () => Gate::allows('ban', User::class))
                         ->form([
                             
                     TextInput::make('banned_reason')
@@ -85,7 +87,6 @@ final class UserResource extends Resource
                                 ->required(),
                         ])
                         ->action(function (User $record, array $data) {
-                            
                             app(BanUserAction::class)->execute($record, $data['banned_reason']);
 
                             Notification::make()
@@ -102,6 +103,7 @@ final class UserResource extends Resource
                         ->icon('heroicon-o-check-circle')
                         ->color('success')
                         ->visible(fn ($record) => $record->banned_at !== null)
+                        ->authorize(fn () => Gate::allows('unban', User::class))
                         ->action(function (User $record) {
                             app(UnBanUserAction::class)->execute($record);
                             

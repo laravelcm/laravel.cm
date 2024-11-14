@@ -14,16 +14,13 @@ final class CheckIfBanned
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-        
-            if ($user && $user->banned_at) {
-                Auth::logout();
-                
-                return redirect()->route('login')->withErrors([
-                    'email' => __('user.ban.message'),
-                ]);
-            }
+        // @phpstan-ignore-next-line
+        if (Auth::check() && Auth::user()->banned_at) {
+            Auth::logout();
+            
+            return redirect()->route('login')->withErrors([
+                'email' => __('user.ban.message'),
+            ]);
         }
         
         return $next($request);

@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 use Carbon\Carbon;
 use App\Models\User;
+use Livewire\Livewire;
 use function Pest\Laravel\get;
 use App\Events\UserBannedEvent;
 use App\Events\UserUnbannedEvent;
 use Spatie\Permission\Models\Role;
 use App\Actions\User\BanUserAction;
+use Illuminate\Support\Facades\Gate;
 use App\Actions\User\UnBanUserAction;
 use Illuminate\Support\Facades\Event;
 use App\Filament\Resources\UserResource;
 use App\Exceptions\UserAlreadyBannedException;
+use App\Filament\Resources\UserResource\Pages\ListUsers;
 
 beforeEach(function (): void {
     Event::fake();
@@ -28,10 +31,13 @@ describe(UserResource::class, function() {
     })->skip();
 
     it('only admin can ban a user and send a ban notification', function () {
-        // $this->get('/cp')->assertSuccessful();
+        $user = User::factory()->unbanned()->create();
+        
+        Livewire::test(ListUsers::class)
+            ->assertSuccessful();
 
-        $user = User::factory()->create();
-
+        expect(Gate::allows('ban', $this->user))->toBeTrue();
+        
         app(BanUserAction::class)->execute($user, 'Violation des règles de la communauté');
 
         $user->refresh();
@@ -43,13 +49,13 @@ describe(UserResource::class, function() {
     });
 
     it('can unban a user and send a unban notification', function () {
-        // $this->get('/cp')->assertSuccessful();
-        
-        $user = User::factory()->create([
-            'banned_at' => now(),
-            'banned_reason' => 'Violation des règles de la communauté'
-        ]);
+        $user = User::factory()->banned()->create();
 
+        Livewire::test(ListUsers::class)
+            ->assertSuccessful();
+
+        expect(Gate::allows('unban', $this->user))->toBeTrue();
+        
         app(UnBanUserAction::class)->execute($user);
 
         $user->refresh();
@@ -61,9 +67,10 @@ describe(UserResource::class, function() {
     });
 
     it('does not ban an already banned user', function () {
-        // $this->get('/cp')->assertSuccessful();
-        
-        $user = User::factory()->create(['banned_at' => now()]);
+        $user = User::factory()->banned()->create();
+
+        Livewire::test(ListUsers::class)
+        ->assertSuccessful();
 
         $this->expectException(UserAlreadyBannedException::class);
         
@@ -74,9 +81,10 @@ describe(UserResource::class, function() {
     });
 
     it('prevents a banned user from logging in', function () {
-        $user = User::factory()->create([
-            'banned_at' => now(),
-        ]);
+        $user = User::factory()->banned()->create();
+
+        Livewire::test(ListUsers::class)
+        ->assertSuccessful();
     
         $this->actingAs($user)
             ->get('/dashboard') 

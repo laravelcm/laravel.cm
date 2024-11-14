@@ -41,4 +41,24 @@ final class UserFactory extends Factory
             ];
         });
     }
+
+    public function banned(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'banned_at' => now(),
+                'banned_reason' => 'Violation des règles de la communauté',
+            ];
+        });
+    }
+
+    public function unbanned(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'banned_at' => null,
+                'banned_reason' => null,
+            ];
+        });
+    }
 }

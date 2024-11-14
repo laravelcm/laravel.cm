@@ -3,12 +3,9 @@
 use App\Models\User;
 use App\Actions\User\UnBanUserAction;
 
-describe('UnBanUserActionTest', function () {
+describe(UnBanUserAction::class, function (): void {
    it('can unban user', function () {
-        $user = User::factory()->create([
-            'banned_at' => now(),
-            'banned_reason' => 'Violation des règles de la communauté'
-        ]);
+        $user = User::factory()->banned()->create();
 
         app(UnBanUserAction::class)->execute($user);
 
