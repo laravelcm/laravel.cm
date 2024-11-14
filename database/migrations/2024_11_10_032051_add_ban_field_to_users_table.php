@@ -11,8 +11,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', static function (Blueprint $table): void {
-            $table->string('banned_reason')->after('reputation')->nullable();
-            $table->timestamp('banned_at')->after('reputation')->nullable();
+            $table->after('reputation', function (Blueprint $table): void {
+                $table->string('banned_reason')->nullable();
+                $table->timestamp('banned_at')->nullable();
+            });
         });
     }
 
