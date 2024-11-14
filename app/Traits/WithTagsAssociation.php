@@ -22,13 +22,16 @@ trait WithTagsAssociation
     /**
      * @param  array{value: string}  $choices
      */
-    public function updatedTagsSelected(array $choices): void
+    public function updatedTagsSelected($choices): void
     {
-        if (! in_array($choices['value'], $this->associateTags)) {
-            $this->associateTags[] = (int) $choices['value'];
-        } else {
-            $key = array_search((int) $choices['value'], $this->associateTags);
-            unset($this->associateTags[$key]);
+        $choices = (array) $choices;
+        foreach ($choices as $choice) {
+            if (!in_array($choice, $this->associateTags)) {
+                $this->associateTags[] = (int) $choice;
+            } else {
+                $key = array_search((int) $choice, $this->associateTags);
+                unset($this->associateTags[$key]);
+            }
         }
     }
 }
