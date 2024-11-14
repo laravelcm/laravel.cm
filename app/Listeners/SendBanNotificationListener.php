@@ -10,14 +10,6 @@ use App\Jobs\SendBanEmailJob;
 final class SendBanNotificationListener
 {
     /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
      * Handle the event.
      */
     public function handle(UserBannedEvent $event): void

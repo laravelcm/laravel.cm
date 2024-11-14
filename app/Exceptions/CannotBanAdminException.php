@@ -9,8 +9,4 @@ use Exception;
 /**
  * @property string $message
  */
-final class CannotBanAdminException extends Exception
-{
-    // @phpstan-ignore-next-line
-    protected $message = 'Impossible de bannir un administrateur.';
-}
+final class CannotBanAdminException extends Exception {}

@@ -14,7 +14,7 @@ final class CheckIfBanned
     public function handle(Request $request, Closure $next): Response
     {
         // @phpstan-ignore-next-line
-        if (Auth::check() && Auth::user()->banned_at) {
+        if (Auth::check() && Auth::user()->isBanned()) {
             Auth::logout();
 
             return redirect()->route('login')->withErrors([

@@ -13,12 +13,12 @@ final class BanUserAction
 {
     public function execute(User $user, string $reason): void
     {
-        if ($user->hasRole('admin')) {
-            throw new CannotBanAdminException;
+        if ($user->isAdmin() || $user->isModerator()) {
+            throw new CannotBanAdminException('Impossible de bannir un administrateur.');
         }
 
-        if ($user->banned_at !== null) {
-            throw new UserAlreadyBannedException;
+        if ($user->isBanned()) {
+            throw new UserAlreadyBannedException('Impossible de bannir cet utilisateur car il est déjà banni.');
         }
 
         $user->update([

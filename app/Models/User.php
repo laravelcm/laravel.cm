@@ -494,4 +494,14 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     {
         return $query->whereNull('banned_at');
     }
+
+    public function isBanned(): bool
+    {
+        return $this->banned_at !== null;
+    }
+
+    public function isNotBanned(): bool
+    {
+        return ! $this->isBanned();
+    }
 }

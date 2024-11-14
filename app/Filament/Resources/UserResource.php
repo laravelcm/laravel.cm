@@ -16,7 +16,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Gate;
 
 final class UserResource extends Resource
 {
@@ -76,9 +75,8 @@ final class UserResource extends Resource
                     ->visible(fn ($record) => $record->banned_at == null)
                     ->modalHeading(__('user.ban.heading'))
                     ->modalDescription(__('user.ban.description'))
-                    ->authorize(fn () => Gate::allows('ban', User::class))
+                    ->authorize('ban', User::class)
                     ->form([
-
                         TextInput::make('banned_reason')
                             ->label(__('user.ban.reason'))
                             ->required(),
@@ -100,7 +98,7 @@ final class UserResource extends Resource
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
                     ->visible(fn ($record) => $record->banned_at !== null)
-                    ->authorize(fn () => Gate::allows('unban', User::class))
+                    ->authorize('unban', User::class)
                     ->action(function (User $record): void {
                         app(UnBanUserAction::class)->execute($record);
 

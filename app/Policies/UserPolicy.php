@@ -10,11 +10,11 @@ final class UserPolicy
 {
     public function ban(User $user): bool
     {
-        return $user->hasRole('admin');
+        return $user->isAdmin() || $user->isModerator();
     }
 
     public function unban(User $user): bool
     {
-        return $user->hasRole('admin');
+        return $user->isAdmin() || $user->isModerator();
     }
 }

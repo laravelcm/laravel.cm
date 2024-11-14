@@ -10,7 +10,6 @@ use App\Models\Discussion;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
-use App\Policies\UserPolicy;
 use App\View\Composers\InactiveDiscussionsComposer;
 use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
@@ -20,7 +19,6 @@ use Filament\Support\Facades\FilamentIcon;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -36,8 +34,6 @@ final class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Gate::policy(User::class, UserPolicy::class);
-
         $this->bootMacros();
         $this->bootViewsComposer();
         $this->bootEloquentMorphs();
