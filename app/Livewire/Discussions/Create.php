@@ -9,7 +9,6 @@ use App\Data\CreateDiscussionData;
 use App\Models\Tag;
 use App\Traits\WithTagsAssociation;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -25,7 +24,7 @@ final class Create extends Component
     public string $body = '';
 
     #[On('markdown-x:update')]
-    public function onMarkdownUpdate($body): void
+    public function onMarkdownUpdate(string $body): void
     {
         $this->body = $body;
     }

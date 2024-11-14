@@ -28,10 +28,8 @@ final class CreateDiscussionAction
 
         givePoint(new DiscussionCreated($discussion));
 
-        if (app()->environment('production')) {
-            Auth::user()?->notify(new PostDiscussionToTelegram($discussion));
-        }
-        
+        Auth::user()?->notify(new PostDiscussionToTelegram($discussion));
+
         return $discussion;
     }
 }

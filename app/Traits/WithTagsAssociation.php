@@ -26,7 +26,7 @@ trait WithTagsAssociation
     {
         $choices = (array) $choices;
         foreach ($choices as $choice) {
-            if (!in_array($choice, $this->associateTags)) {
+            if (! in_array($choice, $this->associateTags)) {
                 $this->associateTags[] = (int) $choice;
             } else {
                 $key = array_search((int) $choice, $this->associateTags);
