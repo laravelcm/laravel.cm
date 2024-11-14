@@ -38,5 +38,5 @@ return [
         'cannot_ban_title' => 'Impossible de bannir',
         'cannot_ban_body' => 'Cet utilisateur est déjà banni.',
         'cannot_ban_admin' => 'Vous ne pouvez pas bannir un administrateur.',
-    ]
+    ],
 ];

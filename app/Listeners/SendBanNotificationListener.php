@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Listeners;
 
-use App\Jobs\SendBanEmailJob;
 use App\Events\UserBannedEvent;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Jobs\SendBanEmailJob;
 
-class SendBanNotificationListener
+final class SendBanNotificationListener
 {
     /**
      * Create the event listener.

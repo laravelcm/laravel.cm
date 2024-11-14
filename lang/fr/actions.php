@@ -12,5 +12,5 @@ return [
     'save' => 'Enregistrer',
     'ban' => 'Bannir',
     'unban' => 'Dé-bannir',
-    
+
 ];

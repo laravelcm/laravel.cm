@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exceptions;
 
 use Exception;
@@ -7,8 +9,8 @@ use Exception;
 /**
  * @property string $message
  */
-class CannotBanAdminException extends Exception
+final class CannotBanAdminException extends Exception
 {
     // @phpstan-ignore-next-line
-    protected  $message = "Impossible de bannir un administrateur.";
+    protected $message = 'Impossible de bannir un administrateur.';
 }

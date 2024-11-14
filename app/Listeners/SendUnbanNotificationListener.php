@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Listeners;
 
-use App\Jobs\SendUnbanEmailJob;
 use App\Events\UserUnbannedEvent;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Jobs\SendUnbanEmailJob;
 
-class SendUnbanNotificationListener
+final class SendUnbanNotificationListener
 {
     /**
      * Create the event listener.

@@ -4,34 +4,32 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Traits\Reacts;
-use QCod\Gamify\Gamify;
+use App\Enums\TransactionStatus;
+use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
-use Illuminate\Support\Carbon;
-use App\Events\UserBannedEvent;
-use App\Traits\HasProfilePhoto;
-use App\Enums\TransactionStatus;
-use App\Events\UserUnbannedEvent;
-use Laravel\Sanctum\HasApiTokens;
-use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Support\Facades\Auth;
-use Filament\Models\Contracts\HasName;
-use Spatie\Permission\Traits\HasRoles;
-use Filament\Models\Contracts\HasAvatar;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Notifications\Notification;
+use App\Traits\Reacts;
 use Filament\Models\Contracts\FilamentUser;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Illuminate\Database\Eloquent\Collection;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Models\Contracts\HasName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Laravel\Socialite\Contracts\User as SocialUser;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\HasApiTokens;
+use Laravel\Socialite\Contracts\User as SocialUser;
 use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
+use QCod\Gamify\Gamify;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property-read int $id
@@ -477,7 +475,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     /**
      * Get the banned user.
-     * 
+     *
      * @param  Builder<User>  $query
      * @return Builder<User>
      */

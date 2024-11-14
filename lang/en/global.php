@@ -93,5 +93,5 @@ return [
     'all' => 'All',
     'banned' => 'Banned',
     'unbanned' => 'Unbanned',
-    
+
 ];

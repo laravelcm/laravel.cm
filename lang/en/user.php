@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-return [ 
+return [
 
     'email_verified' => 'Email verified',
     'inscription' => 'Inscription',
@@ -19,6 +19,6 @@ return [
     ],
     'unbanned' => [
         'email_subject' => 'Laravelcm unbanning notification',
-    ]
+    ],
 
 ];

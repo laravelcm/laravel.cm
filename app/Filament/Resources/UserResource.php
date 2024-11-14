@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
-use Carbon\Carbon;
-use App\Models\User;
-use Filament\Tables;
-use Filament\Tables\Table;
-use App\Events\UserBannedEvent;
-use Filament\Resources\Resource;
-use App\Events\UserUnbannedEvent;
 use App\Actions\User\BanUserAction;
-use Illuminate\Support\Facades\Gate;
 use App\Actions\User\UnBanUserAction;
-use Filament\Forms\Components\TextInput;
-use Filament\Notifications\Notification;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\UserResource\Pages;
+use App\Models\User;
 use Awcodes\FilamentBadgeableColumn\Components\Badge;
 use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Gate;
 
 final class UserResource extends Resource
 {
@@ -72,51 +69,51 @@ final class UserResource extends Resource
                     ->nullable(),
             ])
             ->actions([
-                    Tables\Actions\Action::make('ban')
-                        ->label(__('actions.ban'))
-                        ->icon('untitledui-archive')
-                        ->color('warning')
-                        ->visible(fn ($record) => $record->banned_at == null)
-                        ->modalHeading(__('user.ban.heading'))
-                        ->modalDescription(__('user.ban.description'))
-                        ->authorize(fn () => Gate::allows('ban', User::class))
-                        ->form([
-                            
-                    TextInput::make('banned_reason')
-                                ->label(__('user.ban.reason'))
-                                ->required(),
-                        ])
-                        ->action(function (User $record, array $data) {
-                            app(BanUserAction::class)->execute($record, $data['banned_reason']);
+                Tables\Actions\Action::make('ban')
+                    ->label(__('actions.ban'))
+                    ->icon('untitledui-archive')
+                    ->color('warning')
+                    ->visible(fn ($record) => $record->banned_at == null)
+                    ->modalHeading(__('user.ban.heading'))
+                    ->modalDescription(__('user.ban.description'))
+                    ->authorize(fn () => Gate::allows('ban', User::class))
+                    ->form([
 
-                            Notification::make()
-                                ->success()
-                                ->duration(5000)
-                                ->title(__('notifications.user.banned_title'))
-                                ->body(__('notifications.user.banned_body'))
-                                ->send();
-                        })
-                        ->requiresConfirmation(),
-                    
-                    Tables\Actions\Action::make('unban')
-                        ->label(__('actions.unban'))
-                        ->icon('heroicon-o-check-circle')
-                        ->color('success')
-                        ->visible(fn ($record) => $record->banned_at !== null)
-                        ->authorize(fn () => Gate::allows('unban', User::class))
-                        ->action(function (User $record) {
-                            app(UnBanUserAction::class)->execute($record);
-                            
-                            Notification::make()
-                                ->success()
-                                ->title(__('notifications.user.unbanned_title'))
-                                ->duration(5000)
-                                ->body(__('notifications.user.unbanned_body'))
-                                ->send();
-                        })
-                        ->requiresConfirmation(),
-                
-                    Tables\Actions\DeleteAction::make(),
+                        TextInput::make('banned_reason')
+                            ->label(__('user.ban.reason'))
+                            ->required(),
+                    ])
+                    ->action(function (User $record, array $data): void {
+                        app(BanUserAction::class)->execute($record, $data['banned_reason']);
+
+                        Notification::make()
+                            ->success()
+                            ->duration(5000)
+                            ->title(__('notifications.user.banned_title'))
+                            ->body(__('notifications.user.banned_body'))
+                            ->send();
+                    })
+                    ->requiresConfirmation(),
+
+                Tables\Actions\Action::make('unban')
+                    ->label(__('actions.unban'))
+                    ->icon('heroicon-o-check-circle')
+                    ->color('success')
+                    ->visible(fn ($record) => $record->banned_at !== null)
+                    ->authorize(fn () => Gate::allows('unban', User::class))
+                    ->action(function (User $record): void {
+                        app(UnBanUserAction::class)->execute($record);
+
+                        Notification::make()
+                            ->success()
+                            ->title(__('notifications.user.unbanned_title'))
+                            ->duration(5000)
+                            ->body(__('notifications.user.unbanned_body'))
+                            ->send();
+                    })
+                    ->requiresConfirmation(),
+
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
