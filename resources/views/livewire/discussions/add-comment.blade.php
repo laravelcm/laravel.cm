@@ -7,8 +7,8 @@
         <div class="relative">
             <img
                 class="flex size-10 items-center justify-center rounded-full bg-skin-card-gray object-cover ring-8 ring-body"
-                src="{{ $authenticate->profile_photo_url }}"
-                alt="{{ $authenticate->name }}"
+                src="{{ $user->profile_photo_url }}"
+                alt="{{ $user->name }}"
             />
             <span class="absolute -bottom-0.5 -right-1 rounded-tl bg-skin-body px-0.5 py-px">
                     <svg
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="min-w-0 flex-1">
+    <div class="flex-1 min-w-0">
         <label for="body" class="sr-only">{{ __('Commentaire') }}</label>
         <textarea
             wire:model="body"
@@ -50,7 +50,7 @@
                 </p>
             @endif
 
-            <div class="mt-3 flex items-center justify-end space-x-3 sm:mt-0">
+            <div class="flex items-center justify-end mt-3 space-x-3 sm:mt-0">
                 @if ($isReply)
                     <x-buttons.default type="reset" wire:click="cancel">{{ __('Annuler') }}</x-buttons.default>
                 @endif
@@ -63,8 +63,8 @@
         </div>
     </div>
     @guest
-        <div class="absolute inset-0 flex items-center justify-center bg-skin-card bg-opacity-10 py-8">
-            <p class="text-center font-sans text-gray-500 dark:text-gray-400">
+        <div class="absolute inset-0 flex items-center justify-center py-8 bg-skin-card bg-opacity-10">
+            <p class="font-sans text-center text-gray-500 dark:text-gray-400">
                 {{ __('Veuillez vous') }}
                 <a href="{{ route('login') }}" class="text-primary-600 hover:text-primary-600-hover hover:underline">
                     {{ __('connecter') }}

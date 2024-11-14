@@ -35,6 +35,8 @@ final class Comments extends Component
             $replies->add($reply);
         }
 
+        $replies = $replies->sortByDesc('created_at');
+
         return $replies;
     }
 
