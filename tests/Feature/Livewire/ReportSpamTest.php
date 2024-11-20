@@ -70,4 +70,13 @@ describe(ReportSpam::class, function (): void {
         expect($thread->spamReports()->count())
             ->toBe(1);
     });
+
+    it('user cannot report a spam with unverified e-mail', function (): void {
+        $this->login(['email_verified_at' => null]);
+
+        $thread = Thread::factory()->create();
+
+        Livewire::test(ReportSpam::class, ['model' => $thread])
+            ->assertActionHidden('report');
+    });
 });
