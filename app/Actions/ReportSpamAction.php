@@ -15,7 +15,7 @@ final class ReportSpamAction
     {
         if ($model->spamReports()->whereBelongsTo($user)->exists()) {
             throw new CanReportSpamException(
-                message: __('notifications.exceptions.unverified_user'),
+                message: __('notifications.exceptions.spam_exist'),
             );
         }
 

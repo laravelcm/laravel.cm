@@ -5,78 +5,62 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use App\Actions\ReportSpamAction;
-use App\Models\SpamReport;
+use App\Contracts\SpamReportableContract;
+use App\Exceptions\CanReportSpamException;
+use Filament\Actions\Action;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Notifications\Notification;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-final class ReportSpam extends Component
+final class ReportSpam extends Component implements HasActions, HasForms
 {
-    public $recordId;
+    use InteractsWithActions;
+    use InteractsWithForms;
 
-    public $recordType;
+    public SpamReportableContract $model;
 
-    public $reason;
+    public ?string $reason = null;
 
-    public $alreadyReported;
-
-    public $isModalOpen = false;
-
-    public function mount($recordId, $recordType): void
+    public function reportAction(): Action
     {
-        $this->recordId = $recordId;
-        $this->recordType = $recordType;
-        $this->alreadyReported = SpamReport::where('user_id', Auth::id())
-            ->where('reportable_id', $recordId)
-            ->where('reportable_type', $recordType)
-            ->exists();
+        return Action::make('report')
+            ->color('danger')
+            ->badge()
+            ->label(__('pages/forum.report_spam'))
+            ->authorize('report', $this->model) // @phpstan-ignore-line
+            ->requiresConfirmation()
+            ->action(function (): void {
+                try {
+                    app(ReportSpamAction::class)->execute(
+                        user: Auth::user(), // @phpstan-ignore-line
+                        model: $this->model,
+                        content: $this->reason,
+                    );
+
+                    Notification::make()
+                        ->title(__('notifications.spam_send'))
+                        ->success()
+                        ->duration(3500)
+                        ->send();
+
+                    $this->reset('reason');
+                } catch (CanReportSpamException $e) {
+                    Notification::make()
+                        ->title($e->getMessage())
+                        ->danger()
+                        ->duration(3500)
+                        ->send();
+                }
+            });
     }
 
-    public function openModal(): void
+    public function render(): View
     {
-        $this->isModalOpen = true;
-    }
-
-    public function closeModal(): void
-    {
-        $this->isModalOpen = false;
-        $this->reset('reason');
-    }
-
-    public function report(): void
-    {
-        $user = Auth::user();
-
-        if (! $user) {
-            abort(403, 'Vous devez être connecté pour signaler du contenu.');
-        }
-
-        if (! $user->hasVerifiedEmail()) {
-            abort(403, 'Vous devez avoir un email vérifié pour signaler du contenu');
-        }
-
-        try {
-            app(ReportSpamAction::class)->execute([
-                'user' => $user,
-                'recordId' => $this->recordId,
-                'recordType' => $this->recordType,
-                'reason' => $this->reason,
-            ]);
-
-            $this->reset('reason');
-
-            session()->flash('message', 'Signalement créé avec succès');
-
-        } catch (\Exception $e) {
-            if ($e->getMessage() === 'already_reported') {
-                $this->addError('alreadyReported', 'Vous avez déjà signalé ce contenu.');
-            } else {
-                session()->flash('error', 'Une erreur est survenue lors du signalement.');
-            }
-        }
-    }
-
-    public function render()
-    {
-        return view('livewire.components.spam-report');
+        return view('livewire.components.report-spam');
     }
 }

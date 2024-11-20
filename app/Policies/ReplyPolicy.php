@@ -31,4 +31,9 @@ final class ReplyPolicy
     {
         return $reply->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
     }
+
+    public function report(User $user, Reply $reply): bool
+    {
+        return $user->hasVerifiedEmail() && ! $reply->isAuthoredBy($user);
+    }
 }

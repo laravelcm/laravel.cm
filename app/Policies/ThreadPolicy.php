@@ -41,4 +41,9 @@ final class ThreadPolicy
     {
         return $thread->hasSubscriber($user);
     }
+
+    public function report(User $user, Thread $thread): bool
+    {
+        return $user->hasVerifiedEmail() && ! $thread->isAuthoredBy($user);
+    }
 }

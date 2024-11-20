@@ -40,4 +40,7 @@ return [
         'cannot_ban_body' => 'Cet utilisateur est déjà banni.',
         'cannot_ban_admin' => 'Vous ne pouvez pas bannir un administrateur.',
     ],
+
+    'spam_send' => 'Votre signalement a été envoyé avec succès',
+
 ];

@@ -269,6 +269,11 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         return $this->hasMany(Transaction::class);
     }
 
+    public function spamReports(): HasMany
+    {
+        return $this->hasMany(SpamReport::class, 'user_id');
+    }
+
     public function deleteThreads(): void
     {
         // We need to explicitly iterate over the threads and delete them

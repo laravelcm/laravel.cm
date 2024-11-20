@@ -51,4 +51,9 @@ final class DiscussionPolicy
     {
         return $discussion->hasSubscriber($user);
     }
+
+    public function report(User $user, Discussion $discussion): bool
+    {
+        return $user->hasVerifiedEmail() && ! $discussion->isAuthoredBy($user);
+    }
 }

@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
+use App\Contracts\SpamReportableContract;
 use App\Contracts\SubscribeInterface;
 use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Filters\Thread\ThreadFilters;
@@ -24,6 +25,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection as SupportCollection;
@@ -49,7 +51,7 @@ use Spatie\Feed\FeedItem;
  * @property Reply | null $solutionReply
  * @property \Illuminate\Database\Eloquent\Collection | Channel[] $channels
  */
-final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SubscribeInterface, Viewable
+final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;
     use HasFactory;
@@ -115,6 +117,11 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     public function solutionReply(): BelongsTo
     {
         return $this->belongsTo(Reply::class, 'solution_reply_id');
+    }
+
+    public function spamReports(): MorphMany
+    {
+        return $this->morphMany(SpamReport::class, 'reportable');
     }
 
     public function isSolutionReply(Reply $reply): bool
