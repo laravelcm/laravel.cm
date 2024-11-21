@@ -12,7 +12,7 @@ return [
     'empty' => 'Discussions sans commentaires',
     'empty_description' => 'Les discussions / sujets qui n’ont pas encore eu de commentaires. Soyez le premier à apporter votre contribution.',
     'total_answer' => 'total réponses',
-    'new_discussion' => 'Nouveau discussion',
+    'new_discussion' => 'Nouvelle discussion',
     'filter' => [
         'recent' => 'Récent',
         'popular' => 'Populaire',

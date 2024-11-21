@@ -24,9 +24,9 @@ final class Create extends Component
     public string $body = '';
 
     #[On('markdown-x:update')]
-    public function onMarkdownUpdate(string $content): void
+    public function onMarkdownUpdate(string $body): void
     {
-        $this->body = $content;
+        $this->body = $body;
     }
 
     public function store(): void
