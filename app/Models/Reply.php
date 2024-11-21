@@ -9,6 +9,7 @@ use App\Contracts\ReplyInterface;
 use App\Contracts\SpamReportableContract;
 use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
+use App\Traits\HasSpamReports;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
@@ -37,6 +38,7 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
     use HasAuthor;
     use HasFactory;
     use HasReplies;
+    use HasSpamReports;
     use Reactable;
     use RecordsActivity;
 
@@ -84,11 +86,6 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
     public function solutionTo(): HasOne
     {
         return $this->hasOne(Thread::class, 'solution_reply_id');
-    }
-
-    public function spamReports(): MorphMany
-    {
-        return $this->morphMany(SpamReport::class, 'reportable');
     }
 
     public function allChildReplies(): MorphMany

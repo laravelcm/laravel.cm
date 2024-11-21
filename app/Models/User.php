@@ -190,7 +190,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         return [
             'name' => $this->name,
             'username' => $this->username,
-            'picture' => (string) $this->profile_photo_url,
+            'picture' => $this->profile_photo_url,
         ];
     }
 

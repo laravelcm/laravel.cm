@@ -12,6 +12,7 @@ use App\Models\Builders\DiscussionQueryBuilder;
 use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
 use App\Traits\HasSlug;
+use App\Traits\HasSpamReports;
 use App\Traits\HasSubscribers;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
@@ -22,7 +23,6 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -46,6 +46,7 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     use HasFactory;
     use HasReplies;
     use HasSlug;
+    use HasSpamReports;
     use HasSubscribers;
     use HasTags;
     use InteractsWithViews;
@@ -131,11 +132,6 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     public function lockedDiscussion(): void
     {
         $this->update(['locked' => true]);
-    }
-
-    public function spamReports(): MorphMany
-    {
-        return $this->morphMany(SpamReport::class, 'reportable');
     }
 
     public function delete(): ?bool

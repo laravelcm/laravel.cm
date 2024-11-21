@@ -13,6 +13,7 @@ use App\Filters\Thread\ThreadFilters;
 use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
 use App\Traits\HasSlug;
+use App\Traits\HasSpamReports;
 use App\Traits\HasSubscribers;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
@@ -25,7 +26,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection as SupportCollection;
@@ -57,6 +57,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     use HasFactory;
     use HasReplies;
     use HasSlug;
+    use HasSpamReports;
     use HasSubscribers;
     use InteractsWithViews;
     use Notifiable;
@@ -117,11 +118,6 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     public function solutionReply(): BelongsTo
     {
         return $this->belongsTo(Reply::class, 'solution_reply_id');
-    }
-
-    public function spamReports(): MorphMany
-    {
-        return $this->morphMany(SpamReport::class, 'reportable');
     }
 
     public function isSolutionReply(Reply $reply): bool

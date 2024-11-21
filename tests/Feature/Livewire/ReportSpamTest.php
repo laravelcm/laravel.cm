@@ -5,17 +5,9 @@ declare(strict_types=1);
 use App\Livewire\ReportSpam;
 use App\Models\SpamReport;
 use App\Models\Thread;
-use App\Models\User;
 use App\Notifications\ReportedSpamToTelegram;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
-use Spatie\Permission\Models\Role;
-
-beforeEach(function (): void {
-    Role::create(['name' => 'admin']);
-
-    Notification::fake();
-});
 
 describe(ReportSpam::class, function (): void {
     it('guest user cannot report spam', function (): void {
@@ -26,10 +18,9 @@ describe(ReportSpam::class, function (): void {
     });
 
     it('user can report a thread as spam', function (): void {
-        $user = User::factory()->create();
-        $user->assignRole('admin');
+        Notification::fake();
 
-        $this->login();
+        $user = $this->login();
         $thread = Thread::factory()->create();
 
         Livewire::test(ReportSpam::class, ['model' => $thread])
@@ -40,10 +31,7 @@ describe(ReportSpam::class, function (): void {
             ->and(SpamReport::query()->first()->reportable_type)
             ->toBe('thread');
 
-        Notification::assertNotSentTo(
-            [$user],
-            ReportedSpamToTelegram::class
-        );
+        Notification::assertSentTo($user, ReportedSpamToTelegram::class);
 
         Notification::assertCount(1);
     });

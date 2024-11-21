@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('spam_reports', static function (Blueprint $table): void {
             $table->id();
-            $table->foreignIdFor(User::class)->nullable();
+            $table->foreignIdFor(User::class)->nullable()->constrained();
             $table->morphs('reportable');
             $table->string('reason')->nullable();
             $table->timestamps();
