@@ -11,7 +11,8 @@ export default {
   darkMode: 'class',
   presets: [preset],
   content: [
-    './app/**/*.php',
+    './app/Livewire/**/*.php',
+    './app/Filament/**/*.php',
     './config/markdown.php',
     './resources/**/*.blade.php',
     './storage/framework/views/*.php',

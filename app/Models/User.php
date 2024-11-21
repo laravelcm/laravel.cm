@@ -190,7 +190,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         return [
             'name' => $this->name,
             'username' => $this->username,
-            'picture' => (string) $this->profile_photo_url,
+            'picture' => $this->profile_photo_url,
         ];
     }
 
@@ -267,6 +267,11 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function spamReports(): HasMany
+    {
+        return $this->hasMany(SpamReport::class, 'user_id');
     }
 
     public function deleteThreads(): void
