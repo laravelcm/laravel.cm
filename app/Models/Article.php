@@ -11,6 +11,7 @@ use App\Traits\HasSlug;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
+use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -164,6 +165,11 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
     public function isNotPublished(): bool
     {
         return $this->isNotSubmitted() || $this->isNotApproved();
+    }
+
+    public function publishedAt(): ?Carbon
+    {
+        return $this->published_at;
     }
 
     public function isPinned(): bool

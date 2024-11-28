@@ -56,11 +56,11 @@
                         </x-link>
                     </p>
                     <div class="flex space-x-1 text-sm text-gray-500 dark:text-gray-400/60">
-                        <time class="capitalize" datetime="{{ $article->publishedAt()->format('Y-m-d') }}">
-                            {{ $article->publishedAt()->isoFormat('LL') }}
+                        <time class="capitalize" datetime="{{ $article?->publishedAt()?->format('Y-m-d') }}">
+                            {{ $article?->publishedAt()?->isoFormat('LL') }}
                         </time>
                         <span aria-hidden="true">&middot;</span>
-                        <span>{{ __('global.read_time', ['time' => $article->readTime()]) }}</span>
+                        <span>{{ __('global.read_time', ['time' => $article?->readTime()]) }}</span>
                     </div>
                 </div>
             </div>
