@@ -36,7 +36,7 @@
             id="body"
             placeholder="{{ __('Laisser un commentaire, vous pouvez utilise du **Markdown**') }}"
             rows="4"
-            :disabled="$authenticate === null"
+            :disabled="$user === null"
         ></textarea>
         <div class="mt-4 sm:flex sm:items-center sm:justify-between sm:space-x-4">
             @if ($isRoot)
