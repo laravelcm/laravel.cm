@@ -2,7 +2,7 @@
     <div class="prose relative mx-auto max-w-4xl px-4 py-10">
         <h1>Conditions d'utilisation</h1>
         <p>
-            <span class="text-xs font-medium uppercase text-skin-muted">Dernière mise à jour : 08 Juin 2019</span>
+            <span class="text-xs font-medium uppercase text-gray-400 dark:text-gray-500">Dernière mise à jour : 08 Juin 2019</span>
         </p>
         <p>
             Les présentes conditions générales d'utilisation du site Web écrites sur cette page Web géreront votre

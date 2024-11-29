@@ -20,7 +20,7 @@
                 </span>
                 <a
                     href="{{ route('profile', $user->username) }}"
-                    class="text-sm leading-5 text-skin-muted hover:text-flag-green hover:underline"
+                    class="text-sm leading-5 text-gray-400 dark:text-gray-500 hover:text-flag-green hover:underline"
                 >
                     Afficher
                 </a>

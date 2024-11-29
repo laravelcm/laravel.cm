@@ -13,7 +13,7 @@
                                 @class([
                                     '-ml-1 mr-3 size-6 shrink-0',
                                     'text-green-600' => request()->routeIs('user.settings'),
-                                    'text-skin-muted' => ! request()->routeIs('user.settings'),
+                                    'text-gray-400 dark:text-gray-500' => ! request()->routeIs('user.settings'),
                                 ])
                                 fill="none"
                                 viewBox="0 0 24 24"
@@ -34,7 +34,7 @@
                                 @class([
                                     '-ml-1 mr-3 size-6 shrink-0',
                                     'text-green-600' => request()->routeIs('user.password'),
-                                    'text-skin-muted' => ! request()->routeIs('user.password'),
+                                    'text-gray-400 dark:text-gray-500' => ! request()->routeIs('user.password'),
                                 ])
                                 fill="none"
                                 viewBox="0 0 24 24"
@@ -58,7 +58,7 @@
                                 @class([
                                     '-ml-1 mr-3 size-6 shrink-0',
                                     'text-green-600' => request()->routeIs('user.customization'),
-                                    'text-skin-muted' => ! request()->routeIs('user.customization'),
+                                    'text-gray-400 dark:text-gray-500' => ! request()->routeIs('user.customization'),
                                 ])
                                 fill="none"
                                 viewBox="0 0 24 24"
@@ -82,7 +82,7 @@
                                 @class([
                                     '-ml-1 mr-3 size-6 shrink-0',
                                     'text-green-600' => request()->routeIs('user.notifications'),
-                                    'text-skin-muted' => ! request()->routeIs('user.notifications'),
+                                    'text-gray-400 dark:text-gray-500' => ! request()->routeIs('user.notifications'),
                                 ])
                                 fill="none"
                                 viewBox="0 0 24 24"
@@ -103,7 +103,7 @@
                                 @class([
                                     '-ml-1 mr-3 size-6 shrink-0',
                                     'text-green-600' => request()->routeIs('user.subscription'),
-                                    'text-skin-muted' => ! request()->routeIs('user.subscription'),
+                                    'text-gray-400 dark:text-gray-500' => ! request()->routeIs('user.subscription'),
                                 ])
                                 fill="none"
                                 viewBox="0 0 24 24"

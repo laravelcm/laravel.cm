@@ -24,4 +24,4 @@ Route::prefix('dashboard')->middleware(['auth', 'checkIfBanned', 'verified'])->g
     Route::get('/discussions', [User\DashboardController::class, 'discussions'])->name('discussions.me');
 });
 
-Route::get('/user/{username?}', [User\ProfileController::class, 'show'])->name('profile');
+Route::get('/@{user:username?}', Account\Profile::class)->name('profile');

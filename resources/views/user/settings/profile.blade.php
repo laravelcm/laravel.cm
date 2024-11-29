@@ -46,7 +46,7 @@
                             <textarea id="about" name="bio" rows="3" class="max-w-lg" maxlength="160">
                                 {{ Auth::user()->bio }}
                             </textarea>
-                            <p class="mt-2 text-sm font-normal text-skin-muted">
+                            <p class="mt-2 text-sm font-normal text-gray-400 dark:text-gray-500">
                                 {{ __('Écrivez quelques phrases sur vous-même.') }}
                             </p>
                         </div>
@@ -57,7 +57,7 @@
                     >
                         <div class="sm:mt-px sm:pt-2">
                             <label for="photo" class="text-gray-700 dark:text-gray-300">{{ __('Photo') }}</label>
-                            <p class="hidden text-sm font-normal text-skin-muted sm:block">
+                            <p class="hidden text-sm font-normal text-gray-400 dark:text-gray-500 sm:block">
                                 {{ __('Celle-ci sera affiché sur votre profil.') }}
                             </p>
                         </div>

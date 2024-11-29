@@ -35,7 +35,7 @@
                     <div class="block">
                         <label for="password">{{ __('Nouveau mot de passe') }}</label>
                         <input id="password" class="mt-1 block w-full" name="password" required />
-                        <p class="mt-2 text-sm font-normal text-skin-muted">
+                        <p class="mt-2 text-sm font-normal text-gray-400 dark:text-gray-500">
                             {{ __('Votre nouveau mot de passe doit comporter plus de 8 caractères.') }}
                         </p>
                     </div>
@@ -80,7 +80,7 @@
                                     viewBox="0 0 24 24"
                                     stroke-width="1.5"
                                     stroke="currentColor"
-                                    class="size-6 text-skin-muted"
+                                    class="size-6 text-gray-400 dark:text-gray-500"
                                 >
                                     <path
                                         stroke-linecap="round"
@@ -95,7 +95,7 @@
                                     viewBox="0 0 24 24"
                                     stroke-width="1.5"
                                     stroke="currentColor"
-                                    class="size-6 text-skin-muted"
+                                    class="size-6 text-gray-400 dark:text-gray-500"
                                 >
                                     <path
                                         stroke-linecap="round"

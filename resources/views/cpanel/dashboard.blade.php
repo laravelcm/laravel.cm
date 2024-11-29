@@ -38,7 +38,7 @@
                                         >
                                             {{ __('Démarrer une discussion') }}
                                         </p>
-                                        <p class="mt-0.5 text-sm leading-5 text-skin-muted">
+                                        <p class="mt-0.5 text-sm leading-5 text-gray-400 dark:text-gray-500">
                                             {{ __('Partager des sujets qui animent la communauté.') }}
                                         </p>
                                     </div>
@@ -58,7 +58,7 @@
                                         >
                                             {{ __('Créer un nouvel article') }}
                                         </p>
-                                        <p class="mt-0.5 text-sm leading-5 text-skin-muted">
+                                        <p class="mt-0.5 text-sm leading-5 text-gray-400 dark:text-gray-500">
                                             {{ __('Donnez des informations à propos de Laravel, etc.') }}
                                         </p>
                                     </div>
@@ -78,7 +78,7 @@
                                         >
                                             {{ __('Nouveau tutoriel') }}
                                         </p>
-                                        <p class="mt-0.5 text-sm leading-5 text-skin-muted">
+                                        <p class="mt-0.5 text-sm leading-5 text-gray-400 dark:text-gray-500">
                                             {{ __('Créer un nouveau contenu vidéo pour YouTube.') }}
                                         </p>
                                     </div>

@@ -11,6 +11,7 @@ return [
     'navigation' => [
         'home' => 'Accueil',
         'forum' => 'Forum',
+        'questions' => 'Questions',
         'articles' => 'Articles',
         'discussions' => 'Discussions',
         'community' => 'Communauté',
@@ -93,5 +94,7 @@ return [
     'all' => 'Tout',
     'banned' => 'Bannis',
     'unbanned' => 'Non bannis',
+    'joined' => 'Inscrit',
+    'website' => 'Site internet',
 
 ];

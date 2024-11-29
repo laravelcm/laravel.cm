@@ -9,7 +9,7 @@
     </span>
     <div class="ml-3">
         <h4 class="text-sm font-medium leading-5 text-gray-700 dark:text-gray-300">{{ $user->name }}</h4>
-        <span class="text-sm leading-5 text-skin-muted">
+        <span class="text-sm leading-5 text-gray-400 dark:text-gray-500">
             {{ __('Membre depuis :date', ['date' => ucfirst($user->created_at->isoFormat('MMMM YYYY'))]) }}
         </span>
     </div>
