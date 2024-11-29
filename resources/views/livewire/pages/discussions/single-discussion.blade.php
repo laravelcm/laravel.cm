@@ -120,6 +120,7 @@
                 </p>
                 @auth
                     <livewire:discussions.subscribe :discussion="$discussion" />
+                    <livewire:discussions.converted-to-thread :discussion="$discussion" />
                 @endauth
             </div>
 

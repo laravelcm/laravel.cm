@@ -22,6 +22,8 @@ final class DiscussionPolicy
 
     public const UNSUBSCRIBE = 'unsubscribe';
 
+    public const CONVERTEDTOTHREAD = 'convertedToThread';
+
     public function create(User $user): bool
     {
         return $user->hasVerifiedEmail();
@@ -51,4 +53,10 @@ final class DiscussionPolicy
     {
         return $discussion->hasSubscriber($user);
     }
+
+    public function convertedToThread(User $user, Discussion $discussion): bool
+    {
+        return $discussion->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+    }
+
 }
