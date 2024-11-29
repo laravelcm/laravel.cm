@@ -40,7 +40,6 @@ final class AppServiceProvider extends ServiceProvider
         $this->bootViewsComposer();
         $this->bootEloquentMorphs();
         $this->bootFilament();
-        $this->bootBindings();
 
         FilamentColor::register([
             'primary' => Color::Emerald,
@@ -110,14 +109,6 @@ final class AppServiceProvider extends ServiceProvider
         );
 
         Tables\Actions\DeleteAction::configureUsing(fn (Tables\Actions\Action $action) => $action->icon('untitledui-trash-03'));
-    }
-
-    public function bootBindings(): void
-    {
-        Route::bind(
-            key: 'username',
-            binder: fn (string $username): User => User::findByUsername($username)
-        );
     }
 
     public function registerLocaleDate(): void

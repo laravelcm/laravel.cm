@@ -5,7 +5,7 @@
 ])
 
 <div
-    @class(['relative group space-y-6', 'lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0' => $isSummary])
+    @class(['relative space-y-6', 'lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0' => $isSummary])
 >
     @php
         $media = ! empty($article->getFirstMediaUrl('media'))
@@ -30,12 +30,6 @@
                 'items-center justify-between gap-4' => ! $isSummary,
                 'flex-col justify-between gap-2' => $isSummary,
             ])>
-                <time
-                    datetime="{{ $article->published_at->format('Y-m-d') }}"
-                    class="text-sm capitalize leading-5 text-gray-500 dark:text-gray-400"
-                >
-                    {{ $article->published_at->isoFormat('LL') }}
-                </time>
                 @if ($article->tags->isNotEmpty())
                     <div class="flex items-center gap-2">
                         @foreach ($article->tags as $tag)
@@ -43,9 +37,16 @@
                         @endforeach
                     </div>
                 @endif
+
+                <time
+                    datetime="{{ $article->published_at->format('Y-m-d') }}"
+                    class="text-sm capitalize leading-5 text-gray-500 dark:text-gray-400"
+                >
+                    {{ $article->published_at->isoFormat('LL') }}
+                </time>
             </div>
-            <x-link :href="route('articles.show', $article)" class="group mt-4 flex items-center justify-between gap-2">
-                <h4 class="text-lg font-bold font-heading leading-6 text-gray-900 transition duration-200 ease-in-out group-hover:text-primary-600 lg:text-xl">
+            <x-link :href="route('articles.show', $article)" class="group relative mt-4 flex items-center justify-between gap-2">
+                <h4 class="text-lg font-bold font-heading leading-6 text-gray-900 transition duration-200 ease-in-out dark:text-white dark:group-hover:text-primary-500 group-hover:text-primary-600 lg:text-xl">
                     {{ $article->title }}
                 </h4>
                 @if ($iconLink)

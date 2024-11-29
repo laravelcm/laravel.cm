@@ -217,7 +217,7 @@
                                         <li>
                                             <a
                                                 href="https://twitter.com/MonneyArthur"
-                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
+                                                class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">Twitter</span>
                                                 <x-icon.twitter class="size-6" />
@@ -226,7 +226,7 @@
                                         <li>
                                             <a
                                                 href="https://github.com/mckenziearts"
-                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
+                                                class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">Github</span>
                                                 <x-icon.github class="size-6" />
@@ -235,7 +235,7 @@
                                         <li>
                                             <a
                                                 href="https://www.linkedin.com/in/arthurmonney"
-                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
+                                                class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">LinkedIn</span>
                                                 <x-icon.linkedin class="size-6" />
@@ -270,7 +270,7 @@
                                         <li>
                                             <a
                                                 href="https://twitter.com/yopafabrice"
-                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
+                                                class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">Twitter</span>
                                                 <x-icon.twitter class="size-6" />
@@ -279,7 +279,7 @@
                                         <li>
                                             <a
                                                 href="https://github.com/fabriceyopa"
-                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
+                                                class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">Github</span>
                                                 <x-icon.github class="size-6" />
@@ -288,7 +288,7 @@
                                         <li>
                                             <a
                                                 href="https://www.linkedin.com/in/fabriceyopa"
-                                                class="text-skin-muted hover:text-gray-500 dark:text-gray-400"
+                                                class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:text-gray-400"
                                             >
                                                 <span class="sr-only">LinkedIn</span>
                                                 <x-icon.linkedin class="size-6" />

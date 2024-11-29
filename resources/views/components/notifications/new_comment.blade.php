@@ -20,7 +20,7 @@
                             </a>
                             .
                         </p>
-                        <p class="mt-1 font-sans text-sm leading-5 text-skin-muted">
+                        <p class="mt-1 font-sans text-sm leading-5 text-gray-400 dark:text-gray-500">
                             <time-ago time="{{ $notification->created_at->getTimestamp() }}" />
                         </p>
                     </div>

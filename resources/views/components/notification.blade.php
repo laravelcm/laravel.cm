@@ -42,7 +42,7 @@
                         <div class="ml-4 flex shrink-0">
                             <button
                                 @click="remove(message)"
-                                class="inline-flex text-skin-muted focus:text-gray-500 dark:text-gray-400 focus:outline-none"
+                                class="inline-flex text-gray-400 dark:text-gray-500 focus:text-gray-500 dark:text-gray-400 focus:outline-none"
                             >
                                 <x-untitledui-x class="size-5" />
                             </button>

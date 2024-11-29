@@ -55,7 +55,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div id="theme-0-description-0" class="mt-2 font-sans text-xs leading-4 text-skin-muted">
+                            <div id="theme-0-description-0" class="mt-2 font-sans text-xs leading-4 text-gray-400 dark:text-gray-500">
                                 <span>
                                     Ce thème sera actif par défaut lorsque votre système sera réglé sur « Mode light »
                                 </span>
@@ -107,7 +107,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div id="theme-1-description-0" class="mt-2 font-sans text-xs leading-4 text-skin-muted">
+                            <div id="theme-1-description-0" class="mt-2 font-sans text-xs leading-4 text-gray-400 dark:text-gray-500">
                                 <span>
                                     Ce thème sera actif par défaut lorsque votre système sera réglé sur « Mode dark »
                                 </span>

@@ -25,7 +25,7 @@
         {!! $discussion->excerpt(175) !!}
     </p>
     <div class="mt-3 flex justify-between">
-        <div class="flex items-center font-sans text-sm text-skin-muted">
+        <div class="flex items-center font-sans text-sm text-gray-400 dark:text-gray-500">
             <a class="shrink-0" href="{{ route('profile', $discussion->user->username) }}">
                 <x-user.avatar :user="$discussion->user" class="size-6" />
             </a>

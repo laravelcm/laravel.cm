@@ -5,47 +5,56 @@
 
 <div>
     @if ($discussions->isNotEmpty())
-        <div class="relative z-20 -mt-6 divide-y divide-skin-base">
+        <div class="relative -mt-6 divide-y divide-gray-200 dark:divide-white/20">
             @foreach ($discussions as $discussion)
                 <x-discussions.overview :discussion="$discussion" :hiddenAuthor="true" />
             @endforeach
         </div>
     @else
-        <div class="flex items-center justify-between rounded-md border border-dashed border-skin-base px-6 py-8">
-            <div class="mx-auto max-w-sm text-center">
-                <svg
-                    class="mx-auto size-10 text-primary-600"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
-                    />
-                </svg>
-                <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">
-                    {{ $user->name }} n'a pas encore posté de discussions
+        <x-empty-state>
+            <div class="relative">
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r rotate-3 w-72 from-flag-green to-flag-red rounded-lg blur opacity-25"></div>
+                    <div class="relative z-20 bg-white gap-3 rotate-3 p-3 w-72 rounded-lg shadow ring-1 ring-gray-200/50 dark:bg-gray-900 dark:ring-white/10">
+                        <div class="space-y-2">
+                            <div class="grid grid-cols-3 gap-2 w-1/3">
+                                <div class="h-3 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded dark:bg-gray-800"></div>
+                                <div class="h-3 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded dark:bg-gray-800"></div>
+                            </div>
+                            <div class="h-4 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-md dark:bg-gray-800"></div>
+                            <div class="h-6 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-md dark:bg-gray-800"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute transform scale-[0.8] bottom-10 right-2 shadow w-40 -rotate-6 z-20 bg-white gap-3 p-3 rounded-lg ring-1 ring-gray-200/50 dark:bg-gray-900 dark:ring-white/10">
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-3 gap-2 w-2/3">
+                            <div class="h-3 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded dark:bg-gray-800"></div>
+                            <div class="h-3 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded dark:bg-gray-800"></div>
+                        </div>
+                        <div class="h-2 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-md dark:bg-gray-800"></div>
+                        <div class="h-6 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-md dark:bg-gray-800"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 space-y-4">
+                <p class="mt-8 text-base text-gray-500 dark:text-gray-400">
+                    <span class="font-medium text-gray-700 dark:text-gray-300">{{ $user->name }}</span>
+                    {{ __('pages/account.activities.empty_discussions') }}
                 </p>
+
                 @if ($user->isLoggedInUser())
-                    <x-buttons.primary href="#" class="mt-4">
-                        <svg
-                            class="-ml-1 mr-2 size-5"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
+                    @can('create', \App\Models\Discussion::class)
+                        <x-buttons.primary
+                            type="button"
+                            onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })"
                         >
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-                        Nouvelle discussion
-                    </x-buttons.primary>
+                            <x-untitledui-message-text-square class="size-5" aria-hidden="true" />
+                            {{ __('global.launch_modal.discussion_action') }}
+                        </x-buttons.primary>
+                    @endcan
                 @endif
             </div>
-        </div>
+        </x-empty-state>
     @endif
 </div>

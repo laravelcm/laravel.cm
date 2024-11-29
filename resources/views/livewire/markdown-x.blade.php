@@ -181,7 +181,7 @@
                 <div x-ref="debugButton" class="relative opacity-0">
                     <div
                         @click="debuggerOpen=!debuggerOpen"
-                        :class="{ 'text-skin-muted bg-skin-menu hover:text-gray-500 dark:text-gray-400' : !debuggerOpen, 'text-red-400 hover:text-red-500 bg-red-50' : debuggerOpen }"
+                        :class="{ 'text-gray-400 dark:text-gray-500 bg-skin-menu hover:text-gray-500 dark:text-gray-400' : !debuggerOpen, 'text-red-400 hover:text-red-500 bg-red-50' : debuggerOpen }"
                         class="absolute top-0 flex items-center justify-center rounded-sm cursor-pointer group -ml-9 size-9"
                     >
                         <svg
@@ -240,7 +240,7 @@
                     <div x-ref="debugButton" class="relative opacity-0">
                         <div
                             @click="debuggerOpen=!debuggerOpen"
-                            :class="{ 'text-skin-muted bg-skin-menu hover:text-skin-base' : !debuggerOpen, 'text-red-400 hover:text-red-500 bg-red-50' : debuggerOpen }"
+                            :class="{ 'text-gray-400 dark:text-gray-500 bg-skin-menu hover:text-skin-base' : !debuggerOpen, 'text-red-400 hover:text-red-500 bg-red-50' : debuggerOpen }"
                             class="absolute top-0 flex items-center justify-center rounded-sm cursor-pointer group -ml-9 size-9"
                         >
                             <svg
@@ -293,7 +293,7 @@
                         @click="$refs.editor.focus()"
                         id="placeholder-{{ $key }}"
                         x-show="placeholder"
-                        class="absolute z-20 transition-opacity duration-200 ease-out text-skin-muted"
+                        class="absolute z-20 transition-opacity duration-200 ease-out text-gray-400 dark:text-gray-500"
                         x-cloak
                     >
                         Type '/' for commands
@@ -343,7 +343,7 @@
                         x-cloak
                     >
                         <div
-                            class="flex flex-col items-center justify-center w-40 h-32 text-xs border-0 border-dashed rounded-lg border-skin-input bg-skin-card text-skin-muted"
+                            class="flex flex-col items-center justify-center w-40 h-32 text-xs border-0 border-dashed rounded-lg border-skin-input bg-skin-card text-gray-400 dark:text-gray-500"
                         >
                             <svg
                                 class="w-12 h-auto mb-3 fill-current"
@@ -999,7 +999,7 @@
                         <input type="text" @keydown="searchGIFModal(event)" id="editor-giphy-search" class="block w-full font-normal text-gray-500 transition duration-150 ease-in-out rounded-md bg-skin-input focus:outline-none dark:text-gray-400 focus:ring-flag-green focus:border-flag-green sm:text-sm border-skin-input sm:leading-5" placeholder="Search for a GIF">
                         <div id="giphy-items" class="grid w-full h-64 grid-cols-3 gap-1 p-1 mt-2 overflow-y-scroll border rounded-lg border-skin-input bg-skin-card grid-cols">
                             <div class="absolute inset-0 flex items-center justify-center w-full h-full">
-                                <svg class="w-5 h-5 text-skin-muted animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-gray-400 dark:text-gray-500 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
@@ -1012,7 +1012,7 @@
                         <input type="text" @keydown="searchPeopleModal(event)" id="editor-people-search" class="block w-full font-normal text-gray-500 transition duration-150 ease-in-out rounded-md bg-skin-input focus:outline-none dark:text-gray-400 focus:ring-flag-green focus:border-flag-green sm:text-sm border-skin-input sm:leading-5" placeholder="Search for a person">
                         <div id="peoples-items" class="w-full h-64 mt-2 overflow-y-scroll border rounded-lg border-skin-input bg-skin-card">
                             <div class="absolute inset-0 flex items-center justify-center w-full h-full">
-                                <svg class="w-5 h-5 text-skin-muted animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 text-gray-400 dark:text-gray-500 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
@@ -1047,7 +1047,7 @@
                                             <span class="absolute inset-0 w-full h-full" data-suggestion="[[ key ]]"></span>
                                             <span class="flex flex-col mx-3">
                                                 <h4 class="text-xs font-medium mt-0.5 leading-none text-skin-menu">[[ title ]]</h4>
-                                                <p class="text-xs mt-0.5 text-skin-muted">[[ description ]]</p>
+                                                <p class="text-xs mt-0.5 text-gray-400 dark:text-gray-500">[[ description ]]</p>
                                             </span>
                                         </span>`
                         let dropdownSuggestions = this.suggestionDropdownItems()
@@ -1813,7 +1813,7 @@
                     <button type="button" onclick="addAdditionalContent('@${peoplesResults[i]['username']}', '${event.detail.key}')" class="flex items-center w-full">
                         <img class="rounded-full shrink-0 size-6" src="${peoplesResults[i]['picture']}" alt="">
                         <span class="block ml-3 text-sm font-medium text-gray-900 truncate group-hover:text-white">
-                          ${peoplesResults[i]['name']} <span class="text-sm font-normal text-skin-muted group-hover:text-green-200">@${peoplesResults[i]['username']}</span>
+                          ${peoplesResults[i]['name']} <span class="text-sm font-normal text-gray-400 dark:text-gray-500 group-hover:text-green-200">@${peoplesResults[i]['username']}</span>
                         </span>
                     </button>
                 </li>`
