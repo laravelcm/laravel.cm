@@ -38,7 +38,7 @@
                                 <x-forum.thread-metadata :thread="$thread" class="gap-3 text-xs" vertical />
                             </div>
                         </div>
-                        <div class="min-w-0 flex-1 rounded-xl bg-white p-5 ring-1 ring-inset text-wrap overflow-hidden ring-gray-200/60 dark:bg-gray-800 dark:ring-white/10 lg:py-6 lg:px-8">
+                        <div class="group min-w-0 flex-1 rounded-xl bg-white p-5 ring-1 ring-inset text-wrap overflow-hidden ring-gray-200/60 dark:bg-gray-800 dark:ring-white/10 lg:py-6 lg:px-8">
                             <div class="flex items-center justify-between gap-4">
                                 <div class="flex items-center gap-2">
                                     <x-user.avatar
@@ -68,22 +68,30 @@
                                     {{ $thread->title }}
                                 </h1>
                             </div>
+
                             <x-markdown-content
                                 :content="$thread->body"
                                 class="mt-5 prose prose-primary !prose-heading-off max-w-none text-gray-500 dark:text-gray-400 dark:prose-invert"
                             />
-                            @can('manage', $thread)
-                                <div class="mt-5 inline-flex">
-                                    <x-filament-actions::group
-                                        icon="untitledui-dots-horizontal"
-                                        color="gray"
-                                        :actions="[
-                                            $this->editAction,
-                                            $this->deleteAction,
-                                        ]"
-                                    />
-                                </div>
-                            @endcan
+
+                            <div class="flex items-center justify-between gap-5">
+                                @can('manage', $thread)
+                                    <div class="mt-5 inline-flex">
+                                        <x-filament-actions::group
+                                            icon="untitledui-dots-horizontal"
+                                            color="gray"
+                                            :actions="[
+                                                $this->editAction,
+                                                $this->deleteAction,
+                                            ]"
+                                        />
+                                    </div>
+                                @endcan
+
+                                @can('report', $thread)
+                                    <livewire:report-spam :model="$thread" />
+                                @endcan
+                            </div>
                         </div>
                     </div>
                 </div>

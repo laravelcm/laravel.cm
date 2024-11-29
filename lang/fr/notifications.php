@@ -21,6 +21,7 @@ return [
 
     'exceptions' => [
         'unverified_user' => "Vous n'êtes pas autorisé à effectuer cette. Votre e-mail n'est pas vérifiée",
+        'spam_exist' => 'Le spam a déjà été signalé.',
     ],
 
     'reply' => [
@@ -39,4 +40,7 @@ return [
         'cannot_ban_body' => 'Cet utilisateur est déjà banni.',
         'cannot_ban_admin' => 'Vous ne pouvez pas bannir un administrateur.',
     ],
+
+    'spam_send' => 'Votre signalement a été envoyé avec succès',
+
 ];

@@ -12,7 +12,7 @@ parameters:
 # Remove this config after migrate everything to livewire
         - app/Http/Controllers/*
         - app/Markdown/*
-        - app/Traits/HasSlug
+        - app/Traits/HasSlug.php
     ignoreErrors:
         - "#^Cannot access property \\$transaction on array\\|object\\.$#"
         - identifier: missingType.iterableValue

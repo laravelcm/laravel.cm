@@ -64,12 +64,11 @@
                             ]"
                         />
                     @endcan
+
+                    @can('report', $reply)
+                        <livewire:report-spam :model="$reply" />
+                    @endcan
                 @endif
-                <div class="opacity-0 group-hover:opacity-100">
-                    <button type="button" class="inline-flex items-center rounded-lg text-xs px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-50 hover:text-gray-700 dark:hover:bg-gray-900 dark:hover:text-white focus:outline-none">
-                        {{ __('pages/forum.report_spam') }}
-                    </button>
-                </div>
             </div>
         </div>
     </div>

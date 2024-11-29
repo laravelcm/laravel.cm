@@ -6,8 +6,10 @@ namespace App\Models;
 
 use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
+use App\Contracts\SpamReportableContract;
 use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
+use App\Traits\HasSpamReports;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
@@ -17,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 /**
@@ -28,12 +31,14 @@ use Illuminate\Support\Str;
  * @property User $user
  * @property int $replyable_id
  * @property string $replyable_type
+ * @property Collection | SpamReport[] $spamReports
  */
-final class Reply extends Model implements ReactableInterface, ReplyInterface
+final class Reply extends Model implements ReactableInterface, ReplyInterface, SpamReportableContract
 {
     use HasAuthor;
     use HasFactory;
     use HasReplies;
+    use HasSpamReports;
     use Reactable;
     use RecordsActivity;
 
@@ -56,11 +61,6 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface
         return "#reply-{$this->id}";
     }
 
-    public function solutionTo(): HasOne
-    {
-        return $this->hasOne(Thread::class, 'solution_reply_id');
-    }
-
     public function wasJustPublished(): bool
     {
         return $this->created_at->gt(Carbon::now()->subMinute());
@@ -81,6 +81,11 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface
     public function to(ReplyInterface $replyable): void
     {
         $this->replyAble()->associate($replyable); // @phpstan-ignore-line
+    }
+
+    public function solutionTo(): HasOne
+    {
+        return $this->hasOne(Thread::class, 'solution_reply_id');
     }
 
     public function allChildReplies(): MorphMany
