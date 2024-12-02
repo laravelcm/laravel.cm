@@ -13,4 +13,5 @@ return [
     'start_discussion_description_text' => 'Vous souhaitez apporter une pierre à l\'édifice.',
     'ask_help' => 'Demander de l\'aide',
     'ask_help_description' => ' Vous avez un problème ? Trouvons ensemble une solution.',
+
 ];

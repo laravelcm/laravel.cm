@@ -4,7 +4,7 @@
             <div>
                 <h2
                     id="notification-date-{{ Str::slug($date) }}"
-                    class="inline-flex inline-flex items-center gap-x-3 rounded-full bg-skin-primary bg-opacity-20 px-2.5 py-1.5 font-sans text-sm font-medium text-primary-600"
+                    class="inline-flex items-center gap-x-3 rounded-full bg-skin-primary bg-opacity-20 px-2.5 py-1.5 font-heading text-sm font-medium text-primary-600"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@
         </div>
 
         <div class="mx-auto mt-10 max-w-lg">
-            <h2 class="font-sans text-lg font-medium text-gray-900">{{ __('pages/notification.new_content') }}</h2>
+            <h2 class="font-heading text-lg font-medium text-gray-900">{{ __('pages/notification.new_content') }}</h2>
             <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                 {{ __('pages/notification.choose_content') }}
             </p>
