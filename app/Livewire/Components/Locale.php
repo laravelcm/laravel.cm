@@ -29,6 +29,7 @@ final class Locale extends Component
             $user->save();
         }
         app()->setLocale($lang);
+
         return redirect()->to(url()->current());
     }
 
