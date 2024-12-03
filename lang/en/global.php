@@ -28,6 +28,10 @@ return [
         'settings' => 'Settings',
         'profile' => 'Profile',
         'dashboard' => 'Dashboard',
+        'password' => 'Password',
+        'preferences' => 'Preferences',
+        'notifications' => 'Notifications',
+        'subscription' => 'Subscription',
     ],
     'footer' => [
         'title' => 'Footer',

@@ -1,6 +1,6 @@
 <footer class="bg-gray-900 p-3" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">{{ __('global.footer.title') }}</h2>
-    <div class="rounded-lg dark:bg-gray-800">
+    <div class="rounded-xl dark:bg-gray-800">
         <x-container>
             <div class="py-12 sm:py-16 lg:grid lg:grid-cols-3 lg:gap-8 lg:py-20">
                 <div class="space-y-3">

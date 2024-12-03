@@ -14,7 +14,7 @@ final class SubscriptionController extends Controller
         /** @var \App\Models\Thread $thread */
         $thread = $subscription->subscribeAble;
 
-        $thread->subscribes()->where('user_id', $subscription->user->id)->delete(); // @phpstan-ignore-line
+        $thread->subscribes()->where('user_id', $subscription->user->id)->delete();
 
         session()->flash('status', __('Vous êtes maintenant désabonné de ce sujet.'));
 
@@ -23,7 +23,10 @@ final class SubscriptionController extends Controller
 
     public function redirect(int $id, string $type): RedirectResponse
     {
-        $subscribe = Subscribe::where('subscribeable_id', $id)->where('subscribeable_type', $type)->firstOrFail();
+        $subscribe = Subscribe::query()
+            ->where('subscribeable_id', $id)
+            ->where('subscribeable_type', $type)
+            ->firstOrFail();
 
         return redirect(route_to_reply_able($subscribe->subscribeAble));
     }

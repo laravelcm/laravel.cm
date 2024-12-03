@@ -56,6 +56,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Collection | Article[] $articles
  * @property Collection | Thread[] $threads
  * @property Collection | Discussion[] $discussions
+ * @property Collection | Subscribe[] $subscriptions
  * @property-read Collection | SocialAccount[] $providers
  */
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
@@ -190,7 +191,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     }
 
     /**
-     * @return array{name: string, username: string, picture: string|null}
+     * @return array{name: string, username: string, picture: string}
      */
     public function profile(): array
     {
@@ -350,8 +351,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     {
         $password = $this->getAuthPassword();
 
-        // @phpstan-ignore-next-line
-        return $password !== '' && $password !== null;
+        return ! empty($password) || $password !== null;
     }
 
     public function delete(): ?bool

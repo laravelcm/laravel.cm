@@ -46,8 +46,8 @@ if (! function_exists('get_current_theme')) {
     function get_current_theme(): string
     {
         return Auth::user() ?
-            Auth::user()->setting('theme', 'theme-light') :
-            'theme-light';
+            Auth::user()->setting('theme', 'light') :
+            'light';
     }
 }
 

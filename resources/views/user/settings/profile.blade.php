@@ -250,7 +250,7 @@
 
         <div class="pt-5">
             <div class="flex justify-end">
-                <links.primary type="submit" class="inline-flex">
+                <x-buttons.primary type="submit" class="inline-flex">
                     {{ __('Enregistrer') }}
                 </x-buttons.primary>
             </div>
