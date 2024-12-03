@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Http\Middleware\LocaleLangMiddleware;
+use App\Http\Middleware\LocaleMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -18,8 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'checkIfBanned' => \App\Http\Middleware\CheckIfBanned::class,
         ]);
-        $middleware->append(\Illuminate\Session\Middleware\StartSession::class);
-        $middleware->append(LocaleLangMiddleware::class);
+        $middleware->appendToGroup('web', [
+            LocaleMiddleware::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

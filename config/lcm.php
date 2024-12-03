@@ -26,6 +26,11 @@ return [
         'web_hook' => env('SLACK_WEBHOOK_URL', ''),
     ],
 
+    'lang' => [
+        'app_local' => env('APP_LOCALE', 'fr'),
+        'support_local' => ['fr', 'en'],
+    ],
+
     'spa_url' => env('FRONTEND_APP_URL', 'http://localhost:4200'),
 
     'notch-pay-public-token' => env('NOTCHPAY_PUBLIC_KEY', null),

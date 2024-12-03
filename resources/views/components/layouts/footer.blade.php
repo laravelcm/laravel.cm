@@ -99,6 +99,7 @@
                         <x-icon.youtube class="size-6" aria-hidden="true" />
                     </x-link>
                 </div>
+                <livewire:components.locale></livewire:components.locale>
             </div>
         </x-container>
     </div>
