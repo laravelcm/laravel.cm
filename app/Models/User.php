@@ -55,6 +55,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Collection | Article[] $articles
  * @property Collection | Thread[] $threads
  * @property Collection | Discussion[] $discussions
+ * @property Collection | Subscribe[] $subscriptions
  */
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
@@ -348,7 +349,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     {
         $password = $this->getAuthPassword();
 
-        return $password !== '' && $password !== null;
+        return ! empty($password) || $password !== null;
     }
 
     public function delete(): ?bool

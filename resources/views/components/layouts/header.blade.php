@@ -116,7 +116,7 @@
                                             :title="__('global.navigation.profile')"
                                         />
                                         <x-nav.item
-                                            :href="route('user.settings')"
+                                            :href="route('settings')"
                                             :title="__('global.navigation.settings')"
                                         />
                                         <livewire:components.logout />

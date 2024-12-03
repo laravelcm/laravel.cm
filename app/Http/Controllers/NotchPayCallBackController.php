@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use NotchPay\Exceptions\ApiException;
 use NotchPay\NotchPay;
 use NotchPay\Payment;
 
@@ -40,6 +41,7 @@ final class NotchPayCallBackController extends Controller
             } else {
                 // @ToDO Envoie de mail de notification de remerciement pour le sponsoring si l'utilisateur est dans la base de données
                 event(new SponsoringPaymentInitialize($transaction));
+
                 Cache::forget(key: 'sponsors');
 
                 session()->flash(
@@ -48,7 +50,7 @@ final class NotchPayCallBackController extends Controller
                 );
             }
 
-        } catch (\NotchPay\Exceptions\ApiException $e) {
+        } catch (ApiException $e) {
             Log::error($e->getMessage());
             session()->flash(
                 key: 'error',

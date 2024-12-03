@@ -28,6 +28,10 @@ return [
         'settings' => 'Paramètres',
         'profile' => 'Mon profil',
         'dashboard' => 'Tableau de bord',
+        'password' => 'Mot de passe',
+        'preferences' => 'Préférences',
+        'notifications' => 'Notifications',
+        'subscription' => 'Abonnement',
     ],
     'footer' => [
         'title' => 'Pied de page',
