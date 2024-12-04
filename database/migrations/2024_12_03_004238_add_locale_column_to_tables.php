@@ -8,26 +8,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    private array $tables = ['articles', 'discussions', 'threads'];
-
     public function up(): void
     {
-        Schema::table('articles', function (Blueprint $table): void {
-            $table->string('locale')->default('fr')->after('slug');
-        });
-
-        Schema::table('discussions', function (Blueprint $table): void {
-            $table->string('locale')->default('fr')->after('body');
-        });
-
-        Schema::table('threads', function (Blueprint $table): void {
-            $table->string('locale')->default('fr')->after('body');
-        });
+        foreach (['articles', 'discussions', 'threads'] as $key => $value) {
+            $afterColumn = ($key == 0) ? 'slug' : 'body';
+            Schema::table($value, function (Blueprint $table) use ($afterColumn): void {
+                $table->string('locale')->default('fr')->after($afterColumn);
+            });
+        }
     }
 
     public function down(): void
     {
-        foreach ($this->tables as $tab) {
+        foreach (['articles', 'discussions', 'threads'] as $tab) {
             Schema::table($tab, function (Blueprint $table): void {
                 $table->dropColumn('locale');
             });

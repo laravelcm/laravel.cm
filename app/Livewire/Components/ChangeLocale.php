@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace App\Livewire\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
-final class Locale extends Component
+final class ChangeLocale extends Component
 {
     public string $selectedLang;
 
@@ -19,22 +17,23 @@ final class Locale extends Component
         $this->selectedLang = app()->getLocale();
     }
 
-    public function changeLang(string $lang): RedirectResponse|Redirector
+    public function changeLang(string $lang): void
     {
         $user = Auth::user();
+
         if ($user) {
             $settings = $user->settings;
-            $settings['default_lang'] = $lang;
+            $settings['locale'] = $lang;
             $user->settings = $settings;
             $user->save();
         }
-        app()->setLocale($lang);
 
-        return redirect()->to(url()->current());
+        app()->setLocale($lang);
+        $this->dispatch('localeChanged');
     }
 
     public function render(): View
     {
-        return view('livewire.components.locale');
+        return view('livewire.components.change-locale');
     }
 }

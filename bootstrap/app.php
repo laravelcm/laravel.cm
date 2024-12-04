@@ -18,9 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'checkIfBanned' => \App\Http\Middleware\CheckIfBanned::class,
         ]);
-        $middleware->appendToGroup('web', [
+        $middleware->web(append: [
             LocaleMiddleware::class,
-            \Illuminate\Session\Middleware\StartSession::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
