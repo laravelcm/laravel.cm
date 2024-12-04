@@ -83,10 +83,10 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="font-sans text-sm font-medium text-gray-900">
-                                <a onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form' })">
+                                <x-buttons.default onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form' })">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
                                     {{ __('pages/notification.article_action') }}
-                                </a>
+                                </x-buttons.default>
                             </div>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                 {{ __('pages/notification.share_content') }}
@@ -129,10 +129,10 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="font-sans text-sm font-medium text-gray-900">
-                                <a href="{{ route('discussions.new') }}">
+                                <x-buttons.default href="{{ route('discussions.new') }}">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
                                     {{ __('pages/notification.start_discussion') }}
-                                </a>
+                                </x-buttons.default>
                             </div>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                 {{ __('pages/notification.start_discussion_description_text') }}
@@ -175,10 +175,10 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="text-sm font-medium text-gray-900">
-                                <a onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })">
+                                <x-buttons.default onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
                                     {{ __('pages/notification.ask_help') }}
-                                </a>
+                                </x-buttons.default>
                             </div>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                 {{ __('pages/notification.ask_help_description') }}
