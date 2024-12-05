@@ -4,7 +4,7 @@
             <div>
                 <h2
                     id="notification-date-{{ Str::slug($date) }}"
-                    class="inline-flex inline-flex items-center gap-x-3 rounded-full bg-skin-primary bg-opacity-20 px-2.5 py-1.5 font-sans text-sm font-medium text-primary-600"
+                    class="inline-flex items-center gap-x-3 rounded-full bg-skin-primary bg-opacity-20 px-2.5 py-1.5 font-heading text-sm font-medium text-primary-600"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -51,14 +51,14 @@
                         d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
                     />
                 </svg>
-                <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">Vous n'avez pas de notifications non lues.</p>
+                <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">{{ __('pages/notification.empty') }}</p>
             </div>
         </div>
 
         <div class="mx-auto mt-10 max-w-lg">
-            <h2 class="font-sans text-lg font-medium text-gray-900">Lancer un nouveau contenu ?</h2>
+            <h2 class="font-heading text-lg font-medium text-gray-900">{{ __('pages/notification.new_content') }}</h2>
             <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
-                Commencer par choisir quel type de contenu vous voulez créer.
+                {{ __('pages/notification.choose_content') }}
             </p>
             <ul role="list" class="mt-6 divide-y divide-skin-base border-b border-t border-skin-base">
                 <li>
@@ -83,13 +83,13 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="font-sans text-sm font-medium text-gray-900">
-                                <a href="{{ route('articles.new') }}">
+                                <x-buttons.default onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form' })">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
-                                    Rédiger un article
-                                </a>
+                                    {{ __('pages/notification.article_action') }}
+                                </x-buttons.default>
                             </div>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                                Partager un tutoriel ou une information importante.
+                                {{ __('pages/notification.share_content') }}
                             </p>
                         </div>
                         <div class="shrink-0 self-center">
@@ -129,13 +129,13 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="font-sans text-sm font-medium text-gray-900">
-                                <a href="{{ route('discussions.new') }}">
+                                <x-buttons.default href="{{ route('discussions.new') }}">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
-                                    Démarrer une discussion
-                                </a>
+                                    {{ __('pages/notification.start_discussion') }}
+                                </x-buttons.default>
                             </div>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                                Vous souhaitez apporter une pierre à l'édifice.
+                                {{ __('pages/notification.start_discussion_description_text') }}
                             </p>
                         </div>
                         <div class="shrink-0 self-center">
@@ -175,13 +175,13 @@
                         </div>
                         <div class="min-w-0 flex-1">
                             <div class="text-sm font-medium text-gray-900">
-                                <a href="{{ route('forum.new') }}">
+                                <x-buttons.default onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
-                                    Demander de l'aide
-                                </a>
+                                    {{ __('pages/notification.ask_help') }}
+                                </x-buttons.default>
                             </div>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                                Vous avez un problème ? Trouvons ensemble une solution.
+                                {{ __('pages/notification.ask_help_description') }}
                             </p>
                         </div>
                         <div class="shrink-0 self-center">
