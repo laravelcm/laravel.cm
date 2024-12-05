@@ -26,7 +26,7 @@ final class LocaleMiddleware
         if (! Auth::check()) {
 
             if (! is_null($request->server('HTTP_ACCEPT_LANGUAGE'))) {
-                $navigatorLang = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
+                $navigatorLang = substr((string) $request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2); // @phpstan-ignore-line
 
                 if (in_array($navigatorLang, $supportLang)) {
                     $lang = $navigatorLang;
