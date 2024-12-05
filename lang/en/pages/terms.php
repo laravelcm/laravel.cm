@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
 
     'title' => 'Terms of use',
-    'last_maj' => 'Last update: June 08, 2019',
+    'last_maj' => 'Last update: :date',
     'first_description' => 'These terms and conditions
          written on this web page will govern your use of our website, Laravel Cameroun accessible at laravel.cm',
     'second_description' => 'These conditions will be fully enforced and will affect your use of this website. By using this Web site, you agree to all terms and conditions

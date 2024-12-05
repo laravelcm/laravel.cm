@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
 
     'title' => 'Conditions d\'utilisation',
-    'last_maj' => 'Dernière mise à jour : 08 Juin 2019',
+    'last_maj' => 'Dernière mise à jour : :date',
     'first_description' => 'Les présentes conditions générales
          d\'utilisation du site Web écrites sur cette page Web géreront votre utilisation de notre site Web, Laravel Cameroun accessible à laravel.cm',
     'second_description' => 'Ces conditions seront pleinement appliquées et affecteront votre utilisation de ce site Web. En utilisant ce site Web, vous avez accepté toutes
