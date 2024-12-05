@@ -99,7 +99,7 @@
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
+                                class="size-5 text-gray-400 dark:text-gray-500 group-hover:text-gray-500 dark:text-gray-400"
                             >
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>
@@ -145,7 +145,7 @@
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
+                                class="size-5 text-gray-400 dark:text-gray-500 group-hover:text-gray-500 dark:text-gray-400"
                             >
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>
@@ -191,7 +191,7 @@
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
+                                class="size-5 text-gray-400 dark:text-gray-500 group-hover:text-gray-500 dark:text-gray-400"
                             >
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>

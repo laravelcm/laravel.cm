@@ -16,7 +16,7 @@
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="size-5 text-skin-muted"
+                        class="size-5 text-gray-400 dark:text-gray-500"
                     >
                         <path
                             stroke-linecap="round"

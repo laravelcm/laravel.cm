@@ -177,7 +177,7 @@
                 {{ __('global.navigation.dashboard') }}
             </x-link>
             <x-link
-                :href="route('profile')"
+                :href="route('profile', $user)"
                 class="group flex items-center gap-2 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
                 role="menuitem"
                 tabindex="-1"
@@ -190,7 +190,7 @@
                 {{ __('global.navigation.profile') }}
             </x-link>
             <x-link
-                :href="route('user.settings')"
+                :href="route('settings')"
                 class="group flex items-center gap-2 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
                 tabindex="-1"
             >

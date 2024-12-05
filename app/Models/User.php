@@ -49,7 +49,13 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon | null $email_verified_at
  * @property Carbon | null $last_login_at
  * @property Carbon | null $banned_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property Collection | Activity[] $activities
+ * @property Collection | Article[] $articles
+ * @property Collection | Thread[] $threads
+ * @property Collection | Discussion[] $discussions
+ * @property Collection | Subscribe[] $subscriptions
  */
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
@@ -343,7 +349,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     {
         $password = $this->getAuthPassword();
 
-        return $password !== '' && $password !== null;
+        return ! empty($password) || $password !== null;
     }
 
     public function delete(): ?bool

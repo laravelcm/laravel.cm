@@ -5,47 +5,54 @@
 
 <div>
     @if ($articles->isNotEmpty())
-        <div>
-            <div class="mx-auto max-w-lg space-y-8 sm:space-y-10 lg:max-w-none">
-                @foreach ($articles as $article)
-                    <x-articles.overview :article="$article" />
-                @endforeach
-            </div>
+        <div class="-mt-6 divide-y divide-gray-200 dark:divide-white/20">
+            @foreach ($articles as $article)
+                <div class="py-6">
+                    <x-articles.card :article="$article" is-summary />
+                </div>
+            @endforeach
         </div>
     @else
-        <div class="flex items-center justify-between rounded-md border border-dashed border-skin-base px-6 py-8">
-            <div class="mx-auto max-w-sm text-center">
-                <svg
-                    class="mx-auto size-10 text-primary-600"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"
-                    />
-                </svg>
-                <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">{{ $user->name }} n'a pas encore posté d'articles</p>
+        <x-empty-state>
+            <div class="relative">
+                <div class="absolute scale-90 shadow inset-x-0 -top-4 flex items-start -z-10 bg-white gap-3 p-3 rounded-lg ring-1 ring-gray-200/50 dark:bg-gray-900 dark:ring-white/10">
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-flag-green to-flag-red rounded-lg blur opacity-25"></div>
+                    <div class="relative flex items-start z-20 bg-white gap-3 p-3 rounded-lg ring-1 ring-gray-200/50 dark:bg-gray-900 dark:ring-white/10">
+                        <div class="w-1/4 h-20 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-lg dark:bg-gray-800"></div>
+                        <div class="w-3/4 pt-2 space-y-2">
+                            <div class="grid grid-cols-3 gap-2 w-2/3">
+                                <div class="h-3 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded dark:bg-gray-800"></div>
+                                <div class="h-3 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded dark:bg-gray-800"></div>
+                                <div class="h-3 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded dark:bg-gray-800"></div>
+                            </div>
+                            <div class="h-4 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-md dark:bg-gray-800"></div>
+                            <div class="h-6 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-md dark:bg-gray-800"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute scale-[0.8] inset-x-0 -z-10 shadow -bottom-3 flex items-start bg-white gap-3 p-3 rounded-lg ring-1 ring-gray-200/50 dark:bg-gray-900 dark:ring-white/10">
+                </div>
+            </div>
+            <div class="mt-8 space-y-4">
+                <p class="mt-8 text-base text-gray-500 dark:text-gray-400">
+                    <span class="font-medium text-gray-700 dark:text-gray-300">{{ $user->name }}</span>
+                    {{ __('pages/account.activities.empty_articles') }}
+                </p>
+
                 @if ($user->isLoggedInUser())
-                    <x-buttons.primary href="#" class="mt-4">
-                        <svg
-                            class="-ml-1 mr-2 size-5"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
+                    @can('create', \App\Models\Article::class)
+                        <x-buttons.primary
+                            type="button"
+                            onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form' })"
                         >
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-                        Nouvel Article
-                    </x-buttons.primary>
+                            <x-untitledui-file-06 class="size-5" aria-hidden="true" />
+                            {{ __('pages/article.new_article') }}
+                        </x-buttons.primary>
+                    @endcan
                 @endif
             </div>
-        </div>
+        </x-empty-state>
     @endif
 </div>

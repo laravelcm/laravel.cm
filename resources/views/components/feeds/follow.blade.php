@@ -1,10 +1,10 @@
 <li>
     <div class="relative pb-8">
-        <span class="absolute left-5 top-5 -ml-px h-full w-0.5 bg-skin-footer" aria-hidden="true"></span>
+        <span class="absolute left-4 top-5 -ml-px h-full w-0.5 bg-gray-200 dark:bg-white/20" aria-hidden="true"></span>
         <div class="relative flex items-start space-x-3">
             <div>
                 <div class="relative px-1">
-                    <div class="flex size-8 items-center justify-center rounded-full bg-skin-card ring-8 ring-card">
+                    <div class="flex size-8 items-center justify-center rounded-full bg-white dark:bg-gray-800 ring-4 ring-white dark:ring-white/10">
                         <svg
                             class="size-6 text-gray-500 dark:text-gray-400"
                             xmlns="http://www.w3.org/2000/svg"

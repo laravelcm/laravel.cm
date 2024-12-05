@@ -15,7 +15,7 @@
                 >
                     {{ $article->title }}
                 </a>
-                <span class="text-sm leading-5 text-skin-muted">{{ $article->reactions_count }}</span>
+                <span class="text-sm leading-5 text-gray-400 dark:text-gray-500">{{ $article->reactions_count }}</span>
             </li>
         @endforeach
     </ul>

@@ -11,39 +11,43 @@
             @endforeach
         </div>
     @else
-        <div class="flex items-center justify-between rounded-md border border-dashed border-skin-base px-6 py-8">
-            <div class="mx-auto max-w-sm text-center">
-                <svg
-                    class="mx-auto size-10 text-primary-600"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
-                    />
-                </svg>
-                <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">{{ $user->name }} n'a pas encore posté de sujets</p>
+        <x-empty-state>
+            <div class="relative">
+                <div class="relative">
+                    <div class="absolute -inset-1 w-72 mx-auto bg-gradient-to-r from-flag-green to-flag-red rounded-lg blur opacity-25"></div>
+                    <div class="relative flex items-start w-72 mx-auto shadow z-20 bg-white gap-3 p-4 rounded-lg ring-1 ring-gray-200/50 dark:bg-gray-900 dark:ring-white/10">
+                        <div class="size-10 bg-gray-50 border border-gray-200 ring-2 ring-offset-2 ring-offset-gray-50 ring-gray-200/50 dark:ring-offset-gray-900 dark:border-white/20 dark:ring-white/20 rounded-full dark:bg-gray-800"></div>
+                        <div class="w-3/4 space-y-2">
+                            <div class="h-2 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-md dark:bg-gray-800"></div>
+                            <div class="h-6 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-md dark:bg-gray-800"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute z-1 inset-x-0 -top-10 transform scale-90">
+                    <div class="relative flex items-start w-72 mx-auto shadow z-20 bg-white gap-3 p-4 rounded-lg ring-1 ring-gray-200/50 dark:bg-gray-900 dark:ring-white/10">
+                        <div class="size-10 bg-gray-50 border border-gray-200 ring-2 ring-offset-2 ring-offset-gray-50 ring-gray-200/50 dark:ring-offset-gray-900 dark:border-white/20 dark:ring-white/20 rounded-full dark:bg-gray-800"></div>
+                        <div class="w-3/4 space-y-2">
+                            <div class="h-2 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-md dark:bg-gray-800"></div>
+                            <div class="h-6 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-md dark:bg-gray-800"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 space-y-4">
+                <p class="mt-8 text-base text-gray-500 dark:text-gray-400">
+                    <span class="font-medium text-gray-700 dark:text-gray-300">{{ $user->name }}</span>
+                    {{ __('pages/account.activities.empty_threads') }}
+                </p>
+
                 @if ($user->isLoggedInUser())
-                    <x-buttons.primary href="#" class="mt-4">
-                        <svg
-                            class="-ml-1 mr-2 size-5"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                        >
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-                        Nouveau sujet
-                    </x-buttons.primary>
+                    @can('create', \App\Models\Thread::class)
+                        <x-buttons.primary type="button">
+                            <x-untitledui-message-text-square class="size-5" aria-hidden="true" />
+                            {{ __('global.launch_modal.discussion_action') }}
+                        </x-buttons.primary>
+                    @endcan
                 @endif
             </div>
-        </div>
+        </x-empty-state>
     @endif
 </div>
