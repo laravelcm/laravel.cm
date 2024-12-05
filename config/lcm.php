@@ -26,8 +26,6 @@ return [
         'web_hook' => env('SLACK_WEBHOOK_URL', ''),
     ],
 
-    'app_locale' => env('APP_LOCALE', 'fr'),
-
     'supported_locales' => ['fr', 'en'],
 
     'spa_url' => env('FRONTEND_APP_URL', 'http://localhost:4200'),

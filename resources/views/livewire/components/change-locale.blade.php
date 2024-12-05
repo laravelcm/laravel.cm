@@ -1,9 +1,9 @@
-<div class="flex space-x-2 font-heading cursor-pointer font-bold text-primary-700" x-data="{ init() {
-        window.addEventListener('localeChanged', () => {
-            window.location.reload();
-        });
-    } }" x-init="init()" >
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icons-cm" viewBox="0 0 640 480" class="w-6 h-6">
+<button
+    type="button"
+    class="group inline-flex text-sm px-3 py-1.5 rounded-md bg-white/10 items-center gap-2 text-gray-300 hover:text-white"
+    wire:click="changeLocale"
+>
+    <svg id="flag-icons-cm" viewBox="0 0 640 480" class="size-5 rounded">
         <path fill="#007a5e" d="M0 0h213.3v480H0z"/>
         <path fill="#ce1126" d="M213.3 0h213.4v480H213.3z"/>
         <path fill="#fcd116" d="M426.7 0H640v480H426.7z"/>
@@ -18,9 +18,5 @@
             <use xlink:href="#cm-b" width="100%" height="100%" transform="rotate(-72)"/>
         </g>
     </svg>
-    @if($selectedLang == 'fr')
-        <button wire:click="changeLang('en')">EN</button>
-    @else
-        <button wire:click="changeLang('fr')">FR</button>
-    @endif
-</div>
+    <span>{{ $this->locale }}</span>
+</button>

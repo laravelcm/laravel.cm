@@ -6,30 +6,40 @@ namespace App\Livewire\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Pluralizer;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 final class ChangeLocale extends Component
 {
-    public string $selectedLang;
+    public string $currentLocale;
 
     public function mount(): void
     {
-        $this->selectedLang = app()->getLocale();
+        $this->currentLocale = app()->getLocale();
     }
 
-    public function changeLang(string $lang): void
+    public function changeLocale(): void
     {
-        $user = Auth::user();
+        $locale = $this->currentLocale === 'fr' ? 'en' : 'fr';
 
-        if ($user) {
-            $settings = $user->settings;
-            $settings['locale'] = $lang;
-            $user->settings = $settings;
-            $user->save();
+        if (Auth::check()) {
+            Auth::user()?->settings(['locale' => $locale]);
         }
 
-        app()->setLocale($lang);
-        $this->dispatch('localeChanged');
+        $this->currentLocale = $locale;
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+
+        Pluralizer::useLanguage($this->currentLocale === 'fr' ? 'french' : 'english');
+
+        $this->redirectRoute('home', navigate: true);
+    }
+
+    #[Computed]
+    public function locale(): string
+    {
+        return $this->currentLocale === 'fr' ? 'English' : 'Français';
     }
 
     public function render(): View
