@@ -11,46 +11,49 @@ use App\Http\Controllers\SlackController;
 use App\Http\Controllers\SponsoringController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-Route::get('/', HomeController::class)->name('home');
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function (): void {
+    Route::get('/', HomeController::class)->name('home');
 
-// Static pages
-Route::view('a-propos', 'about')->name('about');
-Route::view('faq', 'faq')->name('faq');
-Route::view('privacy', 'privacy')->name('privacy');
-Route::view('rules', 'rules')->name('rules');
-Route::view('terms', 'terms')->name('terms');
-Route::view('slack', 'slack')->name('slack');
-Route::post('slack', SlackController::class)->name('slack.send');
-Route::post('uploads/process', [FileUploadController::class, 'process'])
-    ->middleware('auth')
-    ->name('uploads.process');
+    // Static pages
+    Route::view('a-propos', 'about')->name('about');
+    Route::view('faq', 'faq')->name('faq');
+    Route::view('privacy', 'privacy')->name('privacy');
+    Route::view('rules', 'rules')->name('rules');
+    Route::view('terms', 'terms')->name('terms');
+    Route::view('slack', 'slack')->name('slack');
+    Route::post('slack', SlackController::class)->name('slack.send');
+    Route::post('uploads/process', [FileUploadController::class, 'process'])
+        ->middleware('auth')
+        ->name('uploads.process');
 
-// Social authentication
-Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');
-Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderCallback']);
+    // Social authentication
+    Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');
+    Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderCallback']);
 
-// Articles
-Route::prefix('articles')->as('articles.')->group(base_path('routes/features/article.php'));
-Route::prefix('discussions')->as('discussions.')->group(base_path('routes/features/discussion.php'));
-Route::prefix('forum')->as('forum.')->group(base_path('routes/features/forum.php'));
+    // Articles
+    Route::prefix('articles')->as('articles.')->group(base_path('routes/features/article.php'));
+    Route::prefix('discussions')->as('discussions.')->group(base_path('routes/features/discussion.php'));
+    Route::prefix('forum')->as('forum.')->group(base_path('routes/features/forum.php'));
 
-// Replies
-Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->name('replyable');
+    // Replies
+    Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->name('replyable');
 
-// Subscriptions
-Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
-    ->name('subscriptions.unsubscribe');
-Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
+    // Subscriptions
+    Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
+        ->name('subscriptions.unsubscribe');
+    Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
 
-// Notifications
-Route::view('notifications', 'user.notifications')->name('notifications')->middleware(['auth', 'checkIfBanned']);
+    // Notifications
+    Route::view('notifications', 'user.notifications')->name('notifications')->middleware(['auth', 'checkIfBanned']);
 
-Route::feeds();
+    Route::feeds();
 
-Route::get('sponsors', [SponsoringController::class, 'sponsors'])->name('sponsors');
-Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');
+    Route::get('sponsors', [SponsoringController::class, 'sponsors'])->name('sponsors');
+    Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');
 
-require __DIR__.'/features/account.php';
+    require __DIR__.'/features/account.php';
 
-require __DIR__.'/auth.php';
+    require __DIR__.'/auth.php';
+});

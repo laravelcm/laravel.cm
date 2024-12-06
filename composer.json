@@ -31,6 +31,7 @@
     "laravelcm/livewire-slide-overs": "^1.0",
     "livewire/livewire": "^3.5",
     "livewire/volt": "^1.6",
+    "mcamara/laravel-localization": "^2.2",
     "mckenziearts/blade-untitledui-icons": "^1.3",
     "notchpay/notchpay-php": "^1.6",
     "qcod/laravel-gamify": "1.0.8",

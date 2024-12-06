@@ -15,7 +15,7 @@ final class LocaleMiddleware
     {
         $browserLocale = explode('_', (string) $request->getPreferredLanguage())[0];
         $currentLocale = app()->getLocale();
-        $activeLocale = session()->get('locale');
+        $activeLocale = session()->get('locale_lang');
         $supportedLocales = config('lcm.supported_locales');
 
         if (Auth::check()) {
@@ -31,7 +31,6 @@ final class LocaleMiddleware
                 app()->setLocale($activeLocale);
             }
         }
-
 
         return $next($request);
     }

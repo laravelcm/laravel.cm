@@ -10,6 +10,7 @@ use App\Contracts\SpamReportableContract;
 use App\Contracts\SubscribeInterface;
 use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Filters\Thread\ThreadFilters;
+use App\Models\Scopes\LocaleScope;
 use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
 use App\Traits\HasSlug;
@@ -21,6 +22,7 @@ use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Exception;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -51,6 +53,7 @@ use Spatie\Feed\FeedItem;
  * @property Reply | null $solutionReply
  * @property \Illuminate\Database\Eloquent\Collection | Channel[] $channels
  */
+#[ScopedBy([LocaleScope::class])]
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;
