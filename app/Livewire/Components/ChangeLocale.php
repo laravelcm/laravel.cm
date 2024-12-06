@@ -29,7 +29,7 @@ final class ChangeLocale extends Component
 
         $this->currentLocale = $locale;
         app()->setLocale($locale);
-        session()->put('locale_lang', $locale);
+        session()->put('locale', $locale);
 
         Pluralizer::useLanguage($this->currentLocale === 'fr' ? 'french' : 'english');
 
