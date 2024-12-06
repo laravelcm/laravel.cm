@@ -101,12 +101,21 @@
                                     </x-link>
                                     <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
                                     <button
-                                        onclick="Livewire.dispatch('openModal', {component: 'modals.delete-discussion', arguments: {{ json_encode([$discussion->id]) }})"
+                                        onclick="Livewire.dispatch('openModal', {component: 'modals.delete-discussion', arguments: {{ json_encode([$discussion->id]) }}})"
                                         type="button"
                                         class="font-sans text-sm leading-5 text-red-500 hover:underline focus:outline-none"
                                     >
                                         {{ __('Supprimer') }}
                                     </button>
+                                        @can('convertedToThread', $discussion)
+                                            <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
+                                            <button
+                                                onclick="Livewire.dispatch('openModal', {component: 'modals.convert-discussion', arguments: { discussionId: {{ $discussion->id }} }})"
+                                                class="font-sans text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none hover:po"
+                                            >
+                                                {{ __('Convertir en Thread') }}
+                                            </button>
+                                        @endcan
                                 </div>
                             @endcan
                         </div>
@@ -120,7 +129,6 @@
                 </p>
                 @auth
                     <livewire:discussions.subscribe :discussion="$discussion" />
-                    <livewire:discussions.converted-to-thread :discussion="$discussion" />
                 @endauth
             </div>
 

@@ -1,17 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Discussion;
 
 use App\Models\Discussion;
 use App\Models\Thread;
-use App\Notifications\NotifyUserConvertionDiscussionToThread;
 use Illuminate\Support\Facades\DB;
 
-class ConvertDiscussionToThreadAction
+final class ConvertDiscussionToThreadAction
 {
     public function execute(Discussion $discussion, bool $isAdmin = false): Thread
     {
-        return DB::transaction(function () use ($discussion) {
+        return DB::transaction(function () use ($discussion, $isAdmin) {
             $thread = Thread::create([
                 'title' => $discussion->title,
                 'slug' => $discussion->slug,
@@ -22,13 +23,13 @@ class ConvertDiscussionToThreadAction
             ]);
 
             $discussion->replies()->update([
-                'replyable_type' => Thread::class,
+                'replyable_type' => 'thread',
                 'replyable_id' => $thread->id,
             ]);
 
             $discussion->delete();
 
-            app(NotifyUserConvertionDiscussionToThread::class)->execute($thread, $isAdmin);
+            app(NotifyUsersOfThreadConversion::class)->execute($thread, $isAdmin);
 
             return $thread;
         });

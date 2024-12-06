@@ -1,23 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions\Discussion;
 
 use App\Models\Thread;
+use App\Models\User;
 use App\Notifications\ThreadConvertedByAdmin;
 use App\Notifications\ThreadConvertedByCreator;
-use Illuminate\Support\Facades\Mail;
 
-class NotifyUsersOfThreadConversion
+final class NotifyUsersOfThreadConversion
 {
     public function execute(Thread $thread, bool $isAdmin = false): void
     {
-        $usersToNotify = $thread->replies->pluck('user')->unique();
+        $usersToNotify = $thread->replies()->pluck('user_id')->unique()->toArray();
 
-        // ToDo: send mail to the replying user with this class notification ThreadConvertedByCreator
+        User::whereIn('id', $usersToNotify)->get()->each->notify(new ThreadConvertedByCreator($thread));
 
         if ($isAdmin) {
             $creator = $thread->user;
-            // ToDo: send mail to the creator with this class notification ThreadConvertedByAdmin
+
+            $creator->notify(new ThreadConvertedByAdmin($thread));
         }
     }
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Notifications;
 
+use App\Models\Thread;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -13,10 +13,7 @@ final class ThreadConvertedByAdmin extends Notification
 {
     use Queueable;
 
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(public Thread $thread) {}
 
     /**
      * Get the notification's delivery channels.
@@ -33,18 +30,12 @@ final class ThreadConvertedByAdmin extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)->markdown('emails.notify-creator-for-thread-conversion');
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
-    {
-        return [
-            //
-        ];
+        return (new MailMessage)
+            ->subject('Discussion Converted by Admin')
+            ->greeting('Hello!')
+            ->line('An admin has converted a discussion to a thread.')
+            ->line('Thread Title: '.$this->thread->title)
+            ->action('View Thread', route('forum.show', $this->thread))
+            ->line('This action was performed by an administrator.');
     }
 }

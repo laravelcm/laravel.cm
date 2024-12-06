@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Notifications;
 
+use App\Models\Thread;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -13,10 +13,7 @@ final class ThreadConvertedByCreator extends Notification
 {
     use Queueable;
 
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(public Thread $thread) {}
 
     /**
      * Get the notification's delivery channels.
@@ -33,18 +30,11 @@ final class ThreadConvertedByCreator extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)->markdown('emails.notification-user-to-thread-conversion');
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
-    {
-        return [
-            //
-        ];
+        return (new MailMessage)
+            ->subject(__('Discussion Converted to Thread'))
+            ->line('A discussion you participated in has been converted to a thread.')
+            ->line('Thread Title: '.$this->thread->title)
+            ->action('View Thread', route('forum.show', $this->thread))
+            ->line('Thank you for your participation!');
     }
 }
