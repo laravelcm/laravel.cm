@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use App\Livewire\Pages\Forum\Index;
 use App\Models\Thread;
+use Illuminate\Support\Facades\App;
 use Livewire\Livewire;
-use  Illuminate\Support\Facades\App;
 
 use function Pest\Laravel\get;
 
