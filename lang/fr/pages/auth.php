@@ -37,9 +37,7 @@ return [
     'forgot' => [
         'page_title' => 'Mot de passe oublié',
         'title' => 'Réinitialisation du mot de passe',
-        'description' => "Mot de passe oublié ? Aucun problème. Communiquez-nous simplement votre adresse e-mail et nous vous
-                    enverrons par e-mail un lien de réinitialisation de mot de passe qui vous permettra d'en choisir un
-                    nouveau.",
+        'description' => "Mot de passe oublié ? Aucun problème. Communiquez-nous simplement votre adresse e-mail et nous vous enverrons par e-mail un lien de réinitialisation de mot de passe qui vous permettra d'en choisir un nouveau.",
     ],
 
     'reset' => [
@@ -49,9 +47,7 @@ return [
 
     'verify' => [
         'page_title' => "Vérification de l'adresse e-mail",
-        'description' => "Merci pour votre inscription ! Avant de commencer, pourriez-vous vérifier votre adresse e-mail en
-                cliquant sur le lien que nous venons de vous envoyer par e-mail ? Si vous n'avez pas reçu l'e-mail, nous
-                nous ferons un plaisir de vous en envoyer un autre.",
+        'description' => "Merci pour votre inscription ! Avant de commencer, pourriez-vous vérifier votre adresse e-mail en cliquant sur le lien que nous venons de vous envoyer par e-mail ? Si vous n'avez pas reçu l'e-mail, nous nous ferons un plaisir de vous en envoyer un autre.",
         'success' => "Un nouveau lien de vérification a été envoyé à l'adresse e-mail que vous avez fournie lors de l'inscription ou la modification de votre adresse.",
         'submit' => "Renvoyer l'e-mail de vérification",
     ],

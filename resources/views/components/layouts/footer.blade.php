@@ -53,19 +53,22 @@
                             {{ __('global.joins_us.description') }}
                         </p>
                     </div>
-                    <div class="mt-6 flex items-center text-sm font-medium space-x-4 sm:space-x-6">
-                        <x-link href="https://discord.gg/KNp6brbyVD" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
-                            <x-icon.discord class="size-5 text-[#5865F2]" aria-hidden="true" />
-                            Discord
-                        </x-link>
-                        <x-link href="https://t.me/laravelcameroun" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
-                            <x-icon.telegram class="size-5 text-[#34AADF]" aria-hidden="true" />
-                            Telegram
-                        </x-link>
-                        <x-link href="https://chat.whatsapp.com/G8e98Ms0MgSLEOGd3Uai1i" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
-                            <x-icon.whatsapp class="size-5 text-[#28D146]" aria-hidden="true" />
-                            WhatsApp
-                        </x-link>
+                    <div class="mt-6 space-y-6">
+                        <div class="flex items-center text-sm font-medium space-x-4 sm:space-x-6">
+                            <x-link href="https://discord.gg/KNp6brbyVD" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
+                                <x-icon.discord class="size-5 text-[#5865F2]" aria-hidden="true" />
+                                Discord
+                            </x-link>
+                            <x-link href="https://t.me/laravelcameroun" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
+                                <x-icon.telegram class="size-5 text-[#34AADF]" aria-hidden="true" />
+                                Telegram
+                            </x-link>
+                            <x-link href="https://chat.whatsapp.com/G8e98Ms0MgSLEOGd3Uai1i" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
+                                <x-icon.whatsapp class="size-5 text-[#28D146]" aria-hidden="true" />
+                                WhatsApp
+                            </x-link>
+                        </div>
+                        <livewire:components.change-locale />
                     </div>
                 </div>
             </div>

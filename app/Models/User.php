@@ -46,10 +46,12 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string | null $bio
  * @property string | null $website
  * @property string | null $banned_reason
+ * @property array $settings
  * @property Carbon | null $email_verified_at
  * @property Carbon | null $last_login_at
  * @property Carbon | null $banned_at
  * @property Collection | Activity[] $activities
+ * @property-read Collection | SocialAccount[] $providers
  */
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
