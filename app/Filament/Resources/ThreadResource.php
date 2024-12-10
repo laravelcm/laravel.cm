@@ -21,11 +21,10 @@ final class ThreadResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
-    public static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): string
     {
         return __('Forum');
     }
-
     public static function table(Table $table): Table
     {
         return $table
@@ -33,18 +32,17 @@ final class ThreadResource extends Resource
                 TextColumn::make('title')
                     ->label('Titre')
                     ->sortable(),
+                TextColumn::make('user.name')
+                    ->label('Auteur'),
                 IconColumn::make('locked')
                     ->label('Vérrouillé')
-                    ->options([
-                        'heroicon-s-lock-closed' => fn ($record) => $record->locked === true,
-                        'heroicon-s-lock-open' => fn ($record) => $record->locked === false,
-                    ])
-                    ->colors([
-                        'warning' => fn ($record) => $record->locked === true,
-                        'success' => fn ($record) => $record->locked === false,
-                    ]),
+                    ->boolean()
+                    ->trueIcon('heroicon-s-lock-closed')
+                    ->trueColor('warning')
+                    ->falseIcon('heroicon-s-lock-open')
+                    ->falseColor('success'),
                 IconColumn::make('resolved_by')
-                    ->label('Résolut')
+                    ->label('Résolu')
                     ->getStateUsing(fn ($record) => $record->resolved_by == null ? 'heroicon-s-x-mark' : 'heroicon-s-check')
                     ->icon(fn ($state) => $state)
                     ->color(fn ($state) => $state === 'heroicon-s-x-mark' ? 'warning' : 'success')
@@ -52,8 +50,6 @@ final class ThreadResource extends Resource
                 TextColumn::make('created_at')
                     ->label('Date de publication')
                     ->dateTime(),
-                TextColumn::make('user.name')
-                    ->label('Auteur'),
             ])
             ->filters([
                 SelectFilter::make('Channels')->relationship('channels', 'name')->searchable()->preload(),
