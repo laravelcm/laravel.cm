@@ -120,7 +120,7 @@ new class extends Component {
 
                     <x-validation-errors />
 
-                    <form wire:submit="register" wire:recaptcha class="space-y-6">
+                    <form wire:submit="register" wire:recaptcha class="space-y-6 mt-4">
                         <div class="space-y-3">
                             <x-filament::input.wrapper>
                                 <x-filament::input
