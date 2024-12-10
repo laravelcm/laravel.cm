@@ -25,6 +25,7 @@ final class ThreadResource extends Resource
     {
         return __('Forum');
     }
+
     public static function table(Table $table): Table
     {
         return $table
