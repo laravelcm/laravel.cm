@@ -42,12 +42,8 @@ final class ThreadResource extends Resource
                     ->trueColor('warning')
                     ->falseIcon('heroicon-s-lock-open')
                     ->falseColor('success'),
-                IconColumn::make('resolved_by')
-                    ->label('Résolu')
-                    ->getStateUsing(fn ($record) => $record->resolved_by == null ? 'heroicon-s-x-mark' : 'heroicon-s-check')
-                    ->icon(fn ($state) => $state)
-                    ->color(fn ($state) => $state === 'heroicon-s-x-mark' ? 'warning' : 'success')
-                    ->sortable(),
+                TextColumn::make('resolvedBy.name')
+                    ->label('Résolu par'),
                 TextColumn::make('created_at')
                     ->label('Date de publication')
                     ->dateTime(),
