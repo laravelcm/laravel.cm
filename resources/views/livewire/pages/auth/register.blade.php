@@ -1,18 +1,20 @@
 <?php
 
 use App\Models\User;
+use DutchCodingCompany\LivewireRecaptcha\ValidatesRecaptcha;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Volt\Component;
 use Illuminate\Validation\Rules\Password;
 
-new class extends Component
-{
+new class extends Component {
     public string $name = '';
     public string $email = '';
     public string $username = '';
     public string $password = '';
+    public string $gRecaptchaResponse;
 
+    #[ValidatesRecaptcha]
     public function register(): void
     {
         $validated = $this->validate([
@@ -85,14 +87,18 @@ new class extends Component
                     </dl>
 
                     <div class="mt-16 relative text-sm space-y-4 max-w-lg mx-auto">
-                        <svg class="absolute left-0 top-0 size-7 -translate-x-8 -translate-y-2 rotate-12 transform text-green-600" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
-                            <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                        <svg
+                            class="absolute left-0 top-0 size-7 -translate-x-8 -translate-y-2 rotate-12 transform text-green-600"
+                            fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+                            <path
+                                d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                         </svg>
                         <p class="relative text-gray-600 dark:text-gray-400">
                             {{ __('pages/auth.register.advantages.quote') }}
                         </p>
                         <p class="mt-2 text-gray-900 dark:text-white">
-                            <span class="italic text-gray-400 dark:text-gray-500">"The Pragmatic Programmer"</span> {{ __('pages/auth.register.advantages.quote_authors') }}
+                            <span
+                                class="italic text-gray-400 dark:text-gray-500">"The Pragmatic Programmer"</span> {{ __('pages/auth.register.advantages.quote_authors') }}
                         </p>
                     </div>
                 </div>
@@ -114,7 +120,7 @@ new class extends Component
 
                     <x-validation-errors />
 
-                    <form wire:submit="register" class="space-y-6">
+                    <form wire:submit="register" wire:recaptcha class="space-y-6">
                         <div class="space-y-3">
                             <x-filament::input.wrapper>
                                 <x-filament::input
@@ -167,12 +173,14 @@ new class extends Component
                         <div>
                             <x-buttons.primary type="submit" class="group w-full relative">
                                 <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                                    <x-untitledui-lock class="size-5 text-green-500 group-hover:text-green-600" aria-hidden="true" />
+                                    <x-untitledui-lock class="size-5 text-green-500 group-hover:text-green-600"
+                                                       aria-hidden="true" />
                                 </span>
                                 {{ __('pages/auth.register.submit') }}
                             </x-buttons.primary>
                         </div>
                     </form>
+                    @livewireRecaptcha
                 </div>
 
                 @include('partials._socials-link')
