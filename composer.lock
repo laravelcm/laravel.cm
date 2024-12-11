@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3dc875bd992bababfd251046188eda5b",
+    "content-hash": "9fb85f783f1b990bd74f6830c11935e4",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -2433,6 +2433,62 @@
                 }
             ],
             "time": "2024-10-09T13:47:03+00:00"
+        },
+        {
+            "name": "dutchcodingcompany/livewire-recaptcha",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DutchCodingCompany/livewire-recaptcha.git",
+                "reference": "cdf2629c31d237ade99c41f3c6f8296207672246"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DutchCodingCompany/livewire-recaptcha/zipball/cdf2629c31d237ade99c41f3c6f8296207672246",
+                "reference": "cdf2629c31d237ade99c41f3c6f8296207672246",
+                "shasum": ""
+            },
+            "require": {
+                "livewire/livewire": "^3.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "larastan/larastan": "^2.9",
+                "orchestra/testbench": "^9.0",
+                "phpunit/phpunit": "^11.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DutchCodingCompany\\LivewireRecaptcha\\LivewireRecaptchaServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DutchCodingCompany\\LivewireRecaptcha\\": "src/",
+                    "DutchCodingCompany\\LivewireRecaptcha\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Add Google Recaptcha V3 support to your Laravel Livewire components",
+            "homepage": "https://github.com/dutchcodingcompany/livewire-recaptcha",
+            "keywords": [
+                "Google ReCaptcha",
+                "dutchcodingcompany",
+                "laravel",
+                "livewire"
+            ],
+            "support": {
+                "issues": "https://github.com/DutchCodingCompany/livewire-recaptcha/issues",
+                "source": "https://github.com/DutchCodingCompany/livewire-recaptcha/tree/1.0.0"
+            },
+            "time": "2024-06-04T15:07:32+00:00"
         },
         {
             "name": "egulias/email-validator",
