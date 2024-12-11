@@ -19,7 +19,7 @@ final class ConvertDiscussion extends ModalComponent
     {
         $discussion = Discussion::findOrFail($this->discussionId);
 
-        $this->authorize(DiscussionPolicy::CONVERTEDTOTHREAD, $discussion);
+        $this->authorize('convertedToThread', $discussion);
 
         $thread = app(ConvertDiscussionToThreadAction::class)->execute($discussion, Auth::user()->isAdmin());
 

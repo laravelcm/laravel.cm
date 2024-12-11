@@ -22,8 +22,6 @@ final class DiscussionPolicy
 
     public const UNSUBSCRIBE = 'unsubscribe';
 
-    public const CONVERTEDTOTHREAD = 'convertedToThread';
-
     public function create(User $user): bool
     {
         return $user->hasVerifiedEmail();

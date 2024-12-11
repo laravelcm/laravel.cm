@@ -95,7 +95,7 @@
                                 <div class="flex items-center mt-2 space-x-2">
                                     <x-link
                                         href="{{ route('discussions.edit', $discussion) }}"
-                                        class="font-sans text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
+                                        class="text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
                                     >
                                         {{ __('Éditer') }}
                                     </x-link>
@@ -103,7 +103,7 @@
                                     <button
                                         onclick="Livewire.dispatch('openModal', {component: 'modals.delete-discussion', arguments: {{ json_encode([$discussion->id]) }}})"
                                         type="button"
-                                        class="font-sans text-sm leading-5 text-red-500 hover:underline focus:outline-none"
+                                        class="text-sm leading-5 text-red-500 hover:underline focus:outline-none"
                                     >
                                         {{ __('Supprimer') }}
                                     </button>
@@ -111,7 +111,7 @@
                                             <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
                                             <button
                                                 onclick="Livewire.dispatch('openModal', {component: 'modals.convert-discussion', arguments: { discussionId: {{ $discussion->id }} }})"
-                                                class="font-sans text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none hover:po"
+                                                class="text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
                                             >
                                                 {{ __('Convertir en Thread') }}
                                             </button>

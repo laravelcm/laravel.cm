@@ -18,8 +18,7 @@ final class ConvertDiscussionToThreadAction
                 'slug' => $discussion->slug,
                 'body' => $discussion->body,
                 'user_id' => $discussion->user_id,
-                'locked' => $discussion->locked,
-                'last_posted_at' => now(),
+                'last_posted_at' => null,
             ]);
 
             $discussion->replies()->update([
