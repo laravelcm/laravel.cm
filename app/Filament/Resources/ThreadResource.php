@@ -43,10 +43,10 @@ final class ThreadResource extends Resource
                     ->falseIcon('heroicon-s-lock-open')
                     ->falseColor('success'),
                 TextColumn::make('resolved_by')
+                    ->label('Résolu')
                     ->badge()
-                    ->getStateUsing(fn ($record) => $record->resolved_by == null ? 'Non résolu' : 'Résolu')
-                    ->label(fn ($state) => $state)
-                    ->color(fn ($record) => ($record?->resolved_by == null) ? 'warning' : 'success'),
+                    ->getStateUsing(fn ($record) => $record->resolved_by == null ? 'Non' : 'Oui')
+                    ->color(fn ($record) => ($record?->resolved_by == null) ? 'gray' : 'success'),
                 TextColumn::make('created_at')
                     ->label('Date de publication')
                     ->dateTime(),
