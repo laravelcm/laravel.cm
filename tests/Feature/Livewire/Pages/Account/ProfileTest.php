@@ -6,6 +6,6 @@ use App\Livewire\Pages\Account\Profile;
 use Livewire\Livewire;
 
 it('renders successfully', function (): void {
-    Livewire::test(Profile::class)
+    Livewire::test(Profile::class, ['user' => $this->login()])
         ->assertStatus(200);
 });

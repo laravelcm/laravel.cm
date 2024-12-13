@@ -38,7 +38,7 @@ final class Password extends Component implements HasForms
                     ->password()
                     ->currentPassword()
                     ->required()
-                    ->visible(fn () => Auth::user()->hasPassword()), // @phpstan-ignore-line
+                    ->visible(fn () => Auth::user()?->hasPassword()),
                 Forms\Components\TextInput::make('password')
                     ->label(__('validation.attributes.password'))
                     ->helperText(__('pages/account.settings.password_helpText'))

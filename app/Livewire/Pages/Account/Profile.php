@@ -12,8 +12,9 @@ final class Profile extends Component
 {
     public User $user;
 
-    public function mount(): void
+    public function mount(User $user): void
     {
+        $this->user = $user;
         $this->user = $this->user->load([
             'activities',
             'articles',

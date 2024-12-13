@@ -27,12 +27,12 @@ final class Profil extends Component implements HasForms
 
     public ?array $data = [];
 
-    public string $emailAddress = '';
+    public ?string $emailAddress = '';
 
     public function mount(): void
     {
-        $this->form->fill(Auth::user()->toArray()); // @phpstan-ignore-line
-        $this->emailAddress = Auth::user()->email; // @phpstan-ignore-line
+        $this->form->fill(Auth::user()?->toArray());
+        $this->emailAddress = Auth::user()?->email;
     }
 
     public function form(Form $form): Form
@@ -41,6 +41,7 @@ final class Profil extends Component implements HasForms
             ->schema([
                 Section::make(__('pages/account.settings.profile_title'))
                     ->description(__('pages/account.settings.profile_description'))
+                    ->aside()
                     ->schema([
                         TextInput::make('username')
                             ->label(__('validation.attributes.username'))
@@ -64,6 +65,7 @@ final class Profil extends Component implements HasForms
 
                 Section::make(__('pages/account.settings.personal_information_title'))
                     ->description(__('pages/account.settings.personal_information_description'))
+                    ->aside()
                     ->schema([
                         TextInput::make('name')
                             ->label(__('validation.attributes.last_name'))
@@ -84,6 +86,7 @@ final class Profil extends Component implements HasForms
 
                 Section::make(__('pages/account.settings.social_network_title'))
                     ->description(__('pages/account.settings.social_network_description'))
+                    ->aside()
                     ->schema([
                         TextInput::make('twitter_profile')
                             ->label(__('Twitter'))
