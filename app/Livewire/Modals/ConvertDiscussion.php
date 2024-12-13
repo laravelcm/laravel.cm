@@ -15,7 +15,8 @@ final class ConvertDiscussion extends ModalComponent
 
     public function save(): void
     {
-        $discussion = Discussion::findOrFail($this->discussionId);
+        /** @var Discussion $discussion */
+        $discussion = Discussion::query()->findOrFail($this->discussionId);
 
         $this->authorize('convertedToThread', $discussion);
 
