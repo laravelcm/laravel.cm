@@ -43,6 +43,14 @@ return [
         'subscription_description' => 'Consulter vos abonnements',
         'profile_title' => 'Mon profil',
         'profile_description' => 'Vous trouverez ci-dessous les informations de votre profil pour votre compte.',
+        'bio_description' => 'Écrivez quelques phrases sur vous-même.',
+        'avatar_description' => 'Celle-ci sera affichée sur votre profil.',
+        'twitter_helper_text' => 'Entrez votre pseudo Twitter sans le symbole @ en tête.',
+        'personal_information_title' => 'Informations personnelles',
+        'personal_information_description' => 'Mettez à jour vos informations personnelles. Votre adresse ne sera jamais accessible au public.',
+        'unverified_mail' => 'Cette adresse mail n\'est pas vérifiée.',
+        'social_network_title' => 'Réseaux sociaux',
+        'social_network_description' => 'Faites savoir à tout le monde où ils peuvent vous trouver.',
     ],
 
 ];

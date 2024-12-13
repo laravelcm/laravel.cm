@@ -6,17 +6,9 @@ namespace App\Http\Controllers\User;
 
 use App\Events\EmailAddressWasChanged;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateProfileRequest;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Jenssegers\Agent\Agent;
-use Stevebauman\Location\Facades\Location;
 
 final class SettingController extends Controller
 {

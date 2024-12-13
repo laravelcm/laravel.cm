@@ -43,6 +43,14 @@ return [
         'subscription_description' => 'Check and manage your subscriptions',
         'profile_title' => 'Profile',
         'profile_description' => 'Below you will find the profile information for your account.',
+        'bio_description' => 'Write a few sentences about yourself.',
+        'avatar_description' => 'This will be displayed on your profile.',
+        'twitter_helper_text' => 'Enter your Twitter handle without the @ symbol at the top.',
+        'personal_information_title' => 'Personal information',
+        'personal_information_description' => 'Update your personal information. Your address will never be accessible to the public.',
+        'unverified_mail' => 'This e-mail address is not verified.',
+        'social_network_title' => 'social networks',
+        'social_network_description' => 'Let everyone know where they can find you.',
     ],
 
 ];

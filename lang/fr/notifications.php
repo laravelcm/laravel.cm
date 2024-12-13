@@ -40,6 +40,7 @@ return [
         'cannot_ban_body' => 'Cet utilisateur est déjà banni.',
         'cannot_ban_admin' => 'Vous ne pouvez pas bannir un administrateur.',
         'password_changed' => 'Vous avez mis à jour votre mot de passe avec succès',
+        'profile_updated' => 'Vous avez mis à jour votre profil avec succès',
     ],
 
     'spam_send' => 'Votre signalement a été envoyé avec succès',
