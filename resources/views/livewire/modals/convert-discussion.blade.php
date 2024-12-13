@@ -20,7 +20,7 @@
 
     <x-slot name="buttons">
         <x-buttons.submit
-            :title="__('action.confirm')"
+            :title="__('actions.confirm')"
             wire:loading.attr="data-loading"
             class="w-full sm:ml-3 sm:w-auto"
         />
@@ -29,7 +29,7 @@
             wire:click="$dispatch('closeModal')"
             class="w-full px-4 py-2 mt-3 text-sm sm:mt-0 sm:w-auto"
         >
-            {{ __('action.cancel') }}
+            {{ __('actions.cancel') }}
         </x-buttons.default>
     </x-slot>
 </x-modal>
