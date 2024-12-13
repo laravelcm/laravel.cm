@@ -32,9 +32,9 @@ final class ThreadConvertedByCreator extends Notification
     {
         return (new MailMessage)
             ->subject(__('pages/discussion.converted_by_creator'))
-            ->line('A discussion you participated in has been converted to a thread.')
-            ->line('Thread Title: '.$this->thread->title)
-            ->action('View Thread', route('forum.show', $this->thread))
-            ->line('Thank you for your participation!');
+            ->line(__('pages/discussion.converted_by_creator.converted_line'))
+            ->line(__('pages/discussion.converted_by_creator.thread_title') . $this->thread->title)
+            ->action(__('pages/discussion.converted_by_creator.action_text'), route('forum.show', $this->thread))
+            ->line(__('pages/discussion.converted_by_creator.thank_you_line'));
     }
 }

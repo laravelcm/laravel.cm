@@ -31,11 +31,11 @@ final class ThreadConvertedByAdmin extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('pages/discussion.converted_by_admin')
-            ->greeting('Hello!')
-            ->line('An admin has converted a discussion to a thread.')
-            ->line('Thread Title: '.$this->thread->title)
-            ->action('View Thread', route('forum.show', $this->thread))
-            ->line('This action was performed by an administrator.');
+            ->subject(__('pages/discussion.converted_by_admin.subject'))
+            ->greeting(__('pages/discussion.converted_by_admin.greeting'))
+            ->line(__('pages/discussion.converted_by_admin.converted_line'))
+            ->line(__('pages/discussion.converted_by_admin.thread_title').$this->thread->title)
+            ->action(__('pages/discussion.converted_by_admin.action_text'), route('forum.show', $this->thread))
+            ->line(__('pages/discussion.converted_by_admin.admin_action_line'));
     }
 }
