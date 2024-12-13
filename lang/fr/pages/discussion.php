@@ -35,7 +35,7 @@ return [
         'converted_line' => 'Une discussion à laquelle vous avez participé a été convertie en fil de discussion.',
         'thread_title' => 'Titre du fil : ',
         'action_text' => 'Voir le fil',
-        'thank_you_line' => 'Merci pour votre participation !'
+        'thank_you_line' => 'Merci pour votre participation !',
     ],
 
 ];

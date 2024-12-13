@@ -35,7 +35,7 @@ return [
         'converted_line' => 'A discussion you participated in has been converted to a thread.',
         'thread_title' => 'Thread Title: ',
         'action_text' => 'View Thread',
-        'thank_you_line' => 'Thank you for your participation!'
+        'thank_you_line' => 'Thank you for your participation!',
     ],
 
 ];

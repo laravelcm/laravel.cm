@@ -33,7 +33,7 @@ final class ThreadConvertedByCreator extends Notification
         return (new MailMessage)
             ->subject(__('pages/discussion.converted_by_creator'))
             ->line(__('pages/discussion.converted_by_creator.converted_line'))
-            ->line(__('pages/discussion.converted_by_creator.thread_title') . $this->thread->title)
+            ->line(__('pages/discussion.converted_by_creator.thread_title').$this->thread->title)
             ->action(__('pages/discussion.converted_by_creator.action_text'), route('forum.show', $this->thread))
             ->line(__('pages/discussion.converted_by_creator.thank_you_line'));
     }
