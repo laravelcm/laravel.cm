@@ -51,6 +51,7 @@ return [
         'unverified_mail' => 'Cette adresse mail n\'est pas vérifiée.',
         'social_network_title' => 'Réseaux sociaux',
         'social_network_description' => 'Faites savoir à tout le monde où ils peuvent vous trouver.',
+
     ],
 
 ];

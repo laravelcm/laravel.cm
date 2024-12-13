@@ -51,6 +51,7 @@ return [
         'unverified_mail' => 'This e-mail address is not verified.',
         'social_network_title' => 'social networks',
         'social_network_description' => 'Let everyone know where they can find you.',
+
     ],
 
 ];
