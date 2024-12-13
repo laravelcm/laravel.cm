@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\DB;
 
 final class ConvertDiscussionToThreadAction
 {
-    public function execute(Discussion $discussion, bool $isAdmin = false): Thread
+    public function execute(Discussion $discussion): Thread
     {
-        return DB::transaction(function () use ($discussion, $isAdmin) {
+        return DB::transaction(function () use ($discussion) {
             $thread = Thread::create([
                 'title' => $discussion->title,
                 'slug' => $discussion->slug,
@@ -28,7 +28,7 @@ final class ConvertDiscussionToThreadAction
 
             $discussion->delete();
 
-            app(NotifyUsersOfThreadConversion::class)->execute($thread, $isAdmin);
+            app(NotifyUsersOfThreadConversion::class)->execute($thread);
 
             return $thread;
         });

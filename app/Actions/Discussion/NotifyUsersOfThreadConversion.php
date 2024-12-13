@@ -8,19 +8,18 @@ use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\ThreadConvertedByAdmin;
 use App\Notifications\ThreadConvertedByCreator;
+use Illuminate\Support\Facades\Auth;
 
 final class NotifyUsersOfThreadConversion
 {
-    public function execute(Thread $thread, bool $isAdmin = false): void
+    public function execute(Thread $thread): void
     {
         $usersToNotify = $thread->replies()->pluck('user_id')->unique()->toArray();
 
         User::whereIn('id', $usersToNotify)->get()->each->notify(new ThreadConvertedByCreator($thread));
 
-        if ($isAdmin) {
-            $creator = $thread->user;
-
-            $creator->notify(new ThreadConvertedByAdmin($thread));
+        if (Auth::check() && Auth::user()->isAdmin()) {
+            $thread->user->notify(new ThreadConvertedByAdmin($thread));
         }
     }
 }

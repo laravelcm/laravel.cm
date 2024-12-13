@@ -5,14 +5,14 @@
     form-action="save"
 >
     <x-slot name="title">
-        {{ __("Confirmez la convertion") }}
+        {{ __("pages/discussion.confirm_conversion") }}
     </x-slot>
 
     <div class="space-y-4 pb-5">
         <div class="grid grid-cols-2 gap-4">
             <div class="space-y-2">
                 <x-slot name="content">
-                    {{ __("Voulez-vous vraiment convertir cette discussion en thread ?") }}
+                    {{ __("pages/discussion.text_confirmation") }}
                 </x-slot>
             </div>
         </div>
@@ -20,7 +20,7 @@
 
     <x-slot name="buttons">
         <x-buttons.submit
-            :title="__('Confirmer')"
+            :title="__('action.confirm')"
             wire:loading.attr="data-loading"
             class="w-full sm:ml-3 sm:w-auto"
         />
@@ -29,7 +29,7 @@
             wire:click="$dispatch('closeModal')"
             class="w-full px-4 py-2 mt-3 text-sm sm:mt-0 sm:w-auto"
         >
-            {{ __('Annuler') }}
+            {{ __('action.cancel') }}
         </x-buttons.default>
     </x-slot>
 </x-modal>

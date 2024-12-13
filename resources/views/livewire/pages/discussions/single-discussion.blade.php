@@ -97,7 +97,7 @@
                                         href="{{ route('discussions.edit', $discussion) }}"
                                         class="text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
                                     >
-                                        {{ __('Éditer') }}
+                                        {{ __('action.edit') }}
                                     </x-link>
                                     <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
                                     <button
@@ -105,7 +105,7 @@
                                         type="button"
                                         class="text-sm leading-5 text-red-500 hover:underline focus:outline-none"
                                     >
-                                        {{ __('Supprimer') }}
+                                        {{ __('actions.delete') }}
                                     </button>
                                         @can('convertedToThread', $discussion)
                                             <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
@@ -113,7 +113,8 @@
                                                 onclick="Livewire.dispatch('openModal', {component: 'modals.convert-discussion', arguments: { discussionId: {{ $discussion->id }} }})"
                                                 class="text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
                                             >
-                                                {{ __('Convertir en Thread') }}
+                                                {{ __('pages/discussion.convert_to_thread') }}
+                                                {{ __('pages/home.description')  }}
                                             </button>
                                         @endcan
                                 </div>

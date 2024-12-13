@@ -31,7 +31,7 @@ final class ThreadConvertedByAdmin extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Discussion Converted by Admin')
+            ->subject('pages/discussion.converted_by_admin')
             ->greeting('Hello!')
             ->line('An admin has converted a discussion to a thread.')
             ->line('Thread Title: '.$this->thread->title)

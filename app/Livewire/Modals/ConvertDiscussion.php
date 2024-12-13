@@ -6,9 +6,7 @@ namespace App\Livewire\Modals;
 
 use App\Actions\Discussion\ConvertDiscussionToThreadAction;
 use App\Models\Discussion;
-use App\Policies\DiscussionPolicy;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
 final class ConvertDiscussion extends ModalComponent
@@ -21,7 +19,7 @@ final class ConvertDiscussion extends ModalComponent
 
         $this->authorize('convertedToThread', $discussion);
 
-        $thread = app(ConvertDiscussionToThreadAction::class)->execute($discussion, Auth::user()->isAdmin());
+        $thread = app(ConvertDiscussionToThreadAction::class)->execute($discussion);
 
         $this->redirectRoute('forum.show', $thread, navigate: true);
     }

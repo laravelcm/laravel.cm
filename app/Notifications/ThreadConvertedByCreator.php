@@ -31,7 +31,7 @@ final class ThreadConvertedByCreator extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject(__('Discussion Converted to Thread'))
+            ->subject(__('pages/discussion.converted_by_creator'))
             ->line('A discussion you participated in has been converted to a thread.')
             ->line('Thread Title: '.$this->thread->title)
             ->action('View Thread', route('forum.show', $this->thread))

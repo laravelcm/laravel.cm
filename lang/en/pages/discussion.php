@@ -19,5 +19,10 @@ return [
         'active' => 'Actif',
     ],
     'comments_count' => 'Commentaires (:count)',
+    'convert_to_thread' => 'Convert to thread',
+    'confirm_conversion' => 'Confirm conversion',
+    'text_confirmation' => 'Do you really want to turn this discussion into a topic?',
+    'converted_by_creator' => 'Discussion Converted to Thread',
+    'converted_by_admin' => 'Discussion Converted to Thread by the administrator',
 
 ];

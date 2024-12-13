@@ -8,15 +8,16 @@ use App\Models\User;
 use Livewire\Livewire;
 
 beforeEach(function (): void {
-    $user = User::factory()->create();
-    $this->user = $this->actingAs($user);
-    $this->discussion = Discussion::factory()->create();
+    $this->user = $this->login();
 });
 
 describe(ConvertDiscussion::class, function (): void {
-    it('requires authorization to convert discussion', function (): void {
+    it('requires authorization for user to convert discussion', function (): void {
+        $user = User::factory()->create();
+        $discussion = Discussion::factory()->create(['user_id' => $user->id]);
+
         Livewire::test(ConvertDiscussion::class)
-            ->set('discussionId', $this->discussion->id)
+            ->set('discussionId', $discussion->id)
             ->call('save')
             ->assertForbidden();
     });

@@ -19,5 +19,10 @@ return [
         'active' => 'Actif',
     ],
     'comments_count' => 'Commentaires (:count)',
+    'convert_to_thread' => 'Convertir en sujet',
+    'confirm_conversion' => 'Confirmez la conversion',
+    'text_confirmation' => 'Voulez-vous vraiment transformer cette discussion en sujet de forum?',
+    'converted_by_creator' => 'Discussion convertie en sujet par le createur',
+    'converted_by_admin' => 'Discussion convertie en sujet par l\'administrateur',
 
 ];
