@@ -25,7 +25,7 @@ final class Sujet extends SpotlightCommand
         'thread',
     ];
 
-    public function dependencies(): ?SpotlightCommandDependencies
+    public function dependencies(): SpotlightCommandDependencies
     {
         return SpotlightCommandDependencies::collection()
             ->add(

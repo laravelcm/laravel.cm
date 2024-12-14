@@ -54,7 +54,7 @@ trait HasReplies
         $sixMonthsAgo = now()->subMonths(6);
 
         if ($reply = $this->replies()->latest()->first()) {
-            /** @var $reply Reply */
+            /** @var Reply $reply */
             return $reply->created_at->lt($sixMonthsAgo);
         }
 

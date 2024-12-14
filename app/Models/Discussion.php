@@ -68,6 +68,7 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     ];
 
     protected $appends = [
+        // @phpstan-ignore-next-line
         'count_all_replies_with_child',
     ];
 

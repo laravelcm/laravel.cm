@@ -8,6 +8,9 @@ use Illuminate\Http\RedirectResponse;
 use Laravel\Socialite\Contracts\User;
 use Laravel\Socialite\Facades\Socialite;
 
+/**
+ * @phpstan-ignore trait.unused
+ */
 trait HasSocialite
 {
     /**

@@ -8,6 +8,9 @@ use App\Http\Resources\AuthenticateUserResource;
 use App\Http\Resources\EnterpriseResource;
 use App\Models\User;
 
+/**
+ * @phpstan-ignore trait.unused
+ */
 trait UserResponse
 {
     /**

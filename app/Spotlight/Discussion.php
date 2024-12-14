@@ -20,7 +20,7 @@ final class Discussion extends SpotlightCommand
 
     protected array $synonyms = [];
 
-    public function dependencies(): ?SpotlightCommandDependencies
+    public function dependencies(): SpotlightCommandDependencies
     {
         return SpotlightCommandDependencies::collection()
             ->add(

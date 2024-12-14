@@ -23,7 +23,7 @@ final class ChannelResource extends Resource
 
     protected static ?string $navigationIcon = 'untitledui-git-branch';
 
-    public static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): string
     {
         return __('Forum');
     }
