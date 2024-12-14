@@ -19,5 +19,23 @@ return [
         'active' => 'Actif',
     ],
     'comments_count' => 'Commentaires (:count)',
+    'convert_to_thread' => 'Convertir en sujet',
+    'confirm_conversion' => 'Confirmez la conversion',
+    'text_confirmation' => 'Voulez-vous vraiment transformer cette discussion en sujet de forum?',
+    'converted_by_admin' => [
+        'subject' => 'Discussion convertie en sujet par l\'administrateur',
+        'greeting' => 'Bonjour !',
+        'converted_line' => 'Un administrateur a converti votre discussion en sujet de forum.',
+        'thread_title' => 'Titre du sujet : ',
+        'action_text' => 'Voir le sujet',
+        'admin_action_line' => 'Cette action a été effectuée par un administrateur.',
+    ],
+    'converted_by_creator' => [
+        'subject' => 'Discussion convertie en sujet par le createur',
+        'converted_line' => 'Une discussion à laquelle vous avez participé a été convertie en fil de discussion.',
+        'thread_title' => 'Titre du fil : ',
+        'action_text' => 'Voir le fil',
+        'thank_you_line' => 'Merci pour votre participation !',
+    ],
 
 ];

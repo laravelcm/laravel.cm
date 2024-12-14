@@ -13,7 +13,7 @@ final class ListArticles extends ListRecords
 {
     protected static string $resource = ArticleResource::class;
 
-    public function isTableRecordSelectable(): ?Closure
+    public function isTableRecordSelectable(): Closure
     {
         return fn (Article $record): bool => $record->isNotPublished();
     }

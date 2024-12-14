@@ -41,7 +41,7 @@ final class ReplyForm extends Component implements HasForms
     {
         $this->reply = Reply::query()->find($replyId);
 
-        $this->form->fill(['body' => $this->reply?->body ?? '']);
+        $this->form->fill(['body' => $this->reply->body ?? '']);
 
         $this->show = true;
     }

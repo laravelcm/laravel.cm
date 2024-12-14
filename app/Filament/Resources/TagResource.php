@@ -20,7 +20,7 @@ final class TagResource extends Resource
 
     protected static ?string $navigationIcon = 'untitledui-tag-03';
 
-    public static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): string
     {
         return __('Contenu');
     }

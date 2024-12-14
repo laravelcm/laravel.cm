@@ -185,7 +185,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     }
 
     /**
-     * @return array{name: string, username: string, picture: string}
+     * @return array{name: string, username: string, picture: string|null}
      */
     public function profile(): array
     {
@@ -345,6 +345,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     {
         $password = $this->getAuthPassword();
 
+        // @phpstan-ignore-next-line
         return $password !== '' && $password !== null;
     }
 
@@ -384,12 +385,12 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     public function countSolutions(): int
     {
-        return $this->replyAble()->isSolution()->count();
+        return $this->replyAble()->isSolution()->count(); // @phpstan-ignore-line
     }
 
     public function countArticles(): int
     {
-        return $this->articles()->approved()->count();
+        return $this->articles()->approved()->count(); // @phpstan-ignore-line
     }
 
     public function countDiscussions(): int

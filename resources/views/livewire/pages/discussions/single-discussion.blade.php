@@ -95,18 +95,27 @@
                                 <div class="flex items-center mt-2 space-x-2">
                                     <x-link
                                         href="{{ route('discussions.edit', $discussion) }}"
-                                        class="font-sans text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
+                                        class="text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
                                     >
-                                        {{ __('Éditer') }}
+                                        {{ __('action.edit') }}
                                     </x-link>
                                     <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
                                     <button
-                                        onclick="Livewire.dispatch('openModal', {component: 'modals.delete-discussion', arguments: {{ json_encode([$discussion->id]) }})"
+                                        onclick="Livewire.dispatch('openModal', {component: 'modals.delete-discussion', arguments: {{ json_encode([$discussion->id]) }}})"
                                         type="button"
-                                        class="font-sans text-sm leading-5 text-red-500 hover:underline focus:outline-none"
+                                        class="text-sm leading-5 text-red-500 hover:underline focus:outline-none"
                                     >
-                                        {{ __('Supprimer') }}
+                                        {{ __('actions.delete') }}
                                     </button>
+                                        @can('convertedToThread', $discussion)
+                                            <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
+                                            <button
+                                                onclick="Livewire.dispatch('openModal', {component: 'modals.convert-discussion', arguments: { discussionId: {{ $discussion->id }} }})"
+                                                class="text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
+                                            >
+                                                {{ __('pages/discussion.convert_to_thread') }}
+                                            </button>
+                                        @endcan
                                 </div>
                             @endcan
                         </div>

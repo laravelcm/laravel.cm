@@ -56,4 +56,9 @@ final class DiscussionPolicy
     {
         return $user->hasVerifiedEmail() && ! $discussion->isAuthoredBy($user);
     }
+
+    public function convertedToThread(User $user, Discussion $discussion): bool
+    {
+        return $discussion->isAuthoredBy($user) || $user->isAdmin();
+    }
 }
