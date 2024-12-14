@@ -102,10 +102,14 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'settings' => 'array',
     ];
 
+    /**
+     * @param string $provider
+     * @return bool
+     */
     public function hasProvider(string $provider): bool
     {
         foreach ($this->providers as $p) {
-            if ($p->provider === $provider) { // @phpstan-ignore-line
+            if ($p->provider === $provider) {
                 return true;
             }
         }

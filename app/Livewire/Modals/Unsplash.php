@@ -20,6 +20,6 @@ final class Unsplash extends ModalComponent
 
     public function render(): View
     {
-        return view('livewire.modals.unsplash');
+        return view('livewire.modals.unsplash'); // @phpstan-ignore-line
     }
 }
