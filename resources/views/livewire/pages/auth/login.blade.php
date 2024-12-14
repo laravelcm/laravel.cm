@@ -82,7 +82,7 @@ new class extends Component
                 </div>
 
                 <div>
-                    <x-buttons.submit class="group w-full">
+                    <x-buttons.submit wire:loading.attr="data-loading" class="group w-full">
                         <span class="absolute pointer-events-none inset-y-0 left-0 flex items-center pl-3">
                             <x-untitledui-lock class="size-5 text-green-500 group-hover:text-green-600" aria-hidden="true" />
                         </span>

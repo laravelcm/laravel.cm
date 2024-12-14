@@ -7,6 +7,6 @@
     <form wire:submit="changePassword" class="mt-10 max-w-2xl">
         {{ $this->form }}
 
-        <x-buttons.submit :title="__('actions.save')" class="mt-10" />
+        <x-buttons.submit :title="__('actions.save')" wire:loading.attr="data-loading" class="mt-10" />
     </form>
 </div>

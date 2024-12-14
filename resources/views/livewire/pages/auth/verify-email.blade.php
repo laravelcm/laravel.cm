@@ -54,7 +54,7 @@ new class extends Component
 
                 <div class="flex items-center justify-between">
                     <form wire:click="sendVerification">
-                        <x-buttons.submit>{{ __('pages/auth.verify.submit') }}</x-buttons.submit>
+                        <x-buttons.submit :title="__('pages/auth.verify.submit')" wire:loading.attr="data-loading" />
                     </form>
 
                     <form wire:click="logout">

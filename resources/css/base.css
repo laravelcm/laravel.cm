@@ -23,3 +23,8 @@ input { width: 100%; }
     animation-duration: 50s;
     animation-delay: 750ms;
 }
+
+/* Fix style for the phone country input */
+.iti--inline-dropdown .iti__dropdown-content {
+  @apply mt-2 rounded-lg border-gray-200 dark:border-white/10 shadow !important;
+}

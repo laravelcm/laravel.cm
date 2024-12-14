@@ -46,6 +46,7 @@ return [
         'bio_description' => 'Écrivez quelques phrases sur vous-même.',
         'avatar_description' => 'Celle-ci sera affichée sur votre profil.',
         'twitter_helper_text' => 'Entrez votre pseudo Twitter sans le symbole @ en tête.',
+        'linkedin_helper_text' => 'Renseigner ce qui se trouve à la place de {votre-pseudo}',
         'personal_information_title' => 'Informations personnelles',
         'personal_information_description' => 'Mettez à jour vos informations personnelles. Votre adresse ne sera jamais accessible au public.',
         'unverified_mail' => 'Cette adresse mail n\'est pas vérifiée.',

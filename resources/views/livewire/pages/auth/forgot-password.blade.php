@@ -68,9 +68,11 @@ new class extends Component
                 </div>
 
                 <div class="mt-4 flex items-center justify-end">
-                    <x-buttons.submit class="relative w-full">
-                        {{ __('pages/auth.forgot.title') }}
-                    </x-buttons.submit>
+                    <x-buttons.submit
+                        :title="__('pages/auth.forgot.title')"
+                        class="relative w-full"
+                        wire:loading.attr="data-loading"
+                    />
                 </div>
             </form>
         </div>

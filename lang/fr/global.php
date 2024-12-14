@@ -100,5 +100,6 @@ return [
     'unbanned' => 'Non bannis',
     'joined' => 'Inscrit',
     'website' => 'Site internet',
+    'characters' => ':number caractères',
 
 ];

@@ -7,11 +7,12 @@
 
     <section x-data="{ activeTab: 'profile' }" class="relative mt-8 lg:flex lg:gap-12">
         <div class="lg:w-64">
-            <x-filament::tabs class="w-full text-nowrap lg:flex-col lg:space-y-2">
+            <x-filament::tabs class="profile-tabs w-full text-nowrap lg:flex-col lg:space-y-2 lg:*:justify-start">
                 <x-filament::tabs.item
                     alpine-active="activeTab === 'profile'"
                     x-on:click="activeTab = 'profile'"
                     icon="untitledui-user-02"
+                    data-slot="tab"
                 >
                     {{ __('global.navigation.profile') }}
                 </x-filament::tabs.item>
@@ -20,6 +21,7 @@
                     alpine-active="activeTab === 'password'"
                     x-on:click="activeTab = 'password'"
                     icon="untitledui-lock-keyhole-circle"
+                    data-slot="tab"
                 >
                     {{ __('global.navigation.password') }}
                 </x-filament::tabs.item>
@@ -28,6 +30,7 @@
                     alpine-active="activeTab === 'preferences'"
                     x-on:click="activeTab = 'preferences'"
                     icon="untitledui-sliders-03"
+                    data-slot="tab"
                 >
                     {{ __('global.navigation.preferences') }}
                 </x-filament::tabs.item>
@@ -36,6 +39,7 @@
                     alpine-active="activeTab === 'notifications'"
                     x-on:click="activeTab = 'notifications'"
                     icon="untitledui-bell-04"
+                    data-slot="tab"
                 >
                     {{ __('global.navigation.notifications') }}
                 </x-filament::tabs.item>
@@ -51,7 +55,7 @@
         </div>
         <div class="mt-10 lg:mt-0 lg:flex-1">
             <div x-show="activeTab === 'profile'">
-                <livewire:components.user.profil />
+                <livewire:components.user.profile />
             </div>
             <div x-cloak x-show="activeTab === 'password'">
                 <livewire:components.user.password />

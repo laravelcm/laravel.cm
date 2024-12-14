@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Events\EmailAddressWasChanged;
-use App\Livewire\Components\User\Profil;
+use App\Livewire\Components\User\Profile;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 
@@ -11,14 +11,14 @@ beforeEach(function (): void {
     $this->user = $this->login();
 });
 
-describe(Profil::class, function (): void {
+describe(Profile::class, function (): void {
     it('renders successfully', function (): void {
-        Livewire::test(Profil::class, ['user' => $this->user])
+        Livewire::test(Profile::class, ['user' => $this->user])
             ->assertStatus(200);
     });
 
     it('user can update profil', function (): void {
-        Livewire::test(Profil::class)
+        Livewire::test(Profile::class)
             ->fillForm([
                 'name' => 'John Doe',
             ])
@@ -32,7 +32,7 @@ describe(Profil::class, function (): void {
     });
 
     it('user can\'t update profil if email is null', function (): void {
-        Livewire::test(Profil::class)
+        Livewire::test(Profile::class)
             ->fillForm([
                 'email' => null,
             ])
@@ -47,7 +47,7 @@ describe(Profil::class, function (): void {
         Event::fake([
             EmailAddressWasChanged::class,
         ]);
-        Livewire::test(Profil::class)
+        Livewire::test(Profile::class)
             ->fillForm([
                 'email' => 'newemail@laravelcm.cm',
             ])

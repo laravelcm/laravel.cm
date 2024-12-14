@@ -46,12 +46,12 @@ return [
         'bio_description' => 'Write a few sentences about yourself.',
         'avatar_description' => 'This will be displayed on your profile.',
         'twitter_helper_text' => 'Enter your Twitter handle without the @ symbol at the top.',
+        'linkedin_helper_text' => 'Enter what is in place of {votre-pseudo}',
         'personal_information_title' => 'Personal information',
         'personal_information_description' => 'Update your personal information. Your address will never be accessible to the public.',
         'unverified_mail' => 'This e-mail address is not verified.',
         'social_network_title' => 'social networks',
         'social_network_description' => 'Let everyone know where they can find you.',
-
     ],
 
 ];
