@@ -6,6 +6,9 @@ namespace App\Traits;
 
 use Livewire\Attributes\Validate;
 
+/**
+ * @phpstan-ignore trait.unused
+ */
 trait WithTagsAssociation
 {
     /**

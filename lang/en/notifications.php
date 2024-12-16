@@ -43,4 +43,9 @@ return [
 
     'spam_send' => 'Your report has been sent successfully',
 
+    'discussion' => [
+        'created' => 'Discussion was successfully created.',
+        'updated' => 'Discussion was successfully updated.',
+        'deleted' => 'Discussion was successfully deleted.',
+    ],
 ];

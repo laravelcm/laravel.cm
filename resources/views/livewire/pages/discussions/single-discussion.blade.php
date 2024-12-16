@@ -93,12 +93,13 @@
 
                             @can('update', $discussion)
                                 <div class="flex items-center mt-2 space-x-2">
-                                    <x-link
-                                        href="{{ route('discussions.edit', $discussion) }}"
+                                    <button
+                                        type="button"
+                                        onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.discussion-form', arguments: {{ json_encode([$discussion->id]) }}})"
                                         class="text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
                                     >
-                                        {{ __('action.edit') }}
-                                    </x-link>
+                                        {{ __('actions.edit') }}
+                                    </button>
                                     <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
                                     <button
                                         onclick="Livewire.dispatch('openModal', {component: 'modals.delete-discussion', arguments: {{ json_encode([$discussion->id]) }}})"

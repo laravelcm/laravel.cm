@@ -37,5 +37,6 @@ return [
         'action_text' => 'Voir le fil',
         'thank_you_line' => 'Merci pour votre participation !',
     ],
+    'min_discussion_length' => 'Maximum de 160 caractères.',
 
 ];

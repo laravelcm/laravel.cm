@@ -49,9 +49,13 @@
                     </x-filament::dropdown>
 
                     @can('create', \App\Models\Discussion::class)
-                        <x-buttons.primary :href="route('discussions.new')">
-                            {{ __('pages/discussion.new_discussion') }}
-                        </x-buttons.primary>
+                            <x-buttons.primary
+                                type="button"
+                                onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.discussion-form' })"
+                                class="gap-2 w-full justify-center py-2.5"
+                            >
+                                {{ __('pages/discussion.new_discussion') }}
+                            </x-buttons.primary>
                     @endcan
                 </div>
             </div>

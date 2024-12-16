@@ -37,5 +37,6 @@ return [
         'action_text' => 'View Thread',
         'thank_you_line' => 'Thank you for your participation!',
     ],
+    'min_discussion_length' => '160 characters maximum',
 
 ];
