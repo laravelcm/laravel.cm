@@ -63,10 +63,6 @@
                                 <x-icon.telegram class="size-5 text-[#34AADF]" aria-hidden="true" />
                                 Telegram
                             </x-link>
-                            <x-link href="https://chat.whatsapp.com/G8e98Ms0MgSLEOGd3Uai1i" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
-                                <x-icon.whatsapp class="size-5 text-[#28D146]" aria-hidden="true" />
-                                WhatsApp
-                            </x-link>
                         </div>
                         <livewire:components.change-locale />
                     </div>

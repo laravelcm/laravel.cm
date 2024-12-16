@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Actions\User\UpdateUserProfileAction;
 use App\Events\EmailAddressWasChanged;
 use App\Livewire\Components\User\Profile;
 use Illuminate\Support\Facades\Event;
@@ -22,7 +23,7 @@ describe(Profile::class, function (): void {
             ->fillForm([
                 'name' => 'John Doe',
             ])
-            ->call('updateProfil')
+            ->call('save')
             ->assertHasNoFormErrors();
 
         $this->user->refresh();
@@ -31,12 +32,12 @@ describe(Profile::class, function (): void {
             ->and($this->user->email)->toBe($this->user->email);
     });
 
-    it('user can\'t update profil if email is null', function (): void {
+    it('user can\'t update profil if required information was not send', function (): void {
         Livewire::test(Profile::class)
             ->fillForm([
                 'email' => null,
             ])
-            ->call('updateProfil')
+            ->call('save')
             ->assertHasFormErrors(['email' => 'required']);
 
         expect($this->user->email)
@@ -44,15 +45,12 @@ describe(Profile::class, function (): void {
     });
 
     it('can send notification when user email change', function (): void {
-        Event::fake([
-            EmailAddressWasChanged::class,
-        ]);
-        Livewire::test(Profile::class)
-            ->fillForm([
-                'email' => 'newemail@laravelcm.cm',
-            ])
-            ->call('updateProfil')
-            ->assertHasNoFormErrors();
+        Event::fake([EmailAddressWasChanged::class]);
+
+        $data = ['email' => 'newemail@laravelcm.cm'];
+
+        app(UpdateUserProfileAction::class)
+            ->execute($data, $this->user, (string) $this->user->email);
 
         Event::assertDispatched(EmailAddressWasChanged::class);
 

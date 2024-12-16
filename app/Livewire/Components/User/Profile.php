@@ -6,6 +6,7 @@ namespace App\Livewire\Components\User;
 
 use App\Actions\User\UpdateUserProfileAction;
 use App\Models\User;
+use App\Traits\FormatSocialAccount;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -25,6 +26,7 @@ use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
  */
 final class Profile extends Component implements HasForms
 {
+    use FormatSocialAccount;
     use InteractsWithForms;
 
     public ?array $data = [];
@@ -108,6 +110,9 @@ final class Profile extends Component implements HasForms
                             ->label(__('GitHub'))
                             ->placeholder('laravelcm')
                             ->unique(ignoreRecord: true)
+                            ->maxLength(255)
+                            ->live(true)
+                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('github_profile', $this->formatGithubHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                     <x-icon.github
@@ -120,6 +125,9 @@ final class Profile extends Component implements HasForms
                             ->label(__('Twitter'))
                             ->helperText(__('pages/account.settings.twitter_helper_text'))
                             ->unique(ignoreRecord: true)
+                            ->maxLength(255)
+                            ->live(true)
+                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('twitter_profile', $this->formatTwitterHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                     <x-icon.twitter
@@ -132,6 +140,9 @@ final class Profile extends Component implements HasForms
                             ->label(__('LinkedIn'))
                             ->placeholder('laravelcm')
                             ->unique(ignoreRecord: true)
+                            ->maxLength(255)
+                            ->live(true)
+                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('linkedin_profile', $this->formatLinkedinHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                     <x-icon.linkedin
