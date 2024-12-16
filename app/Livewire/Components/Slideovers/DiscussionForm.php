@@ -72,7 +72,8 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
                     ->searchable()
                     ->required()
                     ->minItems(1)
-                    ->maxItems(3),
+                    ->maxItems(3)
+                    ->preload(),
                 Forms\Components\MarkdownEditor::make('body')
                     ->fileAttachmentsDisk('public')
                     ->toolbarButtons([
@@ -133,8 +134,7 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
             ->success()
             ->send();
 
-        // @phpstan-ignore-next-line
-        $this->redirect(route('discussions.show', ['discussion' => $discussion ?? $this->discussion]), navigate: true);
+        $this->redirect(route('discussions.show', ['discussion' => $discussion]), navigate: true);
     }
 
     public static function panelMaxWidth(): string

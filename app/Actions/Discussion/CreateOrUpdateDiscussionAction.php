@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 final class CreateOrUpdateDiscussionAction
 {
-    public function handle(array $data, ?int $discussionId = null): Discussion
+    public function handle(array $formValues, ?int $discussionId = null): Discussion
     {
-        return DB::transaction(function () use ($data, $discussionId) {
+        return DB::transaction(function () use ($formValues, $discussionId) {
             /** @var Discussion $discussion */
             $discussion = Discussion::query()->updateOrCreate(
                 ['id' => $discussionId],
-                $data
+                $formValues
             );
 
             if (! $discussionId) {
