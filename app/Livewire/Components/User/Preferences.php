@@ -32,7 +32,7 @@ final class Preferences extends Component
     {
         $this->user->settings(['theme' => $value]);
 
-        $this->redirectRoute('settings');
+        $this->redirectRoute('settings', navigate: true);
     }
 
     public function render(): View

@@ -6,6 +6,6 @@ use App\Livewire\Components\User\Activities;
 use Livewire\Livewire;
 
 it('renders successfully', function (): void {
-    Livewire::test(Activities::class)
+    Livewire::test(Activities::class, ['user' => $this->login()])
         ->assertStatus(200);
 });

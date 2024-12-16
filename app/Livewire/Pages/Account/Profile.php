@@ -14,8 +14,7 @@ final class Profile extends Component
 
     public function mount(User $user): void
     {
-        $this->user = $user;
-        $this->user = $this->user->load([
+        $this->user = $user->load([
             'activities',
             'articles',
             'articles.tags',

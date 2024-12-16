@@ -8,7 +8,6 @@ trait FormatSocialAccount
 {
     public function formatTwitterHandle(?string $userSocial): ?string
     {
-
         if (! $userSocial) {
             return null;
         }
@@ -22,6 +21,7 @@ trait FormatSocialAccount
         if (str_contains($handle, 'https://twitter.com/')) {
             return substr($handle, strlen('https://twitter.com/'));
         }
+
         if (str_contains($handle, '@')) {
             return substr($handle, strlen('@'));
         }
@@ -31,7 +31,6 @@ trait FormatSocialAccount
 
     public function formatGithubHandle(?string $userSocial): ?string
     {
-
         if (! $userSocial) {
             return null;
         }

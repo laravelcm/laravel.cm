@@ -14,11 +14,4 @@ return new class extends Migration
             $table->dropColumn('avatar');
         });
     }
-
-    public function down(): void
-    {
-        Schema::table('users', function (Blueprint $table): void {
-            $table->string('avatar')->nullable();
-        });
-    }
 };
