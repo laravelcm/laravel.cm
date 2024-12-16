@@ -6,40 +6,16 @@ namespace App\Traits;
 
 trait FormatSocialAccount
 {
-    public function formatTwitterHandle(?string $userSocial): ?string
-    {
-        if (! $userSocial) {
-            return null;
-        }
-
-        $handle = trim($userSocial);
-
-        if (str_contains($handle, 'https://x.com/')) {
-            return substr($handle, strlen('https://x.com/'));
-        }
-
-        if (str_contains($handle, 'https://twitter.com/')) {
-            return substr($handle, strlen('https://twitter.com/'));
-        }
-
-        if (str_contains($handle, '@')) {
-            return substr($handle, strlen('@'));
-        }
-
-        return $handle;
-    }
-
     public function formatGithubHandle(?string $userSocial): ?string
     {
         if (! $userSocial) {
             return null;
         }
 
-        $handle = trim($userSocial);
-        $domain = 'https://github.com/';
+        $handle = $this->trimAndRemovePrefix($userSocial);
 
-        if (str_contains($handle, $domain)) {
-            return substr($handle, strlen($domain));
+        if (str_contains($handle, 'github.com')) {
+            return substr($handle, strpos($handle, 'github.com/') + 11);
         }
 
         return $handle;
@@ -51,13 +27,41 @@ trait FormatSocialAccount
             return null;
         }
 
-        $handle = trim($userSocial);
-        $domain = 'https://www.linkedin.com/in/';
+        $handle = $this->trimAndRemovePrefix($userSocial);
 
-        if (str_contains($handle, $domain)) {
-            return substr($handle, strlen($domain));
+        if (str_contains($handle, 'linkedin.com/in/')) {
+            return substr($handle, strpos($handle, 'linkedin.com/in/') + 16);
         }
 
         return $handle;
+    }
+
+    public function formatTwitterHandle(?string $userSocial): ?string
+    {
+        if (! $userSocial) {
+            return null;
+        }
+        if (str_starts_with(trim($userSocial), '@')) {
+            return substr(trim($userSocial), 1);
+        }
+
+        $handle = $this->trimAndRemovePrefix($userSocial);
+
+        if (str_contains($handle, 'twitter.com/') || str_contains($handle, 'x.com/')) {
+            if (str_contains($handle, 'twitter.com/')) {
+                return substr($handle, strpos($handle, 'twitter.com/') + 12);
+            } else {
+                return substr($handle, strpos($handle, 'x.com/') + 6);
+            }
+        }
+
+        return $handle;
+    }
+
+    private function trimAndRemovePrefix($url): string
+    {
+        $url = preg_replace('~https?://~', '', $url);
+
+        return trim(preg_replace('~www\.~', '', $url));
     }
 }

@@ -67,7 +67,7 @@ final class Profile extends Component implements HasForms
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(30)
-                            ->rules('lowercase'),
+                            ->rules(['lowercase', 'alpha_dash']),
                         Forms\Components\Textarea::make('bio')
                             ->label(__('validation.attributes.bio'))
                             ->hint(__('global.characters', ['number' => 160]))
