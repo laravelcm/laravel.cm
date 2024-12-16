@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Slideovers;
 
+use App\Actions\Discussion\CreateOrUpdateDiscussionAction;
 use App\Exceptions\UnverifiedUserException;
-use App\Gamify\Points\DiscussionCreated;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Discussion;
 use Filament\Forms;
@@ -13,11 +13,13 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
 /**
@@ -70,7 +72,6 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
                 Forms\Components\MarkdownEditor::make('body')
                     ->fileAttachmentsDisk('public')
                     ->toolbarButtons([
-                        'attachFiles',
                         'blockquote',
                         'bold',
                         'bulletList',
@@ -89,6 +90,12 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
             ->model($this->discussion);
     }
 
+    /**
+     * @throws UnverifiedUserException
+     * @throws AuthorizationException
+     * @throws ValidationException
+     * @throws \Exception
+     */
     public function save(): void
     {
         // @phpstan-ignore-next-line
@@ -106,16 +113,12 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
 
         $validated = $this->form->getState();
 
-        if ($this->discussion?->id) {
-            $this->discussion->update($validated);
-            $this->form->model($this->discussion)->saveRelationships();
-        } else {
-            $discussion = Discussion::query()->create($validated);
-            $this->form->model($discussion)->saveRelationships();
+        $discussion = app(CreateOrUpdateDiscussionAction::class)->handle(
+            data : $validated,
+            discussionId: $this->discussion?->id
+        );
 
-            // @phpstan-ignore-next-line
-            givePoint(new DiscussionCreated($discussion));
-        }
+        $this->form->model($discussion)->saveRelationships();
 
         Notification::make()
             ->title(
@@ -126,6 +129,7 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
             ->success()
             ->send();
 
+        // @phpstan-ignore-next-line
         $this->redirect(route('discussions.show', ['discussion' => $discussion ?? $this->discussion]), navigate: true);
     }
 
