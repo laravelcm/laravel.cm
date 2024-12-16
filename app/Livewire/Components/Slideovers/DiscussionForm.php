@@ -119,7 +119,7 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
         $validated = $this->form->getState();
 
         $discussion = app(CreateOrUpdateDiscussionAction::class)->handle(
-            data : $validated,
+            formValues : $validated,
             discussionId: $this->discussion?->id
         );
 
