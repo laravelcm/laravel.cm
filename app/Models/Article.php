@@ -14,6 +14,7 @@ use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -236,13 +237,13 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
         return parent::delete();
     }
 
-    public function scopePublished()
+    public function scopePublished(): Builder
     {
-        return self::published(); // @phpstan-ignore-line
+        return self::published();
     }
 
-    public function scopeRecent()
+    public function scopeRecent(): Builder
     {
-        return self::recent(); // @phpstan-ignore-line
+        return self::recent();
     }
 }
