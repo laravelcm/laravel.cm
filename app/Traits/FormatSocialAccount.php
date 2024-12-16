@@ -58,7 +58,7 @@ trait FormatSocialAccount
         return $handle;
     }
 
-    private function trimAndRemovePrefix($url): string
+    private function trimAndRemovePrefix(string $url): string
     {
         $url = preg_replace('~https?://~', '', $url);
 
