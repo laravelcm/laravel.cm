@@ -28,8 +28,7 @@ final class Profile extends Component
     {
         return view('livewire.pages.account.profile', [
             'articles' => $this->user->articles()
-                ->published()
-                ->recent()
+                ->scopes(['recent', 'published'])
                 ->limit(5)
                 ->get(),
             'threads' => $this->user->threads()

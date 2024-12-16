@@ -22,10 +22,12 @@ final class UpdateUserSocialAccount extends Command
 
         foreach (User::verifiedUsers()->get() as $user) {
             $this->info('Updating '.$user->username.'...');
-            $user->twitter_profile = $this->formatTwitterHandle($user->twitter_profile);
-            $user->github_profile = $this->formatGithubHandle($user->github_profile);
-            $user->linkedin_profile = $this->formatLinkedinHandle($user->linkedin_profile);
-            $user->save();
+            $user->update([
+                'twitter_profile' => $this->formatTwitterHandle($user->twitter_profile),
+                'github_profile' => $this->formatGithubHandle($user->github_profile),
+                'linkedin_profile' => $this->formatLinkedinHandle($user->linkedin_profile),
+            ]);
+            $this->line('');
         }
 
         $this->info('All done!');

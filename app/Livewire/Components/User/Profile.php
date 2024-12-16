@@ -111,7 +111,6 @@ final class Profile extends Component implements HasForms
                             ->placeholder('laravelcm')
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->live(true)
                             ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('github_profile', $this->formatGithubHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
@@ -126,7 +125,6 @@ final class Profile extends Component implements HasForms
                             ->helperText(__('pages/account.settings.twitter_helper_text'))
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->live(true)
                             ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('twitter_profile', $this->formatTwitterHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
@@ -141,7 +139,6 @@ final class Profile extends Component implements HasForms
                             ->placeholder('laravelcm')
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->live(true)
                             ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('linkedin_profile', $this->formatLinkedinHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
