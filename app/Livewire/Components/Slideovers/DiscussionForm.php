@@ -64,7 +64,11 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
                 Forms\Components\Hidden::make('slug'),
                 Forms\Components\Select::make('tags')
                     ->multiple()
-                    ->relationship(titleAttribute: 'name')
+                    ->relationship(
+                        name: 'tags',
+                        titleAttribute: 'name',
+                        modifyQueryUsing: fn ($query) => $query->whereJsonContains('concerns', 'discussion')
+                    )
                     ->searchable()
                     ->required()
                     ->minItems(1)
