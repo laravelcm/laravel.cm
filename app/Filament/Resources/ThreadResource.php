@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ThreadResource\Pages;
+use App\Gamify\Points\ThreadDeleted;
 use App\Models\Thread;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -62,7 +63,8 @@ final class ThreadResource extends Resource
                         ->color('success')
                         ->url(fn (Thread $record): string => route('forum.show', $record))
                         ->openUrlInNewTab(),
-                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\DeleteAction::make()
+                        ->after(fn ($record) => undoPoint(new ThreadDeleted($record))),
                 ]),
             ])
             ->bulkActions([

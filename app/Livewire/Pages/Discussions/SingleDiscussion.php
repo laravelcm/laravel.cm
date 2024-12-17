@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Pages\Discussions;
 
 use App\Actions\Discussion\ConvertDiscussionToThreadAction;
+use App\Gamify\Points\DiscussionDeleted;
 use App\Models\Discussion;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
@@ -80,7 +81,8 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
             ->authorize('delete', $this->discussion)
             ->requiresConfirmation()
             ->successNotificationTitle(__('notifications.discussion.deleted'))
-            ->successRedirectUrl(route('discussions.index'));
+            ->successRedirectUrl(route('discussions.index'))
+            ->after(fn ($record) => undoPoint(new DiscussionDeleted($record)));
     }
 
     public function render(): View
