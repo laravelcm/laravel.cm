@@ -32,7 +32,7 @@ final class TagResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->live(onBlur: true)
                     ->required()
-                    ->unique()
+                    ->unique(ignoreRecord: true)
                     ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state)))
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('slug')
