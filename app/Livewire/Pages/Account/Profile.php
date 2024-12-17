@@ -12,18 +12,6 @@ final class Profile extends Component
 {
     public User $user;
 
-    public function mount(User $user): void
-    {
-        $this->user = $user->load([
-            'activities',
-            'articles',
-            'articles.tags',
-            'discussions',
-            'discussions.tags',
-            'threads',
-        ]);
-    }
-
     public function render(): View
     {
         return view('livewire.pages.account.profile', [

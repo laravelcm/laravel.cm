@@ -37,7 +37,7 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
             ->twitterSite('laravelcm')
             ->withUrl();
 
-        $this->discussion = $discussion->load('tags');
+        $this->discussion = $discussion->load('tags', 'replies', 'reactions', 'replies.user');
     }
 
     public function editAction(): Action
@@ -85,6 +85,7 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
 
     public function render(): View
     {
-        return view('livewire.pages.discussions.single-discussion')->title($this->discussion->title);
+        return view('livewire.pages.discussions.single-discussion')
+            ->title($this->discussion->title);
     }
 }

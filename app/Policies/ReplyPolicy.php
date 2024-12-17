@@ -36,4 +36,9 @@ final class ReplyPolicy
     {
         return $user->hasVerifiedEmail() && ! $reply->isAuthoredBy($user);
     }
+
+    public function like(User $user, Reply $reply): bool
+    {
+        return $user->hasVerifiedEmail();
+    }
 }

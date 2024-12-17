@@ -11,6 +11,7 @@
     "archtechx/laravel-seo": "^0.10",
     "awcodes/filament-badgeable-column": "^2.3",
     "blade-ui-kit/blade-heroicons": "^2.4",
+    "codeat3/blade-phosphor-icons": "^2.0",
     "cyrildewit/eloquent-viewable": "^7.0",
     "doctrine/dbal": "^3.6.4",
     "dutchcodingcompany/livewire-recaptcha": "^1.0",

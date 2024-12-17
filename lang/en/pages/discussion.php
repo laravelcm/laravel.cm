@@ -21,6 +21,7 @@ return [
     'comments_count' => 'Comments (:count)',
     'convert_to_thread' => 'Convert to thread',
     'confirm_conversion' => 'Confirm conversion',
+    'confirm_comment_remove' => 'Are you sure you want to delete this comment?',
     'text_confirmation' => 'Do you really want to turn this discussion into a topic?',
     'converted_by_admin' => [
         'subject' => 'Discussion Converted to Thread by the administrator',
@@ -38,5 +39,6 @@ return [
         'thank_you_line' => 'Thank you for your participation!',
     ],
     'min_discussion_length' => '160 characters maximum',
+    'placeholder' => 'Your comment here...',
 
 ];

@@ -121,7 +121,7 @@
                 @endauth
             </div>
 
-            <livewire:discussions.comments :discussion="$discussion" />
+            <livewire:components.discussion.comments :discussion="$discussion" />
         </div>
 
         <div class="relative hidden lg:col-span-2 lg:block">

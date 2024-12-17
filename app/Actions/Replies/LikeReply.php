@@ -10,7 +10,7 @@ use App\Models\User;
 
 final class LikeReply
 {
-    public function handle(User $user, Reply $reply, string $reaction = 'love'): void
+    public function __invoke(User $user, Reply $reply, string $reaction = 'love'): void
     {
         /** @var Reaction $react */
         $react = Reaction::query()->where('name', $reaction)->first();

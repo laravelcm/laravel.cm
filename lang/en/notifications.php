@@ -49,5 +49,7 @@ return [
         'created' => 'Discussion was successfully created.',
         'updated' => 'Discussion was successfully updated.',
         'deleted' => 'Discussion was successfully deleted.',
+        'save_comment' => 'Your comment has been saved',
+        'delete_comment' => 'Your comment has been deleted',
     ],
 ];

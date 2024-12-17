@@ -12,17 +12,17 @@ use Illuminate\Database\Eloquent\Model;
 
 final class CreateReply
 {
-    public function handle(string $body, User $user, Model $model): Reply
+    public function __invoke(string $body, User $user, Model $model): Reply
     {
         $reply = new Reply(['body' => $body]);
         $reply->authoredBy($user);
-        $reply->to($model);
+        $reply->to($model); // @phpstan-ignore-line
         $reply->save();
 
         $user->givePoint(new ReplyCreated($model, $user));
 
         // On envoie un event pour une nouvelle réponse à tous les abonnés de la discussion
-        event(new CommentWasAdded($reply, $model));
+        event(new CommentWasAdded($reply, $model));  // @phpstan-ignore-line
 
         return $reply;
     }
