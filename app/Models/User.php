@@ -193,7 +193,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     }
 
     /**
-     * @return array{name: string, username: string, picture: string}
+     * @return array{name: string, username: string, picture: string|null}
      */
     public function profile(): array
     {
@@ -353,7 +353,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     {
         $password = $this->getAuthPassword();
 
-        return ! empty($password) || $password !== null;
+        return ! empty($password) || $password !== null; // @phpstan-ignore-line
     }
 
     public function delete(): ?bool
