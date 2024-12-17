@@ -16,7 +16,6 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
@@ -37,17 +36,15 @@ final class ArticleForm extends SlideOverComponent implements HasForms
 
     public function mount(?int $articleId = null): void
     {
-        /** @var Article $article */
-        $article = $articleId
+        // @phpstan-ignore-next-line
+        $this->article = $articleId
             ? Article::query()->findOrFail($articleId)
             : new Article;
 
-        $this->form->fill(array_merge($article->toArray(), [
-            'is_draft' => ! $article->published_at,
-            'published_at' => $article->published_at,
+        $this->form->fill(array_merge($this->article->toArray(), [
+            'is_draft' => ! $this->article->published_at, // @phpstan-ignore-line
+            'published_at' => $this->article->published_at, // @phpstan-ignore-line
         ]));
-
-        $this->article = $article;
     }
 
     public static function panelMaxWidth(): string
@@ -78,29 +75,26 @@ final class ArticleForm extends SlideOverComponent implements HasForms
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state))),
                         Forms\Components\Hidden::make('slug'),
-                        Forms\Components\Select::make('tags')
-                            ->label(__('Tags'))
-                            ->relationship(
-                                titleAttribute: 'name',
-                                modifyQueryUsing: fn (Builder $query): Builder => $query->whereJsonContains('concerns', ['post'])
-                            )
-                            ->searchable()
-                            ->preload()
-                            ->multiple()
-                            ->required()
-                            ->minItems(1)
-                            ->maxItems(3),
-                        Forms\Components\MarkdownEditor::make('body')
-                            ->label(__('validation.attributes.content'))
-                            ->fileAttachmentsDisk('public')
-                            ->minLength(10)
-                            ->minHeight('20.25rem')
-                            ->maxHeight('32.75rem')
-                            ->required(),
-                        Forms\Components\Placeholder::make('')
-                            ->content(fn () => new HtmlString(Blade::render(<<<'Blade'
-                                <x-torchlight />
-                            Blade))),
+                        Forms\Components\TextInput::make('canonical_url')
+                            ->label(__('pages/article.form.canonical_url'))
+                            ->helperText(__('pages/article.canonical_help')),
+                        Forms\Components\Grid::make()
+                            ->schema([
+                                Forms\Components\Toggle::make('is_draft')
+                                    ->label(__('pages/article.form.draft'))
+                                    ->live()
+                                    ->offIcon('untitledui-check')
+                                    ->onColor('success')
+                                    ->onIcon('untitledui-pencil-line')
+                                    ->helperText(__('pages/article.draft_help')),
+                                Forms\Components\DatePicker::make('published_at')
+                                    ->label(__('pages/article.form.published_at'))
+                                    ->minDate(now())
+                                    ->prefixIcon('untitledui-calendar-date')
+                                    ->native(false)
+                                    ->visible(fn (Forms\Get $get): bool => $get('is_draft') === false)
+                                    ->required(fn (Forms\Get $get): bool => $get('is_draft') === false),
+                            ]),
                     ])
                     ->columnSpan(2),
                 Forms\Components\Group::make()
@@ -109,24 +103,33 @@ final class ArticleForm extends SlideOverComponent implements HasForms
                             ->collection('media')
                             ->label(__('pages/article.form.cover'))
                             ->maxSize(1024),
-                        Forms\Components\Toggle::make('is_draft')
-                            ->label(__('pages/article.form.draft'))
-                            ->live()
-                            ->offIcon('untitledui-check')
-                            ->onColor('success')
-                            ->onIcon('untitledui-pencil-line')
-                            ->helperText(__('pages/article.draft_help')),
-                        Forms\Components\DatePicker::make('published_at')
-                            ->label(__('pages/article.form.published_at'))
-                            ->minDate(now())
-                            ->native(false)
-                            ->visible(fn (Forms\Get $get): bool => $get('is_draft') === false)
-                            ->required(fn (Forms\Get $get): bool => $get('is_draft') === false),
-                        Forms\Components\TextInput::make('canonical_url')
-                            ->label(__('pages/article.form.canonical_url'))
-                            ->helperText(__('pages/article.canonical_help')),
+                        Forms\Components\Select::make('tags')
+                            ->multiple()
+                            ->relationship(
+                                name: 'tags',
+                                titleAttribute: 'name',
+                                modifyQueryUsing: fn ($query) => $query->whereJsonContains('concerns', 'post')
+                            )
+                            ->preload()
+                            ->required()
+                            ->minItems(1)
+                            ->maxItems(3),
                     ])
                     ->columnSpan(1),
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\MarkdownEditor::make('body')
+                            ->label(__('validation.attributes.content'))
+                            ->fileAttachmentsDisk('public')
+                            ->minLength(10)
+                            ->maxHeight('20.25rem')
+                            ->required(),
+                        Forms\Components\Placeholder::make('')
+                            ->content(fn () => new HtmlString(Blade::render(<<<'Blade'
+                                <x-torchlight />
+                            Blade))),
+                    ])
+                    ->columnSpanFull(),
             ])
             ->columns(3)
             ->statePath('data')

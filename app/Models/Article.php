@@ -14,7 +14,6 @@ use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +41,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property \Illuminate\Support\Carbon | null $sponsored_at
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
+ * @property \Illuminate\Database\Eloquent\Collection | Tag[] $tags
  */
 #[ScopedBy([LocaleScope::class])]
 final class Article extends Model implements HasMedia, ReactableInterface, Viewable
@@ -235,15 +235,5 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
         $this->removeTags();
 
         return parent::delete();
-    }
-
-    public function scopePublished(): Builder
-    {
-        return self::published();
-    }
-
-    public function scopeRecent(): Builder
-    {
-        return self::recent();
     }
 }
