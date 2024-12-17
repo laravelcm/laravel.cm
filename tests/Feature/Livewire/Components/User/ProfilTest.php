@@ -19,7 +19,7 @@ describe(Profile::class, function (): void {
     });
 
     it('user can update profil', function (): void {
-        Livewire::test(Profile::class)
+        Livewire::test(Profile::class, ['user' => $this->user])
             ->fillForm([
                 'name' => 'John Doe',
             ])
@@ -33,7 +33,7 @@ describe(Profile::class, function (): void {
     });
 
     it('user can\'t update profil if required information was not send', function (): void {
-        Livewire::test(Profile::class)
+        Livewire::test(Profile::class, ['user' => $this->user])
             ->fillForm([
                 'email' => null,
             ])
