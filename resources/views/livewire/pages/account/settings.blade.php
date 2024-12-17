@@ -55,7 +55,7 @@
         </div>
         <div class="mt-10 lg:mt-0 lg:flex-1">
             <div x-show="activeTab === 'profile'">
-                <livewire:components.user.profile />
+                <livewire:components.user.profile :user="\Illuminate\Support\Facades\Auth::user()" />
             </div>
             <div x-cloak x-show="activeTab === 'password'">
                 <livewire:components.user.password />

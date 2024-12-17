@@ -18,12 +18,4 @@ Route::middleware(['auth', 'checkIfBanned', 'verified'])->group(function (): voi
     Route::get('/dashboard', Account\Dashboard::class)->name('dashboard');
 });
 
-// User
-Route::prefix('dashboard')->middleware(['auth', 'checkIfBanned', 'verified'])->group(function (): void {
-    Route::get('/', Account\Dashboard::class)->name('dashboard');
-    // Route::get('/', [User\DashboardController::class, 'dashboard'])->name('dashboard');
-    // Route::get('/threads', [User\DashboardController::class, 'threads'])->name('threads.me');
-    // Route::get('/discussions', [User\DashboardController::class, 'discussions'])->name('discussions.me');
-});
-
 Route::get('/@{user:username?}', Account\Profile::class)->name('profile');

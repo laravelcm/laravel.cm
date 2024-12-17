@@ -8,9 +8,6 @@ use App\Models\User;
 
 final class UserObserver
 {
-    /**
-     * Handle the User "updated" event.
-     */
     public function updated(User $user): void
     {
         $media = $user->getMedia('avatar')->first();

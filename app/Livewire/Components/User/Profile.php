@@ -31,6 +31,8 @@ final class Profile extends Component implements HasForms
 
     public ?array $data = [];
 
+    public User $user;
+
     public string $currentUserEmail;
 
     public function mount(): void
@@ -38,12 +40,6 @@ final class Profile extends Component implements HasForms
         $this->form->fill($this->user->toArray());
 
         $this->currentUserEmail = $this->user->email;
-    }
-
-    #[Computed]
-    public function user(): User
-    {
-        return Auth::user(); // @phpstan-ignore-line
     }
 
     public function form(Form $form): Form

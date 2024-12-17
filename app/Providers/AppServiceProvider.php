@@ -10,7 +10,6 @@ use App\Models\Discussion;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
-use App\Observers\UserObserver;
 use App\View\Composers\InactiveDiscussionsComposer;
 use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
@@ -51,7 +50,6 @@ final class AppServiceProvider extends ServiceProvider
         ]);
 
         ReplyResource::withoutWrapping();
-        User::observe(UserObserver::class);
     }
 
     public function registerBladeDirective(): void
