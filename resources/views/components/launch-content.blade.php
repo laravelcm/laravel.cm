@@ -17,13 +17,16 @@
                     <x-untitledui-help-circle class="size-5" aria-hidden="true" />
                 </span>
                 <div>
-                    <p class="font-medium text-gray-900 dark:text-white">{{ __('global.launch_modal.forum_action') }}</p>
+                    <p class="font-medium text-gray-900 dark:text-white">
+                        {{ __('global.launch_modal.forum_action') }}
+                    </p>
                     <p class="mt-1.5 text-sm text-gray-500 dark:text-gray-400">
                         {{ __('global.launch_modal.forum_description') }}
                     </p>
                 </div>
             </button>
         @endcan
+
         @can('create', \App\Models\Article::class)
             <button
                 type="button"
@@ -34,23 +37,29 @@
                     <x-untitledui-file-06 class="size-5" aria-hidden="true" />
                 </span>
                 <div>
-                    <p class="font-medium text-gray-900 dark:text-white">{{ __('global.launch_modal.article_action') }}</p>
+                    <p class="font-medium text-gray-900 dark:text-white">
+                        {{ __('global.launch_modal.article_action') }}
+                    </p>
                     <p class="mt-1.5 text-sm text-gray-500 dark:text-gray-400">
                         {{ __('global.launch_modal.article_description') }}
                     </p>
                 </div>
             </button>
         @endcan
+
         @can('create', \App\Models\Discussion::class)
             <button
                 type="button"
                 class="group relative inline-flex items-start p-4 rounded-xl hover:bg-gray-50 gap-4 text-left dark:hover:bg-gray-800 transition-all duration-200 ease-in-out"
+                onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.discussion-form' })"
             >
                 <span class="inline-flex items-center justify-center size-10 shrink-0 rounded-full bg-primary-600 text-white">
                     <x-untitledui-message-text-square class="size-5" aria-hidden="true" />
                 </span>
                 <div>
-                    <p class="font-medium text-gray-900 dark:text-white">{{ __('global.launch_modal.discussion_action') }}</p>
+                    <p class="font-medium text-gray-900 dark:text-white">
+                        {{ __('global.launch_modal.discussion_action') }}
+                    </p>
                     <p class="mt-1.5 text-sm text-gray-500 dark:text-gray-400">
                         {{ __('global.launch_modal.discussion_description') }}
                     </p>

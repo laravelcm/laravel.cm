@@ -46,6 +46,6 @@ return [
     'discussion' => [
         'created' => 'Votre discussion à été créée.',
         'updated' => 'Votre discussion à été modifiée.',
-        'deleted' => 'La discussion a été supprimée.',
+        'deleted' => 'Le sujet de discussion a été supprimé.',
     ],
 ];

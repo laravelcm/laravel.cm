@@ -13,13 +13,11 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
 /**
@@ -69,13 +67,11 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
                         titleAttribute: 'name',
                         modifyQueryUsing: fn ($query) => $query->whereJsonContains('concerns', 'discussion')
                     )
-                    ->searchable()
                     ->required()
                     ->minItems(1)
                     ->maxItems(3)
                     ->preload(),
                 Forms\Components\MarkdownEditor::make('body')
-                    ->fileAttachmentsDisk('public')
                     ->toolbarButtons([
                         'blockquote',
                         'bold',
@@ -84,6 +80,7 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
                         'link',
                     ])
                     ->label(__('validation.attributes.content'))
+                    ->maxHeight('18.25rem')
                     ->required()
                     ->minLength(20),
                 Forms\Components\Placeholder::make('')
@@ -95,12 +92,6 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
             ->model($this->discussion);
     }
 
-    /**
-     * @throws UnverifiedUserException
-     * @throws AuthorizationException
-     * @throws ValidationException
-     * @throws \Exception
-     */
     public function save(): void
     {
         // @phpstan-ignore-next-line
@@ -116,10 +107,8 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
 
         $this->validate();
 
-        $validated = $this->form->getState();
-
         $discussion = app(CreateOrUpdateDiscussionAction::class)->handle(
-            formValues : $validated,
+            formValues : $this->form->getState(),
             discussionId: $this->discussion?->id
         );
 

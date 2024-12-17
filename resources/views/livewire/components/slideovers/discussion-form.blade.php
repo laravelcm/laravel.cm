@@ -12,6 +12,5 @@
         </div>
 
         {{ $this->form }}
-
     </div>
 </x-form-slider-over>

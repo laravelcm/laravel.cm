@@ -1,4 +1,4 @@
-<x-container class="py-12 lg:pb-20">
+<x-container class="py-12 lg:pb-20" x-data>
     <div class="relative lg:grid lg:grid-cols-7 lg:gap-12">
         <div class="lg:col-span-5 lg:max-w-3xl">
             <nav class="flex items-center gap-2 text-sm" aria-label="Breadcrumb">
@@ -26,6 +26,7 @@
                         <span class="inline-flex items-center justify-center text-gray-500 rounded-full size-8 bg-white dark:text-gray-400 dark:bg-gray-800">
                             <x-heroicon-s-tag class="size-5" aria-hidden="true" />
                         </span>
+
                         @if ($discussion->tags->isNotEmpty())
                             <div class="flex items-center space-x-2">
                                 @foreach ($discussion->tags as $tag)
@@ -38,86 +39,73 @@
                         @endif
                     </div>
                 </div>
-                <div class="relative pb-8">
-                    <div class="relative sm:flex sm:space-x-3">
-                        <div class="flex items-center sm:items-start">
-                            <div class="shrink-0">
-                                <x-user.avatar :user="$discussion->user" class="size-10" />
-                            </div>
-                            <div class="ml-4 sm:hidden">
-                                <x-link :href="route('profile', $discussion->user->username)">
-                                    <h4 class="inline-flex items-center text-sm font-medium text-gray-900 dark:text-white">
-                                        {{ $discussion->user->name }}
-                                        @if ($discussion->user->isAdmin() || $discussion->user->isModerator())
-                                            <x-user.status />
-                                        @endif
-                                    </h4>
-                                </x-link>
-                                <div class="text-sm whitespace-nowrap text-gray-400 dark:text-gray-500">
-                                    <time datetime="{{ $discussion->created_at->format('Y-m-d') }}">
-                                        {{ $discussion->created_at->diffForHumans() }}
-                                    </time>
-                                </div>
+                <div class="relative group pb-8 sm:flex sm:space-x-3">
+                    <div class="flex items-center sm:items-start">
+                        <div class="shrink-0">
+                            <x-user.avatar :user="$discussion->user" class="size-10" />
+                        </div>
+                        <div class="ml-4 sm:hidden">
+                            <x-link :href="route('profile', $discussion->user->username)">
+                                <h4 class="inline-flex items-center text-sm font-medium text-gray-900 dark:text-white">
+                                    {{ $discussion->user->name }}
+                                    @if ($discussion->user->isAdmin() || $discussion->user->isModerator())
+                                        <x-user.status />
+                                    @endif
+                                </h4>
+                            </x-link>
+                            <div class="text-sm whitespace-nowrap text-gray-400 dark:text-gray-500">
+                                <time datetime="{{ $discussion->created_at->format('Y-m-d') }}">
+                                    {{ $discussion->created_at->diffForHumans() }}
+                                </time>
                             </div>
                         </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="hidden sm:block">
-                                <x-link :href="route('profile', $discussion->user->username)">
-                                    <h4 class="inline-flex items-center text-sm font-medium text-gray-900 dark:text-white">
-                                        {{ $discussion->user->name }}
-                                        @if ($discussion->user->hasAnyRole('admin', 'moderator'))
-                                            <x-user.status />
-                                        @endif
-                                    </h4>
-                                </x-link>
-                                <div class="text-sm whitespace-nowrap text-gray-400 dark:text-gray-500">
-                                    <time datetime="{{ $discussion->created_at->format('Y-m-d') }}">
-                                        {{ $discussion->created_at->diffForHumans() }}
-                                    </time>
-                                </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="hidden sm:block">
+                            <x-link :href="route('profile', $discussion->user->username)">
+                                <h4 class="inline-flex items-center text-sm font-medium text-gray-900 dark:text-white">
+                                    {{ $discussion->user->name }}
+                                    @if ($discussion->user->isAdmin() || $discussion->user->isModerator())
+                                        <x-user.status />
+                                    @endif
+                                </h4>
+                            </x-link>
+                            <div class="text-sm whitespace-nowrap text-gray-400 dark:text-gray-500">
+                                <time datetime="{{ $discussion->created_at->format('Y-m-d') }}">
+                                    {{ $discussion->created_at->diffForHumans() }}
+                                </time>
                             </div>
+                        </div>
 
-                            <x-markdown-content
-                                class="mx-auto mt-6 text-sm prose prose-sm prose-green max-w-none dark:prose-invert"
-                                :content="$discussion->body"
+                        <x-markdown-content
+                            class="mx-auto mt-6 text-sm prose prose-sm prose-green max-w-none dark:prose-invert"
+                            :content="$discussion->body"
+                        />
+
+                        <div class="relative inline-flex mt-3">
+                            <livewire:reactions
+                                wire:key="{{ $discussion->id }}"
+                                :model="$discussion"
+                                :with-place-holder="false"
+                                :with-background="false"
                             />
+                        </div>
 
-                            <div class="relative inline-flex mt-3">
-                                <livewire:reactions
-                                    wire:key="{{ $discussion->id }}"
-                                    :model="$discussion"
-                                    :with-place-holder="false"
-                                    :with-background="false"
+                        <div class="mt-6 flex items-center gap-4">
+                            @can('manage', $discussion)
+                                <x-filament-actions::group
+                                    icon="untitledui-dots-horizontal"
+                                    color="gray"
+                                    :actions="[
+                                        $this->editAction,
+                                        $this->convertedToThreadAction,
+                                        $this->deleteAction,
+                                    ]"
                                 />
-                            </div>
+                            @endcan
 
-                            @can('update', $discussion)
-                                <div class="flex items-center mt-2 space-x-2">
-                                    <button
-                                        type="button"
-                                        onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.discussion-form', arguments: {{ json_encode([$discussion->id]) }}})"
-                                        class="text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
-                                    >
-                                        {{ __('actions.edit') }}
-                                    </button>
-                                    <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
-                                    <button
-                                        onclick="Livewire.dispatch('openModal', {component: 'modals.delete-discussion', arguments: {{ json_encode([$discussion->id]) }}})"
-                                        type="button"
-                                        class="text-sm leading-5 text-red-500 hover:underline focus:outline-none"
-                                    >
-                                        {{ __('actions.delete') }}
-                                    </button>
-                                        @can('convertedToThread', $discussion)
-                                            <span class="font-medium text-gray-500 dark:text-gray-400">·</span>
-                                            <button
-                                                onclick="Livewire.dispatch('openModal', {component: 'modals.convert-discussion', arguments: { discussionId: {{ $discussion->id }} }})"
-                                                class="text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
-                                            >
-                                                {{ __('pages/discussion.convert_to_thread') }}
-                                            </button>
-                                        @endcan
-                                </div>
+                            @can('report', $discussion)
+                                <livewire:report-spam :model="$discussion" />
                             @endcan
                         </div>
                     </div>
@@ -140,4 +128,8 @@
             @include('partials._contributions')
         </div>
     </div>
+
+    <template x-teleport="body">
+        <x-filament-actions::modals />
+    </template>
 </x-container>

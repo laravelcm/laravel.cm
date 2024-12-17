@@ -44,7 +44,9 @@ Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::
 Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
 
 // Notifications
-Route::view('notifications', 'user.notifications')->name('notifications')->middleware(['auth', 'checkIfBanned']);
+Route::view('notifications', 'user.notifications')
+    ->name('notifications')
+    ->middleware(['auth', 'checkIfBanned']);
 
 Route::feeds();
 
