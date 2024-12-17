@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DiscussionResource\Pages;
-use App\Gamify\Points\DiscussionDeleted;
 use App\Models\Discussion;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -62,8 +61,7 @@ final class DiscussionResource extends Resource
                     ->url(fn (Discussion $record) => route('discussions.show', $record))
                     ->openUrlInNewTab(),
                 Tables\Actions\DeleteAction::make()
-                    ->iconButton()
-                    ->after(fn ($record) => undoPoint(new DiscussionDeleted($record))),
+                    ->iconButton(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

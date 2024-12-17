@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ArticleResource\Pages;
-use App\Gamify\Points\ArticleDeleted;
 use App\Gamify\Points\ArticlePublished;
 use App\Models\Article;
 use Filament\Resources\Resource;
@@ -115,14 +114,7 @@ final class ArticleResource extends Resource
                         ->url(fn (Article $record) => route('articles.show', $record))
                         ->openUrlInNewTab()
                         ->label('Afficher'),
-                    Tables\Actions\DeleteAction::make()
-                        ->after(
-                            function ($record): void {
-                                if ($record->isApproved()) {
-                                    undoPoint(new ArticleDeleted($record));
-                                }
-                            }
-                        ),
+                    Tables\Actions\DeleteAction::make(),
                 ]),
             ])
             ->bulkActions([

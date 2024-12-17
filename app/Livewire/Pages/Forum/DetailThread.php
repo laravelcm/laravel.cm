@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages\Forum;
 
-use App\Gamify\Points\ThreadDeleted;
+use App\Gamify\Points\ThreadCreated;
 use App\Models\Thread;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
@@ -56,7 +56,7 @@ final class DetailThread extends Component implements HasActions, HasForms
             ->action(function (): void {
                 $this->thread->delete();
 
-                undoPoint(new ThreadDeleted($this->thread));
+                undoPoint(new ThreadCreated($this->thread));
 
                 $this->redirectRoute('forum.index', navigate: true);
             });
