@@ -27,8 +27,9 @@ final class Profile extends Component
     public function render(): View
     {
         return view('livewire.pages.account.profile', [
-            'articles' => $this->user->articles()
-                ->scopes(['recent', 'published'])
+            'articles' => $this->user->articles() // @phpstan-ignore-line
+                ->recent()
+                ->published()
                 ->limit(5)
                 ->get(),
             'threads' => $this->user->threads()

@@ -24,7 +24,7 @@ return [
         'published_at' => 'Date de publication',
         'canonical_url' => 'URL Canonique',
     ],
-    'canonical_help' => 'Modifiez si l\'article a été publié pour la première fois ailleurs (comme sur votre propre blog).',
+    'canonical_help' => 'Précisez si l\'article a été publié pour la première fois ailleurs (comme sur votre propre blog).',
     'draft_help' => 'Mettre en article en brouillon vous donne la possibilité de le modifier plus tard',
     'unpublished' => 'Cet article n\'a pas encore été publié.',
 

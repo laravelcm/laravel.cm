@@ -42,6 +42,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property \Illuminate\Support\Carbon | null $sponsored_at
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
+ * @property \Illuminate\Database\Eloquent\Collection | Tag[] $tags
  */
 #[ScopedBy([LocaleScope::class])]
 final class Article extends Model implements HasMedia, ReactableInterface, Viewable
@@ -235,15 +236,5 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
         $this->removeTags();
 
         return parent::delete();
-    }
-
-    public function scopePublished(): Builder
-    {
-        return self::published();
-    }
-
-    public function scopeRecent(): Builder
-    {
-        return self::recent();
     }
 }
