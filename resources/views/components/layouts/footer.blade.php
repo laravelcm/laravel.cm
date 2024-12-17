@@ -1,6 +1,6 @@
 <footer class="bg-gray-900 p-3" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">{{ __('global.footer.title') }}</h2>
-    <div class="rounded-lg dark:bg-gray-800">
+    <div class="rounded-xl dark:bg-gray-800">
         <x-container>
             <div class="py-12 sm:py-16 lg:grid lg:grid-cols-3 lg:gap-8 lg:py-20">
                 <div class="space-y-3">
@@ -62,10 +62,6 @@
                             <x-link href="https://t.me/laravelcameroun" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
                                 <x-icon.telegram class="size-5 text-[#34AADF]" aria-hidden="true" />
                                 Telegram
-                            </x-link>
-                            <x-link href="https://chat.whatsapp.com/G8e98Ms0MgSLEOGd3Uai1i" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
-                                <x-icon.whatsapp class="size-5 text-[#28D146]" aria-hidden="true" />
-                                WhatsApp
                             </x-link>
                         </div>
                         <livewire:components.change-locale />

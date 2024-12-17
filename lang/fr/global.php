@@ -11,6 +11,7 @@ return [
     'navigation' => [
         'home' => 'Accueil',
         'forum' => 'Forum',
+        'questions' => 'Questions',
         'articles' => 'Articles',
         'discussions' => 'Discussions',
         'community' => 'Communauté',
@@ -27,6 +28,10 @@ return [
         'settings' => 'Paramètres',
         'profile' => 'Mon profil',
         'dashboard' => 'Tableau de bord',
+        'password' => 'Mot de passe',
+        'preferences' => 'Préférences',
+        'notifications' => 'Notifications',
+        'subscription' => 'Abonnement',
     ],
     'footer' => [
         'title' => 'Pied de page',
@@ -93,5 +98,8 @@ return [
     'all' => 'Tout',
     'banned' => 'Bannis',
     'unbanned' => 'Non bannis',
+    'joined' => 'Inscrit',
+    'website' => 'Site internet',
+    'characters' => ':number caractères',
 
 ];

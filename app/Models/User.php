@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\TransactionStatus;
+use App\Observers\UserObserver;
 use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
@@ -13,6 +14,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,9 +52,16 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon | null $email_verified_at
  * @property Carbon | null $last_login_at
  * @property Carbon | null $banned_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property Collection | Activity[] $activities
+ * @property Collection | Article[] $articles
+ * @property Collection | Thread[] $threads
+ * @property Collection | Discussion[] $discussions
+ * @property Collection | Subscribe[] $subscriptions
  * @property-read Collection | SocialAccount[] $providers
  */
+#[ObservedBy(UserObserver::class)]
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
     use Gamify;
@@ -74,7 +83,6 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'password',
         'bio',
         'location',
-        'avatar',
         'avatar_type',
         'reputation',
         'phone_number',
@@ -345,8 +353,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     {
         $password = $this->getAuthPassword();
 
-        // @phpstan-ignore-next-line
-        return $password !== '' && $password !== null;
+        return ! empty($password) || $password !== null; // @phpstan-ignore-line
     }
 
     public function delete(): ?bool

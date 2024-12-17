@@ -14,12 +14,13 @@
             @endforeach
         </div>
     @endif
-    <h2 class="font-heading text-xl font-semibold leading-7 text-gray-900 dark:text-white">
+
+    <h2 class="font-heading/7 text-xl font-semibold text-gray-900 dark:text-white">
         <x-link :href="route('discussions.show', $discussion)" class="hover:text-primary-600">
             {{ $discussion->title }}
         </x-link>
     </h2>
-    <p class="mt-2 leading-5 text-gray-500 dark:text-gray-400 line-clamp-2">
+    <p class="mt-2 text-gray-500 dark:text-gray-400 line-clamp-2">
         {!! $discussion->excerpt(175) !!}
     </p>
 

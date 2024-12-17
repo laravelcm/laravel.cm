@@ -65,7 +65,7 @@
                                         {{ $article->title }}
                                     </h3>
 
-                                    <div class="flex items-center font-sans text-skin-muted">
+                                    <div class="flex items-center font-sans text-gray-400 dark:text-gray-500">
                                         @if ($article->isPublished())
                                             <a
                                                 href="{{ route('articles.show', $article->slug()) }}"

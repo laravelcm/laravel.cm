@@ -39,6 +39,8 @@ return [
         'cannot_ban_title' => 'Unable to ban',
         'cannot_ban_body' => 'This user is already banned.',
         'cannot_ban_admin' => 'You cannot ban an administrator.',
+        'password_changed' => 'You have been successfully updated your password',
+        'profile_updated' => 'You have successfully updated your profile',
     ],
 
     'spam_send' => 'Your report has been sent successfully',

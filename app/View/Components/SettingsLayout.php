@@ -11,6 +11,6 @@ final class SettingsLayout extends Component
 {
     public function render(): View
     {
-        return view('layouts.settings');
+        return view('layouts.settings'); // @phpstan-ignore-line
     }
 }

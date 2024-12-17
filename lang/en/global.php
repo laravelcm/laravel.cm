@@ -11,6 +11,7 @@ return [
     'navigation' => [
         'home' => 'Home',
         'forum' => 'Forum',
+        'questions' => 'Threads',
         'articles' => 'Posts',
         'discussions' => 'Discussions',
         'community' => 'Community',
@@ -27,6 +28,10 @@ return [
         'settings' => 'Settings',
         'profile' => 'Profile',
         'dashboard' => 'Dashboard',
+        'password' => 'Password',
+        'preferences' => 'Preferences',
+        'notifications' => 'Notifications',
+        'subscription' => 'Subscription',
     ],
     'footer' => [
         'title' => 'Footer',
@@ -93,5 +98,8 @@ return [
     'all' => 'All',
     'banned' => 'Banned',
     'unbanned' => 'Unbanned',
+    'joined' => 'Joined',
+    'website' => 'Website',
+    'characters' => ':number characters',
 
 ];

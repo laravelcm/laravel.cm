@@ -36,7 +36,7 @@ Route::prefix('discussions')->as('discussions.')->group(base_path('routes/featur
 Route::prefix('forum')->as('forum.')->group(base_path('routes/features/forum.php'));
 
 // Replies
-Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->name('replyable');
+Route::get('replyable/{id}/{type}', ReplyAbleController::class)->name('replyable');
 
 // Subscriptions
 Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])

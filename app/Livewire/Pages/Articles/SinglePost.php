@@ -18,7 +18,6 @@ final class SinglePost extends Component
     {
         /** @var User $user */
         $user = Auth::user();
-        views($article)->cooldown(now()->addHours(2))->record();
 
         $article = $article->load(['media', 'user'])->loadCount('views');
 
@@ -26,6 +25,10 @@ final class SinglePost extends Component
             $article->isPublished() || ($user && $article->isAuthoredBy($user)) || ($user && $user->hasAnyRole(['admin', 'moderator'])), // @phpstan-ignore-line
             404
         );
+
+        if ($article->isPublished()) {
+            views($article)->cooldown(now()->addHours(2))->record();
+        }
 
         $image = empty($article->getFirstMediaUrl('media'))
             ? $article->getFirstMediaUrl('media')

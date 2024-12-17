@@ -68,7 +68,7 @@
                         <a
                             href="{{ $paginator->previousPageUrl() }}"
                             rel="prev"
-                            class="focus:shadow-outline-green relative inline-flex items-center rounded-l-md border border-skin-input bg-skin-card px-2 py-2 text-sm font-medium leading-5 text-gray-500 dark:text-gray-400 transition duration-150 ease-in-out hover:text-skin-muted focus:z-10 focus:border-green-300 focus:outline-none active:bg-skin-footer active:text-gray-500 dark:text-gray-400"
+                            class="focus:shadow-outline-green relative inline-flex items-center rounded-l-md border border-skin-input bg-skin-card px-2 py-2 text-sm font-medium leading-5 text-gray-500 dark:text-gray-400 transition duration-150 ease-in-out hover:text-gray-400 dark:text-gray-500 focus:z-10 focus:border-green-300 focus:outline-none active:bg-skin-footer active:text-gray-500 dark:text-gray-400"
                             aria-label="{{ __('pagination.previous') }}"
                         >
                             <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">
@@ -124,7 +124,7 @@
                         <a
                             href="{{ $paginator->nextPageUrl() }}"
                             rel="next"
-                            class="focus:shadow-outline-green relative -ml-px inline-flex items-center rounded-r-md border border-skin-input bg-skin-card px-2 py-2 text-sm font-medium leading-5 text-gray-500 dark:text-gray-400 transition duration-150 ease-in-out hover:text-skin-muted focus:z-10 focus:border-green-300 focus:outline-none active:bg-skin-footer active:text-gray-500 dark:text-gray-400"
+                            class="focus:shadow-outline-green relative -ml-px inline-flex items-center rounded-r-md border border-skin-input bg-skin-card px-2 py-2 text-sm font-medium leading-5 text-gray-500 dark:text-gray-400 transition duration-150 ease-in-out hover:text-gray-400 dark:text-gray-500 focus:z-10 focus:border-green-300 focus:outline-none active:bg-skin-footer active:text-gray-500 dark:text-gray-400"
                             aria-label="{{ __('pagination.next') }}"
                         >
                             <svg class="size-5" fill="currentColor" viewBox="0 0 20 20">

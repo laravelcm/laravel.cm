@@ -5,7 +5,7 @@
         </div>
         <div class="mt-4 grid gap-5 sm:grid-cols-3 sm:gap-6">
             @foreach ($latestArticles as $article)
-                <x-admin.recent-post :article="$article" />
+{{--                <x-admin.recent-post :article="$article" />--}}
             @endforeach
         </div>
     </div>

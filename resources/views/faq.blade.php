@@ -2,7 +2,7 @@
     <x-container class="py-10">
         <div class="mb-14">
             <h2 class="font-heading text-3xl font-extrabold text-gray-900 lg:text-4xl">Foire aux questions 🤔</h2>
-            <p class="mt-2 text-sm font-normal text-skin-muted lg:text-base">
+            <p class="mt-2 text-sm font-normal text-gray-400 dark:text-gray-500 lg:text-base">
                 Certaines d'entre elles ne sont pas demandées fréquemment, mais elles sont toujours bonnes à savoir.
             </p>
         </div>
