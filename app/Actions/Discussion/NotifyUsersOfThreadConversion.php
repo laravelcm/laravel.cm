@@ -16,9 +16,12 @@ final class NotifyUsersOfThreadConversion
     {
         $usersToNotify = $thread->replies()->pluck('user_id')->unique()->toArray();
 
-        User::whereIn('id', $usersToNotify)->get()->each->notify(new ThreadConvertedByCreator($thread));
+        User::query()->whereIn('id', $usersToNotify)
+            ->get()
+            ->each
+            ->notify(new ThreadConvertedByCreator($thread));
 
-        if (Auth::check() && Auth::user()->isAdmin()) {
+        if (Auth::check() && (Auth::user()?->isAdmin() || Auth::user()?->isModerator())) {
             $thread->user->notify(new ThreadConvertedByAdmin($thread));
         }
     }

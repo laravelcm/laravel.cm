@@ -14,7 +14,9 @@ use App\View\Composers\InactiveDiscussionsComposer;
 use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
 use Carbon\Carbon;
+use Filament\Support\Colors\Color;
 use Filament\Support\Enums\MaxWidth;
+use Filament\Support\Facades\FilamentColor;
 use Filament\Support\Facades\FilamentIcon;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -39,6 +41,15 @@ final class AppServiceProvider extends ServiceProvider
         $this->bootEloquentMorphs();
         $this->bootFilament();
         $this->bootBindings();
+
+        FilamentColor::register([
+            'primary' => Color::Emerald,
+            'danger' => Color::Red,
+            'gray' => Color::Gray,
+            'info' => Color::Blue,
+            'success' => Color::Green,
+            'warning' => Color::Amber,
+        ]);
 
         ReplyResource::withoutWrapping();
     }

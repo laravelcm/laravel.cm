@@ -6,7 +6,6 @@ namespace App\Livewire\Discussions;
 
 use App\Models\Discussion;
 use App\Models\Subscribe as SubscribeModel;
-use App\Policies\DiscussionPolicy;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -27,7 +26,7 @@ final class Subscribe extends Component
 
     public function subscribe(): void
     {
-        $this->authorize(DiscussionPolicy::SUBSCRIBE, $this->discussion);
+        $this->authorize('subscribe', $this->discussion);
 
         $subscribe = new SubscribeModel;
         $subscribe->uuid = Uuid::uuid4()->toString();
@@ -46,7 +45,7 @@ final class Subscribe extends Component
 
     public function unsubscribe(): void
     {
-        $this->authorize(DiscussionPolicy::UNSUBSCRIBE, $this->discussion);
+        $this->authorize('unsubscribe', $this->discussion);
 
         $this->discussion->subscribes()
             ->where('user_id', Auth::id())

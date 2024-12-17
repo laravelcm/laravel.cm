@@ -12,7 +12,7 @@ return [
     'empty' => 'Discussions sans commentaires',
     'empty_description' => 'Les discussions / sujets qui n’ont pas encore eu de commentaires. Soyez le premier à apporter votre contribution.',
     'total_answer' => 'total réponses',
-    'new_discussion' => 'Nouveau discussion',
+    'new_discussion' => 'Nouveau sujet de discussion',
     'filter' => [
         'recent' => 'Récent',
         'popular' => 'Populaire',
@@ -37,5 +37,6 @@ return [
         'action_text' => 'Voir le fil',
         'thank_you_line' => 'Merci pour votre participation !',
     ],
+    'min_discussion_length' => 'Maximum de 160 caractères.',
 
 ];

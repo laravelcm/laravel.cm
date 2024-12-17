@@ -12,24 +12,19 @@ final class DiscussionPolicy
 {
     use HandlesAuthorization;
 
-    public const UPDATE = 'update';
-
-    public const DELETE = 'delete';
-
-    public const PINNED = 'togglePinnedStatus';
-
-    public const SUBSCRIBE = 'subscribe';
-
-    public const UNSUBSCRIBE = 'unsubscribe';
-
     public function create(User $user): bool
     {
         return $user->hasVerifiedEmail();
     }
 
-    public function update(User $user, Discussion $discussion): bool
+    public function manage(User $user, Discussion $discussion): bool
     {
         return $discussion->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+    }
+
+    public function update(User $user, Discussion $discussion): bool
+    {
+        return $discussion->isAuthoredBy($user);
     }
 
     public function delete(User $user, Discussion $discussion): bool

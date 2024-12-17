@@ -43,4 +43,9 @@ return [
 
     'spam_send' => 'Votre signalement a été envoyé avec succès',
 
+    'discussion' => [
+        'created' => 'Votre discussion à été créée.',
+        'updated' => 'Votre discussion à été modifiée.',
+        'deleted' => 'Le sujet de discussion a été supprimé.',
+    ],
 ];

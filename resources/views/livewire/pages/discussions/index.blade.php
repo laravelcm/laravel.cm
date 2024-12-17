@@ -4,7 +4,7 @@
             <div class="flex items-center justify-between gap-10">
                 <x-scrollable-content
                     class="w-2/3 bg-white rounded-xl ring-1 ring-gray-200/60 dark:bg-gray-800 dark:ring-white/10"
-                    tab-class="pb-0"
+                    tab-class="!pb-0"
                 >
                     <div class="border-b border-gray-200">
                         <nav class="flex items-center space-x-3">
@@ -30,7 +30,7 @@
                 <div class="flex items-center gap-2">
                     <x-filament::dropdown>
                         <x-slot name="trigger">
-                            <button type="button" class="inline-flex items-center -mx-2 p-2 rounded-lg bg-white text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-800 ring-1 ring-gray-200/80 dark:ring-white/20">
+                            <button type="button" class="inline-flex items-center p-2 rounded-lg bg-white text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-800 ring-1 ring-gray-200/80 dark:ring-white/20">
                                 <x-untitledui-filter-funnel class="size-5" stroke-width="1.5" aria-hidden="true" />
                             </button>
                         </x-slot>
@@ -49,8 +49,12 @@
                     </x-filament::dropdown>
 
                     @can('create', \App\Models\Discussion::class)
-                        <x-buttons.primary :href="route('discussions.new')">
-                            {{ __('pages/discussion.new_discussion') }}
+                        <x-buttons.primary
+                            type="button"
+                            onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.discussion-form' })"
+                            class="gap-2 w-full justify-center py-2.5"
+                        >
+                            {{ __('actions.start') }}
                         </x-buttons.primary>
                     @endcan
                 </div>

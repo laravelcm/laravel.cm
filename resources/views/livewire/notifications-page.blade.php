@@ -4,7 +4,7 @@
             <div>
                 <h2
                     id="notification-date-{{ Str::slug($date) }}"
-                    class="inline-flex items-center gap-x-3 rounded-full bg-skin-primary bg-opacity-20 px-2.5 py-1.5 font-heading text-sm font-medium text-primary-600"
+                    class="inline-flex items-center gap-x-3 rounded-full bg-primary-600 bg-opacity-20 px-2.5 py-1.5 font-heading text-sm font-medium text-white"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@
         </div>
     @empty
         <div
-            class="mx-auto flex max-w-lg items-center justify-between rounded-md border border-dashed border-skin-base px-6 py-8"
+            class="mx-auto flex max-w-lg items-center justify-between rounded-lg border border-dashed border-gray-200 dark:border-white/10 px-6 py-8"
         >
             <div class="mx-auto max-w-sm text-center">
                 <svg
@@ -51,16 +51,20 @@
                         d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
                     />
                 </svg>
-                <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">{{ __('pages/notification.empty') }}</p>
+                <p class="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">
+                    {{ __('pages/notification.empty') }}
+                </p>
             </div>
         </div>
 
         <div class="mx-auto mt-10 max-w-lg">
-            <h2 class="font-heading text-lg font-medium text-gray-900">{{ __('pages/notification.new_content') }}</h2>
-            <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+            <h2 class="font-heading text-lg font-medium text-gray-900 dark:text-white">
+                {{ __('pages/notification.new_content') }}
+            </h2>
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
                 {{ __('pages/notification.choose_content') }}
             </p>
-            <ul role="list" class="mt-6 divide-y divide-skin-base border-b border-t border-skin-base">
+            <ul role="list" class="mt-6 divide-y divide-gray-200 dark:divide-white/10 border-b border-t border-gray-200 dark:border-white/10">
                 <li>
                     <div class="group relative flex items-start space-x-3 py-4">
                         <div class="shrink-0">
@@ -82,13 +86,13 @@
                             </span>
                         </div>
                         <div class="min-w-0 flex-1">
-                            <div class="font-sans text-sm font-medium text-gray-900">
-                                <x-buttons.default onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form' })">
+                            <div class="text-sm font-medium text-gray-900 dark:text-white">
+                                <a href="#" onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form' })">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
                                     {{ __('pages/notification.article_action') }}
-                                </x-buttons.default>
+                                </a>
                             </div>
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
                                 {{ __('pages/notification.share_content') }}
                             </p>
                         </div>
@@ -99,7 +103,7 @@
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
+                                class="size-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-400"
                             >
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>
@@ -128,13 +132,13 @@
                             </span>
                         </div>
                         <div class="min-w-0 flex-1">
-                            <div class="font-sans text-sm font-medium text-gray-900">
-                                <x-buttons.default href="{{ route('discussions.new') }}">
+                            <div class="text-sm font-medium text-gray-900 dark:text-white">
+                                <a href="#" onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.discussion-form' })">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
                                     {{ __('pages/notification.start_discussion') }}
-                                </x-buttons.default>
+                                </a>
                             </div>
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
                                 {{ __('pages/notification.start_discussion_description_text') }}
                             </p>
                         </div>
@@ -145,7 +149,7 @@
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
+                                class="size-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-400"
                             >
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>
@@ -174,13 +178,13 @@
                             </span>
                         </div>
                         <div class="min-w-0 flex-1">
-                            <div class="text-sm font-medium text-gray-900">
-                                <x-buttons.default onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })">
+                            <div class="text-sm font-medium text-gray-900 dark:text-white">
+                                <a href="#" onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })">
                                     <span class="absolute inset-0" aria-hidden="true"></span>
                                     {{ __('pages/notification.ask_help') }}
-                                </x-buttons.default>
+                                </a>
                             </div>
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
                                 {{ __('pages/notification.ask_help_description') }}
                             </p>
                         </div>
@@ -191,7 +195,7 @@
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="size-5 text-skin-muted group-hover:text-gray-500 dark:text-gray-400"
+                                class="size-5 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400"
                             >
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>

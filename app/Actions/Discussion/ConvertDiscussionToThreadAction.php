@@ -13,7 +13,7 @@ final class ConvertDiscussionToThreadAction
     public function execute(Discussion $discussion): Thread
     {
         return DB::transaction(function () use ($discussion) {
-            $thread = Thread::create([
+            $thread = Thread::query()->create([
                 'title' => $discussion->title,
                 'slug' => $discussion->slug,
                 'body' => $discussion->body,

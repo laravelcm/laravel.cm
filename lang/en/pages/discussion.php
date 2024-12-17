@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 return [
 
-    'title' => 'Tous les sujets de discussion',
+    'title' => 'All discussion topics',
     'contributors' => [
-        'top' => 'Top Contributeurs',
-        'description' => 'Les personnes qui ont lancé le plus de discussions sur le site.',
+        'top' => 'Top Contributors',
+        'description' => 'The people who started the most discussions on the site.',
     ],
-    'empty' => 'Discussions sans commentaires',
-    'empty_description' => 'Les discussions / sujets qui n’ont pas encore eu de commentaires. Soyez le premier à apporter votre contribution.',
-    'total_answer' => 'total réponses',
-    'new_discussion' => 'Nouveau discussion',
+    'empty' => 'Discussions without comments',
+    'empty_description' => 'Discussions / topics that have not yet been commented on. Be the first to contribute.',
+    'total_answer' => 'total replies',
+    'new_discussion' => 'New discussion',
     'filter' => [
-        'recent' => 'Récent',
-        'popular' => 'Populaire',
-        'active' => 'Actif',
+        'recent' => 'Recent',
+        'popular' => 'Popular',
+        'active' => 'Active',
     ],
-    'comments_count' => 'Commentaires (:count)',
+    'comments_count' => 'Comments (:count)',
     'convert_to_thread' => 'Convert to thread',
     'confirm_conversion' => 'Confirm conversion',
     'text_confirmation' => 'Do you really want to turn this discussion into a topic?',
@@ -37,5 +37,6 @@ return [
         'action_text' => 'View Thread',
         'thank_you_line' => 'Thank you for your participation!',
     ],
+    'min_discussion_length' => '160 characters maximum',
 
 ];
