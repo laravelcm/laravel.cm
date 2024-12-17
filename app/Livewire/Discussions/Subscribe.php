@@ -6,7 +6,6 @@ namespace App\Livewire\Discussions;
 
 use App\Models\Discussion;
 use App\Models\Subscribe as SubscribeModel;
-use App\Policies\DiscussionPolicy;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
