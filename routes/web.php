@@ -44,7 +44,7 @@ Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::
 Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
 
 // Notifications
-Route::view('notifications', 'user.notifications')
+Route::get('notifications', \App\Livewire\Pages\Notifications::class)
     ->name('notifications')
     ->middleware(['auth', 'checkIfBanned']);
 
