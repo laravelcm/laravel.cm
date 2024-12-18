@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire;
+namespace App\Livewire\Pages;
 
 use App\Policies\NotificationPolicy;
 use Carbon\Carbon;
@@ -13,7 +13,7 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-final class NotificationsPage extends Component
+final class Notifications extends Component
 {
     use AuthorizesRequests;
 
@@ -48,7 +48,7 @@ final class NotificationsPage extends Component
 
     public function render(): View
     {
-        return view('livewire.notifications-page', [
+        return view('livewire.pages.notifications', [
             // @phpstan-ignore-next-line
             'notifications' => Auth::user()
                 ->unreadNotifications()
