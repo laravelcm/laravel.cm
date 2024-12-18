@@ -9,10 +9,10 @@ use App\Contracts\ReplyInterface;
 use App\Contracts\SpamReportableContract;
 use App\Contracts\SubscribeInterface;
 use App\Models\Builders\DiscussionQueryBuilder;
-use App\Models\Scopes\LocaleScope;
-use App\Traits\HasAuthor;
-use App\Traits\HasReplies;
-use App\Traits\HasSlug;
+use App\Models\Traits\HasAuthor;
+use App\Models\Traits\HasLocaleScope;
+use App\Models\Traits\HasReplies;
+use App\Models\Traits\HasSlug;
 use App\Traits\HasSpamReports;
 use App\Traits\HasSubscribers;
 use App\Traits\HasTags;
@@ -21,7 +21,6 @@ use App\Traits\RecordsActivity;
 use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
-use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,11 +41,11 @@ use Illuminate\Support\Str;
  * @property User $user
  * @property Collection | SpamReport[] $spamReports
  */
-#[ScopedBy([LocaleScope::class])]
 final class Discussion extends Model implements ReactableInterface, ReplyInterface, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;
     use HasFactory;
+    use HasLocaleScope;
     use HasReplies;
     use HasSlug;
     use HasSpamReports;

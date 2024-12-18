@@ -36,7 +36,7 @@ final class Discussion extends SpotlightCommand
             ->get()
             // @phpstan-ignore-next-line
             ->map(fn (DiscussionModel $discussion) => new SpotlightSearchResult(
-                $discussion->slug(),
+                $discussion->slug,
                 $discussion->title,
                 sprintf('par @%s', $discussion->user->username)
             ));

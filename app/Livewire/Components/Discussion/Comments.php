@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Discussion;
 
-use App\Actions\Replies\CreateReply;
+use App\Actions\Discussion\CreateDiscussionReplyAction;
 use App\Models\Discussion;
 use App\Models\Reply;
 use Filament\Forms;
@@ -52,7 +52,7 @@ final class Comments extends Component implements HasForms
     {
         $this->validate();
 
-        app()->call(CreateReply::class, [
+        app()->call(CreateDiscussionReplyAction::class, [
             'body' => data_get($this->form->getState(), 'body'),
             'user' => Auth::user(),
             'model' => $this->discussion,

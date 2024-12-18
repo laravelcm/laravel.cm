@@ -6,15 +6,14 @@ namespace App\Models;
 
 use App\Contracts\ReactableInterface;
 use App\Models\Builders\ArticleQueryBuilder;
-use App\Models\Scopes\LocaleScope;
-use App\Traits\HasAuthor;
-use App\Traits\HasSlug;
+use App\Models\Traits\HasAuthor;
+use App\Models\Traits\HasLocaleScope;
+use App\Models\Traits\HasSlug;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
-use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -43,11 +42,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property \Illuminate\Support\Carbon $updated_at
  * @property \Illuminate\Database\Eloquent\Collection | Tag[] $tags
  */
-#[ScopedBy([LocaleScope::class])]
 final class Article extends Model implements HasMedia, ReactableInterface, Viewable
 {
     use HasAuthor;
     use HasFactory;
+    use HasLocaleScope;
     use HasSlug;
     use HasTags;
     use InteractsWithMedia;

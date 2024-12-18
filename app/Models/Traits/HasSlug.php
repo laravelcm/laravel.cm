@@ -2,20 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Traits;
+namespace App\Models\Traits;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Str;
 
 trait HasSlug
 {
-    public function slug(): string
+    protected function slug(): Attribute
     {
-        return $this->slug;
-    }
-
-    public function setSlugAttribute(string $slug): void
-    {
-        $this->attributes['slug'] = $this->generateUniqueSlug($slug);
+        return Attribute::set(fn (string $value) => $this->generateUniqueSlug($value));
     }
 
     public static function findBySlug(string $slug): static

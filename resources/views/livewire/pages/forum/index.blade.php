@@ -2,7 +2,7 @@
     <x-slot:buttons>
         <x-buttons.primary
             type="button"
-            onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })"
+            onclick="{{ Auth::check() ? 'Livewire.dispatch(\'openPanel\', { component: \'components.slideovers.thread-form\' })' : 'Livewire.dispatch(\'redirectToLogin\') ' }}"
             class="gap-2 w-full justify-center py-2.5"
         >
             {{ __('pages/forum.new_thread') }}
@@ -13,7 +13,11 @@
     </x-slot:buttons>
 
     <div class="flex items-center justify-between gap-6">
-        <livewire:components.channels-selector :slug="$channel" />
+        <div class="flex gap-4">
+            <livewire:components.channels-selector :slug="$channel" />
+
+            <x-locale-selector :$locale />
+        </div>
 
         <x-filament::input.wrapper class="relative max-w-60 w-full">
             <span class="pointer-events-none absolute top-2.5 left-0 pl-2.5">

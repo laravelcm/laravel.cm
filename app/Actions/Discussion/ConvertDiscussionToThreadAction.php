@@ -28,7 +28,7 @@ final class ConvertDiscussionToThreadAction
 
             $discussion->delete();
 
-            app(NotifyUsersOfThreadConversion::class)->execute($thread);
+            app(NotifyUsersOfThreadConversionAction::class)->execute($thread);
 
             return $thread;
         });

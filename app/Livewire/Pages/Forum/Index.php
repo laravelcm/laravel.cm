@@ -6,6 +6,7 @@ namespace App\Livewire\Pages\Forum;
 
 use App\Models\Channel;
 use App\Models\Thread;
+use App\Traits\WithLocale;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,7 @@ use Livewire\WithPagination;
 #[Layout('layouts.forum')]
 final class Index extends Component
 {
+    use WithLocale;
     use WithoutUrlPagination;
     use WithPagination;
 
@@ -48,6 +50,8 @@ final class Index extends Component
         if ($this->channel) {
             $this->currentChannel = Channel::findBySlug($this->channel);
         }
+
+        $this->locale = config('app.locale');
     }
 
     #[On('channelUpdated')]
@@ -61,6 +65,12 @@ final class Index extends Component
 
         $this->resetPage();
         $this->dispatch('render');
+    }
+
+    #[On('redirectToLogin')]
+    public function redirectToLogin(): void
+    {
+        $this->redirectRoute('login', navigate: true);
     }
 
     protected function applySearch(Builder $query): Builder
@@ -82,6 +92,15 @@ final class Index extends Component
                 'no' => $query->scopes('unresolved'),
                 'yes' => $query->scopes('resolved'),
             };
+        }
+
+        return $query;
+    }
+
+    protected function applyLocale(Builder $query): Builder
+    {
+        if ($this->locale) {
+            $query->forLocale($this->locale); // @phpstan-ignore-line
         }
 
         return $query;
@@ -125,6 +144,7 @@ final class Index extends Component
         $query = $this->applyChannel($query);
         $query = $this->applySearch($query);
         $query = $this->applySolved($query);
+        $query = $this->applyLocale($query);
         $query = $this->applyAuthor($query);
         $query = $this->applySubscribe($query);
         $query = $this->applyUnAnswer($query);

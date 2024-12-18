@@ -10,10 +10,10 @@ use App\Contracts\SpamReportableContract;
 use App\Contracts\SubscribeInterface;
 use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Filters\Thread\ThreadFilters;
-use App\Models\Scopes\LocaleScope;
-use App\Traits\HasAuthor;
-use App\Traits\HasReplies;
-use App\Traits\HasSlug;
+use App\Models\Traits\HasAuthor;
+use App\Models\Traits\HasLocaleScope;
+use App\Models\Traits\HasReplies;
+use App\Models\Traits\HasSlug;
 use App\Traits\HasSpamReports;
 use App\Traits\HasSubscribers;
 use App\Traits\Reactable;
@@ -22,7 +22,6 @@ use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Exception;
-use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -53,11 +52,11 @@ use Spatie\Feed\FeedItem;
  * @property Reply | null $solutionReply
  * @property \Illuminate\Database\Eloquent\Collection | Channel[] $channels
  */
-#[ScopedBy([LocaleScope::class])]
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;
     use HasFactory;
+    use HasLocaleScope;
     use HasReplies;
     use HasSlug;
     use HasSpamReports;
@@ -100,7 +99,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     public function getPathUrl(): string
     {
-        return route('forum.show', $this->slug());
+        return route('forum.show', $this->slug);
     }
 
     public function excerpt(int $limit = 200): string
@@ -172,7 +171,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
             if ($channel->hasItems()) {
                 $query->whereIn('channels.id', array_merge([$channel->id], $channel->items->modelKeys()));
             } else {
-                $query->where('channels.slug', $channel->slug());
+                $query->where('channels.slug', $channel->slug);
             }
         });
     }

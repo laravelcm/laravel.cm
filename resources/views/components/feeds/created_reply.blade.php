@@ -13,7 +13,7 @@
 
     {{ __('pages/account.activities.answer_reply') }}
     <x-link
-        :href="url('/forum/' . $activity->subject->replyAble->slug() . '#reply-'. $activity->subject->id)"
+        :href="url('/forum/' . $activity->subject->replyAble->slug . '#reply-'. $activity->subject->id)"
         class="font-medium text-primary-600 hover:text-primary-700 dark:text-primary-500 dark:hover:text-primary-600"
     >
         {{ $activity->subject->replyAble->title }}
