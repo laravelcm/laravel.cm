@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Pages\Discussions;
 
 use App\Actions\Discussion\ConvertDiscussionToThreadAction;
+use App\Actions\Discussion\DeleteDiscussionAction;
 use App\Models\Discussion;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
@@ -80,7 +81,12 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
             ->authorize('delete', $this->discussion)
             ->requiresConfirmation()
             ->successNotificationTitle(__('notifications.discussion.deleted'))
-            ->successRedirectUrl(route('discussions.index'));
+            ->action(function (): void {
+
+                app(DeleteDiscussionAction::class)->execute($this->discussion);
+
+                $this->redirectRoute('discussions.index',  navigate: true);
+            });
     }
 
     public function render(): View

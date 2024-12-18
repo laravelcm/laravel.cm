@@ -75,10 +75,13 @@ describe(ThreadForm::class, function (): void {
             ->assertHasNoFormErrors();
 
         $thread = Thread::query()->first();
+        $user->refresh();
 
         expect($thread?->user)->toBeInstanceOf(User::class)
             ->and($thread?->user->is($user))
-            ->toBeTrue();
+            ->toBeTrue()
+            ->and($user->getPoints())
+            ->toBe(55);
     });
 
     it('user cannot create thread with and unverified email address', function (): void {

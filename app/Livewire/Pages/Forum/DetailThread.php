@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages\Forum;
 
+use App\Actions\Forum\DeleteThreadAction;
 use App\Models\Thread;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
@@ -53,7 +54,8 @@ final class DetailThread extends Component implements HasActions, HasForms
             ->authorize('delete', $this->thread)
             ->requiresConfirmation()
             ->action(function (): void {
-                $this->thread->delete();
+
+                app(DeleteThreadAction::class)->execute($this->thread);
 
                 $this->redirectRoute('forum.index', navigate: true);
             });

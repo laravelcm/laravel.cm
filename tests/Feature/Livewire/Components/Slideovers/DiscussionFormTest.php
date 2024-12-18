@@ -22,7 +22,7 @@ describe(DiscussionForm::class, function (): void {
             ->assertSuccessful();
     });
 
-    it('user can create a new thread', function (): void {
+    it('user can create a new discussion', function (): void {
         $user = $this->login();
         $tags = Tag::factory()->count(3)->create();
 
@@ -36,10 +36,13 @@ describe(DiscussionForm::class, function (): void {
             ->assertHasNoFormErrors();
 
         $discussion = Discussion::query()->first();
+        $user->refresh();
 
         expect($discussion?->user)->toBeInstanceOf(User::class)
             ->and($discussion?->user->is($user))
-            ->toBeTrue();
+            ->toBeTrue()
+            ->and($user->getPoints())
+            ->toBe(20);
     });
 
     it('validate forms input', function (): void {
