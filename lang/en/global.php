@@ -101,5 +101,6 @@ return [
     'joined' => 'Joined',
     'website' => 'Website',
     'characters' => ':number characters',
+    'like' => ':count like',
 
 ];

@@ -21,6 +21,7 @@ return [
     'comments_count' => 'Commentaires (:count)',
     'convert_to_thread' => 'Convertir en sujet',
     'confirm_conversion' => 'Confirmez la conversion',
+    'confirm_comment_remove' => 'Êtes-vous sûr de vouloir supprimer ce commentaire ?',
     'text_confirmation' => 'Voulez-vous vraiment transformer cette discussion en sujet de forum?',
     'converted_by_admin' => [
         'subject' => 'Discussion convertie en sujet par l\'administrateur',
@@ -38,5 +39,6 @@ return [
         'thank_you_line' => 'Merci pour votre participation !',
     ],
     'min_discussion_length' => 'Maximum de 160 caractères.',
+    'placeholder' => 'Votre commentaire',
 
 ];

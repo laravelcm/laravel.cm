@@ -101,5 +101,6 @@ return [
     'joined' => 'Inscrit',
     'website' => 'Site internet',
     'characters' => ':number caractères',
+    'like' => ':count j\'aime',
 
 ];
