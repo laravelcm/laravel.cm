@@ -2,7 +2,7 @@
     <x-slot:buttons>
         <x-buttons.primary
             type="button"
-            onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })"
+            onclick="{{ Auth::check() ? 'Livewire.dispatch(\'openPanel\', { component: \'components.slideovers.thread-form\' })' : 'Livewire.dispatch(\'redirectToLogin\') ' }}"
             class="gap-2 w-full justify-center py-2.5"
         >
             {{ __('pages/forum.new_thread') }}
