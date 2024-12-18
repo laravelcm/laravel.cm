@@ -63,6 +63,12 @@ final class Index extends Component
         $this->dispatch('render');
     }
 
+    #[On('redirectToLogin')]
+    public function redirectToLogin(): void
+    {
+        $this->redirectRoute('login', navigate: true);
+    }
+
     protected function applySearch(Builder $query): Builder
     {
         if ($this->search) {
