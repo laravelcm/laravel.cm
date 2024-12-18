@@ -14,6 +14,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 final class SingleDiscussion extends Component implements HasActions, HasForms
@@ -81,8 +82,17 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
             ->authorize('delete', $this->discussion)
             ->requiresConfirmation()
             ->successNotificationTitle(__('notifications.discussion.deleted'))
-            ->successRedirectUrl(route('discussions.index'))
-            ->after(fn ($record) => undoPoint(new DiscussionCreated($record)));
+            ->action(function (): void {
+                DB::beginTransaction();
+
+                undoPoint(new DiscussionCreated($this->discussion));
+
+                $this->discussion->delete();
+
+                DB::commit();
+
+                $this->redirectRoute('discussions.index',  navigate: true);
+            });
     }
 
     public function render(): View

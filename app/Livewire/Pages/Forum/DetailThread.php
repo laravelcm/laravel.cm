@@ -12,6 +12,7 @@ use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -54,9 +55,12 @@ final class DetailThread extends Component implements HasActions, HasForms
             ->authorize('delete', $this->thread)
             ->requiresConfirmation()
             ->action(function (): void {
-                $this->thread->delete();
+                DB::beginTransaction();
 
                 undoPoint(new ThreadCreated($this->thread));
+                $this->thread->delete();
+
+                DB::commit();
 
                 $this->redirectRoute('forum.index', navigate: true);
             });
