@@ -2,20 +2,25 @@
 
 declare(strict_types=1);
 
-use App\Gamify\Points\DiscussionCreated;
+use App\Actions\Discussion\CreateDiscussionAction;
+use App\Data\CreateDiscussionData;
 use App\Livewire\Pages\Discussions\SingleDiscussion;
-use App\Models\Discussion;
-use App\Models\Tag;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
+
+beforeEach(function (): void {
+    Notification::fake();
+});
 
 it('delete user action can remove discussion point ', function (): void {
     $user = $this->login();
-    $discussion = Discussion::factory()->create(['user_id' => $user->id]);
-    $tags = Tag::factory()->count(3)->create();
+    $discussionData = CreateDiscussionData::from([
+        'title' => 'Discussion title',
+        'body' => 'Discussion body',
+        'tags' => [],
+    ]);
 
-    $discussion->tags()->attach($tags->modelKeys());
-
-    givePoint(new DiscussionCreated($discussion));
+    $discussion = app(CreateDiscussionAction::class)->execute($discussionData);
 
     Livewire::test(SingleDiscussion::class, ['discussion' => $discussion])
         ->callAction('deleteAction')

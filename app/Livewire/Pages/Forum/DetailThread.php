@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages\Forum;
 
-use App\Gamify\Points\ThreadCreated;
+use App\Actions\Forum\DeleteThreadAction;
 use App\Models\Thread;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
@@ -12,7 +12,6 @@ use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -55,12 +54,8 @@ final class DetailThread extends Component implements HasActions, HasForms
             ->authorize('delete', $this->thread)
             ->requiresConfirmation()
             ->action(function (): void {
-                DB::beginTransaction();
 
-                undoPoint(new ThreadCreated($this->thread));
-                $this->thread->delete();
-
-                DB::commit();
+                app(DeleteThreadAction::class)->execute($this->thread);
 
                 $this->redirectRoute('forum.index', navigate: true);
             });
