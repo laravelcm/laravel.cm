@@ -2,16 +2,14 @@
 
 declare(strict_types=1);
 
-use function Livewire\Volt\{on};
 use Illuminate\Support\Facades\Auth;
 
+use function Livewire\Volt\{on};
 use function Livewire\Volt\{state};
 
 state(['count' => Auth::user()->unreadNotifications()->count()]);
 
-on(['NotificationMarkedAsRead' => function (int $count) {
-    return $count;
-}]);
+on(['NotificationMarkedAsRead' => fn (int $count) => $count );
 
 ?>
 
