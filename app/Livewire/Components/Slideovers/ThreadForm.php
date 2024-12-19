@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Slideovers;
 
-use App\Actions\Forum\CreateOrUpdateThreadAction;
+use App\Actions\Forum\CreateThreadAction;
+use App\Actions\Forum\UpdateThreadAction;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Thread;
@@ -120,10 +121,9 @@ final class ThreadForm extends SlideOverComponent implements HasForms
 
         $validated = $this->form->getState();
 
-        $thread = app(CreateOrUpdateThreadAction::class)->execute(
-            formValues: $validated,
-            threadId: $this->thread?->id
-        );
+        $thread = ($this->thread?->id)
+            ? app(UpdateThreadAction::class)->execute($validated, $this->thread->id)
+            : app(CreateThreadAction::class)->execute($validated);
 
         $this->form->model($thread)->saveRelationships();
 
