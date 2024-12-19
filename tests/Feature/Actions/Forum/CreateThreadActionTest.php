@@ -26,7 +26,7 @@ it('user can create a thread', function (): void {
         'slug' => 'thread-title',
         'user_id' => $this->user->id,
         'body' => 'This is a test action thread for created or updated thread.',
-        'channels' => [$channels->first(), $channels->last()],
+        'channels' => [$channels->modelKeys()],
     ]);
 
     expect($thread)

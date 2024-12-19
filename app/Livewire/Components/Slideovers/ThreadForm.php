@@ -122,7 +122,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms
         $validated = $this->form->getState();
 
         $thread = ($this->thread?->id)
-            ? app(UpdateThreadAction::class)->execute($validated, $this->thread->id)
+            ? app(UpdateThreadAction::class)->execute($validated, $this->thread)
             : app(CreateThreadAction::class)->execute($validated);
 
         $this->form->model($thread)->saveRelationships();

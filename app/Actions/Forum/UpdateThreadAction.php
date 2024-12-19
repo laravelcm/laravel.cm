@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 final class UpdateThreadAction
 {
-    public function execute(array $formValues, int $threadId): Thread
+    public function execute(array $formValues, Thread $thread): Thread
     {
-        return DB::transaction(function () use ($formValues, $threadId) {
-
-            $thread = Thread::query()->findOrFail($threadId);
+        return DB::transaction(function () use ($formValues, $thread) {
 
             $thread->update($formValues);
 

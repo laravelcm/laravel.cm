@@ -26,7 +26,7 @@ it('user can edit a thread', function (): void {
 
     $thread = app(UpdateThreadAction::class)->execute([
         'title' => 'update thread title',
-    ], $thread->id);
+    ], $thread);
 
     expect($thread)
         ->toBeInstanceOf(Thread::class)
