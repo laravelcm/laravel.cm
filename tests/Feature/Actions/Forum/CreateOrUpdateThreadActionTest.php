@@ -13,22 +13,21 @@ use Illuminate\Support\Facades\Notification;
 
 beforeEach(function (): void {
     $this->user = $this->login();
+
     Event::fake();
     Notification::fake();
 });
 
 it('user can create a thread', function (): void {
-    $channelOne = Channel::factory()->create(['name' => 'channel 1', 'slug' => 'channel-1']);
-    $channelTwo = Channel::factory()->create(['name' => 'channel 2', 'slug' => 'channel-2']);
-    $threadData = [
+    $channels = Channel::factory()->count(2)->create();
+
+    $thread = app(createOrUpdateThreadAction::class)->execute([
         'title' => 'thread title',
         'slug' => 'thread-title',
         'user_id' => $this->user->id,
         'body' => 'This is a test action thread for created or updated thread.',
-        'channels' => [$channelOne->id, $channelTwo->id],
-    ];
-
-    $thread = app(createOrUpdateThreadAction::class)->execute($threadData);
+        'channels' => [$channels->first(), $channels->last()],
+    ]);
 
     expect($thread)
         ->toBeInstanceOf(Thread::class)
@@ -44,11 +43,9 @@ it('user can edit a thread', function (): void {
 
     $thread->channels()->attach($channels->modelKeys());
 
-    $threadData = [
+    $thread = app(createOrUpdateThreadAction::class)->execute([
         'title' => 'update thread title',
-    ];
-
-    $thread = app(createOrUpdateThreadAction::class)->execute($threadData, $thread);
+    ], $thread->id);
 
     expect($thread)
         ->toBeInstanceOf(Thread::class)

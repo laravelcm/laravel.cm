@@ -122,7 +122,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms
 
         $thread = app(CreateOrUpdateThreadAction::class)->execute(
             formValues: $validated,
-            thread: $this->thread
+            threadId: $this->thread?->id
         );
 
         $this->form->model($thread)->saveRelationships();
@@ -136,7 +136,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms
             ->success()
             ->send();
 
-        $this->redirect(route('forum.show', ['thread' => $thread ?? $this->thread]), navigate: true); // @phpstan-ignore-line
+        $this->redirect(route('forum.show', ['thread' => $thread]), navigate: true);
     }
 
     public function render(): View

@@ -11,13 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 final class CreateOrUpdateThreadAction
 {
-    public function execute(array $formValues, ?Thread $thread = null): Thread
+    public function execute(array $formValues, ?int $threadId = null): Thread
     {
-        return DB::transaction(function () use ($formValues, $thread) {
-            $edit = (bool) $thread?->id;
-            $thread = Thread::query()->updateOrCreate(['id' => $thread?->id], $formValues);
+        return DB::transaction(function () use ($formValues, $threadId) {
+            $thread = Thread::query()->updateOrCreate(['id' => $threadId], $formValues);
 
-            if (! $edit) {
+            if (! $threadId) {
                 app(SubscribeToThreadAction::class)->execute($thread);
 
                 givePoint(new ThreadCreated($thread));
