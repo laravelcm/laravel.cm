@@ -9,7 +9,7 @@ use function Livewire\Volt\{state};
 
 state(['hasNotification' => Auth::user()->unreadNotifications()->count() > 0 ]);
 
-on(['NotificationMarkedAsRead' => fn (int $count) => $count > 0]);
+on(['NotificationMarkedAsRead' => fn (int $count) => $count > 0 ]);
 
 ?>
 
