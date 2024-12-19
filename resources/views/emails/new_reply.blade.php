@@ -5,7 +5,7 @@
         {{ $reply->excerpt(200) }}
     @endcomponent
 
-    @component('mail::button', ['url' => route('forum.show', $reply->replyAble->slug()), 'color' => 'green'])
+    @component('mail::button', ['url' => route('forum.show', $reply->replyAble->slug), 'color' => 'green'])
         Voir le sujet
     @endcomponent
 

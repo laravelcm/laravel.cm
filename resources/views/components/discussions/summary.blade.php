@@ -63,7 +63,7 @@
                 <span class="sr-only">{{ __('réponses') }}</span>
             </p>
             <a
-                href="{{ route('discussions.edit', $discussion->slug()) }}"
+                href="{{ route('discussions.edit', $discussion->slug) }}"
                 class="inline-flex items-center font-normal text-gray-700 dark:text-gray-300 hover:text-gray-500 dark:text-gray-400 hover:underline"
             >
                 <svg

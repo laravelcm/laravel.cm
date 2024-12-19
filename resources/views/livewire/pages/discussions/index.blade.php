@@ -1,9 +1,9 @@
 <x-container class="py-12 lg:pb-20">
     <div class="relative lg:grid lg:grid-cols-7 lg:gap-12">
         <div class="lg:col-span-5 space-y-10">
-            <div class="flex items-center justify-between gap-10">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
                 <x-scrollable-content
-                    class="w-2/3 bg-white rounded-xl ring-1 ring-gray-200/60 dark:bg-gray-800 dark:ring-white/10"
+                    class="bg-white rounded-xl ring-1 ring-gray-200/60 dark:bg-gray-800 dark:ring-white/10 sm:w-2/3"
                     tab-class="!pb-0"
                 >
                     <div class="border-b border-gray-200">
@@ -27,6 +27,7 @@
                         </nav>
                     </div>
                 </x-scrollable-content>
+
                 <div class="flex items-center gap-2">
                     <x-filament::dropdown>
                         <x-slot name="trigger">
@@ -47,6 +48,8 @@
                             </x-filament::dropdown.list.item>
                         </x-filament::dropdown.list>
                     </x-filament::dropdown>
+
+                    <x-locale-selector :$locale />
 
                     @can('create', \App\Models\Discussion::class)
                         <x-buttons.primary

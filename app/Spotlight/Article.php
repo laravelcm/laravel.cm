@@ -36,7 +36,7 @@ final class Article extends SpotlightCommand
             ->where('title', 'like', "%{$query}%")
             ->get()
             ->map(fn (ArticleModel $article) => new SpotlightSearchResult(
-                $article->slug(),
+                $article->slug,
                 $article->title,
                 sprintf('par @%s', $article->user->username)
             ));

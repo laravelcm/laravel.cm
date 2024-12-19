@@ -57,7 +57,7 @@
                                 @endforeach
                             </div>
 
-                            <a href="{{ route('articles.show', $article->slug()) }}" class="block">
+                            <a href="{{ route('articles.show', $article->slug) }}" class="block">
                                 <div class="mt-4 flex items-center justify-between">
                                     <h3
                                         class="font-sans text-xl font-semibold leading-7 text-gray-900 hover:text-primary-600"
@@ -68,7 +68,7 @@
                                     <div class="flex items-center font-sans text-gray-400 dark:text-gray-500">
                                         @if ($article->isPublished())
                                             <a
-                                                href="{{ route('articles.show', $article->slug()) }}"
+                                                href="{{ route('articles.show', $article->slug) }}"
                                                 class="hover:text-gray-500 dark:text-gray-400 hover:underline"
                                             >
                                                 Voir
@@ -77,7 +77,7 @@
                                         @endif
 
                                         <a
-                                            href="{{ route('articles.edit', $article->slug()) }}"
+                                            href="{{ route('articles.edit', $article->slug) }}"
                                             class="hover:text-gray-500 dark:text-gray-400 hover:underline"
                                         >
                                             Éditer

@@ -7,6 +7,7 @@ namespace App\Livewire\Pages\Discussions;
 use App\Models\Builders\DiscussionQueryBuilder;
 use App\Models\Discussion;
 use App\Models\Tag;
+use App\Traits\WithLocale;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -15,6 +16,7 @@ use Livewire\WithPagination;
 
 final class Index extends Component
 {
+    use WithLocale;
     use WithoutUrlPagination;
     use WithPagination;
 
@@ -22,6 +24,11 @@ final class Index extends Component
     public string $currentTag = '';
 
     public string $sortBy = 'recent';
+
+    public function mount(): void
+    {
+        $this->locale = config('app.locale');
+    }
 
     public function validSort(string $sort): bool
     {
@@ -50,8 +57,9 @@ final class Index extends Component
     public function render(): View
     {
         /** @var DiscussionQueryBuilder $query */
-        $query = Discussion::with('tags')
+        $query = Discussion::with('tags') // @phpstan-ignore-line
             ->withCount('replies')
+            ->forLocale($this->locale)
             ->notPinned();
 
         $tags = Tag::query()

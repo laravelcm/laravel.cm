@@ -10,7 +10,7 @@ use App\Notifications\ThreadConvertedByAdmin;
 use App\Notifications\ThreadConvertedByCreator;
 use Illuminate\Support\Facades\Auth;
 
-final class NotifyUsersOfThreadConversion
+final class NotifyUsersOfThreadConversionAction
 {
     public function execute(Thread $thread): void
     {

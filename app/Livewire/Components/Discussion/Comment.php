@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Discussion;
 
-use App\Actions\Replies\LikeReply;
+use App\Actions\Discussion\LikeReplyAction;
 use App\Models\Reply;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
@@ -32,7 +32,7 @@ final class Comment extends Component
     {
         $this->authorize('like', $this->comment);
 
-        app()->call(LikeReply::class, [
+        app()->call(LikeReplyAction::class, [
             'user' => auth()->user(),
             'reply' => $this->comment,
         ]);

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\Replies;
+namespace App\Actions\Discussion;
 
 use App\Models\Reaction;
 use App\Models\Reply;
 use App\Models\User;
 
-final class LikeReply
+final class LikeReplyAction
 {
     public function __invoke(User $user, Reply $reply, string $reaction = 'love'): void
     {

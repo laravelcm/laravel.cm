@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Filters\Enterprise\EnterpriseFilters;
+use App\Models\Traits\HasSlug;
 use App\Traits\HasSettings;
-use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

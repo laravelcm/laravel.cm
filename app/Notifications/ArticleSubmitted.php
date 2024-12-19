@@ -31,7 +31,7 @@ final class ArticleSubmitted extends Notification implements ShouldQueue
 
     public function toTelegram(): TelegramMessage
     {
-        $url = route('articles.show', $this->article->slug());
+        $url = route('articles.show', $this->article->slug);
 
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channel'))

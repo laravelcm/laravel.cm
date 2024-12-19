@@ -88,6 +88,6 @@ if (! function_exists('route_to_reply_able')) {
     {
         $routeName = $replyAble instanceof \App\Models\Thread ? 'forum.show' : 'discussions.show';
 
-        return route($routeName, $replyAble->slug());
+        return route($routeName, $replyAble->slug);
     }
 }

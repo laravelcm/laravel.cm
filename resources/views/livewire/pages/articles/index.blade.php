@@ -8,11 +8,13 @@
                 <p class="mt-1.5 text-lg text-gray-500 dark:text-gray-400">
                     {{ __('pages/article.blog_summary') }}
                 </p>
+                <x-locale-selector class="mt-3" :$locale />
             </div>
             <div class="hidden lg:block">
                 @include('ads.ln')
             </div>
         </x-container>
+
         <div class="border-b border-gray-100 dark:border-white/10">
             <x-container
                 x-data="{
@@ -68,7 +70,7 @@
 
                 <nav
                     @scroll="onScroll()"
-                    class="hide-scroll -mb-px flex items-center space-x-2 overflow-x-auto scroll-smooth pb-2 pl-4 pr-10"
+                    class="hide-scroll -mb-px flex items-center overflow-x-auto scroll-smooth pb-2 pl-4 pr-10"
                     aria-label="Tabs"
                     id="tags"
                 >
@@ -77,7 +79,7 @@
                             :href="route('articles.tag', $tag)"
                             class="inline-flex items-center rounded-lg py-1.5 px-3 text-nowrap gap-2 text-gray-500 transition-colors duration-200 ease-in-out hover:bg-gray-50 hover:text-gray-700 dark:hover:bg-gray-900/70 dark:text-gray-400 dark:hover:text-white"
                         >
-                            <x-dynamic-component :component="'icon.tags.'. $tag->slug()" class="size-5" aria-hidden="true" />
+                            <x-dynamic-component :component="'icon.tags.'. $tag->slug" class="size-5" aria-hidden="true" />
                             {{ $tag->name }}
                         </x-link>
                     @endforeach
@@ -108,7 +110,7 @@
     <x-container x-data x-intersect="@this.call('loadMore')" class="py-12 lg:py-16">
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-12">
             @foreach ($articles as $article)
-                <x-articles.card-author :article="$article" wire:key="{{ $article->slug() }}" />
+                <x-articles.card-author :article="$article" wire:key="{{ $article->slug }}" />
             @endforeach
         </div>
 

@@ -145,19 +145,19 @@ it('can retrieve only active threads', function (): void {
 it('generates a slug when valid url characters provided', function (): void {
     $thread = Thread::factory()->make(['slug' => 'Help with eloquent']);
 
-    expect($thread->slug())->toEqual('help-with-eloquent');
+    expect($thread->slug)->toEqual('help-with-eloquent');
 });
 
 it('generates a unique slug when valid url characters provided', function (): void {
     Thread::factory()->create(['slug' => 'Help with eloquent']);
     $thread = Thread::factory()->create(['slug' => 'Help with eloquent']);
 
-    expect($thread->slug())->toEqual('help-with-eloquent-1');
+    expect($thread->slug)->toEqual('help-with-eloquent-1');
 });
 
 it('generates a slug when invalid url characters provided', function (): void {
     $thread = Thread::factory()->make(['slug' => '한글 테스트']);
 
     // When providing a slug with invalid url characters, a random 5 character string is returned.
-    expect($thread->slug())->toMatch('/\w{5}/');
+    expect($thread->slug)->toMatch('/\w{5}/');
 });

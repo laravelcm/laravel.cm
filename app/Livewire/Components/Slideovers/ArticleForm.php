@@ -119,6 +119,18 @@ final class ArticleForm extends SlideOverComponent implements HasForms
                 Forms\Components\Group::make()
                     ->schema([
                         Forms\Components\MarkdownEditor::make('body')
+                            ->toolbarButtons([
+                                'attachFiles',
+                                'blockquote',
+                                'bold',
+                                'bulletList',
+                                'codeBlock',
+                                'italic',
+                                'link',
+                                'orderedList',
+                                'strike',
+                                'table',
+                            ])
                             ->label(__('validation.attributes.content'))
                             ->fileAttachmentsDisk('public')
                             ->minLength(10)

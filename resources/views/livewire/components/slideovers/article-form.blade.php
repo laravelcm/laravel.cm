@@ -7,7 +7,7 @@
             <button
                 @click="expanded = ! expanded"
                 type="button"
-                class="relative inline-flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium leading-4 text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100/70 dark:hover:bg-white/20"
+                class="relative inline-flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium leading-4 text-gray-500 ring-1 ring-offset-2 ring-yellow-400 dark:text-gray-400 bg-gray-50 hover:bg-gray-100/70 dark:bg-gray-800 dark:hover:bg-white/20 dark:ring-offset-gray-800"
             >
                 <x-untitledui-alert-triangle class="size-4 text-yellow-500 dark:text-yellow-400" aria-hidden="true" />
                 {{ __('pages/article.advice.title') }}

@@ -6,7 +6,6 @@ namespace App\Livewire\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Pluralizer;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -31,9 +30,7 @@ final class ChangeLocale extends Component
         app()->setLocale($locale);
         session()->put('locale', $locale);
 
-        Pluralizer::useLanguage($this->currentLocale === 'fr' ? 'french' : 'english');
-
-        $this->redirectRoute('home', navigate: true);
+        $this->redirect(url()->previous(), navigate: true);
     }
 
     #[Computed]
