@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Slideovers;
 
-use App\Actions\Forum\SubscribeToThreadAction;
-use App\Events\ThreadWasCreated;
+use App\Actions\Forum\CreateThreadAction;
+use App\Actions\Forum\UpdateThreadAction;
 use App\Exceptions\UnverifiedUserException;
-use App\Gamify\Points\ThreadCreated;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Thread;
 use Filament\Forms;
@@ -122,18 +121,11 @@ final class ThreadForm extends SlideOverComponent implements HasForms
 
         $validated = $this->form->getState();
 
-        if ($this->thread?->id) {
-            $this->thread->update($validated);
-            $this->form->model($this->thread)->saveRelationships();
-        } else {
-            $thread = Thread::query()->create($validated);
-            $this->form->model($thread)->saveRelationships();
+        $thread = ($this->thread?->id)
+            ? app(UpdateThreadAction::class)->execute($validated, $this->thread->id)
+            : app(CreateThreadAction::class)->execute($validated);
 
-            app(SubscribeToThreadAction::class)->execute($thread);
-
-            givePoint(new ThreadCreated($thread));
-            event(new ThreadWasCreated($thread));
-        }
+        $this->form->model($thread)->saveRelationships();
 
         Notification::make()
             ->title(
@@ -144,7 +136,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms
             ->success()
             ->send();
 
-        $this->redirect(route('forum.show', ['thread' => $thread ?? $this->thread]), navigate: true);
+        $this->redirect(route('forum.show', ['thread' => $thread]), navigate: true);
     }
 
     public function render(): View
