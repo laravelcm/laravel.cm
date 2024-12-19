@@ -9,13 +9,14 @@ use function Livewire\Volt\{state};
 
 state(['hasNotification' => Auth::user()->unreadNotifications()->count() > 0 ]);
 
-on(['NotificationMarkedAsRead' => fn (int $count) => $count > 0]);
+on(['NotificationMarkedAsRead' => fn (int $count) => $count > 0 ]);
 
 ?>
 
 <span
     @class([
-        'hidden' => !$hasNotification,
-        'shadow-solid absolute right-0 top-0 block size-2 rounded-full bg-primary-600 text-white' => $hasNotification
+        'shadow-solid absolute right-0 top-0 block size-2 rounded-full bg-primary-600 text-white',
+        'hidden' => ! $hasNotification,
+        'block' => $hasNotification,
     ])
 ></span>
