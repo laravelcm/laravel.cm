@@ -47,19 +47,19 @@ it('records activity when a discussion is created', function (): void {
 it('generates a slug when valid url characters provided', function (): void {
     $discussion = Discussion::factory()->make(['slug' => 'Help with eloquent']);
 
-    expect($discussion->slug())->toEqual('help-with-eloquent');
+    expect($discussion->slug)->toEqual('help-with-eloquent');
 });
 
 it('generates a unique slug when valid url characters provided', function (): void {
     $discussionOne = Discussion::factory()->create(['slug' => 'Help with eloquent']);
     $discussionTwo = Discussion::factory()->create(['slug' => 'Help with eloquent']);
 
-    expect($discussionTwo->slug())->toEqual('help-with-eloquent-1');
+    expect($discussionTwo->slug)->toEqual('help-with-eloquent-1');
 });
 
 it('generates a slug when invalid url characters provided', function (): void {
     $discussion = Discussion::factory()->make(['slug' => '한글 테스트']);
 
     // When providing a slug with invalid url characters, a random 5 character string is returned.
-    expect($discussion->slug())->toMatch('/\w{5}/');
+    expect($discussion->slug)->toMatch('/\w{5}/');
 });
