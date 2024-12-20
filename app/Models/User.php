@@ -113,6 +113,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'last_login_at' => 'datetime',
         'banned_at' => 'datetime',
         'settings' => 'array',
+        'last_active_at' => 'datetime',
     ];
 
     public function hasProvider(string $provider): bool
