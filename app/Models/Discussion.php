@@ -34,6 +34,7 @@ use Illuminate\Support\Str;
  * @property string $body
  * @property bool $locked
  * @property bool $is_pinned
+ * @property string | null $locale
  * @property int $user_id
  * @property-read int $count_all_replies_with_child
  * @property Carbon $created_at
@@ -62,6 +63,7 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
         'user_id',
         'is_pinned',
         'locked',
+        'locale',
     ];
 
     protected $casts = [

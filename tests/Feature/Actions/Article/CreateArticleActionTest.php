@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Actions\Article\CreateArticleAction;
-use App\Data\CreateArticleData;
+use App\Data\ArticleData;
 use App\Models\Article;
 use App\Models\Tag;
 
@@ -15,12 +15,13 @@ beforeEach(function (): void {
 
 describe(CreateArticleAction::class, function (): void {
     it('return the created article', function (): void {
-        $article = app(CreateArticleAction::class)->execute(CreateArticleData::from([
+        $article = app(CreateArticleAction::class)->execute(ArticleData::from([
             'title' => 'Article title',
             'slug' => 'Article slug',
             'published_at' => now(),
             'canonical_url' => 'Article canonical_url',
             'body' => 'Article body',
+            'locale' => 'fr',
         ]));
 
         expect($article)

@@ -19,4 +19,14 @@ final class TagFactory extends Factory
             'concerns' => ['post', 'discussion', 'tutorial'],
         ];
     }
+
+    public function article(): self
+    {
+        return $this->state(['concerns' => ['post', 'tutorial']]);
+    }
+
+    public function discussion(): self
+    {
+        return $this->state(['concerns' => ['discussion']]);
+    }
 }

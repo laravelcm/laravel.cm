@@ -43,6 +43,7 @@ use Spatie\Feed\FeedItem;
  * @property int $user_id
  * @property int $solution_reply_id
  * @property bool $locked
+ * @property string | null $locale
  * @property Carbon | null $last_posted_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -73,6 +74,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
         'body',
         'slug',
         'user_id',
+        'locale',
     ];
 
     protected $casts = [

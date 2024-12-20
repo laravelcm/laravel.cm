@@ -182,6 +182,7 @@ return [
         'gender' => 'Genre',
         'hour' => 'Heure',
         'last_name' => 'Nom',
+        'locale' => 'Langue',
         'minute' => 'Minute',
         'mobile' => 'Portable',
         'month' => 'Mois',
