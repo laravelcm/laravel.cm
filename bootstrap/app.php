@@ -20,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->web(append: [
             LocaleMiddleware::class,
+            \App\Http\Middleware\TrackLastActivity::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

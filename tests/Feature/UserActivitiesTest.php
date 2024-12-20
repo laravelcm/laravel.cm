@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Models\Activity;
 use App\Models\Article;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Route;
 
 it('records activity when an article is created', function (): void {
     $user = $this->login();
@@ -38,4 +39,13 @@ it('get feed from any user', function (): void {
     $this->assertFalse($feed->keys()->contains(
         Carbon::now()->subWeek()->format('Y-m-d')
     ));
+});
+
+it('does not update the last activity for unauthenticated users', function (): void {
+    Route::middleware(\App\Http\Middleware\TrackLastActivity::class)
+        ->get('/activity-user', fn () => 'ok');
+
+    $this->get('/activity-user')->assertOk();
+
+    $this->assertDatabaseMissing('users', ['last_active_at' => now()]);
 });

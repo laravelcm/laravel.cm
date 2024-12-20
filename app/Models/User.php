@@ -54,6 +54,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon | null $banned_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property Carbon | null $last_active_at
  * @property Collection | Activity[] $activities
  * @property Collection | Article[] $articles
  * @property Collection | Thread[] $threads
@@ -96,6 +97,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'banned_at',
         'banned_reason',
         'opt_in',
+        'last_active_at',
     ];
 
     protected $hidden = [
@@ -103,6 +105,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'last_active_at',
     ];
 
     protected $casts = [
@@ -110,6 +113,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'last_login_at' => 'datetime',
         'banned_at' => 'datetime',
         'settings' => 'array',
+        'last_active_at' => 'datetime',
     ];
 
     public function hasProvider(string $provider): bool
