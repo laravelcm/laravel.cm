@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Models\Article;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Psr\Http\Message\UriInterface;
+use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Tags\Url;
 
@@ -36,6 +38,10 @@ final class GenerateSitemap extends Command
 
                 return $url;
             })
+            ->writeToFile(public_path('sitemap.xml'));
+
+        Sitemap::create()
+            ->add(Article::query()->whereNotNull('approved_at')->get())
             ->writeToFile(public_path('sitemap.xml'));
     }
 
