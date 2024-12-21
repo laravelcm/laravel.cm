@@ -39,10 +39,10 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
             ? Discussion::query()->findOrFail($discussionId)
             : new Discussion;
 
-        $this->form->fill(array_merge(
-            $this->discussion->toArray(),
-            ['user_id' => $this->discussion->user_id ?? Auth::id()]
-        ));
+        $this->form->fill(array_merge($this->discussion->toArray(), [
+            'user_id' => $this->discussion->user_id ?? Auth::id(),
+            'locale' => $this->discussion->locale ?? app()->getLocale(),
+        ]));
     }
 
     public function form(Form $form): Form
@@ -71,6 +71,11 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
                     ->minItems(1)
                     ->maxItems(3)
                     ->preload(),
+                Forms\Components\ToggleButtons::make('locale')
+                    ->label(__('validation.attributes.locale'))
+                    ->options(['en' => 'En', 'fr' => 'Fr'])
+                    ->helperText(__('global.locale_help'))
+                    ->grouped(),
                 Forms\Components\MarkdownEditor::make('body')
                     ->toolbarButtons([
                         'blockquote',

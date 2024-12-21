@@ -39,10 +39,10 @@ final class ThreadForm extends SlideOverComponent implements HasForms
             ? Thread::query()->findOrFail($threadId)
             : new Thread;
 
-        $this->form->fill(array_merge(
-            $this->thread->toArray(),
-            ['user_id' => $this->thread->user_id ?? Auth::id()]
-        ));
+        $this->form->fill(array_merge($this->thread->toArray(), [
+            'user_id' => $this->thread->user_id ?? Auth::id(),
+            'locale' => $this->thread->locale ?? app()->getLocale(),
+        ]));
     }
 
     public static function panelMaxWidth(): string
@@ -78,10 +78,15 @@ final class ThreadForm extends SlideOverComponent implements HasForms
                 Forms\Components\Select::make('channels')
                     ->multiple()
                     ->relationship(titleAttribute: 'name')
-                    ->searchable()
+                    ->preload()
                     ->required()
                     ->minItems(1)
                     ->maxItems(3),
+                Forms\Components\ToggleButtons::make('locale')
+                    ->label(__('validation.attributes.locale'))
+                    ->options(['en' => 'En', 'fr' => 'Fr'])
+                    ->helperText(__('global.locale_help'))
+                    ->grouped(),
                 Forms\Components\MarkdownEditor::make('body')
                     ->fileAttachmentsDisk('public')
                     ->toolbarButtons([

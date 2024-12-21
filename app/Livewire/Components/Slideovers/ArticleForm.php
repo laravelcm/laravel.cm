@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Livewire\Components\Slideovers;
 
 use App\Actions\Article\CreateArticleAction;
-use App\Data\CreateArticleData;
+use App\Actions\Article\UpdateArticleAction;
+use App\Data\ArticleData;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Article;
@@ -44,6 +45,7 @@ final class ArticleForm extends SlideOverComponent implements HasForms
         $this->form->fill(array_merge($this->article->toArray(), [
             'is_draft' => ! $this->article->published_at, // @phpstan-ignore-line
             'published_at' => $this->article->published_at, // @phpstan-ignore-line
+            'locale' => $this->article->locale ?? app()->getLocale(),
         ]));
     }
 
@@ -114,6 +116,11 @@ final class ArticleForm extends SlideOverComponent implements HasForms
                             ->required()
                             ->minItems(1)
                             ->maxItems(3),
+                        Forms\Components\ToggleButtons::make('locale')
+                            ->label(__('validation.attributes.locale'))
+                            ->options(['en' => 'En', 'fr' => 'Fr'])
+                            ->helperText(__('global.locale_help'))
+                            ->grouped(),
                     ])
                     ->columnSpan(1),
                 Forms\Components\Group::make()
@@ -163,34 +170,37 @@ final class ArticleForm extends SlideOverComponent implements HasForms
 
         $this->validate();
 
-        $validated = $this->form->getState();
+        $state = $this->form->getState();
+
+        $publishedFields = [
+            'published_at' => data_get($state, 'published_at')
+                ? new Carbon(data_get($state, 'published_at'))
+                : null,
+            'submitted_at' => data_get($state, 'is_draft') ? null : now(),
+        ];
 
         if ($this->article?->id) {
-            $this->article->update(array_merge($validated, [
-                'submitted_at' => $validated['is_draft'] ? null : now(),
-            ]));
-            $this->form->model($this->article)->saveRelationships();
-            $this->article->fresh();
+            $article = app(UpdateArticleAction::class)->execute(
+                articleData: ArticleData::from(array_merge($state, $publishedFields)),
+                article: $this->article
+            );
 
             Notification::make()
                 ->title(
-                    $this->article->submitted_at
+                    $article->submitted_at
                         ? __('notifications.article.submitted')
                         : __('notifications.article.updated'),
                 )
                 ->success()
                 ->send();
         } else {
-            $article = app(CreateArticleAction::class)->execute(CreateArticleData::from(array_merge($validated, [
-                'published_at' => array_key_exists('published_at', $validated)
-                    ? new Carbon($validated['published_at'])
-                    : null,
-            ])));
-            $this->form->model($article)->saveRelationships();
+            $article = app(CreateArticleAction::class)->execute(
+                ArticleData::from(array_merge($state, $publishedFields))
+            );
 
             Notification::make()
                 ->title(
-                    $validated['is_draft'] === false
+                    data_get($state, 'is_draft') === false
                         ? __('notifications.article.submitted')
                         : __('notifications.article.created'),
                 )
@@ -198,7 +208,9 @@ final class ArticleForm extends SlideOverComponent implements HasForms
                 ->send();
         }
 
-        $this->redirect(route('articles.show', ['article' => $article ?? $this->article]), navigate: true);
+        $this->form->model($article)->saveRelationships();
+
+        $this->redirect(route('articles.show', ['article' => $article]), navigate: true);
     }
 
     public function render(): View

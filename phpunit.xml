@@ -15,6 +15,7 @@
   <php>
     <server name="APP_ENV" value="testing"/>
     <env name="APP_KEY" value="base64:NXoQgjw2ZlOxnGbo5ZRhYgTdM6xLYsgYElNAgcTQJkE="/>
+    <server name="APP_TIMEZONE" value="UTC"/>
     <server name="BCRYPT_ROUNDS" value="4"/>
     <server name="CACHE_DRIVER" value="array"/>
     <server name="DB_CONNECTION" value="sqlite"/>

@@ -102,5 +102,6 @@ return [
     'website' => 'Website',
     'characters' => ':number characters',
     'like' => ':count like',
+    'locale_help' => 'The language in which your content will be available on the site.',
 
 ];

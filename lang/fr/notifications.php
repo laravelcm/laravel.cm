@@ -22,6 +22,7 @@ return [
     'exceptions' => [
         'unverified_user' => "Vous n'êtes pas autorisé à effectuer cette. Votre e-mail n'est pas vérifiée",
         'spam_exist' => 'Le spam a déjà été signalé.',
+        'approved_article' => 'Un article approuvé ne peut pas être modifié.',
     ],
 
     'reply' => [

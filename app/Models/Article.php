@@ -31,15 +31,16 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property string | null $canonical_url
  * @property int | null $tweet_id
  * @property int $user_id
+ * @property string | null $locale
  * @property-read User $user
- * @property \Illuminate\Support\Carbon | null $published_at
- * @property \Illuminate\Support\Carbon | null $submitted_at
- * @property \Illuminate\Support\Carbon | null $approved_at
- * @property \Illuminate\Support\Carbon | null $shared_at
- * @property \Illuminate\Support\Carbon | null $declined_at
- * @property \Illuminate\Support\Carbon | null $sponsored_at
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
+ * @property \Carbon\Carbon | null $published_at
+ * @property \Carbon\Carbon | null $submitted_at
+ * @property \Carbon\Carbon | null $approved_at
+ * @property \Carbon\Carbon | null $shared_at
+ * @property \Carbon\Carbon | null $declined_at
+ * @property \Carbon\Carbon | null $sponsored_at
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property \Illuminate\Database\Eloquent\Collection | Tag[] $tags
  */
 final class Article extends Model implements HasMedia, ReactableInterface, Viewable
@@ -69,6 +70,7 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
         'shared_at',
         'sponsored_at',
         'published_at',
+        'locale',
     ];
 
     protected $casts = [
