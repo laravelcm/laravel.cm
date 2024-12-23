@@ -103,5 +103,6 @@ return [
     'characters' => ':number characters',
     'like' => ':count like',
     'locale_help' => 'The language in which your content will be available on the site.',
+    'community_oss_description' => 'The community is also developing open source packages to contribute to the Laravel ecosystem.',
 
 ];

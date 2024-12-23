@@ -46,7 +46,7 @@
     </div>
 
     <x-container>
-        <div class="divide-y divide-skin-base">
+        <div class="divide-y divide-gray-200 dark:divide-white/10">
             <div class="py-12 lg:py-20">
                 <x-section-header
                     :title="__('pages/home.popular_posts.title')"
@@ -251,4 +251,6 @@
             </div>
         </div>
     </div>
+
+    <livewire:components.github-repositories />
 </x-app-layout>
