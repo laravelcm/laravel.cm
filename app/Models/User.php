@@ -16,6 +16,7 @@ use Filament\Models\Contracts\HasName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -137,28 +138,29 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         return $this->enterprise !== null;
     }
 
-    public function getRolesLabelAttribute(): string
+    public function rolesLabel(): Attribute
     {
         $roles = $this->getRoleNames()->toArray();
 
-        if (count($roles)) {
-            return implode(', ', array_map(fn ($item) => ucwords($item), $roles));
-        }
-
-        return 'N/A';
+        return Attribute::get(fn () => count($roles)
+            ? implode(', ', array_map(fn ($item) => ucwords($item), $roles))
+            : 'N/A'
+        );
     }
 
-    public function getIsSponsorAttribute(): bool
+    public function IsSponsor(): Attribute
     {
-        if ($this->transactions_count > 0) {
-            $transaction = $this->transactions()
-                ->where('status', TransactionStatus::COMPLETE->value)
-                ->first();
+        return Attribute::get(function (): bool {
+            if ($this->transactions_count > 0) {
+                $transaction = $this->transactions()
+                    ->where('status', TransactionStatus::COMPLETE->value)
+                    ->first();
 
-            return (bool) $transaction;
-        }
+                return (bool) $transaction;
+            }
 
-        return false;
+            return false;
+        });
     }
 
     public function isAdmin(): bool

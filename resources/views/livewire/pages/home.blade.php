@@ -1,24 +1,7 @@
-<x-app-layout>
+<div>
     <div class="relative isolate">
         <x-container class="mx-auto max-w-3xl py-16 sm:pt-32 lg:pb-20 lg:pt-40">
-            <div class="flex justify-center">
-                <x-link
-                    :href="route('sponsors')"
-                    class="inline-flex items-center rounded-full bg-green-700 p-1 pr-2 text-white sm:text-base lg:text-sm xl:text-base"
-                >
-                    <span class="rounded-full bg-flag-green px-3 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white">
-                        ⚡️ {{ __('pages/home.sponsor.title') }}
-                    </span>
-                    <span class="ml-4 hidden text-sm sm:block">
-                        {{ __('pages/home.sponsor.description') }}
-                    </span>
-                    <span class="ml-4 text-sm sm:hidden">
-                        {{ __('pages/home.sponsor.description_small') }}
-                    </span>
-                    <x-heroicon-s-chevron-right class="ml-2 size-5 text-white" aria-hidden="true" />
-                </x-link>
-            </div>
-            <div class="mt-10 text-center">
+            <div class="text-center">
                 <h1 class="font-heading text-4xl font-medium tracking-tight text-primary-600 sm:leading-none lg:text-6xl">
                     {{ __('global.site_name') }}
                 </h1>
@@ -253,4 +236,4 @@
     </div>
 
     <livewire:components.github-repositories />
-</x-app-layout>
+</div>
