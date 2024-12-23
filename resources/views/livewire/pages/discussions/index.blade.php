@@ -1,5 +1,5 @@
 <x-container class="py-12 lg:pb-20">
-    <div class="relative lg:grid lg:grid-cols-7 lg:gap-12">
+    <div class="relative lg:grid lg:grid-cols-7 lg:gap-20">
         <div class="lg:col-span-5 space-y-10">
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
                 <x-scrollable-content

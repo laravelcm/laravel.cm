@@ -64,6 +64,7 @@ final class Index extends Component
         }
 
         $this->resetPage();
+
         $this->dispatch('render');
     }
 

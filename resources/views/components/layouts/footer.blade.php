@@ -1,7 +1,7 @@
 <footer class="bg-gray-900 p-3" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">{{ __('global.footer.title') }}</h2>
-    <div class="rounded-xl dark:bg-gray-800">
-        <x-container>
+    <div class="relative rounded-xl overflow-hidden dark:bg-gray-800">
+        <x-container class="relative z-10">
             <div class="py-12 sm:py-16 lg:grid lg:grid-cols-3 lg:gap-8 lg:py-20">
                 <div class="space-y-3">
                     <x-brand class="h-12 w-auto text-white sm:h-16" aria-hidden="true" />
@@ -100,5 +100,10 @@
                 </div>
             </div>
         </x-container>
+        @if(isHolidayWeek())
+            <div class="absolute z-0 inset-y-0 right-0">
+                <x-icon.christmas-tree class="size-full text-gray-800/30 dark:text-gray-700/20" aria-hidden="true" />
+            </div>
+        @endif
     </div>
 </footer>

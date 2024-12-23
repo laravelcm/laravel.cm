@@ -8,7 +8,7 @@ return [
     'description' => 'Laravel Cameroun est le portail de la communauté de développeurs PHP & Laravel au Cameroun, on partage, on apprend, on découvre et on construit une grande communauté.',
     'sponsor' => [
         'title' => 'Sponsor',
-        'description' => 'Soutenez Laravel Cameroun aujourd\'hui en sponsorisant',
+        'description' => 'Montrez votre soutien à Laravel Cameroun aujourd\'hui en sponsorisant',
         'description_small' => 'Soutenez Laravel Cameroun',
     ],
     'join_community' => 'Rejoindre la communauté',

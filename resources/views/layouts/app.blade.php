@@ -34,7 +34,7 @@
     <div class="flex min-h-screen flex-col justify-between">
         <x-layouts.header {{ $attributes->class($attributes->get('header-class')) }} />
 
-        <main class="relative z-0 w-full flex-1">
+        <main class="relative z-20 w-full flex-1">
             {{ $slot }}
         </main>
 
