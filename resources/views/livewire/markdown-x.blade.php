@@ -1807,7 +1807,7 @@
             window.addEventListener('markdown-x-peoples-results', (event) => {
                 let peoplesResults = event.detail.results
 
-                let peopleContents = `<ul role="list" class="divide-y divide-skin-base">`
+                let peopleContents = `<ul role="list" class="divide-y divide-gray-200 dark:divide-white/10">`
                 for (let i = 0; i < peoplesResults.length; i++) {
                     peopleContents += `<li class="p-3 group hover:bg-skin-primary">
                     <button type="button" onclick="addAdditionalContent('@${peoplesResults[i]['username']}', '${event.detail.key}')" class="flex items-center w-full">

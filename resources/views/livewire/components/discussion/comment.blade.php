@@ -28,7 +28,7 @@
                 @can('delete', $comment)
                     <div class="mt-1 flex sm:mt-0">
                         <span class="hidden font-medium text-gray-500 dark:text-gray-400 sm:inline-block">·</span>
-                        <div class="flex items-center space-x-2 divide-x divide-skin-base pl-2">
+                        <div class="flex items-center space-x-2 divide-x divide-gray-200 dark:divide-white/10 pl-2">
                             <button
                                 type="button"
                                 wire:click="delete"
