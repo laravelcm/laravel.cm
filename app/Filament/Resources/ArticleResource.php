@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use App\Actions\Article\ApprovedArticleAction;
 use App\Filament\Resources\ArticleResource\Pages;
-use App\Gamify\Points\ArticlePublished;
 use App\Models\Article;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\MaxWidth;
@@ -89,10 +89,7 @@ final class ArticleResource extends Resource
                         ->action(function ($record): void {
                             Gate::authorize('approve', $record);
 
-                            $record->approved_at = now();
-                            $record->save();
-
-                            givePoint(new ArticlePublished($record));
+                            app(ApprovedArticleAction::class)->execute($record);
                         }),
                     Action::make('declined')
                         ->visible(fn (Article $record) => $record->isAwaitingApproval())
