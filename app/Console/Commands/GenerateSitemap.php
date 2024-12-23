@@ -4,54 +4,45 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Models\Article;
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
-use Psr\Http\Message\UriInterface;
 use Spatie\Sitemap\Sitemap;
-use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\SitemapIndex;
 use Spatie\Sitemap\Tags\Url;
 
 final class GenerateSitemap extends Command
 {
     protected $signature = 'sitemap:generate';
 
-    protected $description = 'Crawl the site to generate a sitemap.xml file';
-
-    /**
-     * @var array|string[]
-     */
-    private array $noIndexPaths = [
-        '',
-        '/forum/*',
-        '/user/*',
-    ];
+    protected $description = 'Generate the sitemap';
 
     public function handle(): void
     {
-        SitemapGenerator::create(config('app.url'))
-            ->shouldCrawl(fn (UriInterface $url) => $this->shouldIndex($url->getPath()))
-            ->hasCrawled(function (Url $url) {
-                if ($this->shouldNotIndex($url->path())) {
-                    return;
-                }
-
-                return $url;
-            })
-            ->writeToFile(public_path('sitemap.xml'));
-
         Sitemap::create()
-            ->add(Article::query()->whereNotNull('approved_at')->get())
-            ->writeToFile(public_path('sitemap.xml'));
-    }
+            ->add(
+                Url::create(route('home'))
+                    ->setLastModificationDate(now()->subMinutes(10))
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+                    ->setPriority(0.5)
+            )
+            ->add(
+                Url::create(route('sponsors'))
+                    ->setLastModificationDate(now()->subMinutes(10))
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+                    ->setPriority(0.5)
+            )
+            ->add(
+                Url::create(route('about'))
+                    ->setLastModificationDate(now()->subMinutes(10))
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+                    ->setPriority(0.5)
+            )
+            ->writeToFile(public_path('sitemaps/base_sitemap.xml'));
 
-    private function shouldNotIndex(string $path): bool
-    {
-        return Str::is($this->noIndexPaths, $path);
-    }
+        $sitemap = SitemapIndex::create()
+            ->add('/sitemaps/base_sitemap.xml')
+            ->add('/sitemaps/discussion_sitemap.xml')
+            ->add('/sitemaps/blog_sitemap.xml');
 
-    private function shouldIndex(string $path): bool
-    {
-        return ! $this->shouldNotIndex($path);
+        $sitemap->writeToFile(public_path('sitemap.xml'));
     }
 }

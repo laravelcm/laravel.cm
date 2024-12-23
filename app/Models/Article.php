@@ -36,14 +36,14 @@ use Spatie\Sitemap\Tags\Url;
  * @property int $user_id
  * @property string | null $locale
  * @property-read User $user
- * @property \Carbon\Carbon | null $published_at
- * @property \Carbon\Carbon | null $submitted_at
- * @property \Carbon\Carbon | null $approved_at
- * @property \Carbon\Carbon | null $shared_at
- * @property \Carbon\Carbon | null $declined_at
- * @property \Carbon\Carbon | null $sponsored_at
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon | null $published_at
+ * @property Carbon | null $submitted_at
+ * @property Carbon | null $approved_at
+ * @property Carbon | null $shared_at
+ * @property Carbon | null $declined_at
+ * @property Carbon | null $sponsored_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property \Illuminate\Database\Eloquent\Collection | Tag[] $tags
  */
 final class Article extends Model implements HasMedia, ReactableInterface, Sitemapable, Viewable
@@ -97,6 +97,14 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
     public function newEloquentBuilder($query): ArticleQueryBuilder
     {
         return new ArticleQueryBuilder($query);
+    }
+
+    public function toSitemapTag(): Url
+    {
+        return Url::create(route('articles.show', $this))
+            ->setLastModificationDate(Carbon::create($this->updated_at)) // @phpstan-ignore-line
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
+            ->setPriority(0.5);
     }
 
     public function excerpt(int $limit = 110): string
@@ -239,13 +247,5 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
         $this->removeTags();
 
         return parent::delete();
-    }
-
-    public function toSitemapTag(): Url|string|array
-    {
-        return Url::create(route('articles.show', $this))
-            ->setLastModificationDate(Carbon::create($this->updated_at))
-            ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
-            ->setPriority(0.1);
     }
 }
