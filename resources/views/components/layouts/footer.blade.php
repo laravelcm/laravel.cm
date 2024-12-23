@@ -40,7 +40,6 @@
                             <x-footer-link :title="__('global.navigation.terms')" :url="route('terms')" />
                             <x-footer-link :title="__('global.navigation.privacy')" :url="route('privacy')" />
                             <x-footer-link :title="__('global.navigation.rules')" :url="route('rules')" />
-                            <x-footer-link :title="__('global.navigation.faq')" :url="route('faq')" />
                         </ul>
                     </div>
                 </div>

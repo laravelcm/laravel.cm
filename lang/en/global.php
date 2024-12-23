@@ -21,7 +21,6 @@ return [
         'sponsors' => 'Sponsors',
         'snippets' => 'Snippets',
         'branding' => 'Branding',
-        'faq' => 'FAQ',
         'rules' => 'Rules',
         'privacy' => 'Privacy Policy',
         'terms' => 'Terms & Conditions',

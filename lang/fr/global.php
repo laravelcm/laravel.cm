@@ -21,7 +21,6 @@ return [
         'sponsors' => 'Soutien',
         'snippets' => 'Snippets',
         'branding' => 'Branding',
-        'faq' => 'FAQ',
         'rules' => 'Code de conduite',
         'privacy' => 'Confidentialité',
         'terms' => 'Conditions d’utilisation',
