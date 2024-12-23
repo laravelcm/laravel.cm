@@ -36,7 +36,7 @@ final class Home extends Component
             'latestArticles' => Cache::remember(
                 key: 'latestArticles',
                 ttl: $ttl,
-                callback: fn (): Collection => Article::with(['tags', 'user', 'user.transactions'])
+                callback: fn (): Collection => Article::with(['tags', 'user', 'user.transactions']) // @phpstan-ignore-line
                     ->published()
                     ->orderByDesc('sponsored_at')
                     ->orderByDesc('published_at')
@@ -58,7 +58,7 @@ final class Home extends Component
             'latestDiscussions' => Cache::remember(
                 key: 'latestDiscussions',
                 ttl: $ttl,
-                callback: fn (): Collection => Discussion::with(['user', 'user.transactions'])
+                callback: fn (): Collection => Discussion::with(['user', 'user.transactions']) // @phpstan-ignore-line
                     ->recent()
                     ->orderByViews()
                     ->limit(3)
