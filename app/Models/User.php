@@ -142,7 +142,8 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     {
         $roles = $this->getRoleNames()->toArray();
 
-        return Attribute::get(fn () => count($roles)
+        return Attribute::get(
+            fn () => count($roles)
             ? implode(', ', array_map(fn ($item) => ucwords($item), $roles))
             : 'N/A'
         );
