@@ -10,11 +10,12 @@ use App\Http\Controllers\SubscriptionController;
 use App\Livewire\Pages\Home;
 use App\Livewire\Pages\Notifications;
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
 Route::get('/', Home::class)->name('home');
 
 // Static pages
-Route::view('a-propos', 'about')->name('about');
+Volt::route('a-propos', 'pages.about')->name('about');
 Route::view('privacy', 'privacy')->name('privacy');
 Route::view('rules', 'rules')->name('rules');
 Route::view('terms', 'terms')->name('terms');
