@@ -116,9 +116,7 @@
                 <p class="font-semibold text-gray-900 dark:text-white">
                     {{ __('pages/discussion.comments_count', ['count' => $discussion->count_all_replies_with_child]) }}
                 </p>
-                @auth
-                    <livewire:discussions.subscribe :discussion="$discussion" />
-                @endauth
+
             </div>
 
             <livewire:components.discussion.comments :discussion="$discussion" />
