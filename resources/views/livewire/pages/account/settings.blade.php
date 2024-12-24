@@ -66,9 +66,9 @@
             <div x-cloak x-show="activeTab === 'notifications'">
                 <livewire:components.user.notifications />
             </div>
-            <div x-cloak x-show="activeTab === 'subscription'">
-                <h4>Subscription</h4>
-            </div>
+{{--            <div x-cloak x-show="activeTab === 'subscription'">--}}
+{{--                <h4>Subscription</h4>--}}
+{{--            </div>--}}
         </div>
     </section>
 </x-container>
