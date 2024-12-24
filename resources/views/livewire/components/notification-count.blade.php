@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Auth;
 
-use function Livewire\Volt\{on};
-use function Livewire\Volt\{state};
+use function Livewire\Volt\{on, state};
 
 state(['count' => Auth::user()->unreadNotifications()->count()]);
 

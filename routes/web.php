@@ -16,9 +16,9 @@ Route::get('/', Home::class)->name('home');
 
 // Static pages
 Volt::route('a-propos', 'pages.about')->name('about');
-Route::view('privacy', 'livewire.pages.privacy')->name('privacy');
-Route::view('rules', 'livewire.pages.rules')->name('rules');
-Route::view('terms', 'livewire.pages.terms')->name('terms');
+Route::view('privacy', 'pages.privacy')->name('privacy');
+Route::view('rules', 'pages.rules')->name('rules');
+Route::view('terms', 'pages.terms')->name('terms');
 
 // Social authentication
 Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');

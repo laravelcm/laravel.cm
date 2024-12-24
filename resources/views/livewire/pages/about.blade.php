@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 use function Livewire\Volt\{state};
 
-state(['profiles' =>
-    [
+state([
+    'profiles' => [
         [
             'name' => 'Arthur Monney',
-            'title' => 'Développeur Web Fullstack',
+            'title' => 'Dévelopeur Advocate & Fullstack',
             'avatar' => 'https://avatars.githubusercontent.com/u/14105989?v=4',
             'social_links' => [
                 'twitter' => 'https://twitter.com/MonneyArthur',
@@ -119,7 +119,7 @@ state(['profiles' =>
                         <ul class="font-normal">
                             <li>
                                 {{ __('pages/about.list.one.title') }}
-                                <a href="http://activspaces.com">ActivSpaces</a>
+                                <a href="https://activspaces.com?utm_source=laravel.cm">ActivSpaces</a>
                                 {{ __('pages/about.list.one.description') }}
                             </li>
                             <li>
@@ -129,17 +129,17 @@ state(['profiles' =>
                             </li>
                             <li>
                                 {{ __('pages/about.list.three.title') }}
-                                <a href="https://johns-corporation.com">John's Corporation</a>
+                                <span class="font-medium text-primary-600">John's Corporation</span>
                                 {{ __('pages/about.list.three.description') }}
                             </li>
                             <li>
                                 {{ __('pages/about.list.four.title') }}
-                                <a href="https://twitter.com/DarkCodeCompany">Dark Code</a>
+                                <a href="https://twitter.com/DarkCodeCompany?utm_source=laravel.cm" target="_blank">Dark Code</a>
                                 {{ __('pages/about.list.four.description') }}
                             </li>
                             <li>
                                 {{ __('pages/about.list.five.title') }}
-                                <a href="https://diool.com">Diool</a>
+                                <a href="https://diool.com?utm_source=laravel.cm" target="_blank">Diool</a>
                                 {{ __('pages/about.list.five.description') }}
                             </li>
                         </ul>
@@ -241,11 +241,9 @@ state(['profiles' =>
                                         <ul role="list" class="flex space-x-4">
                                             @foreach($profile['social_links'] as $platform => $url)
                                                 <li>
-                                                    <a href="{{ $url }}" class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:text-gray-400">
+                                                    <a href="{{ $url }}" target="_blank" class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400">
                                                         <span class="sr-only">{{ ucfirst($platform) }}</span>
-                                                        @if(\Illuminate\Support\Facades\View::exists('components.icon.'.$platform))
-                                                            <x-dynamic-component :component="'icon.'.$platform" class="size-6"/>
-                                                        @endif
+                                                        <x-dynamic-component :component="'icon.'.$platform" class="size-6" aria-hidden="true" />
                                                     </a>
                                                 </li>
                                             @endforeach
