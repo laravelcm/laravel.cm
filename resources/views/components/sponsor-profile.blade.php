@@ -26,7 +26,9 @@
                         <span>{{ $sponsor->user->username }}</span>
                         <span class="ml-1 font-medium text-gray-700 dark:text-gray-300">{{ $sponsor->user->name }}</span>
                     @else
-                        <span>{{ $sponsor->getMetadata('merchant')['name'] }}</span>
+                        @isset($sponsor->getMetadata('merchant')['name'] )
+                            <span>{{ $sponsor->getMetadata('merchant')['name'] }}</span>
+                        @endisset
                     @endif
                 </div>
             </div>

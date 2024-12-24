@@ -143,6 +143,7 @@ final class SponsorSubscription extends Component implements HasForms
                         'customer' => $payload->transaction->customer,
                         'laravel_cm_id' => Auth::id() ?? null,
                         'profile' => data_get($this->form->getState(), 'profile'),
+                        'name' => data_get($this->form->getState(), 'name'),
                     ],
                     'initiated_at' => $payload->transaction->created_at,
                     'description' => $payload->transaction->description,
