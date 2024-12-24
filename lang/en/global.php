@@ -104,5 +104,8 @@ return [
     'locale_help' => 'The language in which your content will be available on the site.',
     'community_oss_description' => 'The community is also developing open source packages to contribute to the Laravel ecosystem.',
     'holidays' => 'Happy Holidays',
+    'language' => 'Language',
+    'french' => 'French',
+    'english' => 'English',
 
 ];

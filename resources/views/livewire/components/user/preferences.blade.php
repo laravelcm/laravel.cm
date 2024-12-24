@@ -4,5 +4,12 @@
         :description="__('pages/account.settings.preferences_description')"
     />
 
-    <div class="mt-10"></div>
+    <form wire:submit="save" class="mt-10 max-w-xs space-y-10">
+        {{ $this->form }}
+
+        <x-buttons.submit
+            :title="__('actions.save')"
+            wire:loading.attr="data-loading"
+        />
+    </form>
 </div>
