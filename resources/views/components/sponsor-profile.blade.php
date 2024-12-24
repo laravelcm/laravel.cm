@@ -2,7 +2,7 @@
     'sponsor',
 ])
 
-<li x-data id="{{ $sponsor->id }}">
+<div x-data id="{{ $sponsor->id }}">
     <template x-ref="template">
         <div class="w-full max-w-xs rounded-md bg-skin-card px-4 py-2">
             <div class="flex items-center space-x-2">
@@ -46,12 +46,12 @@
     >
         @if ($sponsor->getMetadata('merchant')['laravel_cm_id'])
             <img
-                class="mx-auto size-10 rounded-full object-cover"
+                class="mx-auto size-8 rounded-full object-cover"
                 src="{{ $sponsor->user->profile_photo_url }}"
                 alt=""
             />
         @else
-            <span class="flex h-11 w-11 items-center">
+            <span class="flex size-10 items-center">
                 <svg class="h-full w-full text-gray-400 dark:text-gray-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path
                         fill-rule="evenodd"
@@ -62,4 +62,4 @@
             </span>
         @endif
     </a>
-</li>
+</div>

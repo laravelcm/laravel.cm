@@ -5,10 +5,10 @@ declare(strict_types=1);
 use App\Http\Controllers\NotchPayCallBackController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\ReplyAbleController;
-use App\Http\Controllers\SponsoringController;
 use App\Http\Controllers\SubscriptionController;
 use App\Livewire\Pages\Home;
 use App\Livewire\Pages\Notifications;
+use App\Livewire\Pages\Sponsoring;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Home::class)->name('home');
@@ -41,11 +41,11 @@ Route::get('notifications', Notifications::class)
     ->name('notifications')
     ->middleware(['auth', 'checkIfBanned']);
 
-Route::feeds();
-
-Route::get('sponsors', [SponsoringController::class, 'sponsors'])->name('sponsors');
+Route::get('sponsors', Sponsoring::class)->name('sponsors');
 Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');
 
 require __DIR__.'/features/account.php';
 
 require __DIR__.'/auth.php';
+
+Route::feeds();
