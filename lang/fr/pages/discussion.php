@@ -40,5 +40,7 @@ return [
     ],
     'min_discussion_length' => 'Maximum de 160 caractères.',
     'placeholder' => 'Votre commentaire',
+    'your_discussion' => 'Vos Discussions',
+    'write_discussion' => 'Rédiger une discussion',
 
 ];

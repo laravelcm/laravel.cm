@@ -10,7 +10,6 @@
 
             <x-user.stats :user="$user" />
         </div>
-
         <section class="relative mt-8 lg:grid lg:grid-cols-12 lg:gap-12">
             <div class="hidden lg:col-span-3 lg:block">
                 <x-user.sidebar :user="$user" />

@@ -27,5 +27,7 @@ return [
     'canonical_help' => 'If you have already posted this article on your own site, enter the URL here and the content will be attributed to you.',
     'draft_help' => 'Putting an article in draft allows you to update it later.',
     'unpublished' => 'This article has not yet been published.',
+    'draft' => 'Draft',
+    'your_article' => 'Your Articles',
 
 ];

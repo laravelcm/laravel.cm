@@ -9,7 +9,7 @@
             <span>{{ number_format($user->countArticles()) }}</span>
         </x-link>
 
-        <x-link :href="route('discussions.me')" :active="request()->routeIs('discussions.me')">
+        <x-link :href="route('discussions.index')" :active="request()->routeIs('discussions.index')">
             <span class="flex-1">Discussions</span>
             <span>{{ number_format($user->countDiscussions()) }}</span>
         </x-link>

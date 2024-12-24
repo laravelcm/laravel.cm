@@ -27,5 +27,7 @@ return [
     'canonical_help' => 'Précisez si l\'article a été publié pour la première fois ailleurs (comme sur votre propre blog).',
     'draft_help' => 'Mettre en article en brouillon vous donne la possibilité de le modifier plus tard',
     'unpublished' => 'Cet article n\'a pas encore été publié.',
+    'draft' => 'Brouillon',
+    'your_article' => 'Vos articles',
 
 ];

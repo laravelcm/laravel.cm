@@ -1,4 +1,4 @@
-<x-app-layout :title="'Sujets ~ ' . $user->username . ' ('. $user->name .')'" :canonical="route('threads.me')">
+<x-app-layout :title="'Sujets ~ ' . $user->username . ' (' . $user->name . ')'" :canonical="route('threads.me')">
     <x-container class="py-12">
         <div>
             <x-status-message class="mb-5" />
@@ -15,7 +15,7 @@
             <main class="lg:col-span-9">
                 <x-user.page-heading title="Vos sujets" url="#" :button="__('Nouveau sujet')" />
 
-                <div class="mt-5">
+                <div class="flex items-center space-x-3">
                     @forelse ($threads as $thread)
                         <x-forum.thread :thread="$thread" />
                     @empty

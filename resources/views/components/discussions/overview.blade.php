@@ -3,15 +3,27 @@
     'hiddenAuthor' => false,
 ])
 
-<div class="py-6">
+<div>
     @if ($discussion->tags->isNotEmpty())
-        <div class="flex items-center space-x-2 mb-4">
-            @foreach ($discussion->tags as $tag)
-                <x-tag
-                    :tag="$tag"
-                    :href="route('discussions.index', ['tag' => $tag->slug])"
-                />
-            @endforeach
+        <div class="flex justify-between space-x-2 mb-4">
+            <div class="flex-1">
+                @foreach ($discussion->tags as $tag)
+                    <x-tag
+                        :tag="$tag"
+                        :href="route('discussions.index', ['tag' => $tag->slug])"
+                    />
+                @endforeach
+            </div>
+
+            <div>
+                <button type="button"
+                        class="inline-flex rounded bg-warning-500 px-2.5 py-0.5 text-xs font-medium text-yellow-800"
+                                onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.discussion-form', arguments: { discussionId: {{ $discussion->id }} }})">
+                            {{ __('actions.edit') }}
+                </button>
+
+                {{--          Mettre le bouton delete ici                  --}}
+            </div>
         </div>
     @endif
 
@@ -20,7 +32,7 @@
             {{ $discussion->title }}
         </x-link>
     </h2>
-    <p class="mt-2 text-gray-500 dark:text-gray-400 line-clamp-2">
+    <p class="mt-2 text-gray-500 dark:text-white line-clamp-2">
         {!! $discussion->excerpt(175) !!}
     </p>
 
