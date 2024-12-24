@@ -4,11 +4,12 @@
         :description="__('pages/account.settings.preferences_description')"
     />
 
-    <form wire:submit="save" class="mt-10 max-w-2xl space-y-4">
-        <x-theme-selector class="mt-3" :$theme />
-
+    <form wire:submit="save" class="mt-10 max-w-xs space-y-10">
         {{ $this->form }}
 
-        <x-buttons.submit :title="__('actions.save')" wire:loading.attr="data-loading" class="mt-10" />
+        <x-buttons.submit
+            :title="__('actions.save')"
+            wire:loading.attr="data-loading"
+        />
     </form>
 </div>

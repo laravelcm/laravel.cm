@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Components\User;
 
 use App\Models\User;
-use Filament\Forms\Components\Select;
+use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
@@ -23,9 +23,15 @@ final class Preferences extends Component implements HasForms
 {
     use InteractsWithForms;
 
-    public string $theme = 'light';
-
     public ?array $data = [];
+
+    public function mount(): void
+    {
+        $this->form->fill([
+            'theme' => $this->user->setting('theme', 'light'),
+            'locale' => $this->user->setting('locale', config('app.locale')),
+        ]);
+    }
 
     #[Computed]
     public function user(): User
@@ -33,48 +39,44 @@ final class Preferences extends Component implements HasForms
         return Auth::user(); // @phpstan-ignore-line
     }
 
-    public function mount(): void
-    {
-        $this->theme = get_current_theme();
-    }
-
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Select::make('setting')
+                Forms\Components\ToggleButtons::make('theme')
+                    ->label('Theme')
+                    ->options([
+                        'light' => 'Light',
+                        'dark' => 'Dark',
+                    ])
+                    ->icons([
+                        'light' => 'phosphor-sun-duotone',
+                        'dark' => 'phosphor-moon-duotone',
+                    ])
+                    ->grouped(),
+                Forms\Components\Select::make('locale')
                     ->label(__('global.language'))
-                    ->in(config('lcm.supported_locales'))
-                    ->required()
                     ->options([
                         'fr' => __('global.french'),
                         'en' => __('global.english'),
                     ]),
             ])
-            ->statePath('data')
-            ->model(Auth::user());
+            ->statePath('data');
     }
 
     public function save(): void
     {
         $this->validate();
 
-        $this->user->settings(['locale' => data_get($this->form->getState(), 'setting')]);
+        $this->user->settings($this->form->getState());
+
+        $this->dispatch('theme-changed', get_current_theme());
 
         Notification::make()
             ->success()
             ->title(__('notifications.user.profile_updated'))
             ->duration(3500)
             ->send();
-
-        $this->redirectRoute('settings', navigate: true);
-    }
-
-    public function changeTheme(string $value): void
-    {
-        $this->user->settings(['theme' => $value]);
-
-        $this->redirectRoute('settings');
     }
 
     public function render(): View

@@ -44,13 +44,13 @@
                     {{ __('global.navigation.notifications') }}
                 </x-filament::tabs.item>
 
-                <x-filament::tabs.item
+                {{--<x-filament::tabs.item
                     alpine-active="activeTab === 'subscription'"
                     x-on:click="activeTab = 'subscription'"
                     icon="untitledui-credit-card-02"
                 >
                     {{ __('global.navigation.subscription') }}
-                </x-filament::tabs.item>
+                </x-filament::tabs.item>--}}
             </x-filament::tabs>
         </div>
         <div class="mt-10 lg:mt-0 lg:flex-1">
@@ -66,9 +66,7 @@
             <div x-cloak x-show="activeTab === 'notifications'">
                 <livewire:components.user.notifications />
             </div>
-{{--            <div x-cloak x-show="activeTab === 'subscription'">--}}
-{{--                <h4>Subscription</h4>--}}
-{{--            </div>--}}
+            <div x-cloak x-show="activeTab === 'subscription'"></div>
         </div>
     </section>
 </x-container>
