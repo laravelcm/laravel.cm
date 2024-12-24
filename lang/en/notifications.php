@@ -53,4 +53,7 @@ return [
         'save_comment' => 'Your comment has been saved',
         'delete_comment' => 'Your comment has been deleted',
     ],
+
+    'sponsor_error_title' => 'Payment error',
+    'sponsor_error_body' => 'Unable to process payment, please try again later. Thank you',
 ];

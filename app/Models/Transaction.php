@@ -7,16 +7,14 @@ namespace App\Models;
 use App\Enums\TransactionStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 final class Transaction extends Model
 {
-    use HasFactory;
     use HasUuids;
 
-    public $guarded = [];
+    public $guarded = ['id'];
 
     public $casts = [
         'metadata' => 'array',
@@ -43,7 +41,7 @@ final class Transaction extends Model
 
     public function setMetadata(array $revisions, bool $save = true): self
     {
-        $this->metadata = array_merge($this->metadata ?? [], $revisions);
+        $this->metadata = array_unique(array_merge($this->metadata ?? [], $revisions));
 
         if ($save) {
             $this->save();

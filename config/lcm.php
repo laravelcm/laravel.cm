@@ -19,17 +19,12 @@ return [
         ],
     ],
 
-    'slack' => [
-        'team' => env('SLACK_TEAM_NAME', 'Laravel Cameroun'),
-        'url' => env('SLACK_TEAM_URL', 'https://laravelcm.slack.com'),
-        'token' => env('SLACK_API_TOKEN', null),
-        'web_hook' => env('SLACK_WEBHOOK_URL', ''),
-    ],
-
     'supported_locales' => ['fr', 'en'],
 
     'spa_url' => env('FRONTEND_APP_URL', 'http://localhost:4200'),
 
     'notch-pay-public-token' => env('NOTCHPAY_PUBLIC_KEY', null),
+
+    'support_email' => env('MAIL_SUPPORT', 'support@laravel.cm'),
 
 ];

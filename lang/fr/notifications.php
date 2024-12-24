@@ -53,4 +53,8 @@ return [
         'save_comment' => 'Votre commentaire a été enregistré',
         'delete_comment' => 'Votre commentaire a été supprimé.',
     ],
+
+    'sponsor_error_title' => 'Erreur du paiement',
+    'sponsor_error_body' => 'Impossible de procéder au paiement, veuillez recommencer plus tard. Merci',
+
 ];
