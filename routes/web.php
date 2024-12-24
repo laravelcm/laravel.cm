@@ -16,9 +16,9 @@ Route::get('/', Home::class)->name('home');
 
 // Static pages
 Volt::route('a-propos', 'pages.about')->name('about');
-Route::view('privacy', 'privacy')->name('privacy');
-Route::view('rules', 'rules')->name('rules');
-Route::view('terms', 'terms')->name('terms');
+Volt::route('privacy', 'pages.privacy')->name('privacy');
+Volt::route('rules', 'pages.rules')->name('rules');
+Volt::route('terms', 'pages.terms')->name('terms');
 
 // Social authentication
 Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');

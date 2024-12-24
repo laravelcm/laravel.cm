@@ -12,7 +12,7 @@
                         wire:click="redirectToSubscription({{ $subscription->subscribeable_id }}, '{{ $subscription->subscribeable_type }}')"
                         class="text-base/6 text-left font-medium text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-500"
                     >
-                        {{ $subscription->subscribeAble->title }}
+                        {{ $subscription->subscribeAble?->title }}
                     </button>
                     <div class="mt-3">
                         <button

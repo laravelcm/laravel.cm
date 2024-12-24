@@ -243,12 +243,8 @@ state(['profiles' =>
                                                 <li>
                                                     <a href="{{ $url }}" class="text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:text-gray-400">
                                                         <span class="sr-only">{{ ucfirst($platform) }}</span>
-                                                        @if($platform == 'twitter')
-                                                            <x-icon.twitter class="size-6" />
-                                                        @elseif($platform == 'github')
-                                                            <x-icon.github class="size-6" />
-                                                        @elseif($platform == 'linkedin')
-                                                            <x-icon.linkedin class="size-6" />
+                                                        @if(\Illuminate\Support\Facades\View::exists('components.icon.'.$platform))
+                                                            <x-dynamic-component :component="'icon.'.$platform" class="size-6"/>
                                                         @endif
                                                     </a>
                                                 </li>

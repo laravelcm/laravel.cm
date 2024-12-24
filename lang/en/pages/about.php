@@ -12,7 +12,7 @@ return [
 
     'stats' => [
         'member_discord' => 'Members on Discord',
-        'member_telegram' => 'Members on Discord',
+        'member_telegram' => 'Members on Telegram',
         'member_whatsapp' => 'Members on WhatsApp',
     ],
     'history' => 'Our history',
