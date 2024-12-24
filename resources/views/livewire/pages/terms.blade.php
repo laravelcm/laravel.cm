@@ -1,5 +1,5 @@
-
-<div class="prose relative mx-auto max-w-4xl px-4 py-10">
+<x-app-layout title="{{ __('pages/terms.title') }}">
+    <div class="prose relative mx-auto max-w-4xl px-4 py-10">
         <h1>{{ __('pages/terms.title') }}</h1>
         <p>
             <span class="text-xs font-medium uppercase text-skin-muted">{{ __('pages/terms.last_maj', ['date' => \Carbon\Carbon::create(2019,6,19)->toFormattedDateString()]) }}</span>
@@ -55,5 +55,5 @@
 
         <h2>{{ __('pages/terms.contact_us.title') }}</h2>
         <p>{{ __('pages/terms.contact_us.description') }}</p>
-</div>
-
+    </div>
+</x-app-layout>
