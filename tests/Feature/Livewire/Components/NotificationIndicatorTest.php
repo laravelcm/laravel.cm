@@ -9,11 +9,11 @@ beforeEach(function (): void {
 });
 
 it('renders successfully', function (): void {
-    Volt::test('notification-indicator')
+    Volt::test('components.notification-indicator')
         ->assertStatus(200);
 });
 
 it('mask indicator if user can have unread notification', function (): void {
-    Volt::test('notification-indicator')
+    Volt::test('components.notification-indicator')
         ->assertSet('hasNotification', false);
 });

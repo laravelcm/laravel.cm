@@ -9,11 +9,11 @@ beforeEach(function (): void {
 });
 
 it('renders successfully', function (): void {
-    Volt::test('notification-count')
+    Volt::test('components.notification-count')
         ->assertStatus(200);
 });
 
 it('can display user count notification', function (): void {
-    Volt::test('notification-count')
+    Volt::test('components.notification-count')
         ->assertSee($this->user->unreadNotifications()->count());
 });
