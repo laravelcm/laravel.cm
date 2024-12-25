@@ -4,7 +4,7 @@
     'displayButton' => false,
 ])
 
-<div  {{ $attributes->get('class', '') }}" >
+<div {{ $attributes->twMerge(['class' => 'py-6']) }} >
     @if ($discussion->tags->isNotEmpty())
         <div class="flex items-center space-x-2 mb-4">
             <div class="flex-1">
