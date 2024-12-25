@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Actions\Article\ArticleDeleteAction;
 use App\Models\Article;
-use Filament\Actions\Action;
+use Filament\Actions\Action,
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -17,11 +16,12 @@ use Livewire\WithoutUrlPagination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-new class extends Component implements HasForms, HasActions {
-
-    use WithPagination, WithoutUrlPagination;
+new class extends Component implements HasForms, HasActions
+{
     use InteractsWithActions;
     use InteractsWithForms;
+    use WithPagination;
+    use WithoutUrlPagination;
 
     #[Computed]
     public function articles(): LengthAwarePaginator
@@ -42,7 +42,7 @@ new class extends Component implements HasForms, HasActions {
                 fn (array $arguments) => $this->dispatch(
                     'openPanel',
                     component: 'components.slideovers.article-form',
-                    arguments: ['articleId' => $arguments['article']]
+                    arguments: ['articleId' => $arguments['id']]
                 )
             );
     }
@@ -52,16 +52,19 @@ new class extends Component implements HasForms, HasActions {
         return Action::make('delete')
             ->label(__('actions.delete'))
             ->color('danger')
+            ->badge()
             ->requiresConfirmation()
             ->action(function (array $arguments): void {
-                $article = Article::query()->find($arguments['article']);
+                $article = Article::query()->find($arguments['id']);
+
+                $this->authorize('delete', $article);
 
                 $article->delete();
 
                 Notification::make()
-                        ->success()
-                        ->title(__('notifications.article.deleted'))
-                        ->send();
+                    ->success()
+                    ->title(__('notifications.article.deleted'))
+                    ->send();
             });
     }
 };
@@ -76,10 +79,11 @@ new class extends Component implements HasForms, HasActions {
                 </h2>
             </div>
             <div class="mt-4 flex md:ml-4 md:mt-0">
-                <x-buttons.primary class="justify-items-center" type="button"
-                                   onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form' })">
-                    <x-untitledui-message-text-square class="size-5 mr-2" aria-hidden="true" />
-                    {{ __('pages/article.new_article') }}
+                <x-buttons.primary
+                    class="justify-items-center" type="button"
+                    wire:click="$dispatch('openPanel', { component: 'components.slideovers.article-form' })"
+                >
+                    {{ __('global.launch_modal.article_action') }}
                 </x-buttons.primary>
             </div>
         </div>

@@ -15,6 +15,7 @@ final class DeleteThreadAction
         DB::beginTransaction();
 
         undoPoint(new ThreadCreated($thread));
+
         $thread->delete();
 
         DB::commit();

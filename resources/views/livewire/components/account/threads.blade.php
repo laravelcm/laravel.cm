@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Forum\DeleteThreadAction;
 use App\Models\Thread;
 use Livewire\Volt\Component;

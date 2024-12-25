@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Actions\Article\ArticleDeleteAction;
 use App\Actions\Discussion\DeleteDiscussionAction;
 use App\Models\Discussion;
