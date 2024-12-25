@@ -40,7 +40,7 @@ return [
     'min_thread_length' => 'Minimum de 10 caractères.',
     'answer_reply' => 'Répondre au sujet',
     'threads_count' => ':count messages',
-    'your_thread' => 'Vos Sujets',
+    'my_thread' => 'Mes Sujets',
     'not_thread_created' => "Vous n'avez pas encore créé de sujet",
     'subject' => 'Sujets',
 

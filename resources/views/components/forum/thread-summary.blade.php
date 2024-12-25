@@ -3,10 +3,17 @@
 ])
 
 <article class="rounded-xl p-4 bg-white ring-1 ring-gray-200/50 transition duration-200 ease-in-out dark:bg-gray-800 dark:ring-white/10 dark:hover:bg-white/10 lg:p-5" aria-labelledby="{{ $thread->slug }}">
-    <x-forum.thread-channels :thread="$thread" />
+    <div class="flex items-center justify-between gap-4">
+        <x-forum.thread-channels :thread="$thread" />
+        <div class="hidden items-center gap-2 lg:flex">
+            @isset($buttons)
+                {{ $buttons }}
+            @endisset
+        </div>
+    </div>
 
     <div class="flex items-center gap-4">
-        <h2 id="question-title-{{ $thread->id }}" class="truncate text-xl font-medium text-gray-900 dark:text-white lg:text-xl">
+        <h2 id="question-{{ $thread->id }}" class="truncate text-xl font-medium text-gray-900 dark:text-white lg:text-xl">
             <x-link :href="route('forum.show', $thread)" class="hover:underline">
                 {{ $thread->subject() }}
             </x-link>
@@ -27,22 +34,7 @@
         <x-link :href="route('forum.show', $thread)">{!! $thread->excerpt() !!}</x-link>
     </div>
 
-    <div class="mt-6 flex justify-between space-x-8">
-        <div class="flex items-center gap-2">
-            <x-link :href="route('profile', $thread->user->username)" class="group inline-flex items-center gap-1 shrink-0">
-                <x-user.avatar :user="$thread->user" class="size-6" />
-                <span class="font-medium text-sm text-gray-700 group-hover:underline dark:text-gray-300">
-                    {{ '@' . $thread->user->username }}
-                </span>
-            </x-link>
-            <span class="flex items-center text-xs text-gray-500 flex-wrap gap-x-1 dark:text-gray-400">
-                <span>{{ __('global.ask') }}</span>
-                <time datetime="{{ $thread->created_at }}">
-                    {{ $thread->created_at->diffForHumans() }}
-                </time>
-            </span>
-        </div>
-
+    <div class="mt-6">
         <x-forum.thread-metadata :thread="$thread" />
     </div>
 </article>
