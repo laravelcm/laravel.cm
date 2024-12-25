@@ -21,14 +21,12 @@ final class ThreadTableSeeder extends Seeder
             ->get()
             ->modelKeys();
 
-        Thread::factory(['user_id' => random_int(1, count($usersIds))])
+        Thread::factory(['user_id' => array_rand($usersIds)])
             ->count(40)
+            ->has(
+                Reply::factory(['user_id' => array_rand($usersIds)])->count(5),
+                'replies'
+            )
             ->create();
-
-        /*$threadsIds = Thread::query()->inRandomOrder()
-            ->get()
-            ->modelKeys();
-
-        Reply::factory(['user_id' => random_int(1, count($threadsIds))])->create();*/
     }
 }
