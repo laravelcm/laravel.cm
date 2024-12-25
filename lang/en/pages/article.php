@@ -29,5 +29,6 @@ return [
     'unpublished' => 'This article has not yet been published.',
     'draft' => 'Draft',
     'your_article' => 'Your Articles',
+    'not_article_created' => "You haven't created any articles yet",
 
 ];

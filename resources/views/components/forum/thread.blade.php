@@ -3,7 +3,7 @@
 ])
 
 <article class="rounded-xl mb-8 p-6 cursor-pointer bg-white transition duration-200 ease-in-out dark:bg-gray-800 dark:ring-gray-800 dark:hover:bg-white/10 lg:py-5 lg:px-6" aria-labelledby="{{ $thread->slug }}">
-    <x-forum.thread-channels :thread="$thread" />
+    <x-forum.thread-channels :thread="$thread" :displayButton="true" />
 
     <div class="flex items-center gap-4">
         <h2 id="question-title-{{ $thread->id }}" class="truncate text-xl font-medium text-gray-900 dark:text-white lg:text-xl">

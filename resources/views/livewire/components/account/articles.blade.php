@@ -3,10 +3,12 @@
 declare(strict_types=1);
 
 use App\Actions\Article\ArticleDeleteAction;
-use App\Actions\Discussion\DeleteDiscussionAction;
 use App\Models\Article;
 use Filament\Actions\Action;
-use Filament\Actions\DeleteAction;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Livewire\Volt\Component;
 use Livewire\WithPagination;
@@ -15,9 +17,11 @@ use Livewire\WithoutUrlPagination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-new class extends Component {
+new class extends Component implements HasForms, HasActions {
 
     use WithPagination, WithoutUrlPagination;
+    use InteractsWithActions;
+    use InteractsWithForms;
 
     #[Computed]
     public function articles(): LengthAwarePaginator
@@ -26,19 +30,40 @@ new class extends Component {
             ->where('user_id', Auth::id())
             ->with(['user', 'tags', 'reactions'])
             ->latest()
-            ->paginate(3);
+            ->paginate(10);
     }
 
-    public function deleteArticle(Article $article): void
+    public function editAction(): Action
     {
-        app(ArticleDeleteAction::class)->handle($article);
-
-        Notification::make()
-            ->title('Article supprimé avec succès')
-            ->success()
-            ->send();
+        return Action::make('edit')
+            ->label(__('actions.edit'))
+            ->color('warning')
+            ->action(
+                fn (array $arguments) => $this->dispatch(
+                    'openPanel',
+                    component: 'components.slideovers.article-form',
+                    arguments: ['articleId' => $arguments['article']]
+                )
+            );
     }
 
+    public function deleteAction(): Action
+    {
+        return Action::make('delete')
+            ->label(__('actions.delete'))
+            ->color('danger')
+            ->requiresConfirmation()
+            ->action(function (array $arguments): void {
+                $article = Article::query()->find($arguments['article']);
+
+                app(ArticleDeleteAction::class)->execute($article);
+
+                Notification::make()
+                        ->success()
+                        ->title(__('notifications.article.deleted'))
+                        ->send();
+            });
+    }
 };
 ?>
 
@@ -46,7 +71,7 @@ new class extends Component {
     <main class="lg:col-span-9">
         <div class="md:flex md:items-center md:justify-between">
             <div class="min-w-0 flex-1">
-                <h2 class="font-heading text-lg font-bold leading-7 text-gray-900 sm:truncate sm:text-xl">
+                <h2 class="font-heading text-lg font-bold leading-7 text-gray-900 sm:truncate sm:text-xl dark:text-white">
                     {{ __('pages/article.your_article') }}
                 </h2>
             </div>
@@ -54,7 +79,7 @@ new class extends Component {
                 <x-buttons.primary class="justify-items-center" type="button"
                                    onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form' })">
                     <x-untitledui-message-text-square class="size-5 mr-2" aria-hidden="true" />
-                    {{ __('Rédiger un article') }}
+                    {{ __('pages/article.new_article') }}
                 </x-buttons.primary>
             </div>
         </div>
@@ -62,7 +87,7 @@ new class extends Component {
         <div class="mt-5 space-y-4">
 
             @forelse ($this->articles as $article)
-                <div
+                <div wire:key="{{ $article->id }}"
                     class="rounded-xl mb-8 p-6 cursor-pointer bg-white transition duration-200 ease-in-out dark:bg-gray-800 dark:ring-gray-800 dark:hover:bg-white/10 lg:py-5 lg:px-6">
                     <div class="flex justify-between space-x-3">
                         <div class="flex-1">
@@ -78,16 +103,24 @@ new class extends Component {
                             @endforeach
                         </div>
                         <div>
-                            @if ($article->isNotPublished())
-                                <button type="button"
-                                        class="inline-flex rounded bg-warning-500 px-2.5 py-0.5 text-xs font-medium text-yellow-800"
-                                        onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form', arguments: { articleId: {{ $article->id }} }})">
-                                    {{ __('actions.edit') }}
-                                </button>
-                            @endif
+                                @if ($article->isNotPublished())
+                                    @can('update', $article)
+                                        {{ $this->editAction()(['article' => $article->id]) }}
+                                    @endcan
+                                @endif
 
-                        {{--          Mettre le bouton delete ici                  --}}
-
+                                @if ($article->isPublished())
+                                    <a
+                                        href="{{ route('articles.show', $article->slug) }}"
+                                        class="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md bg-green-100 text-green-800 hover:bg-green-200 transition-colors"
+                                    >
+                                        {{ __('actions.view') }}
+                                    </a>
+                                @endif
+                                @can('delete', $article)
+                                    {{ $this->deleteAction()(['article' => $article->id]) }}
+                                @endcan
+                                <x-filament-actions::modals />
                         </div>
                     </div>
 
@@ -96,16 +129,6 @@ new class extends Component {
                             <h3 class="font-heading/7 text-xl font-semibold text-gray-900 dark:text-white">
                                 {{ $article->title }}
                             </h3>
-
-                            <div class="flex items-center font-sans text-gray-400 dark:text-gray-500">
-                                @if ($article->isPublished())
-                                    <a href="{{ route('articles.show', $article->slug) }}"
-                                       class="hover:text-gray-500 dark:text-gray-400 hover:underline">
-                                        Voir
-                                    </a>
-                                    <span class="mx-1">&middot;</span>
-                                @endif
-                            </div>
                         </div>
 
                         <p class="mt-3 text-base font-normal leading-6 text-gray-500 dark:text-white">
@@ -157,7 +180,7 @@ new class extends Component {
                     </div>
                 </div>
             @empty
-                <p class="text-base text-gray-500 dark:text-gray-400">Vous n'avez pas encore créé d'articles.</p>
+                <p class="text-base text-gray-500 dark:text-gray-400">{{ __('pages/article.not_article_created') }}.</p>
             @endforelse
 
         </div>

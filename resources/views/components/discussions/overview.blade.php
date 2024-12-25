@@ -1,11 +1,13 @@
 @props([
     'discussion',
     'hiddenAuthor' => false,
+    'displayButton' => false,
+    'displayClass' => true
 ])
 
-<div>
+<div @if($displayClass) class="py-6" @endif >
     @if ($discussion->tags->isNotEmpty())
-        <div class="flex justify-between space-x-2 mb-4">
+        <div class="flex items-center space-x-2 mb-4">
             <div class="flex-1">
                 @foreach ($discussion->tags as $tag)
                     <x-tag
@@ -14,16 +16,18 @@
                     />
                 @endforeach
             </div>
+            @if($displayButton)
+                <div>
+                    @can('update', $discussion)
+                        {{ $this->editAction()(['discussion' => $discussion->id]) }}
+                    @endcan
 
-            <div>
-                <button type="button"
-                        class="inline-flex rounded bg-warning-500 px-2.5 py-0.5 text-xs font-medium text-yellow-800"
-                                onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.discussion-form', arguments: { discussionId: {{ $discussion->id }} }})">
-                            {{ __('actions.edit') }}
-                </button>
-
-                {{--          Mettre le bouton delete ici                  --}}
-            </div>
+                    @can('delete', $discussion)
+                        {{ $this->deleteAction()(['discussion' => $discussion->id]) }}
+                    @endcan
+                    <x-filament-actions::modals />
+                </div>
+            @endif
         </div>
     @endif
 
