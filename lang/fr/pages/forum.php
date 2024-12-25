@@ -42,5 +42,6 @@ return [
     'threads_count' => ':count messages',
     'your_thread' => 'Vos Sujets',
     'not_thread_created' => "Vous n'avez pas encore créé de sujet",
+    'subject' => 'Sujets',
 
 ];

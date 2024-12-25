@@ -37,7 +37,7 @@ new class extends Component implements HasForms, HasActions {
     {
         return Action::make('edit')
             ->label(__('actions.edit'))
-            ->color('warning')
+            ->color('gray')
             ->action(
                 fn (array $arguments) => $this->dispatch(
                     'openPanel',
@@ -56,7 +56,7 @@ new class extends Component implements HasForms, HasActions {
             ->action(function (array $arguments): void {
                 $article = Article::query()->find($arguments['article']);
 
-                app(ArticleDeleteAction::class)->execute($article);
+                $article->delete();
 
                 Notification::make()
                         ->success()

@@ -2,10 +2,9 @@
     'discussion',
     'hiddenAuthor' => false,
     'displayButton' => false,
-    'displayClass' => true
 ])
 
-<div @if($displayClass) class="py-6" @endif >
+<div  {{ $attributes->get('class', '') }}" >
     @if ($discussion->tags->isNotEmpty())
         <div class="flex items-center space-x-2 mb-4">
             <div class="flex-1">
@@ -36,7 +35,7 @@
             {{ $discussion->title }}
         </x-link>
     </h2>
-    <p class="mt-2 text-gray-500 dark:text-white line-clamp-2">
+    <p class="mt-2 text-gray-500 dark:text-gray-300 line-clamp-2">
         {!! $discussion->excerpt(175) !!}
     </p>
 
