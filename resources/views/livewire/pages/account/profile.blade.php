@@ -43,7 +43,7 @@
                         </time>
                     </p>
 
-                    @isset($user->location)
+                    @if ($user->location)
                         <div class="mt-1 text-sm flex items-center gap-2">
                             <h5 class="sr-only">{{ __('pages/account.account.location') }}</h5>
                             <x-untitledui-marker-pin-02 class="size-4 text-gray-400 dark:text-gray-500" aria-hidden="true" />
@@ -51,16 +51,16 @@
                                 {{ $user->location }}
                             </p>
                         </div>
-                    @endisset
+                    @endif
 
-                    @isset($user->bio)
+                    @if ($user->bio)
                         <div class="mt-4">
                             <h5 class="sr-only">{{ __('pages/account.account.biography') }}</h5>
                             <p class="text-sm text-gray-600 max-w-lg dark:text-gray-300">
                                 {{ $user->bio }}
                             </p>
                         </div>
-                    @endisset
+                    @endif
 
                     @if ($user->githubUsername() || $user->twitter() || $user->linkedin() || $user->website)
                         <div class="mt-5 flex items-center gap-4">

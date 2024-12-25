@@ -111,6 +111,7 @@ final class SponsorSubscription extends Component implements HasForms
 
         $email = data_get($this->form->getState(), 'email');
         $amount = data_get($this->form->getState(), 'amount');
+        $name = data_get($this->form->getState(), 'name');
 
         /** @var User $user */
         $user = Auth::check() ? Auth::user() : User::findByEmailAddress(config('lcm.support_email'));
@@ -121,7 +122,7 @@ final class SponsorSubscription extends Component implements HasForms
             $payload = Payment::initialize([
                 'amount' => $amount,
                 'email' => $email,
-                'name' => data_get($this->form->getState(), 'name'),
+                'name' => $name,
                 'currency' => data_get($this->form->getState(), 'currency'),
                 'reference' => $user->id.'-'.$user->username().'-'.uniqid(),
                 'callback' => route('notchpay-callback'),
@@ -141,9 +142,9 @@ final class SponsorSubscription extends Component implements HasForms
                     'merchant' => [
                         'reference' => $payload->transaction->merchant_reference,
                         'customer' => $payload->transaction->customer,
+                        'name' => $name,
                         'laravel_cm_id' => Auth::id() ?? null,
                         'profile' => data_get($this->form->getState(), 'profile'),
-                        'name' => data_get($this->form->getState(), 'name'),
                     ],
                     'initiated_at' => $payload->transaction->created_at,
                     'description' => $payload->transaction->description,
