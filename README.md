@@ -1,16 +1,16 @@
 <p align="center">
-    <img src="./art/logo.svg" height="250" />
+    <img src="./art/logo.svg" height="250" alt="Community logo" />
 </p>
 
 <p align="center">
     <a href="https://laravel.com">
-        <img alt="Laravel v10.x" src="https://img.shields.io/badge/Laravel-v10.x-FF2D20">
+        <img alt="Laravel v11.x" src="https://img.shields.io/badge/Laravel-v11.x-FF2D20">
     </a>
     <a href="https://github.com/laravelcm/laravel.cm/actions">
         <img src="https://github.com/laravelcm/laravel.cm/workflows/Tests/badge.svg" alt="Build Status" />
     </a>
-    <a href="https://github.com/laravelcm/laravel.cm/actions/workflows/coding-standards.yml">
-        <img src="https://github.com/laravelcm/laravel.cm/actions/workflows/coding-standards.yml/badge.svg" alt="Coding Standards" />
+    <a href="https://github.com/laravelcm/laravel.cm/actions/workflows/quality.yml">
+        <img src="https://github.com/laravelcm/laravel.cm/actions/workflows/quality.yml/badge.svg" alt="Coding Standards" />
     </a>
     <a href="https://forge.laravel.com">
         <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2Fb0b9e269-e85c-40eb-9b8d-cfa8197a1bb2&style=plastic" alt="Laravel Forge Site Deployment Status" />
@@ -18,49 +18,63 @@
 </p>
 
 ## Laravel.cm
+
 Ce dépôt contient le code source du site de [Laravel.cm](https://laravel.cm). Laravel Cameroun est la plus grande communauté de 
 développeurs PHP & Laravel résidant au Cameroun.
 
 ## Rejoindre la communauté
+
 Vous pouvez rejoindre la communauté ou nous suivre via nos différentes plateformes
 
-[Site Officiel](https://laravel.cm) - [Facebook](https://www.facebook.com/laravelcm) - [Twitter](https://twitter.com/laravelcm) - [Rejoindre Slack](https://laravel.cm/slack) - [Rejoindre Discord](https://laravel.cm/discord)
+- [Discord](https://discord.gg/KNp6brbyVD)
+- [Telegram](https://t.me/laravelcameroun)
+- [Twitter](https://twitter.com/laravelcm)
+- [Facebook](https://www.facebook.com/laravelcm)
 
 ## Sponsors
+
 Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainage. Si vous souhaitez devenir sponsor, veuillez visiter <a href="https://laravel.cm/sponsors">la page Laravel.cm de Sponsoring</a>.
 
 - **[Laravel Shopper](https://laravelshopper.dev)**
 - [GDG Douala](https://gdg.community.dev/gdg-douala) 
-- [NotchPay](https://notchpay.co) 
-- [Sharuco](https://sharuco.lndev.me) 
+- [NotchPay](https://notchpay.co?utm_source=laravel.cm) 
+- [LN UI](https://ui.lndev.me?utm_source=laravel.cm) 
 
 ## Caractéristiques Serveur
-The following tools are required in order to start the installation.
 
-- PHP >=8.0
+Les dépendances suivantes sont nécessaires pour démarrer l'installation.
+
+- PHP >= 8.2
 - [Composer](https://getcomposer.org/download/)
 - [Yarn](https://yarnpkg.com/getting-started/install)
-- [Valet](https://laravel.com/docs/valet#installation)
+- [Valet](https://laravel.com/docs/valet#installation) or [Herd](https://herd.laravel.com)
 
 ## Installation
-> Notez que vous êtes libre d'ajuster l'emplacement `~/Sites/laravel.cm` à n'importe quel répertoire de votre choix sur votre machine. Ce faisant, assurez-vous d'exécuter la commande `valet link` dans le répertoire souhaité.
+
+> Notez que vous êtes libre d'ajuster l'emplacement `~/Sites/laravel.cm` à n'importe quel répertoire de votre choix sur votre machine. Ce faisant, assurez-vous d'exécuter la commande `valet link` (si vous utilisez Laravel Valet) dans le répertoire souhaité.
 
 1. Clonez ce repo avec la commande `git clone git@github.com:laravelcm/laravel.cm.git ~/Sites/laravel.cm`
 2. Exécuter `composer install` pour installer les dépendances PHP
-3. Configurez une base de données locale appelée `laravelcm`
+3. Configurez une base de données locale (vous pouvez l'appeler `laravelcm`)
 4. Exécutez `composer setup` pour configurer l'application
 5. Configurer un pilote de messagerie fonctionnel comme [Mailtrap](https://mailtrap.io/) ou [Maildev](https://maildev.github.io/maildev/)
 6. Configurez les fonctionnalités (facultatives) ci-dessous
 
-Vous pouvez maintenant visiter l'application dans votre navigateur en visitant [http://laravel.cm.test](http://laravel.cm.test). Si vous avez amorcé la base de données, vous pouvez vous connecter à un compte de test avec ** `johndoe` ** & **` password` **.
+Vous pouvez maintenant visiter l'application dans votre navigateur en visitant [http://laravel.cm.test](http://laravel.cm.test).
+Si vous avez amorcé la base de données, vous pouvez vous connecter à un compte de test avec ** `johndoe` ** & **` password` **.
 
-Une fois que vous avez installé et configuré, pour avoir des dummy data, vous devez exécuter la commande
+Une fois que vous avez installé et configuré, pour avoir des dummy data, vous devez exécuter la commande :
+
 ```shell
 php artisan db:seed --class=DummyDatabaseSeeder
 ```
 
 ### GitHub Authentication (optionnel)
-Pour que l'authentification Github fonctionne localement, vous devez [enregistrer une nouvelle application OAuth sur Github](https://github.com/settings/applications/new). Utilisez `http://laravel.cm.test` pour l'URL de la page d'accueil et `http://laravel.cm.test/auth/github` pour l'URL de rappel. Lorsque vous avez créé l'application, remplissez l'ID et le secret dans votre fichier `.env` dans les variables d'environnement ci-dessous. Vous devriez maintenant pouvoir vous authentifier avec Github.
+
+Pour que l'authentification Github fonctionne localement, vous devez [enregistrer une nouvelle application OAuth sur Github](https://github.com/settings/applications/new).
+Utilisez `http://laravel.cm.test` pour l'URL de la page d'accueil et `http://laravel.cm.test/auth/github` pour l'URL de rappel.
+Lorsque vous avez créé l'application, remplissez l'ID et le secret dans votre fichier `.env` dans les variables d'environnement ci-dessous.
+Vous devriez maintenant pouvoir vous authentifier avec Github.
 
 ```shell
 GITHUB_ID=
@@ -69,7 +83,10 @@ GITHUB_URL=http://laravel.cm.test/auth/github
 ```
 
 ### Twitter Sharing (optionnel)
-Pour permettre le partage automatique des articles publiés sur Twitter, vous devez [créer une application Twitter](https://developer.twitter.com/apps/). Une fois l'application créée, mettez à jour les variables ci-dessous dans votre fichier `.env`. La clé et le secret du consommateur ainsi que le jeton et le secret d'accès se trouvent dans la section «Clés et jetons» de l'interface utilisateur des développeurs Twitter.
+
+Pour permettre le partage automatique des articles publiés sur Twitter, vous devez [créer une application Twitter](https://developer.twitter.com/apps/).
+Une fois l'application créée, mettez à jour les variables ci-dessous dans votre fichier `.env`.
+La clé et le secret du consommateur ainsi que le jeton et le secret d'accès se trouvent dans la section « Clés et jetons » de l'interface utilisateur des développeurs Twitter.
 
 ```shell
 TWITTER_CONSUMER_KEY=
@@ -78,10 +95,13 @@ TWITTER_ACCESS_TOKEN=
 TWITTER_ACCESS_SECRET=
 ```
 
-Les articles approuvés sont partagés dans l'ordre dans lequel ils ont été soumis pour approbation. Les articles sont partagés deux fois par jour à 14h00 et 18h00 UTC. Une fois qu'un article a été partagé, il ne sera plus partagé.
+Les articles approuvés sont partagés dans l'ordre dans lequel ils ont été soumis pour approbation. Les articles sont partagés deux fois par jour à 14h00 et 18h00 UTC.
+Une fois qu'un article a été partagé, il ne sera plus partagé.
 
 ### Notifications Telegram (optionnel)
-Laravel Cameroun peut notifier les administrateurs des nouveaux articles soumis via Telegram. Pour que cela fonctionne, vous devez configurer un [bot Telegram](https://core.telegram.org/bots) et obtenir un token. Ensuite, configurez le canal sur lequel vous souhaitez envoyer les messages relatifs aux nouveaux articles.
+
+Laravel Cameroun peut notifier les administrateurs des nouveaux articles soumis via Telegram. Pour que cela fonctionne, vous devez configurer un [bot Telegram](https://core.telegram.org/bots) et obtenir un token.
+Ensuite, configurez le canal sur lequel vous souhaitez envoyer les messages relatifs aux nouveaux articles.
 
 ```shell
 TELEGRAM_BOT_TOKEN=
@@ -91,9 +111,11 @@ TELEGRAM_CHANNEL=
 ## Commands
 | Command                            | Description                                            |
 |------------------------------------|--------------------------------------------------------|
-| **`composer test`**                | Exécuter les tests                                     |
+| **`composer lint`**                | Appliquer le formatage de code avec `laravel/pint`     |
+| **`composer test:phpstan`**        | Appliquer l'analyse statique avec phpstan              |
+| **`composer test:pest`**           | Exécuter les tests                                     |
 | `php artisan migrate:fresh --seed` | Reset la base de données                               |
-| `yarn && yarn watch`               | Surveillez les changements dans les fichiers CSS et JS |
+| `yarn && yarn dev`                 | Surveillez les changements dans les fichiers CSS et JS |
 
 ## Maintainers
 

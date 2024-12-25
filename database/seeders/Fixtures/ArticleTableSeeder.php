@@ -7,7 +7,6 @@ namespace Database\Seeders\Fixtures;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
-use Faker\Generator as Faker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,10 +21,9 @@ final class ArticleTableSeeder extends Seeder
             ->whereJsonContains('concerns', ['post'])
             ->get()
             ->modelKeys();
-        $faker = new Faker;
 
         /** @var Article $article1 */
-        $article1 = Article::create([
+        $article1 = Article::query()->create([
             'title' => $name = 'Voyager - The Missing Laravel Admin',
             'slug' => $name,
             'body' => "
@@ -132,7 +130,7 @@ And you will be prompted for the user's name and password.
             ->toMediaCollection('media');
 
         /** @var Article $article2 */
-        $article2 = Article::create([
+        $article2 = Article::query()->create([
             'title' => $name = 'Awesome of awesome',
             'slug' => $name,
             'body' => "
@@ -399,7 +397,7 @@ And you will be prompted for the user's name and password.
             ->toMediaCollection('media');
 
         /** @var Article $article3 */
-        $article3 = Article::create([
+        $article3 = Article::query()->create([
             'title' => $name = 'React Email Editor',
             'slug' => $name,
             'body' => "
@@ -522,7 +520,7 @@ Copyright (c) 2022 Unlayer. [MIT](LICENSE) Licensed.
             ->toMediaCollection('media');
 
         /** @var Article $article4 */
-        $article4 = Article::create([
+        $article4 = Article::query()->create([
             'title' => $name = 'Awesome Laravel Package, Tutorials, News',
             'slug' => $name,
             'body' => "
@@ -1106,7 +1104,7 @@ Awesome Laravel is licensed under a  [Creative Commons Attribution 4.0 Internati
             ->toMediaCollection('media');
 
         /** @var Article $article5 */
-        $article5 = Article::create([
+        $article5 = Article::query()->create([
             'title' => $name = 'COVID TEST CENTER',
             'slug' => $name,
             'body' => "
@@ -1180,7 +1178,7 @@ MIT
             ->toMediaCollection('media');
 
         /** @var Article $article6 */
-        $article6 = Article::create([
+        $article6 = Article::query()->create([
             'title' => $name = 'Le nouveau site de Grafikart (Grafikart.New)',
             'slug' => $name,
             'body' => "

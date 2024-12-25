@@ -235,5 +235,7 @@
         </div>
     </div>
 
-    <livewire:components.github-repositories />
+    @if(config('services.github.token'))
+        <livewire:components.github-repositories />
+    @endif
 </div>
