@@ -87,6 +87,13 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
         'is_pinned' => 'boolean',
     ];
 
+    protected static function booted(): void
+    {
+        Article::deleting(function ($article): void {
+            $article->activities()->delete();
+        });
+    }
+
     protected bool $removeViewsOnDelete = true;
 
     public function getRouteKeyName(): string

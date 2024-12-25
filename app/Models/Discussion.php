@@ -80,6 +80,13 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
 
     protected bool $removeViewsOnDelete = true;
 
+    protected static function booted(): void
+    {
+        Discussion::deleting(function ($discussion): void {
+            $discussion->activities()->delete();
+        });
+    }
+
     public function newEloquentBuilder($query): DiscussionQueryBuilder
     {
         return new DiscussionQueryBuilder($query);

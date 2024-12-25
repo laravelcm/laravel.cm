@@ -84,6 +84,13 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     protected bool $removeViewsOnDelete = true;
 
+    protected static function booted(): void
+    {
+        Thread::deleting(function ($thread): void {
+            $thread->activities()->delete();
+        });
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';

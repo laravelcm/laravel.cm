@@ -46,6 +46,13 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
         'body',
     ];
 
+    protected static function booted(): void
+    {
+        Reply::deleting(function ($reply): void {
+            $reply->activities()->delete();
+        });
+    }
+
     public function subject(): int
     {
         return $this->id;
