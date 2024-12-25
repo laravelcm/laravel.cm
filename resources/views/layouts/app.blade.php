@@ -60,7 +60,7 @@
         <x-layouts.footer />
     </div>
 
-    {{-- @livewire('livewire-ui-spotlight') --}}
+    @livewire('livewire-ui-spotlight')
     @livewire('wire-elements-modal')
     @livewire(\Filament\Notifications\Livewire\Notifications::class)
     @livewire(\Laravelcm\LivewireSlideOvers\SlideOverPanel::class)

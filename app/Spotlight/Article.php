@@ -32,10 +32,10 @@ final class Article extends SpotlightCommand
     public function searchArticle(string $query): Collection
     {
         return ArticleModel::with('user')
-            ->scopes('published')
+            ->published()
             ->where('title', 'like', "%{$query}%")
             ->get()
-            ->map(fn (ArticleModel $article) => new SpotlightSearchResult(
+            ->map(fn (ArticleModel $article) => new SpotlightSearchResult( // @phpstan-ignore-line
                 $article->slug,
                 $article->title,
                 sprintf('par @%s', $article->user->username)

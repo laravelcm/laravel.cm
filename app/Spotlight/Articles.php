@@ -23,6 +23,6 @@ final class Articles extends SpotlightCommand
 
     public function execute(Spotlight $spotlight): void
     {
-        $spotlight->redirectRoute('articles');
+        $spotlight->redirectRoute('articles.index');
     }
 }
