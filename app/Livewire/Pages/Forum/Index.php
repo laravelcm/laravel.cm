@@ -139,7 +139,7 @@ final class Index extends Component
 
     public function render(): View
     {
-        $query = Thread::with('channels')
+        $query = Thread::with(['channels', 'user'])
             ->orderByDesc('created_at');
 
         $query = $this->applyChannel($query);

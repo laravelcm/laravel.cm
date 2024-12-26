@@ -5,13 +5,9 @@ import intersect from '@alpinejs/intersect'
 import Tooltip from '@ryangjchandler/alpine-tooltip'
 import collapse from '@alpinejs/collapse'
 
-import './elements'
-import { registerHeader } from './utils/header'
 import './utils/helpers'
 import './utils/scrollspy'
 import './utils/clipboard'
-
-registerHeader()
 
 Alpine.plugin(intersect)
 Alpine.plugin(Tooltip)
