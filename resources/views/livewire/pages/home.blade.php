@@ -14,7 +14,7 @@
                             {{ __('actions.new_thread') }}
                         </x-buttons.primary>
                     @else
-                        <x-buttons.primary :href="route('login')" class="w-full sm:w-auto">
+                        <x-buttons.primary :href="route('register')" class="w-full sm:w-auto">
                             {{ __('pages/home.join_community') }}
                         </x-buttons.primary>
                     @endauth
