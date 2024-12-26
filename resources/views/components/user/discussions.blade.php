@@ -7,7 +7,7 @@
     @if ($discussions->isNotEmpty())
         <div class="relative -mt-6 divide-y divide-gray-200 dark:divide-white/20">
             @foreach ($discussions as $discussion)
-                <x-discussions.overview :discussion="$discussion" :hiddenAuthor="true" />
+                <x-discussions.overview :discussion="$discussion" />
             @endforeach
         </div>
     @else

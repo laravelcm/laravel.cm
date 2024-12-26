@@ -8,6 +8,7 @@ return [
         'created' => 'Your article has been created.',
         'submitted' => 'Thank you for submitting your article. We will only contact you once we have accepted your article.',
         'updated' => 'Your article has been updated.',
+        'deleted' => 'Your article has been deleted.',
     ],
 
     'thread' => [

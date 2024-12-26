@@ -40,5 +40,8 @@ return [
     'min_thread_length' => '10 characters minimum',
     'answer_reply' => 'Answer to',
     'threads_count' => ':count messages',
+    'my_thread' => 'My threads',
+    'not_thread_created' => "You haven't created any topic yet",
+    'subject' => 'Subject',
 
 ];

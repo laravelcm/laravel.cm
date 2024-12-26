@@ -40,5 +40,6 @@ return [
     ],
     'min_discussion_length' => '160 characters maximum',
     'placeholder' => 'Your comment here...',
+    'my_discussion' => 'My discussions',
 
 ];

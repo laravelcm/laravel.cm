@@ -11,7 +11,6 @@ return [
     'next_article' => 'Next article',
     'prev_article' => 'Previous article',
     'share_article' => 'Share',
-    'new_article' => 'Write a new article',
     'advice' => [
         'title' => 'Important advices for articles',
         'content' => 'Submit your article to the Laravel.cm portal. We\'re looking for high quality articles revolving around Laravel, PHP, JavaScript, CSS, and related topics. Articles can\'t be promotional in nature and should be educational and informative. We reserve the right to decline articles that don\'t meet our quality standards.',
@@ -27,5 +26,8 @@ return [
     'canonical_help' => 'If you have already posted this article on your own site, enter the URL here and the content will be attributed to you.',
     'draft_help' => 'Putting an article in draft allows you to update it later.',
     'unpublished' => 'This article has not yet been published.',
+    'draft' => 'Draft',
+    'my_article' => 'My articles',
+    'not_article_created' => "You haven't created any articles yet",
 
 ];

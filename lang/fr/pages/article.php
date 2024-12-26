@@ -11,7 +11,6 @@ return [
     'next_article' => 'Article suivant',
     'prev_article' => 'Article précédent',
     'share_article' => 'Partager',
-    'new_article' => 'Rédiger un article',
     'advice' => [
         'title' => 'Conseils importants concernant les articles',
         'content' => 'Soumettez votre article au site Laravel.cm. Nous recherchons des articles de haute qualité autour de Laravel, PHP, JavaScript, CSS et autres sujets connexes. Les articles ne peuvent pas être de nature promotionnelle et doivent être éducatifs et informatifs. Nous nous réservons le droit de refuser les articles qui ne répondent pas à nos critères de qualité.',
@@ -27,5 +26,8 @@ return [
     'canonical_help' => 'Précisez si l\'article a été publié pour la première fois ailleurs (comme sur votre propre blog).',
     'draft_help' => 'Mettre en article en brouillon vous donne la possibilité de le modifier plus tard',
     'unpublished' => 'Cet article n\'a pas encore été publié.',
+    'draft' => 'Brouillon',
+    'my_article' => 'Mes articles',
+    'not_article_created' => "Vous n'avez pas encore créé d'articles",
 
 ];

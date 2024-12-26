@@ -15,6 +15,7 @@ final class DeleteDiscussionAction
         DB::beginTransaction();
 
         undoPoint(new DiscussionCreated($discussion));
+
         $discussion->delete();
 
         DB::commit();
