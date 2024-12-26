@@ -2,7 +2,7 @@
     <div {{ $attributes->twMerge(['class' => 'rounded-md bg-red-50 p-4']) }}>
         <div class="flex">
             <div class="shrink-0">
-                <x-untitledui-x class="size-5 text-red-400" />
+                <x-untitledui-x class="size-5 text-red-400" aria-hidden="true" />
             </div>
             <div class="ml-3">
                 <h3 class="text-sm font-medium text-red-800">

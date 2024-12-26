@@ -36,20 +36,16 @@ return [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect' => env('GITHUB_REDIRECT'),
+        'token' => env('GITHUB_FINE_GRAINED_TOKEN'),
         'scopes' => [],
         'with' => [],
     ],
 
     'twitter' => [
-        'client_id' => env('TWITTER_CLIENT_ID'),
-        'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => env('TWITTER_REDIRECT'),
         'consumer_key' => env('TWITTER_CONSUMER_KEY'),
         'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
         'access_token' => env('TWITTER_ACCESS_TOKEN'),
         'access_secret' => env('TWITTER_ACCESS_SECRET'),
-        'scopes' => [],
-        'with' => [],
     ],
 
     'unsplash' => [

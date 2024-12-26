@@ -201,6 +201,10 @@ return [
         'website' => 'Votre site web',
         'location' => 'Localisation',
         'avatar' => 'Photo',
+        'company' => 'Entreprise',
+        'freelance' => 'Indépendant',
+        'amount' => 'Montant',
+        'currency' => 'Devise',
     ],
 
 ];

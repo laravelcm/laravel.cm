@@ -13,8 +13,3 @@
     :active-links="['discussions*']"
     :title="__('global.navigation.discussions')"
 />
-<x-nav.item
-    href="#"
-    :active-links="['community']"
-    :title="__('global.navigation.community')"
-/>

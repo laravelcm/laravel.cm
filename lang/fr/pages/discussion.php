@@ -18,7 +18,7 @@ return [
         'popular' => 'Populaire',
         'active' => 'Actif',
     ],
-    'comments_count' => 'Commentaires (:count)',
+    'comments_count' => 'Commentaires',
     'convert_to_thread' => 'Convertir en sujet',
     'confirm_conversion' => 'Confirmez la conversion',
     'confirm_comment_remove' => 'Êtes-vous sûr de vouloir supprimer ce commentaire ?',
@@ -40,5 +40,6 @@ return [
     ],
     'min_discussion_length' => 'Maximum de 160 caractères.',
     'placeholder' => 'Votre commentaire',
+    'my_discussion' => 'Mes discussions',
 
 ];

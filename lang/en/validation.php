@@ -208,6 +208,10 @@ return [
         'website' => 'Your Website',
         'location' => 'Localization',
         'avatar' => 'Avatar',
+        'company' => 'Enterprise',
+        'freelance' => 'Freelance',
+        'amount' => 'Amount',
+        'currency' => 'Currency',
     ],
 
 ];

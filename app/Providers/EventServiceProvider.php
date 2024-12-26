@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Events\ApiRegistered;
+// use App\Events\ApiRegistered;
 use App\Events\ArticleWasSubmittedForApproval;
 use App\Events\CommentWasAdded;
 use App\Events\ReplyWasCreated;
@@ -51,9 +51,6 @@ final class EventServiceProvider extends ServiceProvider
         ],
         CommentWasAdded::class => [
             SendNewCommentNotification::class,
-        ],
-        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-            \SocialiteProviders\Twitter\TwitterExtendSocialite::class.'@handle',
         ],
 
         //        ApiRegistered::class => [

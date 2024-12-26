@@ -8,6 +8,7 @@ return [
         'created' => 'Your article has been created.',
         'submitted' => 'Thank you for submitting your article. We will only contact you once we have accepted your article.',
         'updated' => 'Your article has been updated.',
+        'deleted' => 'Your article has been deleted.',
     ],
 
     'thread' => [
@@ -53,4 +54,7 @@ return [
         'save_comment' => 'Your comment has been saved',
         'delete_comment' => 'Your comment has been deleted',
     ],
+
+    'sponsor_error_title' => 'Payment error',
+    'sponsor_error_body' => 'Unable to process payment, please try again later. Thank you',
 ];

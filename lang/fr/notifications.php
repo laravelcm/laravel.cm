@@ -8,6 +8,7 @@ return [
         'created' => 'Votre article a été crée.',
         'submitted' => 'Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.',
         'updated' => 'Votre article a été mis à jour.',
+        'deleted' => 'Votre article a été supprimé.',
     ],
 
     'thread' => [
@@ -53,4 +54,8 @@ return [
         'save_comment' => 'Votre commentaire a été enregistré',
         'delete_comment' => 'Votre commentaire a été supprimé.',
     ],
+
+    'sponsor_error_title' => 'Erreur du paiement',
+    'sponsor_error_body' => 'Impossible de procéder au paiement, veuillez recommencer plus tard. Merci',
+
 ];

@@ -26,6 +26,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Spatie\Sitemap\Contracts\Sitemapable;
+use Spatie\Sitemap\Tags\Url;
 
 /**
  * @property-read int $id
@@ -41,8 +43,9 @@ use Illuminate\Support\Str;
  * @property Carbon $updated_at
  * @property User $user
  * @property Collection | SpamReport[] $spamReports
+ * @property Collection | Reply[] $replies
  */
-final class Discussion extends Model implements ReactableInterface, ReplyInterface, SpamReportableContract, SubscribeInterface, Viewable
+final class Discussion extends Model implements ReactableInterface, ReplyInterface, Sitemapable, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;
     use HasFactory;
@@ -72,8 +75,7 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     ];
 
     protected $appends = [
-        // @phpstan-ignore-next-line
-        'count_all_replies_with_child',
+        'count_all_replies_with_child', // @phpstan-ignore-line
     ];
 
     protected bool $removeViewsOnDelete = true;
@@ -106,6 +108,14 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     public function excerpt(int $limit = 110): string
     {
         return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
+    }
+
+    public function toSitemapTag(): Url
+    {
+        return Url::create(route('discussions.show', $this))
+            ->setLastModificationDate(Carbon::create($this->updated_at)) // @phpstan-ignore-line
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
+            ->setPriority(0.5);
     }
 
     public function isPinned(): bool

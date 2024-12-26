@@ -1,10 +1,45 @@
-<header {{ $attributes->twMerge(['class' => 'relative z-10 bg-white dark:bg-gray-900 lg:bg-transparent']) }}>
+<header {{ $attributes->twMerge(['class' => 'relative z-30 bg-white dark:bg-gray-900 lg:bg-transparent']) }}>
+    <div class="flex items-center justify-center py-1.5 bg-green-700 text-white text-sm xl:text-base">
+        <x-link
+            :href="route('sponsors')"
+            class="group inline-flex items-center"
+        >
+            <span class="rounded-full bg-flag-green px-2 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white">
+                ⚡️ {{ __('pages/home.sponsor.title') }}
+            </span>
+            <span class="ml-4 hidden text-sm sm:block">
+                {{ __('pages/home.sponsor.description') }}
+            </span>
+            <span class="ml-4 text-sm sm:hidden">
+                {{ __('pages/home.sponsor.description_small') }}
+            </span>
+            <x-heroicon-s-chevron-right class="ml-2 size-5 text-white transition-all duration-300 ease-in-out group-hover:translate-x-1" aria-hidden="true" />
+        </x-link>
+    </div>
     <x-container>
-        <nav class="flex h-16 items-center justify-between">
+        @if(isHolidayWeek())
+            <div class="relative">
+                <div class="absolute z-0 lg:left-1/4">
+                    <img src="{{ asset('images/decoration.gif') }}" class="w-auto h-10" alt="Christmas decoration">
+                </div>
+                <div class="absolute z-0 lg:right-12">
+                    <img src="{{ asset('images/decoration.gif') }}" class="w-auto h-10" alt="Christmas decoration">
+                </div>
+            </div>
+        @endif
+        <nav class="flex z-10 h-16 items-center justify-between lg:h-20">
             <div class="flex flex-1 items-center">
                 <div class="flex shrink-0 items-center">
-                    <x-link :href="route('home')">
+                    <x-link :href="route('home')" class="inline-flex items-center gap-1">
                         <x-brand.icon class="block h-8 w-auto sm:h-9" aria-hidden="true" />
+                        @if(isHolidayWeek())
+                            <div class="relative flex flex-col text-center group">
+                                <x-icon.christmas-town class="w-auto h-8" aria-hidden="true" />
+                                <span class="text-[11px] leading-3 font-mono font-medium opacity-0 transform transition-all duration-300 ease-in-out translate-y-1.5 text-gray-700 group-hover:translate-y-0 group-hover:opacity-100 dark:text-white">
+                                    {{ __('global.holidays') }}
+                                </span>
+                            </div>
+                        @endif
                     </x-link>
                 </div>
                 <div class="hidden ml-10 items-center gap-6 lg:flex">
@@ -31,7 +66,7 @@
                             <x-slot:title>
                                 <span class="sr-only">{{ __('global.view_notifications') }}</span>
                                 <x-untitledui-bell class="size-5" aria-hidden="true" />
-                                <livewire:notification-indicator />
+                                <livewire:components.notification-indicator />
                             </x-slot:title>
                         </x-nav.item>
 

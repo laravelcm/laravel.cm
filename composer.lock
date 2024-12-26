@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "982a2d074809764b1ecdbbfe8fe23a64",
+    "content-hash": "231723be1478153245cd48c8cc81d53a",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -291,16 +291,16 @@
         },
         {
             "name": "amphp/dns",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/dns.git",
-                "reference": "758266b0ea7470e2e42cd098493bc6d6c7100cf7"
+                "reference": "166c43737cef1b77782c648a9d9ed11ee0c9859f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/dns/zipball/758266b0ea7470e2e42cd098493bc6d6c7100cf7",
-                "reference": "758266b0ea7470e2e42cd098493bc6d6c7100cf7",
+                "url": "https://api.github.com/repos/amphp/dns/zipball/166c43737cef1b77782c648a9d9ed11ee0c9859f",
+                "reference": "166c43737cef1b77782c648a9d9ed11ee0c9859f",
                 "shasum": ""
             },
             "require": {
@@ -308,9 +308,10 @@
                 "amphp/byte-stream": "^2",
                 "amphp/cache": "^2",
                 "amphp/parser": "^1",
-                "amphp/windows-registry": "^1.0.1",
+                "amphp/process": "^2",
                 "daverandom/libdns": "^2.0.2",
                 "ext-filter": "*",
+                "ext-json": "*",
                 "php": ">=8.1",
                 "revolt/event-loop": "^1 || ^0.2"
             },
@@ -367,7 +368,7 @@
             ],
             "support": {
                 "issues": "https://github.com/amphp/dns/issues",
-                "source": "https://github.com/amphp/dns/tree/v2.2.0"
+                "source": "https://github.com/amphp/dns/tree/v2.3.0"
             },
             "funding": [
                 {
@@ -375,20 +376,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-02T19:54:12+00:00"
+            "time": "2024-12-21T01:15:34+00:00"
         },
         {
             "name": "amphp/parallel",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/amphp/parallel.git",
-                "reference": "9777db1460d1535bc2a843840684fb1205225b87"
+                "reference": "5113111de02796a782f5d90767455e7391cca190"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amphp/parallel/zipball/9777db1460d1535bc2a843840684fb1205225b87",
-                "reference": "9777db1460d1535bc2a843840684fb1205225b87",
+                "url": "https://api.github.com/repos/amphp/parallel/zipball/5113111de02796a782f5d90767455e7391cca190",
+                "reference": "5113111de02796a782f5d90767455e7391cca190",
                 "shasum": ""
             },
             "require": {
@@ -451,7 +452,7 @@
             ],
             "support": {
                 "issues": "https://github.com/amphp/parallel/issues",
-                "source": "https://github.com/amphp/parallel/tree/v2.3.0"
+                "source": "https://github.com/amphp/parallel/tree/v2.3.1"
             },
             "funding": [
                 {
@@ -459,7 +460,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-14T19:16:14+00:00"
+            "time": "2024-12-21T01:56:09+00:00"
         },
         {
             "name": "amphp/parser",
@@ -874,58 +875,6 @@
                 }
             ],
             "time": "2024-08-03T19:31:26+00:00"
-        },
-        {
-            "name": "amphp/windows-registry",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/amphp/windows-registry.git",
-                "reference": "0d569e8f256cca974e3842b6e78b4e434bf98306"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/amphp/windows-registry/zipball/0d569e8f256cca974e3842b6e78b4e434bf98306",
-                "reference": "0d569e8f256cca974e3842b6e78b4e434bf98306",
-                "shasum": ""
-            },
-            "require": {
-                "amphp/byte-stream": "^2",
-                "amphp/process": "^2",
-                "php": ">=8.1"
-            },
-            "require-dev": {
-                "amphp/php-cs-fixer-config": "^2",
-                "psalm/phar": "^5.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Amp\\WindowsRegistry\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Niklas Keller",
-                    "email": "me@kelunik.com"
-                }
-            ],
-            "description": "Windows Registry Reader.",
-            "support": {
-                "issues": "https://github.com/amphp/windows-registry/issues",
-                "source": "https://github.com/amphp/windows-registry/tree/v1.0.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/amphp",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-01-30T23:01:51+00:00"
         },
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4251,16 +4200,16 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                },
                 "laravel": {
-                    "providers": [
-                        "Jenssegers\\Agent\\AgentServiceProvider"
-                    ],
                     "aliases": {
                         "Agent": "Jenssegers\\Agent\\Facades\\Agent"
-                    }
+                    },
+                    "providers": [
+                        "Jenssegers\\Agent\\AgentServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -6635,16 +6584,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.8.2",
+            "version": "3.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "e1268cdbc486d97ce23fef2c666dc3c6b6de9947"
+                "reference": "f01cfa96468f4c38325f507ab81a4f1d2cd93cfe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/e1268cdbc486d97ce23fef2c666dc3c6b6de9947",
-                "reference": "e1268cdbc486d97ce23fef2c666dc3c6b6de9947",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/f01cfa96468f4c38325f507ab81a4f1d2cd93cfe",
+                "reference": "f01cfa96468f4c38325f507ab81a4f1d2cd93cfe",
                 "shasum": ""
             },
             "require": {
@@ -6737,7 +6686,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-07T17:46:48+00:00"
+            "time": "2024-12-21T18:03:19+00:00"
         },
         {
             "name": "nette/schema",
@@ -9160,130 +9109,6 @@
             "time": "2024-12-17T11:38:58+00:00"
         },
         {
-            "name": "socialiteproviders/manager",
-            "version": "v4.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Manager.git",
-                "reference": "ab0691b82cec77efd90154c78f1854903455c82f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Manager/zipball/ab0691b82cec77efd90154c78f1854903455c82f",
-                "reference": "ab0691b82cec77efd90154c78f1854903455c82f",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^8.0 || ^9.0 || ^10.0 || ^11.0",
-                "laravel/socialite": "^5.5",
-                "php": "^8.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.2",
-                "phpunit/phpunit": "^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "SocialiteProviders\\Manager\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Manager\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andy Wendt",
-                    "email": "andy@awendt.com"
-                },
-                {
-                    "name": "Anton Komarev",
-                    "email": "a.komarev@cybercog.su"
-                },
-                {
-                    "name": "Miguel Piedrafita",
-                    "email": "soy@miguelpiedrafita.com"
-                },
-                {
-                    "name": "atymic",
-                    "email": "atymicq@gmail.com",
-                    "homepage": "https://atymic.dev"
-                }
-            ],
-            "description": "Easily add new or override built-in providers in Laravel Socialite.",
-            "homepage": "https://socialiteproviders.com",
-            "keywords": [
-                "laravel",
-                "manager",
-                "oauth",
-                "providers",
-                "socialite"
-            ],
-            "support": {
-                "issues": "https://github.com/socialiteproviders/manager/issues",
-                "source": "https://github.com/socialiteproviders/manager"
-            },
-            "time": "2024-11-10T01:56:18+00:00"
-        },
-        {
-            "name": "socialiteproviders/twitter",
-            "version": "4.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Twitter.git",
-                "reference": "54ddc36c1475bbdc111a89edee1468e3c9cf1229"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Twitter/zipball/54ddc36c1475bbdc111a89edee1468e3c9cf1229",
-                "reference": "54ddc36c1475bbdc111a89edee1468e3c9cf1229",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.4 || ^8.0",
-                "socialiteproviders/manager": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Twitter\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brian Faust",
-                    "email": "hello@brianfaust.de"
-                }
-            ],
-            "description": "Twitter OAuth1 Provider for Laravel Socialite",
-            "keywords": [
-                "laravel",
-                "oauth",
-                "provider",
-                "socialite",
-                "twitter"
-            ],
-            "support": {
-                "docs": "https://socialiteproviders.com/twitter",
-                "issues": "https://github.com/socialiteproviders/providers/issues",
-                "source": "https://github.com/socialiteproviders/providers"
-            },
-            "time": "2023-05-25T23:12:53+00:00"
-        },
-        {
             "name": "spatie/browsershot",
             "version": "5.0.3",
             "source": {
@@ -9353,16 +9178,16 @@
         },
         {
             "name": "spatie/color",
-            "version": "1.6.2",
+            "version": "1.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/color.git",
-                "reference": "b4fac074a9e5999dcca12cbfab0f7c73e2684d6d"
+                "reference": "45c4354ffa7e65f05c502b009834ecac7928daa3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/color/zipball/b4fac074a9e5999dcca12cbfab0f7c73e2684d6d",
-                "reference": "b4fac074a9e5999dcca12cbfab0f7c73e2684d6d",
+                "url": "https://api.github.com/repos/spatie/color/zipball/45c4354ffa7e65f05c502b009834ecac7928daa3",
+                "reference": "45c4354ffa7e65f05c502b009834ecac7928daa3",
                 "shasum": ""
             },
             "require": {
@@ -9400,7 +9225,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/color/issues",
-                "source": "https://github.com/spatie/color/tree/1.6.2"
+                "source": "https://github.com/spatie/color/tree/1.6.3"
             },
             "funding": [
                 {
@@ -9408,7 +9233,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-09T16:20:38+00:00"
+            "time": "2024-12-23T11:00:34+00:00"
         },
         {
             "name": "spatie/crawler",
@@ -9480,16 +9305,16 @@
         },
         {
             "name": "spatie/eloquent-sortable",
-            "version": "4.4.0",
+            "version": "4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/eloquent-sortable.git",
-                "reference": "7a460c775d29741f42744bac52f993cb5b84be0f"
+                "reference": "2448c25a2c4b588bc0e0b9820f8bbd110a2afd73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/7a460c775d29741f42744bac52f993cb5b84be0f",
-                "reference": "7a460c775d29741f42744bac52f993cb5b84be0f",
+                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/2448c25a2c4b588bc0e0b9820f8bbd110a2afd73",
+                "reference": "2448c25a2c4b588bc0e0b9820f8bbd110a2afd73",
                 "shasum": ""
             },
             "require": {
@@ -9538,7 +9363,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/eloquent-sortable/issues",
-                "source": "https://github.com/spatie/eloquent-sortable/tree/4.4.0"
+                "source": "https://github.com/spatie/eloquent-sortable/tree/4.4.1"
             },
             "funding": [
                 {
@@ -9550,7 +9375,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-04T11:09:54+00:00"
+            "time": "2024-12-23T09:54:53+00:00"
         },
         {
             "name": "spatie/image",
@@ -10324,16 +10149,16 @@
         },
         {
             "name": "spatie/laravel-sluggable",
-            "version": "3.7.0",
+            "version": "3.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-sluggable.git",
-                "reference": "26bd614233dd0a5fbd783c5bc5bb93512cf03fdb"
+                "reference": "23dcb4cb9306f235a1eb20f170978afde82d0221"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-sluggable/zipball/26bd614233dd0a5fbd783c5bc5bb93512cf03fdb",
-                "reference": "26bd614233dd0a5fbd783c5bc5bb93512cf03fdb",
+                "url": "https://api.github.com/repos/spatie/laravel-sluggable/zipball/23dcb4cb9306f235a1eb20f170978afde82d0221",
+                "reference": "23dcb4cb9306f235a1eb20f170978afde82d0221",
                 "shasum": ""
             },
             "require": {
@@ -10371,7 +10196,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-sluggable/tree/3.7.0"
+                "source": "https://github.com/spatie/laravel-sluggable/tree/3.7.1"
             },
             "funding": [
                 {
@@ -10379,7 +10204,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-09T13:35:55+00:00"
+            "time": "2024-12-23T09:54:10+00:00"
         },
         {
             "name": "spatie/laravel-translatable",
@@ -13492,31 +13317,33 @@
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
-            "version": "v2.2.7",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tijsverkoyen/CssToInlineStyles.git",
-                "reference": "83ee6f38df0a63106a9e4536e3060458b74ccedb"
+                "reference": "0d72ac1c00084279c1816675284073c5a337c20d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/83ee6f38df0a63106a9e4536e3060458b74ccedb",
-                "reference": "83ee6f38df0a63106a9e4536e3060458b74ccedb",
+                "url": "https://api.github.com/repos/tijsverkoyen/CssToInlineStyles/zipball/0d72ac1c00084279c1816675284073c5a337c20d",
+                "reference": "0d72ac1c00084279c1816675284073c5a337c20d",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
-                "php": "^5.5 || ^7.0 || ^8.0",
-                "symfony/css-selector": "^2.7 || ^3.0 || ^4.0 || ^5.0 || ^6.0 || ^7.0"
+                "php": "^7.4 || ^8.0",
+                "symfony/css-selector": "^5.4 || ^6.0 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0 || ^7.5 || ^8.5.21 || ^9.5.10"
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpunit/phpunit": "^8.5.21 || ^9.5.10"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2.x-dev"
+                    "dev-master": "2.x-dev"
                 }
             },
             "autoload": {
@@ -13539,9 +13366,9 @@
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "support": {
                 "issues": "https://github.com/tijsverkoyen/CssToInlineStyles/issues",
-                "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.2.7"
+                "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.3.0"
             },
-            "time": "2023-12-08T13:03:43+00:00"
+            "time": "2024-12-21T16:25:41+00:00"
         },
         {
             "name": "torchlight/torchlight-laravel",

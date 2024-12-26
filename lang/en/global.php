@@ -21,7 +21,6 @@ return [
         'sponsors' => 'Sponsors',
         'snippets' => 'Snippets',
         'branding' => 'Branding',
-        'faq' => 'FAQ',
         'rules' => 'Rules',
         'privacy' => 'Privacy Policy',
         'terms' => 'Terms & Conditions',
@@ -89,8 +88,8 @@ return [
     'launch_modal' => [
         'forum_action' => 'Create thread',
         'forum_description' => 'Do you have a question? Ask it in the forum',
-        'post_action' => 'Writing an article',
-        'post_description' => 'Share your discoveries with thousands of developers',
+        'article_action' => 'Writing an article',
+        'article_description' => 'Share your discoveries with thousands of developers',
         'discussion_action' => 'Start a discussion',
         'discussion_description' => 'Discuss and debate different themes and ideas',
     ],
@@ -103,5 +102,10 @@ return [
     'characters' => ':number characters',
     'like' => ':count like',
     'locale_help' => 'The language in which your content will be available on the site.',
+    'community_oss_description' => 'The community is also developing open source packages to contribute to the Laravel ecosystem.',
+    'holidays' => 'Happy Holidays',
+    'language' => 'Language',
+    'french' => 'French',
+    'english' => 'English',
 
 ];

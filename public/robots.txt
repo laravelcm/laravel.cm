@@ -2,6 +2,7 @@ User-agent: *
 
 # User
 Disallow: /@*
+Disallow: /dashboard
 Disallow: /dashboard/*
 
 # Forum

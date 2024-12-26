@@ -28,7 +28,7 @@ return [
         'latest_of' => 'Dernières activités de :name',
         'empty' => 'Aucune activité pour le moment.',
         'empty_articles' => "n'a pas encore rédigé d'articles",
-        'empty_discussions' => "n'a pas encore démarrer de discussions",
+        'empty_discussions' => "n'a pas encore démarré de discussions",
         'empty_threads' => "n'a pas encore posté de sujets",
     ],
 

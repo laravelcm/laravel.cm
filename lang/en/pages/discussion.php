@@ -18,7 +18,7 @@ return [
         'popular' => 'Popular',
         'active' => 'Active',
     ],
-    'comments_count' => 'Comments (:count)',
+    'comments_count' => 'Comments',
     'convert_to_thread' => 'Convert to thread',
     'confirm_conversion' => 'Confirm conversion',
     'confirm_comment_remove' => 'Are you sure you want to delete this comment?',
@@ -40,5 +40,6 @@ return [
     ],
     'min_discussion_length' => '160 characters maximum',
     'placeholder' => 'Your comment here...',
+    'my_discussion' => 'My discussions',
 
 ];

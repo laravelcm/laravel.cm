@@ -25,7 +25,7 @@
             <path d="M.016 439.5s-9.5-300 434-300S882.516 20 882.516 20V0h230.004v439.5H.016Z" />
         </svg>
     </div>
-    <a href="https://ui.lndev.me/?utm_source=laravel.cm" target="_blank">
+    <a href="https://ui.lndev.me?utm_source=laravel.cm" target="_blank">
         <svg viewBox="0 0 104 24" xmlns="http://www.w3.org/2000/svg" class="h-6" aria-hidden="true">
             <rect width="24" height="24" rx="6" class="fill-[#060911] dark:fill-white" />
             <path

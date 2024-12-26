@@ -2,15 +2,16 @@
     'thread',
 ])
 
-<article class="rounded-xl cursor-pointer bg-white p-4 ring-1 ring-inset ring-gray-200/60 transition duration-200 ease-in-out dark:bg-gray-800 dark:ring-gray-800 dark:hover:bg-white/10 lg:py-5 lg:px-6" aria-labelledby="{{ $thread->slug }}">
+<article class="rounded-xl p-4 bg-white ring-1 ring-gray-200/50 transition duration-200 ease-in-out dark:bg-gray-800 dark:ring-white/10 dark:hover:bg-white/10 lg:p-5" aria-labelledby="{{ $thread->slug }}">
     <x-forum.thread-channels :thread="$thread" />
 
     <div class="flex items-center gap-4">
-        <h2 id="question-title-{{ $thread->id }}" class="truncate font-medium text-gray-900 dark:text-white lg:text-xl">
+        <h2 id="question-title-{{ $thread->id }}" class="truncate text-xl font-medium text-gray-900 dark:text-white lg:text-xl">
             <x-link :href="route('forum.show', $thread)" class="hover:underline">
                 {{ $thread->subject() }}
             </x-link>
         </h2>
+
         @if ($thread->isSolved())
             <x-link
                 :href="route('forum.show', $thread->slug). '#' .$thread->solution_reply_id"

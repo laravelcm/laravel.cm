@@ -8,7 +8,7 @@
     'flex-col' => $vertical
 ]) }}>
     <p @class([
-        'inline-flex items-center gap-1',
+        'inline-flex items-center gap-2',
         'flex-col justify-center' => $vertical
     ])>
         <x-untitledui-message-text-square-02 class="size-5 text-gray-400 dark:text-gray-500" stroke-width="1.5" aria-hidden="true" />

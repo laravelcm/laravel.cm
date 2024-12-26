@@ -14,5 +14,5 @@ return [
     'unban' => 'Dé-bannir',
     'confirm' => 'Confirmer',
     'start' => 'Démarrer',
-
+    'view' => 'Voir',
 ];
