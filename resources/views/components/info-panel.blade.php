@@ -1,9 +1,9 @@
-<div {{ $attributes->merge(['class' => 'rounded-md bg-blue-50 p-4']) }}>
+<div {{ $attributes->twMerge(['class' => 'rounded-lg bg-gray-100 ring-1 ring-gray-200 p-4 dark:bg-gray-800 dark:ring-white/20']) }}>
     <div class="flex">
         <div class="shrink-0">
-            <x-heroicon-s-information-circle class="h-5 w-5 text-blue-400" />
+            <x-untitledui-lock class="size-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />
         </div>
-        <div class="ml-3 flex-1">
+        <div class="ml-3 flex-1 text-gray-500 dark:text-gray-400">
             {{ $slot }}
         </div>
     </div>

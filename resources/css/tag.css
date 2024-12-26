@@ -1,99 +1,103 @@
 .brand-laravel {
-  color: var(--brand-laravel);
+    color: var(--laravel);
 }
 
 .brand-alpinejs {
-  color: var(--brand-alpinejs);
+    color: var(--alpinejs);
 }
 
 .brand-javascript {
-  color: var(--brand-javascript);
+    color: var(--javascript);
 }
 
 .brand-typesript {
-  color: var(--brand-typesript);
+    color: var(--typesript);
 }
 
 .brand-react {
-  color: var(--brand-react);
+    color: var(--react);
 }
 
 .brand-vue-js {
-  color: var(--brand-vue-js);
+    color: var(--vue-js);
 }
 
 .brand-php {
-  color: var(--brand-php);
+    color: var(--php);
 }
 
 .brand-digital-ocean {
-  color: var(--brand-digital-ocean);
+    color: var(--digital-ocean);
 }
 
 .brand-forge {
-  color: var(--brand-forge);
+    color: var(--forge);
 }
 
 .brand-packages {
-  color: var(--brand-packages);
+    color: var(--packages);
 }
 
 .brand-outils {
-  color: var(--brand-outils);
+    color: var(--outils);
 }
 
 .brand-tailwindcss {
-  color: var(--brand-tailwindcss);
+    color: var(--tailwindcss);
 }
 
 .brand-design {
-  color: var(--brand-design);
+    color: var(--design);
 }
 
 .brand-open-source {
-  color: var(--brand-open-source);
+    color: var(--open-source);
 }
 
 .brand-freelance {
-  color: var(--brand-freelance);
+    color: var(--freelance);
 }
 
 .brand-salaire {
-  color: var(--brand-salaire);
+    color: var(--salaire);
 }
 
 .brand-projets {
-  color: var(--brand-projets);
+    color: var(--projets);
 }
 
 .brand-entrepreneuriat {
-  color: var(--brand-entrepreneuriat);
+    color: var(--entrepreneuriat);
 }
 
 .brand-paiement-en-ligne {
-  color: var(--brand-paiement-en-ligne);
+    color: var(--paiement-en-ligne);
 }
 
 .brand-branding {
-  color: var(--brand-branding);
+    color: var(--branding);
 }
 
 .brand-applications {
-  color: var(--brand-applications);
+    color: var(--applications);
 }
 
 .brand-event {
-  color: var(--brand-event);
+    color: var(--event);
 }
 
 .brand-tutoriel {
-  color: var(--brand-tutoriel);
+    color: var(--tutoriel);
 }
 
 .brand-communaute {
-  color: var(--brand-communaute);
+    color: var(--communaute);
 }
 
 .brand-astuces {
-  color: var(--brand-astuces);
+    color: var(--astuces);
+}
+
+.is-channel {
+  @apply dark:border-white/20 dark:text-[var(--channel-color)] [&_svg]:dark:hover:fill-white dark:hover:text-white;
 }

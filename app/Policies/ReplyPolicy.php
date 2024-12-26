@@ -6,14 +6,16 @@ namespace App\Policies;
 
 use App\Models\Reply;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 final class ReplyPolicy
 {
-    public const CREATE = 'create';
+    use HandlesAuthorization;
 
-    public const UPDATE = 'update';
-
-    public const DELETE = 'delete';
+    public function manage(User $user, Reply $reply): bool
+    {
+        return $reply->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+    }
 
     public function create(User $user): bool
     {
@@ -22,11 +24,21 @@ final class ReplyPolicy
 
     public function update(User $user, Reply $reply): bool
     {
-        return $reply->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+        return $reply->isAuthoredBy($user) && $user->hasVerifiedEmail();
     }
 
     public function delete(User $user, Reply $reply): bool
     {
         return $reply->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+    }
+
+    public function report(User $user, Reply $reply): bool
+    {
+        return $user->hasVerifiedEmail() && ! $reply->isAuthoredBy($user);
+    }
+
+    public function like(User $user, Reply $reply): bool
+    {
+        return $user->hasVerifiedEmail();
     }
 }

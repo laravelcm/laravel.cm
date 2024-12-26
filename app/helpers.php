@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Carbon\Carbon;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Output\RenderedContentInterface;
@@ -46,8 +47,8 @@ if (! function_exists('get_current_theme')) {
     function get_current_theme(): string
     {
         return Auth::user() ?
-            Auth::user()->setting('theme', 'theme-light') :
-            'theme-light';
+            Auth::user()->setting('theme', 'light') :
+            'light';
     }
 }
 
@@ -86,8 +87,20 @@ if (! function_exists('route_to_reply_able')) {
      */
     function route_to_reply_able(mixed $replyAble): string
     {
-        return $replyAble instanceof App\Models\Thread ?
-            route('forum.show', $replyAble->slug()) :
-            route('discussions.show', $replyAble->slug());
+        $routeName = $replyAble instanceof \App\Models\Thread ? 'forum.show' : 'discussions.show';
+
+        return route($routeName, $replyAble->slug);
+    }
+}
+
+if (! function_exists('isHolidayWeek')) {
+    function isHolidayWeek(): bool
+    {
+        $now = Carbon::now();
+
+        $holidayStart = Carbon::createFromDate($now->year, 12, 21)->startOfDay();
+        $holidayEnd = Carbon::createFromDate($now->year + 1, 1, 2)->endOfDay();
+
+        return $now->between($holidayStart, $holidayEnd);
     }
 }

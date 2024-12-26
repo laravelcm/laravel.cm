@@ -2,94 +2,51 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\ArticlesController;
-use App\Http\Controllers\DiscussionController;
-use App\Http\Controllers\FileUploadController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotchPayCallBackController;
 use App\Http\Controllers\OAuthController;
 use App\Http\Controllers\ReplyAbleController;
-use App\Http\Controllers\SlackController;
-use App\Http\Controllers\SponsoringController;
 use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\ThreadController;
-use App\Http\Controllers\User;
+use App\Livewire\Pages\Home;
+use App\Livewire\Pages\Notifications;
+use App\Livewire\Pages\Sponsoring;
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
-Route::get('/', HomeController::class)->name('home');
+Route::get('/', Home::class)->name('home');
 
 // Static pages
-Route::view('a-propos', 'about')->name('about');
-Route::view('faq', 'faq')->name('faq');
-Route::view('privacy', 'privacy')->name('privacy');
-Route::view('rules', 'rules')->name('rules');
-Route::view('terms', 'terms')->name('terms');
-Route::view('slack', 'slack')->name('slack');
-Route::post('slack', SlackController::class)->name('slack.send');
-Route::post('uploads/process', [FileUploadController::class, 'process'])
-    ->middleware('auth')
-    ->name('uploads.process');
+Volt::route('a-propos', 'pages.about')->name('about');
+Route::view('privacy', 'pages.privacy')->name('privacy');
+Route::view('rules', 'pages.rules')->name('rules');
+Route::view('terms', 'pages.terms')->name('terms');
 
 // Social authentication
 Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');
 Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderCallback']);
 
 // Articles
-Route::prefix('articles')->group(function (): void {
-    Route::get('/', [ArticlesController::class, 'index'])->name('articles');
-    Route::get('/new', [ArticlesController::class, 'create'])->name('articles.new')->middleware(['auth','verified']);
-    Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
-    Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit')->middleware(['auth','verified']);
-});
-
-// Discussions
-Route::prefix('discussions')->as('discussions.')->group(function (): void {
-    Route::get('/', [DiscussionController::class, 'index'])->name('index');
-    Route::get('/new', [DiscussionController::class, 'create'])->name('new')->middleware(['auth','verified']);
-    Route::get('/{discussion}', [DiscussionController::class, 'show'])->name('show');
-    Route::get('/{discussion}/edit', [DiscussionController::class, 'edit'])->name('edit')->middleware(['auth','verified']);
-});
-
-// Forum
-Route::prefix('forum')->as('forum.')->group(function (): void {
-    Route::redirect('/channels', '/forum');
-    Route::get('/', [ThreadController::class, 'index'])->name('index');
-    Route::get('/channels/{channel}', [ThreadController::class, 'channel'])->name('channels');
-    Route::get('/new-thread', [ThreadController::class, 'create'])->name('new')->middleware(['auth','verified']);
-    Route::get('/{thread}', [ThreadController::class, 'show'])->name('show');
-    Route::get('/{thread}/edit', [ThreadController::class, 'edit'])->name('edit')->middleware(['auth','verified']);
-});
+Route::prefix('articles')->as('articles.')->group(base_path('routes/features/article.php'));
+Route::prefix('discussions')->as('discussions.')->group(base_path('routes/features/discussion.php'));
+Route::prefix('forum')->as('forum.')->group(base_path('routes/features/forum.php'));
 
 // Replies
-Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->name('replyable');
+Route::get('replyable/{id}/{type}', ReplyAbleController::class)->name('replyable');
 
 // Subscriptions
 Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
     ->name('subscriptions.unsubscribe');
 Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
 
-// Settings
-Route::prefix('settings')->as('user.')->middleware('auth')->group(function (): void {
-    Route::get('/', [User\SettingController::class, 'profile'])->name('settings');
-    Route::put('/', [User\SettingController::class, 'update'])->name('settings.update');
-    Route::view('/customization', 'user.settings.customization')->name('customization')->middleware('verified');
-    Route::view('/notifications', 'user.settings.notifications')->name('notifications')->middleware('verified');
-    Route::get('/password', [User\SettingController::class, 'password'])->name('password')->middleware('verified');
-    Route::put('/password', [User\SettingController::class, 'updatePassword'])->name('password.update');
-});
-
-// User
-Route::prefix('dashboard')->middleware(['auth', 'verified'])->group(function (): void {
-    Route::get('/', [User\DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::get('/threads', [User\DashboardController::class, 'threads'])->name('threads.me');
-    Route::get('/discussions', [User\DashboardController::class, 'discussions'])->name('discussions.me');
-});
-Route::get('/user/{username?}', [User\ProfileController::class, 'show'])->name('profile');
-
 // Notifications
-Route::view('notifications', 'user.notifications')->name('notifications')->middleware('auth');
+Route::get('notifications', Notifications::class)
+    ->name('notifications')
+    ->middleware(['auth', 'checkIfBanned']);
+
+Route::get('sponsors', Sponsoring::class)->name('sponsors');
+Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');
+
+require __DIR__.'/features/account.php';
+
+require __DIR__.'/auth.php';
 
 Route::feeds();
-
-Route::get('sponsors', [SponsoringController::class, 'sponsors'])->name('sponsors');
-Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');

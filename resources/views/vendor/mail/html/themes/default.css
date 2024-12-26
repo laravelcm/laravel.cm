@@ -10,14 +10,14 @@ body *:not(html):not(style):not(br):not(tr):not(code) {
 
 :root {
     --color-text-primary: #059669;
-    --color-text-primary-hover: #10B981;
-    --color-text-base: #6B7280;
-    --color-text-muted: #9CA3AF;
+    --color-text-primary-hover: #10b981;
+    --color-text-base: #6b7280;
+    --color-text-muted: #9ca3af;
     --color-text-inverted: #111827;
-    --color-text-inverted-muted: #1F2937;
+    --color-text-inverted-muted: #1f2937;
     --color-bg-light: #FF9FAFB;
-    --color-bg-gray: #F3F4F6;
-    --color-border: #E5E7EB
+    --color-bg-gray: #f3f4f6;
+    --color-border: #e5e7eb;
 }
 
 body {
@@ -148,7 +148,7 @@ img {
 .social-icon {
     height: 24px;
     width: 24px;
-    color: var(--color-text-base)
+    color: var(--color-text-base);
 }
 
 /* Body */
@@ -173,7 +173,9 @@ img {
     border-color: #e8e5ef;
     border-radius: 2px;
     border-width: 1px;
-    box-shadow: 0 2px 0 rgba(0, 0, 150, 0.025), 2px 4px 0 rgba(0, 0, 150, 0.015);
+    box-shadow:
+        0 2px 0 rgba(0, 0, 150, 0.025),
+        2px 4px 0 rgba(0, 0, 150, 0.015);
     margin: 0 auto;
     padding: 0;
     width: 570px;

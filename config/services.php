@@ -36,20 +36,16 @@ return [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect' => env('GITHUB_REDIRECT'),
+        'token' => env('GITHUB_FINE_GRAINED_TOKEN'),
         'scopes' => [],
         'with' => [],
     ],
 
     'twitter' => [
-        'client_id' => env('TWITTER_CLIENT_ID'),
-        'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => env('TWITTER_REDIRECT'),
-        'consumer_key' => env('TWITTER_CLIENT_ID'),
-        'consumer_secret' => env('TWITTER_CLIENT_SECRET'),
+        'consumer_key' => env('TWITTER_CONSUMER_KEY'),
+        'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
         'access_token' => env('TWITTER_ACCESS_TOKEN'),
         'access_secret' => env('TWITTER_ACCESS_SECRET'),
-        'scopes' => [],
-        'with' => [],
     ],
 
     'unsplash' => [
@@ -59,6 +55,15 @@ return [
     'telegram-bot-api' => [
         'token' => env('TELEGRAM_BOT_TOKEN'),
         'channel' => env('TELEGRAM_CHANNEL'),
+    ],
+
+    'google' => [
+        'recaptcha' => [
+            'site_key' => env('GOOGLE_RECAPTCHA_SITE_KEY'),
+            'secret_key' => env('GOOGLE_RECAPTCHA_SECRET_KEY'),
+            'version' => 'v3',
+            'score' => 0.5,
+        ],
     ],
 
 ];

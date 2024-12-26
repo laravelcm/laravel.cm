@@ -1,26 +1,69 @@
-import Alpine from 'alpinejs'
-import intersect from '@alpinejs/intersect'
-import AlpineFloatingUI from '@awcodes/alpine-floating-ui'
-import Tooltip from '@ryangjchandler/alpine-tooltip'
+import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm'
+import '../../vendor/laravelcm/livewire-slide-overs/resources/js/slide-over';
 
-import internationalNumber from './plugins/internationalNumber'
-import datepicker from './plugins/datepicker'
-import { registerHeader } from './helpers/header'
-import './helpers/helpers'
-import './helpers/scrollspy'
+import intersect from '@alpinejs/intersect'
+import Tooltip from '@ryangjchandler/alpine-tooltip'
+import collapse from '@alpinejs/collapse'
+
 import './elements'
-import './utils/editor'
-import './utils/filepond'
+import { registerHeader } from './utils/header'
+import './utils/helpers'
+import './utils/scrollspy'
 import './utils/clipboard'
 
 registerHeader()
 
-Alpine.plugin(AlpineFloatingUI)
 Alpine.plugin(intersect)
 Alpine.plugin(Tooltip)
-Alpine.data('internationalNumber', internationalNumber)
-Alpine.data('datepicker', datepicker)
+Alpine.plugin(collapse)
 
 window.Alpine = Alpine
 
-Alpine.start()
+document.addEventListener('alpine:init', () => {
+  const theme =
+    localStorage.getItem('theme') ??
+    getComputedStyle(document.documentElement).getPropertyValue(
+      '--default-theme-mode',
+    )
+
+  window.Alpine.store(
+    'theme',
+    theme === 'dark' ||
+    (theme === 'system' &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ? 'dark'
+      : 'light',
+  )
+
+  window.addEventListener('theme-changed', (event) => {
+    let theme = event.detail
+
+    localStorage.setItem('theme', theme)
+
+    if (theme === 'system') {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light'
+    }
+
+    window.Alpine.store('theme', theme)
+  })
+
+  window
+    .matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', (event) => {
+      if (localStorage.getItem('theme') === 'system') {
+        window.Alpine.store('theme', event.matches ? 'dark' : 'light')
+      }
+    })
+
+  window.Alpine.effect(() => {
+    const theme = window.Alpine.store('theme')
+
+    theme === 'dark'
+      ? document.documentElement.classList.add('dark')
+      : document.documentElement.classList.remove('dark')
+  })
+})
+
+Livewire.start()

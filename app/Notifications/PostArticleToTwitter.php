@@ -38,7 +38,7 @@ final class PostArticleToTwitter extends Notification
     public function generateTweet(): string
     {
         $title = $this->article->title;
-        $url = route('articles.show', $this->article->slug());
+        $url = route('articles.show', $this->article->slug);
         $author = $this->article->user;
         $author = $author->twitter() ? "@{$author->twitter()}" : $author->name;
 

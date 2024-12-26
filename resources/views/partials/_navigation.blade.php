@@ -1,0 +1,15 @@
+<x-nav.item
+    :href="route('forum.index')"
+    :active-links="['forum*']"
+    :title="__('global.navigation.forum')"
+/>
+<x-nav.item
+    :href="route('articles.index')"
+    :active-links="['articles*']"
+    :title="__('global.navigation.articles')"
+/>
+<x-nav.item
+    :href="route('discussions.index')"
+    :active-links="['discussions*']"
+    :title="__('global.navigation.discussions')"
+/>

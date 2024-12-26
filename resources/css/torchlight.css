@@ -3,8 +3,8 @@
  overflow-x-auto is recommended.
 */
 pre {
-  @apply my-4 rounded overflow-x-auto;
-  padding: 0 !important;
+    @apply my-4 overflow-x-auto rounded-lg;
+    padding: 0 !important;
 }
 
 /*
@@ -14,14 +14,14 @@ pre {
  colors extend edge to edge.
 */
 pre code.torchlight {
-  @apply block py-6 min-w-max;
+    @apply block min-w-max py-6 max-h-[43.75rem];
 }
 
 /*
  Horizontal line padding.
 */
 pre code.torchlight .line {
-  @apply px-5;
+    @apply px-5;
 }
 
 /*
@@ -30,62 +30,64 @@ pre code.torchlight .line {
 */
 pre code.torchlight .line-number,
 pre code.torchlight .summary-caret {
-  @apply mr-4;
-  user-select: none;
+    @apply mr-4;
+    user-select: none;
 }
 
 .torchlight.has-focus-lines .line:not(.line-focus) {
-  transition: filter 0.35s, opacity 0.35s;
-  filter: blur(.095rem);
-  opacity: .65;
+    transition:
+        filter 0.35s,
+        opacity 0.35s;
+    filter: blur(0.095rem);
+    opacity: 0.65;
 }
 
 .torchlight.has-focus-lines:hover .line:not(.line-focus) {
-  filter: blur(0px);
-  opacity: 1;
+    filter: blur(0px);
+    opacity: 1;
 }
 
 .torchlight summary:focus {
-  outline: none;
+    outline: none;
 }
 
 /* Hide the default markers, as we provide our own */
 .torchlight details > summary::marker,
 .torchlight details > summary::-webkit-details-marker {
-  display: none;
+    display: none;
 }
 
 .torchlight details .summary-caret::after {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 /* Add spaces to keep everything aligned */
 .torchlight .summary-caret-empty::after,
 .torchlight details .summary-caret-middle::after,
 .torchlight details .summary-caret-end::after {
-  content: " ";
+    content: ' ';
 }
 
 /* Show a minus sign when the block is open. */
 .torchlight details[open] .summary-caret-start::after {
-  content: "-";
+    content: '-';
 }
 
 /* And a plus sign when the block is closed. */
 .torchlight details:not([open]) .summary-caret-start::after {
-  content: "+";
+    content: '+';
 }
 
 /* Hide the [...] indicator when open. */
 .torchlight details[open] .summary-hide-when-open {
-  display: none;
+    display: none;
 }
 
 /* Show the [...] indicator when closed. */
 .torchlight details:not([open]) .summary-hide-when-open {
-  display: initial;
+    display: initial;
 }
 
 .code-block .copyBtn {
-  @apply absolute right-2 top-2 outline-none;
+    @apply absolute right-2 top-2 outline-none;
 }

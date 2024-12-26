@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\TransactionStatus;
+use App\Observers\UserObserver;
 use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
@@ -13,7 +14,9 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -21,20 +24,48 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Socialite\Contracts\User as SocialUser;
 use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
-use LaravelFeature\Featurable\Featurable;
-use LaravelFeature\Featurable\FeaturableInterface;
 use QCod\Gamify\Gamify;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
 
-final class User extends Authenticatable implements FeaturableInterface, FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
+/**
+ * @property-read int $id
+ * @property string $name
+ * @property string $email
+ * @property string $username
+ * @property string $avatar_type
+ * @property string $profile_photo_url
+ * @property string | null $location
+ * @property string | null $phone_number
+ * @property string | null $github_profile
+ * @property string | null $twitter_profile
+ * @property string | null $linkedin_profile
+ * @property string | null $bio
+ * @property string | null $website
+ * @property string | null $banned_reason
+ * @property array $settings
+ * @property Carbon | null $email_verified_at
+ * @property Carbon | null $last_login_at
+ * @property Carbon | null $banned_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon | null $last_active_at
+ * @property Collection | Activity[] $activities
+ * @property Collection | Article[] $articles
+ * @property Collection | Thread[] $threads
+ * @property Collection | Discussion[] $discussions
+ * @property Collection | Subscribe[] $subscriptions
+ * @property-read Collection | SocialAccount[] $providers
+ */
+#[ObservedBy(UserObserver::class)]
+final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
-    use Featurable;
     use Gamify;
     use HasApiTokens;
     use HasFactory;
@@ -54,7 +85,6 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
         'password',
         'bio',
         'location',
-        'avatar',
         'avatar_type',
         'reputation',
         'phone_number',
@@ -65,8 +95,10 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
         'last_login_at',
         'last_login_ip',
         'email_verified_at',
-        'published_at',
+        'banned_at',
+        'banned_reason',
         'opt_in',
+        'last_active_at',
     ];
 
     protected $hidden = [
@@ -74,22 +106,15 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'last_active_at',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
         'last_login_at' => 'datetime',
+        'banned_at' => 'datetime',
         'settings' => 'array',
-    ];
-
-    protected $appends = [
-        'profile_photo_url',
-        'roles_label',
-        'is_sponsor',
-    ];
-
-    protected $withCount = [
-        'transactions',
+        'last_active_at' => 'datetime',
     ];
 
     public function hasProvider(string $provider): bool
@@ -113,28 +138,30 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
         return $this->enterprise !== null;
     }
 
-    public function getRolesLabelAttribute(): string
+    public function rolesLabel(): Attribute
     {
         $roles = $this->getRoleNames()->toArray();
 
-        if (count($roles)) {
-            return implode(', ', array_map(fn ($item) => ucwords($item), $roles));
-        }
-
-        return 'N/A';
+        return Attribute::get(
+            fn () => count($roles)
+            ? implode(', ', array_map(fn ($item) => ucwords($item), $roles))
+            : 'N/A'
+        );
     }
 
-    public function getIsSponsorAttribute(): bool
+    public function IsSponsor(): Attribute
     {
-        if ($this->transactions_count > 0) {
-            $transaction = $this->transactions()
-                ->where('status', TransactionStatus::COMPLETE->value)
-                ->first();
+        return Attribute::get(function (): bool {
+            if ($this->transactions_count > 0) {
+                $transaction = $this->transactions()
+                    ->where('status', TransactionStatus::COMPLETE->value)
+                    ->first();
 
-            return (bool) $transaction;
-        }
+                return (bool) $transaction;
+            }
 
-        return false;
+            return false;
+        });
     }
 
     public function isAdmin(): bool
@@ -173,14 +200,14 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
     }
 
     /**
-     * @return array{name: string, username: string, picture: string}
+     * @return array{name: string, username: string, picture: string|null}
      */
     public function profile(): array
     {
         return [
             'name' => $this->name,
             'username' => $this->username,
-            'picture' => (string) $this->profile_photo_url,
+            'picture' => $this->profile_photo_url,
         ];
     }
 
@@ -259,6 +286,11 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
         return $this->hasMany(Transaction::class);
     }
 
+    public function spamReports(): HasMany
+    {
+        return $this->hasMany(SpamReport::class, 'user_id');
+    }
+
     public function deleteThreads(): void
     {
         // We need to explicitly iterate over the threads and delete them
@@ -328,7 +360,7 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
     {
         $password = $this->getAuthPassword();
 
-        return $password !== '' && $password !== null;
+        return ! empty($password) || $password !== null; // @phpstan-ignore-line
     }
 
     public function delete(): ?bool
@@ -367,12 +399,12 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
 
     public function countSolutions(): int
     {
-        return $this->replyAble()->isSolution()->count();
+        return $this->replyAble()->isSolution()->count(); // @phpstan-ignore-line
     }
 
     public function countArticles(): int
     {
-        return $this->articles()->approved()->count();
+        return $this->articles()->approved()->count(); // @phpstan-ignore-line
     }
 
     public function countDiscussions(): int
@@ -461,5 +493,37 @@ final class User extends Authenticatable implements FeaturableInterface, Filamen
     public function scopeTopContributors(Builder $query): Builder
     {
         return $query->withCount(['discussions'])->orderByDesc('discussions_count');
+    }
+
+    /**
+     * Get the banned user.
+     *
+     * @param  Builder<User>  $query
+     * @return Builder<User>
+     */
+    public function scopeIsBanned(Builder $query): Builder
+    {
+        return $query->whereNotNull('banned_at');
+    }
+
+    /**
+     * Get the unbanned user.
+     *
+     * @param  Builder<User>  $query
+     * @return Builder<User>
+     */
+    public function scopeIsNotBanned(Builder $query): Builder
+    {
+        return $query->whereNull('banned_at');
+    }
+
+    public function isBanned(): bool
+    {
+        return $this->banned_at !== null;
+    }
+
+    public function isNotBanned(): bool
+    {
+        return ! $this->isBanned();
     }
 }

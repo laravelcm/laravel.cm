@@ -1,8 +1,8 @@
 User-agent: *
 
 # User
-Disallow: /user
-Disallow: /user/*
+Disallow: /@*
+Disallow: /dashboard
 Disallow: /dashboard/*
 
 # Forum

@@ -1,12 +1,10 @@
-@props(['title', 'url', 'soon' => false])
+@props([
+    'title',
+    'url',
+])
 
 <li>
-    <a href="{{ $url }}" class="inline-flex items-center text-base text-skin-base hover:text-skin-menu-hover" title="{{ $title }}">
+    <x-link :href="$url" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white">
         {{ $title }}
-        @if($soon)
-            <span class="inline-flex ml-2 text-xs leading-4 text-green-800 bg-green-100 py-0.5 px-1.5 rounded-full">
-                {{ __('Bientôt') }}
-            </span>
-        @endif
-    </a>
+    </x-link>
 </li>

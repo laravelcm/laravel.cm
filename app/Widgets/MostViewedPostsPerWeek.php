@@ -5,37 +5,32 @@ declare(strict_types=1);
 namespace App\Widgets;
 
 use App\Models\Article;
-use Arrilot\Widgets\AbstractWidget;
 use CyrildeWit\EloquentViewable\Support\Period;
 use Illuminate\Contracts\View\View;
 
-final class MostViewedPostsPerWeek extends AbstractWidget
+final class MostViewedPostsPerWeek
 {
     /**
      * The configuration array.
      *
      * @var array<string>
      */
-    protected $config = [];
+    protected array $config = [];
 
     /**
      * The number of seconds before each reload.
-     *
-     * @var int|float
      */
-    public $reloadTimeout = 172800; // 2 days
+    public int|float $reloadTimeout = 172800; // 2 days
 
     /**
      * The number of minutes before cache expires.
      * False means no caching at all.
-     *
-     * @var int|float|bool
      */
-    public $cacheTime = 90;
+    public int|float|bool $cacheTime = 90;
 
     public function run(): View
     {
-        $articles = Article::withViewsCount(Period::create(now()->startOfWeek(), now()->endOfWeek()))
+        $articles = Article::withViewsCount(Period::create(now()->startOfWeek(), now()->endOfWeek())) // @phpstan-ignore-line
             ->published()
             ->orderByDesc('views_count')
             ->orderByDesc('published_at')

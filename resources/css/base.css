@@ -1,37 +1,30 @@
-html, body { height: 100%; }
+html,
+body { height: 100%; }
 input { width: 100%; }
-.hide-scroll::-webkit-scrollbar { display: none; }
-[x-cloak] { display: none !important; }
 
-.affiliate img {
-  margin-bottom: 0 !important;
-  margin-top: 0 !important;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+[x-cloak] {
+    display: none !important;
+}
+
+.hide-scroll::-webkit-scrollbar {
+    display: none;
 }
 
 .prose iframe {
-  @apply w-full;
-}
-
-.logo-dark {
-  display: none;
-}
-
-.theme-dark .logo-white {
-  display: none;
-}
-
-.theme-dark .logo-dark {
-  display: block;
+    @apply w-full;
 }
 
 .animate-scroll-slow:nth-child(2) {
-  animation-duration: 40s;
-  animation-delay: 500ms;
+    animation-duration: 40s;
+    animation-delay: 500ms;
 }
 
 .animate-scroll-slow:nth-child(3) {
-  animation-duration: 50s;
-  animation-delay: 750ms;
+    animation-duration: 50s;
+    animation-delay: 750ms;
+}
+
+/* Fix style for the phone country input */
+.iti--inline-dropdown .iti__dropdown-content {
+  @apply mt-2 rounded-lg border-gray-200 dark:border-white/10 shadow !important;
 }

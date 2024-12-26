@@ -38,8 +38,9 @@ final class NotchPayCallBackController extends Controller
                     value: __('Votre paiement a été annulé veuillez relancer pour soutenir Laravel Cameroun, Merci.')
                 );
             } else {
-                // @ToDO Envoie de mail de notification de remerciement pour le sponsoring si l'utilisateur est dans la base de données
+                // @ToDO: Envoie de mail de notification de remerciement pour le sponsoring si l'utilisateur est dans la base de données
                 event(new SponsoringPaymentInitialize($transaction));
+
                 Cache::forget(key: 'sponsors');
 
                 session()->flash(
@@ -48,8 +49,9 @@ final class NotchPayCallBackController extends Controller
                 );
             }
 
-        } catch (\NotchPay\Exceptions\ApiException $e) {
+        } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             session()->flash(
                 key: 'error',
                 value: __('Une erreur s\'est produite lors de votre paiement. Veuillez relancer Merci.')

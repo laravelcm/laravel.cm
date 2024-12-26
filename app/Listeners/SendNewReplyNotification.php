@@ -22,9 +22,8 @@ final class SendNewReplyNotification implements ShouldQueue
 
         foreach ($thread->subscribes as $subscription) {
             /** @var Subscribe $subscription */
-            // @phpstan-ignore-next-line
             if ($this->replyAuthorDoesNotMatchSubscriber(author: $event->reply->user, subscription: $subscription)) {
-                $subscription->user->notify(new NewReplyNotification($event->reply, $subscription)); // @phpstan-ignore-line
+                $subscription->user->notify(new NewReplyNotification($event->reply, $subscription));
             }
         }
     }

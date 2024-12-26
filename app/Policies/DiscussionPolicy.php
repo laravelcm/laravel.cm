@@ -6,22 +6,25 @@ namespace App\Policies;
 
 use App\Models\Discussion;
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 final class DiscussionPolicy
 {
-    public const UPDATE = 'update';
+    use HandlesAuthorization;
 
-    public const DELETE = 'delete';
+    public function create(User $user): bool
+    {
+        return $user->hasVerifiedEmail();
+    }
 
-    public const PINNED = 'togglePinnedStatus';
-
-    public const SUBSCRIBE = 'subscribe';
-
-    public const UNSUBSCRIBE = 'unsubscribe';
+    public function manage(User $user, Discussion $discussion): bool
+    {
+        return $discussion->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+    }
 
     public function update(User $user, Discussion $discussion): bool
     {
-        return $discussion->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+        return $discussion->isAuthoredBy($user);
     }
 
     public function delete(User $user, Discussion $discussion): bool
@@ -42,5 +45,15 @@ final class DiscussionPolicy
     public function unsubscribe(User $user, Discussion $discussion): bool
     {
         return $discussion->hasSubscriber($user);
+    }
+
+    public function report(User $user, Discussion $discussion): bool
+    {
+        return $user->hasVerifiedEmail() && ! $discussion->isAuthoredBy($user);
+    }
+
+    public function convertedToThread(User $user, Discussion $discussion): bool
+    {
+        return $discussion->isAuthoredBy($user) || $user->isAdmin();
     }
 }

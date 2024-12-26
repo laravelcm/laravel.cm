@@ -1,3 +1,54 @@
-@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import '/vendor/filament/filament/resources/css/theme.css';
 
 @config './tailwind.config.js';
+
+.fi-body {
+  .fi-simple-header .fi-logo {
+    @apply h-16 !important;
+    > svg {
+      @apply h-full;
+    }
+  }
+
+  &.fi-panel-admin {
+    @apply bg-gray-50 dark:bg-gray-900;
+    .fi-sidebar-header {
+      @apply bg-transparent ring-0 ring-transparent lg:shadow-none;
+      .fi-logo {
+        @apply h-10 !important;
+        > svg {
+          @apply h-full;
+        }
+      }
+    }
+
+    .fi-topbar {
+      > nav {
+        @apply shadow-none ring-0 ring-transparent bg-transparent;
+      }
+    }
+
+    .fi-sidebar-nav {
+      @apply px-0;
+
+      .fi-sidebar-nav-groups {
+        @apply px-2;
+      }
+
+      .fi-sidebar-item {
+        @apply border-l-4 border-transparent rounded-none hover:bg-gray-100/50 hover:border-gray-200 dark:hover:bg-gray-900 dark:hover:border-gray-700;
+        &.fi-active {
+          @apply border-primary-400 hover:border-primary-400;
+        }
+      }
+
+      .fi-sidebar-item-button, .fi-sidebar-group-button {
+        @apply bg-transparent px-5;
+      }
+    }
+
+    .fi-main-ctn {
+      @apply bg-transparent;
+    }
+  }
+}

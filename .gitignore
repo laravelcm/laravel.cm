@@ -4,8 +4,7 @@
 npm-debug.log
 yarn-error.log
 yarn.lock
-package-lock.json
-
+pnpm-lock.yml
 /vendor
 composer.phar
 
@@ -18,18 +17,14 @@ composer.phar
 .phpunit.cache
 .phpunit.result.cache
 /public/build
-/public/**/filament
 /public/hot
 /public/storage
 /public/media
-/public/sitemap.xml
+/public/**/*.xml
 /storage/*.key
 /storage/framework/cache
 .env
 .env.backup
-.phpstorm.meta.php
-_ide_helper.php
-_ide_helper_models.php
 
 # OSX
 #

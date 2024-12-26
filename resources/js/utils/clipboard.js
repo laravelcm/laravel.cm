@@ -2,19 +2,19 @@
 let codeBlocks = document.querySelectorAll('#content pre')
 
 codeBlocks.forEach((element, key) => {
-  let wrapper = document.createElement('div')
-  wrapper.classList.add('relative', 'code-block')
+    let wrapper = document.createElement('div')
+    wrapper.classList.add('relative', 'code-block')
 
-  element.parentNode.insertBefore(wrapper, element)
-  wrapper.appendChild(element)
+    element.parentNode.insertBefore(wrapper, element)
+    wrapper.appendChild(element)
 
-  let codeElement = element.querySelector('code')
-  codeElement.id = `clipText-${key}`
+    let codeElement = element.querySelector('code')
+    codeElement.id = `clipText-${key}`
 
-  // Copy to clipboard button.
-  const copyToClipboardContainer = document.createElement('div')
+    // Copy to clipboard button.
+    const copyToClipboardContainer = document.createElement('div')
 
-  copyToClipboardContainer.innerHTML = `
+    copyToClipboardContainer.innerHTML = `
         <div x-data="{
             copyNotification: false,
             copyToClipboard() {
@@ -39,10 +39,10 @@ codeBlocks.forEach((element, key) => {
             </div>
         </div>
         <button @click="copyToClipboard();" class="flex items-center justify-center h-8 text-xs bg-gray-700 rounded-md cursor-pointer w-9 hover:bg-gray-900/50 active:bg-gray-600 focus:bg-gray-700 focus:outline-none text-slate-300 hover:text-white group">
-            <svg x-show="copyNotification" class="w-4 h-4 text-primary-500 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" x-cloak>
+            <svg x-show="copyNotification" class="size-4 text-primary-500 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" x-cloak>
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
             </svg>
-            <svg x-show="!copyNotification" class="w-4 h-4 stroke-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg x-show="!copyNotification" class="size-4 stroke-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <g fill="none" stroke="none">
                     <path d="M7.75 7.757V6.75a3 3 0 0 1 3-3h6.5a3 3 0 0 1 3 3v6.5a3 3 0 0 1-3 3h-.992" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M3.75 10.75a3 3 0 0 1 3-3h6.5a3 3 0 0 1 3 3v6.5a3 3 0 0 1-3 3h-6.5a3 3 0 0 1-3-3v-6.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -52,9 +52,9 @@ codeBlocks.forEach((element, key) => {
     </div>
   `
 
-  copyToClipboardContainer.setAttribute('aria-label', 'Copy to Clipboard')
-  copyToClipboardContainer.setAttribute('title', 'Copy to Clipboard')
-  copyToClipboardContainer.classList.add('copyBtn');
+    copyToClipboardContainer.setAttribute('aria-label', 'Copy to Clipboard')
+    copyToClipboardContainer.setAttribute('title', 'Copy to Clipboard')
+    copyToClipboardContainer.classList.add('copyBtn')
 
-  wrapper.append(copyToClipboardContainer)
+    wrapper.append(copyToClipboardContainer)
 })

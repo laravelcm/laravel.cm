@@ -6,13 +6,14 @@ namespace App\Traits;
 
 use App\Models\Activity;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Facades\Auth;
 use ReflectionClass;
 
 trait RecordsActivity
 {
     protected static function bootRecordsActivity(): void
     {
-        if (auth()->guest()) {
+        if (Auth::guest()) {
             return;
         }
 
@@ -23,7 +24,7 @@ trait RecordsActivity
         }
 
         static::deleting(function ($model): void {
-            $model->activity()->delete();
+            $model->activities()->delete();
         });
     }
 
@@ -40,14 +41,14 @@ trait RecordsActivity
      */
     protected function recordActivity(string $event, bool $useDefaultEvent = true, array $data = []): void
     {
-        $this->activity()->create([
-            'user_id' => auth()->id(),
+        $this->activities()->create([
+            'user_id' => Auth::id(),
             'type' => $useDefaultEvent ? $this->getActivityType($event) : $event,
             'data' => $data,
         ]);
     }
 
-    public function activity(): MorphMany
+    public function activities(): MorphMany
     {
         return $this->morphMany(Activity::class, 'subject');
     }

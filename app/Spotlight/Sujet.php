@@ -25,7 +25,7 @@ final class Sujet extends SpotlightCommand
         'thread',
     ];
 
-    public function dependencies(): ?SpotlightCommandDependencies
+    public function dependencies(): SpotlightCommandDependencies
     {
         return SpotlightCommandDependencies::collection()
             ->add(
@@ -40,9 +40,9 @@ final class Sujet extends SpotlightCommand
             ->where('title', 'like', "%{$query}%")
             ->get()
             ->map(fn (Thread $thread) => new SpotlightSearchResult(
-                $thread->slug(),
+                $thread->slug,
                 $thread->title,
-                sprintf('par @%s', $thread->user?->username)
+                sprintf('par @%s', $thread->user->username)
             ));
     }
 

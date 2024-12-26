@@ -10,6 +10,33 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Collection;
 
+/**
+ * @property int $id
+ * @property string $subject_type
+ * @property int $subject_id
+ * @property string $type
+ * @property array|null $data
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Model $subject
+ * @property-read User $user
+ *
+ * @method static \Database\Factories\ActivityFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereSubjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereSubjectType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereUserId($value)
+ *
+ * @mixin \Illuminate\Database\Eloquent\Model
+ */
 final class Activity extends Model
 {
     use HasFactory;
@@ -36,18 +63,14 @@ final class Activity extends Model
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * @return array<string, \Illuminate\Support\Collection<int|string, \Illuminate\Support\Collection<int|string, Activity>>>
-     */
-    public static function feed(User $user, int $take = 50): array
+    public static function feed(User $user, int $take = 50): Collection
     {
-        // @phpstan-ignore-next-line
         return self::where('user_id', $user->id)
             ->latest()
             ->with('subject')
             ->take($take)
             ->get()
-            ->groupBy(fn (Activity $activity) => $activity->created_at->format('Y-m-d')); // @phpstan-ignore-line
+            ->groupBy(fn (Activity $activity) => $activity->created_at->format('Y-m-d'));
     }
 
     public static function latestFeed(User $user, int $take = 10): Collection

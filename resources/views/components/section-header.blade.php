@@ -1,6 +1,13 @@
-@props(['title', 'content'])
+@props([
+    'title',
+    'content',
+])
 
 <div>
-    <h3 class="text-skin-inverted text-2xl sm:text-3xl leading-7 font-heading">{{ $title }}</h3>
-    <p class="mt-3 text-lg sm:text-xl leading-6 text-skin-base sm:max-w-3xl">{{ $content }}</p>
+    <h3 class="font-heading font-bold text-xl leading-7 text-gray-900 dark:text-white sm:text-2xl">
+        {{ $title }}
+    </h3>
+    <p class="mt-2 leading-6 text-gray-500 dark:text-gray-400 sm:max-w-3xl">
+        {{ $content }}
+    </p>
 </div>

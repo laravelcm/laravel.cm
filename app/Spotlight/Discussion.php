@@ -20,7 +20,7 @@ final class Discussion extends SpotlightCommand
 
     protected array $synonyms = [];
 
-    public function dependencies(): ?SpotlightCommandDependencies
+    public function dependencies(): SpotlightCommandDependencies
     {
         return SpotlightCommandDependencies::collection()
             ->add(
@@ -34,10 +34,11 @@ final class Discussion extends SpotlightCommand
         return DiscussionModel::with('user')
             ->where('title', 'like', "%{$query}%")
             ->get()
+            // @phpstan-ignore-next-line
             ->map(fn (DiscussionModel $discussion) => new SpotlightSearchResult(
-                $discussion->slug(),
+                $discussion->slug,
                 $discussion->title,
-                sprintf('par @%s', $discussion->user?->username)
+                sprintf('par @%s', $discussion->user->username)
             ));
     }
 

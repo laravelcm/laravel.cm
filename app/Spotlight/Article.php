@@ -20,7 +20,7 @@ final class Article extends SpotlightCommand
 
     protected array $synonyms = [];
 
-    public function dependencies(): ?SpotlightCommandDependencies
+    public function dependencies(): SpotlightCommandDependencies
     {
         return SpotlightCommandDependencies::collection()
             ->add(
@@ -31,14 +31,14 @@ final class Article extends SpotlightCommand
 
     public function searchArticle(string $query): Collection
     {
-        return ArticleModel::published()
-            ->with('user')
+        return ArticleModel::with('user')
+            ->published()
             ->where('title', 'like', "%{$query}%")
             ->get()
-            ->map(fn (ArticleModel $article) => new SpotlightSearchResult(
-                $article->slug(),
+            ->map(fn (ArticleModel $article) => new SpotlightSearchResult( // @phpstan-ignore-line
+                $article->slug,
                 $article->title,
-                sprintf('par @%s', $article->user?->username)
+                sprintf('par @%s', $article->user->username)
             ));
     }
 

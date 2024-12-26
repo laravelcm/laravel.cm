@@ -5,32 +5,27 @@ declare(strict_types=1);
 namespace App\Widgets;
 
 use App\Models\Article;
-use Arrilot\Widgets\AbstractWidget;
 use Illuminate\Contracts\View\View;
 
-final class MostLikedPostsPerWeek extends AbstractWidget
+final class MostLikedPostsPerWeek
 {
     /**
      * The configuration array.
      *
      * @var array<string>
      */
-    protected $config = [];
+    protected array $config = [];
 
     /**
      * The number of seconds before each reload.
-     *
-     * @var int|float
      */
-    public $reloadTimeout = 172800; // 2 days
+    public int|float $reloadTimeout = 172800; // 2 days
 
     /**
      * The number of minutes before cache expires.
      * False means no caching at all.
-     *
-     * @var int|float|bool
      */
-    public $cacheTime = 0;
+    public int|float|bool $cacheTime = 0;
 
     /**
      * Treat this method as a controller action.

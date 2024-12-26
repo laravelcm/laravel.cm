@@ -6,7 +6,12 @@
         <style>{!! file_get_contents($cssPath) !!}</style>
     @endisset
 
-    <div x-data="LivewireUISpotlight({ componentId: '{{ $this->id }}', placeholder: '{{ trans('livewire-ui-spotlight::spotlight.placeholder') }}', commands: {{ $commands }} })"
+    <div x-data="LivewireUISpotlight({
+        componentId: '{{ $this->id() }}',
+        placeholder: '{{ trans('livewire-ui-spotlight::spotlight.placeholder') }}',
+        commands: @js($commands),
+        showResultsWithoutInput: '{{ config('livewire-ui-spotlight.show_results_without_input') }}',
+    })"
          x-init="init()"
          x-show="isOpen"
          x-cloak
@@ -17,12 +22,13 @@
          @keydown.window.escape="isOpen = false"
          @toggle-spotlight.window="toggleOpen()"
          class="fixed z-50 px-4 pt-16 flex items-start justify-center inset-0 sm:pt-24">
-        <div x-show="isOpen" x-transition:enter="ease-out duration-200" x-transition:enter-start="opacity-0"
+        <div x-show="isOpen" @click="isOpen = false" x-transition:enter="ease-out duration-200" x-transition:enter-start="opacity-0"
              x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-150"
              x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
              class="fixed inset-0 transition-opacity backdrop-filter backdrop-blur-sm">
-            <div class="absolute inset-0 bg-gray-900 opacity-70"></div>
+            <div class="absolute inset-0 bg-gray-900 opacity-50"></div>
         </div>
+
         <div x-show="isOpen && filteredItems().length <= 0"
              x-transition:enter="ease-out delay-200 duration-300"
              x-transition:enter-start="opacity-0 -translate-y-12"
@@ -33,52 +39,61 @@
              class="fixed flex items-center justify-center w-full h-auto px-4 pt-16 text-gray-300 transition-all transform sm:pt-24 sm:px-0">
             <template x-if="inputPlaceholder == '{{ trans('livewire-ui-spotlight::spotlight.placeholder') }}'">
                 <div class="w-full max-w-lg">
-                    <div class="overflow-hidden bg-gray-100 rounded-lg shadow-xl bg-opacity-20">
+                    <div class="overflow-hidden divide-y divide-gray-300 bg-gray-200 rounded-xl shadow-xl bg-opacity-20">
                         <div class="flex items-center p-5">
-                            <div class="px-2 text-sm text-gray-200">Tapez </div>
-                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">Article</div>
-                            <div class="px-2 text-sm text-gray-200">pour rechercher dans les articles</div>
+                            <div class="px-2 text-sm text-gray-200">{{ __('livewire-ui-spotlight::spotlight.type') }} </div>
+                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">
+                                {{ __('livewire-ui-spotlight::spotlight.section.article') }}
+                            </div>
+                            <div class="px-2 text-sm text-gray-200">
+                                {{ __('livewire-ui-spotlight::spotlight.section.article_help') }}
+                            </div>
                         </div>
-                        <div class="w-full h-0 border-b border-gray-300 opacity-20"></div>
                         <div class="flex items-center p-5">
-                            <div class="px-2 text-sm text-gray-200">Tapez </div>
-                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">Discussion</div>
-                            <div class="px-2 text-sm text-gray-200">pour rechercher dans les discussions</div>
+                            <div class="px-2 text-sm text-gray-200">{{ __('livewire-ui-spotlight::spotlight.type') }} </div>
+                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">
+                                {{ __('livewire-ui-spotlight::spotlight.section.discussion') }}
+                            </div>
+                            <div class="px-2 text-sm text-gray-200">
+                                {{ __('livewire-ui-spotlight::spotlight.section.discussion_help') }}
+                            </div>
                         </div>
-                        <div class="w-full h-0 border-b border-gray-300 opacity-20"></div>
                         <div class="flex items-center p-5">
-                            <div class="px-2 text-sm text-gray-200">Tapez </div>
-                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">Sujet</div>
-                            <div class="px-2 text-sm text-gray-200">pour rechercher un sujet dans le forum</div>
-                        </div>
-                        <div class="w-full h-0 border-b border-gray-300 opacity-20"></div>
-                        <div class="flex items-center p-5">
-                            <div class="px-2 text-sm text-gray-200">Tapez </div>
-                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">User</div>
-                            <div class="px-2 text-sm text-gray-200">pour rechercher un utilisateur spécifique</div>
+                            <div class="px-2 text-sm text-gray-200">{{ __('livewire-ui-spotlight::spotlight.type') }} </div>
+                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">
+                                {{ __('livewire-ui-spotlight::spotlight.section.thread') }}
+                            </div>
+                            <div class="px-2 text-sm text-gray-200">
+                                {{ __('livewire-ui-spotlight::spotlight.section.thread_help') }}
+                            </div>
                         </div>
                     </div>
-                    <div class="px-2 mt-5 text-xs text-center text-gray-200 opacity-50">ou, tapez une section pour accéder rapidement à cette page.</div>
+                    <div class="px-2 mt-5 text-xs text-center text-gray-200 opacity-50">
+                        {{ __('livewire-ui-spotlight::spotlight.global_help') }}
+                    </div>
                 </div>
             </template>
             <template x-if="inputPlaceholder != '{{ trans('livewire-ui-spotlight::spotlight.placeholder') }}'">
                 <div class="w-full max-w-lg p-5 bg-gray-100 rounded-lg shadow-xl bg-opacity-10">
-                    <span>Suivant, </span>
+                    <span>{{ __('pagination.next') }}, </span>
                     <span x-text="inputPlaceholder" class="lowercase"></span>
                 </div>
             </template>
         </div>
 
-        <div @click.outside="isOpen = false" x-show="isOpen" x-transition:enter="ease-out duration-200"
+        <div x-show="isOpen" x-transition:enter="ease-out duration-200"
              x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
              x-transition:leave="ease-in duration-150" x-transition:leave-start="opacity-100 scale-100"
              x-transition:leave-end="opacity-0 scale-95"
              class="relative bg-gray-900 rounded-lg overflow-hidden shadow-xl transform transition-all max-w-lg w-full">
             <div class="relative">
                 <div class="absolute h-full right-5 flex items-center">
-                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" wire:loading.delay>
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 24 24" wire:loading.delay>
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
                 </div>
                 <input @keydown.tab.prevent="" @keydown.prevent.stop.enter="go()" @keydown.prevent.arrow-up="selectUp()"
@@ -96,7 +111,7 @@
                                     :class="{ 'bg-gray-700': selected === i, 'hover:bg-gray-800': selected !== i }">
                                 <span x-text="item[0].item.name"
                                       :class="{'text-gray-300': selected !== i, 'text-white': selected === i }"></span>
-                                <span x-text="item[0].item.description" class="ml-1 font-normal"
+                                <span x-text="item[0].item.description" class="ml-1"
                                       :class="{'text-gray-500': selected !== i, 'text-gray-400': selected === i }"></span>
                             </button>
                         </li>
