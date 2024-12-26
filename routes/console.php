@@ -10,7 +10,6 @@ Artisan::command('inspire', function (): void {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-Schedule::command('lcm:delete-old-unverified-users')->daily();
 
 if (app()->environment('production')) {
     Schedule::command('lcm:post-article-to-twitter')->everyFourHours();
@@ -19,6 +18,8 @@ if (app()->environment('production')) {
     Schedule::command('lcm:notify-pending-articles')->cron('8 0 */2 * *');
 }
 
+
+Schedule::command('lcm:delete-old-unverified-users')->daily();
 Schedule::command('sitemap:blog-generate')->dailyAt('01:00');
 Schedule::command('sitemap:discussion-generate')->dailyAt('01:10');
 Schedule::command('sitemap:generate')->dailyAt('02:00');
