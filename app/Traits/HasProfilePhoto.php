@@ -11,7 +11,7 @@ trait HasProfilePhoto
     public function getProfilePhotoUrlAttribute(): ?string
     {
         if ($this->avatar_type === 'storage') {
-            return $this->getFirstMediaUrl('avatar');
+            return $this->getFirstMediaUrl('avatar', 'avatar_thumb');
         }
 
         if (! in_array($this->avatar_type, ['avatar', 'storage'])) {

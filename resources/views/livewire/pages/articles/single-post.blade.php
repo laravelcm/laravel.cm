@@ -3,7 +3,7 @@
         $next = $article->nextArticle();
         $previous = $article->previousArticle();
         $user = $article->user;
-        $media = $article->getFirstMediaUrl('media');
+        $media = $article->getFirstMediaUrl('media', 'media_thumb');
     @endphp
 
     <x-container class="py-12 lg:pb-20">

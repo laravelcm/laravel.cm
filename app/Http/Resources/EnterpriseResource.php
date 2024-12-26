@@ -29,8 +29,8 @@ final class EnterpriseResource extends JsonResource
             'size' => $this->size,
             'settings' => $this->settings,
             'images' => [
-                'logo' => $this->getFirstMediaUrl('logo'),
-                'cover' => $this->getFirstMediaUrl('avatar'),
+                'logo' => $this->getFirstMediaUrl('logo', 'logo_thumb'),
+                'cover' => $this->getFirstMediaUrl('cover', 'cover_thumb'),
             ],
             'owner' => UserResource::make($this->owner),
             'createdAt' => DateTimeResource::make($this->created_at),

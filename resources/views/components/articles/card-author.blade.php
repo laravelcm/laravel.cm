@@ -3,8 +3,8 @@
 ])
 
 @php
-    $media = ! empty($article->getFirstMediaUrl('media'))
-        ? $article->getFirstMediaUrl('media')
+    $media = ! empty($article->getFirstMediaUrl('media', 'media_thumb'))
+        ? $article->getFirstMediaUrl('media', 'media_thumb')
         : asset('images/socialcard.png')
 @endphp
 

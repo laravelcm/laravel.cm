@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 final class Enterprise extends Model implements HasMedia
 {
@@ -55,6 +56,18 @@ final class Enterprise extends Model implements HasMedia
         $this->addMediaCollection('cover')
             ->singleFile()
             ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png']);
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('logo_thumb')
+            ->format('webp')
+            ->performOnCollections('logo')
+            ->nonQueued();
+        $this->addMediaConversion('cover_thumb')
+            ->format('webp')
+            ->performOnCollections('cover')
+            ->nonQueued();
     }
 
     public function owner(): BelongsTo

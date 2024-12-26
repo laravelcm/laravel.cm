@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * @property-read int $id
@@ -201,6 +202,14 @@ final class Article extends Model implements HasMedia, ReactableInterface, Viewa
         $this->addMediaCollection('media')
             ->singleFile()
             ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png']);
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('media_thumb')
+            ->format('webp')
+            ->performOnCollections('media')
+            ->nonQueued();
     }
 
     public function markAsShared(): void

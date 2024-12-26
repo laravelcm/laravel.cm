@@ -8,8 +8,8 @@
     @class(['relative space-y-6', 'lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0' => $isSummary])
 >
     @php
-        $media = ! empty($article->getFirstMediaUrl('media'))
-            ? $article->getFirstMediaUrl('media')
+        $media = ! empty($article->getFirstMediaUrl('media', 'media_thumb'))
+            ? $article->getFirstMediaUrl('media', 'media_thumb')
             : asset('images/socialcard.png')
     @endphp
 

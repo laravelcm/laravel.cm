@@ -31,6 +31,7 @@ use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
 use QCod\Gamify\Gamify;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -213,6 +214,14 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         $this->addMediaCollection('avatar')
             ->singleFile()
             ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png', 'image/gif']);
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('avatar_thumb')
+            ->format('webp')
+            ->performOnCollections('avatar')
+            ->nonQueued();
     }
 
     public static function findByEmailAddress(string $emailAddress): self
