@@ -41,27 +41,41 @@
                 <div class="w-full max-w-lg">
                     <div class="overflow-hidden divide-y divide-gray-300 bg-gray-200 rounded-xl shadow-xl bg-opacity-20">
                         <div class="flex items-center p-5">
-                            <div class="px-2 text-sm text-gray-200">Tapez </div>
-                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">Article</div>
-                            <div class="px-2 text-sm text-gray-200">pour rechercher dans les articles</div>
+                            <div class="px-2 text-sm text-gray-200">{{ __('livewire-ui-spotlight::spotlight.type') }} </div>
+                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">
+                                {{ __('livewire-ui-spotlight::spotlight.section.article') }}
+                            </div>
+                            <div class="px-2 text-sm text-gray-200">
+                                {{ __('livewire-ui-spotlight::spotlight.section.article_help') }}
+                            </div>
                         </div>
                         <div class="flex items-center p-5">
-                            <div class="px-2 text-sm text-gray-200">Tapez </div>
-                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">Discussion</div>
-                            <div class="px-2 text-sm text-gray-200">pour rechercher dans les discussions</div>
+                            <div class="px-2 text-sm text-gray-200">{{ __('livewire-ui-spotlight::spotlight.type') }} </div>
+                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">
+                                {{ __('livewire-ui-spotlight::spotlight.section.discussion') }}
+                            </div>
+                            <div class="px-2 text-sm text-gray-200">
+                                {{ __('livewire-ui-spotlight::spotlight.section.discussion_help') }}
+                            </div>
                         </div>
                         <div class="flex items-center p-5">
-                            <div class="px-2 text-sm text-gray-200">Tapez </div>
-                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">Sujet</div>
-                            <div class="px-2 text-sm text-gray-200">pour rechercher un sujet dans le forum</div>
+                            <div class="px-2 text-sm text-gray-200">{{ __('livewire-ui-spotlight::spotlight.type') }} </div>
+                            <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">
+                                {{ __('livewire-ui-spotlight::spotlight.section.thread') }}
+                            </div>
+                            <div class="px-2 text-sm text-gray-200">
+                                {{ __('livewire-ui-spotlight::spotlight.section.thread_help') }}
+                            </div>
                         </div>
                     </div>
-                    <div class="px-2 mt-5 text-xs text-center text-gray-200 opacity-50">ou, tapez une section pour accéder rapidement à cette page.</div>
+                    <div class="px-2 mt-5 text-xs text-center text-gray-200 opacity-50">
+                        {{ __('livewire-ui-spotlight::spotlight.global_help') }}
+                    </div>
                 </div>
             </template>
             <template x-if="inputPlaceholder != '{{ trans('livewire-ui-spotlight::spotlight.placeholder') }}'">
                 <div class="w-full max-w-lg p-5 bg-gray-100 rounded-lg shadow-xl bg-opacity-10">
-                    <span>Suivant, </span>
+                    <span>{{ __('pagination.next') }}, </span>
                     <span x-text="inputPlaceholder" class="lowercase"></span>
                 </div>
             </template>
