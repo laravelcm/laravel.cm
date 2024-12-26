@@ -6,7 +6,7 @@
                 <div class="space-y-3">
                     <x-brand class="h-12 w-auto text-white sm:h-16" aria-hidden="true" />
                     <p class="inline-flex flex-wrap items-center text-gray-400 text-sm">
-                        <a href="https://github.com/caneco/laravel-country-logomarks" class="font-medium text-gray-300 underline">
+                        <a href="https://github.com/caneco/laravel-country-logomarks" target="_blank" class="font-medium text-gray-300 underline">
                             Laravel Country Logomarks
                         </a>
                         <span class="ml-1.5">{{ __('global.by') }} Caneco</span>
@@ -54,14 +54,14 @@
                     </div>
                     <div class="mt-6 space-y-6">
                         <div class="flex items-center text-sm font-medium space-x-4 sm:space-x-6">
-                            <x-link href="https://discord.gg/KNp6brbyVD" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
+                            <a href="https://discord.gg/KNp6brbyVD?utm_source=laravel.cm" target="_blank" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
                                 <x-icon.discord class="size-5 text-[#5865F2]" aria-hidden="true" />
                                 Discord
-                            </x-link>
-                            <x-link href="https://t.me/laravelcameroun" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
+                            </a>
+                            <a href="https://t.me/laravelcameroun?utm_source=laravel.cm" target="_blank" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
                                 <x-icon.telegram class="size-5 text-[#34AADF]" aria-hidden="true" />
                                 Telegram
-                            </x-link>
+                            </a>
                         </div>
                         <livewire:components.change-locale />
                     </div>
@@ -72,33 +72,34 @@
                     {{ __('global.footer.copyright', ['date' => date('Y')]) }}
                 </p>
                 <div class="mt-4 flex items-center justify-center space-x-4 sm:mt-0 lg:justify-start">
-                    <x-link href="https://twitter.com/laravelcm" class="text-gray-400 hover:text-gray-300">
+                    <a href="https://twitter.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                         <span class="sr-only">Twitter</span>
                         <x-icon.twitter class="size-5" aria-hidden="true" />
-                    </x-link>
+                    </a>
 
-                    <x-link href="https://facebook.com/laravelcm" class="text-gray-400 hover:text-gray-300">
+                    <a href="https://facebook.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                         <span class="sr-only">Facebook</span>
                         <x-icon.facebook class="size-6" aria-hidden="true" />
-                    </x-link>
+                    </a>
 
-                    <x-link href="https://www.linkedin.com/company/laravel-cameroun" class="text-gray-400 hover:text-gray-300">
+                    <a href="https://www.linkedin.com/company/laravel-cameroun?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                         <span class="sr-only">LinkedIn</span>
                         <x-icon.linkedin class="size-6" aria-hidden="true" />
-                    </x-link>
+                    </a>
 
-                    <x-link href="https://github.com/laravelcm" class="text-gray-400 hover:text-gray-300">
+                    <a href="https://github.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                         <span class="sr-only">GitHub</span>
                         <x-icon.github class="size-6" aria-hidden="true" />
-                    </x-link>
+                    </a>
 
-                    <x-link href="https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw" class="text-gray-400 hover:text-gray-300">
+                    <a href="https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                         <span class="sr-only">YouTube</span>
                         <x-icon.youtube class="size-6" aria-hidden="true" />
-                    </x-link>
+                    </a>
                 </div>
             </div>
         </x-container>
+
         @if(isHolidayWeek())
             <div class="absolute z-0 inset-y-0 right-0">
                 <x-icon.christmas-tree class="size-full text-gray-800/30 dark:text-gray-700/20" aria-hidden="true" />
