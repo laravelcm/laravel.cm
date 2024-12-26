@@ -13,10 +13,14 @@
     </x-slot:buttons>
 
     <div class="flex items-center justify-between gap-6">
-        <div class="flex gap-4">
+        <div class="flex items-center gap-4">
             <livewire:components.channels-selector :slug="$channel" />
 
             <x-locale-selector :$locale />
+
+            <span wire:loading>
+                <x-loader class="text-flag-green" />
+            </span>
         </div>
 
         <x-filament::input.wrapper class="relative max-w-60 w-full">

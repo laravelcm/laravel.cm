@@ -64,6 +64,7 @@
                             :href="route('forum.index') . '?no-replies=true'"
                             :active="request()->getUri() === route('forum.index') . '?no-replies'"
                             icon="untitledui-message-x-square"
+                            class="hidden"
                         >
                             {{ __('pages/forum.navigation.no_reply') }}
                         </x-nav.forum-link>
