@@ -6,7 +6,7 @@
             <h2
                 class="inline-flex items-center gap-x-2 font-heading text-xl font-bold leading-7 text-gray-900 dark:text-white sm:truncate sm:text-2xl"
             >
-                Notifications
+                {{ __('Notifications') }}
                 <livewire:components.notification-count />
             </h2>
         </div>

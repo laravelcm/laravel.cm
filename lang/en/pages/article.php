@@ -29,5 +29,6 @@ return [
     'draft' => 'Draft',
     'my_article' => 'My articles',
     'not_article_created' => "You haven't created any articles yet",
-
+    'awaiting_text' => 'Waiting for approval',
+    'write' => 'Written',
 ];

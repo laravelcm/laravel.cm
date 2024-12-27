@@ -15,13 +15,13 @@
     <div>
         <div>
             <h1 class="text-xl font-bold font-heading text-gray-900 dark:text-white lg:text-2xl">
-                {{ __('Les plus gros channels') }}
+                {{ __('pages/channel.title') }}
             </h1>
             <x-forum.channels-grid :channels="$channels" />
         </div>
         <div class="mt-10">
             <h1 class="text-xl font-bold font-heading text-gray-900 dark:text-white lg:text-2xl">
-                {{ __('Les autres channels') }}
+                {{ __('pages/channel.subtitle') }}
             </h1>
             <x-forum.channels-grid :channels="$childChannels" />
         </div>

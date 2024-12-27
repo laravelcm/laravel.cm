@@ -53,6 +53,14 @@ return [
         'social_network_title' => 'Réseaux sociaux',
         'social_network_description' => 'Faites savoir à tout le monde où ils peuvent vous trouver.',
 
+        'notification' => [
+            'tip' => 'Astuce:',
+            'first_text' => 'Visitez n\'importe quel fil de discussion du forum et cliquez sur le bouton',
+            'subscribe' => 'S\'abonner',
+            'second_text' => 'dans la barre latérale. Une fois cliqué, vous recevrez un e-mail chaque fois qu\'une réponse
+                        sera publiée. Il en va de même pour n\'importe quel type de contenu qui offre cette
+                        possibilité.',
+        ],
     ],
 
 ];
