@@ -56,17 +56,17 @@
                             </time>
                         @else
                             @if ($article->isAwaitingApproval())
-                                <span>En attente d'approbation</span>
+                                <span> {{ __('pages/article.awaiting_text') }} </span>
                             @else
                                 <time datetime="{{ $article->created_at->format('Y-m-d') }}">
-                                    Rédigé
+                                    {{ __('pages/article.write') }}
                                     <span>{{ $article->created_at->diffForHumans() }}</span>
                                 </time>
                             @endif
                         @endif
 
                         <span class="mx-1">&middot;</span>
-                        <span>{{ $article->readTime() }} min de lecture</span>
+                        <span>{{ __('global.read_time', ['time' => $article->readTime()]) }}</span>
                     </div>
 
                     <div class="flex items-center text-gray-500 dark:text-gray-400">
