@@ -1,5 +1,5 @@
 <x-form-slider-over
-    :title="$article->id ? $article->title : __('pages/article.new_article')"
+    :title="$article->id ? $article->title : __('global.launch_modal.article_action')"
     action="save"
 >
     <div class="space-y-6">

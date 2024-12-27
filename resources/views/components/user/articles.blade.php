@@ -48,7 +48,7 @@
                             onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form' })"
                         >
                             <x-untitledui-file-06 class="size-5" aria-hidden="true" />
-                            {{ __('pages/article.new_article') }}
+                            {{ __('global.launch_modal.article_action') }}
                         </x-buttons.primary>
                     @endcan
                 @endif
