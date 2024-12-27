@@ -35,7 +35,7 @@
             <span>{{ __('global.posted_by') }}</span>
             <div class="flex items-center gap-2">
                 <x-link
-                    :href="route('profile', $discussion->user->username)"
+                    :href="route('profile', $discussion->user)"
                     class="text-gray-700 dark:text-gray-300 font-medium hover:underline"
                 >
                     {{ $discussion->user->name }}

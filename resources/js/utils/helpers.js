@@ -1,15 +1,3 @@
-import hljs from 'highlight.js'
-
-window.highlightCode = (element) => {
-    element.querySelectorAll('pre code').forEach((block) => {
-        hljs.highlightBlock(block)
-    })
-}
-
-window.formatMoney = (amount) => {
-    return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'XAF' }).format(amount)
-}
-
 const share = function () {
     function popupCenter(url, title, width, height) {
         let popupWidth = width || 640

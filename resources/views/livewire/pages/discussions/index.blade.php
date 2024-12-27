@@ -29,6 +29,10 @@
                 </x-scrollable-content>
 
                 <div class="flex items-center gap-2">
+                    <span wire:loading>
+                        <x-loader class="text-flag-green" />
+                    </span>
+
                     <x-filament::dropdown>
                         <x-slot name="trigger">
                             <button type="button" class="inline-flex items-center p-2 rounded-lg bg-white text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-400 dark:bg-gray-800 ring-1 ring-gray-200/80 dark:ring-white/20">

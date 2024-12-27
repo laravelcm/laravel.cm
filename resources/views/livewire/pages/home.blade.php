@@ -66,22 +66,23 @@
                     <div class="mt-10 grid gap-10 lg:mt-12 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-12">
                         @foreach ($latestThreads as $thread)
                             <div>
-                                <div class="flex items-center text-gray-500 dark:text-gray-400">
+                                <div class="text-sm flex items-center text-gray-500 dark:text-gray-400">
                                     <x-link
-                                        :href="route('profile', $thread->user->username)"
-                                        class="inline-flex items-center hover:underline"
+                                        :href="route('profile', $thread->user)"
+                                        class="inline-flex items-center gap-1.5 hover:underline"
                                     >
                                         <x-user.avatar
                                             :user="$thread->user"
                                             class="size-6"
-                                            container="mr-1.5"
                                             span="-right-1 -top-1 size-4 ring-1"
                                         />
                                         <span>{{ '@' . $thread->user->username }}</span>
                                     </x-link>
-                                    <span class="mx-1.5 inline-flex gap-1.5">
+                                    <span class="inline-flex gap-1.5">
                                         <span>{{ __('global.ask') }}</span>
-                                        <time-ago time="{{ $thread->created_at->getTimestamp() }}" />
+                                        <time datetime="{{ $thread->created_at }}">
+                                            {{ $thread->created_at->diffForHumans() }}
+                                        </time>
                                     </span>
                                 </div>
                                 <x-link :href="route('forum.show', $thread)" class="mt-3 block">
@@ -127,14 +128,16 @@
                                     span="-right-1 -top-1 size-4 ring-1"
                                 />
                                 <x-link
-                                    :href="route('profile', $discussion->user->username)"
+                                    :href="route('profile', $discussion->user)"
                                     class="text-gray-900 hover:underline dark:text-white"
                                 >
                                     {{ $discussion->user->name }}
                                     <span class="absolute inset-0"></span>
                                 </x-link>
                                 <span aria-hidden="true">&middot;</span>
-                                <time-ago time="{{ $discussion->created_at->getTimestamp() }}" />
+                                <time datetime="{{ $discussion->created_at }}">
+                                    {{ $discussion->created_at->diffForHumans() }}
+                                </time>
                             </div>
                             <x-link :href="route('discussions.show', $discussion)" class="mt-2 block">
                                 <p class="text-xl font-semibold text-gray-900 dark:text-white">

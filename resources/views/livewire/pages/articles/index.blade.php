@@ -8,7 +8,12 @@
                 <p class="mt-1.5 text-lg text-gray-500 dark:text-gray-400">
                     {{ __('pages/article.blog_summary') }}
                 </p>
-                <x-locale-selector class="mt-3" :$locale />
+                <div class="mt-3 flex items-center gap-2">
+                    <x-locale-selector :$locale />
+                    <span wire:loading>
+                        <x-loader class="text-flag-green" />
+                    </span>
+                </div>
             </div>
             <div class="hidden lg:block">
                 @include('ads.ln')
