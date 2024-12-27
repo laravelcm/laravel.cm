@@ -11,7 +11,6 @@ return [
     'next_article' => 'Next article',
     'prev_article' => 'Previous article',
     'share_article' => 'Share',
-    'new_article' => 'Start a new article',
     'advice' => [
         'title' => 'Important advices for articles',
         'content' => 'Submit your article to the Laravel.cm portal. We\'re looking for high quality articles revolving around Laravel, PHP, JavaScript, CSS, and related topics. Articles can\'t be promotional in nature and should be educational and informative. We reserve the right to decline articles that don\'t meet our quality standards.',
