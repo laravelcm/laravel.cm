@@ -23,7 +23,12 @@
                 </h1>
             </div>
 
-            <x-locale-selector :$locale />
+            <div class="flex items-center gap-2">
+                <span wire:loading>
+                    <x-loader class="text-flag-green" />
+                </span>
+                <x-locale-selector :$locale />
+            </div>
         </div>
         @if($tag->description)
             <p class="mt-2 text-gray-500 dark:text-gray-400">

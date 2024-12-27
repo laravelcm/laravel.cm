@@ -29,13 +29,13 @@
 
     <div class="mt-6 flex justify-between space-x-8">
         <div class="flex items-center gap-2">
-            <x-link :href="route('profile', $thread->user->username)" class="group inline-flex items-center gap-1 shrink-0">
+            <x-link :href="route('profile', $thread->user)" class="group inline-flex items-center gap-1 shrink-0">
                 <x-user.avatar :user="$thread->user" class="size-6" />
                 <span class="font-medium text-sm text-gray-700 group-hover:underline dark:text-gray-300">
                     {{ '@' . $thread->user->username }}
                 </span>
             </x-link>
-            <span class="flex items-center text-xs text-gray-500 flex-wrap gap-x-1 dark:text-gray-400">
+            <span class="flex items-center text-xs text-gray-500 flex-wrap gap-1 dark:text-gray-400">
                 <span>{{ __('global.ask') }}</span>
                 <time datetime="{{ $thread->created_at }}">
                     {{ $thread->created_at->diffForHumans() }}
