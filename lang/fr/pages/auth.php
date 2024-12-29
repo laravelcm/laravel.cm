@@ -14,7 +14,7 @@ return [
 
     'register' => [
         'page_title' => 'Créer un compte',
-        'join_us' => 'Rejoindre Laravel Cameroun',
+        'join_us' => 'Rejoindre Laravel DRC',
         'joins_description' => 'Rejoignez près de 1000 développeurs et designers. Parce qu’il n y’a pas que le code dans la vie.',
         'password_placeholder' => 'Mot de passe (min. 8 caractères)',
         'email_verification_status' => 'Veuillez verifier votre email pour pouvoir vous connecter',

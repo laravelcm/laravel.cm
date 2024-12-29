@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 
 final class AssignUserRole extends Command
 {
-    protected $signature = 'lcm:assign-user-role';
+    protected $signature = 'lcd:assign-user-role';
 
     protected $description = 'Assign user role to all users without any role.';
 

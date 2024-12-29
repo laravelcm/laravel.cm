@@ -12,7 +12,7 @@ final class UpdateUserSocialAccount extends Command
 {
     use FormatSocialAccount;
 
-    protected $signature = 'lcm:update-user-social-account';
+    protected $signature = 'lcd:update-user-social-account';
 
     protected $description = 'Update user social account to normal format';
 

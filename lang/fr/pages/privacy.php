@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
 
     'title' => 'Politique de confidentialité',
-    'first_description' => 'Cette page est utilisée pour informer les visiteurs du site Web de nos politiques concernant la collecte, l\'utilisation et la divulgation des informations personnelles si quelqu\'un décide d\'utiliser notre service, le site Web de Laravel Cameroun.',
+    'first_description' => 'Cette page est utilisée pour informer les visiteurs du site Web de nos politiques concernant la collecte, l\'utilisation et la divulgation des informations personnelles si quelqu\'un décide d\'utiliser notre service, le site Web de Laravel DRC.',
     'second_description' => 'Si vous choisissez d\'utiliser notre Service, vous acceptez la collecte et l\'utilisation d\'informations en relation avec cette politique. Les informations personnelles que nous collectons sont utilisées pour fournir et améliorer le service. Nous n\'utiliserons ni ne partagerons vos informations avec personne, sauf comme décrit dans la présente politique de confidentialité.',
 
     'use_share_information' => [

@@ -24,7 +24,7 @@ final class Home extends Component
             ->description(__('pages/home.description'))
             ->twitterDescription(__('pages/home.description'))
             ->image(asset('/images/socialcard.png'))
-            ->twitterSite('laravelcm')
+            ->twitterSite('laravelcd')
             ->withUrl();
 
         return view('livewire.pages.home', [

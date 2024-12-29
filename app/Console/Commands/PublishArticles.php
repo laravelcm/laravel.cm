@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 
 final class PublishArticles extends Command
 {
-    protected $signature = 'lcm:publish-articles';
+    protected $signature = 'lcd:publish-articles';
 
     protected $description = 'Published all articles already submitted and approved';
 

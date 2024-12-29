@@ -11,11 +11,11 @@ return [
         'reason' => 'Raison du bannissement',
         'heading' => 'Bannir l\'utilisateur',
         'description' => 'Veuillez entrer la raison du bannissement.',
-        'email_subject' => 'Notification de bannissement Laravelcm',
+        'email_subject' => 'Notification de bannissement Laravelcd',
         'message' => 'Votre compte a été banni. Contactez l\'administrateur pour plus d\'informations.',
     ],
     'unbanned' => [
-        'email_subject' => 'Notification de dé-baannissement Laravelcm',
+        'email_subject' => 'Notification de dé-baannissement Laravelcd',
     ],
 
 ];

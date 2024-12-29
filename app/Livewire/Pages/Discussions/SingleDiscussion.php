@@ -35,7 +35,7 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
             ->twitterTitle($discussion->title)
             ->twitterDescription($discussion->excerpt(100))
             ->twitterImage(asset('images/socialcard.png'))
-            ->twitterSite('laravelcm')
+            ->twitterSite('laravelcd')
             ->withUrl();
 
         $this->discussion = $discussion->load('tags', 'replies', 'reactions', 'replies.user');

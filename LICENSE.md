@@ -1,7 +1,5 @@
 La licence MIT (MIT)
 
-Droits d'auteur (c) Arthur Monney
-
 L'autorisation est par la présente accordée, gratuitement, à toute personne obtenant 
 une copie de ce logiciel et des fichiers de documentation associés (le « Logiciel »), 
 de traiter le Logiciel sans restriction, y compris, sans limitation, les droits d'utilisation, de copie, de modification, 

@@ -35,7 +35,7 @@ final class NotchPayCallBackController extends Controller
             if ($verifyTransaction->transaction->status === TransactionStatus::CANCELED->value) {
                 session()->flash(
                     key: 'error',
-                    value: __('Votre paiement a été annulé veuillez relancer pour soutenir Laravel Cameroun, Merci.')
+                    value: __('Votre paiement a été annulé veuillez relancer pour soutenir Laravel DRC, Merci.')
                 );
             } else {
                 // @ToDO: Envoie de mail de notification de remerciement pour le sponsoring si l'utilisateur est dans la base de données
@@ -45,7 +45,7 @@ final class NotchPayCallBackController extends Controller
 
                 session()->flash(
                     key: 'status',
-                    value: __('Votre paiement a été pris en compte merci de soutenir Laravel Cameroun.')
+                    value: __('Votre paiement a été pris en compte merci de soutenir Laravel DRC.')
                 );
             }
 

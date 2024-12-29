@@ -12,7 +12,7 @@ beforeEach(function (): void {
 describe(Profile::class, function (): void {
     it('can update user profile', function (): void {
         $data = [
-            'location' => 'Cameroon',
+            'location' => 'DRC',
             'username' => 'lcm_user',
         ];
         app(UpdateUserProfileAction::class)
@@ -20,6 +20,6 @@ describe(Profile::class, function (): void {
 
         $this->user->refresh();
 
-        expect($this->user->location)->toBe('Cameroon');
+        expect($this->user->location)->toBe('DRC');
     });
 });

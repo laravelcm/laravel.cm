@@ -126,7 +126,7 @@ final class SponsorSubscription extends Component implements HasForms
                 'currency' => data_get($this->form->getState(), 'currency'),
                 'reference' => $user->id.'-'.$user->username().'-'.uniqid(),
                 'callback' => route('notchpay-callback'),
-                'description' => __('Soutien de la communauté Laravel & PHP Cameroun.'),
+                'description' => __('Soutien de la communauté Laravel & PHP RDC.'),
             ]);
 
             Transaction::query()->create([

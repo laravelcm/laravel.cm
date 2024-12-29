@@ -102,7 +102,7 @@ final class Profile extends Component implements HasForms
                     ->schema([
                         Forms\Components\TextInput::make('github_profile')
                             ->label(__('GitHub'))
-                            ->placeholder('laravelcm')
+                            ->placeholder('laravelcd')
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
                             ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('github_profile', $this->formatGithubHandle($state)))
@@ -130,7 +130,7 @@ final class Profile extends Component implements HasForms
                             ),
                         Forms\Components\TextInput::make('linkedin_profile')
                             ->label(__('LinkedIn'))
-                            ->placeholder('laravelcm')
+                            ->placeholder('laravelcd')
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
                             ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('linkedin_profile', $this->formatLinkedinHandle($state)))

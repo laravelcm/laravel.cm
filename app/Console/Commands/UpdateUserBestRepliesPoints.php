@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 
 final class UpdateUserBestRepliesPoints extends Command
 {
-    protected $signature = 'lcm:update-users-bests-replies-points';
+    protected $signature = 'lcd:update-users-bests-replies-points';
 
     protected $description = 'Updating users bests replies reputation points';
 

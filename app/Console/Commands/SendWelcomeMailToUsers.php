@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 final class SendWelcomeMailToUsers extends Command
 {
-    protected $signature = 'lcm:send-welcome-mails';
+    protected $signature = 'lcd:send-welcome-mails';
 
     protected $description = 'Send mails to new registered users.';
 

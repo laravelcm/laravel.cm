@@ -1,11 +1,11 @@
 blank_issues_enabled: false
 contact_links:
     - name: Get Help
-      url: https://laravel.cm/forum/new-thread
+      url: https://laravel.cd/forum/new-thread
       about: If you need help with your project create a topic on our forum.
     - name: Bug Report
-      url: https://github.com/laravelcm/issues
+      url: https://github.com/laravelcd/issues
       about: 'For projects issues, suggest changes on our issues repository.'
     - name: Feature Request
-      url: https://github.com/laravelcm/laravel.cm/discussions/new?category=ideas
+      url: https://github.com/laravelcd/laravel.cm/discussions/new?category=ideas
       about: Share ideas for new features

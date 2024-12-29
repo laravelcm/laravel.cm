@@ -24,7 +24,7 @@ final class PostDiscussionToTelegram extends Notification
     public function toTelegram(): TelegramMessage
     {
         return TelegramMessage::create()
-            ->to('@laravelcm')
+            ->to('@laravelcd')
             ->content("{$this->discussion->title} ".route('discussions.show', $this->discussion->slug));
     }
 }

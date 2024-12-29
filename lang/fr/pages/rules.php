@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
 
     'title' => 'Code de conduite',
-    'description' => 'Tous les participants de la communauté Laravel Cameroun doivent respecter notre code de conduite, à la fois en ligne et lors d\événements en personne hébergés et/ou associés à la communauté Laravel Cameroun.',
+    'description' => 'Tous les participants de la communauté Laravel DRC doivent respecter notre code de conduite, à la fois en ligne et lors d\événements en personne hébergés et/ou associés à la communauté Laravel DRC.',
     'our_commitment' => [
         'title' => 'Notre Engagement',
         'paragraph' => 'Dans l\'intérêt de favoriser un environnement ouvert et accueillant, nous, en tant que contributeurs et mainteneurs, nous engageons à faire participation à notre projet et à notre communauté une expérience sans harcèlement pour tous, quel que soit l\'âge, la taille, handicap, origine ethnique, identité et expression de genre, niveau d\'expérience, nationalité, apparence personnelle, race, religion ou identité.',

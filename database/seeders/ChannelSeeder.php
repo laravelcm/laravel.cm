@@ -72,7 +72,7 @@ final class ChannelSeeder extends Seeder
 
         $divers = Channel::create(['name' => 'Divers', 'slug' => 'divers', 'color' => '#DB2777']);
         $divers->items()->createMany([
-            ['name' => 'Laravel.cm', 'slug' => 'laravelcm'],
+            ['name' => 'Laravel.cd', 'slug' => 'laravelcd'],
             ['name' => 'Gaming', 'slug' => 'gaming'],
         ]);
     }

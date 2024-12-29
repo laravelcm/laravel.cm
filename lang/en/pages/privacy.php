@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
 
     'title' => 'Privacy policy',
-    'first_description' => 'This page is used to inform website visitors of our policies regarding the collection, use and disclosure of personal information if someone decides to use our service, the Laravel Cameroun website.',
+    'first_description' => 'This page is used to inform website visitors of our policies regarding the collection, use and disclosure of personal information if someone decides to use our service, the Laravel DRC website.',
     'second_description' => 'If you choose to use our Service, you consent to the collection and use of information in connection with this policy. The personal information we collect is used to provide and improve the Service. We will not use or share your information with anyone except as described in this Privacy Policy.',
 
     'use_share_information' => [

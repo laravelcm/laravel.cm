@@ -28,7 +28,7 @@ describe(DiscussionForm::class, function (): void {
 
         Livewire::test(DiscussionForm::class)
             ->fillForm([
-                'title' => 'I have a question about laravel Cameroun',
+                'title' => 'I have a question about laravel DRC',
                 'body' => 'this is my kind body',
                 'tags' => $tags->pluck('id')->toArray(),
             ])
@@ -66,7 +66,7 @@ describe(DiscussionForm::class, function (): void {
 
         Livewire::test(DiscussionForm::class)
             ->fillForm([
-                'title' => 'I have a question about laravel Cameroun',
+                'title' => 'I have a question about laravel DRC',
                 'body' => 'this is my kind body',
                 'tags' => ['alpinejs', 'php', 'tailwindcss', 'react'],
             ])
@@ -84,7 +84,7 @@ describe(DiscussionForm::class, function (): void {
 
         Livewire::test(DiscussionForm::class)
             ->fillForm([
-                'title' => 'I have a question about laravel Cameroun',
+                'title' => 'I have a question about laravel DRC',
                 'body' => 'this is my kind body',
                 'tags' => $tags->pluck('id')->toArray(),
             ])

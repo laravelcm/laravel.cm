@@ -14,7 +14,7 @@ return [
 
     'register' => [
         'page_title' => 'Create an account',
-        'join_us' => 'Join Laravel Cameroon',
+        'join_us' => 'Join Laravel DRC',
         'joins_description' => "Join nearly 1000 developers and designers. Because there's more to life than code.",
         'password_placeholder' => 'Password (min. 8 characters)',
         'email_verification_status' => 'Please check your e-mail address to log in.',

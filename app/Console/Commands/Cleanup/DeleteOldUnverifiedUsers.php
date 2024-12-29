@@ -10,7 +10,7 @@ use Illuminate\Console\Command;
 
 final class DeleteOldUnverifiedUsers extends Command
 {
-    protected $signature = 'lcm:delete-old-unverified-users';
+    protected $signature = 'lcd:delete-old-unverified-users';
 
     protected $description = 'Removed all unverified users.';
 

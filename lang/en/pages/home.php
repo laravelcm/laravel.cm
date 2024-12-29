@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 return [
 
-    'title' => 'The largest community of Laravel & PHP developers in Cameroon',
-    'description' => 'Laravel Cameroun is the portal for the PHP & Laravel developer community in Cameroon, where we share, learn, discover and build a great community.',
+    'title' => 'The largest community of Laravel & PHP developers in DRC',
+    'description' => 'Laravel DRC is the portal for the PHP & Laravel developer community in DRC, where we share, learn, discover and build a great community.',
     'sponsor' => [
         'title' => 'Sponsor',
-        'description' => 'Support Laravel Cameroun today by sponsoring',
-        'description_small' => 'Support Laravel Cameroun',
+        'description' => 'Support Laravel DRC today by sponsoring',
+        'description_small' => 'Support Laravel DRC',
     ],
     'join_community' => 'Join the community',
     'visit_forum' => 'Visit the forum',

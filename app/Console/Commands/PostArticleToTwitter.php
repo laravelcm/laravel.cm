@@ -11,7 +11,7 @@ use Illuminate\Notifications\AnonymousNotifiable;
 
 final class PostArticleToTwitter extends Command
 {
-    protected $signature = 'lcm:post-article-to-twitter';
+    protected $signature = 'lcd:post-article-to-twitter';
 
     protected $description = 'Posts the latest unshared article to Twitter';
 

@@ -19,12 +19,12 @@
                         <div class="focus:outline-none">
                             <p class="text-sm font-medium text-gray-900 dark:text-white">{{ __('global.site_name') }}</p>
                             <div class="mt-2 flex items-center space-x-4">
-                                <a href="https://twitter.com/laravelcm" class="text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500">
+                                <a href="https://x.com/laravelcd" class="text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500">
                                     <span class="sr-only">Twitter</span>
                                     <x-icon.twitter class="size-5" aria-hidden="true" />
                                 </a>
 
-                                <a href="https://facebook.com/laravelcm" class="text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500">
+                                <a href="https://facebook.com/laravelcd" class="text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500">
                                     <span class="sr-only">Facebook</span>
                                     <x-icon.facebook class="size-5" aria-hidden="true" />
                                 </a>
@@ -34,7 +34,7 @@
                                     <x-icon.linkedin class="size-5" aria-hidden="true" />
                                 </a>
 
-                                <a href="https://github.com/laravelcm" class="text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500">
+                                <a href="https://github.com/laravelcd" class="text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500">
                                     <span class="sr-only">Github</span>
                                     <x-icon.github class="size-5" aria-hidden="true" />
                                 </a>

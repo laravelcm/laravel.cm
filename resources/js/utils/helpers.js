@@ -30,7 +30,7 @@ const share = function () {
             let shareUrl =
                 'https://twitter.com/intent/tweet?text=' +
                 encodeURIComponent(document.title) +
-                '&via=laravelcm' +
+                '&via=laravelcd' +
                 '&url=' +
                 encodeURIComponent(url)
             popupCenter(shareUrl, 'Partager sur Twitter')

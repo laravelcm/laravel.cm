@@ -51,7 +51,7 @@ describe(ThreadForm::class, function (): void {
 
         Livewire::test(ThreadForm::class)
             ->fillForm([
-                'title' => 'I have a question about laravel Cameroun',
+                'title' => 'I have a question about laravel DRC',
                 'body' => 'this is my kind body',
                 'channels' => ['laravel', 'php', 'tailwind', 'gaming'],
             ])
@@ -67,7 +67,7 @@ describe(ThreadForm::class, function (): void {
 
         Livewire::test(ThreadForm::class)
             ->fillForm([
-                'title' => 'I have a question about laravel Cameroun',
+                'title' => 'I have a question about laravel DRC',
                 'body' => 'this is my kind body',
                 'channels' => $channels->pluck('id')->toArray(),
             ])
@@ -92,7 +92,7 @@ describe(ThreadForm::class, function (): void {
 
         Livewire::test(ThreadForm::class)
             ->fillForm([
-                'title' => 'I have a question about laravel Cameroun',
+                'title' => 'I have a question about laravel DRC',
                 'body' => 'this is my kind body',
                 'channels' => $channels->pluck('id')->toArray(),
             ])

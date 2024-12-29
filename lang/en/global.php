@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 return [
 
-    'site_name' => 'Laravel Cameroon',
-    'site_description' => 'Welcome to the Cameroon PHP and Laravel developer community, the largest gathering of developers in Cameroon.',
+    'site_name' => 'Laravel DRC',
+    'site_description' => 'Welcome to the DRC PHP and Laravel developer community, the largest gathering of developers in DRC.',
     'by' => 'by',
     'soon' => 'Soon',
     'navigation' => [
@@ -34,7 +34,7 @@ return [
     ],
     'footer' => [
         'title' => 'Footer',
-        'copyright' => '© 2018 - :date Laravel Cameroon. All rights reserved.',
+        'copyright' => '© 2018 - :date Laravel DRC. All rights reserved.',
         'legal' => 'Legal',
         'resources' => 'Resources',
     ],

@@ -11,7 +11,7 @@ use Illuminate\Notifications\AnonymousNotifiable;
 
 final class NotifyPendingArticles extends Command
 {
-    protected $signature = 'lcm:notify-pending-articles';
+    protected $signature = 'lcd:notify-pending-articles';
 
     protected $description = 'Send a Telegram notification for articles that are submitted but neither approved nor declined';
 

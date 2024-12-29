@@ -72,12 +72,12 @@
                     {{ __('global.footer.copyright', ['date' => date('Y')]) }}
                 </p>
                 <div class="mt-4 flex items-center justify-center space-x-4 sm:mt-0 lg:justify-start">
-                    <a href="https://twitter.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
+                    <a href="https://x.com/laravelcd?utm_source=laravel.cd" target="_blank" class="text-gray-400 hover:text-gray-300">
                         <span class="sr-only">Twitter</span>
                         <x-icon.twitter class="size-5" aria-hidden="true" />
                     </a>
 
-                    <a href="https://facebook.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
+                    <a href="https://facebook.com/laravelcd?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                         <span class="sr-only">Facebook</span>
                         <x-icon.facebook class="size-6" aria-hidden="true" />
                     </a>
@@ -87,7 +87,7 @@
                         <x-icon.linkedin class="size-6" aria-hidden="true" />
                     </a>
 
-                    <a href="https://github.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
+                    <a href="https://github.com/laravelcd?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                         <span class="sr-only">GitHub</span>
                         <x-icon.github class="size-6" aria-hidden="true" />
                     </a>

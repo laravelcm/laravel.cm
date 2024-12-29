@@ -73,7 +73,7 @@ export default {
           yellow: '#ffdc44',
         },
         black: '#161B22',
-        green: colors.emerald,
+        green: colors.blue,
         primary: colors.emerald,
       },
       fontFamily: {

@@ -43,16 +43,16 @@ return [
             'title' => ' L\'entreprise',
             'description' => ' sponsor du Meetup.',
         ],
-        'paragraph_one' => 'Laravel Cameroun est une communauté de développeurs et de designers qui se réunissent pour
+        'paragraph_one' => 'Laravel DRC est une communauté de développeurs et de designers qui se réunissent pour
                             s\'entraider. L\'industrie du logiciel reposant sur la collaboration et l\'apprentissage en
                             réseau. Nous nous sommes donnés comme objectif de pouvoir rassembler le maximum de
-                            développeurs et designers évoluant au Cameroun et dans l\'Afrique Francophone pour organiser
-                            des grands événements et Meetup partout dans le Cameroun et en Afrique Francophone.',
+                            développeurs et designers évoluant en RDC et dans l\'Afrique Francophone pour organiser
+                            des grands événements et Meetup partout en RDC et en Afrique Francophone.',
 
     ],
     'our_team' => [
         'title' => 'Voir l\'équipe',
-        'description' => ' Laravel Cameroun est une idée de Meetup qui a été initiée puis transformée en une communauté de développeurs',
+        'description' => ' Laravel DRC est une idée de Meetup qui a été initiée puis transformée en une communauté de développeurs',
     ],
 
 ];

@@ -14,9 +14,9 @@
         {{ is_active('home') ? '- '. __('pages/home.title') : '' }}
     </title>
     <meta name="description" content="{{ __('pages/home.description') }}" />
-    <meta property="og:site_name" content="Laravel.cm" />
+    <meta property="og:site_name" content="Laravel.cd" />
     <meta property="og:language" content="fr" />
-    <meta name="twitter:author" content="@laravelcm" />
+    <meta name="twitter:author" content="@laravelcd" />
     <link rel="canonical" href="{{ $canonical ?? Request::url() }}" />
     @include('partials._og')
     <x-seo::meta />

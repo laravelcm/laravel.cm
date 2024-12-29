@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 final class SendUnVerifiedMails extends Command
 {
-    protected $signature = 'lcm:send-unverified-mails';
+    protected $signature = 'lcd:send-unverified-mails';
 
     protected $description = 'Send mails to unverified users to prevent from a deletion account.';
 

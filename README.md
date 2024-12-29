@@ -6,39 +6,39 @@
     <a href="https://laravel.com">
         <img alt="Laravel v11.x" src="https://img.shields.io/badge/Laravel-v11.x-FF2D20">
     </a>
-    <a href="https://github.com/laravelcm/laravel.cm/actions">
-        <img src="https://github.com/laravelcm/laravel.cm/workflows/Tests/badge.svg" alt="Build Status" />
+    <a href="https://github.com/laravelcd/laravel.cd/actions">
+        <img src="https://github.com/laravelcd/laravel.cd/workflows/Tests/badge.svg" alt="Build Status" />
     </a>
-    <a href="https://github.com/laravelcm/laravel.cm/actions/workflows/quality.yml">
-        <img src="https://github.com/laravelcm/laravel.cm/actions/workflows/quality.yml/badge.svg" alt="Coding Standards" />
+    <a href="https://github.com/laravelcd/laravel.cd/actions/workflows/quality.yml">
+        <img src="https://github.com/laravelcd/laravel.cd/actions/workflows/quality.yml/badge.svg" alt="Coding Standards" />
     </a>
     <a href="https://forge.laravel.com">
         <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2Fb0b9e269-e85c-40eb-9b8d-cfa8197a1bb2&style=plastic" alt="Laravel Forge Site Deployment Status" />
     </a>
 </p>
 
-## Laravel.cm
+## Laravel.cd
 
-Ce dépôt contient le code source du site de [Laravel.cm](https://laravel.cm). Laravel Cameroun est la plus grande communauté de 
-développeurs PHP & Laravel résidant au Cameroun.
+Ce dépôt contient le code source du site de [Laravel.cd](https://laravel.cd). Laravel DRC est la plus grande communauté de 
+développeurs PHP & Laravel résidant en République Démocratique du Congo (DRC).
 
 ## Rejoindre la communauté
 
 Vous pouvez rejoindre la communauté ou nous suivre via nos différentes plateformes
 
 - [Discord](https://discord.gg/KNp6brbyVD)
-- [Telegram](https://t.me/laravelcameroun)
-- [Twitter](https://twitter.com/laravelcm)
-- [Facebook](https://www.facebook.com/laravelcm)
+- [Telegram](https://t.me/laraveldrc)
+- [Twitter](https://twitter.com/laravelcd)
+- [Facebook](https://www.facebook.com/laravelcd)
 
 ## Sponsors
 
-Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainage. Si vous souhaitez devenir sponsor, veuillez visiter <a href="https://laravel.cm/sponsors">la page Laravel.cm de Sponsoring</a>.
+<!-- Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainage. Si vous souhaitez devenir sponsor, veuillez visiter <a href="https://laravel.cd/sponsors">la page Laravel.cd de Sponsoring</a>.
 
 - **[Laravel Shopper](https://laravelshopper.dev)**
 - [GDG Douala](https://gdg.community.dev/gdg-douala) 
-- [NotchPay](https://notchpay.co?utm_source=laravel.cm) 
-- [LN UI](https://ui.lndev.me?utm_source=laravel.cm) 
+- [NotchPay](https://notchpay.co?utm_source=laravel.cd) 
+- [LN UI](https://ui.lndev.me?utm_source=laravel.cd)  -->
 
 ## Caractéristiques Serveur
 
@@ -51,16 +51,16 @@ Les dépendances suivantes sont nécessaires pour démarrer l'installation.
 
 ## Installation
 
-> Notez que vous êtes libre d'ajuster l'emplacement `~/Sites/laravel.cm` à n'importe quel répertoire de votre choix sur votre machine. Ce faisant, assurez-vous d'exécuter la commande `valet link` (si vous utilisez Laravel Valet) dans le répertoire souhaité.
+> Notez que vous êtes libre d'ajuster l'emplacement `~/Sites/laravel.cd` à n'importe quel répertoire de votre choix sur votre machine. Ce faisant, assurez-vous d'exécuter la commande `valet link` (si vous utilisez Laravel Valet) dans le répertoire souhaité.
 
-1. Clonez ce repo avec la commande `git clone git@github.com:laravelcm/laravel.cm.git ~/Sites/laravel.cm`
+1. Clonez ce repo avec la commande `git clone git@github.com:laravelcd/laravel.cd.git ~/Sites/laravel.cd`
 2. Exécuter `composer install` pour installer les dépendances PHP
-3. Configurez une base de données locale (vous pouvez l'appeler `laravelcm`)
+3. Configurez une base de données locale (vous pouvez l'appeler `laravelcd`)
 4. Exécutez `composer setup` pour configurer l'application
 5. Configurer un pilote de messagerie fonctionnel comme [Mailtrap](https://mailtrap.io/) ou [Maildev](https://maildev.github.io/maildev/)
 6. Configurez les fonctionnalités (facultatives) ci-dessous
 
-Vous pouvez maintenant visiter l'application dans votre navigateur en visitant [http://laravel.cm.test](http://laravel.cm.test).
+Vous pouvez maintenant visiter l'application dans votre navigateur en visitant [http://laravel.cd.test](http://laravel.cd.test).
 Si vous avez amorcé la base de données, vous pouvez vous connecter à un compte de test avec ** `johndoe` ** & **` password` **.
 
 Une fois que vous avez installé et configuré, pour avoir des dummy data, vous devez exécuter la commande :
@@ -72,14 +72,14 @@ php artisan db:seed --class=DummyDatabaseSeeder
 ### GitHub Authentication (optionnel)
 
 Pour que l'authentification Github fonctionne localement, vous devez [enregistrer une nouvelle application OAuth sur Github](https://github.com/settings/applications/new).
-Utilisez `http://laravel.cm.test` pour l'URL de la page d'accueil et `http://laravel.cm.test/auth/github` pour l'URL de rappel.
+Utilisez `http://laravel.cd.test` pour l'URL de la page d'accueil et `http://laravel.cd.test/auth/github` pour l'URL de rappel.
 Lorsque vous avez créé l'application, remplissez l'ID et le secret dans votre fichier `.env` dans les variables d'environnement ci-dessous.
 Vous devriez maintenant pouvoir vous authentifier avec Github.
 
 ```shell
 GITHUB_ID=
 GITHUB_SECRET=
-GITHUB_URL=http://laravel.cm.test/auth/github
+GITHUB_URL=http://laravel.cd.test/auth/github
 ```
 
 ### Twitter Sharing (optionnel)
@@ -100,7 +100,7 @@ Une fois qu'un article a été partagé, il ne sera plus partagé.
 
 ### Notifications Telegram (optionnel)
 
-Laravel Cameroun peut notifier les administrateurs des nouveaux articles soumis via Telegram. Pour que cela fonctionne, vous devez configurer un [bot Telegram](https://core.telegram.org/bots) et obtenir un token.
+Laravel DRC peut notifier les administrateurs des nouveaux articles soumis via Telegram. Pour que cela fonctionne, vous devez configurer un [bot Telegram](https://core.telegram.org/bots) et obtenir un token.
 Ensuite, configurez le canal sur lequel vous souhaitez envoyer les messages relatifs aux nouveaux articles.
 
 ```shell
@@ -119,7 +119,7 @@ TELEGRAM_CHANNEL=
 
 ## Maintainers
 
-Le site Laravel.cm est actuellement maintenu par [Arthur Monney](https://github.com/mckenziearts). Si vous avez des questions, n'hésitez pas à créer une issue sur ce dépôt.
+Le site Laravel.cd est actuellement maintenu par [Jean Claude Mbiya](https://github.com/johnmbiya) et [Chadrack Kanza](https://github.com/chadrackkanza). Si vous avez des questions, n'hésitez pas à créer une issue sur ce dépôt.
 
 ## Contribution
 
@@ -131,7 +131,7 @@ Veuillez lire notre [Code de conduite](CODE_OF_CONDUCT.md) avant de contribuer o
 
 ## Vulnérabilités de sécurité
 
-Si vous découvrez une faille de sécurité dans Laravel.cm, veuillez envoyer un e-mail immédiatement à [support@laravel.cm](mailto:support@laravel.cm). **Ne créez pas de problème pour la vulnérabilité.**
+Si vous découvrez une faille de sécurité dans Laravel.cd, veuillez envoyer un e-mail immédiatement à [support@laravel.cd](mailto:support@laravel.cd). **Ne créez pas de problème pour la vulnérabilité.**
 
 ## License
 

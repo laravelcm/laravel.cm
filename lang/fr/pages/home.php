@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 return [
 
-    'title' => 'La plus grande communauté de développeurs Laravel & PHP au Cameroun',
-    'description' => 'Laravel Cameroun est le portail de la communauté de développeurs PHP & Laravel au Cameroun, on partage, on apprend, on découvre et on construit une grande communauté.',
+    'title' => 'La plus grande communauté de développeurs Laravel & PHP en RDC',
+    'description' => 'Laravel DRC est le portail de la communauté de développeurs PHP & Laravel en RDC, on partage, on apprend, on découvre et on construit une grande communauté.',
     'sponsor' => [
         'title' => 'Sponsor',
-        'description' => 'Montrez votre soutien à Laravel Cameroun aujourd\'hui en sponsorisant',
-        'description_small' => 'Soutenez Laravel Cameroun',
+        'description' => 'Montrez votre soutien à Laravel DRC aujourd\'hui en sponsorisant',
+        'description_small' => 'Soutenez Laravel DRC',
     ],
     'join_community' => 'Rejoindre la communauté',
     'visit_forum' => 'Visiter le Forum',

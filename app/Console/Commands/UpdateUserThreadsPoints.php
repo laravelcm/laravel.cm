@@ -10,7 +10,7 @@ use Illuminate\Console\Command;
 
 final class UpdateUserThreadsPoints extends Command
 {
-    protected $signature = 'lcm:update-users-threads-points';
+    protected $signature = 'lcd:update-users-threads-points';
 
     protected $description = 'Update users threads reputation points';
 

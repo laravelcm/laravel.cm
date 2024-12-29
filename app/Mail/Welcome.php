@@ -19,8 +19,8 @@ final class Welcome extends Mailable implements ShouldQueue
 
     public function build(): self
     {
-        return $this->from('arthur@laravel.cm', 'Arthur Monney')
-            ->subject(__('Bienvenue sur Laravel Cameroun ✨'))
+        return $this->from('john@laravel.cd', 'Jean Claude Mbiya')
+            ->subject(__('Bienvenue sur Laravel DRC ✨'))
             ->markdown('emails.welcome');
     }
 }

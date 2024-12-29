@@ -14,11 +14,11 @@ return [
         'all' => 'All',
         'banned' => 'Banned',
         'not_banned' => 'Not banned',
-        'email_subject' => 'Laravelcm ban notification',
+        'email_subject' => 'Laravelcd ban notification',
         'message' => 'Your account has been banned. Contact the administrator for more information.',
     ],
     'unbanned' => [
-        'email_subject' => 'Laravelcm unbanning notification',
+        'email_subject' => 'Laravelcd unbanning notification',
     ],
 
 ];

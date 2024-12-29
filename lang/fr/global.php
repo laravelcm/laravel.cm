@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 return [
 
-    'site_name' => 'Laravel Cameroun',
-    'site_description' => 'Bienvenue sur le site de la communauté des développeurs PHP et Laravel du Cameroun, le plus gros rassemblement de développeurs au Cameroun.',
+    'site_name' => 'Laravel DRC',
+    'site_description' => 'Bienvenue sur le site de la communauté des développeurs PHP et Laravel de la RDC, le plus gros rassemblement de développeurs de la RDC.',
     'by' => 'par',
     'soon' => 'Bientôt',
     'navigation' => [
@@ -34,7 +34,7 @@ return [
     ],
     'footer' => [
         'title' => 'Pied de page',
-        'copyright' => '© 2018 - :date Laravel Cameroun. Tous droits réservés.',
+        'copyright' => '© 2018 - :date Laravel DRC. Tous droits réservés.',
         'legal' => 'Légal',
         'resources' => 'Ressources',
     ],

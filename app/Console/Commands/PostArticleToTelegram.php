@@ -11,7 +11,7 @@ use Illuminate\Notifications\AnonymousNotifiable;
 
 final class PostArticleToTelegram extends Command
 {
-    protected $signature = 'lcm:post-article-to-telegram';
+    protected $signature = 'lcd:post-article-to-telegram';
 
     protected $description = 'Posts the latest shared article to Telegram';
 

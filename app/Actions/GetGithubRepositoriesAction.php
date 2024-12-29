@@ -14,7 +14,7 @@ final class GetGithubRepositoriesAction
     public function __invoke(): Collection
     {
         $response = Http::withToken(config('services.github.token'))
-            ->get('https://api.github.com/orgs/laravelcm/repos');
+            ->get('https://api.github.com/orgs/laravelcd/repos');
 
         if (Cache::has('github-repositories')) {
             return Cache::get('github-repositories');

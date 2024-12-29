@@ -28,7 +28,7 @@ return [
              */
             'format' => 'rss',
 
-            'title' => 'Laravel.cm Forum RSS Feed',
+            'title' => 'Laravel.cd Forum RSS Feed',
         ],
     ],
 

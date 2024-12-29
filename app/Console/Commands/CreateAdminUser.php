@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 final class CreateAdminUser extends Command
 {
-    protected $signature = 'lcm:admin';
+    protected $signature = 'lcd:admin';
 
     protected $description = 'Create user with admin role and all permissions.';
 
@@ -25,8 +25,8 @@ final class CreateAdminUser extends Command
 
     protected function createUser(): void
     {
-        $email = $this->ask('Email Address', 'admin@laravel.cm');
-        $name = $this->ask('Name', 'Laravel Cameroun');
+        $email = $this->ask('Email Address', 'admin@laravel.cd');
+        $name = $this->ask('Name', 'Laravel DRC');
         $username = $this->ask('Username', 'admin');
         $password = $this->secret('Password');
         $confirmPassword = $this->secret('Confirm Password');

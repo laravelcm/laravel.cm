@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
 
     'title' => 'Code of conduct',
-    'description' => 'All participants in the Laravel Cameroon community are expected to abide by our code of conduct, both online and at in-person events hosted and/or associated with the Laravel Cameroon community.',
+    'description' => 'All participants in the Laravel DRC community are expected to abide by our code of conduct, both online and at in-person events hosted and/or associated with the Laravel DRC community.',
     'our_commitment' => [
         'title' => 'Our Commitment',
         'paragraph' => 'In the interest of fostering an open and welcoming environment, we, as contributors and maintainers, are committed to making participation in our project and community a harassment-free experience for all, regardless of age, size, disability, ethnicity, gender identity and expression, experience level, nationality, personal appearance, race, religion or identity.',

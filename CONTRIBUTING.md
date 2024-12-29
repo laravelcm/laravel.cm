@@ -1,6 +1,6 @@
 # Contributing Guide
 
-We welcome contributions to the Laravel.io project. Please read the following guide before posting an issue or sending
+We welcome contributions to the Laravel.cd project. Please read the following guide before posting an issue or sending
 in pull requests. Please also read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing or engaging in
 discussions.
 
@@ -12,7 +12,7 @@ discussions.
 
 ## Pull Requests
 
-- **Feature requests** first need to be discussed and accepted [through an issue](https://github.com/laravelcm/laravel.cm/issues/new) before sending in a pull request
+- **Feature requests** first need to be discussed and accepted [through an issue](https://github.com/laravelcd/laravel.cd/issues/new) before sending in a pull request
 - **Bug fixes** should contain [regression tests](https://laracasts.com/lessons/regression-testing)
 - All pull requests should follow the [coding standards](#coding-standards)
 - Pull requests will be merged after being reviewed by [the maintainers](README.md#maintainers)
@@ -22,7 +22,7 @@ discussions.
 
 - It's a good practice to write tests for your contribution
 - Write the full namespace in DocBlocks for `@param`, `@var` or `@return` tags
-- The rest of the coding standards will automatically fixed by [Github Actions](https://github.com/laravelcm/laravel.cm/actions)
+- The rest of the coding standards will automatically fixed by [Github Actions](https://github.com/laravelcd/laravel.cd/actions)
 
 ## Testing
 

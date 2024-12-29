@@ -1,6 +1,6 @@
 <!-- Twitter sharing -->
 <meta name="twitter:title" content="{{ isset($title) ? $title . ' | ' : '' }} {{ config('app.name') }}" />
-<meta name="twitter:creator" content="@laravelcm" />
+<meta name="twitter:creator" content="@laravelcd" />
 <!-- /Twitter sharing -->
 
 <!-- Facebook sharing -->
