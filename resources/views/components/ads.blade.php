@@ -3,6 +3,7 @@
 <div id="laravelcm-ads">
     <a href="{{ $ads['url'] }}" target="_blank" class="block aspect-[2/1] rounded-lg overflow-hidden ring-1 ring-gray-200/50 shadow dark:ring-white/20">
         <img
+            loading="lazy"
             class="size-full object-cover"
             src="{{ asset("/images/ads/{$ads['image']}.png") }}"
             alt="{{ $ads['alt'] }}"
