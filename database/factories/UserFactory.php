@@ -26,39 +26,31 @@ final class UserFactory extends Factory
 
     public function unverified(): self
     {
-        return $this->state(function (array $attributes) {
-            return [
-                'email_verified_at' => null,
-            ];
-        });
+        return $this->state(fn (array $attributes) => [
+            'email_verified_at' => null,
+        ]);
     }
 
     public function lastMonth(): self
     {
-        return $this->state(function (array $attributes) {
-            return [
-                'created_at' => now()->subMonth(),
-            ];
-        });
+        return $this->state(fn (array $attributes) => [
+            'created_at' => now()->subMonth(),
+        ]);
     }
 
     public function banned(): self
     {
-        return $this->state(function (array $attributes) {
-            return [
-                'banned_at' => now(),
-                'banned_reason' => 'Violation des règles de la communauté',
-            ];
-        });
+        return $this->state(fn (array $attributes) => [
+            'banned_at' => now(),
+            'banned_reason' => 'Violation des règles de la communauté',
+        ]);
     }
 
     public function unbanned(): self
     {
-        return $this->state(function (array $attributes) {
-            return [
-                'banned_at' => null,
-                'banned_reason' => null,
-            ];
-        });
+        return $this->state(fn (array $attributes) => [
+            'banned_at' => null,
+            'banned_reason' => null,
+        ]);
     }
 }

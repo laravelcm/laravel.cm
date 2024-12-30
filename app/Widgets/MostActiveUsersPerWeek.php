@@ -33,12 +33,10 @@ final class MostActiveUsersPerWeek
         $users = User::with('activities')
             ->withCount('activities')
             ->verifiedUsers()
-            ->whereHas('activities', function (Builder $query) {
-                return $query->whereBetween('created_at', [
-                    now()->startOfWeek(),
-                    now()->endOfWeek(),
-                ]);
-            })
+            ->whereHas('activities', fn (Builder $query) => $query->whereBetween('created_at', [
+                now()->startOfWeek(),
+                now()->endOfWeek(),
+            ]))
             ->orderByDesc('activities_count')
             ->limit(5)
             ->get();
