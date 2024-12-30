@@ -11,6 +11,7 @@
                         </a>
                         <span class="ml-1.5">{{ __('global.by') }} Caneco</span>
                         <img
+                            loading="lazy"
                             class="ml-2 size-6 rounded-full"
                             src="https://avatars.githubusercontent.com/u/502041"
                             alt="Caneco avatar"

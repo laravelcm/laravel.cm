@@ -97,6 +97,7 @@
                     <div class="mt-4 lg:mt-0 lg:col-span-2">
                         <div class="relative aspect-[16/9] lg:aspect-[2/1] rounded-xl shadow-lg overflow-hidden">
                             <img
+                                loading="lazy"
                                 class="object-cover size-full"
                                 src="{{ $media }}"
                                 alt="{{ $article->title }}"

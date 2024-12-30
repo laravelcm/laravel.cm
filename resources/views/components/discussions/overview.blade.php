@@ -51,6 +51,7 @@
                 <div class="flex items-center justify-center gap-2">
                     @foreach ($discussion->getReactionsSummary() as $reaction)
                         <img
+                            loading="lazy"
                             class="size-4"
                             src="{{ asset("/images/reactions/{$reaction->name}.svg") }}"
                             alt="{{ $reaction->name }} emoji"

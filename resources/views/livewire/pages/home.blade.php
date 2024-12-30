@@ -174,6 +174,7 @@
             <div class="h-full w-full xl:grid xl:grid-cols-2">
                 <div class="h-full xl:relative xl:col-start-2">
                     <img
+                        loading="lazy"
                         class="h-full w-full object-cover opacity-25 xl:absolute xl:inset-0"
                         src="{{ asset('/images/developer.jpg') }}"
                         alt="Developer working on laptop"
