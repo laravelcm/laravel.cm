@@ -15,6 +15,7 @@
     <x-link :href="route('articles.show', $article)" class="group">
         <div class="aspect-h-2 aspect-w-3">
             <img
+                loading="lazy"
                 class="rounded-lg object-cover shadow-lg group-hover:opacity-75"
                 src="{{ $media }}"
                 alt="{{ $article->title }}"

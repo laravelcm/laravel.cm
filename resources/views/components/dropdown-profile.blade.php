@@ -60,8 +60,8 @@
                     role="menuitem"
                     tabindex="-1"
                 >
-                    <img class="size-5 object-cover" src="{{ asset('images/filament-icon.png') }}" alt="Filament icon" />
-                    Administration
+                    <img loading="lazy"  class="size-5 object-cover" src="{{ asset('images/filament-icon.png') }}" alt="Filament icon" />
+                    {{ __('Administration') }}
                 </x-link>
             </div>
         @endif

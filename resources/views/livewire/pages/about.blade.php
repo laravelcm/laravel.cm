@@ -150,6 +150,7 @@ state([
                     <div class="mt-14 columns-2 gap-4 sm:columns-3 lg:mt-0">
                         <div class="relative">
                             <img
+                                loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703778123/IMG_1637_yjaqrk.jpg"
                                 alt=""
                                 class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
@@ -160,6 +161,7 @@ state([
                         </div>
                         <div class="relative">
                             <img
+                                loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703778121/IMG_1505_j06cwz.jpg"
                                 alt=""
                                 class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-[1/2]"
@@ -170,6 +172,7 @@ state([
                         </div>
                         <div class="relative">
                             <img
+                                loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703778122/IMG_1609_otohw5.jpg"
                                 alt=""
                                 class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-[2/5]"
@@ -180,6 +183,7 @@ state([
                         </div>
                         <div class="relative">
                             <img
+                                loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703778121/IMG_1605_zdgdpv.jpg"
                                 alt=""
                                 class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-[4/5]"
@@ -190,6 +194,7 @@ state([
                         </div>
                         <div class="relative">
                             <img
+                                loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703778122/IMG_1567_hfy747.jpg"
                                 alt=""
                                 class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
@@ -200,6 +205,7 @@ state([
                         </div>
                         <div class="relative">
                             <img
+                                loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703782759/phnnfnzxt8khtrth4qem.jpg"
                                 alt=""
                                 class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-[3/7]"
@@ -232,7 +238,7 @@ state([
                             @foreach($profiles as $profile)
                                 <li>
                                     <div class="space-y-4">
-                                        <img class="h-16 w-16 rounded-full lg:h-20 lg:w-20" src="{{ $profile['avatar'] }}" alt="{{ $profile['name'] }}" />
+                                        <img loading="lazy" class="h-16 w-16 rounded-full lg:h-20 lg:w-20" src="{{ $profile['avatar'] }}" alt="{{ $profile['name'] }}" />
                                         <div class="space-y-1 text-lg font-medium leading-6 text-gray-900">
                                             <h3>{{ $profile['name'] }}</h3>
                                             <p class="font-sans text-base text-green-600">{{ $profile['title'] }}</p>
