@@ -21,6 +21,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Vormkracht10\FilamentMails\FilamentMailsPlugin;
 
 final class AdminPanelProvider extends PanelProvider
 {
@@ -51,6 +52,7 @@ final class AdminPanelProvider extends PanelProvider
             ->plugins([
                 SpatieLaravelTranslatablePlugin::make()
                     ->defaultLocales(['fr', 'en']),
+                FilamentMailsPlugin::make(),
             ])
             ->renderHook(
                 'body.start',
