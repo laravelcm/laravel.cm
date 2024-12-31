@@ -18,8 +18,6 @@ final class ListUsers extends ListRecords
             'all' => Tab::make(__('global.all')),
             'banned' => Tab::make(__('global.banned'))
                 ->modifyQueryUsing(fn ($query) => $query->isBanned()),
-            'unbanned' => Tab::make(__('global.unbanned'))
-                ->modifyQueryUsing(fn ($query) => $query->isNotBanned()),
         ];
     }
 }
