@@ -36,7 +36,7 @@
                 </span>
             </x-link>
             <span class="flex items-center text-xs text-gray-500 flex-wrap gap-1 dark:text-gray-400">
-                <span>{{ __('global.ask') }}</span>
+                <span class="hidden lg:inline">{{ __('global.ask') }}</span>
                 <time datetime="{{ $thread->created_at }}">
                     {{ $thread->created_at->diffForHumans() }}
                 </time>

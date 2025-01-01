@@ -6,8 +6,14 @@
 @import 'tag.css';
 @import 'forms.css';
 @import 'torchlight.css';
-@import 'toc.css';
+@import 'forum.css';
 @import 'header.css';
+
+@property --border-angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: '<angle>';
+}
 
 :root {
     --laravel: #F56857;

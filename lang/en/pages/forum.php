@@ -47,5 +47,6 @@ return [
     'prevent_text_one' => 'Make sure you\'ve read our',
     'rules' => 'rules of conduct',
     'prevent_text_two' => 'before replying to this thread.',
+    'leaderboard_empty' => 'No ranking available',
 
 ];

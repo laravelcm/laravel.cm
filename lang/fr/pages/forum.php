@@ -47,5 +47,6 @@ return [
     'prevent_text_one' => 'Assurez-vous d\'avoir lu nos',
     'rules' => 'règles de conduite',
     'prevent_text_two' => 'avant de répondre à ce thread.',
+    'leaderboard_empty' => 'Aucun classement disponible',
 
 ];

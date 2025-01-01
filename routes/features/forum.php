@@ -7,4 +7,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Forum\Index::class)->name('index');
 Route::get('/channels', Forum\Channels::class)->name('channels');
+Route::get('/leaderboard', Forum\Leaderboard::class)->name('leaderboard');
 Route::get('/{thread}', Forum\DetailThread::class)->name('show');

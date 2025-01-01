@@ -12,31 +12,35 @@
         </x-buttons.primary>
     </x-slot:buttons>
 
-    <div class="flex items-center justify-between gap-6">
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-center">
         <div class="flex items-center gap-4">
             <livewire:components.channels-selector :slug="$channel" />
-
-            <x-locale-selector :$locale />
-
-            <span wire:loading>
-                <x-loader class="text-flag-green" />
-            </span>
         </div>
 
-        <x-filament::input.wrapper class="relative max-w-60 w-full">
-            <span class="pointer-events-none absolute top-2.5 left-0 pl-2.5">
-                <x-untitledui-search-md class="size-4 text-gray-400 dark:text-gray-500" aria-hidden="true" />
-            </span>
-            <x-filament::input
-                type="search"
-                id="thread-search"
-                name="search"
-                class="!pl-8"
-                wire:model.live.debounce.550ms="search"
-                aria-label="{{ __('global.search') }}"
-                :placeholder="__('pages/forum.thread_search')"
-            />
-        </x-filament::input.wrapper>
+        <div class="flex items-center gap-x-4 lg:flex-1 lg:gap-x-6">
+            <div class="flex-1 flex items-center gap-2">
+                <x-locale-selector :$locale />
+
+                <span wire:loading>
+                    <x-loader class="text-flag-green" />
+                </span>
+            </div>
+
+            <x-filament::input.wrapper class="relative max-w-60 w-full">
+                <span class="pointer-events-none absolute top-2.5 left-0 pl-2.5">
+                    <x-untitledui-search-md class="size-4 text-gray-400 dark:text-gray-500" aria-hidden="true" />
+                </span>
+                <x-filament::input
+                    type="search"
+                    id="thread-search"
+                    name="search"
+                    class="!pl-8"
+                    wire:model.live.debounce.550ms="search"
+                    aria-label="{{ __('global.search') }}"
+                    :placeholder="__('pages/forum.thread_search')"
+                />
+            </x-filament::input.wrapper>
+        </div>
     </div>
 
     <div class="mt-6 lg:mb-12">

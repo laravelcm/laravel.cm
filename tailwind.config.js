@@ -37,6 +37,7 @@ export default {
         'spin-reverse-slow': 'spin-reverse 4s linear infinite',
         'spin-reverse-slower': 'spin-reverse 6s linear infinite',
         'scroll-slow': 'scroll 30s linear infinite',
+        rotate: "rotate 8s linear infinite",
       },
       keyframes: {
         'fade-in': {
@@ -64,7 +65,11 @@ export default {
           to: {
             transform: 'translateX(-100%)',
           }
-        }
+        },
+        rotate: {
+          "0%": { transform: "rotate(0deg) scale(10)" },
+          "100%": { transform: "rotate(-360deg) scale(10)" },
+        },
       },
       colors: {
         flag: {
@@ -121,7 +126,7 @@ export default {
             },
           },
         },
-      })
+      }),
     },
   },
   plugins: [
