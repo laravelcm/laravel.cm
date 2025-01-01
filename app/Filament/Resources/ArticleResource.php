@@ -56,6 +56,9 @@ final class ArticleResource extends Resource
                     ->label('Auteur')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label(__('Date de création'))
+                    ->date(),
                 Tables\Columns\IconColumn::make('published_at')
                     ->label('Publié')
                     ->getStateUsing(fn (Article $record) => $record->isPublished())
