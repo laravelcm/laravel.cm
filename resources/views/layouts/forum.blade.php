@@ -81,20 +81,20 @@
 
             <div @class([
                 'mt-6 sm:mt-0',
-                'lg:col-span-8' => $isLogged,
-                'lg:col-span-6' => ! $isLogged,
+                'lg:col-span-8' => $isLogged || request()->routeIs('forum.leaderboard'),
+                'lg:col-span-6' => ! $isLogged && ! request()->routeIs('forum.leaderboard'),
             ])>
                 {{ $slot }}
             </div>
 
-            @guest
+            @if(! request()->routeIs('forum.leaderboard') && \Illuminate\Support\Facades\Auth::guest())
                 <aside class="hidden lg:block lg:col-span-2">
                     <x-sticky-content class="space-y-10">
                         <x-ads />
                         <x-discord />
                     </x-sticky-content>
                 </aside>
-            @endguest
+            @endif
         </div>
     </x-container>
 </x-app-layout>
