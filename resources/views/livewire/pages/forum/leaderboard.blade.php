@@ -59,7 +59,7 @@
                     <div class="flex-1 flex items-center px-4 py-2 rounded-lg bg-white dark:bg-gray-800">
                         <p class="inline-flex items-center gap-2 text-[13px] text-gray-700 dark:text-gray-300">
                             <x-phosphor-trophy-duotone class="size-5" aria-hidden="true" />
-                            {{ __('Ce classement est mis à jour toutes les semaines.') }}
+                            {{ __('global.ranking_updated') }}
                         </p>
                     </div>
                 </div>
@@ -70,10 +70,10 @@
             <div class="space-y-2">
                 <div class="grid auto-cols grid-flow-col bg-white rounded-xl font-medium text-sm text-gray-900 px-4 py-3 ring-1 ring-gray-200 dark:text-white dark:ring-white/10 dark:bg-gray-800">
                     <div class="w-10">
-                        {{ __('Rang') }}
+                        {{ __('global.place') }}
                     </div>
                     <div class="w-32">
-                        {{ __('Utilisateur') }}
+                        {{ __('global.user') }}
                     </div>
                     <div class="w-24 hidden text-right md:block">
                         {{ __('global.experience') }}

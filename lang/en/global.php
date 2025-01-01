@@ -112,5 +112,8 @@ return [
     'first_place' => '1st place',
     'second_place' => '2nd place',
     'third_place' => '3rd place',
+    'ranking_updated' => 'The rankings are updated weekly.',
+    'place' => 'Place',
+    'user' => 'User',
 
 ];
