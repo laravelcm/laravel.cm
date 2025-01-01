@@ -31,7 +31,7 @@ final class RegisterController extends Controller
 
         $user->assignRole('company');
 
-        //TODO: Send new company registration notification on Slack
+        // TODO: Send new company registration notification on Slack
         event(new ApiRegistered($user));
 
         return response()->json(
@@ -81,9 +81,9 @@ final class RegisterController extends Controller
             'avatar' => $socialUser['photoUrl'],
         ]);
 
-        //TODO: Send welcome email to user 1 hour after registration
+        // TODO: Send welcome email to user 1 hour after registration
 
-        //TODO: Send new company registration notification on Slack
+        // TODO: Send new company registration notification on Slack
 
         $user->last_login_at = Carbon::now();
         $user->last_login_ip = $request->ip();

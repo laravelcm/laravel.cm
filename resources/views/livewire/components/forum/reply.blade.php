@@ -66,7 +66,7 @@
                     @endcan
 
                     @can('report', $reply)
-                        <livewire:report-spam :model="$reply" />
+                        <livewire:components.report-spam :model="$reply" />
                     @endcan
                 @endif
             </div>

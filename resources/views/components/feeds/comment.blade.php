@@ -2,6 +2,7 @@
     <div class="relative flex items-start space-x-3">
         <div class="relative">
             <img
+                loading="lazy"
                 class="flex size-10 items-center justify-center rounded-full bg-white dark:bg-gray-800 ring-4 ring-white dark:ring-white/10"
                 src="{{ $user->profile_photo_url }}"
                 alt="Avatar de {{ $user->username }}"

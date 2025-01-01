@@ -24,10 +24,10 @@ final class Index extends Component
     use WithoutUrlPagination;
     use WithPagination;
 
-    #[Url(as: 'channel')]
+    #[Url]
     public ?string $channel = null;
 
-    #[Url(as: 'solved')]
+    #[Url]
     public ?string $solved = null;
 
     #[Url(as: 'me')]
@@ -36,7 +36,7 @@ final class Index extends Component
     #[Url(as: 'no-replies')]
     public ?string $unAnswered = null;
 
-    #[Url]
+    #[Url(as: 'follow')]
     public ?string $subscribe = null;
 
     public ?Channel $currentChannel = null;
@@ -129,6 +129,12 @@ final class Index extends Component
 
     protected function applySubscribe(Builder $query): Builder
     {
+        if (Auth::check() && $this->subscribe) {
+            $query->whereHas('subscribes', function (Builder $query): void {
+                $query->where('user_id', Auth::id());
+            });
+        }
+
         return $query;
     }
 

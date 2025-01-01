@@ -44,6 +44,7 @@
                 <div class="flex items-center justify-center space-x-2">
                     @foreach ($model->getReactionsSummary() as $reaction)
                         <img
+                            loading="lazy"
                             class="size-4"
                             src="{{ asset("/images/reactions/{$reaction->name}.svg") }}"
                             alt="{{ $reaction->name }} emoji"
@@ -73,28 +74,28 @@
         <div class="rounded-full bg-white ring-1 ring-inset ring-gray-100 px-3 py-1.5 dark:bg-gray-800 dark:ring-white/10">
             <div class="reactions flex items-center gap-4">
                 <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('clap')">
-                    <img src="{{ asset('/images/reactions/clap.svg') }}" class="size-5" alt="clap emoji" />
+                    <img loading="lazy" src="{{ asset('/images/reactions/clap.svg') }}" class="size-5" alt="clap emoji" />
                 </button>
                 <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('fire')">
-                    <img src="{{ asset('/images/reactions/fire.svg') }}" class="size-5" alt="fire emoji" />
+                    <img loading="lazy"  src="{{ asset('/images/reactions/fire.svg') }}" class="size-5" alt="fire emoji" />
                 </button>
                 <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('handshake')">
-                    <img src="{{ asset('/images/reactions/handshake.svg') }}" class="size-5" alt="handshake emoji" />
+                    <img loading="lazy" src="{{ asset('/images/reactions/handshake.svg') }}" class="size-5" alt="handshake emoji" />
                 </button>
                 <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('joy')">
-                    <img src="{{ asset('/images/reactions/joy.svg') }}" class="size-5" alt="joy emoji" />
+                    <img loading="lazy" src="{{ asset('/images/reactions/joy.svg') }}" class="size-5" alt="joy emoji" />
                 </button>
                 <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('love')">
-                    <img src="{{ asset('/images/reactions/love.svg') }}" class="size-5" alt="love emoji" />
+                    <img loading="lazy" src="{{ asset('/images/reactions/love.svg') }}" class="size-5" alt="love emoji" />
                 </button>
                 <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('money')">
-                    <img src="{{ asset('/images/reactions/money.svg') }}" class="size-5" alt="money emoji" />
+                    <img loading="lazy" src="{{ asset('/images/reactions/money.svg') }}" class="size-5" alt="money emoji" />
                 </button>
                 <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('party')">
-                    <img src="{{ asset('/images/reactions/party.svg') }}" class="size-5" alt="party emoji" />
+                    <img loading="lazy" src="{{ asset('/images/reactions/party.svg') }}" class="size-5" alt="party emoji" />
                 </button>
                 <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('pray')">
-                    <img src="{{ asset('/images/reactions/pray.svg') }}" class="size-5" alt="pray" />
+                    <img loading="lazy" src="{{ asset('/images/reactions/pray.svg') }}" class="size-5" alt="pray" />
                 </button>
             </div>
         </div>

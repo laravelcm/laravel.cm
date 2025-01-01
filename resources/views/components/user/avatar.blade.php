@@ -7,6 +7,7 @@
 @if ($user->is_sponsor)
     <span @class(['relative inline-block', $container])>
         <img
+            loading="lazy"
             {{ $attributes->twMerge(['class' => 'object-cover bg-gray-100 dark:bg-gray-900 rounded-full ring-2 !ring-flag-yellow']) }}
             src="{{ $user->profile_photo_url }}"
             alt="{{ $user->username() }}"
@@ -28,6 +29,7 @@
     </span>
 @else
     <img
+        loading="lazy"
         {{ $attributes->merge(['class' => 'object-cover rounded-full bg-gray-100 dark:bg-gray-900']) }}
         src="{{ $user->profile_photo_url }}"
         alt="{{ $user->username() }}"

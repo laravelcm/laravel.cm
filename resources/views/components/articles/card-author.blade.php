@@ -11,6 +11,7 @@
 <article class="relative" wire:key="{{ $article->slug }}">
     <div class="relative w-full">
         <img
+            loading="lazy"
             src="{{ $media }}"
             alt="{{ $article->title }}"
             class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] dark:bg-gray-800"

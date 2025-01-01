@@ -25,22 +25,18 @@ final class ArticleFactory extends Factory
 
     public function approved(): self
     {
-        return $this->state(function (array $attributes): array {
-            return [
-                'published_at' => now()->addDays(2),
-                'submitted_at' => now(),
-                'approved_at' => now(),
-            ];
-        });
+        return $this->state(fn (array $attributes): array => [
+            'published_at' => now()->addDays(2),
+            'submitted_at' => now(),
+            'approved_at' => now(),
+        ]);
     }
 
     public function submitted(): self
     {
-        return $this->state(function (array $attributes): array {
-            return [
-                'submitted_at' => now(),
-                'published_at' => now()->addDay(),
-            ];
-        });
+        return $this->state(fn (array $attributes): array => [
+            'submitted_at' => now(),
+            'published_at' => now()->addDay(),
+        ]);
     }
 }

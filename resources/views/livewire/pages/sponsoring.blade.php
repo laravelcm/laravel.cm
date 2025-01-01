@@ -59,11 +59,13 @@
                     <div class="mt-4 flex flex-wrap items-center gap-6">
                         <a href="https://laravelshopper.dev" target="_blank" class="flex items-center">
                             <img
+                                loading="lazy"
                                 class="h-10 dark:hidden"
                                 src="{{ asset('/images/sponsors/shopper-logo.svg') }}"
                                 alt="Laravel Shopper"
                             />
                             <img
+                                loading="lazy"
                                 class="hidden h-10 dark:block"
                                 src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}"
                                 alt="Laravel Shopper"

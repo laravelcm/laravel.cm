@@ -46,12 +46,21 @@ return [
         'bio_description' => 'Write a few sentences about yourself.',
         'avatar_description' => 'This will be displayed on your profile.',
         'twitter_helper_text' => 'Enter your Twitter handle without the @ symbol at the top.',
-        'linkedin_helper_text' => 'Enter what is in place of {votre-pseudo}',
+        'linkedin_helper_text' => 'Enter what is in place of {your-username}',
         'personal_information_title' => 'Personal information',
         'personal_information_description' => 'Update your personal information. Your address will never be accessible to the public.',
         'unverified_mail' => 'This e-mail address is not verified.',
-        'social_network_title' => 'social networks',
+        'social_network_title' => 'Social networks',
         'social_network_description' => 'Let everyone know where they can find you.',
+
+        'notification' => [
+            'tip' => 'Tip:',
+            'first_text' => 'Visit any forum thread and click on the',
+            'subscribe' => 'Subscribe',
+            'second_text' => 'in the sidebar. Once clicked, you will receive an e-mail each time a response
+                        is published. The same applies to any type of content that offers this
+                        this option.',
+        ],
     ],
 
 ];

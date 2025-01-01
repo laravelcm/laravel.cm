@@ -29,5 +29,7 @@ return [
     'draft' => 'Brouillon',
     'my_article' => 'Mes articles',
     'not_article_created' => "Vous n'avez pas encore créé d'articles",
+    'awaiting_text' => 'En attente d\'approbation',
+    'write' => 'Rédigé',
 
 ];

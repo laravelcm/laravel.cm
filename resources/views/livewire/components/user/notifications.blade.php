@@ -32,12 +32,10 @@
                         <x-heroicon-o-information-circle class="size-5 text-blue-500" aria-hidden="true" />
                     </div>
                     <div class="ml-3 flex-1 font-normal text-gray-500 dark:text-gray-400">
-                        <span class="font-medium text-blue-500">Astuce:</span>
-                        Visitez n'importe quel fil de discussion du forum et cliquez sur le bouton
-                        <span class="font-medium text-gray-900">"S'abonner"</span>
-                        dans la barre latérale. Une fois cliqué, vous recevrez un e-mail chaque fois qu'une réponse
-                        sera publiée. Il en va de même pour n'importe quel type de contenu qui offre cette
-                        possibilité.
+                        <span class="font-medium text-blue-500">{{ __('pages/account.settings.notification.tip') }}</span>
+                        {{ __('pages/account.settings.notification.first_text') }}
+                        <span class="font-medium text-gray-900">"{{ __('pages/account.settings.notification.subscribe') }}"</span>
+                        {{ __('pages/account.settings.notification.second_text') }}
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Livewire\ReportSpam;
+use App\Livewire\Components\ReportSpam;
 use App\Models\SpamReport;
 use App\Models\Thread;
 use App\Notifications\ReportedSpamToTelegram;

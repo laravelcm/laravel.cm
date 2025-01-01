@@ -26,7 +26,7 @@
                 </x-discussions.summary>
             @empty
                 <p class="text-gray-500 dark:text-gray-400">
-                    Vous n'avez pas encore créé de discussions.
+                    {{ __('pages/discussion.empty_discussion') }}
                 </p>
             @endforelse
         </div>

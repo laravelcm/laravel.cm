@@ -43,5 +43,10 @@ return [
     'my_thread' => 'Mes Sujets',
     'not_thread_created' => "Vous n'avez pas encore créé de sujet",
     'subject' => 'Sujets',
+    'reply_message' => 'Laissez votre réponse',
+    'prevent_text_one' => 'Assurez-vous d\'avoir lu nos',
+    'rules' => 'règles de conduite',
+    'prevent_text_two' => 'avant de répondre à ce thread.',
+    'leaderboard_empty' => 'Aucun classement disponible',
 
 ];

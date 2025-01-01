@@ -8,16 +8,16 @@
                     span="-right-1 size-3.5 -top-1"
                 />
                 <span class="text-sm leading-6 text-gray-500 dark:text-gray-300">
-                    {{ __('Laissez votre réponse') }}
+                    {{ __('pages/forum.reply_message') }}
                 </span>
             </button>
             <div class="mt-5 text-center">
                 <p class="text-sm leading-5 text-gray-500 dark:text-gray-400">
-                    Assurez-vous d'avoir lu nos
+                    {{ __('pages/forum.prevent_text_one') }}
                     <x-link :href="route('rules')" class="font-medium text-primary-600 hover:text-primary-500">
-                        règles de conduite
+                        {{ __('pages/forum.rules') }}
                     </x-link>
-                    avant de répondre à ce thread.
+                    {{ __('pages/forum.prevent_text_two') }}
                 </p>
             </div>
         </div>

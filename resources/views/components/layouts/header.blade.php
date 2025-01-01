@@ -20,10 +20,10 @@
         @if(isHolidayWeek())
             <div class="relative">
                 <div class="absolute z-0 lg:left-1/4">
-                    <img src="{{ asset('images/decoration.gif') }}" class="w-auto h-10" alt="Christmas decoration">
+                    <img loading="lazy" src="{{ asset('images/decoration.gif') }}" class="w-auto h-10" alt="Christmas decoration">
                 </div>
                 <div class="absolute z-0 lg:right-12">
-                    <img src="{{ asset('images/decoration.gif') }}" class="w-auto h-10" alt="Christmas decoration">
+                    <img loading="lazy" src="{{ asset('images/decoration.gif') }}" class="w-auto h-10" alt="Christmas decoration">
                 </div>
             </div>
         @endif

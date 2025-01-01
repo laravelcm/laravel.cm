@@ -107,4 +107,13 @@ return [
     'language' => 'Langue',
     'french' => 'Français',
     'english' => 'Anglais',
+    'experience' => 'Expérience',
+    'last_active' => 'Dernière activité',
+    'first_place' => '1ere place',
+    'second_place' => '2e place',
+    'third_place' => '3e place',
+    'ranking_updated' => 'Ce classement est mis à jour toutes les semaines.',
+    'place' => 'Position',
+    'user' => 'Utilisateur',
+
 ];

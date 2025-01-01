@@ -1,0 +1,22 @@
+#leaderboard {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    transform-style: preserve-3d;
+  }
+
+  .leaderboard {
+    place-items: center;
+    transform: perspective(400px);
+    transform-style: preserve-3d;
+  }
+
+  .leaderboard > .stage {
+    @apply relative w-full rounded-t-lg;
+    transform: rotateX(70deg);
+  }
+
+  .leaderboard > .stage > .stage-front {
+    @apply absolute w-full rounded-b-lg origin-top top-full;
+    transform: rotateX(-80deg);
+  }
+}

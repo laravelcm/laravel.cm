@@ -10,11 +10,13 @@
         <div class="flex items-center justify-center px-2">
             <a href="https://laravelshopper.dev" target="_blank" class="flex items-center">
                 <img
+                    loading="lazy"
                     class="h-12 dark:hidden"
                     src="{{ asset('/images/sponsors/shopper-logo.svg') }}"
                     alt="Laravel Shopper"
                 />
                 <img
+                    loading="lazy"
                     class="hidden h-12 dark:block"
                     src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}"
                     alt="Laravel Shopper"

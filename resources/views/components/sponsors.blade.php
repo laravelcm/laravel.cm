@@ -5,11 +5,13 @@
     <div class="mt-5 space-y-5">
         <a href="https://laravelshopper.dev" class="flex items-center justify-end">
             <img
+                loading="lazy"
                 class="logo-white h-10"
                 src="{{ asset('/images/sponsors/shopper-logo.svg') }}"
                 alt="Laravel Shopper"
             />
             <img
+                loading="lazy"
                 class="logo-dark h-10"
                 src="{{ asset('/images/sponsors/shopper-logo-light.svg') }}"
                 alt="Laravel Shopper"
