@@ -63,26 +63,17 @@
                 {{ $user->solutions_count }}
             </span>
         </div>
-        @if($position === 1)
-            <div class="flex flex-col px-4 py-2.5">
-                <span class="text-xs/4 text-gray-400 capitalize dark:text-gray-500">
-                    {{ __('global.last_active') }}
-                </span>
+        <div @class([
+            'flex flex-col px-4 py-2.5',
+            'lg:hidden' => $position !== 1,
+        ])>
+            <span class="text-xs/4 text-gray-400 capitalize dark:text-gray-500">
+                {{ __('global.last_active') }}
+            </span>
 
-                <span class="font-medium text-sm text-gray-700 dark:text-gray-300">
-                    {{ $user->last_active_at?->diffForHumans() }}
-                </span>
-            </div>
-        @else
-            <div class="flex flex-col px-4 py-2.5 lg:hidden">
-                <span class="text-xs/4 text-gray-400 capitalize dark:text-gray-500">
-                    {{ __('global.last_active') }}
-                </span>
-
-                <span class="font-medium text-sm text-gray-700 dark:text-gray-300">
-                    {{ $user->last_active_at?->diffForHumans() }}
-                </span>
-            </div>
-        @endif
+            <span class="font-medium text-sm text-gray-700 dark:text-gray-300">
+                {{ $user->last_active_at?->diffForHumans() }}
+            </span>
+        </div>
     </div>
 </div>
