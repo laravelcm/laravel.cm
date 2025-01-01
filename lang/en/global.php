@@ -107,5 +107,10 @@ return [
     'language' => 'Language',
     'french' => 'French',
     'english' => 'English',
+    'experience' => 'Experience',
+    'last_active' => 'Last active',
+    'first_place' => '1st place',
+    'second_place' => '2nd place',
+    'third_place' => '3rd place',
 
 ];

@@ -83,7 +83,7 @@
                         />
 
                         <div class="relative inline-flex mt-3">
-                            <livewire:reactions
+                            <livewire:components.reactions
                                 wire:key="{{ $discussion->id }}"
                                 :model="$discussion"
                                 :with-place-holder="false"
@@ -105,7 +105,7 @@
                             @endcan
 
                             @can('report', $discussion)
-                                <livewire:report-spam :model="$discussion" />
+                                <livewire:components.report-spam :model="$discussion" />
                             @endcan
                         </div>
                     </div>

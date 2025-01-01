@@ -24,10 +24,10 @@ final class Index extends Component
     use WithoutUrlPagination;
     use WithPagination;
 
-    #[Url(as: 'channel')]
+    #[Url]
     public ?string $channel = null;
 
-    #[Url(as: 'solved')]
+    #[Url]
     public ?string $solved = null;
 
     #[Url(as: 'me')]

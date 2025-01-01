@@ -28,7 +28,7 @@
                                 span="-right-1 size-3.5 -top-1"
                             />
                             <div class="inline-flex flex-col gap-y-3 ring-1 ring-gray-200 bg-white py-3 px-1.5 rounded-full dark:bg-gray-800 dark:ring-white/20">
-                                <livewire:reactions
+                                <livewire:components.reactions
                                     wire:key="$thread->id"
                                     :model="$thread"
                                     :with-place-holder="false"
@@ -89,7 +89,7 @@
                                 @endcan
 
                                 @can('report', $thread)
-                                    <livewire:report-spam :model="$thread" />
+                                    <livewire:components.report-spam :model="$thread" />
                                 @endcan
                             </div>
                         </div>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire;
+namespace App\Livewire\Components;
 
 use App\Contracts\ReactableInterface;
 use App\Models\Reaction;
@@ -40,6 +40,6 @@ final class Reactions extends Component
 
     public function render(): View
     {
-        return view('livewire.reactions');
+        return view('livewire.components.reactions');
     }
 }

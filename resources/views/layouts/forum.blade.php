@@ -18,60 +18,60 @@
                         <x-nav.forum-link
                             :href="route('forum.channels')"
                             :active="request()->routeIs('forum.channels')"
-                            icon="untitledui-git-branch"
+                            icon="phosphor-tree-view-duotone"
                         >
                             {{ __('pages/forum.navigation.channels') }}
                         </x-nav.forum-link>
                         @auth
                             <x-nav.forum-link
-                                :href="route('forum.index') . '?me=true'"
-                                :active="request()->getUri() === route('forum.index') . '?me=true'"
-                                icon="untitledui-user-left"
+                                :href="route('forum.index', ['me' => true])"
+                                :active="request()->getUri() === route('forum.index', ['me' => true])"
+                                icon="phosphor-user-list-duotone"
                             >
                                 {{ __('pages/forum.navigation.me') }}
                             </x-nav.forum-link>
                             <x-nav.forum-link
-                                :href="route('forum.index') . '?follow=true'"
-                                :active="request()->getUri() === route('forum.index') . '?follow=true'"
-                                icon="untitledui-bell-ringing-03"
+                                :href="route('forum.index', ['follow' => true])"
+                                :active="request()->getUri() === route('forum.index', ['follow' => true])"
+                                icon="phosphor-bell-ringing-duotone"
                             >
                                 {{ __('pages/forum.navigation.following') }}
                             </x-nav.forum-link>
                         @endauth
                         <x-nav.forum-link
-                            :href="route('forum.index') . '?popular=true'"
-                            :active="request()->getUri() === route('forum.index') . '?popular=true'"
+                            :href="route('forum.index', ['popular' => true])"
+                            :active="request()->getUri() === route('forum.index', ['popular' => true])"
                             icon="untitledui-heart"
                             class="hidden"
                         >
                             {{ __('pages/forum.navigation.popular') }}
                         </x-nav.forum-link>
                         <x-nav.forum-link
-                            :href="route('forum.index') . '?solved=yes'"
-                            :active="request()->getUri() === route('forum.index') . '?solved=yes'"
-                            icon="untitledui-check-verified"
+                            :href="route('forum.index', ['solved' => 'yes'])"
+                            :active="request()->getUri() === route('forum.index', ['solved' => 'yes'])"
+                            icon="phosphor-seal-check-duotone"
                         >
                             {{ __('pages/forum.navigation.solve') }}
                         </x-nav.forum-link>
                         <x-nav.forum-link
-                            :href="route('forum.index') . '?solved=no'"
-                            :active="request()->getUri() === route('forum.index') . '?solved=no'"
-                            icon="untitledui-help-circle"
+                            :href="route('forum.index', ['solved' => 'no'])"
+                            :active="request()->getUri() === route('forum.index', ['solved' => 'no'])"
+                            icon="phosphor-seal-question-duotone"
                         >
                             {{ __('pages/forum.navigation.unresolved') }}
                         </x-nav.forum-link>
                         <x-nav.forum-link
-                            :href="route('forum.index') . '?no-replies=true'"
-                            :active="request()->getUri() === route('forum.index') . '?no-replies'"
+                            :href="route('forum.index', ['no-replies' => true])"
+                            :active="request()->getUri() === route('forum.index', ['no-replies' => true])"
                             icon="untitledui-message-x-square"
                             class="hidden"
                         >
                             {{ __('pages/forum.navigation.no_reply') }}
                         </x-nav.forum-link>
                         <x-nav.forum-link
+                            :href="route('forum.leaderboard')"
                             :active="request()->routeIs('forum.leaderboard')"
-                            icon="untitledui-trophy-02"
-                            class="hidden"
+                            icon="phosphor-ranking-duotone"
                         >
                             {{ __('pages/forum.navigation.leaderboard') }}
                         </x-nav.forum-link>

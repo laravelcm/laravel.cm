@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire;
+namespace App\Livewire\Components;
 
 use App\Actions\ReportSpamAction;
 use App\Contracts\SpamReportableContract;

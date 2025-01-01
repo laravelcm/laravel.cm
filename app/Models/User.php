@@ -420,7 +420,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     public function scopeMostSolutions(Builder $query, ?int $inLastDays = null): Builder
     {
         return $query->withCount(['replyAble as solutions_count' => function ($query) use ($inLastDays) {
-            $query->where('replyable_type', 'threads')
+            $query->where('replyable_type', 'thread')
                 ->join('threads', 'threads.solution_reply_id', '=', 'replies.id');
 
             if ($inLastDays) {
