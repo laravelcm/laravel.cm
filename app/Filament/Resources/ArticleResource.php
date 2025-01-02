@@ -7,7 +7,6 @@ namespace App\Filament\Resources;
 use App\Actions\Article\ApprovedArticleAction;
 use App\Filament\Resources\ArticleResource\Pages;
 use App\Models\Article;
-use Awcodes\FilamentBadgeableColumn\Components\Badge;
 use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\MaxWidth;
