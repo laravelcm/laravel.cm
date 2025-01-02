@@ -14,8 +14,8 @@ final class InactiveDiscussionsComposer
     {
         $discussions = Cache::remember(
             key: 'inactive_discussions',
-            ttl: now()->addDays(3),
-            callback: fn () => Discussion::noComments()->limit(5)->get()
+            ttl: now()->addWeek(),
+            callback: fn () => Discussion::with('user')->noComments()->limit(5)->get()
         );
 
         $view->with('discussions', $discussions);

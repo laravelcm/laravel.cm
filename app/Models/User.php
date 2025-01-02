@@ -117,6 +117,10 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'last_active_at' => 'datetime',
     ];
 
+    protected $with = [
+        'providers',
+    ];
+
     public function hasProvider(string $provider): bool
     {
         foreach ($this->providers as $p) {

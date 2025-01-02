@@ -19,14 +19,6 @@ final class Home extends Component
     {
         $ttl = now()->addDays(2);
 
-        // @phpstan-ignore-next-line
-        seo()
-            ->description(__('pages/home.description'))
-            ->twitterDescription(__('pages/home.description'))
-            ->image(asset('/images/socialcard.png'))
-            ->twitterSite('laravelcm')
-            ->withUrl();
-
         return view('livewire.pages.home', [
             'plans' => Cache::remember(
                 key: 'plans',
