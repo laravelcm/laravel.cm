@@ -59,7 +59,7 @@ final class UserResource extends Resource
                     ->placeholder('N/A')
                     ->date(),
                 Tables\Columns\TextColumn::make(name: 'created_at')
-                    ->label(__('use.inscription'))
+                    ->label(__('user.inscription'))
                     ->date(),
             ])
             ->filters([
@@ -127,6 +127,7 @@ final class UserResource extends Resource
                             Notification::make()
                                 ->warning()
                                 ->title(__('actions.delete_none'))
+                                ->duration(5000)
                                 ->body(__('actions.delete_none_description'))
                                 ->send();
 
@@ -140,6 +141,7 @@ final class UserResource extends Resource
                         Notification::make()
                             ->success()
                             ->title(__('actions.delete_success'))
+                            ->duration(5000)
                             ->body(__('actions.delete_success_description'))
                             ->send();
                     })
