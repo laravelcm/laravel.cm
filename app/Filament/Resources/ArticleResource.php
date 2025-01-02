@@ -7,6 +7,7 @@ namespace App\Filament\Resources;
 use App\Actions\Article\ApprovedArticleAction;
 use App\Filament\Resources\ArticleResource\Pages;
 use App\Models\Article;
+use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
@@ -67,11 +68,30 @@ final class ArticleResource extends Resource
                     ->label('Soumission')
                     ->placeholder('N/A')
                     ->date(),
-                Tables\Columns\TextColumn::make('approved_at')
-                    ->label('Approbation')
-                    ->placeholder('N/A')
-                    ->date()
-                    ->toggleable(),
+                BadgeableColumn::make('status')
+                    ->label('Status')
+                    ->getStateUsing(function ($record) {
+                        if ($record->approved_at) {
+                            return [
+                                'label' => 'Approuvé',
+                                'date' => $record->approved_at->format('d/m/Y H:i'),
+                            ];
+                        }
+                        if ($record->declined_at) {
+                            return [
+                                'label' => 'Décliné',
+                                'date' => $record->declined_at->format('d/m/Y H:i'),
+                            ];
+                        }
+                    })
+                    ->formatStateUsing(function ($state) {
+                        if (is_array($state)) {
+                            return "{$state['label']} - {$state['date']}";
+                        }
+
+                        return $state;
+                    })
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('declined_at')
                     ->label('Décliner')
                     ->placeholder('N/A')
