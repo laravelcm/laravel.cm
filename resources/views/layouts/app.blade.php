@@ -13,12 +13,9 @@
         {{ isset($title) ? $title . ' | ' : '' }} {{ config('app.name') }}
         {{ is_active('home') ? '- '. __('pages/home.title') : '' }}
     </title>
-    <meta name="description" content="{{ __('pages/home.description') }}" />
+
     <meta property="og:site_name" content="Laravel.cm" />
-    <meta property="og:language" content="fr" />
-    <meta name="twitter:author" content="@laravelcm" />
-    <link rel="canonical" href="{{ $canonical ?? Request::url() }}" />
-    @include('partials._og')
+    <meta property="og:language" content="{{ str_replace('_', '-', app()->getLocale()) }}" />
     <x-seo::meta />
 
     <!-- Styles -->
