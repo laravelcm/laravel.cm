@@ -40,6 +40,16 @@ final class AppServiceProvider extends ServiceProvider
         $this->bootEloquentMorphs();
         $this->bootFilament();
 
+        // @phpstan-ignore-next-line
+        seo()
+            ->title(
+                default: __('pages/home.title'),
+                modify: fn (string $title) => $title.' | '.__('global.site_name')
+            )
+            ->description(default: __('global.site_description'))
+            ->image(default: fn () => asset('images/socialcard.png'))
+            ->twitterSite('@laravelcm');
+
         FilamentColor::register([
             'primary' => Color::Emerald,
             'danger' => Color::Red,

@@ -23,22 +23,20 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
 
     public Discussion $discussion;
 
-    public function mount(Discussion $discussion): void
+    public function mount(): void
     {
-        views($discussion)->cooldown(now()->addHours(2))->record();
+        views($this->discussion)->cooldown(now()->addHours(2))->record();
 
         // @phpstan-ignore-next-line
         seo()
-            ->title($discussion->title)
-            ->description($discussion->excerpt(100))
+            ->title($this->discussion->title)
+            ->description($this->discussion->excerpt(100))
             ->image(asset('images/socialcard.png'))
-            ->twitterTitle($discussion->title)
-            ->twitterDescription($discussion->excerpt(100))
-            ->twitterImage(asset('images/socialcard.png'))
-            ->twitterSite('laravelcm')
+            ->twitterTitle($this->discussion->title)
+            ->twitterDescription($this->discussion->excerpt(100))
             ->withUrl();
 
-        $this->discussion = $discussion->load('tags', 'replies', 'reactions', 'replies.user');
+        $this->discussion->load('tags', 'replies', 'reactions', 'replies.user', 'user');
     }
 
     public function editAction(): Action

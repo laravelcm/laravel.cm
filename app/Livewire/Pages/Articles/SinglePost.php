@@ -14,12 +14,12 @@ final class SinglePost extends Component
 {
     public Article $article;
 
-    public function mount(Article $article): void
+    public function mount(): void
     {
         /** @var User $user */
         $user = Auth::user();
 
-        $article = $article->load(['media', 'user'])->loadCount('views');
+        $article = $this->article->load(['media', 'user'])->loadCount('views');
 
         abort_unless(
             $article->isPublished() || ($user && $article->isAuthoredBy($user)) || ($user && $user->hasAnyRole(['admin', 'moderator'])), // @phpstan-ignore-line
@@ -42,7 +42,6 @@ final class SinglePost extends Component
             ->twitterTitle($article->title)
             ->twitterDescription($article->excerpt(150))
             ->twitterImage($image)
-            ->twitterSite('laravelcm')
             ->url($article->canonicalUrl());
 
         $this->article = $article;

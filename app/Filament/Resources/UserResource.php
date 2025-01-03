@@ -59,7 +59,7 @@ final class UserResource extends Resource
                     ->placeholder('N/A')
                     ->date(),
                 Tables\Columns\TextColumn::make(name: 'created_at')
-                    ->label(__('use.inscription'))
+                    ->label(__('user.inscription'))
                     ->date(),
             ])
             ->filters([
@@ -115,6 +115,38 @@ final class UserResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\BulkAction::make('delete_banned')
+                    ->label(__('Supprimer les utilisateurs bannis'))
+                    ->icon('heroicon-o-trash')
+                    ->color('danger')
+                    ->action(function ($records): void {
+
+                        $bannedUsers = $records->whereNotNull('banned_at');
+
+                        if ($bannedUsers->isEmpty()) {
+                            Notification::make()
+                                ->warning()
+                                ->title(__('actions.delete_none'))
+                                ->duration(5000)
+                                ->body(__('actions.delete_none_description'))
+                                ->send();
+
+                            return;
+                        }
+
+                        $bannedUsers->each(function (User $user): void {
+                            $user->delete();
+                        });
+
+                        Notification::make()
+                            ->success()
+                            ->title(__('actions.delete_success'))
+                            ->duration(5000)
+                            ->body(__('actions.delete_success_description'))
+                            ->send();
+                    })
+                    ->requiresConfirmation()
+                    ->deselectRecordsAfterCompletion(),
             ]);
     }
 
