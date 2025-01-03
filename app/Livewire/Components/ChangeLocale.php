@@ -11,7 +11,7 @@ use Livewire\Component;
 
 final class ChangeLocale extends Component
 {
-    public string $currentLocale;
+    public ?string $currentLocale = null;
 
     public function mount(): void
     {
