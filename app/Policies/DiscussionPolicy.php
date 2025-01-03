@@ -24,7 +24,7 @@ final class DiscussionPolicy
 
     public function update(User $user, Discussion $discussion): bool
     {
-        return $discussion->isAuthoredBy($user);
+        return $user->hasVerifiedEmail() && $discussion->isAuthoredBy($user);
     }
 
     public function delete(User $user, Discussion $discussion): bool

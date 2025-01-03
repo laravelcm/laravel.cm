@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Http\Middleware\LocaleMiddleware;
+use App\Http;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Spatie\Permission\Middleware\RoleMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -15,12 +16,12 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
-            'checkIfBanned' => \App\Http\Middleware\CheckIfBanned::class,
+            'role' => RoleMiddleware::class,
+            'checkIfBanned' => Http\Middleware\CheckIfBanned::class,
         ]);
         $middleware->web(append: [
-            LocaleMiddleware::class,
-            \App\Http\Middleware\TrackLastActivity::class,
+            Http\Middleware\LocaleMiddleware::class,
+            Http\Middleware\TrackLastActivity::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

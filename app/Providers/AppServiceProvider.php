@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Http\Middleware;
 use App\Http\Resources\ReplyResource;
 use App\Models\Article;
 use App\Models\Discussion;
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Livewire\Livewire;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -50,12 +52,10 @@ final class AppServiceProvider extends ServiceProvider
             ->image(default: fn () => asset('images/socialcard.png'))
             ->twitterSite('@laravelcm');
 
-        FilamentColor::register([
-            'primary' => Color::Emerald,
-            'danger' => Color::Red,
-            'info' => Color::Blue,
-            'success' => Color::Green,
-            'warning' => Color::Amber,
+        Livewire::addPersistentMiddleware([
+            Middleware\CheckIfBanned::class,
+            Middleware\LocaleMiddleware::class,
+            Middleware\TrackLastActivity::class,
         ]);
 
         ReplyResource::withoutWrapping();
@@ -98,6 +98,14 @@ final class AppServiceProvider extends ServiceProvider
 
     public function bootFilament(): void
     {
+        FilamentColor::register([
+            'primary' => Color::Emerald,
+            'danger' => Color::Red,
+            'info' => Color::Blue,
+            'success' => Color::Green,
+            'warning' => Color::Amber,
+        ]);
+
         FilamentIcon::register([
             'panels::pages.dashboard.navigation-item' => 'untitledui-home-line',
             'actions::delete-action' => 'untitledui-trash-03',
@@ -122,9 +130,10 @@ final class AppServiceProvider extends ServiceProvider
     public function registerLocaleDate(): void
     {
         date_default_timezone_set('Africa/Douala');
+
         setlocale(LC_TIME, 'fr_FR', 'fr', 'FR', 'French', 'fr_FR.UTF-8');
         setlocale(LC_ALL, 'fr_FR', 'fr', 'FR', 'French', 'fr_FR.UTF-8');
 
-        Carbon::setLocale('fr');
+        Carbon::setLocale(app()->getLocale());
     }
 }

@@ -27,6 +27,7 @@ final class ChangeLocale extends Component
         }
 
         $this->currentLocale = $locale;
+
         app()->setLocale($locale);
         session()->put('locale', $locale);
 

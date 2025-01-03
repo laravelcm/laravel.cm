@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\TransactionStatus;
+use App\Models\Traits\HasProfilePhoto;
+use App\Models\Traits\HasSettings;
+use App\Models\Traits\HasUsername;
+use App\Models\Traits\Reacts;
 use App\Observers\UserObserver;
-use App\Traits\HasProfilePhoto;
-use App\Traits\HasSettings;
-use App\Traits\HasUsername;
-use App\Traits\Reacts;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
@@ -23,7 +23,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
@@ -381,14 +380,6 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
             $query->has('threads')
                 ->orHas('replyAble');
         });
-    }
-
-    /**
-     * Route notifications for the Slack channel.
-     */
-    public function routeNotificationForSlack(Notification $notification): string
-    {
-        return config('lcm.slack.web_hook');
     }
 
     public function replies(): Collection

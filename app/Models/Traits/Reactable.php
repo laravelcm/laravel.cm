@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Traits;
+namespace App\Models\Traits;
 
 use App\Models\Reaction;
 use App\Models\User;
