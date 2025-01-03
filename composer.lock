@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b11f598bdc899a012175d5a089c602c",
+    "content-hash": "a3636679f84faa766e6baa0815427da1",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -13984,16 +13984,16 @@
         },
         {
             "name": "vormkracht10/filament-mails",
-            "version": "v1.0.5",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vormkracht10/filament-mails.git",
-                "reference": "ab13d2b90daad93943248f7888808f78a2ab6d09"
+                "reference": "c2c72b77e303d594c97c6a9b1c58dfec8b61d931"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vormkracht10/filament-mails/zipball/ab13d2b90daad93943248f7888808f78a2ab6d09",
-                "reference": "ab13d2b90daad93943248f7888808f78a2ab6d09",
+                "url": "https://api.github.com/repos/vormkracht10/filament-mails/zipball/c2c72b77e303d594c97c6a9b1c58dfec8b61d931",
+                "reference": "c2c72b77e303d594c97c6a9b1c58dfec8b61d931",
                 "shasum": ""
             },
             "require": {
@@ -14059,7 +14059,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-27T09:22:16+00:00"
+            "time": "2025-01-03T13:17:15+00:00"
         },
         {
             "name": "vormkracht10/laravel-mails",
@@ -17804,7 +17804,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -17812,6 +17812,6 @@
         "ext-fileinfo": "*",
         "ext-json": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
