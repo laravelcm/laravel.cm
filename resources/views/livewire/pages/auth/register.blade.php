@@ -31,6 +31,8 @@ new class extends Component {
             ],
         ]);
 
+        $validated['password'] = Hash::make($validated['password']);
+
         $user = User::query()->create($validated);
 
         $user->assignRole('user');
@@ -171,13 +173,13 @@ new class extends Component {
                         </div>
 
                         <div>
-                            <x-buttons.primary type="submit" class="group w-full relative">
+                            <x-buttons.submit wire:loading.attr="data-loading" class="group w-full relative">
                                 <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                                     <x-untitledui-lock class="size-5 text-green-500 group-hover:text-green-600"
                                                        aria-hidden="true" />
                                 </span>
                                 {{ __('pages/auth.register.submit') }}
-                            </x-buttons.primary>
+                            </x-buttons.submit>
                         </div>
                     </form>
                     @livewireRecaptcha
