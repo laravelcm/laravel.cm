@@ -22,6 +22,7 @@ final class MostLikedPostsChart extends ChartWidget
     {
         $articles = Article::published()
             ->popular()
+            ->limit(10)
             ->get();
 
         return [

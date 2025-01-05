@@ -25,6 +25,7 @@ final class MostViewedPostsChart extends ChartWidget
             ->published()
             ->orderByDesc('views_count')
             ->orderByDesc('published_at')
+            ->limit(10)
             ->get();
 
         return [
