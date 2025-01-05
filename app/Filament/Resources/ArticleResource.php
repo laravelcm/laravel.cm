@@ -7,7 +7,6 @@ namespace App\Filament\Resources;
 use App\Actions\Article\ApprovedArticleAction;
 use App\Filament\Resources\ArticleResource\Pages;
 use App\Models\Article;
-use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
@@ -68,29 +67,30 @@ final class ArticleResource extends Resource
                     ->label('Soumission')
                     ->placeholder('N/A')
                     ->date(),
-                BadgeableColumn::make('status')
-                    ->label('Status')
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Statut')
+                    ->badge()
                     ->getStateUsing(function ($record) {
                         if ($record->approved_at) {
-                            return [
-                                'label' => 'Approuvé',
-                                'date' => $record->approved_at->format('d/m/Y H:i'),
-                            ];
-                        }
-                        if ($record->declined_at) {
-                            return [
-                                'label' => 'Décliné',
-                                'date' => $record->declined_at->format('d/m/Y H:i'),
-                            ];
-                        }
-                    })
-                    ->formatStateUsing(function ($state) {
-                        if (is_array($state)) {
-                            return "{$state['label']} - {$state['date']}";
+                            return 'Approuvé - '.$record->approved_at->format('d/m/Y');
                         }
 
-                        return $state;
+                        if ($record->declined_at) {
+                            return 'Décliné - '.$record->declined_at->format('d/m/Y');
+                        }
+
+                        return 'En attente';
                     })
+                    ->colors([
+                        'success' => fn ($state) => str_contains($state, 'Approuvé'),
+                        'danger' => fn ($state) => str_contains($state, 'Décliné'),
+                        'warning' => fn ($state) => $state === 'En attente',
+                    ])
+                    ->icon(
+                        fn ($state) => str_contains($state, 'Approuvé') ? 'heroicon-s-check-circle' :
+                        (str_contains($state, 'Décliné') ? 'heroicon-s-x-mark-circle' :
+                        ($state === 'En attente' ? 'heroicon-s-clock' : null))
+                    )
                     ->sortable(),
                 Tables\Columns\TextColumn::make('declined_at')
                     ->label('Décliner')
