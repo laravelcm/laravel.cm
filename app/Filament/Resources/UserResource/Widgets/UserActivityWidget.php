@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 final class UserActivityWidget extends ChartWidget
 {
-    protected static ?string $heading = 'Most active users this week';
+    protected static ?string $heading = 'Les utilisateurs les plus actifs cette semaine';
 
     protected int|string|array $columnSpan = 'full';
 
@@ -32,7 +32,7 @@ final class UserActivityWidget extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Total Activities',
+                    'label' => 'Total des activités',
                     'data' => $users->pluck('activities_count')->toArray(),
                 ],
             ],

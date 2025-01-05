@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 final class MostViewedPostsChart extends ChartWidget
 {
-    protected static ?string $heading = 'Most Viewed Posts';
+    protected static ?string $heading = 'Article le plus vu cette semaine';
 
     protected static ?string $maxHeight = '200px';
 
@@ -25,13 +25,12 @@ final class MostViewedPostsChart extends ChartWidget
             ->published()
             ->orderByDesc('views_count')
             ->orderByDesc('published_at')
-            ->limit(10)
             ->get();
 
         return [
             'datasets' => [
                 [
-                    'label' => 'Most viewed post',
+                    'label' => 'Article le plus vu',
                     'data' => $articles->pluck('views_count')->toArray(),
                 ],
             ],

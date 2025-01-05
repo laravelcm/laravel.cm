@@ -12,7 +12,7 @@ use Flowframe\Trend\TrendValue;
 
 final class UserStatsOverview extends BaseWidget
 {
-    protected ?string $heading = 'Account';
+    protected ?string $heading = 'Compte';
 
     protected function getColumns(): int
     {
@@ -22,7 +22,7 @@ final class UserStatsOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Total Users', User::query()->count())
+            Stat::make('Total des utilisateurs', User::query()->count())
                 ->chart(
                     Trend::query(User::query())
                         ->between(
@@ -34,11 +34,11 @@ final class UserStatsOverview extends BaseWidget
                         ->map(fn (TrendValue $value) => $value->aggregate)
                         ->toArray()
                 )
-                ->description('Total number of accounts')
+                ->description('Nombre total de comptes')
                 ->icon('heroicon-o-user')
                 ->color('primary'),
 
-            Stat::make('Account created this week', User::query()
+            Stat::make('Compte créé cette semaine', User::query()
                 ->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])
                 ->count())
                 ->chart(
@@ -52,11 +52,11 @@ final class UserStatsOverview extends BaseWidget
                         ->map(fn (TrendValue $value) => $value->aggregate)
                         ->toArray()
                 )
-                ->description('Total number of accounts created this week')
+                ->description('Nombre de comptes créés cette semaine')
                 ->icon('heroicon-o-user')
                 ->color('primary'),
 
-            Stat::make('Verified Users', User::VerifiedUsers()->count())
+            Stat::make('Utilisateurs vérifiés', User::VerifiedUsers()->count())
                 ->chart(
                     Trend::query(User::VerifiedUsers())
                         ->between(
@@ -68,11 +68,11 @@ final class UserStatsOverview extends BaseWidget
                         ->map(fn (TrendValue $value) => $value->aggregate)
                         ->toArray()
                 )
-                ->description('Total number of accounts verified')
+                ->description('Nombre total de comptes vérifiés')
                 ->icon('heroicon-o-check-badge')
                 ->color('primary'),
 
-            Stat::make('Unverified Users', User::UnVerifiedUsers()->count())
+            Stat::make('Utilisateurs non vérifiés', User::UnVerifiedUsers()->count())
                 ->chart(
                     Trend::query(User::UnVerifiedUsers())
                         ->between(
@@ -84,7 +84,7 @@ final class UserStatsOverview extends BaseWidget
                         ->map(fn (TrendValue $value) => $value->aggregate)
                         ->toArray()
                 )
-                ->description('Total number of accounts unverified')
+                ->description('Nombre de comptes non vérifiés')
                 ->icon('heroicon-o-x-mark')
                 ->color('warning'),
         ];

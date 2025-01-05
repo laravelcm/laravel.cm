@@ -11,7 +11,7 @@ use Flowframe\Trend\TrendValue;
 
 final class UserChartWidget extends ChartWidget
 {
-    protected static ?string $heading = 'Account Creation';
+    protected static ?string $heading = 'Création de compte';
 
     protected int|string|array $columnSpan = 'full';
 
@@ -64,7 +64,7 @@ final class UserChartWidget extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Account created',
+                    'label' => 'Compte créé',
                     'data' => $data->map(fn (TrendValue $value) => $value->aggregate), // @phpstan-ignore-line
                 ],
             ],

@@ -14,7 +14,7 @@ final class ArticleStatsOverview extends BaseWidget
 {
     protected static ?string $pollingInterval = null;
 
-    protected ?string $heading = 'Posts';
+    protected ?string $heading = 'Article';
 
     protected function getColumns(): int
     {
@@ -27,7 +27,7 @@ final class ArticleStatsOverview extends BaseWidget
         $currentWeekEnd = now()->endOfWeek();
 
         return [
-            Stat::make('Total Post', Article::query()->published()->count())
+            Stat::make('Total Article', Article::query()->published()->count())
                 ->icon('heroicon-o-newspaper')
                 ->chart(
                     Trend::query(Article::query()->published())
@@ -37,10 +37,10 @@ final class ArticleStatsOverview extends BaseWidget
                         )->perDay()
                         ->count()
                         ->map(fn (TrendValue $value) => $value->aggregate)->toArray()
-                )->description(__('Total Post')),
+                )->description(__('Total des articles postés')),
 
             Stat::make(
-                'Recent post',
+                'Article récent publié',
                 Article::query()
                     ->recent()
                     ->whereBetween('created_at', [
@@ -60,7 +60,7 @@ final class ArticleStatsOverview extends BaseWidget
                         ->toArray()
                 )->icon('heroicon-o-newspaper')
                 ->color('primary')
-                ->description('Total Posts of the week'),
+                ->description('Total des articles Postés de la semaine'),
         ];
     }
 }
