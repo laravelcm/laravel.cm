@@ -7,6 +7,8 @@ namespace App\Filament\Resources;
 use App\Actions\Article\ApprovedArticleAction;
 use App\Filament\Resources\ArticleResource\Pages;
 use App\Models\Article;
+use Awcodes\FilamentBadgeableColumn\Components\Badge;
+use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
@@ -67,16 +69,39 @@ final class ArticleResource extends Resource
                     ->label('Soumission')
                     ->placeholder('N/A')
                     ->date(),
-                Tables\Columns\TextColumn::make('approved_at')
-                    ->label('Approbation')
-                    ->placeholder('N/A')
-                    ->date()
-                    ->toggleable(),
-                Tables\Columns\TextColumn::make('declined_at')
-                    ->label('Décliner')
-                    ->placeholder('N/A')
-                    ->date()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                BadgeableColumn::make('status')
+                    ->label('Statut')
+                    ->getStateUsing(function ($record) {
+                        if ($record->approved_at) {
+                            return $record->approved_at->format('d/m/Y');
+                        }
+
+                        if ($record->declined_at) {
+                            return $record->declined_at->format('d/m/Y');
+                        }
+
+                        return 'depuis le '.$record->submitted_at->format('d/m/Y');
+                    })
+                    ->prefixBadges(function ($record) {
+                        if ($record->approved_at) {
+                            return [
+                                Badge::make('Approuvé')
+                                    ->color('success'),
+                            ];
+                        }
+
+                        if ($record->declined_at) {
+                            return [
+                                Badge::make('Décliné')
+                                    ->color('danger'),
+                            ];
+                        }
+
+                        return [Badge::make('En attente')
+                            ->color('warning')];
+                    })
+                    ->searchable()
+                    ->sortable(),
             ])
             ->actions([
                 ActionGroup::make([
