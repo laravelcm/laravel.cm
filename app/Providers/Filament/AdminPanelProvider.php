@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\ArticleResource\Widgets\ArticleStatsOverview;
+use App\Filament\Resources\ArticleResource\Widgets\MostLikedPostsChart;
+use App\Filament\Resources\ArticleResource\Widgets\MostViewedPostsChart;
+use App\Filament\Resources\UserResource\Widgets\UserActivityWidget;
+use App\Filament\Resources\UserResource\Widgets\UserChartWidget;
+use App\Filament\Resources\UserResource\Widgets\UserStatsOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -12,7 +18,6 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\SpatieLaravelTranslatablePlugin;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -46,8 +51,12 @@ final class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                UserStatsOverview::class,
+                UserChartWidget::class,
+                UserActivityWidget::class,
+                ArticleStatsOverview::class,
+                MostLikedPostsChart::class,
+                MostViewedPostsChart::class,
             ])
             ->plugins([
                 SpatieLaravelTranslatablePlugin::make()
