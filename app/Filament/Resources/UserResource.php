@@ -10,7 +10,9 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Awcodes\FilamentBadgeableColumn\Components\Badge;
 use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
+use Filament\Forms;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -26,6 +28,31 @@ final class UserResource extends Resource
     public static function getNavigationGroup(): string
     {
         return __('Management');
+    }
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->columnSpan('full')
+                    ->disabled(),
+                Forms\Components\TextInput::make('username')
+                    ->required()
+                    ->columnSpan('full')
+                    ->disabled(),
+                Forms\Components\TextInput::make('email')
+                    ->required()
+                    ->columnSpan('full')
+                    ->disabled(),
+                Forms\Components\Select::make('roles')
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->columnSpan('full')
+                    ->preload()
+                    ->searchable(),
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -110,6 +137,10 @@ final class UserResource extends Resource
                             ->send();
                     })
                     ->requiresConfirmation(),
+
+                Tables\Actions\EditAction::make()
+                    ->label(__('actions.edit'))
+                    ->color('warning'),
 
                 Tables\Actions\DeleteAction::make(),
             ])

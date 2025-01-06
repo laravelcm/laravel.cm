@@ -94,4 +94,22 @@ describe(UserResource::class, function (): void {
 
         $this->assertGuest();
     });
+
+    it('Admin can update user Role', function (): void {
+        $user = User::factory()->create();
+        $moderatorRole = Role::create(['name' => 'moderator']);
+        Livewire::test(ListUsers::class)
+            ->callTableAction(\Filament\Tables\Actions\EditAction::class, $user, data: [
+                'name' => $user->name,
+                'email' => $user->email,
+                'roles' => [$moderatorRole->id],
+            ])
+            ->assertHasNoTableActionErrors();
+
+        $user->refresh();
+
+        $user->syncRoles([$moderatorRole->name]);
+
+        expect($user->hasRole('moderator'))->toBeTrue();
+    });
 })->group('users');
