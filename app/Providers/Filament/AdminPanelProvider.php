@@ -10,6 +10,7 @@ use App\Filament\Resources\ArticleResource\Widgets\MostViewedPostsChart;
 use App\Filament\Resources\UserResource\Widgets\UserActivityWidget;
 use App\Filament\Resources\UserResource\Widgets\UserChartWidget;
 use App\Filament\Resources\UserResource\Widgets\UserStatsOverview;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -59,6 +60,7 @@ final class AdminPanelProvider extends PanelProvider
                 MostViewedPostsChart::class,
             ])
             ->plugins([
+                FilamentShieldPlugin::make(),
                 SpatieLaravelTranslatablePlugin::make()
                     ->defaultLocales(['fr', 'en']),
                 FilamentMailsPlugin::make(),
