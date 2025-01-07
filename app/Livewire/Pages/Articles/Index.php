@@ -6,15 +6,17 @@ namespace App\Livewire\Pages\Articles;
 
 use App\Models\Article;
 use App\Models\Tag;
-use App\Traits\WithInfiniteScroll;
 use App\Traits\WithLocale;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 final class Index extends Component
 {
-    use WithInfiniteScroll;
     use WithLocale;
+    use WithoutUrlPagination;
+    use WithPagination;
 
     public function mount(): void
     {
@@ -31,7 +33,7 @@ final class Index extends Component
                 ->published()
                 ->notPinned()
                 ->forLocale($this->locale)
-                ->paginate($this->perPage),
+                ->simplePaginate(5),
             'tags' => Tag::query()->whereHas('articles', function ($query): void {
                 $query->published();
             })->orderBy('name')->get(),

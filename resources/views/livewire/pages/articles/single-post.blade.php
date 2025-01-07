@@ -108,12 +108,21 @@
             </div>
 
             <div class="lg:grid lg:grid-cols-4 lg:gap-16">
-                <div class="overflow-x-hidden lg:col-span-3">
+                <div class="overflow-hidden lg:col-span-3">
                     <x-markdown-content
                         id="content"
                         class="prose prose-green text-gray-500 dark:text-gray-400 dark:prose-invert lg:max-w-none"
                         :content="$article->body"
                     />
+
+                    <div class="relative inline-flex mt-5 space-x-4">
+                        <livewire:components.reactions
+                            wire:key="{{ $article->id }}"
+                            :model="$article"
+                            :with-place-holder="false"
+                            :with-background="false"
+                        />
+                    </div>
                 </div>
                 <div class="hidden lg:block">
                     <x-sticky-content class="space-y-10">
