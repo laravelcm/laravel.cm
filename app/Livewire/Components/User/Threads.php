@@ -68,12 +68,11 @@ final class Threads extends Component implements HasActions, HasForms
             ->requiresConfirmation()
             ->action(function (array $arguments): void {
                 /** @var Thread $thread */
-                $thread = Thread::query()->find($arguments['thread']);
+                $thread = Thread::query()->find($arguments['id']);
 
                 $this->authorize('delete', $thread);
 
                 app(DeleteThreadAction::class)->execute($thread);
-
                 Notification::make()
                     ->success()
                     ->title(__('notifications.thread.deleted'))
