@@ -33,7 +33,8 @@ final class Index extends Component
                 ->published()
                 ->notPinned()
                 ->forLocale($this->locale)
-                ->simplePaginate(20),
+                ->simplePaginate(21),
+
             'tags' => Tag::query()->whereHas('articles', function ($query): void {
                 $query->published();
             })->orderBy('name')->get(),

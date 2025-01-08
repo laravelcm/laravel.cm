@@ -119,7 +119,7 @@
             @endforeach
         </div>
 
-        <div class="mt-4">
+        <div class="mt-10">
             {{ $articles->links() }}
         </div>
     </x-container>
