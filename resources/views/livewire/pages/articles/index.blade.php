@@ -119,11 +119,8 @@
             @endforeach
         </div>
 
-        @if ($articles->hasMorePages())
-            <p x-intersect="@this.call('loadMore')" class="mt-10 flex items-center justify-center gap-2">
-                <x-loader class="text-primary-600" aria-hidden="true" />
-                {{ __('global.loading') }}
-            </p>
-        @endif
+        <div class="mt-4">
+            {{ $articles->links() }}
+        </div>
     </x-container>
 </div>
