@@ -42,7 +42,6 @@
                             :href="route('forum.index', ['popular' => true])"
                             :active="request()->getUri() === route('forum.index', ['popular' => true])"
                             icon="untitledui-heart"
-                            class="hidden"
                         >
                             {{ __('pages/forum.navigation.popular') }}
                         </x-nav.forum-link>
@@ -64,7 +63,6 @@
                             :href="route('forum.index', ['no-replies' => true])"
                             :active="request()->getUri() === route('forum.index', ['no-replies' => true])"
                             icon="untitledui-message-x-square"
-                            class="hidden"
                         >
                             {{ __('pages/forum.navigation.no_reply') }}
                         </x-nav.forum-link>
