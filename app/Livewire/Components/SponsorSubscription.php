@@ -143,6 +143,7 @@ final class SponsorSubscription extends Component implements HasForms
                         'reference' => $payload->transaction->merchant_reference,
                         'customer' => $payload->transaction->customer,
                         'name' => $name,
+                        'email' => $email,
                         'laravel_cm_id' => Auth::id() ?? null,
                         'profile' => data_get($this->form->getState(), 'profile'),
                     ],
