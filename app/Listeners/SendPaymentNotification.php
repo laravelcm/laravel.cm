@@ -18,8 +18,6 @@ final readonly class SendPaymentNotification
     {
         /**
          * @var array $merchant
-         *            - 'email' (string)
-         *            - 'name' (string)
          */
         $merchant = $event->transaction->getMetadata('merchant');
 

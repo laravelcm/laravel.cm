@@ -32,9 +32,4 @@ final class SendSponsorThanksMail extends Mailable
             ],
         );
     }
-
-    public function attachments(): array
-    {
-        return [];
-    }
 }
