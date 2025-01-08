@@ -80,7 +80,7 @@ final class ArticleResource extends Resource
                             return $record->declined_at->format('d/m/Y');
                         }
 
-                        return 'depuis le '.$record->submitted_at->format('d/m/Y');
+                        return '';
                     })
                     ->prefixBadges(function ($record) {
                         if ($record->approved_at) {
@@ -97,8 +97,7 @@ final class ArticleResource extends Resource
                             ];
                         }
 
-                        return [Badge::make('En attente')
-                            ->color('warning')];
+                        return '';
                     })
                     ->searchable()
                     ->sortable(),
