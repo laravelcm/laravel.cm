@@ -147,7 +147,7 @@
                                     </div>
                                     <div class="mt-6 flex flex-col space-y-4">
                                         <x-nav.item
-                                            :href="route('profile')"
+                                            :href="route('profile', ['user' => $user->username])"
                                             :title="__('global.navigation.profile')"
                                         />
                                         <x-nav.item

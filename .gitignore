@@ -5,6 +5,7 @@ npm-debug.log
 yarn-error.log
 yarn.lock
 package-json.lock
+composer.lock
 pnpm-lock.yml
 /vendor
 composer.phar
