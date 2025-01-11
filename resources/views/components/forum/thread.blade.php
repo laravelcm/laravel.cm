@@ -6,7 +6,7 @@
     <x-forum.thread-channels :thread="$thread" />
 
     <div class="flex items-center gap-4">
-        <h2 id="question-title-{{ $thread->id }}" class="truncate text-xl font-medium text-gray-900 dark:text-white lg:text-xl">
+        <h2 id="question-title-{{ $thread->id }}" class="truncate text-lg font-heading/7 font-semibold text-gray-900 dark:text-white lg:text-xl">
             <x-link :href="route('forum.show', $thread)" class="hover:underline">
                 {{ $thread->subject() }}
             </x-link>
