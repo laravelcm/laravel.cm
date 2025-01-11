@@ -112,7 +112,7 @@
         </div>
     </div>
 
-    <x-container x-data x-intersect="@this.call('loadMore')" class="py-12 lg:py-16">
+    <x-container class="py-12 lg:py-16">
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-12">
             @foreach ($articles as $article)
                 <x-articles.card-author :article="$article" wire:key="{{ $article->slug }}" />

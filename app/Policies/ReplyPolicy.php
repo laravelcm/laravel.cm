@@ -14,7 +14,7 @@ final class ReplyPolicy
 
     public function manage(User $user, Reply $reply): bool
     {
-        return $reply->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+        return $reply->user_id === $user->id || $user->isModerator() || $user->isAdmin();
     }
 
     public function create(User $user): bool
@@ -24,17 +24,17 @@ final class ReplyPolicy
 
     public function update(User $user, Reply $reply): bool
     {
-        return $reply->isAuthoredBy($user) && $user->hasVerifiedEmail();
+        return $reply->user_id === $user->id && $user->hasVerifiedEmail();
     }
 
     public function delete(User $user, Reply $reply): bool
     {
-        return $reply->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+        return $reply->user_id === $user->id || $user->isModerator() || $user->isAdmin();
     }
 
     public function report(User $user, Reply $reply): bool
     {
-        return $user->hasVerifiedEmail() && ! $reply->isAuthoredBy($user);
+        return $user->hasVerifiedEmail() && $reply->user_id !== $user->id;
     }
 
     public function like(User $user, Reply $reply): bool

@@ -36,7 +36,7 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
             ->twitterDescription($this->discussion->excerpt(100))
             ->withUrl();
 
-        $this->discussion->load('tags', 'replies', 'reactions', 'replies.user', 'user');
+        $this->discussion->load('tags', 'replies', 'reactions', 'user', 'user.media');
     }
 
     public function editAction(): Action

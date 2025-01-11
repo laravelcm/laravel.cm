@@ -6,7 +6,7 @@
         $buttonClasses = 'inline-flex items-center justify-center size-6 rounded-full focus:outline-none';
     @endphp
 
-    @if ($model->getReactionsSummary()->isEmpty())
+    @if ($model->reactions->isEmpty())
         <button
             @click="showReactions = ! showReactions"
             class="group inline-flex items-center gap-2 text-sm leading-5 text-gray-500 dark:text-gray-400 hover:underline focus:outline-none"
@@ -37,12 +37,12 @@
                         aria-hidden="true"
                     />
                     <span class="text-xs text-gray-500 dark:text-gray-400">
-                        {{ $model->getReactionsSummary()->sum('count') }}
+                        {{ $model->reactions->count() }}
                     </span>
                 </div>
             @else
                 <div class="flex items-center justify-center space-x-2">
-                    @foreach ($model->getReactionsSummary() as $reaction)
+                    @foreach ($model->reactions as $reaction)
                         <img
                             loading="lazy"
                             class="size-4"
@@ -52,7 +52,7 @@
                     @endforeach
 
                     <span class="ml-3 text-sm font-medium text-green-500">
-                        {{ $model->getReactionsSummary()->sum('count') }}
+                        {{ $model->reactions->count() }}
                     </span>
                 </div>
             @endif

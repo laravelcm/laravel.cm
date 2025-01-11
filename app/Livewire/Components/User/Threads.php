@@ -32,7 +32,7 @@ final class Threads extends Component implements HasActions, HasForms
     #[Computed]
     public function threads(): LengthAwarePaginator
     {
-        return Thread::with('user')
+        return Thread::with('channels', 'solutionReply', 'replies')
             ->scopes('withViewsCount')
             ->where('user_id', Auth::id())
             ->latest()

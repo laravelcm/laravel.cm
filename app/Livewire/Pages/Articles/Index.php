@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Traits\WithLocale;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
@@ -26,7 +27,7 @@ final class Index extends Component
     public function render(): View
     {
         return view('livewire.pages.articles.index', [
-            'articles' => Article::with(['tags', 'user', 'user.transactions']) // @phpstan-ignore-line
+            'articles' => Article::with(['tags', 'user', 'user.transactions', 'user.media', 'media']) // @phpstan-ignore-line
                 ->withCount(['views', 'reactions'])
                 ->orderByDesc('sponsored_at')
                 ->orderByDesc('published_at')
@@ -35,9 +36,13 @@ final class Index extends Component
                 ->forLocale($this->locale)
                 ->simplePaginate(21),
 
-            'tags' => Tag::query()->whereHas('articles', function ($query): void {
-                $query->published();
-            })->orderBy('name')->get(),
+            'tags' => Cache::remember(
+                key: 'articles.tags',
+                ttl: now()->addWeek(),
+                callback: fn () => Tag::query()->whereHas('articles', function ($query): void {
+                    $query->published();
+                })->orderBy('name')->get()
+            ),
         ])
             ->title(__('pages/article.title'));
     }
