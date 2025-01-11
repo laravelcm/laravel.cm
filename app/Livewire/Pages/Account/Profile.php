@@ -4,30 +4,68 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages\Account;
 
+use App\Models\Article;
+use App\Models\Discussion;
+use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 final class Profile extends Component
 {
     public User $user;
 
-    public function render(): View
+    #[Computed(persist: true)]
+    public function articles(): Collection
     {
-        return view('livewire.pages.account.profile', [
-            'articles' => $this->user->articles() // @phpstan-ignore-line
-                ->recent()
+        return Cache::remember(
+            key: 'articles.'.$this->user->id,
+            ttl: now()->addDays(3),
+            callback: fn () => Article::with('media', 'tags')
+                ->select('id', 'title', 'slug', 'body', 'published_at')
+                ->whereBelongsTo($this->user)
                 ->published()
+                ->recent()
                 ->limit(5)
-                ->get(),
-            'threads' => $this->user->threads()
+                ->get()
+        );
+    }
+
+    #[Computed(persist: true)]
+    public function threads(): Collection
+    {
+        return Cache::remember(
+            key: 'threads.'.$this->user->id,
+            ttl: now()->addDays(3),
+            callback: fn () => Thread::with('channels')
+                ->withCount('replies')
+                ->whereBelongsTo($this->user)
                 ->orderByDesc('created_at')
                 ->limit(5)
-                ->get(),
-            'discussions' => $this->user->discussions()
+                ->get()
+        );
+    }
+
+    #[Computed(persist: true)]
+    public function discussions(): Collection
+    {
+        return Cache::remember(
+            key: 'discussions.'.$this->user->id,
+            ttl: now()->addDays(3),
+            callback: fn () => Discussion::with('tags')
+                ->withCount('replies', 'reactions')
+                ->whereBelongsTo($this->user)
                 ->limit(5)
-                ->get(),
-        ])
+                ->get()
+        );
+    }
+
+    public function render(): View
+    {
+        return view('livewire.pages.account.profile')
             ->title($this->user->username.' ( '.$this->user->name.')');
     }
 }

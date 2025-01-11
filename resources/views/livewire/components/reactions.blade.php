@@ -26,7 +26,7 @@
             @click="showReactions = ! showReactions"
             @class([
                 'group relative flex items-center h-8 cursor-pointer items-center justify-between',
-                'rounded-lg bg-white px-3 py-2 shadow hover:bg-gray-50' => $withBackground,
+                'rounded-lg bg-white px-3 py-2 shadow hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700' => $withBackground,
             ])
         >
             @if($direction === 'vertical')

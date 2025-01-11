@@ -46,7 +46,7 @@
     <div class="mt-6 lg:mb-12">
         <div class="space-y-4">
             @foreach ($threads as $thread)
-                <x-forum.thread :thread="$thread" />
+                <x-forum.thread :thread="$thread" wire:key="{{ $thread->slug }}" />
             @endforeach
         </div>
 

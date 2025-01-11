@@ -41,7 +41,7 @@
                         <x-nav.forum-link
                             :href="route('forum.index', ['popular' => true])"
                             :active="request()->getUri() === route('forum.index', ['popular' => true])"
-                            icon="untitledui-heart"
+                            icon="phosphor-heart-duotone"
                         >
                             {{ __('pages/forum.navigation.popular') }}
                         </x-nav.forum-link>
@@ -62,7 +62,7 @@
                         <x-nav.forum-link
                             :href="route('forum.index', ['no-replies' => true])"
                             :active="request()->getUri() === route('forum.index', ['no-replies' => true])"
-                            icon="untitledui-message-x-square"
+                            icon="phosphor-chat-teardrop-slash-duotone"
                         >
                             {{ __('pages/forum.navigation.no_reply') }}
                         </x-nav.forum-link>
