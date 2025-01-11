@@ -15,7 +15,9 @@ final class TopContributorsComposer
         $topContributors = Cache::remember(
             key: 'contributors',
             ttl: now()->addWeek(),
-            callback: fn () => User::with('media')->scopes('topContributors')
+            callback: fn () => User::with('media')
+                ->withCount('discussions')
+                ->scopes('topContributors')
                 ->get()
                 ->filter(fn (User $contributor) => $contributor->discussions_count >= 1)
                 ->take(5)
