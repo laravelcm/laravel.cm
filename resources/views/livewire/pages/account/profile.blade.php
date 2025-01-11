@@ -137,17 +137,17 @@
     </div>
 
     <x-container class="py-10 lg:pb-14">
-        <div class="grid gap-8 lg:grid-cols-3 lg:gap-x-16">
+        <div class="lg:grid lg:grid-cols-3 lg:gap-x-16">
             <div class="lg:col-span-2">
                 <div :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
-                    <x-user.articles :user="$user" :articles="$articles" />
+                    <x-user.articles :user="$user" :articles="$this->articles" />
                 </div>
                 <div x-cloak :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
-                    <x-user.discussions :user="$user" :discussions="$discussions" />
+                    <x-user.discussions :user="$user" :discussions="$this->discussions" />
                 </div>
                 <div x-cloak :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
-                    <x-user.threads :user="$user" :threads="$threads" />
                 </div>
+                <x-user.threads :user="$user" :threads="$this->threads" />
             </div>
             <aside class="hidden lg:block">
                 <livewire:components.user.activities :user="$user" />
