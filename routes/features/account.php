@@ -10,4 +10,4 @@ Route::middleware(['auth', 'checkIfBanned', 'verified'])->group(function (): voi
     Route::get('/dashboard', Account\Dashboard::class)->name('dashboard');
 });
 
-Route::get('/@{user:username?}', Account\Profile::class)->name('profile');
+Route::get('/@{user:username}', Account\Profile::class)->name('profile');

@@ -32,7 +32,7 @@ final class Discussions extends Component implements HasActions, HasForms
     #[Computed]
     public function discussions(): LengthAwarePaginator
     {
-        return Discussion::with('user')
+        return Discussion::with('tags', 'replies')
             ->where('user_id', Auth::id())
             ->latest()
             ->paginate(10);

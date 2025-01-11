@@ -64,7 +64,7 @@
                     <h1 class="mt-4 font-heading font-extrabold tracking-tight text-3xl text-gray-900 dark:text-white lg:text-5xl lg:leading-[3.5rem]">
                         {{ $article->title }}
                     </h1>
-                    <div class="mt-8 flex items-center justify-between gap-10">
+                    <div class="mt-8 md:flex items-center justify-between gap-10">
                         @if ($article->tags->isNotEmpty())
                             <div class="flex items-center gap-2">
                                 @foreach ($article->tags as $tag)
@@ -73,7 +73,7 @@
                             </div>
                         @endif
 
-                        <div class="relative text-sm/6 flex items-center gap-4">
+                        <div class="relative text-sm/6 flex mt-4 md:mt-0 items-center gap-4">
                             <x-link :href="route('profile', $article->user->username)" class="inline-flex items-center gap-2 text-gray-700 dark:text-gray-300">
                                 <x-user.avatar
                                     :user="$article->user"
@@ -108,12 +108,21 @@
             </div>
 
             <div class="lg:grid lg:grid-cols-4 lg:gap-16">
-                <div class="overflow-x-hidden lg:col-span-3">
+                <div class="overflow-hidden lg:col-span-3">
                     <x-markdown-content
                         id="content"
                         class="prose prose-green text-gray-500 dark:text-gray-400 dark:prose-invert lg:max-w-none"
                         :content="$article->body"
                     />
+
+                    <div class="relative inline-flex mt-5 space-x-4">
+                        <livewire:components.reactions
+                            wire:key="{{ $article->id }}"
+                            :model="$article"
+                            :with-place-holder="false"
+                            :with-background="false"
+                        />
+                    </div>
                 </div>
                 <div class="hidden lg:block">
                     <x-sticky-content class="space-y-10">

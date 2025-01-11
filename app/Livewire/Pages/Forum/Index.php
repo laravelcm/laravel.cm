@@ -39,6 +39,9 @@ final class Index extends Component
     #[Url(as: 'follow')]
     public ?string $subscribe = null;
 
+    #[Url]
+    public ?string $popular = null;
+
     public ?Channel $currentChannel = null;
 
     public string $search = '';
@@ -52,6 +55,18 @@ final class Index extends Component
         }
 
         $this->locale = config('app.locale');
+    }
+
+    protected function applyPopular(Builder $query): Builder
+    {
+        if ($this->popular) {
+            return $query // @phpstan-ignore-line
+                ->withCount('replies')
+                ->orderByDesc('replies_count')
+                ->OrderByViews();
+        }
+
+        return $query;
     }
 
     #[On('channelUpdated')]
@@ -140,13 +155,24 @@ final class Index extends Component
 
     protected function applyUnAnswer(Builder $query): Builder
     {
+        if ($this->unAnswered) {
+            return $query->whereDoesntHave('replies');
+        }
+
         return $query;
+    }
+
+    protected function applySorting(Builder $query): Builder
+    {
+        return $this->popular
+            ? $this->applyPopular($query)
+            : $query->orderByDesc('created_at');
     }
 
     public function render(): View
     {
-        $query = Thread::with(['channels', 'user'])
-            ->orderByDesc('created_at');
+        $query = Thread::with(['channels', 'user', 'user.media'])
+            ->withCount('replies');
 
         $query = $this->applyChannel($query);
         $query = $this->applySearch($query);
@@ -155,6 +181,7 @@ final class Index extends Component
         $query = $this->applyAuthor($query);
         $query = $this->applySubscribe($query);
         $query = $this->applyUnAnswer($query);
+        $query = $this->applySorting($query);
 
         $threads = $query
             ->scopes('withViewsCount')

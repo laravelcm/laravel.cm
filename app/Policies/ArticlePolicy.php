@@ -19,12 +19,12 @@ final class ArticlePolicy
 
     public function update(User $user, Article $article): bool
     {
-        return $article->isAuthoredBy($user);
+        return $article->user_id === $user->id;
     }
 
     public function delete(User $user, Article $article): bool
     {
-        return $article->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+        return $article->user_id === $user->id || $user->isModerator() || $user->isAdmin();
     }
 
     public function approve(User $user, Article $article): bool

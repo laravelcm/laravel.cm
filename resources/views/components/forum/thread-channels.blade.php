@@ -3,7 +3,7 @@
 ])
 
 <div {{ $attributes->twMerge(['class' => 'flex items-center mb-2 flex-wrap gap-1.5']) }}>
-    @if (count($channels = $thread->channels->load('parent')))
+    @if (count($channels = $thread->channels->loadMissing('parent')))
         @foreach ($channels as $channel)
             @php
                 $color = $channel->parent_id ? $channel->parent->color : $channel->color;

@@ -56,10 +56,10 @@
                 <livewire:components.user.articles />
             </div>
             <div x-cloak x-show="activeTab === 'discussions'">
-                <livewire:components.user.discussions :user="$this->user" />
+                <livewire:components.user.discussions />
             </div>
             <div x-cloak x-show="activeTab === 'sujets'">
-                <livewire:components.user.threads :user="$this->user" />
+                <livewire:components.user.threads />
             </div>
         </div>
     </section>
