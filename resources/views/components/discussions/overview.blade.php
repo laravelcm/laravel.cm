@@ -49,7 +49,7 @@
         <div class="hidden space-x-3 sm:flex sm:items-center">
             @if ($discussion->getReactionsSummary()->isNotEmpty())
                 <div class="flex items-center justify-center gap-2">
-                    @foreach ($discussion->getReactionsSummary() as $reaction)
+                    @foreach ($discussion->reactions as $reaction)
                         <img
                             loading="lazy"
                             class="size-4"
@@ -59,7 +59,7 @@
                     @endforeach
 
                     <span class="text-sm font-medium text-gray-400 dark:text-gray-500">
-                        {{ $discussion->getReactionsSummary()->sum('count') }}
+                        {{ $discussion->reactions->count() }}
                     </span>
                 </div>
             @endif

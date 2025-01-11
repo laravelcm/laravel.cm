@@ -171,7 +171,8 @@ final class Index extends Component
 
     public function render(): View
     {
-        $query = Thread::with(['channels', 'user']);
+        $query = Thread::with(['channels', 'user', 'user.media'])
+            ->withCount('replies');
 
         $query = $this->applyChannel($query);
         $query = $this->applySearch($query);

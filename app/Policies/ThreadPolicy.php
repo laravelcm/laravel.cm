@@ -19,17 +19,17 @@ final class ThreadPolicy
 
     public function manage(User $user, Thread $thread): bool
     {
-        return $thread->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+        return $thread->user_id === $user->id || $user->isModerator() || $user->isAdmin();
     }
 
     public function update(User $user, Thread $thread): bool
     {
-        return $thread->isAuthoredBy($user);
+        return $thread->user_id === $user->id;
     }
 
     public function delete(User $user, Thread $thread): bool
     {
-        return $thread->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+        return $thread->user_id === $user->id || $user->isModerator() || $user->isAdmin();
     }
 
     public function subscribe(User $user, Thread $thread): bool
@@ -44,6 +44,6 @@ final class ThreadPolicy
 
     public function report(User $user, Thread $thread): bool
     {
-        return $user->hasVerifiedEmail() && ! $thread->isAuthoredBy($user);
+        return $user->hasVerifiedEmail() && $thread->user_id !== $user->id;
     }
 }

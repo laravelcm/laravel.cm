@@ -52,6 +52,7 @@ use Spatie\Feed\FeedItem;
  * @property User $user
  * @property Reply | null $solutionReply
  * @property \Illuminate\Database\Eloquent\Collection | Channel[] $channels
+ * @property \Illuminate\Database\Eloquent\Collection | Reply[] $replies
  */
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SpamReportableContract, SubscribeInterface, Viewable
 {

@@ -21,6 +21,8 @@ use Filament\Support\Facades\FilamentIcon;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -35,30 +37,13 @@ final class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->bootMacros();
         $this->bootViewsComposer();
-        $this->bootEloquentMorphs();
-        $this->bootFilament();
-
-        // @phpstan-ignore-next-line
-        seo()
-            ->title(
-                default: __('pages/home.title'),
-                modify: fn (string $title) => $title.' | '.__('global.site_name')
-            )
-            ->description(default: __('global.site_description'))
-            ->image(default: fn () => asset('images/socialcard.png'))
-            ->twitterSite('@laravelcm');
-
-        FilamentColor::register([
-            'primary' => Color::Emerald,
-            'danger' => Color::Red,
-            'info' => Color::Blue,
-            'success' => Color::Green,
-            'warning' => Color::Amber,
-        ]);
-
-        ReplyResource::withoutWrapping();
+        $this->configureMacros();
+        $this->configureEloquent();
+        $this->configureFilament();
+        $this->configureSeo();
+        $this->configureCommands();
+        $this->configureUrl();
     }
 
     public function registerBladeDirective(): void
@@ -68,7 +53,7 @@ final class AppServiceProvider extends ServiceProvider
         Blade::directive('canonical', fn ($expression) => "<?php \$canonical = {$expression} ?>");
     }
 
-    public function bootMacros(): void
+    public function configureMacros(): void
     {
         Str::macro('readDuration', function (...$text) {
             $totalWords = str_word_count(implode(' ', $text));
@@ -85,8 +70,10 @@ final class AppServiceProvider extends ServiceProvider
         View::composer('components.profile-users', ProfileUsersComposer::class);
     }
 
-    public function bootEloquentMorphs(): void
+    protected function configureEloquent(): void
     {
+        ReplyResource::withoutWrapping();
+
         Relation::morphMap([
             'article' => Article::class,
             'discussion' => Discussion::class,
@@ -96,8 +83,16 @@ final class AppServiceProvider extends ServiceProvider
         ]);
     }
 
-    public function bootFilament(): void
+    protected function configureFilament(): void
     {
+        FilamentColor::register([
+            'primary' => Color::Emerald,
+            'danger' => Color::Red,
+            'info' => Color::Blue,
+            'success' => Color::Green,
+            'warning' => Color::Amber,
+        ]);
+
         FilamentIcon::register([
             'panels::pages.dashboard.navigation-item' => 'untitledui-home-line',
             'actions::delete-action' => 'untitledui-trash-03',
@@ -119,12 +114,39 @@ final class AppServiceProvider extends ServiceProvider
         Tables\Actions\DeleteAction::configureUsing(fn (Tables\Actions\Action $action) => $action->icon('untitledui-trash-03'));
     }
 
-    public function registerLocaleDate(): void
+    protected function registerLocaleDate(): void
     {
         date_default_timezone_set('Africa/Douala');
         setlocale(LC_TIME, 'fr_FR', 'fr', 'FR', 'French', 'fr_FR.UTF-8');
         setlocale(LC_ALL, 'fr_FR', 'fr', 'FR', 'French', 'fr_FR.UTF-8');
 
         Carbon::setLocale('fr');
+    }
+
+    protected function configureSeo(): void
+    {
+        // @phpstan-ignore-next-line
+        seo()
+            ->title(
+                default: __('pages/home.title'),
+                modify: fn (string $title) => $title.' | '.__('global.site_name')
+            )
+            ->description(default: __('global.site_description'))
+            ->image(default: fn () => asset('images/socialcard.png'))
+            ->twitterSite('@laravelcm');
+    }
+
+    protected function configureCommands(): void
+    {
+        DB::prohibitDestructiveCommands(
+            $this->app->isProduction(),
+        );
+    }
+
+    protected function configureUrl(): void
+    {
+        if (! $this->app->isLocal()) {
+            URL::forceScheme('https');
+        }
     }
 }

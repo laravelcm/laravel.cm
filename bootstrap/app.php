@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Http\Middleware\LocaleMiddleware;
+use App\Http\Middleware as AppMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -15,12 +15,16 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
-            'checkIfBanned' => \App\Http\Middleware\CheckIfBanned::class,
+            'checkIfBanned' => AppMiddleware\CheckIfBanned::class,
         ]);
         $middleware->web(append: [
-            LocaleMiddleware::class,
-            \App\Http\Middleware\TrackLastActivity::class,
+            AppMiddleware\LocaleMiddleware::class,
+            AppMiddleware\CacheHeaders::class,
+            // AppMiddleware\Security\ContentSecurityPolicy::class,
+            AppMiddleware\Security\PermissionsPolicy::class,
+            AppMiddleware\Security\ReferrerPolicy::class,
+            AppMiddleware\Security\StrictTransportSecurity::class,
+            AppMiddleware\Security\XFrameOption::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

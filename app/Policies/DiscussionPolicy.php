@@ -19,17 +19,17 @@ final class DiscussionPolicy
 
     public function manage(User $user, Discussion $discussion): bool
     {
-        return $discussion->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+        return $discussion->user_id === $user->id || $user->isModerator() || $user->isAdmin();
     }
 
     public function update(User $user, Discussion $discussion): bool
     {
-        return $discussion->isAuthoredBy($user);
+        return $discussion->user_id === $user->id;
     }
 
     public function delete(User $user, Discussion $discussion): bool
     {
-        return $discussion->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+        return $discussion->user_id === $user->id || $user->isModerator() || $user->isAdmin();
     }
 
     public function togglePinnedStatus(User $user, Discussion $discussion): bool
@@ -49,11 +49,11 @@ final class DiscussionPolicy
 
     public function report(User $user, Discussion $discussion): bool
     {
-        return $user->hasVerifiedEmail() && ! $discussion->isAuthoredBy($user);
+        return $user->hasVerifiedEmail() && $discussion->user_id !== $user->id;
     }
 
     public function convertedToThread(User $user, Discussion $discussion): bool
     {
-        return $discussion->isAuthoredBy($user) || $user->isAdmin();
+        return $discussion->user_id === $user->id || $user->isAdmin();
     }
 }

@@ -44,6 +44,8 @@ use Spatie\Sitemap\Tags\Url;
  * @property User $user
  * @property Collection | SpamReport[] $spamReports
  * @property Collection | Reply[] $replies
+ * @property Collection | Tag[] $tags
+ * @property Collection | Reaction[] $reactions
  */
 final class Discussion extends Model implements ReactableInterface, ReplyInterface, Sitemapable, SpamReportableContract, SubscribeInterface, Viewable
 {
