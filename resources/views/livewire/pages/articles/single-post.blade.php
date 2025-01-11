@@ -114,20 +114,20 @@
                         class="prose prose-green text-gray-500 dark:text-gray-400 dark:prose-invert lg:max-w-none"
                         :content="$article->body"
                     />
-
-                    <div class="relative inline-flex mt-5 space-x-4">
-                        <livewire:components.reactions
-                            wire:key="{{ $article->id }}"
-                            :model="$article"
-                            :with-place-holder="false"
-                            :with-background="false"
-                        />
-                    </div>
                 </div>
                 <div class="hidden lg:block">
                     <x-sticky-content class="space-y-10">
                         @if($article->isPublished())
                             <div>
+
+                                <div class="relative inline-flex mt-5 space-x-4">
+                                    <livewire:components.reactions
+                                        wire:key="{{ $article->id }}"
+                                        :model="$article"
+                                        :with-place-holder="false"
+                                        :with-background="false"
+                                    />
+                                </div>
                                 <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
                                     {{ __('pages/article.share_article') }}
                                 </p>

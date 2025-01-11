@@ -146,8 +146,8 @@
                     <x-user.discussions :user="$user" :discussions="$this->discussions" />
                 </div>
                 <div x-cloak :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
+                    <x-user.threads :user="$user" :threads="$this->threads" />
                 </div>
-                <x-user.threads :user="$user" :threads="$this->threads" />
             </div>
             <aside class="hidden lg:block">
                 <livewire:components.user.activities :user="$user" />
