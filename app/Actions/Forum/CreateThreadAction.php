@@ -24,6 +24,5 @@ final class CreateThreadAction
 
             return $thread;
         });
-
     }
 }

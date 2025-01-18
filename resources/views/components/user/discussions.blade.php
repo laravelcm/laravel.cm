@@ -6,7 +6,7 @@
 @if ($discussions->isNotEmpty())
     <div class="relative -mt-6 divide-y divide-gray-200 dark:divide-white/20">
         @foreach ($discussions as $discussion)
-            <x-discussions.overview :discussion="$discussion" />
+            <x-discussions.overview :discussion="$discussion" :with-author="false" />
         @endforeach
     </div>
 @else
