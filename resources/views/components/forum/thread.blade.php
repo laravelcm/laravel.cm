@@ -1,5 +1,6 @@
 @props([
     'thread',
+    'withAuthor' => true,
 ])
 
 <article class="rounded-xl p-4 bg-white ring-1 ring-gray-200/50 transition duration-200 ease-in-out dark:bg-gray-800 dark:ring-white/10 dark:hover:bg-white/10 lg:p-5" aria-labelledby="{{ $thread->slug }}">
@@ -29,12 +30,15 @@
 
     <div class="mt-6 flex justify-between space-x-8">
         <div class="flex items-center gap-2">
-            <x-link :href="route('profile', $thread->user)" class="group inline-flex items-center gap-1 shrink-0">
-                <x-user.avatar :user="$thread->user" class="size-6" />
-                <span class="font-medium text-sm text-gray-700 group-hover:underline dark:text-gray-300">
-                    {{ '@' . $thread->user->username }}
-                </span>
-            </x-link>
+            @if ($withAuthor)
+                <x-link :href="route('profile', $thread->user)" class="group inline-flex items-center gap-1 shrink-0">
+                    <x-user.avatar :user="$thread->user" class="size-6" />
+                    <span class="font-medium text-sm text-gray-700 group-hover:underline dark:text-gray-300">
+                        {{ '@' . $thread->user->username }}
+                    </span>
+                </x-link>
+            @endif
+
             <span class="flex items-center text-xs text-gray-500 flex-wrap gap-1 dark:text-gray-400">
                 <span class="hidden lg:inline">{{ __('global.ask') }}</span>
                 <time datetime="{{ $thread->created_at }}">

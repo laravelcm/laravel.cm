@@ -53,8 +53,6 @@ final class Index extends Component
         if ($this->channel) {
             $this->currentChannel = Channel::findBySlug($this->channel);
         }
-
-        $this->locale = config('app.locale');
     }
 
     protected function applyPopular(Builder $query): Builder
@@ -171,7 +169,7 @@ final class Index extends Component
 
     public function render(): View
     {
-        $query = Thread::with(['channels', 'user', 'user.media'])
+        $query = Thread::with(['channels', 'channels.parent', 'user', 'user.media'])
             ->withCount('replies');
 
         $query = $this->applyChannel($query);

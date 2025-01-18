@@ -76,9 +76,9 @@ final class Activity extends Model
     public static function latestFeed(User $user, int $take = 10): Collection
     {
         return self::where('user_id', $user->id)
-            ->latest()
             ->with('subject')
-            ->take($take)
+            ->latest()
+            ->limit($take)
             ->orderByDesc('created_at')
             ->get();
     }
