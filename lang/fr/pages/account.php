@@ -30,6 +30,7 @@ return [
         'empty_articles' => "n'a pas encore rédigé d'articles",
         'empty_discussions' => "n'a pas encore démarré de discussions",
         'empty_threads' => "n'a pas encore posté de sujets",
+        'empty_connexion' => 'n\'a pas encore de connexion',
     ],
 
     'settings' => [
