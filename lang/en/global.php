@@ -31,7 +31,7 @@ return [
         'preferences' => 'Preferences',
         'notifications' => 'Notifications',
         'subscription' => 'Subscription',
-        'connexion' => 'Connexions'
+        'connexion' => 'Connexions',
     ],
     'footer' => [
         'title' => 'Footer',

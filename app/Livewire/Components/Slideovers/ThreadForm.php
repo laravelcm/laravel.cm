@@ -24,7 +24,7 @@ use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 /**
  * @property Form $form
  */
-final class ThreadForm extends SlideOverComponent implements HasForms,
+final class ThreadForm extends SlideOverComponent implements HasForms
 {
     use InteractsWithForms;
     use WithAuthenticatedUser;
