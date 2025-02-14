@@ -22,10 +22,13 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use SocialiteProviders\Discord\Provider;
+use SocialiteProviders\Manager\SocialiteWasCalled;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -44,6 +47,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureSeo();
         $this->configureCommands();
         $this->configureUrl();
+        $this->configureCustomSocialProvider();
     }
 
     public function registerBladeDirective(): void
@@ -148,5 +152,12 @@ final class AppServiceProvider extends ServiceProvider
         if (! $this->app->isLocal()) {
             URL::forceScheme('https');
         }
+    }
+
+    protected function configureCustomSocialProvider(): void
+    {
+        Event::listen(function (SocialiteWasCalled $event): void {
+            $event->extendSocialite('discord', Provider::class);
+        });
     }
 }
