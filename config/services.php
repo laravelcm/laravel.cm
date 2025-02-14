@@ -48,6 +48,12 @@ return [
         'access_secret' => env('TWITTER_ACCESS_SECRET'),
     ],
 
+    'discord' => [
+        'client_id' => env('DISCORD_CLIENT_ID'),
+        'client_secret' => env('DISCORD_CLIENT_SECRET'),
+        'redirect' => env('DISCORD_REDIRECT_URI'),
+    ],
+
     'unsplash' => [
         'access_key' => env('UNSPLASH_ACCESS_KEY'),
     ],

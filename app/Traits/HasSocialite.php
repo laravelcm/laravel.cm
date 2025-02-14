@@ -18,7 +18,7 @@ trait HasSocialite
      */
     public function getAcceptedProviders(): array
     {
-        return ['github'];
+        return ['github', 'discord'];
     }
 
     protected function getSocialiteUser(string $provider): User

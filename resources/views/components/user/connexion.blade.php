@@ -5,19 +5,25 @@
 @if ($user->providers->isNotEmpty())
     <div class="relative -mt-6 divide-y divide-gray-200 dark:divide-white/20">
         <div class="mt-5 flex items-center gap-4">
+            @php
+                $providerUrls = [
+                    'github' => 'https://github.com/' . $user->githubUsername(),
+                ];
+            @endphp
+
             @foreach($user->providers() as $provider)
-                @if ($provider->provider ==  'github')
+                @if (array_key_exists($provider->provider, $providerUrls))
                     <a
-                        href="https://github.com/{{ $user->githubUsername() }}"
+                        href="{{ $providerUrls[$provider->provider] }}"
                         target="_blank"
                         class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                     >
-                        <span class="sr-only">Github</span>
-                        <x-icon.github class="size-6" aria-hidden="true" />
+                        <span class="sr-only">{{ ucfirst($provider->provider) }}</span>
+                        <x-icon.{{ $provider->provider }} class="size-6" aria-hidden="true" />
                     </a>
                 @endif
             @endforeach
-            </div>
+        </div>
     </div>
 @else
     <x-empty-state>
