@@ -6,7 +6,7 @@
 @if ($threads->isNotEmpty())
     <div class="space-y-4">
         @foreach ($threads as $thread)
-            <x-forum.thread :thread="$thread" wire:key="{{ $thread->slug }}" />
+            <x-forum.thread :thread="$thread" wire:key="{{ $thread->slug }}" :with-author="false" />
         @endforeach
     </div>
 @else

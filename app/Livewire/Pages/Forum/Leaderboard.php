@@ -44,6 +44,7 @@ final class Leaderboard extends Component
                 callback: fn () => $leaders
             ),
             'startPosition' => $startPosition,
-        ]);
+        ])
+            ->title(__('pages/forum.navigation.leaderboard'));
     }
 }

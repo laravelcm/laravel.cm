@@ -10,6 +10,10 @@ trait HasLocaleScope
 {
     public function scopeForLocale(Builder $query, ?string $locale): Builder
     {
-        return $query->where('locale', $locale);
+        if ($locale) {
+            return $query->where('locale', $locale);
+        }
+
+        return $query;
     }
 }

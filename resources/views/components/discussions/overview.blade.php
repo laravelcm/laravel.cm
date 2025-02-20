@@ -1,5 +1,6 @@
 @props([
     'discussion',
+    'withAuthor' => true,
 ])
 
 <div class="py-6">
@@ -27,13 +28,14 @@
 
     <div class="mt-4 sm:flex sm:justify-between">
         <div class="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
-            <x-user.avatar
-                :user="$discussion->user"
-                class="size-6"
-                span="-right-1 -top-1 ring-1 size-4"
-            />
-            <span>{{ __('global.posted_by') }}</span>
-            <div class="flex items-center gap-2">
+            @if ($withAuthor)
+                <div class="flex items-center gap-2">
+                    <x-user.avatar
+                        :user="$discussion->user"
+                        class="size-6"
+                        span="-right-1 -top-1 ring-1 size-4"
+                    />
+                </div>
                 <x-link
                     :href="route('profile', $discussion->user)"
                     class="text-gray-700 dark:text-gray-300 font-medium hover:underline"
@@ -41,10 +43,10 @@
                     {{ $discussion->user->name }}
                 </x-link>
                 <span aria-hidden="true">&middot;</span>
-                <time class="truncate text-sm text-gray-500 dark:text-gray-400" datetime="{{ $discussion->created_at }}">
-                    {{ $discussion->created_at->diffForHumans() }}
-                </time>
-            </div>
+            @endif
+            <time class="truncate text-sm text-gray-500 dark:text-gray-400" datetime="{{ $discussion->created_at }}">
+                {{ $discussion->created_at->diffForHumans() }}
+            </time>
         </div>
         <div class="hidden space-x-3 sm:flex sm:items-center">
             @if ($discussion->getReactionsSummary()->isNotEmpty())

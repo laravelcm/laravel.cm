@@ -26,11 +26,6 @@ final class Index extends Component
 
     public string $sortBy = 'recent';
 
-    public function mount(): void
-    {
-        $this->locale = config('app.locale');
-    }
-
     public function validSort(string $sort): bool
     {
         return in_array($sort, [

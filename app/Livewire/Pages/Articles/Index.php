@@ -19,11 +19,6 @@ final class Index extends Component
     use WithoutUrlPagination;
     use WithPagination;
 
-    public function mount(): void
-    {
-        $this->locale = config('app.locale');
-    }
-
     public function render(): View
     {
         return view('livewire.pages.articles.index', [
