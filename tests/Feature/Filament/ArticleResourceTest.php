@@ -35,11 +35,8 @@ describe(ArticleResource::class, function (): void {
 
         $article->refresh();
 
-        expect($article->approved_at)
-            ->not()
-            ->toBe(null)
-            ->and($article->declined_at)
-            ->toBe(null);
+        expect($article->approved_at)->toBeInstanceOf(\Carbon\Carbon::class)
+            ->and($article->declined_at)->toBeNull();
 
         Livewire::test(ArticleResource\Pages\ListArticles::class)
             ->assertTableActionHidden('approved', $article)
@@ -50,15 +47,14 @@ describe(ArticleResource::class, function (): void {
         $article = $this->articles->first();
 
         Livewire::test(ArticleResource\Pages\ListArticles::class)
-            ->callTableAction('declined', $article);
+            ->callTableAction('declined', $article, data: [
+                'reason' => 'Ce contenu ne respecte pas nos règles éditoriales.',
+            ]);
 
         $article->refresh();
 
-        expect($article->declined_at)
-            ->not
-            ->toBe(null)
-            ->and($article->approved_at)
-            ->toBe(null);
+        expect($article->declined_at)->toBeInstanceOf(\Carbon\Carbon::class)
+            ->and($article->approved_at)->toBeNull();
 
         Livewire::test(ArticleResource\Pages\ListArticles::class)
             ->assertTableActionHidden('approved', $article)

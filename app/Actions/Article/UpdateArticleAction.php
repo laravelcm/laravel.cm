@@ -31,6 +31,10 @@ final class UpdateArticleAction
             );
         }
 
+        if ($articleData->declined_at) {
+            $articleData->declined_at = null;
+        }
+
         $article->update($articleData->toArray());
 
         $article->refresh();
