@@ -11,7 +11,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('articles', static function (Blueprint $table): void {
-            $table->longText('reason')->nullable()->after('canonical_url');
+            $table->string('reason')->nullable()->after('canonical_url');
         });
     }
 };

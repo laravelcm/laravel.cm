@@ -10,7 +10,7 @@ use App\Filament\Resources\ArticleResource\Pages;
 use App\Models\Article;
 use Awcodes\FilamentBadgeableColumn\Components\Badge;
 use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
-use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\MaxWidth;
@@ -127,8 +127,9 @@ final class ArticleResource extends Resource
                         ->icon('heroicon-s-x-mark')
                         ->color('warning')
                         ->form([
-                            RichEditor::make('reason')
+                            Textarea::make('reason')
                                 ->label(__('Raison du refus'))
+                                ->maxLength(255)
                                 ->required(),
                         ])
                         ->modalHeading('Décliner l\'article')
@@ -146,8 +147,7 @@ final class ArticleResource extends Resource
                                 ->body('L\'auteur a été notifié de la raison du refus.')
                                 ->success()
                                 ->send();
-                        })
-                        ->modalWidth(MaxWidth::FiveExtraLarge),
+                        }),
                     Tables\Actions\Action::make('show')
                         ->icon('untitledui-eye')
                         ->url(fn (Article $record) => route('articles.show', $record))

@@ -4,7 +4,7 @@
 
 {{ __('emails/article.article_declined.head',  ['title' => $article->title]) }}
 
-{!! $article->reason !!}
+{{ $article->reason }}
 
 {{ __('emails/article.article_declined.recommandation_body') }}
 

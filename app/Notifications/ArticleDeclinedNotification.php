@@ -17,7 +17,7 @@ final class ArticleDeclinedNotification extends Notification
 
     public function via(mixed $notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     public function toMail(mixed $notifiable): MailMessage
@@ -25,5 +25,17 @@ final class ArticleDeclinedNotification extends Notification
         return (new MailMessage)
             ->subject(__('emails/article.article_declined.subject'))
             ->markdown('emails.article_declined', ['article' => $this->article]);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        return [
+            'article' => $this->article,
+            'owner' => $this->article->user->name,
+            'email' => $this->article->user->email,
+        ];
     }
 }
