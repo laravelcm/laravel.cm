@@ -32,6 +32,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property bool $is_pinned
  * @property int $is_sponsored
  * @property string | null $canonical_url
+ * @property string | null $reason
  * @property int | null $tweet_id
  * @property int $user_id
  * @property string | null $locale
@@ -63,6 +64,7 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
         'body',
         'slug',
         'canonical_url',
+        'reason',
         'show_toc',
         'is_pinned',
         'user_id',

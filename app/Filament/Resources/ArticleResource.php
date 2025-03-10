@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace App\Filament\Resources;
 
 use App\Actions\Article\ApprovedArticleAction;
+use App\Actions\Article\DeclineArticleAction;
 use App\Filament\Resources\ArticleResource\Pages;
 use App\Models\Article;
 use Awcodes\FilamentBadgeableColumn\Components\Badge;
 use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
+use Filament\Forms\Components\Textarea;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
@@ -123,15 +126,27 @@ final class ArticleResource extends Resource
                         ->label('Décliner')
                         ->icon('heroicon-s-x-mark')
                         ->color('warning')
-                        ->modalHeading(__('Voulez vous décliner cet article'))
-                        ->successNotificationTitle(__('Opération effectuée avec succès'))
+                        ->form([
+                            Textarea::make('reason')
+                                ->label(__('Raison du refus'))
+                                ->maxLength(255)
+                                ->required(),
+                        ])
+                        ->modalHeading('Décliner l\'article')
+                        ->modalDescription('Veuillez fournir une raison détaillée pour le refus de cet article. L\'auteur recevra cette explication.')
+                        ->successNotificationTitle('Article décliné avec succès')
                         ->requiresConfirmation()
                         ->modalIcon('heroicon-s-x-mark')
-                        ->action(function ($record): void {
+                        ->action(function (array $data, Article $record): void {
                             Gate::authorize('decline', $record);
 
-                            $record->declined_at = now();
-                            $record->save();
+                            app(DeclineArticleAction::class)->execute($data['reason'], $record);
+
+                            Notification::make()
+                                ->title('Article décliné')
+                                ->body('L\'auteur a été notifié de la raison du refus.')
+                                ->success()
+                                ->send();
                         }),
                     Tables\Actions\Action::make('show')
                         ->icon('untitledui-eye')
