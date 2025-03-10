@@ -31,6 +31,7 @@ return [
         'preferences' => 'Préférences',
         'notifications' => 'Notifications',
         'subscription' => 'Abonnement',
+        'connexion' => 'Connexions',
     ],
     'footer' => [
         'title' => 'Pied de page',

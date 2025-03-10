@@ -11,11 +11,16 @@
     </div>
 
     <div class="mt-6">
-        <div>
+        <div class="space-y-4">
             <a href="{{ route('social.auth', ['provider' => 'github']) }}" class="w-full gap-2 inline-flex justify-center py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900">
                 <span class="sr-only">{{ __('pages/auth.continue_with', ['social' => 'Github']) }}</span>
                 <x-icon.github class="size-5" aria-hidden="true" />
                 Github
+            </a>
+            <a href="{{ route('social.auth', ['provider' => 'discord']) }}" class="w-full gap-2 inline-flex justify-center py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900">
+                <span class="sr-only">{{ __('pages/auth.continue_with', ['social' => 'Discord']) }}</span>
+                <x-icon.discord class="size-5 text-indigo-500" aria-hidden="true" />
+                Discord
             </a>
         </div>
     </div>

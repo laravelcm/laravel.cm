@@ -113,12 +113,13 @@
             </div>
             <div
                 x-ref="tabButtons"
-                class="relative inline-grid h-10 w-full select-none grid-cols-3 items-center justify-center rounded-lg dark:bg-gray-900 p-1 text-gray-600 dark:text-gray-300 lg:max-w-sm"
+                class="relative inline-grid h-10 w-full select-none grid-cols-4 items-center justify-center rounded-lg dark:bg-gray-900 p-1 text-gray-600 dark:text-gray-300 lg:max-w-sm"
             >
                 @foreach([
                     __('global.navigation.articles'),
                     __('global.navigation.discussions'),
-                    __('global.navigation.questions')
+                    __('global.navigation.questions'),
+                   __('global.navigation.connexion'),
                 ] as $tab)
                     <button
                         :id="$id(tabId)"
@@ -147,6 +148,9 @@
                 </div>
                 <div x-cloak :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
                     <x-user.threads :user="$user" :threads="$this->threads" />
+                </div>
+                <div x-cloak :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
+                    <x-user.connexion :user="$user" />
                 </div>
             </div>
             <aside class="hidden lg:block">
