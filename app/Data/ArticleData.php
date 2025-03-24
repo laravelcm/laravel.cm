@@ -17,5 +17,6 @@ final class ArticleData extends Data
         public ?string $canonical_url = null,
         public ?Carbon $published_at = null,
         public ?Carbon $submitted_at = null,
+        public ?Carbon $declined_at = null,
     ) {}
 }
