@@ -20,7 +20,7 @@ return [
     'channel_name' => 'user.reputation.',
 
     // Badge model
-    'badge_model' => '\QCod\Gamify\Badge',
+    'badge_model' => \QCod\Gamify\Badge::class,
 
     // Where all badges icon stored
     'badge_icon_folder' => 'images/badges/',

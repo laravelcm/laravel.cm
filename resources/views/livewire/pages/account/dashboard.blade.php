@@ -47,6 +47,19 @@
                             {{ number_format($this->user->threads->count()) }}
                         </span>
                     </x-filament::tabs.item>
+
+                    <x-filament::tabs.item
+                        alpine-active="activeTab === 'badges'"
+                        class="relative"
+                        x-on:click="activeTab = 'badges'"
+                        icon="untitledui-award-05"
+                        data-slot="tab"
+                    >
+                        {{ __('pages/badge.title') }}
+                        <span class="lg:absolute lg:right-5">
+                            {{ number_format($this->user->badges->count()) }}
+                        </span>
+                    </x-filament::tabs.item>
                 </x-filament::tabs>
             </div>
         </div>
@@ -60,6 +73,9 @@
             </div>
             <div x-cloak x-show="activeTab === 'sujets'">
                 <livewire:components.user.threads />
+            </div>
+            <div x-cloak x-show="activeTab === 'badges'">
+                <livewire:components.user.badges :user="$this->user" />
             </div>
         </div>
     </section>
