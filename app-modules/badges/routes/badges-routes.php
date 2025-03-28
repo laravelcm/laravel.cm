@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 // use Laravelcm\Badges\Http\Controllers\BadgesController;
 
 // Route::get('/badges', [BadgesController::class, 'index'])->name('badges.index');
