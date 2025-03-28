@@ -1,0 +1,24 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddReputationFieldOnUserTable extends Migration
+{
+    public function up(): void
+    {
+        Schema::table(app(config('gamify.payee_model'))->getTable(), function (Blueprint $table) {
+            $table->unsignedInteger('reputation')->default(0)->after('remember_token');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table(app(config('gamify.payee_model'))->getTable(), function (Blueprint $table) {
+            $table->dropColumn('reputation');
+        });
+    }
+}

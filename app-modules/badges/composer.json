@@ -1,0 +1,52 @@
+{
+	"name": "laravelcm/badges",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {
+    "php": "^8.0",
+    "illuminate/contracts": "^8.83.27|^9.51.0|^10.0.0|^11.0",
+    "spatie/laravel-package-tools": "^1.12"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^6.25.1|^7.22.0|^8.0.0|^9.0",
+    "mockery/mockery": "^0.9.4 || ~1.0",
+    "pestphp/pest": "^1.23.1|^2.11",
+    "pestphp/pest-plugin-laravel": "^1.4|^2.1",
+    "laravel/pint": "^1.5"
+  },
+	"autoload": {
+		"psr-4": {
+			"Laravelcm\\Badges\\": "src/",
+			"Laravelcm\\Badges\\Database\\Factories\\": "database/factories/",
+			"Laravelcm\\Badges\\Database\\Seeders\\": "database/seeders/"
+		},
+    "files": [
+      "src/helpers.php"
+    ]
+	},
+  "autoload-dev": {
+    "psr-4": {
+      "Laravelcm\\Badges\\Tests\\": "tests/"
+    }
+  },
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Laravelcm\\Badges\\Providers\\BadgesServiceProvider"
+			]
+		}
+	},
+  "scripts": {
+    "test": "vendor/bin/pest",
+    "format": "vendor/bin/pint",
+    "format-dryrun": "vendor/bin/pint --test"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
