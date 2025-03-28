@@ -1,20 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QCod\Gamify;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Event;
-use QCod\Gamify\Listeners\SyncBadges;
-use Illuminate\Support\ServiceProvider;
 use QCod\Gamify\Console\MakeBadgeCommand;
 use QCod\Gamify\Console\MakePointCommand;
 use QCod\Gamify\Events\ReputationChanged;
+use QCod\Gamify\Listeners\SyncBadges;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class GamifyServiceProvider extends PackageServiceProvider
+final class GamifyServiceProvider extends PackageServiceProvider
 {
-
     public function configurePackage(Package $package): void
     {
         $package->name('gamify')
@@ -36,11 +36,7 @@ class GamifyServiceProvider extends PackageServiceProvider
 
     public function packageRegistered(): void
     {
-        $this->app->singleton('badges', function () {
-            return cache()->rememberForever('gamify.badges.all', function () {
-                return $this->getBadges()->map(fn($badge) => new $badge);
-            });
-        });
+        $this->app->singleton('badges', fn () => cache()->rememberForever('gamify.badges.all', fn () => $this->getBadges()->map(fn ($badge) => new $badge)));
     }
 
     /**
@@ -52,14 +48,14 @@ class GamifyServiceProvider extends PackageServiceProvider
     {
         $badgeRootNamespace = config(
             'gamify.badge_namespace',
-            $this->app->getNamespace() . 'Gamify\Badges'
+            $this->app->getNamespace().'Gamify\Badges'
         );
 
         $badges = [];
 
-        foreach (glob(app_path('/Gamify/Badges/') . '*.php') as $file) {
+        foreach (glob(app_path('/Gamify/Badges/').'*.php') as $file) {
             if (is_file($file)) {
-                $badges[] = app($badgeRootNamespace . '\\' . pathinfo($file, PATHINFO_FILENAME));
+                $badges[] = app($badgeRootNamespace.'\\'.pathinfo($file, PATHINFO_FILENAME));
             }
         }
 

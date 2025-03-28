@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QCod\Gamify;
 
 /**
@@ -21,10 +23,8 @@ trait HasBadges
 
     /**
      * Sync badges for qiven user
-     *
-     * @param $user
      */
-    public function syncBadges($user = null)
+    public function syncBadges($user = null): void
     {
         $user = is_null($user) ? $this : $user;
 

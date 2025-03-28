@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QCod\Gamify;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 abstract class BadgeType
 {
@@ -24,7 +26,6 @@ abstract class BadgeType
     /**
      * Check if user qualifies for this badge
      *
-     * @param $user
      * @return bool
      */
     abstract public function qualifier($user);
@@ -134,7 +135,7 @@ abstract class BadgeType
             ->forceFill([
                 'level' => $this->getLevel(),
                 'description' => $this->getDescription(),
-                'icon' => $this->getIcon()
+                'icon' => $this->getIcon(),
             ]);
 
         $badge->save();

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QCod\Gamify\Console;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeBadgeCommand extends GeneratorCommand
+final class MakeBadgeCommand extends GeneratorCommand
 {
     /**
      * The name and signature of the console command.
@@ -40,8 +42,7 @@ class MakeBadgeCommand extends GeneratorCommand
     /**
      * Get the default namespace for the class.
      *
-     * @param string $rootNamespace The root namespace
-     *
+     * @param  string  $rootNamespace  The root namespace
      * @return string
      */
     protected function getDefaultNamespace($rootNamespace)
@@ -53,6 +54,7 @@ class MakeBadgeCommand extends GeneratorCommand
      * Execute the console command.
      *
      * @return bool|null
+     *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function handle()
@@ -62,6 +64,4 @@ class MakeBadgeCommand extends GeneratorCommand
 
         return parent::handle();
     }
-
-
 }

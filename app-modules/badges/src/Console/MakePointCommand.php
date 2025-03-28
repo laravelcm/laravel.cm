@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QCod\Gamify\Console;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakePointCommand extends GeneratorCommand
+final class MakePointCommand extends GeneratorCommand
 {
     /**
      * The name and signature of the console command.
@@ -34,14 +36,13 @@ class MakePointCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/stubs/point.stub';
+        return __DIR__.'/stubs/point.stub';
     }
 
     /**
      * Get the default namespace for the class.
      *
-     * @param string $rootNamespace The root namespace
-     *
+     * @param  string  $rootNamespace  The root namespace
      * @return string
      */
     protected function getDefaultNamespace($rootNamespace)

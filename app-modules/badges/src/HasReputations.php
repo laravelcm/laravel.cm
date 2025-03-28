@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QCod\Gamify;
 
 use QCod\Gamify\Events\ReputationChanged;
@@ -13,12 +15,11 @@ trait HasReputations
     /**
      * Give reputation point to payee
      *
-     * @param PointType $pointType
      * @return bool
      */
     public function givePoint(PointType $pointType)
     {
-        if (!$pointType->qualifier()) {
+        if (! $pointType->qualifier()) {
             return false;
         }
 
@@ -30,14 +31,13 @@ trait HasReputations
     /**
      * Undo last given point for a subject model
      *
-     * @param PointType $pointType
      * @return bool
      */
     public function undoPoint(PointType $pointType)
     {
         $reputation = $pointType->firstReputation();
 
-        if (!$reputation) {
+        if (! $reputation) {
             return false;
         }
 
@@ -58,13 +58,11 @@ trait HasReputations
     /**
      * Store a reputation for point
      *
-     * @param PointType $pointType
-     * @param array $meta
      * @return mixed
      */
     public function storeReputation(PointType $pointType, array $meta = [])
     {
-        if (!$this->isDuplicatePointAllowed($pointType) && $pointType->reputationExists()) {
+        if (! $this->isDuplicatePointAllowed($pointType) && $pointType->reputationExists()) {
             return false;
         }
 
@@ -74,7 +72,7 @@ trait HasReputations
     /**
      * Give point to a user
      *
-     * @param int $point
+     * @param  int  $point
      * @return HasReputations
      */
     public function addPoint($point = 1)
@@ -89,7 +87,7 @@ trait HasReputations
     /**
      * Reduce a user point
      *
-     * @param int $point
+     * @param  int  $point
      * @return HasReputations
      */
     public function reducePoint($point = 1)
@@ -118,7 +116,7 @@ trait HasReputations
     /**
      * Get user reputation point
      *
-     * @param bool $formatted
+     * @param  bool  $formatted
      * @return int|string
      */
     public function getPoints($formatted = false)
@@ -147,7 +145,6 @@ trait HasReputations
     /**
      * Check for duplicate point allowed
      *
-     * @param PointType $pointType
      * @return bool
      */
     protected function isDuplicatePointAllowed(PointType $pointType)

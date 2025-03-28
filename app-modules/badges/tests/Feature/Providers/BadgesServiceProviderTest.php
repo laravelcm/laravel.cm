@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Laravelcm\Badges\Tests;
 
-class BadgesServiceProviderTest extends TestCase
+final class BadgesServiceProviderTest extends TestCase
 {
-	// TODO
+    // TODO
 }

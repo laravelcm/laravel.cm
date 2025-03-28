@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QCod\Gamify\Events;
 
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
-class ReputationChanged implements ShouldBroadcast
+final class ReputationChanged implements ShouldBroadcast
 {
     use Dispatchable, SerializesModels;
 
@@ -31,9 +33,7 @@ class ReputationChanged implements ShouldBroadcast
     /**
      * Create a new event instance.
      *
-     * @param $user
-     * @param $point integer
-     * @param $increment
+     * @param  $point  integer
      */
     public function __construct(Model $user, int $point, bool $increment)
     {
@@ -49,7 +49,7 @@ class ReputationChanged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        $channelName = config('gamify.channel_name') . $this->user->getKey();
+        $channelName = config('gamify.channel_name').$this->user->getKey();
 
         if (config('gamify.broadcast_on_private_channel')) {
             return new PrivateChannel($channelName);

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QCod\Gamify;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Badge extends Model
+final class Badge extends Model
 {
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
@@ -19,20 +21,16 @@ class Badge extends Model
 
     /**
      * Award badge to a user
-     *
-     * @param $user
      */
-    public function awardTo($user)
+    public function awardTo($user): void
     {
         $this->users()->attach($user);
     }
 
     /**
      * Remove badge from user
-     *
-     * @param $user
      */
-    public function removeFrom($user)
+    public function removeFrom($user): void
     {
         $this->users()->detach($user);
     }
