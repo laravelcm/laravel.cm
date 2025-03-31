@@ -22,6 +22,6 @@
             "providers": [
                 "Laravelcm\\StubComposerName\\Providers\\StubComposerNameServiceProvider"
             ]
-        }
+        }]p
     }
 }
