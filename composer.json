@@ -23,6 +23,7 @@
     "gehrisandro/tailwind-merge-laravel": "^1.2",
     "graham-campbell/markdown": "^15.2",
     "guzzlehttp/guzzle": "^7.7.0",
+    "internachi/modular": "^2.3",
     "jenssegers/agent": "^2.6.4",
     "laravel-notification-channels/telegram": "^5.0",
     "laravel-notification-channels/twitter": "^8.1",
