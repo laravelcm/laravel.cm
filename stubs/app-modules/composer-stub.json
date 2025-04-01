@@ -1,5 +1,5 @@
 {
-    "name": "laravel-cm/module-StubComposerName",
+    "name": "StubComposerName",
     "description": "Module StubComposerName for Laravel.cm",
     "type": "library",
     "version": "1.0",
@@ -9,17 +9,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravelcm\\StubComposerName\\": "src/",
-            "Laravelcm\\StubComposerName\\Tests\\": "tests/",
-            "Laravelcm\\StubComposerName\\Database\\Factories\\": "database/factories/",
-            "Laravelcm\\StubComposerName\\Database\\Seeders\\": "database/seeders/"
+            "Laravelcm\\StubClassNamePrefix\\": "src/",
+            "Laravelcm\\StubClassNamePrefix\\Tests\\": "tests/",
+            "Laravelcm\\StubClassNamePrefix\\Database\\Factories\\": "database/factories/",
+            "Laravelcm\\StubClassNamePrefix\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "minimum-stability": "stable",
     "extra": {
         "laravel": {
             "providers": [
-                "Laravelcm\\StubComposerName\\Providers\\StubComposerNameServiceProvider"
+                "Laravelcm\\StubClassNamePrefix\\Providers\\StubClassNamePrefixServiceProvider"
             ]
         }
     }
