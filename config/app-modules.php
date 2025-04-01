@@ -33,7 +33,7 @@ return [
     |
     */
 
-    'modules_vendor' => 'laravel-cm',
+    'modules_vendor' => 'laravelcm',
 
     /*
     |--------------------------------------------------------------------------
