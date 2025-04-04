@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QCod\Gamify;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Reputation extends Model
+final class Reputation extends Model
 {
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
@@ -33,7 +35,7 @@ class Reputation extends Model
      *
      * @throws \Exception
      */
-    public function undo()
+    public function undo(): void
     {
         if ($this->exists) {
             $this->payee->reducePoint($this->point);

@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace QCod\Gamify;
 
 trait Gamify
 {
-    use HasReputations, HasBadges;
+    use HasBadges, HasReputations;
 }
