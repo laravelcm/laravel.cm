@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace QCod\Gamify;
+namespace Laravelcm\Badges;
 
-use QCod\Gamify\Events\ReputationChanged;
+use Laravelcm\Badges\Events\ReputationChanged;
 
 /**
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \QCod\Gamify\Reputation> $reputations
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravelcm\Badges\Reputation> $reputations
  * @property-read int|null $reputations_count
  */
 trait HasReputations

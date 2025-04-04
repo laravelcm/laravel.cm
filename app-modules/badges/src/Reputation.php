@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace QCod\Gamify;
+namespace Laravelcm\Badges;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 final class Reputation extends Model
 {
@@ -13,7 +14,7 @@ final class Reputation extends Model
     /**
      * Payee user
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function payee()
     {

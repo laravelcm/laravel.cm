@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use QCod\Gamify\PointType;
+use Laravelcm\Badges\PointType;
 
 if (! function_exists('givePoint')) {
 

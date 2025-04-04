@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace QCod\Gamify\Listeners;
+namespace Laravelcm\Badges\Listeners;
 
-use QCod\Gamify\Events\ReputationChanged;
+use Laravelcm\Badges\Events\ReputationChanged;
 
 final class SyncBadges
 {

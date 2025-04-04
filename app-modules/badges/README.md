@@ -20,7 +20,7 @@ $ composer require qcod/laravel-gamify
 ```php
 'providers' => [
     //...
-    QCod\Gamify\GamifyServiceProvider::class
+    Laravelcm\Badges\GamifyServiceProvider::class
 ]
 ```
 
@@ -50,7 +50,7 @@ If your payee (model who will be getting the points) model is `App\User` then yo
 **1.** After package installation now add the **Gamify** trait on `App\User` model or any model who acts as **user** in your app.
 
 ```php
-use QCod\Gamify\Gamify;
+use Laravelcm\Badges\Gamify;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -74,7 +74,7 @@ It will create a PointType class named `PostCreated` under `app/Gamify/Points/` 
 
 namespace App\Gamify\Points;
 
-use QCod\Gamify\PointType;
+use Laravelcm\Badges\PointType;
 
 class PostCreated extends PointType
 {
@@ -293,7 +293,7 @@ It will create a BadgeType class named `FirstContribution` under `app/Gamify/Bad
 
 namespace App\Gamify\Badges;
 
-use QCod\Gamify\BadgeType;
+use Laravelcm\Badges\BadgeType;
 
 class FirstContribution extends BadgeType
 {

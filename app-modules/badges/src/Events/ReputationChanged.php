@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace QCod\Gamify\Events;
+namespace Laravelcm\Badges\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\PrivateChannel;

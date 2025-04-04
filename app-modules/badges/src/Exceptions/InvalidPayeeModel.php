@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace QCod\Gamify\Exceptions;
+namespace Laravelcm\Badges\Exceptions;
 
 final class InvalidPayeeModel extends \Exception
 {

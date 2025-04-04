@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace QCod\Gamify;
+namespace Laravelcm\Badges;
 
 trait Gamify
 {

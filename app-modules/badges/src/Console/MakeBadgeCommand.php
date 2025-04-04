@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace QCod\Gamify\Console;
+namespace Laravelcm\Badges\Console;
 
 use Illuminate\Console\GeneratorCommand;
 

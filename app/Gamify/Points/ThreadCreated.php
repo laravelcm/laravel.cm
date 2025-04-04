@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Gamify\Points;
 
 use App\Models\Thread;
-use QCod\Gamify\PointType;
+use Laravelcm\Badges\PointType;
 
 final class ThreadCreated extends PointType
 {

@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Event;
 use Laravelcm\Badges\BadgesPlugin;
-use QCod\Gamify\Console\MakeBadgeCommand;
-use QCod\Gamify\Console\MakePointCommand;
-use QCod\Gamify\Events\ReputationChanged;
-use QCod\Gamify\Listeners\SyncBadges;
+use Laravelcm\Badges\Console\MakeBadgeCommand;
+use Laravelcm\Badges\Console\MakePointCommand;
+use Laravelcm\Badges\Events\ReputationChanged;
+use Laravelcm\Badges\Listeners\SyncBadges;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 

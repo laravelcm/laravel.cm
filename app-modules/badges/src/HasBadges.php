@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace QCod\Gamify;
+namespace Laravelcm\Badges;
 
 /**
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \QCod\Gamify\Badge> $badges
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravelcm\Badges\Badge> $badges
  * @property-read int|null $badges_count
  */
 trait HasBadges

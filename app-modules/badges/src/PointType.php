@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace QCod\Gamify;
+namespace Laravelcm\Badges;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
-use QCod\Gamify\Exceptions\InvalidPayeeModel;
-use QCod\Gamify\Exceptions\PointsNotDefined;
-use QCod\Gamify\Exceptions\PointSubjectNotSet;
+use Laravelcm\Badges\Exceptions\InvalidPayeeModel;
+use Laravelcm\Badges\Exceptions\PointsNotDefined;
+use Laravelcm\Badges\Exceptions\PointSubjectNotSet;
 
 abstract class PointType
 {
