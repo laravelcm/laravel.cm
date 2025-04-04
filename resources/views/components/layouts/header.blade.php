@@ -32,7 +32,7 @@
                 <div class="flex shrink-0 items-center">
                     <x-link :href="route('home')" class="inline-flex items-center gap-1">
                         <x-brand.icon class="block h-8 w-auto sm:h-9" aria-hidden="true" />
-                        @if(isHolidayWeek())
+                        @if (isHolidayWeek())
                             <div class="relative flex flex-col text-center group">
                                 <x-icon.christmas-town class="w-auto h-8" aria-hidden="true" />
                                 <span class="text-[11px] leading-3 font-mono font-medium opacity-0 transform transition-all duration-300 ease-in-out translate-y-1.5 text-gray-700 group-hover:translate-y-0 group-hover:opacity-100 dark:text-white">

@@ -6,6 +6,7 @@ namespace App\Actions\Article;
 
 use App\Data\ArticleData;
 use App\Models\Article;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,24 +28,8 @@ final class CreateArticleAction
             );
         }
 
+        /** @var User $user */
         $user = Auth::user();
-
-        if ($user->isAdmin() || $user->isModerator()) {
-            $articleData->published_at = new Carbon(
-                time: today(),
-                timezone: config('app.timezone')
-            );
-
-            $articleData->submitted_at = new Carbon(
-                time: $articleData->submitted_at,
-                timezone: config('app.timezone')
-            );
-
-            $articleData->approved_at = new Carbon(
-                time: today(),
-                timezone: config('app.timezone')
-            );
-        }
 
         // @phpstan-ignore-next-line
         return Article::query()->create([
