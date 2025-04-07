@@ -102,7 +102,6 @@ final class ArticleResource extends Resource
 
                         return '';
                     })
-                    ->searchable()
                     ->sortable(),
             ])
             ->actions([
