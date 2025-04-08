@@ -14,7 +14,6 @@ final class DeclineArticleAction
     public function execute(string $reason, Article $article): Article
     {
         return DB::transaction(function () use ($reason, $article): Article {
-
             $article->update([
                 'declined_at' => Carbon::now(),
                 'reason' => $reason,
