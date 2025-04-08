@@ -1,0 +1,26 @@
+{
+    "name": "laravelcm/gamify",
+    "description": "Module laravelcm/gamify for Laravel.cm",
+    "type": "library",
+    "version": "1.0",
+    "license": "proprietary",
+    "require": {
+        "filament/filament": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laravelcm\\Gamify\\": "src/",
+            "Laravelcm\\Gamify\\Tests\\": "tests/",
+            "Laravelcm\\Gamify\\Database\\Factories\\": "database/factories/",
+            "Laravelcm\\Gamify\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laravelcm\\Gamify\\Providers\\GamifyServiceProvider"
+            ]
+        }
+    }
+}

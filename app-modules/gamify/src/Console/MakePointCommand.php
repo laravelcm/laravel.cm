@@ -13,28 +13,28 @@ final class MakePointCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'gamify:point {name}';
+    protected string $signature = 'gamify:point {name}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a Gamify point type class.';
+    protected string $description = 'Create a Gamify point type class.';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Point';
+    protected string $type = 'Point';
 
     /**
      * Get the stub file for the generator.
      *
      * @return string
      */
-    protected function getStub()
+    protected function getStub(): string
     {
         return __DIR__.'/stubs/point.stub';
     }
@@ -45,7 +45,7 @@ final class MakePointCommand extends GeneratorCommand
      * @param  string  $rootNamespace  The root namespace
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace)
+    protected function getDefaultNamespace($rootNamespace): string
     {
         return $rootNamespace.'\Gamify\Points';
     }

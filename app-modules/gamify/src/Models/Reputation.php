@@ -2,21 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Laravelcm\Badges;
+namespace Laravelcm\Gamify\Models;
 
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
+/**
+ * @property-read int $id
+ * @property int $point
+ * @property User payee
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ */
 final class Reputation extends Model
 {
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     /**
-     * Payee user
-     *
-     * @return BelongsTo
+     * @return BelongsTo<User, $this>
      */
-    public function payee()
+    public function payee(): BelongsTo
     {
         return $this->belongsTo(config('gamify.payee_model'), 'payee_id');
     }
@@ -24,9 +32,9 @@ final class Reputation extends Model
     /**
      * Get the owning subject model
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     * @return MorphTo
      */
-    public function subject()
+    public function subject(): MorphTo
     {
         return $this->morphTo();
     }

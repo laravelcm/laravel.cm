@@ -6,5 +6,5 @@ namespace Laravelcm\Badges;
 
 trait Gamify
 {
-    use HasBadges, HasReputations;
+    use HasReputations;
 }

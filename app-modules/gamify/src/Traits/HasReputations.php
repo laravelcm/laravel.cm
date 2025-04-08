@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Laravelcm\Badges;
 
-use Laravelcm\Badges\Events\ReputationChanged;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravelcm\Gamify\Models\Reputation;
 
 /**
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravelcm\Badges\Reputation> $reputations
+ * @property-read Collection<int, Reputation> $reputations
  * @property-read int|null $reputations_count
  */
 trait HasReputations
@@ -17,7 +19,7 @@ trait HasReputations
      *
      * @return bool
      */
-    public function givePoint(PointType $pointType)
+    public function givePoint(PointType $pointType): bool
     {
         if (! $pointType->qualifier()) {
             return false;
@@ -33,7 +35,7 @@ trait HasReputations
      *
      * @return bool
      */
-    public function undoPoint(PointType $pointType)
+    public function undoPoint(PointType $pointType): bool
     {
         $reputation = $pointType->firstReputation();
 
@@ -48,9 +50,9 @@ trait HasReputations
     /**
      * Reputations of user relation
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function reputations()
+    public function reputations(): HasMany
     {
         return $this->hasMany(config('gamify.reputation_model'), 'payee_id');
     }
@@ -79,8 +81,6 @@ trait HasReputations
     {
         $this->increment($this->getReputationField(), $point);
 
-        ReputationChanged::dispatch($this, $point, true);
-
         return $this;
     }
 
@@ -94,8 +94,6 @@ trait HasReputations
     {
         $this->decrement($this->getReputationField(), $point);
 
-        ReputationChanged::dispatch($this, $point, false);
-
         return $this;
     }
 
@@ -107,8 +105,6 @@ trait HasReputations
     public function resetPoint()
     {
         $this->forceFill([$this->getReputationField() => 0])->save();
-
-        ReputationChanged::dispatch($this, 0, false);
 
         return $this;
     }
