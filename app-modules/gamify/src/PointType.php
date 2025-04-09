@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Laravelcm\Gamify;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Query\Builder;
 use Laravelcm\Gamify\Exceptions\InvalidPayeeModelException;
 use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
 use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
@@ -32,9 +32,11 @@ abstract class PointType
     }
 
     /**
-     * Payee who will be recieving points
+     * Payee who will be receiving points
      *
      * @return Model
+     * @throws PointSubjectNotSetException
+     * @throws InvalidPayeeModelException
      */
     public function payee(): Model
     {
@@ -49,6 +51,7 @@ abstract class PointType
      * Subject model for point
      *
      * @return Model
+     * @throws PointSubjectNotSetException
      */
     public function getSubject(): Model
     {
@@ -103,6 +106,7 @@ abstract class PointType
      * @return bool
      *
      * @throws InvalidPayeeModelException
+     * @throws PointSubjectNotSetException
      */
     public function reputationExists(): bool
     {
@@ -115,6 +119,7 @@ abstract class PointType
      * @return Model
      *
      * @throws InvalidPayeeModelException
+     * @throws PointSubjectNotSetException
      */
     public function firstReputation(): Model
     {
@@ -124,10 +129,12 @@ abstract class PointType
     /**
      * Store a reputation in the database
      *
-     * @param  array  $meta
+     * @param array $meta
      * @return mixed
      *
      * @throws InvalidPayeeModelException
+     * @throws PointSubjectNotSetException
+     * @throws PointsNotDefinedException
      */
     public function storeReputation(array $meta): Reputation
     {
@@ -162,9 +169,10 @@ abstract class PointType
     /**
      * Return reputations payee relation
      *
-     * @return HasMany
+     * @return HasMany<User>
      *
      * @throws InvalidPayeeModelException
+     * @throws PointSubjectNotSetException
      */
     protected function payeeReputations(): HasMany
     {

@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Laravelcm\Gamify\Traits;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
+use Laravelcm\Gamify\Exceptions\InvalidPayeeModelException;
+use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
+use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
 use Laravelcm\Gamify\Models\Reputation;
 use Laravelcm\Gamify\PointType;
 
@@ -18,8 +22,6 @@ trait HasReputations
 {
     /**
      * Give reputation point to payee
-     *
-     * @return bool
      */
     public function givePoint(PointType $pointType): bool
     {
@@ -35,7 +37,7 @@ trait HasReputations
     /**
      * Undo last given point for a subject model
      *
-     * @return bool
+     * @throws InvalidPayeeModelException
      */
     public function undoPoint(PointType $pointType): bool
     {
@@ -51,8 +53,6 @@ trait HasReputations
 
     /**
      * Reputations of user relation
-     *
-     * @return HasMany
      */
     public function reputations(): HasMany
     {
@@ -63,8 +63,12 @@ trait HasReputations
      * Store a reputation for point
      *
      * @return mixed
+     *
+     * @throws InvalidPayeeModelException
+     * @throws PointSubjectNotSetException
+     * @throws PointsNotDefinedException
      */
-    public function storeReputation(PointType $pointType, array $meta = [])
+    public function storeReputation(PointType $pointType, array $meta = []): bool
     {
         if (! $this->isDuplicatePointAllowed($pointType) && $pointType->reputationExists()) {
             return false;
@@ -104,7 +108,7 @@ trait HasReputations
      *
      * @return mixed
      */
-    public function resetPoint()
+    public function resetPoint(): mixed
     {
         $this->forceFill([$this->getReputationField() => 0])->save();
 
@@ -114,10 +118,10 @@ trait HasReputations
     /**
      * Get user reputation point
      *
-     * @param  bool  $formatted
+     * @param bool $formatted
      * @return int|string
      */
-    public function getPoints($formatted = false)
+    public function getPoints(bool $formatted = false): int|string
     {
         $point = $this->{$this->getReputationField()};
 
@@ -133,7 +137,7 @@ trait HasReputations
      *
      * @return string
      */
-    protected function getReputationField()
+    protected function getReputationField(): string
     {
         return property_exists($this, 'reputationColumn')
             ? $this->reputationColumn
@@ -145,7 +149,7 @@ trait HasReputations
      *
      * @return bool
      */
-    protected function isDuplicatePointAllowed(PointType $pointType)
+    protected function isDuplicatePointAllowed(PointType $pointType): bool
     {
         return property_exists($pointType, 'allowDuplicates')
             ? $pointType->allowDuplicates

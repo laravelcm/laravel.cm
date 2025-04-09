@@ -11,16 +11,16 @@ final class GamifyServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(base_path('app-modules/gamify/config/gamify.php'), 'gamify');
+        $this->mergeConfigFrom(__DIR__.'/../../config/gamify.php', 'gamify');
     }
 
     public function boot(): void
     {
         $this->publishes([
-            base_path('app-modules/gamify/config/gamify.php') => config_path('gamify.php'),
+            __DIR__.'/../../config/gamify.php' => config_path('gamify.php'),
         ], 'gamify-config');
 
-        $this->loadMigrationsFrom(base_path('app-modules/gamify/database/migrations'));
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
