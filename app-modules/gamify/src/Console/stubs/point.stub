@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use QCod\Gamify\PointType;
+use Laravelcm\Gamify\PointType;
 
 class DummyClass extends PointType
 {

@@ -4,33 +4,28 @@ declare(strict_types=1);
 
 namespace Laravelcm\Gamify\Providers;
 
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
-use Laravelcm\Badges\Console\MakePointCommand;
-use Spatie\LaravelPackageTools\Package;
+use Laravelcm\Gamify\Console\MakePointCommand;
 
 final class GamifyServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        //
+        $this->mergeConfigFrom(base_path('app-modules/gamify/config/gamify.php'), 'gamify');
     }
 
     public function boot(): void
     {
-        Relation::morphMap([]);
-    }
+        $this->publishes([
+            base_path('app-modules/gamify/config/gamify.php') => config_path('gamify.php'),
+        ], 'gamify-config');
 
-    public function configurePackage(Package $package): void
-    {
-        $package->name('gamify')
-            ->hasConfigFile()
-            ->hasMigrations([
-                'add_reputation_on_user_table',
-                'create_gamify_tables',
-            ])
-            ->hasCommands([
+        $this->loadMigrationsFrom(base_path('app-modules/gamify/database/migrations'));
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
                 MakePointCommand::class,
             ]);
+        }
     }
 }

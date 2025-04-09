@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Laravelcm\Badges;
+namespace Laravelcm\Gamify;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
-use Laravelcm\Badges\Exceptions\InvalidPayeeModel;
-use Laravelcm\Badges\Exceptions\PointsNotDefined;
-use Laravelcm\Badges\Exceptions\PointSubjectNotSet;
+use Laravelcm\Gamify\Exceptions\InvalidPayeeModelException;
+use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
+use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
 use Laravelcm\Gamify\Models\Reputation;
 
 abstract class PointType
@@ -42,7 +42,7 @@ abstract class PointType
             return $this->getSubject()->{$this->payee};
         }
 
-        throw new InvalidPayeeModel;
+        throw new InvalidPayeeModelException;
     }
 
     /**
@@ -53,7 +53,7 @@ abstract class PointType
     public function getSubject(): Model
     {
         if (! isset($this->subject)) {
-            throw new PointSubjectNotSet;
+            throw new PointSubjectNotSetException;
         }
 
         return $this->subject;
@@ -76,12 +76,12 @@ abstract class PointType
      *
      * @return int
      *
-     * @throws PointsNotDefined
+     * @throws PointsNotDefinedException
      */
     public function getPoints(): int
     {
         if (! isset($this->points)) {
-            throw new PointsNotDefined;
+            throw new PointsNotDefinedException;
         }
 
         return $this->points;
@@ -98,11 +98,11 @@ abstract class PointType
     }
 
     /**
-     * Check if reputation alredy exists for a point
+     * Check if reputation already exists for a point
      *
      * @return bool
      *
-     * @throws InvalidPayeeModel
+     * @throws InvalidPayeeModelException
      */
     public function reputationExists(): bool
     {
@@ -112,9 +112,9 @@ abstract class PointType
     /**
      * Get first reputation for point
      *
-     * @return \Illuminate\Database\Eloquent\Model|null
+     * @return Model
      *
-     * @throws InvalidPayeeModel
+     * @throws InvalidPayeeModelException
      */
     public function firstReputation(): Model
     {
@@ -127,9 +127,9 @@ abstract class PointType
      * @param  array  $meta
      * @return mixed
      *
-     * @throws InvalidPayeeModel
+     * @throws InvalidPayeeModelException
      */
-    public function storeReputation($meta = []): Reputation
+    public function storeReputation(array $meta): Reputation
     {
         return $this->payeeReputations()->create([
             'payee_id' => $this->payee()->id,
@@ -144,11 +144,12 @@ abstract class PointType
     /**
      * Get reputation query for this point
      *
-     * @return Builder
+     * @return HasMany
      *
-     * @throws InvalidPayeeModel
+     * @throws InvalidPayeeModelException
+     * @throws PointSubjectNotSetException
      */
-    public function reputationQuery(): Builder
+    public function reputationQuery(): HasMany
     {
         return $this->payeeReputations()->where([
             ['payee_id', $this->payee()->id],
@@ -163,14 +164,14 @@ abstract class PointType
      *
      * @return HasMany
      *
-     * @throws InvalidPayeeModel
+     * @throws InvalidPayeeModelException
      */
     protected function payeeReputations(): HasMany
     {
         $model = $this->payee();
 
         if (! $model) {
-            throw new InvalidPayeeModel;
+            throw new InvalidPayeeModelException;
         }
 
         return $model->reputations();

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Laravelcm\Badges\Console;
+namespace Laravelcm\Gamify\Console;
 
 use Illuminate\Console\GeneratorCommand;
 
@@ -13,21 +13,21 @@ final class MakePointCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected string $signature = 'gamify:point {name}';
+    protected $signature = 'gamify:point {name}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected string $description = 'Create a Gamify point type class.';
+    protected $description = 'Create a Gamify point type class.';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected string $type = 'Point';
+    protected $type = 'Point';
 
     /**
      * Get the stub file for the generator.

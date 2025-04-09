@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Laravelcm\Badges;
+namespace Laravelcm\Gamify\Traits;
 
 trait Gamify
 {

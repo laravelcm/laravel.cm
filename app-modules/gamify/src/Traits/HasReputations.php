@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Laravelcm\Badges;
+namespace Laravelcm\Gamify\Traits;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 use Laravelcm\Gamify\Models\Reputation;
+use Laravelcm\Gamify\PointType;
 
 /**
  * @property-read Collection<int, Reputation> $reputations
@@ -120,7 +122,7 @@ trait HasReputations
         $point = $this->{$this->getReputationField()};
 
         if ($formatted) {
-            return short_number($point);
+            return Str::numbers($point);
         }
 
         return (int) $point;

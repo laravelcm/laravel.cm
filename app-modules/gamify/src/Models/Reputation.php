@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Laravelcm\Gamify\Models;
 
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,17 +11,17 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * @property-read int $id
- * @property int $point
- * @property User payee
- * @property Carbon $created_at
- * @property Carbon $updated_at
+ * @property-read int $point
+ * @property-read Model payee
+ * @property-read Carbon $created_at
+ * @property-read Carbon $updated_at
  */
 final class Reputation extends Model
 {
-    protected $guarded = ['id', 'created_at', 'updated_at'];
+    protected $guarded = [];
 
     /**
-     * @return BelongsTo<User, $this>
+     * @return BelongsTo<Model, $this>
      */
     public function payee(): BelongsTo
     {
