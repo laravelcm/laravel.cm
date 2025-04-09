@@ -21,6 +21,8 @@ composer.phar
 /public/hot
 /public/storage
 /public/media
+public/css/
+public/js/
 /public/**/*.xml
 /storage/*.key
 /storage/framework/cache

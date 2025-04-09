@@ -10,13 +10,13 @@ use App\Data\ArticleData;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Article;
-use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
@@ -43,8 +43,8 @@ final class ArticleForm extends SlideOverComponent implements HasForms
             : new Article;
 
         $this->form->fill(array_merge($this->article->toArray(), [
-            'is_draft' => ! $this->article->published_at, // @phpstan-ignore-line
-            'published_at' => $this->article->published_at, // @phpstan-ignore-line
+            'is_draft' => ! $this->article->published_at,
+            'published_at' => $this->article->published_at,
             'locale' => $this->article->locale ?? app()->getLocale(),
         ]));
     }
@@ -91,7 +91,7 @@ final class ArticleForm extends SlideOverComponent implements HasForms
                                     ->helperText(__('pages/article.draft_help')),
                                 Forms\Components\DatePicker::make('published_at')
                                     ->label(__('pages/article.form.published_at'))
-                                    ->minDate(now())
+                                    ->closeOnDateSelection()
                                     ->prefixIcon('untitledui-calendar-date')
                                     ->native(false)
                                     ->visible(fn (Forms\Get $get): bool => $get('is_draft') === false)
@@ -110,7 +110,7 @@ final class ArticleForm extends SlideOverComponent implements HasForms
                             ->relationship(
                                 name: 'tags',
                                 titleAttribute: 'name',
-                                modifyQueryUsing: fn ($query) => $query->whereJsonContains('concerns', 'post')
+                                modifyQueryUsing: fn (Builder $query): Builder => $query->whereJsonContains('concerns', 'post')
                             )
                             ->preload()
                             ->required()
@@ -173,10 +173,8 @@ final class ArticleForm extends SlideOverComponent implements HasForms
         $state = $this->form->getState();
 
         $publishedFields = [
-            'published_at' => data_get($state, 'published_at')
-                ? new Carbon(data_get($state, 'published_at'))
-                : null,
-            'submitted_at' => data_get($state, 'is_draft') ? null : now(),
+            'published_at' => data_get($state, 'published_at') ?? null,
+            'submitted_at' => data_get($state, 'is_draft') ?? null,
         ];
 
         if ($this->article?->id) {
