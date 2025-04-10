@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Gamify\Points;
 
 use App\Models\User;
-use QCod\Gamify\PointType;
+use Laravelcm\Gamify\PointType;
 
 final class ReplyCreated extends PointType
 {
@@ -19,7 +19,7 @@ final class ReplyCreated extends PointType
         $this->author = $author;
     }
 
-    public function payee(): ?User
+    public function payee(): \Illuminate\Database\Eloquent\Model
     {
         return $this->author;
     }

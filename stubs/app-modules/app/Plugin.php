@@ -7,7 +7,7 @@ namespace Laravelcm\StubClassNamePrefix;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
-final class StubComposerNamePlugin implements Plugin
+final class StubClassNamePrefixPlugin implements Plugin
 {
     public function getId(): string
     {
