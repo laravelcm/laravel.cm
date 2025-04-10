@@ -31,6 +31,7 @@ trait HasReputations
 
         if ($this->storeReputation($pointType)) {
             $pointType->payee()->addPoint($pointType->getPoints());
+
             return true;
         }
 
