@@ -31,8 +31,6 @@ final class Reputation extends Model
 
     /**
      * Get the owning subject model
-     *
-     * @return MorphTo
      */
     public function subject(): MorphTo
     {

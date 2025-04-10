@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Laravelcm\Gamify;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravelcm\Gamify\Exceptions\InvalidPayeeModelException;
@@ -16,15 +15,11 @@ abstract class PointType
 {
     /**
      * Subject for reputation
-     *
-     * @var Model
      */
     protected Model $subject;
 
     /**
      * Check qualification to give this point
-     *
-     * @return bool
      */
     public function qualifier(): bool
     {
@@ -34,7 +29,7 @@ abstract class PointType
     /**
      * Payee who will be receiving points
      *
-     * @return Model
+     *
      * @throws PointSubjectNotSetException
      * @throws InvalidPayeeModelException
      */
@@ -50,7 +45,6 @@ abstract class PointType
     /**
      * Subject model for point
      *
-     * @return Model
      * @throws PointSubjectNotSetException
      */
     public function getSubject(): Model
@@ -64,8 +58,6 @@ abstract class PointType
 
     /**
      * Get point name
-     *
-     * @return string
      */
     public function getName(): string
     {
@@ -77,7 +69,6 @@ abstract class PointType
     /**
      * Get points
      *
-     * @return int
      *
      * @throws PointsNotDefinedException
      */
@@ -92,8 +83,6 @@ abstract class PointType
 
     /**
      * Set a subject
-     *
-     * @param  mixed  $subject
      */
     public function setSubject(mixed $subject): void
     {
@@ -103,7 +92,6 @@ abstract class PointType
     /**
      * Check if reputation already exists for a point
      *
-     * @return bool
      *
      * @throws InvalidPayeeModelException
      * @throws PointSubjectNotSetException
@@ -116,7 +104,6 @@ abstract class PointType
     /**
      * Get first reputation for point
      *
-     * @return Model
      *
      * @throws InvalidPayeeModelException
      * @throws PointSubjectNotSetException
@@ -129,7 +116,6 @@ abstract class PointType
     /**
      * Store a reputation in the database
      *
-     * @param array $meta
      * @return mixed
      *
      * @throws InvalidPayeeModelException
@@ -151,7 +137,6 @@ abstract class PointType
     /**
      * Get reputation query for this point
      *
-     * @return HasMany
      *
      * @throws InvalidPayeeModelException
      * @throws PointSubjectNotSetException
@@ -169,7 +154,6 @@ abstract class PointType
     /**
      * Return reputations payee relation
      *
-     * @return HasMany<User>
      *
      * @throws InvalidPayeeModelException
      * @throws PointSubjectNotSetException

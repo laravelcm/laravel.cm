@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Gamify\Points;
 
-use Laravelcm\Badges\PointType;
+use Laravelcm\Gamify\PointType;
 
 final class AddPhone extends PointType
 {

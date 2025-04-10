@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5015d841cdbd2126df79c0ed6396550f",
+    "content-hash": "f338e435d6dec9ee6d1e91eaea04247d",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -5748,7 +5748,7 @@
             "dist": {
                 "type": "path",
                 "url": "app-modules/gamify",
-                "reference": "819378f7bf39bb51a8e1958f444adf78750eb335"
+                "reference": "2b3bd1e2255984f8cf9ac6ad204f85bf6f3ce627"
             },
             "require": {
                 "filament/filament": "^3.2"
@@ -5764,9 +5764,16 @@
             "autoload": {
                 "psr-4": {
                     "Laravelcm\\Gamify\\": "src/",
-                    "Laravelcm\\Gamify\\Tests\\": "tests/",
                     "Laravelcm\\Gamify\\Database\\Factories\\": "database/factories/",
                     "Laravelcm\\Gamify\\Database\\Seeders\\": "database/seeders/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Laravelcm\\Gamify\\Tests\\": "tests/"
                 }
             },
             "license": [
@@ -9321,77 +9328,6 @@
                 "source": "https://github.com/bobthecow/psysh/tree/v0.12.8"
             },
             "time": "2025-03-16T03:05:19+00:00"
-        },
-        {
-            "name": "qcod/laravel-gamify",
-            "version": "1.0.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/qcod/laravel-gamify.git",
-                "reference": "8e9c04085b79bcf016c7753900bf2932789bceee"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/qcod/laravel-gamify/zipball/8e9c04085b79bcf016c7753900bf2932789bceee",
-                "reference": "8e9c04085b79bcf016c7753900bf2932789bceee",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "^8.83.27|^9.51.0|^10.0.0|^11.0",
-                "php": "^8.0",
-                "spatie/laravel-package-tools": "^1.12"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.5",
-                "mockery/mockery": "^0.9.4 || ~1.0",
-                "orchestra/testbench": "^6.25.1|^7.22.0|^8.0.0|^9.0",
-                "pestphp/pest": "^1.23.1|^2.11",
-                "pestphp/pest-plugin-laravel": "^1.4|^2.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "QCod\\Gamify\\GamifyServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "QCod\\Gamify\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mohd Saqueib Ansari",
-                    "email": "saquibweb@gmail.com"
-                }
-            ],
-            "description": "Add gamification in laravel app with reputation point and badges support",
-            "homepage": "https://github.com/qcod/laravel-gamify",
-            "keywords": [
-                "Gamification",
-                "achivement",
-                "badge",
-                "gamify",
-                "laravel",
-                "points",
-                "qcod",
-                "reputation",
-                "reward"
-            ],
-            "support": {
-                "issues": "https://github.com/qcod/laravel-gamify/issues",
-                "source": "https://github.com/qcod/laravel-gamify/tree/1.0.8"
-            },
-            "time": "2024-08-24T04:32:17+00:00"
         },
         {
             "name": "ralouphie/getallheaders",

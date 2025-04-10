@@ -2,26 +2,22 @@
 
 declare(strict_types=1);
 
-namespace DummyNamespace;
+namespace App\Gamify\Points;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Laravelcm\Gamify\PointType;
 use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
+use Laravelcm\Gamify\PointType;
 
-final class DummyClass extends PointType
+final class Test extends PointType
 {
     /**
      * Number of points
-     *
-     * @var int
      */
     public int $points = 20;
 
     /**
      * Point constructor
-     *
-     * @param mixed $subject
      */
     public function __construct(mixed $subject)
     {
@@ -29,9 +25,10 @@ final class DummyClass extends PointType
     }
 
     /**
-     * User who will be receive points
+     * User who will be received points
      *
      * @return mixed
+     *
      * @throws PointSubjectNotSetException
      */
     public function payee(): Model

@@ -7,7 +7,7 @@ namespace Laravelcm\Gamify\Traits;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
+use Illuminate\Support\Number;
 use Laravelcm\Gamify\Exceptions\InvalidPayeeModelException;
 use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
 use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
@@ -30,14 +30,18 @@ trait HasReputations
         }
 
         if ($this->storeReputation($pointType)) {
-            return $pointType->payee()->addPoint($pointType->getPoints());
+            $pointType->payee()->addPoint($pointType->getPoints());
+            return true;
         }
+
+        return false;
     }
 
     /**
      * Undo last given point for a subject model
      *
      * @throws InvalidPayeeModelException
+     * @throws PointSubjectNotSetException
      */
     public function undoPoint(PointType $pointType): bool
     {
@@ -47,12 +51,13 @@ trait HasReputations
             return false;
         }
 
-        // undo reputation
         $reputation->undo();
     }
 
     /**
      * Reputations of user relation
+     *
+     * @return HasMany<User>
      */
     public function reputations(): HasMany
     {
@@ -74,16 +79,13 @@ trait HasReputations
             return false;
         }
 
-        return $pointType->storeReputation($meta);
+        return $pointType->storeReputation($meta) instanceof \Laravelcm\Gamify\Models\Reputation;
     }
 
     /**
      * Give point to a user
-     *
-     * @param  int  $point
-     * @return HasReputations
      */
-    public function addPoint($point = 1)
+    public function addPoint(int $point = 1): static
     {
         $this->increment($this->getReputationField(), $point);
 
@@ -92,11 +94,8 @@ trait HasReputations
 
     /**
      * Reduce a user point
-     *
-     * @param  int  $point
-     * @return HasReputations
      */
-    public function reducePoint($point = 1)
+    public function reducePoint(int $point = 1): static
     {
         $this->decrement($this->getReputationField(), $point);
 
@@ -105,10 +104,8 @@ trait HasReputations
 
     /**
      * Reset a user point to zero
-     *
-     * @return mixed
      */
-    public function resetPoint(): mixed
+    public function resetPoint(): static
     {
         $this->forceFill([$this->getReputationField() => 0])->save();
 
@@ -117,25 +114,16 @@ trait HasReputations
 
     /**
      * Get user reputation point
-     *
-     * @param bool $formatted
-     * @return int|string
      */
     public function getPoints(bool $formatted = false): int|string
     {
         $point = $this->{$this->getReputationField()};
 
-        if ($formatted) {
-            return Str::numbers($point);
-        }
-
-        return (int) $point;
+        return $formatted ? Number::abbreviate($point) : (int) $point;
     }
 
     /**
      * Get the reputation column name
-     *
-     * @return string
      */
     protected function getReputationField(): string
     {
@@ -146,8 +134,6 @@ trait HasReputations
 
     /**
      * Check for duplicate point allowed
-     *
-     * @return bool
      */
     protected function isDuplicatePointAllowed(PointType $pointType): bool
     {

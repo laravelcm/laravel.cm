@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
+use Laravelcm\Gamify\Models\Reputation;
+
 return [
 
     'payee_model' => '\App\Models\User',
 
-    'reputation_model' => '\Laravel\Gamify\Reputation',
+    'reputation_model' => Reputation::class,
 
     'allow_reputation_duplicate' => true,
 

@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
+use App\Models\User;
 use Laravelcm\Gamify\PointType;
 
 if (! function_exists('givePoint')) {
 
     /**
      * Give point to user
-     *
-     * @param  null  $payee
      */
-    function givePoint(PointType $pointType, $payee = null): void
+    function givePoint(PointType $pointType, ?User $payee = null): void
     {
-        $payee = $payee ?? auth()->user();
+        $payee ??= auth()->user();
 
         if (! $payee) {
             return;
@@ -28,11 +27,12 @@ if (! function_exists('undoPoint')) {
     /**
      * Undo a given point
      *
-     * @param  null  $payee
+     * @throws \Laravelcm\Gamify\Exceptions\InvalidPayeeModelException
+     * @throws \Laravelcm\Gamify\Exceptions\PointSubjectNotSetException
      */
-    function undoPoint(PointType $pointType, $payee = null): void
+    function undoPoint(PointType $pointType, ?User $payee = null): void
     {
-        $payee = $payee ?? auth()->user();
+        $payee ??= auth()->user();
 
         if (! $payee) {
             return;

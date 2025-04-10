@@ -18,7 +18,7 @@ final class GamifyServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../../config/gamify.php' => config_path('gamify.php'),
-        ], 'gamify-config');
+        ], 'gamify');
 
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 

@@ -10,11 +10,18 @@
     "autoload": {
         "psr-4": {
             "Laravelcm\\Gamify\\": "src/",
-            "Laravelcm\\Gamify\\Tests\\": "tests/",
             "Laravelcm\\Gamify\\Database\\Factories\\": "database/factories/",
             "Laravelcm\\Gamify\\Database\\Seeders\\": "database/seeders/"
-        }
+        },
+      "files": [
+        "src/helpers.php"
+      ]
     },
+  "autoload-dev": {
+    "psr-4": {
+      "Laravelcm\\Gamify\\Tests\\": "tests/"
+    }
+  },
     "minimum-stability": "stable",
     "extra": {
         "laravel": {
