@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages\Account;
 
+use App\Gamify\Badges\NewComerBadge;
 use App\Models\Article;
 use App\Models\Discussion;
 use App\Models\Thread;
