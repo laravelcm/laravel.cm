@@ -6,11 +6,11 @@ namespace Laravelcm\Gamify;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Laravelcm\Gamify\Models\Reputation;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
 use Laravelcm\Gamify\Exceptions\InvalidPayeeModelException;
+use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
 use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
+use Laravelcm\Gamify\Models\Reputation;
 
 abstract class PointType
 {

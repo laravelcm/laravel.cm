@@ -2,19 +2,17 @@
 
 declare(strict_types=1);
 
-use App\Models\User;
 use Laravelcm\Gamify\Models\Reputation;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-describe(Reputation::class, function () {
+describe(Reputation::class, function (): void {
 
-    it('gets user points', function () {
+    it('gets user points', function (): void {
         $user = createUser(['reputation' => 10]);
 
         expect($user->getPoints())->toBe(10);
     });
 
-    it('gives reputation point to a user', function () {
+    it('gives reputation point to a user', function (): void {
         expect($user->getPoints())->toBe(0);
 
         $user->addPoint(10);
@@ -22,7 +20,7 @@ describe(Reputation::class, function () {
         expect($user->fresh()->getPoints())->toBe(10);
     });
 
-    it('reduces reputation point for a user', function () {
+    it('reduces reputation point for a user', function (): void {
         $user = createUser(['reputation' => 20]);
         expect($user->reputation)->toBe(20);
 
@@ -31,7 +29,7 @@ describe(Reputation::class, function () {
         expect($user->fresh()->getPoints())->toBe(15);
     });
 
-    it('zeros reputation point of a user', function () {
+    it('zeros reputation point of a user', function (): void {
         $user = createUser(['reputation' => 50]);
         expect($user->getPoints())->toBe(50);
 
