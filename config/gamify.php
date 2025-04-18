@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Models\User;
 use Laravelcm\Gamify\Models\Reputation;
 
 return [
 
-    'payee_model' => '\App\Models\User',
+    'payee_model' => User::class,
 
     'reputation_model' => Reputation::class,
 

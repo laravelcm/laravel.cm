@@ -6,7 +6,6 @@ namespace DummyNamespace;
 
 use App\Models\User;
 use Laravelcm\Gamify\PointType;
-use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
 
 final class DummyClass extends PointType
 {
@@ -31,7 +30,6 @@ final class DummyClass extends PointType
      * User who will be receive points
      *
      * @return mixed
-     * @throws PointSubjectNotSetException
      */
     public function payee(): ?User
     {

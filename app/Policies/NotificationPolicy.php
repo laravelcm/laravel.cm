@@ -16,6 +16,6 @@ final class NotificationPolicy
 
     public function markAsRead(User $user, DatabaseNotification $notification): bool
     {
-        return $notification->notifiable->is($user);
+        return $notification->notifiable && $notification->notifiable->is($user);
     }
 }
