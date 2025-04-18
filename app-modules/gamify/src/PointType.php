@@ -109,7 +109,7 @@ abstract class PointType
      * @throws InvalidPayeeModelException
      * @throws PointSubjectNotSetException
      */
-    public function firstReputation(): User
+    public function firstReputation(): Reputation
     {
         return $this->reputationQuery()->first();
     }
