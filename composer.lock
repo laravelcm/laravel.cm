@@ -5748,7 +5748,7 @@
             "dist": {
                 "type": "path",
                 "url": "app-modules/gamify",
-                "reference": "2b3bd1e2255984f8cf9ac6ad204f85bf6f3ce627"
+                "reference": "2a0f54f23f5dee0cbbac840697a3bdfffb32699f"
             },
             "require": {
                 "filament/filament": "^3.2"
@@ -18594,7 +18594,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -18602,6 +18602,6 @@
         "ext-fileinfo": "*",
         "ext-json": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

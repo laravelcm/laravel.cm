@@ -19,7 +19,7 @@ final class ReplyCreated extends PointType
         $this->author = $author;
     }
 
-    public function payee(): \Illuminate\Database\Eloquent\Model
+    public function payee(): ?User
     {
         return $this->author;
     }

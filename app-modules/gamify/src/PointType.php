@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Laravelcm\Gamify;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Laravelcm\Gamify\Exceptions\InvalidPayeeModelException;
-use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
-use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
 use Laravelcm\Gamify\Models\Reputation;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
+use Laravelcm\Gamify\Exceptions\InvalidPayeeModelException;
+use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
 
 abstract class PointType
 {
@@ -33,7 +34,7 @@ abstract class PointType
      * @throws PointSubjectNotSetException
      * @throws InvalidPayeeModelException
      */
-    public function payee(): Model
+    public function payee(): User
     {
         if (property_exists($this, 'payee')) {
             return $this->getSubject()->{$this->payee};
@@ -108,7 +109,7 @@ abstract class PointType
      * @throws InvalidPayeeModelException
      * @throws PointSubjectNotSetException
      */
-    public function firstReputation(): Model
+    public function firstReputation(): User
     {
         return $this->reputationQuery()->first();
     }

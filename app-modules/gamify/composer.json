@@ -2,10 +2,14 @@
     "name": "laravelcm/gamify",
     "description": "Module laravelcm/gamify for Laravel.cm",
     "type": "library",
-    "version": "1.0",
+    "version": "1.1.0",
     "license": "proprietary",
     "require": {
         "filament/filament": "^3.2"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.32",
+        "pestphp/pest-plugin-laravel": "^2.1"
     },
     "autoload": {
         "psr-4": {
