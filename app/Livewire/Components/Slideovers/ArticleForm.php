@@ -43,8 +43,8 @@ final class ArticleForm extends SlideOverComponent implements HasForms
             : new Article;
 
         $this->form->fill(array_merge($this->article->toArray(), [
-            'is_draft' => ! $this->article->published_at, // @phpstan-ignore-line
-            'published_at' => $this->article->published_at, // @phpstan-ignore-line
+            'is_draft' => ! $this->article->published_at,
+            'published_at' => $this->article->published_at,
             'locale' => $this->article->locale ?? app()->getLocale(),
         ]));
     }

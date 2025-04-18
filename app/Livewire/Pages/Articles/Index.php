@@ -35,7 +35,7 @@ final class Index extends Component
                 key: 'articles.tags',
                 ttl: now()->addWeek(),
                 callback: fn () => Tag::query()->whereHas('articles', function ($query): void {
-                    $query->published();
+                    $query->published(); // @phpstan-ignore-line
                 })->orderBy('name')->get()
             ),
         ])

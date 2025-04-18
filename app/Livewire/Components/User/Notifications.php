@@ -45,7 +45,7 @@ final class Notifications extends Component
             ->where('subscribeable_type', $type)
             ->firstOrFail();
 
-        $this->redirect(route_to_reply_able($subscribe->subscribeAble), navigate: true);
+        $this->redirect(route_to_reply_able($subscribe->subscribeAble), navigate: true); // @phpstan-ignore-line
     }
 
     public function render(): View

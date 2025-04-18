@@ -28,9 +28,9 @@ final class DeveloperPremiumPlanSeeder extends Seeder
             'currency' => 'XAF',
         ]);
         $rookiePlan->features()->saveMany([
-            new Feature(['name' => 'Voir les vidéos Premium', 'value' => 1, 'sort_order' => 1]),
-            new Feature(['name' => 'Écouter les Podcasts Premium', 'value' => 1, 'sort_order' => 2]),
-            new Feature(['name' => 'Badge Premium sur le profil', 'value' => 1, 'sort_order' => 4]),
+            new Feature(['name' => 'Voir les vidéos rookie', 'value' => 1, 'sort_order' => 1]),
+            new Feature(['name' => 'Écouter les Podcasts rookie', 'value' => 1, 'sort_order' => 2]),
+            new Feature(['name' => 'Badge rookie sur le profil', 'value' => 1, 'sort_order' => 4]),
             new Feature(['name' => 'Accès au code source des tutoriels', 'value' => 1, 'sort_order' => 5]),
         ]);
 
@@ -52,7 +52,7 @@ final class DeveloperPremiumPlanSeeder extends Seeder
             new Feature(['name' => 'Écouter les Podcasts premium', 'value' => 1, 'sort_order' => 2]),
             new Feature(['name' => 'Badge Premium sur le profil', 'value' => 1, 'sort_order' => 3]),
             new Feature(['name' => 'Invitation channel privé sur Discord', 'value' => 1, 'sort_order' => 4]),
-            new Feature(['name' => 'Accès au code source des tutoriels', 'value' => 1, 'sort_order' => 5]),
+            new Feature(['name' => 'Accès au code source des tutoriels premium', 'value' => 1, 'sort_order' => 5]),
             new Feature(['name' => 'E-Books Laravel, Design UI/UX, etc', 'value' => 1, 'sort_order' => 6]),
             new Feature(['name' => '2 heures (2 séances) de consultation mensuelle gratuite', 'value' => 1, 'sort_order' => 9]),
             new Feature(['name' => 'Logo sur la page des articles', 'value' => 1, 'sort_order' => 8]),
