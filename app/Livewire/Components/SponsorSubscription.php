@@ -134,7 +134,7 @@ final class SponsorSubscription extends Component implements HasForms
                 'status' => $payload->transaction->status,
                 'transaction_reference' => $payload->transaction->reference,
                 'user_id' => $user->id,
-                'fees' => $payload->transaction->fee,
+                'fees' => empty(get_object_vars($payload->transaction->fees)) ? 0 : $payload->transaction->fees->fee,
                 'type' => TransactionType::ONETIME->value,
                 'metadata' => [
                     'currency' => $payload->transaction->currency,
