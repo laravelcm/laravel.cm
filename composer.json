@@ -5,7 +5,7 @@
   "keywords": ["framework", "laravel"],
   "license": "MIT",
   "require": {
-    "php": "^8.2",
+    "php": "^8.3",
     "ext-fileinfo": "*",
     "ext-json": "*",
     "archtechx/laravel-seo": "^0.10",
@@ -33,9 +33,8 @@
     "laravel/tinker": "^2.8.1",
     "laravelcm/laravel-subscriptions": "^1.3",
     "laravelcm/livewire-slide-overs": "^1.0",
-    "livewire/livewire": "^3.5",
     "livewire/volt": "^1.6",
-    "mckenziearts/blade-untitledui-icons": "^1.3",
+    "mckenziearts/blade-untitledui-icons": "^1.4",
     "notchpay/notchpay-php": "^1.6",
     "qcod/laravel-gamify": "1.0.8",
     "ramsey/uuid": "^4.7.4",
@@ -62,10 +61,10 @@
     "laravel/pint": "^1.18",
     "mockery/mockery": "^1.6.2",
     "nunomaduro/collision": "^8.1",
-    "pestphp/pest": "^2.32",
-    "pestphp/pest-plugin-laravel": "^2.1",
-    "pestphp/pest-plugin-livewire": "^2.1",
-    "phpunit/phpunit": "^10.0",
+    "pestphp/pest": "^3.8",
+    "pestphp/pest-plugin-laravel": "^3.0",
+    "pestphp/pest-plugin-livewire": "^3.0",
+    "phpunit/phpunit": "^11.0",
     "spatie/laravel-ignition": "^2.0",
     "spatie/test-time": "^1.3.2"
   },
@@ -87,11 +86,11 @@
   "scripts": {
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-      "@php artisan package:discover --ansi"
+      "@php artisan package:discover --ansi",
+      "@php artisan filament:upgrade"
     ],
     "post-update-cmd": [
-      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-      "@php artisan filament:upgrade"
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate"
     ],
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

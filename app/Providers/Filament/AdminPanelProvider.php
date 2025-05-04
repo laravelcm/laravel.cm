@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
-use App\Filament\Resources\ArticleResource\Widgets\ArticleStatsOverview;
-use App\Filament\Resources\ArticleResource\Widgets\MostLikedPostsChart;
-use App\Filament\Resources\ArticleResource\Widgets\MostViewedPostsChart;
-use App\Filament\Resources\UserResource\Widgets\UserActivityWidget;
-use App\Filament\Resources\UserResource\Widgets\UserChartWidget;
-use App\Filament\Resources\UserResource\Widgets\UserStatsOverview;
+use App\Filament\Resources\ArticleResource\Widgets as ArticleWidgets;
+use App\Filament\Resources\UserResource\Widgets;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -17,15 +13,14 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\SpatieLaravelTranslatablePlugin;
-use Filament\Support\Colors\Color;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Vormkracht10\FilamentMails\Facades\FilamentMails;
 use Vormkracht10\FilamentMails\FilamentMailsPlugin;
 
 final class AdminPanelProvider extends PanelProvider
@@ -38,12 +33,14 @@ final class AdminPanelProvider extends PanelProvider
             ->path('cp')
             ->login()
             ->colors([
-                'primary' => Color::Green,
+                'primary' => '#099170',
             ])
             ->sidebarWidth('18.75rem')
+            ->sidebarCollapsibleOnDesktop()
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->brandLogo(fn () => view('filament.brand'))
             ->favicon(asset('images/favicons/favicon-32x32.png'))
+            ->spa()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
@@ -51,25 +48,19 @@ final class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->widgets([
-                UserStatsOverview::class,
-                UserChartWidget::class,
-                UserActivityWidget::class,
-                ArticleStatsOverview::class,
-                MostLikedPostsChart::class,
-                MostViewedPostsChart::class,
+                Widgets\UserStatsOverview::class,
+                Widgets\UserChartWidget::class,
+                Widgets\UserActivityWidget::class,
+                ArticleWidgets\ArticleStatsOverview::class,
+                ArticleWidgets\MostLikedPostsChart::class,
+                ArticleWidgets\MostViewedPostsChart::class,
             ])
             ->plugins([
                 SpatieLaravelTranslatablePlugin::make()
                     ->defaultLocales(['fr', 'en']),
                 FilamentMailsPlugin::make(),
             ])
-            ->renderHook(
-                'body.start',
-                fn (): string => Blade::render('@livewire(\'livewire-ui-modal\')'),
-            )
-            ->databaseNotifications()
-            ->databaseNotificationsPolling('3600s')
-            ->spa()
+            ->routes(fn () => FilamentMails::routes())
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
