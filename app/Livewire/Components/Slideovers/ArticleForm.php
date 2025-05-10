@@ -10,6 +10,7 @@ use App\Data\ArticleData;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Article;
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -173,8 +174,10 @@ final class ArticleForm extends SlideOverComponent implements HasForms
         $state = $this->form->getState();
 
         $publishedFields = [
-            'published_at' => data_get($state, 'published_at') ?? null,
-            'submitted_at' => data_get($state, 'is_draft') ?? null,
+            'published_at' => data_get($state, 'published_at')
+                ? new Carbon(data_get($state, 'published_at'))
+                : null,
+            'submitted_at' => data_get($state, 'is_draft') ? null : now(),
         ];
 
         if ($this->article?->id) {
