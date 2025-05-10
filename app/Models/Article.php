@@ -31,21 +31,21 @@ use Spatie\Sitemap\Tags\Url;
  * @property bool $show_toc
  * @property bool $is_pinned
  * @property int $is_sponsored
- * @property string | null $canonical_url
- * @property string | null $reason
- * @property int | null $tweet_id
+ * @property string|null $canonical_url
+ * @property string|null $reason
+ * @property int|null $tweet_id
  * @property int $user_id
- * @property string | null $locale
+ * @property string|null $locale
  * @property-read User $user
- * @property Carbon | null $published_at
- * @property Carbon | null $submitted_at
- * @property Carbon | null $approved_at
- * @property Carbon | null $shared_at
- * @property Carbon | null $declined_at
- * @property Carbon | null $sponsored_at
- * @property Carbon $created_at
- * @property Carbon $updated_at
- * @property \Illuminate\Database\Eloquent\Collection | Tag[] $tags
+ * @property \Illuminate\Support\Carbon|null $published_at
+ * @property-read \Illuminate\Support\Carbon|null $submitted_at
+ * @property-read \Illuminate\Support\Carbon|null $approved_at
+ * @property-read \Illuminate\Support\Carbon|null $shared_at
+ * @property-read \Illuminate\Support\Carbon|null $declined_at
+ * @property-read \Illuminate\Support\Carbon|null $sponsored_at
+ * @property-read \Illuminate\Support\Carbon $created_at
+ * @property-read \Illuminate\Support\Carbon $updated_at
+ * @property \Illuminate\Database\Eloquent\Collection<int, Tag> $tags
  */
 final class Article extends Model implements HasMedia, ReactableInterface, Sitemapable, Viewable
 {

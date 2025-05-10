@@ -1,0 +1,38 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DummyNamespace;
+
+use App\Models\User;
+use Laravelcm\Gamify\PointType;
+
+final class DummyClass extends PointType
+{
+    /**
+     * Number of points
+     *
+     * @var int
+     */
+    public int $points = 20;
+
+    /**
+     * Point constructor
+     *
+     * @param mixed $subject
+     */
+    public function __construct(mixed $subject)
+    {
+        $this->subject = $subject;
+    }
+
+    /**
+     * User who will be receive points
+     *
+     * @return mixed
+     */
+    public function payee(): ?User
+    {
+        return $this->getSubject()->user;
+    }
+}

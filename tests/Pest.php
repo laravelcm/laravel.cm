@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Collection;
 
 uses(Tests\TestCase::class, RefreshDatabase::class)
-    ->in('Feature');
+    ->in('Feature', '../app-modules/*/tests');
 
 function createThreadFromToday(int $count = 1): Thread|Collection
 {

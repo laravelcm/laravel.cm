@@ -95,7 +95,7 @@ return [
     'notifications' => [
         'mail' => [
             'to' => [
-                env('MAIL_SUPPORT'),
+                env('MAIL_SUPPORT', 'support@laravel.cm'),
             ],
         ],
 
