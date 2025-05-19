@@ -66,8 +66,6 @@ use Spatie\Permission\Traits\HasRoles;
 #[ObservedBy(UserObserver::class)]
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
-    use Gamify;
-    use HasApiTokens;
     use HasFactory;
     use HasPlanSubscriptions;
     use HasProfilePhoto;
@@ -78,28 +76,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     use Notifiable;
     use Reacts;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'username',
-        'password',
-        'bio',
-        'location',
-        'avatar_type',
-        'reputation',
-        'phone_number',
-        'github_profile',
-        'twitter_profile',
-        'linkedin_profile',
-        'website',
-        'last_login_at',
-        'last_login_ip',
-        'email_verified_at',
-        'banned_at',
-        'banned_reason',
-        'opt_in',
-        'last_active_at',
-    ];
+    protected $guarded = [];
 
     protected $hidden = [
         'password',
@@ -109,17 +86,20 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'last_active_at',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'last_login_at' => 'datetime',
-        'banned_at' => 'datetime',
-        'settings' => 'array',
-        'last_active_at' => 'datetime',
-    ];
-
     protected $with = [
         'providers',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'last_login_at' => 'datetime',
+            'banned_at' => 'datetime',
+            'settings' => 'array',
+            'last_active_at' => 'datetime',
+        ];
+    }
 
     public function hasProvider(string $provider): bool
     {
@@ -130,11 +110,6 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         }
 
         return false;
-    }
-
-    public function enterprise(): HasOne
-    {
-        return $this->hasOne(Enterprise::class);
     }
 
     public function hasEnterprise(): bool
@@ -248,6 +223,11 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         }
 
         return $user;
+    }
+
+    public function enterprise(): HasOne
+    {
+        return $this->hasOne(Enterprise::class);
     }
 
     public function providers(): HasMany
@@ -381,14 +361,6 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
             $query->has('threads')
                 ->orHas('replyAble');
         });
-    }
-
-    /**
-     * Route notifications for the Slack channel.
-     */
-    public function routeNotificationForSlack(Notification $notification): string
-    {
-        return config('lcm.slack.web_hook');
     }
 
     public function replies(): Collection
