@@ -34,11 +34,11 @@ codeBlocks.forEach((element, key) => {
             <div class="px-3 h-7 -ml-1.5 items-center flex text-xs bg-primary-500 border-r border-primary-500 -translate-x-full text-white rounded">
                 <span>Copié!</span>
                 <div class="absolute right-0 inline-block h-full -mt-px overflow-hidden translate-x-3 -translate-y-2 top-1/2">
-                    <div class="w-3 h-3 origin-top-left transform rotate-45 bg-primary-500 border border-transparent"></div>
+                    <div class="size-3 origin-top-left transform rotate-45 bg-primary-500 border border-transparent"></div>
                 </div>
             </div>
         </div>
-        <button @click="copyToClipboard();" class="flex items-center justify-center h-8 text-xs bg-gray-700 rounded-md cursor-pointer w-9 hover:bg-gray-900/50 active:bg-gray-600 focus:bg-gray-700 focus:outline-none text-slate-300 hover:text-white group">
+        <button @click="copyToClipboard();" class="flex items-center justify-center h-8 text-xs bg-gray-700 rounded-md cursor-pointer w-9 hover:bg-gray-900/50 active:bg-gray-600 focus:bg-gray-700 focus:outline-none text-gray-300 hover:text-white group">
             <svg x-show="copyNotification" class="size-4 text-primary-500 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" x-cloak>
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
             </svg>
