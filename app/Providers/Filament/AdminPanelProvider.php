@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
-use App\Filament\Resources\ArticleResource\Widgets as ArticleWidgets;
-use App\Filament\Resources\UserResource\Widgets;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -48,12 +46,7 @@ final class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->widgets([
-                Widgets\UserStatsOverview::class,
-                Widgets\UserChartWidget::class,
-                Widgets\UserActivityWidget::class,
-                ArticleWidgets\ArticleStatsOverview::class,
-                ArticleWidgets\MostLikedPostsChart::class,
-                ArticleWidgets\MostViewedPostsChart::class,
+                //
             ])
             ->plugins([
                 SpatieLaravelTranslatablePlugin::make()

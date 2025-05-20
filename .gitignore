@@ -1,5 +1,3 @@
-# Node.js
-#
 /node_modules
 npm-debug.log
 yarn-error.log
@@ -8,33 +6,20 @@ package-json.lock
 pnpm-lock.yml
 /vendor
 composer.phar
-
 /.idea
 /.vscode
-/projects
-
-# Laravel Exclude
-#
 .phpunit.cache
 .phpunit.result.cache
 /public/build
 /public/hot
 /public/storage
 /public/media
-public/css/
-public/js/
+/public/css
+/public/js
 /public/**/*.xml
 /storage/*.key
 /storage/framework/cache
 .env
 .env.backup
-
-# OSX
-#
 .DS_Store
 Thumbs.db
-
-# SublimeText
-#
-*.sublime-project
-*.sublime-workspace
