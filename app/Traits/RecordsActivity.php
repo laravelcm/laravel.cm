@@ -48,15 +48,18 @@ trait RecordsActivity
         ]);
     }
 
-    public function activities(): MorphMany
-    {
-        return $this->morphMany(Activity::class, 'subject');
-    }
-
     protected function getActivityType(string $event): string
     {
         $type = mb_strtolower((new ReflectionClass($this))->getShortName());
 
         return "{$event}_{$type}";
+    }
+
+    /**
+     * @return MorphMany<Activity, $this>
+     */
+    public function activities(): MorphMany
+    {
+        return $this->morphMany(Activity::class, 'subject');
     }
 }

@@ -67,7 +67,7 @@ final class Index extends Component
                 ->get()
         );
 
-        if ($this->currentTag) {
+        if (! blank($this->currentTag)) {
             $query->forTag($this->currentTag); // @phpstan-ignore-line
         }
 

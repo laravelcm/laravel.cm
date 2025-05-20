@@ -44,16 +44,16 @@ final class UserResource extends Resource
                 BadgeableColumn::make('name')
                     ->suffixBadges([
                         Badge::make('username')
-                            ->label(fn ($record) => "@{$record->username}")
+                            ->label(fn (User $record): string => "@{$record->username}")
                             ->color('gray'),
                     ])
-                    ->description(fn ($record): ?string => $record->location)
+                    ->description(fn (User $record): ?string => $record->location)
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('email')
                     ->label('Email')
                     ->icon('untitledui-inbox')
-                    ->description(fn ($record): ?string => $record->phone_number),
+                    ->description(fn (User $record): ?string => $record->phone_number),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->label(__('user.validate_email'))
                     ->placeholder('N/A')
@@ -72,7 +72,7 @@ final class UserResource extends Resource
                     ->label(__('actions.ban'))
                     ->icon('untitledui-archive')
                     ->color('warning')
-                    ->visible(fn ($record) => $record->banned_at == null)
+                    ->visible(fn (User $record): bool => $record->banned_at === null)
                     ->modalHeading(__('user.ban.heading'))
                     ->modalDescription(__('user.ban.description'))
                     ->authorize('ban', User::class)
@@ -92,12 +92,11 @@ final class UserResource extends Resource
                             ->send();
                     })
                     ->requiresConfirmation(),
-
                 Tables\Actions\Action::make('unban')
                     ->label(__('actions.unban'))
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
-                    ->visible(fn ($record) => $record->banned_at !== null)
+                    ->visible(fn (User $record): bool => $record->banned_at !== null)
                     ->authorize('unban', User::class)
                     ->action(function (User $record): void {
                         app(UnBanUserAction::class)->execute($record);
@@ -110,7 +109,6 @@ final class UserResource extends Resource
                             ->send();
                     })
                     ->requiresConfirmation(),
-
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
@@ -120,7 +118,6 @@ final class UserResource extends Resource
                     ->icon('heroicon-o-trash')
                     ->color('danger')
                     ->action(function ($records): void {
-
                         $bannedUsers = $records->whereNotNull('banned_at');
 
                         if ($bannedUsers->isEmpty()) {

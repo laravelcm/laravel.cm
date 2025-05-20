@@ -50,31 +50,15 @@ final class Index extends Component
 
     public function mount(): void
     {
-        if ($this->channel) {
+        if (! blank($this->channel)) {
             $this->currentChannel = Channel::findBySlug($this->channel);
         }
-    }
-
-    protected function applyPopular(Builder $query): Builder
-    {
-        if ($this->popular) {
-            return $query // @phpstan-ignore-line
-                ->withCount('replies')
-                ->orderByDesc('replies_count')
-                ->OrderByViews();
-        }
-
-        return $query;
     }
 
     #[On('channelUpdated')]
     public function reloadThreads(?int $channelId): void
     {
-        if ($channelId) {
-            $this->currentChannel = Channel::query()->find($channelId);
-        } else {
-            $this->currentChannel = null;
-        }
+        $this->currentChannel = filled($channelId) ? Channel::query()->find($channelId) : null;
 
         $this->resetPage();
 
@@ -87,9 +71,21 @@ final class Index extends Component
         $this->redirectRoute('login', navigate: true);
     }
 
+    protected function applyPopular(Builder $query): Builder
+    {
+        if (! blank($this->popular)) {
+            return $query // @phpstan-ignore-line
+                ->withCount('replies')
+                ->orderByDesc('replies_count')
+                ->OrderByViews();
+        }
+
+        return $query;
+    }
+
     protected function applySearch(Builder $query): Builder
     {
-        if ($this->search) {
+        if (! blank($this->search)) {
             return $query->where(function (Builder $query): void {
                 $query->where('title', 'like', '%'.$this->search.'%');
             });
@@ -100,7 +96,7 @@ final class Index extends Component
 
     protected function applySolved(Builder $query): Builder
     {
-        if ($this->solved) {
+        if (filled($this->solved)) {
             // @phpstan-ignore-next-line
             return match ($this->solved) {
                 'no' => $query->scopes('unresolved'),
@@ -113,7 +109,7 @@ final class Index extends Component
 
     protected function applyLocale(Builder $query): Builder
     {
-        if ($this->locale) {
+        if (filled($this->locale)) {
             $query->forLocale($this->locale); // @phpstan-ignore-line
         }
 
@@ -153,7 +149,7 @@ final class Index extends Component
 
     protected function applyUnAnswer(Builder $query): Builder
     {
-        if ($this->unAnswered) {
+        if (filled($this->unAnswered)) {
             return $query->whereDoesntHave('replies');
         }
 
@@ -162,7 +158,7 @@ final class Index extends Component
 
     protected function applySorting(Builder $query): Builder
     {
-        return $this->popular
+        return filled($this->popular)
             ? $this->applyPopular($query)
             : $query->orderByDesc('created_at');
     }
@@ -188,6 +184,6 @@ final class Index extends Component
         return view('livewire.pages.forum.index', [
             'threads' => $threads,
         ])
-            ->title(__('pages/forum.channel_title', ['channel' => isset($this->currentChannel) ? ' ~ '.$this->currentChannel->name : '']));
+            ->title(__('pages/forum.channel_title', ['channel' => filled($this->currentChannel) ? ' ~ '.$this->currentChannel->name : '']));
     }
 }

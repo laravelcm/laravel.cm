@@ -22,11 +22,13 @@ use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Exception;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection as SupportCollection;
@@ -70,20 +72,17 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     public const FEED_PAGE_SIZE = 20;
 
-    protected $fillable = [
-        'title',
-        'body',
-        'slug',
-        'user_id',
-        'locale',
-    ];
-
-    protected $casts = [
-        'locked' => 'boolean',
-        'last_posted_at' => 'datetime',
-    ];
+    protected $guarded = [];
 
     protected bool $removeViewsOnDelete = true;
+
+    protected function casts(): array
+    {
+        return [
+            'locked' => 'boolean',
+            'last_posted_at' => 'datetime',
+        ];
+    }
 
     public function getRouteKeyName(): string
     {
@@ -108,21 +107,6 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     public function excerpt(int $limit = 200): string
     {
         return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
-    }
-
-    public function resolvedBy(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'resolved_by');
-    }
-
-    public function channels(): BelongsToMany
-    {
-        return $this->belongsToMany(Channel::class);
-    }
-
-    public function solutionReply(): BelongsTo
-    {
-        return $this->belongsTo(Reply::class, 'solution_reply_id');
     }
 
     public function isSolutionReply(Reply $reply): bool
@@ -168,55 +152,6 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
         $this->save();
     }
 
-    public function scopeChannel(Builder $query, Channel $channel): Builder
-    {
-        return $query->whereHas('channels', function ($query) use ($channel): void {
-            if ($channel->hasItems()) {
-                $query->whereIn('channels.id', array_merge([$channel->id], $channel->items->modelKeys()));
-            } else {
-                $query->where('channels.slug', $channel->slug);
-            }
-        });
-    }
-
-    public function scopeRecent(Builder $query): Builder
-    {
-        // @phpstan-ignore-next-line
-        return $query->feedQuery()->orderByDesc('last_posted_at');
-    }
-
-    /**
-     * @param  Builder<Thread>  $query
-     * @return Builder<Thread>
-     */
-    public function scopeResolved(Builder $query): Builder
-    {
-        return $query->feedQuery()
-            ->whereNotNull('solution_reply_id');
-    }
-
-    /**
-     * @param  Builder<Thread>  $query
-     * @return Builder<Thread>
-     */
-    public function scopeUnresolved(Builder $query): Builder
-    {
-        return $query->feedQuery()
-            ->whereNull('solution_reply_id');
-    }
-
-    /**
-     * Scope for filtering threads.
-     *
-     * @param  Builder<Thread>  $builder
-     * @param  string[]  $filters
-     * @return Builder<Thread>
-     */
-    public function scopeFilter(Builder $builder, Request $request, array $filters = []): Builder
-    {
-        return (new ThreadFilters($request))->add($filters)->filter($builder);
-    }
-
     public function delete(): ?bool
     {
         $this->channels()->detach();
@@ -241,14 +176,116 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     }
 
     /**
-     * This will order the threads by creation date and latest reply.
-     *
+     * This will calculate the average resolution time in days of all threads marked as resolved.
+     */
+    public static function resolutionTime(): bool|int
+    {
+        try {
+            // @phpstan-ignore-next-line
+            return self::query()
+                ->join('replies', 'threads.solution_reply_id', '=', 'replies.id')
+                ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
+                ->first()
+                ->duration;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public static function getFeedItems(): SupportCollection
+    {
+        return self::with(['reactions'])->feedQuery()
+            ->paginate(self::FEED_PAGE_SIZE)
+            ->getCollection();
+    }
+
+    /**
+     * @param  int[]  $channels
+     */
+    public function syncChannels(array $channels): void
+    {
+        $this->save();
+        $this->channels()->sync($channels);
+
+        $this->unsetRelation('channels');
+    }
+
+    public function removeChannels(): void
+    {
+        $this->channels()->detach();
+
+        $this->unsetRelation('channels');
+    }
+
+    /**
      * @param  Builder<Thread>  $query
+     */
+    #[Scope]
+    protected function channel(Builder $query, Channel $channel): void
+    {
+        $query->whereHas('channels', function ($query) use ($channel): void {
+            if ($channel->hasItems()) {
+                $query->whereIn('channels.id', array_merge([$channel->id], $channel->items->modelKeys()));
+            } else {
+                $query->where('channels.slug', $channel->slug);
+            }
+        });
+    }
+
+    /**
+     * @param  Builder<Thread>  $query
+     */
+    #[Scope]
+    protected function recent(Builder $query): void
+    {
+        $query->feedQuery()->orderByDesc('last_posted_at');
+    }
+
+    /**
+     * @param  Builder<Thread>  $query
+     */
+    #[Scope]
+    protected function resolved(Builder $query): void
+    {
+        $query->feedQuery()->whereNotNull('solution_reply_id');
+    }
+
+    /**
+     * @param  Builder<Thread>  $query
+     */
+    #[Scope]
+    protected function unresolved(Builder $query): void
+    {
+        $query->feedQuery()->whereNull('solution_reply_id');
+    }
+
+    /**
+     * @param  Builder<Thread>  $builder
+     * @param  string[]  $filters
      * @return Builder<Thread>
      */
-    public function scopeFeedQuery(Builder $query): Builder
+    #[Scope]
+    protected function filter(Builder $builder, Request $request, array $filters = []): Builder
     {
-        return $query->with([
+        return (new ThreadFilters($request))->add($filters)->filter($builder);
+    }
+
+    /**
+     * @param  Builder<Thread>  $query
+     */
+    #[Scope]
+    protected function active(Builder $query): void
+    {
+        $query->whereHas('replies');
+    }
+
+    /**
+     * @param  Builder<Thread>  $query
+     */
+    #[Scope]
+    protected function feedQuery(Builder $query): void
+    {
+        $query->with([
             'solutionReply',
             'replies',
             'reactions',
@@ -271,54 +308,26 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     }
 
     /**
-     * This will calculate the average resolution time in days of all threads marked as resolved.
+     * @return BelongsTo<User, $this>
      */
-    public static function resolutionTime(): bool|int
+    public function resolvedBy(): BelongsTo
     {
-        try {
-            // @phpstan-ignore-next-line
-            return self::join('replies', 'threads.solution_reply_id', '=', 'replies.id')
-                ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
-                ->first()
-                ->duration;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
-    public static function getFeedItems(): SupportCollection
-    {
-        return self::with(['reactions'])->feedQuery()
-            ->paginate(self::FEED_PAGE_SIZE)
-            ->getCollection();
+        return $this->belongsTo(User::class, 'resolved_by');
     }
 
     /**
-     * This will tell if the thread has any replies.
-     *
-     * @param  Builder<Thread>  $query
-     * @return Builder<Thread>
+     * @return BelongsToMany<Channel, $this, Pivot>
      */
-    public function scopeActive(Builder $query): Builder
+    public function channels(): BelongsToMany
     {
-        return $query->has('replies');
+        return $this->belongsToMany(Channel::class);
     }
 
     /**
-     * @param  int[]  $channels
+     * @return BelongsTo<Reply, $this>
      */
-    public function syncChannels(array $channels): void
+    public function solutionReply(): BelongsTo
     {
-        $this->save();
-        $this->channels()->sync($channels);
-
-        $this->unsetRelation('channels');
-    }
-
-    public function removeChannels(): void
-    {
-        $this->channels()->detach();
-
-        $this->unsetRelation('channels');
+        return $this->belongsTo(Reply::class, 'solution_reply_id');
     }
 }

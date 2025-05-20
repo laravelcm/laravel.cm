@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 final class Reaction extends Model
 {
-    use HasFactory;
-
     protected $guarded = [];
 
     public static function createFromName(string $name): self
     {
-        return self::create(['name' => $name]);
+        return self::query()->create(['name' => $name]);
     }
 
     public function getResponder(): mixed

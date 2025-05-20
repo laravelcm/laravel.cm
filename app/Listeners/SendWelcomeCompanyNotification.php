@@ -17,6 +17,6 @@ final class SendWelcomeCompanyNotification implements ShouldQueue
      */
     public function handle(ApiRegistered $event): void
     {
-        $user = $event->user;
+        //
     }
 }

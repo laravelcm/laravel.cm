@@ -66,7 +66,7 @@ final class Profile extends Component implements HasForms
                             ->label(__('validation.attributes.bio'))
                             ->hint(__('global.characters', ['number' => 160]))
                             ->maxLength(160)
-                            ->afterStateUpdated(fn (?string $state) => trim(strip_tags((string) $state)))
+                            ->afterStateUpdated(fn (?string $state): string => trim(strip_tags((string) $state)))
                             ->helperText(__('pages/account.settings.bio_description')),
                         Forms\Components\TextInput::make('website')
                             ->label(__('validation.attributes.website'))
@@ -84,9 +84,9 @@ final class Profile extends Component implements HasForms
                             ->required(),
                         Forms\Components\TextInput::make('email')
                             ->label(__('validation.attributes.email'))
-                            ->suffixIcon(fn () => $this->user->hasVerifiedEmail() ? 'heroicon-m-check-circle' : 'heroicon-m-exclamation-triangle')
-                            ->suffixIconColor(fn () => $this->user->hasVerifiedEmail() ? 'success' : 'warning')
-                            ->HelperText(fn () => ! $this->user->hasVerifiedEmail() ? __('pages/account.settings.unverified_mail') : null)
+                            ->suffixIcon(fn (): string => $this->user->hasVerifiedEmail() ? 'heroicon-m-check-circle' : 'heroicon-m-exclamation-triangle')
+                            ->suffixIconColor(fn (): string => $this->user->hasVerifiedEmail() ? 'success' : 'warning')
+                            ->HelperText(fn (): ?string => $this->user->hasVerifiedEmail() ? null : (string) __('pages/account.settings.unverified_mail'))
                             ->email()
                             ->unique(ignoreRecord: true)
                             ->required(),
@@ -105,7 +105,7 @@ final class Profile extends Component implements HasForms
                             ->placeholder('laravelcm')
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('github_profile', $this->formatGithubHandle($state)))
+                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state): mixed => $set('github_profile', $this->formatGithubHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                     <x-icon.github
@@ -119,7 +119,7 @@ final class Profile extends Component implements HasForms
                             ->helperText(__('pages/account.settings.twitter_helper_text'))
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('twitter_profile', $this->formatTwitterHandle($state)))
+                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state): mixed => $set('twitter_profile', $this->formatTwitterHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                     <x-icon.twitter
@@ -133,7 +133,7 @@ final class Profile extends Component implements HasForms
                             ->placeholder('laravelcm')
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('linkedin_profile', $this->formatLinkedinHandle($state)))
+                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state): mixed => $set('linkedin_profile', $this->formatLinkedinHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                     <x-icon.linkedin

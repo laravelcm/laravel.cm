@@ -17,11 +17,6 @@ final class DiscussionPolicy
         return $user->hasVerifiedEmail();
     }
 
-    public function manage(User $user, Discussion $discussion): bool
-    {
-        return $discussion->user_id === $user->id || $user->isModerator() || $user->isAdmin();
-    }
-
     public function update(User $user, Discussion $discussion): bool
     {
         return $discussion->user_id === $user->id;
@@ -29,12 +24,37 @@ final class DiscussionPolicy
 
     public function delete(User $user, Discussion $discussion): bool
     {
-        return $discussion->user_id === $user->id || $user->isModerator() || $user->isAdmin();
+        if ($discussion->user_id === $user->id) {
+            return true;
+        }
+
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
     }
 
-    public function togglePinnedStatus(User $user, Discussion $discussion): bool
+    public function manage(User $user, Discussion $discussion): bool
     {
-        return $user->isModerator() || $user->isAdmin();
+        if ($discussion->user_id === $user->id) {
+            return true;
+        }
+
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
+    }
+
+    public function togglePinnedStatus(User $user): bool
+    {
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
     }
 
     public function subscribe(User $user, Discussion $discussion): bool

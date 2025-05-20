@@ -59,37 +59,23 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
     use Reactable;
     use RecordsActivity;
 
-    protected $fillable = [
-        'title',
-        'body',
-        'slug',
-        'canonical_url',
-        'reason',
-        'show_toc',
-        'is_pinned',
-        'user_id',
-        'tweet_id',
-        'submitted_at',
-        'approved_at',
-        'declined_at',
-        'shared_at',
-        'sponsored_at',
-        'published_at',
-        'locale',
-    ];
-
-    protected $casts = [
-        'submitted_at' => 'datetime',
-        'approved_at' => 'datetime',
-        'declined_at' => 'datetime',
-        'shared_at' => 'datetime',
-        'sponsored_at' => 'datetime',
-        'published_at' => 'datetime',
-        'show_toc' => 'boolean',
-        'is_pinned' => 'boolean',
-    ];
+    protected $guarded = [];
 
     protected bool $removeViewsOnDelete = true;
+
+    protected function casts(): array
+    {
+        return [
+            'submitted_at' => 'datetime',
+            'approved_at' => 'datetime',
+            'declined_at' => 'datetime',
+            'shared_at' => 'datetime',
+            'sponsored_at' => 'datetime',
+            'published_at' => 'datetime',
+            'show_toc' => 'boolean',
+            'is_pinned' => 'boolean',
+        ];
+    }
 
     public function getRouteKeyName(): string
     {

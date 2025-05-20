@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Filters\Enterprise\EnterpriseFilters;
 use App\Models\Traits\HasSlug;
 use App\Traits\HasSettings;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +16,13 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
+/**
+ * @property-read int $id
+ * @property-read bool $is_public
+ * @property-read bool $is_certified
+ * @property-read bool $is_featured
+ * @property array<array-key, mixed>|null $settings
+ */
 final class Enterprise extends Model implements HasMedia
 {
     use HasFactory;
@@ -22,67 +30,81 @@ final class Enterprise extends Model implements HasMedia
     use HasSlug;
     use InteractsWithMedia;
 
-    protected $fillable = [
-        'name',
-        'slug',
-        'website',
-        'about',
-        'address',
-        'description',
-        'founded_in',
-        'ceo',
-        'is_featured',
-        'is_certified',
-        'is_public',
-        'size',
-        'user_id',
-        'settings',
-    ];
+    protected $guarded = [];
 
-    protected $casts = [
-        'settings' => 'array',
-        'is_public' => 'boolean',
-        'is_certified' => 'boolean',
-        'is_featured' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'settings' => 'array',
+            'is_public' => 'boolean',
+            'is_certified' => 'boolean',
+            'is_featured' => 'boolean',
+        ];
+    }
 
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('logo')
             ->singleFile()
-            ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png', 'image/svg']);
+            ->acceptsMimeTypes([
+                'image/jpg',
+                'image/jpeg',
+                'image/png',
+                'image/svg',
+                'image/gif',
+            ]);
 
         $this->addMediaCollection('cover')
             ->singleFile()
-            ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png']);
+            ->acceptsMimeTypes([
+                'image/jpg',
+                'image/jpeg',
+                'image/png',
+            ]);
     }
 
-    public function owner(): BelongsTo
+    /**
+     * @param  Builder<Enterprise>  $query
+     */
+    #[Scope]
+    protected function featured(Builder $query): void
     {
-        return $this->belongsTo(User::class, 'user_id');
+        $query->where('is_featured', true);
     }
 
-    public function scopeFeatured(Builder $query): Builder
+    /**
+     * @param  Builder<Enterprise>  $query
+     */
+    #[Scope]
+    protected function certified(Builder $query): void
     {
-        return $query->where('is_featured', true);
+        $query->where('is_featured', true);
     }
 
-    public function scopeCertified(Builder $query): Builder
+    /**
+     * @param  Builder<Enterprise>  $query
+     */
+    #[Scope]
+    protected function public(Builder $query): void
     {
-        return $query->where('is_featured', true);
-    }
-
-    public function scopePublic(Builder $query): Builder
-    {
-        return $query->where('is_public', true);
+        $query->where('is_public', true);
     }
 
     /**
      * @param  Builder<Enterprise>  $query
      * @param  string[]  $filters
      */
-    public function scopeFilters(Builder $query, Request $request, array $filters = []): Builder
+    #[Scope]
+    public function filters(Builder $query, Request $request, array $filters = []): Builder
     {
-        return (new EnterpriseFilters($request))->add($filters)->filter($query);
+        return new EnterpriseFilters($request)->add($filters)->filter($query);
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -35,7 +35,7 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
     public function mount(?int $discussionId = null): void
     {
         // @phpstan-ignore-next-line
-        $this->discussion = $discussionId
+        $this->discussion = filled($discussionId)
             ? Discussion::query()->findOrFail($discussionId)
             : new Discussion;
 
@@ -89,7 +89,7 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
                     ->required()
                     ->minLength(20),
                 Forms\Components\Placeholder::make('')
-                    ->content(fn () => new HtmlString(Blade::render(<<<'Blade'
+                    ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                         <x-torchlight />
                     Blade))),
             ])

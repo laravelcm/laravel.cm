@@ -5,20 +5,18 @@ declare(strict_types=1);
 namespace App\Models\Traits;
 
 use App\Models\Reply;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Collection;
 
 trait HasReplies
 {
+    /**
+     * @return Collection<array-key, Reply>
+     */
     public function latestReplies(int $amount = 5): Collection
     {
         return $this->replies()->latest()->limit($amount)->get();
-    }
-
-    public function latestReply(): HasOne
-    {
-        return $this->hasOne(Reply::class)->latestOfMany();
     }
 
     public function deleteReplies(): void
@@ -38,17 +36,6 @@ trait HasReplies
         return $this->getPathUrl()."#reply-{$this->solution_reply_id}";
     }
 
-    /**
-     * It's important to name the relationship the same as the method because otherwise
-     * eager loading of the polymorphic relationship will fail on queued jobs.
-     *
-     * @see https://github.com/laravelio/laravel.io/issues/350
-     */
-    public function replies(): MorphMany
-    {
-        return $this->morphMany(Reply::class, 'replies', 'replyable_type', 'replyable_id');
-    }
-
     public function isConversationOld(): bool
     {
         $sixMonthsAgo = now()->subMonths(6);
@@ -59,5 +46,26 @@ trait HasReplies
         }
 
         return $this->created_at->lt($sixMonthsAgo);
+    }
+
+    /**
+     * @return HasOne<Reply, $this>
+     */
+    public function latestReply(): HasOne
+    {
+        return $this->hasOne(Reply::class)->latestOfMany();
+    }
+
+    /**
+     * It's important to name the relationship the same as the method because otherwise
+     * eager loading of the polymorphic relationship will fail on queued jobs.
+     *
+     * @see https://github.com/laravelio/laravel.io/issues/350
+     *
+     * @return MorphMany<Reply, $this>
+     */
+    public function replies(): MorphMany
+    {
+        return $this->morphMany(Reply::class, 'replies', 'replyable_type', 'replyable_id');
     }
 }

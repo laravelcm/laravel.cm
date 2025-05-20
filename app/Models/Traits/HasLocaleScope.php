@@ -4,13 +4,22 @@ declare(strict_types=1);
 
 namespace App\Models\Traits;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 trait HasLocaleScope
 {
-    public function scopeForLocale(Builder $query, ?string $locale): Builder
+    /**
+     * @template TModel of Model
+     *
+     * @param  Builder<TModel>  $query
+     * @return Builder<TModel>
+     */
+    #[Scope]
+    protected function forLocale(Builder $query, ?string $locale): Builder
     {
-        if ($locale) {
+        if (filled($locale)) {
             return $query->where('locale', $locale);
         }
 

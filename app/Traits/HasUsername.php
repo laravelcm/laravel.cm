@@ -4,18 +4,13 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait HasUsername
 {
-    public function username(): string
+    protected function username(): Attribute
     {
-        return $this->username;
-    }
-
-    public function setUsernameAttribute(string $username): void
-    {
-        $this->attributes['username'] = $this->generateUniqueUsername($username);
+        return Attribute::set(fn (string $value): string => $this->generateUniqueUsername($value));
     }
 
     public static function findByUsername(string $username): self
@@ -25,7 +20,7 @@ trait HasUsername
 
     private function generateUniqueUsername(string $value): string
     {
-        $username = $originalUsername = $value ?: Str::random(6);
+        $username = $originalUsername = $value;
         $counter = 0;
 
         while ($this->usernameExists($username, $this->exists ? $this->id : null)) {
@@ -40,7 +35,7 @@ trait HasUsername
     {
         $query = $this->where('username', $username);
 
-        if ($ignoreId) {
+        if (filled($ignoreId)) {
             $query->where('id', '!=', $ignoreId);
         }
 

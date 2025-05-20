@@ -14,7 +14,14 @@ final class PremiumController extends Controller
 {
     public function users(): JsonResponse
     {
-        $users = Cache::remember('premium_users', now()->addMonth(), fn () => User::select('name', 'username')->limit(48)->get());
+        $users = Cache::remember(
+            key: 'premium_users',
+            ttl: now()->addMonth(),
+            callback: fn () => User::query()
+                ->select('name', 'username')
+                ->limit(48)
+                ->get()
+        );
 
         $premium = collect();
 

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 final class CreateReplyAction
 {
-    public function execute(string $body, ReplyInterface $model): void
+    public function execute(string $body, ReplyInterface|Reply $model): void
     {
         /** @var User $user */
         $user = Auth::user();

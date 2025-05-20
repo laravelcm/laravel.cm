@@ -26,13 +26,16 @@ describe(ConvertDiscussionToThreadAction::class, function (): void {
         $thread = app(ConvertDiscussionToThreadAction::class)->execute(discussion: $this->discussion);
 
         expect($thread)->toBeInstanceOf(Thread::class)
-            ->and(Discussion::find($this->discussion->id))->toBeNull();
+            ->and(Discussion::query()->find($this->discussion->id))
+            ->toBeNull();
 
         $replies->each(function ($reply) use ($thread): void {
-            $updatedReply = Reply::find($reply->id);
+            $updatedReply = Reply::query()->find($reply->id);
 
-            expect($updatedReply->replyable_type)->toBe('thread')
-                ->and($updatedReply->replyable_id)->toBe($thread->id);
+            expect($updatedReply->replyable_type)
+                ->toBe('thread')
+                ->and($updatedReply->replyable_id)
+                ->toBe($thread->id);
         });
 
         Notification::assertCount(3);

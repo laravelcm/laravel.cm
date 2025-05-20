@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -27,13 +28,7 @@ final class Channel extends Model
     use HasSlug;
     use HasTranslations;
 
-    protected $fillable = [
-        'name',
-        'slug',
-        'description',
-        'parent_id',
-        'color',
-    ];
+    protected $guarded = [];
 
     public array $translatable = ['description'];
 
@@ -41,13 +36,11 @@ final class Channel extends Model
     {
         parent::boot();
 
-        self::saving(function ($channel): void {
-            if ($channel->parent_id) {
-                if ($record = self::find($channel->parent_id)) {
-                    if ($record->exists() && $record->parent_id) { // @phpstan-ignore-line
-                        throw CannotAddChannelToChild::childChannelCannotBeParent($channel);
-                    }
-                }
+        self::saving(function (self $channel): void {
+            /** @var self $record */
+            $record = self::query()->find($channel->parent_id);
+            if ($channel->parent_id && $record->exists() && $record->parent_id) {
+                throw CannotAddChannelToChild::childChannelCannotBeParent($channel);
             }
         });
     }
@@ -57,23 +50,32 @@ final class Channel extends Model
         return 'slug';
     }
 
+    public function hasItems(): bool
+    {
+        return $this->items->isNotEmpty();
+    }
+
+    /**
+     * @return BelongsTo<self, $this>
+     */
     public function parent(): BelongsTo
     {
         return $this->belongsTo(self::class, 'parent_id');
     }
 
+    /**
+     * @return HasMany<self, $this>
+     */
     public function items(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    /**
+     * @return BelongsToMany<Thread, $this, Pivot>
+     */
     public function threads(): BelongsToMany
     {
         return $this->belongsToMany(Thread::class);
-    }
-
-    public function hasItems(): bool
-    {
-        return $this->items->isNotEmpty();
     }
 }

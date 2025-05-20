@@ -24,12 +24,10 @@ final class LocaleMiddleware
             if ($userLocale && $userLocale !== $currentLocale) {
                 app()->setLocale($userLocale);
             }
+        } elseif (! $activeLocale && in_array($browserLocale, $supportedLocales)) {
+            app()->setLocale($browserLocale);
         } else {
-            if (! $activeLocale && in_array($browserLocale, $supportedLocales)) {
-                app()->setLocale($browserLocale);
-            } else {
-                app()->setLocale($activeLocale);
-            }
+            app()->setLocale($activeLocale);
         }
 
         return $next($request);

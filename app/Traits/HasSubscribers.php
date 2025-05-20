@@ -8,6 +8,9 @@ use App\Models\Subscribe;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
+/**
+ * @property-read \Illuminate\Support\Collection<array-key, Subscribe> $subscribes
+ */
 trait HasSubscribers
 {
     /**
@@ -15,6 +18,8 @@ trait HasSubscribers
      * eager loading of the polymorphic relationship will fail on queued jobs.
      *
      * @see https://github.com/laravelio/laravel.io/issues/350
+     *
+     * @return MorphMany<Subscribe, $this>
      */
     public function subscribes(): MorphMany
     {

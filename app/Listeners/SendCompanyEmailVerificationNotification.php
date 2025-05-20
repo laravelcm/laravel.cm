@@ -12,11 +12,8 @@ final class SendCompanyEmailVerificationNotification implements ShouldQueue
 {
     use InteractsWithQueue;
 
-    /**
-     * Handle the event.
-     */
     public function handle(ApiRegistered $event): void
     {
-        $user = $event->user;
+        //
     }
 }

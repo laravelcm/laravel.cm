@@ -17,11 +17,6 @@ final class ThreadPolicy
         return $user->hasVerifiedEmail();
     }
 
-    public function manage(User $user, Thread $thread): bool
-    {
-        return $thread->user_id === $user->id || $user->isModerator() || $user->isAdmin();
-    }
-
     public function update(User $user, Thread $thread): bool
     {
         return $thread->user_id === $user->id;
@@ -29,7 +24,28 @@ final class ThreadPolicy
 
     public function delete(User $user, Thread $thread): bool
     {
-        return $thread->user_id === $user->id || $user->isModerator() || $user->isAdmin();
+        if ($thread->user_id === $user->id) {
+            return true;
+        }
+
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
+    }
+
+    public function manage(User $user, Thread $thread): bool
+    {
+        if ($thread->user_id === $user->id) {
+            return true;
+        }
+
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
     }
 
     public function subscribe(User $user, Thread $thread): bool

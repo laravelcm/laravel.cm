@@ -35,7 +35,7 @@ final class ChannelResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state)))
+                    ->afterStateUpdated(fn ($state, Forms\Set $set): mixed => $set('slug', Str::slug($state)))
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('slug')
                     ->readOnly()
@@ -84,9 +84,6 @@ final class ChannelResource extends Resource
                     ->date()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

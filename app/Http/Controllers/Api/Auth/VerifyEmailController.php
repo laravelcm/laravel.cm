@@ -16,7 +16,7 @@ final class VerifyEmailController extends Controller
     public function verify(Request $request): RedirectResponse
     {
         /** @var User $user */
-        $user = User::find($request->route('id'));
+        $user = User::query()->find($request->route('id'));
 
         if ($user->hasVerifiedEmail()) {
             return redirect(config('lcm.spa_url').'/email/verify/already');

@@ -39,7 +39,7 @@ final class ArticleForm extends SlideOverComponent implements HasForms
     public function mount(?int $articleId = null): void
     {
         // @phpstan-ignore-next-line
-        $this->article = $articleId
+        $this->article = filled($articleId)
             ? Article::query()->findOrFail($articleId)
             : new Article;
 
@@ -76,7 +76,7 @@ final class ArticleForm extends SlideOverComponent implements HasForms
                             ->minLength(10)
                             ->required()
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state))),
+                            ->afterStateUpdated(fn ($state, Forms\Set $set): mixed => $set('slug', Str::slug($state))),
                         Forms\Components\Hidden::make('slug'),
                         Forms\Components\TextInput::make('canonical_url')
                             ->label(__('pages/article.form.canonical_url'))
@@ -145,7 +145,7 @@ final class ArticleForm extends SlideOverComponent implements HasForms
                             ->maxHeight('20.25rem')
                             ->required(),
                         Forms\Components\Placeholder::make('')
-                            ->content(fn () => new HtmlString(Blade::render(<<<'Blade'
+                            ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                 <x-torchlight />
                             Blade))),
                     ])

@@ -11,10 +11,11 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * @property-read int $id
- * @property string $name
- * @property string $slug
- * @property string | null $description
- * @property array $concerns
+ * @property-read string $name
+ * @property-read string $slug
+ * @property-read string|null $description
+ * @property-read array $concerns
+ * @property-read \Illuminate\Support\Collection<array-key, Article> $articles
  */
 final class Tag extends Model
 {
@@ -23,16 +24,14 @@ final class Tag extends Model
 
     public $timestamps = false;
 
-    protected $fillable = [
-        'name',
-        'slug',
-        'description',
-        'concerns',
-    ];
+    protected $guarded = [];
 
-    protected $casts = [
-        'concerns' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'concerns' => 'array',
+        ];
+    }
 
     public function articles(): MorphToMany
     {

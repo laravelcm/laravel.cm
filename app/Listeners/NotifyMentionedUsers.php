@@ -12,7 +12,7 @@ final class NotifyMentionedUsers
 {
     public function handle(ReplyWasCreated $event): void
     {
-        User::whereIn('username', $event->reply->mentionedUsers())
+        User::query()->whereIn('username', $event->reply->mentionedUsers())
             ->get()
             ->each(fn ($user) => $user->notify(new YouWereMentioned($event->reply)));
     }

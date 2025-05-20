@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Laravelcm\Gamify;
 
 use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravelcm\Gamify\Exceptions\InvalidPayeeModelException;
@@ -12,12 +13,17 @@ use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
 use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
 use Laravelcm\Gamify\Models\Reputation;
 
+/**
+ * @property string $name
+ * @property int $points
+ * @property Authenticatable|string|null $payer
+ */
 abstract class PointType
 {
     /**
-     * Subject for reputation
+     * @var Model|null
      */
-    protected Model $subject;
+    protected $subject;
 
     /**
      * Check qualification to give this point
@@ -29,7 +35,6 @@ abstract class PointType
 
     /**
      * Payee who will be receiving points
-     *
      *
      * @throws PointSubjectNotSetException
      */
@@ -49,7 +54,7 @@ abstract class PointType
      */
     public function getSubject(): Model
     {
-        if (! isset($this->subject)) {
+        if (blank($this->subject)) {
             throw new PointSubjectNotSetException;
         }
 
@@ -69,12 +74,12 @@ abstract class PointType
     /**
      * Get points
      *
-     *
      * @throws PointsNotDefinedException
      */
     public function getPoints(): int
     {
-        if (! isset($this->points)) {
+        // @phpstan-ignore-next-line
+        if (blank($this->points)) {
             throw new PointsNotDefinedException;
         }
 
@@ -84,7 +89,7 @@ abstract class PointType
     /**
      * Set a subject
      */
-    public function setSubject(mixed $subject): void
+    public function setSubject(Model $subject): void
     {
         $this->subject = $subject;
     }
@@ -104,19 +109,16 @@ abstract class PointType
     /**
      * Get first reputation for point
      *
-     *
      * @throws InvalidPayeeModelException
      * @throws PointSubjectNotSetException
      */
     public function firstReputation(): Reputation
     {
-        return $this->reputationQuery()->first();
+        return $this->reputationQuery()->first(); // @phpstan-ignore-line
     }
 
     /**
      * Store a reputation in the database
-     *
-     * @return mixed
      *
      * @throws InvalidPayeeModelException
      * @throws PointSubjectNotSetException
@@ -124,8 +126,9 @@ abstract class PointType
      */
     public function storeReputation(array $meta): Reputation
     {
+        // @phpstan-ignore-next-line
         return $this->payeeReputations()->create([
-            'payee_id' => $this->payee()->id,
+            'payee_id' => $this->payee()?->id,
             'subject_type' => $this->getSubject()->getMorphClass(),
             'subject_id' => $this->getSubject()->getKey(),
             'name' => $this->getName(),
@@ -144,7 +147,7 @@ abstract class PointType
     public function reputationQuery(): HasMany
     {
         return $this->payeeReputations()->where([
-            ['payee_id', $this->payee()->id],
+            ['payee_id', $this->payee()?->id],
             ['subject_type', $this->getSubject()->getMorphClass()],
             ['subject_id', $this->getSubject()->getKey()],
             ['name', $this->getName()],
@@ -162,7 +165,7 @@ abstract class PointType
     {
         $model = $this->payee();
 
-        if (! $model) {
+        if (! $model instanceof Authenticatable) {
             throw new InvalidPayeeModelException;
         }
 

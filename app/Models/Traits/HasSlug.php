@@ -36,7 +36,7 @@ trait HasSlug
     {
         $query = $this->where('slug', $slug);
 
-        if ($ignoreId) {
+        if (! blank($ignoreId)) {
             $query->where('id', '!=', $ignoreId);
         }
 

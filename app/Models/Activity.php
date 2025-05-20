@@ -41,45 +41,47 @@ final class Activity extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'data',
-        'subject_type',
-        'subject_id',
-        'type',
-    ];
+    protected $guarded = [];
 
-    protected $casts = [
-        'data' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'data' => 'array',
+        ];
+    }
+
+    public static function feed(User $user, int $take = 50): Collection
+    {
+        return self::query()
+            ->where('user_id', $user->id)
+            ->latest()
+            ->with('subject')
+            ->take($take)
+            ->get()
+            ->groupBy(fn (Activity $activity): string => $activity->created_at->format('Y-m-d'));
+    }
+
+    public static function latestFeed(User $user, int $take = 10): Collection
+    {
+        return self::query()
+            ->where('user_id', $user->id)
+            ->with('subject')
+            ->latest()
+            ->limit($take)
+            ->orderByDesc('created_at')
+            ->get();
+    }
 
     public function subject(): MorphTo
     {
         return $this->morphTo();
     }
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public static function feed(User $user, int $take = 50): Collection
-    {
-        return self::where('user_id', $user->id)
-            ->latest()
-            ->with('subject')
-            ->take($take)
-            ->get()
-            ->groupBy(fn (Activity $activity) => $activity->created_at->format('Y-m-d'));
-    }
-
-    public static function latestFeed(User $user, int $take = 10): Collection
-    {
-        return self::where('user_id', $user->id)
-            ->with('subject')
-            ->latest()
-            ->limit($take)
-            ->orderByDesc('created_at')
-            ->get();
     }
 }

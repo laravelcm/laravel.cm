@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "require": {
-    "php": "^8.3",
+    "php": "^8.4",
     "ext-fileinfo": "*",
     "ext-json": "*",
     "archtechx/laravel-seo": "^0.10",
@@ -54,6 +54,7 @@
     "ysfkaya/filament-phone-input": "^3.1"
   },
   "require-dev": {
+    "driftingly/rector-laravel": "^2.0",
     "fakerphp/faker": "^1.23.0",
     "larastan/larastan": "^3.0",
     "laravel/breeze": "^2.0",
@@ -95,12 +96,10 @@
       "@php artisan key:generate --ansi"
     ],
     "lint": "./vendor/bin/pint",
-    "test:pest": "pest --parallel",
-    "test:phpstan": "phpstan analyse --memory-limit=-1",
-    "test": [
-      "@test:phpstan",
-      "@test:pest"
-    ],
+    "types": "phpstan analyse --memory-limit=-1",
+    "rector": "./vendor/bin/rector",
+    "rector:preview": "./vendor/bin/rector --dry-run",
+    "test": "pest --parallel",
     "setup": [
       "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
       "php artisan key:generate",

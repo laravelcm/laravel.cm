@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Laravelcm\Gamify\Exceptions\InvalidPayeeModelException;
 use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
 use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
@@ -30,11 +31,9 @@ final class FakeWelcomeUserWithNamePoint extends PointType
 {
     public int $points = 30;
 
-    public ?User $author;
-
     public string $name = 'FakeName';
 
-    public function __construct(mixed $subject, ?User $author = null) {}
+    public function __construct(mixed $subject, public ?User $author = null) {}
 
     public function payee(): ?User
     {
@@ -44,7 +43,12 @@ final class FakeWelcomeUserWithNamePoint extends PointType
 
 final class FakePointTypeWithoutSubject extends PointType
 {
-    protected $point = 12;
+    protected int $point = 12;
+
+    public function __construct($subject)
+    {
+        $this->subject = $subject;
+    }
 
     public function payee(): ?User
     {
@@ -54,12 +58,17 @@ final class FakePointTypeWithoutSubject extends PointType
 
 final class FakePointTypeWithoutPayee extends PointType
 {
-    protected $point = 24;
+    protected int $point = 24;
+
+    public function __construct($subject)
+    {
+        $this->subject = $subject;
+    }
 }
 
 final class FakePointWithoutPoint extends PointType
 {
-    protected $payee = 'user';
+    protected string $payee = 'user';
 
     public function __construct($subject)
     {
@@ -69,7 +78,7 @@ final class FakePointWithoutPoint extends PointType
 
 final class FakeWelcomeUserWithFalseQualifier extends PointType
 {
-    protected $points = 10;
+    protected int $points = 10;
 
     public function __construct($subject)
     {
@@ -89,15 +98,12 @@ final class FakeWelcomeUserWithFalseQualifier extends PointType
 
 final class FakePayeeFieldPoint extends PointType
 {
-    protected $points = 10;
-
-    public function __construct($subject)
-    {
-        $this->subject = $subject;
-    }
+    protected int $points = 10;
 
     /** @var string payee model relation on subject */
-    protected $payee = 'user';
+    protected string $payee = 'user';
+
+    public function __construct(mixed $subject) {}
 }
 
 beforeEach(function (): void {

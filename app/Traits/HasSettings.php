@@ -6,10 +6,10 @@ namespace App\Traits;
 
 trait HasSettings
 {
-    public function setting(string $name, string $default): mixed
+    public function setting(string $key, string $default): mixed
     {
-        if ($this->settings && array_key_exists($name, $this->settings)) {
-            return $this->settings[$name];
+        if ($this->settings && array_key_exists($key, $this->settings)) {
+            return $this->settings[$key];
         }
 
         return $default;

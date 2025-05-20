@@ -7,7 +7,6 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TagResource\Pages;
 use App\Models\Tag;
 use Filament\Forms;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -33,13 +32,13 @@ final class TagResource extends Resource
                     ->live(onBlur: true)
                     ->required()
                     ->unique(ignoreRecord: true)
-                    ->afterStateUpdated(fn ($state, Forms\Set $set) => $set('slug', Str::slug($state)))
+                    ->afterStateUpdated(fn ($state, Forms\Set $set): mixed => $set('slug', Str::slug($state)))
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('slug')
                     ->readOnly()
                     ->required()
                     ->columnSpanFull(),
-                Select::make('concerns')
+                Forms\Components\Select::make('concerns')
                     ->multiple()
                     ->options([
                         'post' => 'Article',
