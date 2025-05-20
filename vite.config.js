@@ -9,7 +9,11 @@ export default defineConfig({
         'resources/js/app.js',
         'resources/css/filament/admin/theme.css',
       ],
-      refresh: [...refreshPaths, 'app/Livewire/**'],
+      refresh: [
+          'app/Livewire/**',
+          'app/Filament/**',
+          ...refreshPaths,
+      ],
     }),
     {
       name: 'blade',
