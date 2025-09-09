@@ -182,5 +182,7 @@ abstract class BaseExtension
                 return Str::after($item, 'theme:');
             }
         }
+
+        return null;
     }
 }

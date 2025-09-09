@@ -60,7 +60,7 @@ Les dépendances suivantes sont nécessaires pour démarrer l'installation.
 5. Configurer un pilote de messagerie fonctionnel comme [Mailtrap](https://mailtrap.io/) ou [Maildev](https://maildev.github.io/maildev/)
 6. Configurez les fonctionnalités (facultatives) ci-dessous
 
-Vous pouvez maintenant visiter l'application dans votre navigateur en visitant [http://laravel.cm.test](http://laravel.cm.test).
+Vous pouvez maintenant visiter l'application dans votre navigateur en visitant [https://laravelcm.local](https://laravelcm.local).
 Si vous avez amorcé la base de données, vous pouvez vous connecter à un compte de test avec ** `johndoe` ** & **` password` **.
 
 Une fois que vous avez installé et configuré, pour avoir des dummy data, vous devez exécuter la commande :
@@ -112,10 +112,10 @@ TELEGRAM_CHANNEL=
 | Command                            | Description                                            |
 |------------------------------------|--------------------------------------------------------|
 | **`composer lint`**                | Appliquer le formatage de code avec `laravel/pint`     |
-| **`composer test:phpstan`**        | Appliquer l'analyse statique avec phpstan              |
-| **`composer test:pest`**           | Exécuter les tests                                     |
+| **`composer types`**               | Appliquer l'analyse statique avec phpstan              |
+| **`composer pest`**                | Exécuter les tests                                     |
 | `php artisan migrate:fresh --seed` | Reset la base de données                               |
-| `yarn && yarn dev`                 | Surveillez les changements dans les fichiers CSS et JS |
+| `npm i && npm run dev`             | Surveillez les changements dans les fichiers CSS et JS |
 
 ## Maintainers
 
