@@ -33,6 +33,9 @@ final class Tag extends Model
         ];
     }
 
+    /**
+     * @return MorphToMany<Article, $this, \Illuminate\Database\Eloquent\Relations\MorphPivot>
+     */
     public function articles(): MorphToMany
     {
         return $this->morphedByMany(Article::class, 'taggable');

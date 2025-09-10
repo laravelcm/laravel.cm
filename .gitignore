@@ -20,6 +20,7 @@ composer.phar
 /public/**/*.xml
 /storage/*.key
 /storage/framework/cache
+/storage/pail
 .env
 .env.backup
 .DS_Store

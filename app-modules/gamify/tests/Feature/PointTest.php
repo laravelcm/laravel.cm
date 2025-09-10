@@ -60,7 +60,7 @@ final class FakePointTypeWithoutPayee extends PointType
 {
     protected int $point = 24;
 
-    public function __construct($subject)
+    public function __construct(mixed $subject)
     {
         $this->subject = $subject;
     }
@@ -103,7 +103,10 @@ final class FakePayeeFieldPoint extends PointType
     /** @var string payee model relation on subject */
     protected string $payee = 'user';
 
-    public function __construct(mixed $subject) {}
+    public function __construct(mixed $subject)
+    {
+        $this->subject = $subject;
+    }
 }
 
 beforeEach(function (): void {

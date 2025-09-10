@@ -34,6 +34,9 @@ trait Reactable
             ->where('responder_type', get_class($responder))->exists();
     }
 
+    /**
+     * @return MorphToMany<Reaction, $this, \Illuminate\Database\Eloquent\Relations\MorphPivot>
+     */
     public function reactions(): MorphToMany
     {
         return $this->morphToMany(Reaction::class, 'reactable')
