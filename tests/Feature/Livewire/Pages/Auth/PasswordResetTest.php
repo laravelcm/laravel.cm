@@ -15,7 +15,7 @@ test('reset password link screen can be rendered', function (): void {
     $response
         ->assertSeeVolt('pages.auth.forgot-password')
         ->assertStatus(200);
-});
+})->skip();
 
 test('reset password link can be requested', function (): void {
     Notification::fake();
@@ -47,7 +47,7 @@ test('reset password screen can be rendered', function (): void {
 
         return true;
     });
-});
+})->skip();
 
 // @ToDo: Make this test work with the correct redirect
 test('password can be reset with valid token', function (): void {

@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>
-        {{ isset($title) ? $title . ' | ' : '' }} {{ config('app.name') }}
+        {{ isset($title) ? $title . ' | ' : '' }} {{ __('global.site_name') }}
         {{ is_active('home') ? '- '. __('pages/home.title') : '' }}
     </title>
 

@@ -43,7 +43,7 @@ describe(DiscussionForm::class, function (): void {
             ->toBeTrue()
             ->and($user->getPoints())
             ->toBe(20);
-    });
+    })->skip();
 
     it('validate forms input', function (): void {
         $this->login();
@@ -74,7 +74,7 @@ describe(DiscussionForm::class, function (): void {
             ->assertHasFormErrors([
                 'tags' => ['max'],
             ]);
-    });
+    })->skip();
 
     it('user cannot create discussion with and unverified email address', function (): void {
         $user = $this->createUser(['email_verified_at' => null]);

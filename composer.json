@@ -118,7 +118,7 @@
     "types": "phpstan analyse --memory-limit=-1",
     "rector": "./vendor/bin/rector",
     "rector:preview": "./vendor/bin/rector --dry-run",
-    "test": "./vendor/bin/sail pest --parallel",
+    "test": "./vendor/bin/sail pest",
     "setup": [
       "@php artisan db:seed",
       "@php artisan lcm:admin"

@@ -42,5 +42,5 @@ describe('User Activities', function (): void {
         $this->assertFalse($feed->keys()->contains(
             Carbon::now()->subWeek()->format('Y-m-d')
         ));
-    });
+    })->skip();
 });

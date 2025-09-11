@@ -54,6 +54,7 @@ final class Activity extends Model
     {
         return self::query()
             ->where('user_id', $user->id)
+            ->where('created_at', '>=', now()->subDays(7))
             ->latest()
             ->with('subject')
             ->take($take)
