@@ -8,7 +8,7 @@ trait FormatSocialAccount
 {
     public function formatGithubHandle(?string $userSocial): ?string
     {
-        if (! $userSocial) {
+        if (blank($userSocial)) {
             return null;
         }
 
@@ -23,7 +23,7 @@ trait FormatSocialAccount
 
     public function formatLinkedinHandle(?string $userSocial): ?string
     {
-        if (! $userSocial) {
+        if (blank($userSocial)) {
             return null;
         }
 
@@ -38,7 +38,7 @@ trait FormatSocialAccount
 
     public function formatTwitterHandle(?string $userSocial): ?string
     {
-        if (! $userSocial) {
+        if (blank($userSocial)) {
             return null;
         }
         if (str_starts_with(trim($userSocial), '@')) {
@@ -50,9 +50,9 @@ trait FormatSocialAccount
         if (str_contains($handle, 'twitter.com/') || str_contains($handle, 'x.com/')) {
             if (str_contains($handle, 'twitter.com/')) {
                 return substr($handle, strpos($handle, 'twitter.com/') + 12);
-            } else {
-                return substr($handle, strpos($handle, 'x.com/') + 6);
             }
+
+            return substr($handle, strpos($handle, 'x.com/') + 6);
         }
 
         return $handle;

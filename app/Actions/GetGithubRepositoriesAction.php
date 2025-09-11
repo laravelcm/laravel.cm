@@ -31,8 +31,8 @@ final class GetGithubRepositoriesAction
             key: 'github-repositories',
             ttl: now()->addWeek(),
             callback: fn () => collect($response->json())
-                ->reject(fn (array $value) => $value['fork'] === true || ! in_array($value['name'], $only))
-                ->map(fn (array $data) => RepositoryData::from($data))
+                ->reject(fn (array $value): bool => $value['fork'] === true || ! in_array($value['name'], $only))
+                ->map(fn (array $data): RepositoryData => RepositoryData::from($data))
         );
     }
 }

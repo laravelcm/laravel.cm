@@ -39,7 +39,7 @@ final class Sujet extends SpotlightCommand
         return Thread::with('user')
             ->where('title', 'like', "%{$query}%")
             ->get()
-            ->map(fn (Thread $thread) => new SpotlightSearchResult(
+            ->map(fn (Thread $thread): SpotlightSearchResult => new SpotlightSearchResult(
                 $thread->slug,
                 $thread->title,
                 sprintf('par @%s', $thread->user->username)

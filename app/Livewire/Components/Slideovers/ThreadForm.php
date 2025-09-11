@@ -35,7 +35,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms
 
     public function mount(?int $threadId = null): void
     {
-        $this->thread = $threadId
+        $this->thread = filled($threadId)
             ? Thread::query()->findOrFail($threadId)
             : new Thread;
 
@@ -84,7 +84,10 @@ final class ThreadForm extends SlideOverComponent implements HasForms
                     ->maxItems(3),
                 Forms\Components\ToggleButtons::make('locale')
                     ->label(__('validation.attributes.locale'))
-                    ->options(['en' => 'En', 'fr' => 'Fr'])
+                    ->options([
+                        'en' => 'En',
+                        'fr' => 'Fr',
+                    ])
                     ->helperText(__('global.locale_help'))
                     ->grouped(),
                 Forms\Components\MarkdownEditor::make('body')
@@ -101,7 +104,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms
                     ->required()
                     ->minLength(20),
                 Forms\Components\Placeholder::make('')
-                    ->content(fn () => new HtmlString(Blade::render(<<<'Blade'
+                    ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                         <x-torchlight />
                     Blade))),
             ])

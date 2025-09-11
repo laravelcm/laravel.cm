@@ -1,0 +1,37 @@
+# Node modules
+node_modules
+
+# Laravel
+.mcp.json
+.env.example
+phpstan.neon
+phpunit.xml
+rector.php
+pint.json
+postcss.config.js
+tests
+stubs
+app-modules/**/tests
+.phpunit.cache
+
+# Ide
+.editorconfig
+.prettierignore
+.prettierrc
+CHANGELOG.md
+CLAUDE.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+LICENSE.md
+README.md
+.idea
+.vscode
+.junie
+
+# Git
+.gitignore
+.gitattributes
+.github
+
+# Others
+art

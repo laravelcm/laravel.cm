@@ -76,7 +76,7 @@ final class ReplyForm extends Component implements HasForms
     {
         $this->validate();
 
-        if ($this->reply) {
+        if ($this->reply instanceof Reply) {
             $this->updateReply();
         } else {
             $this->createReply();

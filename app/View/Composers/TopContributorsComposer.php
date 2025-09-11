@@ -19,7 +19,7 @@ final class TopContributorsComposer
                 ->withCount('discussions')
                 ->scopes('topContributors')
                 ->get()
-                ->filter(fn (User $contributor) => $contributor->discussions_count >= 1)
+                ->filter(fn (User $contributor): bool => $contributor->discussions_count >= 1)
                 ->take(5)
         );
 

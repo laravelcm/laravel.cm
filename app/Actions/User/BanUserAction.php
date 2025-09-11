@@ -17,7 +17,7 @@ final class BanUserAction
             throw new CannotBanAdminException('Impossible de bannir un administrateur.');
         }
 
-        if ($user->isBanned()) {
+        if ($user->banned()) {
             throw new UserAlreadyBannedException('Impossible de bannir cet utilisateur car il est déjà banni.');
         }
 

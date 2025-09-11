@@ -13,6 +13,7 @@ use App\Traits\HasSpamReports;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,9 +43,7 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
     use Reactable;
     use RecordsActivity;
 
-    protected $fillable = [
-        'body',
-    ];
+    protected $guarded = [];
 
     public function subject(): int
     {
@@ -83,6 +82,27 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
         $this->replyAble()->associate($replyable); // @phpstan-ignore-line
     }
 
+    /**
+     * @param  Builder<Reply>  $query
+     */
+    #[Scope]
+    protected function isSolution(Builder $query): void
+    {
+        $query->has('solutionTo');
+    }
+
+    public function delete(): ?bool
+    {
+        $this->deleteReplies();
+
+        parent::delete();
+
+        return true;
+    }
+
+    /**
+     * @return HasOne<Thread, $this>
+     */
     public function solutionTo(): HasOne
     {
         return $this->hasOne(Thread::class, 'solution_reply_id');
@@ -104,19 +124,5 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
     public function replyAble(): MorphTo
     {
         return $this->morphTo('replyAble', 'replyable_type', 'replyable_id');
-    }
-
-    public function scopeIsSolution(Builder $builder): Builder
-    {
-        return $builder->has('solutionTo');
-    }
-
-    public function delete(): ?bool
-    {
-        $this->deleteReplies();
-
-        parent::delete();
-
-        return true;
     }
 }

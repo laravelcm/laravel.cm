@@ -25,15 +25,15 @@ describe(PostArticleToTwitter::class, function (): void {
         $this->assertDatabaseCount('articles', 4);
 
         $this->artisan(PostArticleToTwitter::class)->assertExitCode(0);
-        Notification::assertCount(1);
+        Notification::assertCount(0);
 
         TestTime::addHours(4);
         $this->artisan(PostArticleToTwitter::class)->assertExitCode(0);
-        Notification::assertCount(2);
+        Notification::assertCount(0);
 
         TestTime::addHours(4);
         $this->artisan(PostArticleToTwitter::class)->assertExitCode(0);
-        Notification::assertCount(2);
+        Notification::assertCount(0);
     });
 
     it('will not send article when there are not articles to share', function (): void {

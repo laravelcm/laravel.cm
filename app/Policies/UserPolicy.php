@@ -10,11 +10,19 @@ final class UserPolicy
 {
     public function ban(User $user): bool
     {
-        return $user->isAdmin() || $user->isModerator();
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
     }
 
     public function unban(User $user): bool
     {
-        return $user->isAdmin() || $user->isModerator();
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
     }
 }

@@ -30,7 +30,7 @@ final class SinglePost extends Component
             views($article)->cooldown(now()->addHours(2))->record();
         }
 
-        $image = empty($article->getFirstMediaUrl('media'))
+        $image = blank($article->getFirstMediaUrl('media'))
             ? $article->getFirstMediaUrl('media')
             : asset('/images/socialcard.png');
 

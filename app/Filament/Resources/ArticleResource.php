@@ -15,8 +15,6 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Table;
@@ -66,7 +64,7 @@ final class ArticleResource extends Resource
                     ->date(),
                 Tables\Columns\IconColumn::make('published_at')
                     ->label('Publié')
-                    ->getStateUsing(fn (Article $record) => $record->isPublished())
+                    ->getStateUsing(fn (Article $record): bool => $record->isPublished())
                     ->boolean(),
                 Tables\Columns\TextColumn::make('submitted_at')
                     ->label('Soumission')
@@ -85,7 +83,7 @@ final class ArticleResource extends Resource
 
                         return '';
                     })
-                    ->prefixBadges(function ($record) {
+                    ->prefixBadges(function ($record): array|string {
                         if ($record->approved_at) {
                             return [
                                 Badge::make('Approuvé')
@@ -105,9 +103,9 @@ final class ArticleResource extends Resource
                     ->sortable(),
             ])
             ->actions([
-                ActionGroup::make([
-                    Action::make('approved')
-                        ->visible(fn (Article $record) => $record->isAwaitingApproval())
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\Action::make('approved')
+                        ->visible(fn (Article $record): bool => $record->isAwaitingApproval())
                         ->label('Approuver')
                         ->icon('heroicon-s-check')
                         ->color('success')
@@ -120,8 +118,8 @@ final class ArticleResource extends Resource
 
                             app(ApprovedArticleAction::class)->execute($record);
                         }),
-                    Action::make('declined')
-                        ->visible(fn (Article $record) => $record->isAwaitingApproval())
+                    Tables\Actions\Action::make('declined')
+                        ->visible(fn (Article $record): bool => $record->isAwaitingApproval())
                         ->label('Décliner')
                         ->icon('heroicon-s-x-mark')
                         ->color('warning')
@@ -168,7 +166,6 @@ final class ArticleResource extends Resource
                         ->modalHeading('Décliner')
                         ->modalDescription('Voulez-vous vraiment décliner ces articles ?')
                         ->modalSubmitActionLabel('Confirmer'),
-
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])

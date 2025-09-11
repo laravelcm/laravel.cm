@@ -24,7 +24,6 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
@@ -36,16 +35,16 @@ use Spatie\Sitemap\Tags\Url;
  * @property string $body
  * @property bool $locked
  * @property bool $is_pinned
- * @property string | null $locale
+ * @property string|null $locale
  * @property int $user_id
  * @property-read int $count_all_replies_with_child
- * @property Carbon $created_at
- * @property Carbon $updated_at
- * @property User $user
- * @property Collection | SpamReport[] $spamReports
- * @property Collection | Reply[] $replies
- * @property Collection | Tag[] $tags
- * @property Collection | Reaction[] $reactions
+ * @property-read \Illuminate\Support\Carbon $created_at
+ * @property-read \Illuminate\Support\Carbon $updated_at
+ * @property-read User $user
+ * @property-read \Illuminate\Support\Collection<array-key, SpamReport> $spamReports
+ * @property-read \Illuminate\Support\Collection<array-key, Reply> $replies
+ * @property-read \Illuminate\Support\Collection<array-key, Tag> $tags
+ * @property-read \Illuminate\Support\Collection<array-key, Reaction> $reactions
  */
 final class Discussion extends Model implements ReactableInterface, ReplyInterface, Sitemapable, SpamReportableContract, SubscribeInterface, Viewable
 {
@@ -61,26 +60,33 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     use Reactable;
     use RecordsActivity;
 
-    protected $fillable = [
-        'title',
-        'body',
-        'slug',
-        'user_id',
-        'is_pinned',
-        'locked',
-        'locale',
-    ];
-
-    protected $casts = [
-        'locked' => 'boolean',
-        'is_pinned' => 'boolean',
-    ];
-
-    protected $appends = [
-        'count_all_replies_with_child', // @phpstan-ignore-line
-    ];
+    protected $guarded = [];
 
     protected bool $removeViewsOnDelete = true;
+
+    protected function casts(): array
+    {
+        return [
+            'locked' => 'boolean',
+            'is_pinned' => 'boolean',
+        ];
+    }
+
+    protected function countAllRepliesWithChild(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                $count = $this->replies->count();
+
+                foreach ($this->replies()->withCount('allChildReplies')->get() as $reply) {
+                    /** @var Reply $reply */
+                    $count += $reply->all_child_replies_count;
+                }
+
+                return $count;
+            }
+        );
+    }
 
     public function newEloquentBuilder($query): DiscussionQueryBuilder
     {
@@ -128,22 +134,6 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     public function isLocked(): bool
     {
         return $this->locked;
-    }
-
-    public function countAllRepliesWithChild(): Attribute
-    {
-        return Attribute::make(
-            get: function () {
-                $count = $this->replies->count();
-
-                foreach ($this->replies()->withCount('allChildReplies')->get() as $reply) {
-                    /** @var Reply $reply */
-                    $count += $reply->all_child_replies_count;
-                }
-
-                return $count;
-            }
-        );
     }
 
     public function lockedDiscussion(): void

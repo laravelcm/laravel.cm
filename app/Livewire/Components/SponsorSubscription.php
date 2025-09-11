@@ -86,12 +86,12 @@ final class SponsorSubscription extends Component implements HasForms
                             ->label(__('validation.attributes.amount'))
                             ->integer()
                             ->required()
-                            ->afterStateUpdated(fn (?int $state) => $state ? abs($state) : 0)
-                            ->prefix(fn (Forms\Get $get) => match ($get('currency')) {
+                            ->afterStateUpdated(fn (?int $state): float|int => filled($state) ? abs($state) : 0) // @phpstan-ignore-line
+                            ->prefix(fn (Forms\Get $get): ?string => match ($get('currency')) {
                                 'usd' => '$',
                                 default => null
                             })
-                            ->suffix(fn (Forms\Get $get) => match ($get('currency')) {
+                            ->suffix(fn (Forms\Get $get): ?string => match ($get('currency')) {
                                 'eur' => '€',
                                 'xaf' => 'FCFA',
                                 default => null,
@@ -124,7 +124,7 @@ final class SponsorSubscription extends Component implements HasForms
                 'email' => $email,
                 'name' => $name,
                 'currency' => data_get($this->form->getState(), 'currency'),
-                'reference' => $user->id.'-'.$user->username().'-'.uniqid(),
+                'reference' => $user->id.'-'.$user->username.'-'.uniqid(),
                 'callback' => route('notchpay-callback'),
                 'description' => __('Soutien de la communauté Laravel & PHP Cameroun.'),
             ]);
@@ -134,7 +134,7 @@ final class SponsorSubscription extends Component implements HasForms
                 'status' => $payload->transaction->status,
                 'transaction_reference' => $payload->transaction->reference,
                 'user_id' => $user->id,
-                'fees' => empty(get_object_vars($payload->transaction->fees)) ? 0 : $payload->transaction->fees->fee,
+                'fees' => blank(get_object_vars($payload->transaction->fees)) ? 0 : $payload->transaction->fees->fee,
                 'type' => TransactionType::ONETIME->value,
                 'metadata' => [
                     'currency' => $payload->transaction->currency,

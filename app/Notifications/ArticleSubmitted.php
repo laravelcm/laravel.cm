@@ -20,8 +20,8 @@ final class ArticleSubmitted extends Notification implements ShouldQueue
     public function via(mixed $notifiable): array
     {
         if (
-            ! empty(config('services.telegram-bot-api.token')) &&
-            ! empty(config('services.telegram-bot-api.channel'))
+            ! blank(config('services.telegram-bot-api.token')) &&
+            ! blank(config('services.telegram-bot-api.channel'))
         ) {
             return [TelegramChannel::class];
         }
@@ -43,8 +43,7 @@ final class ArticleSubmitted extends Notification implements ShouldQueue
     {
         $content = "*Nouvel Article Soumis!*\n\n";
         $content .= 'Titre: '.$this->article->title."\n";
-        $content .= 'Par: [@'.$this->article->user->username.']('.route('profile', $this->article->user->username).')';
 
-        return $content;
+        return $content.('Par: [@'.$this->article->user->username.']('.route('profile', $this->article->user->username).')');
     }
 }

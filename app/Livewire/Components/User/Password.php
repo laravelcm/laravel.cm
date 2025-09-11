@@ -38,14 +38,14 @@ final class Password extends Component implements HasForms
                     ->password()
                     ->currentPassword()
                     ->required()
-                    ->visible(fn () => Auth::user()?->hasPassword()),
+                    ->visible(fn (): bool => Auth::user()?->hasPassword() ?? false),
                 Forms\Components\TextInput::make('password')
                     ->label(__('validation.attributes.password'))
                     ->helperText(__('pages/account.settings.password_helpText'))
                     ->password()
                     ->revealable()
                     ->required()
-                    ->rules(fn () => [
+                    ->rules(fn (): array => [
                         RulesPassword::min(8)
                             ->mixedCase()
                             ->symbols()

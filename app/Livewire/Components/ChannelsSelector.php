@@ -26,7 +26,7 @@ final class ChannelsSelector extends Component
 
     public function resetChannel(): void
     {
-        $this->slug = null;
+        $this->reset('slug');
 
         $this->dispatch('channelUpdated', channelId: null);
     }
@@ -34,7 +34,7 @@ final class ChannelsSelector extends Component
     #[Computed]
     public function currentChannel(): ?Channel
     {
-        return $this->slug ? Channel::findBySlug($this->slug) : null;
+        return filled($this->slug) ? Channel::findBySlug($this->slug) : null;
     }
 
     public function render(): View

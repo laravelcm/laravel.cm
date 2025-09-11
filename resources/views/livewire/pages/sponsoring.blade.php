@@ -98,7 +98,7 @@
                                     span="-right-1 -top-1 w-3.5 h-3.5 ring-1"
                                 />
                                 <span class="font-medium text-gray-900 dark:text-white">
-                                    {{ Auth::user()->username() }}
+                                    {{ Auth::user()->username }}
                                 </span>
                             </span>
                         @else

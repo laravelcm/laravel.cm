@@ -8,12 +8,11 @@
   ],
   "license": "MIT",
   "require": {
-    "php": "^8.3",
+    "php": "^8.4",
     "ext-fileinfo": "*",
     "ext-json": "*",
     "archtechx/laravel-seo": "^0.10",
     "awcodes/filament-badgeable-column": "^2.3",
-    "barryvdh/laravel-debugbar": "^3.14",
     "codeat3/blade-phosphor-icons": "^2.0",
     "cyrildewit/eloquent-viewable": "^7.0",
     "doctrine/dbal": "^4.2.1",
@@ -29,6 +28,7 @@
     "laravel-notification-channels/telegram": "^6.0",
     "laravel-notification-channels/twitter": "^8.1",
     "laravel/framework": "^12.0",
+    "laravel/octane": "^2.12",
     "laravel/socialite": "^5.6.3",
     "laravel/tinker": "^2.8.1",
     "laravelcm/gamify": "*",
@@ -54,10 +54,15 @@
     "ysfkaya/filament-phone-input": "^3.1"
   },
   "require-dev": {
+    "barryvdh/laravel-debugbar": "^3.14",
+    "driftingly/rector-laravel": "^2.0",
     "fakerphp/faker": "^1.23.0",
     "larastan/larastan": "^3.0",
+    "laravel/boost": "^1.1",
     "laravel/breeze": "^2.0",
+    "laravel/pail": "^1.2",
     "laravel/pint": "^1.18",
+    "laravel/sail": "^1.45",
     "mockery/mockery": "^1.6.2",
     "nunomaduro/collision": "^8.1",
     "pestphp/pest": "^3.8",
@@ -94,19 +99,29 @@
     "post-create-project-cmd": [
       "@php artisan key:generate --ansi"
     ],
-    "lint": "./vendor/bin/pint",
-    "test:pest": "pest --parallel",
-    "test:phpstan": "phpstan analyse --memory-limit=-1",
-    "test": [
-      "@test:phpstan",
-      "@test:pest"
+    "dev:install": [
+      "./vendor/bin/sail up -d",
+      "./vendor/bin/sail artisan migrate",
+      "./vendor/bin/sail npm install --no-update-notifier",
+      "./vendor/bin/sail stop"
     ],
+    "dev:unsinstall": "docker compose down --rmi all --volumes --remove-orphans",
+    "dev:run": [
+      "Composer\\Config::disableProcessTimeout",
+      "./vendor/bin/sail up -d",
+      "./vendor/bin/sail npm config set update-notifier false",
+      "./vendor/bin/sail npx concurrently -c \"#505b92,#d32d21\" \"composer install\" \"npm install --no-update-notifier\" --names=composer,npm",
+      "./vendor/bin/sail npx concurrently -c \"#93c5fd,#fb7185,#fdba74\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=queue,logs,vite"
+    ],
+    "dev:stop": "./vendor/bin/sail down",
+    "lint": "./vendor/bin/pint",
+    "types": "phpstan analyse --memory-limit=-1",
+    "rector": "./vendor/bin/rector",
+    "rector:preview": "./vendor/bin/rector --dry-run",
+    "test": "./vendor/bin/sail pest",
     "setup": [
-      "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-      "php artisan key:generate",
-      "php artisan migrate",
-      "php artisan db:seed",
-      "php artisan lcm:admin"
+      "@php artisan db:seed",
+      "@php artisan lcm:admin"
     ]
   },
   "config": {

@@ -24,21 +24,41 @@ final class ArticlePolicy
 
     public function delete(User $user, Article $article): bool
     {
-        return $article->user_id === $user->id || $user->isModerator() || $user->isAdmin();
+        if ($article->user_id === $user->id) {
+            return true;
+        }
+
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
     }
 
-    public function approve(User $user, Article $article): bool
+    public function approve(User $user): bool
     {
-        return $user->isModerator() || $user->isAdmin();
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
     }
 
-    public function decline(User $user, Article $article): bool
+    public function decline(User $user): bool
     {
-        return $user->isModerator() || $user->isAdmin();
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
     }
 
-    public function togglePinnedStatus(User $user, Article $article): bool
+    public function togglePinnedStatus(User $user): bool
     {
-        return $user->isModerator() || $user->isAdmin();
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
     }
 }

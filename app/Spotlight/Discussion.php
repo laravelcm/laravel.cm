@@ -35,7 +35,7 @@ final class Discussion extends SpotlightCommand
             ->where('title', 'like', "%{$query}%")
             ->get()
             // @phpstan-ignore-next-line
-            ->map(fn (DiscussionModel $discussion) => new SpotlightSearchResult(
+            ->map(fn (DiscussionModel $discussion): SpotlightSearchResult => new SpotlightSearchResult(
                 $discussion->slug,
                 $discussion->title,
                 sprintf('par @%s', $discussion->user->username)

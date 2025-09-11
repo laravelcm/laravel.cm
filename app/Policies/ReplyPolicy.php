@@ -12,11 +12,6 @@ final class ReplyPolicy
 {
     use HandlesAuthorization;
 
-    public function manage(User $user, Reply $reply): bool
-    {
-        return $reply->user_id === $user->id || $user->isModerator() || $user->isAdmin();
-    }
-
     public function create(User $user): bool
     {
         return $user->hasVerifiedEmail();
@@ -29,16 +24,37 @@ final class ReplyPolicy
 
     public function delete(User $user, Reply $reply): bool
     {
-        return $reply->user_id === $user->id || $user->isModerator() || $user->isAdmin();
+        if ($reply->user_id === $user->id) {
+            return true;
+        }
+
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
+    }
+
+    public function like(User $user): bool
+    {
+        return $user->hasVerifiedEmail();
+    }
+
+    public function manage(User $user, Reply $reply): bool
+    {
+        if ($reply->user_id === $user->id) {
+            return true;
+        }
+
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
     }
 
     public function report(User $user, Reply $reply): bool
     {
         return $user->hasVerifiedEmail() && $reply->user_id !== $user->id;
-    }
-
-    public function like(User $user, Reply $reply): bool
-    {
-        return $user->hasVerifiedEmail();
     }
 }

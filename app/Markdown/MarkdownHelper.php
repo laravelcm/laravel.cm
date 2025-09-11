@@ -13,12 +13,12 @@ final class MarkdownHelper
         // If we find at least one liquid tag
         if (preg_match_all('/{% .* %}/', $html, $matches) && $matches[0]) {
             // loop through each of the liquid tags
-            foreach ($matches[0] as $index => $match) {
+            foreach ($matches[0] as $match) {
                 // replace multiple spaces with single space
                 $matchArray = explode(' ', preg_replace('!\s+!', ' ', $match));
 
                 // gaurantee we have the first value and run specific function for specific tag
-                if ($matchArray[1]) {
+                if (filled($matchArray[1])) {
                     switch ($matchArray[1]) {
                         case 'youtube':
                             $html = self::replaceYouTubeTag($html, $matchArray, $match);

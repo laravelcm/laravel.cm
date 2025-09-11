@@ -11,8 +11,12 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
+/**
+ * @property-read DatabaseNotification $notification
+ */
 final class Notifications extends Component
 {
     use AuthorizesRequests;
@@ -24,18 +28,19 @@ final class Notifications extends Component
         abort_if(Auth::guest(), 403);
     }
 
-    public function getNotificationProperty(): DatabaseNotification
+    #[Computed]
+    public function notification(): DatabaseNotification
     {
-        return DatabaseNotification::findOrFail($this->notificationId);
+        return DatabaseNotification::query()->findOrFail($this->notificationId);
     }
 
     public function markAsRead(string $notificationId): void
     {
         $this->notificationId = $notificationId;
 
-        $this->authorize(NotificationPolicy::MARK_AS_READ, $this->notification); // @phpstan-ignore-line
+        $this->authorize(NotificationPolicy::MARK_AS_READ, $this->notification);
 
-        $this->notification->markAsRead(); // @phpstan-ignore-line
+        $this->notification->markAsRead();
 
         Notification::make()
             ->title(__('Cette notification a été marquée comme lue.'))
@@ -55,7 +60,7 @@ final class Notifications extends Component
                 ->take(10)
                 ->get()
                 ->groupBy(
-                    fn ($notification) => Carbon::parse($notification->created_at)->format('M, Y')
+                    fn ($notification): string => Carbon::parse($notification->created_at)->format('M, Y')
                 ),
         ]);
     }

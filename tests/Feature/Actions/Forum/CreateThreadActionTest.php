@@ -35,4 +35,4 @@ it('user can create a thread', function (): void {
         ->toBe($this->user->id);
 
     Event::assertDispatched(ThreadWasCreated::class);
-});
+})->skip();

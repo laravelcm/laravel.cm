@@ -13,10 +13,7 @@ use Torchlight\Torchlight;
 
 abstract class BaseExtension
 {
-    /**
-     * @var array
-     */
-    public static $torchlightBlocks = [];
+    public static array $torchlightBlocks = [];
 
     /**
      * @var callable
@@ -31,7 +28,11 @@ abstract class BaseExtension
             $node = $event->getNode();
 
             // Only look for code nodes, and only process them upon entering.
-            if (! $this->isCodeNode($node) || ! $event->isEntering()) {
+            if (! $this->isCodeNode($node)) {
+                continue;
+            }
+
+            if (! $event->isEntering()) {
                 continue;
             }
 
@@ -49,11 +50,7 @@ abstract class BaseExtension
         Torchlight::highlight(static::$torchlightBlocks);
     }
 
-    /**
-     * @param  callable  $callback
-     * @return $this
-     */
-    public function useCustomBlockRenderer($callback): self
+    public function useCustomBlockRenderer(callable $callback): self
     {
         $this->customBlockRenderer = $callback;
 
@@ -62,7 +59,7 @@ abstract class BaseExtension
 
     public function defaultBlockRenderer(): Closure
     {
-        return function (Block $block) {
+        return function (Block $block): string {
             $inner = '';
 
             // Clones come from multiple themes.
@@ -111,10 +108,7 @@ abstract class BaseExtension
             ->code($this->getContent($node));
     }
 
-    /**
-     * @return string
-     */
-    protected function renderNode($node)
+    protected function renderNode($node): mixed
     {
         $hash = $this->makeTorchlightBlock($node)->hash();
 
@@ -150,7 +144,7 @@ abstract class BaseExtension
     /**
      * @return array|mixed|null
      */
-    protected function getInfo($node)
+    protected function getInfo($node): mixed
     {
         if (! $this->isCodeNode($node)) {
             return [];
@@ -162,31 +156,33 @@ abstract class BaseExtension
 
         $infoWords = $node->getInfoWords();
 
-        return empty($infoWords) ? [] : $infoWords;
+        return blank($infoWords) ? [] : $infoWords;
     }
 
     protected function getLanguage($node): ?string
     {
         $info = $this->getInfo($node);
 
-        if (empty($info)) {
+        if (blank($info)) {
             return null;
         }
 
         $language = $info[0];
 
-        return $language ? Xml::escape($language, true) : null;
+        return $language ? Xml::escape($language) : null;
     }
 
     /**
-     * @return string
+     * @return string|mixed
      */
-    protected function getTheme($node)
+    protected function getTheme($node): mixed
     {
         foreach ($this->getInfo($node) as $item) {
             if (Str::startsWith($item, 'theme:')) {
                 return Str::after($item, 'theme:');
             }
         }
+
+        return null;
     }
 }

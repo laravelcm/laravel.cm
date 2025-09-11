@@ -6,6 +6,7 @@ package-json.lock
 pnpm-lock.yml
 /vendor
 composer.phar
+/.junie
 /.idea
 /.vscode
 .phpunit.cache
@@ -19,7 +20,12 @@ composer.phar
 /public/**/*.xml
 /storage/*.key
 /storage/framework/cache
+/storage/pail
 .env
 .env.backup
 .DS_Store
 Thumbs.db
+
+**/caddy
+frankenphp
+frankenphp-worker.php

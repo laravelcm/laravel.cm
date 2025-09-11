@@ -48,14 +48,14 @@ final class AppServiceProvider extends ServiceProvider
 
     public function registerBladeDirective(): void
     {
-        Blade::directive('title', fn ($expression) => "<?php \$title = {$expression} ?>");
-        Blade::directive('shareImage', fn ($expression) => "<?php \$shareImage = {$expression} ?>");
-        Blade::directive('canonical', fn ($expression) => "<?php \$canonical = {$expression} ?>");
+        Blade::directive('title', fn ($expression): string => "<?php \$title = {$expression} ?>");
+        Blade::directive('shareImage', fn ($expression): string => "<?php \$shareImage = {$expression} ?>");
+        Blade::directive('canonical', fn ($expression): string => "<?php \$canonical = {$expression} ?>");
     }
 
     public function configureMacros(): void
     {
-        Str::macro('readDuration', function (...$text) {
+        Str::macro('readDuration', function (...$text): int {
             $totalWords = str_word_count(implode(' ', $text));
             $minutesToRead = round($totalWords / 200);
 
@@ -100,18 +100,16 @@ final class AppServiceProvider extends ServiceProvider
         ]);
 
         Tables\Actions\CreateAction::configureUsing(
-            fn (Tables\Actions\Action $action) => $action->iconButton()
+            fn (Tables\Actions\Action $action): Tables\Actions\Action => $action->iconButton()
                 ->modalWidth(MaxWidth::ExtraLarge)
                 ->slideOver()
         );
 
         Tables\Actions\EditAction::configureUsing(
-            fn (Tables\Actions\Action $action) => $action->iconButton()
+            fn (Tables\Actions\Action $action): Tables\Actions\Action => $action->iconButton()
                 ->modalWidth(MaxWidth::ExtraLarge)
                 ->slideOver()
         );
-
-        Tables\Actions\DeleteAction::configureUsing(fn (Tables\Actions\Action $action) => $action->icon('untitledui-trash-03'));
     }
 
     protected function registerLocaleDate(): void
@@ -129,10 +127,10 @@ final class AppServiceProvider extends ServiceProvider
         seo()
             ->title(
                 default: __('pages/home.title'),
-                modify: fn (string $title) => $title.' | '.__('global.site_name')
+                modify: fn (string $title): string => $title.' | '.__('global.site_name')
             )
             ->description(default: __('global.site_description'))
-            ->image(default: fn () => asset('images/socialcard.png'))
+            ->image(default: fn (): string => asset('images/socialcard.png'))
             ->twitterSite('@laravelcm');
     }
 

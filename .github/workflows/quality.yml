@@ -16,31 +16,43 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: 👀 Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: 🪄 Setup
         uses: ./.github/actions/setup
       - name: 🔮 Install Composer Dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
       - name: 🕵️‍♂️ Run Laravel Pint
-        run: composer lint -- --test
+        run: ./vendor/bin/pint
 
   phpstan:
     runs-on: ubuntu-22.04
     steps:
       - name: 👀 Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: 🪄 Setup
         uses: ./.github/actions/setup
       - name: 🔮 Install Composer Dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
       - name: 🕵️‍♂️ Run PHPStan
-        run: composer test:phpstan -- --ansi --no-interaction --no-progress --error-format=github
+        run: composer types -- --ansi --no-interaction --no-progress --error-format=github
+
+  rector:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: 👀 Checkout
+        uses: actions/checkout@v5
+      - name: 🪄 Setup
+        uses: ./.github/actions/setup
+      - name: 🔮 Install Composer Dependencies
+        run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
+      - name: 🕵️‍♂️ Run Rector
+        run: composer rector:preview
 
   composer:
     runs-on: ubuntu-22.04
     steps:
       - name: 👀 Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: 🪄 Setup
         uses: ./.github/actions/setup
       - name: 🕵️‍♂️ Run Composer Validate

@@ -12,14 +12,14 @@ final class CreateOrUpdateDiscussionAction
 {
     public function handle(array $formValues, ?int $discussionId = null): Discussion
     {
-        return DB::transaction(function () use ($formValues, $discussionId) {
+        return DB::transaction(function () use ($formValues, $discussionId): Discussion {
             /** @var Discussion $discussion */
             $discussion = Discussion::query()->updateOrCreate(
                 ['id' => $discussionId],
                 $formValues
             );
 
-            if (! $discussionId) {
+            if (blank($discussionId)) {
                 givePoint(new DiscussionCreated($discussion));
             }
 

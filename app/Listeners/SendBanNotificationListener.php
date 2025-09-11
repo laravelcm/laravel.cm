@@ -9,11 +9,8 @@ use App\Jobs\SendBanEmailJob;
 
 final class SendBanNotificationListener
 {
-    /**
-     * Handle the event.
-     */
     public function handle(UserBannedEvent $event): void
     {
-        SendBanEmailJob::dispatch($event->user);
+        dispatch(new SendBanEmailJob($event->user));
     }
 }

@@ -23,7 +23,7 @@ if (! function_exists('is_active')) {
      */
     function is_active(string ...$routes): bool
     {
-        return (bool) call_user_func_array([app('router'), 'is'], (array) $routes);
+        return (bool) call_user_func_array([app('router'), 'is'], $routes);
     }
 }
 

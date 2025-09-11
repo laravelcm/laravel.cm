@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 use App\Console\Commands\Cleanup\DeleteOldUnverifiedUsers;
 use App\Models\User;
+use Carbon\Carbon;
 use Spatie\TestTime\TestTime;
 
-beforeEach(fn () => TestTime::freeze('Y-m-d H:i:s', '2021-05-01 00:00:01'));
+beforeEach(fn (): Carbon => TestTime::freeze('Y-m-d H:i:s', '2021-05-01 00:00:01'));
 
 it('will delete unverified users after some days', function (): void {
     $user = User::factory()->create([

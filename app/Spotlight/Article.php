@@ -35,7 +35,7 @@ final class Article extends SpotlightCommand
             ->published()
             ->where('title', 'like', "%{$query}%")
             ->get()
-            ->map(fn (ArticleModel $article) => new SpotlightSearchResult( // @phpstan-ignore-line
+            ->map(fn (ArticleModel $article): SpotlightSearchResult => new SpotlightSearchResult( // @phpstan-ignore-line
                 $article->slug,
                 $article->title,
                 sprintf('par @%s', $article->user->username)

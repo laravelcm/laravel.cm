@@ -5,35 +5,33 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\TransactionStatus;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property-read int $id
+ * @property array<array-key, mixed>|null $metadata
+ */
 final class Transaction extends Model
 {
     use HasUuids;
 
-    public $guarded = ['id'];
+    public $guarded = [];
 
-    public $casts = [
-        'metadata' => 'array',
-    ];
-
-    public function user(): BelongsTo
+    protected function casts(): array
     {
-        return $this->belongsTo(User::class);
+        return [
+            'metadata' => 'array',
+        ];
     }
 
-    public function scopeComplete(Builder $query): Builder
+    public function getMetadata(string $key, string $default = ''): string|array
     {
-        return $query->where('status', TransactionStatus::COMPLETE->value);
-    }
-
-    public function getMetadata(string $name, string $default = ''): string|array
-    {
-        if ($this->metadata && array_key_exists($name, $this->metadata)) {
-            return $this->metadata[$name];
+        if ($this->metadata && array_key_exists($key, $this->metadata)) {
+            return $this->metadata[$key];
         }
 
         return $default;
@@ -48,5 +46,22 @@ final class Transaction extends Model
         }
 
         return $this;
+    }
+
+    /**
+     * @param  Builder<Transaction>  $query
+     */
+    #[Scope]
+    protected function complete(Builder $query): void
+    {
+        $query->where('status', TransactionStatus::COMPLETE->value);
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

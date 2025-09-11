@@ -11,7 +11,7 @@ final class UpdateThreadAction
 {
     public function execute(array $formValues, Thread $thread): Thread
     {
-        return DB::transaction(function () use ($formValues, $thread) {
+        return DB::transaction(function () use ($formValues, $thread): Thread {
 
             $thread->update($formValues);
 

@@ -30,7 +30,7 @@ trait HasReputations
         }
 
         if ($this->storeReputation($pointType)) {
-            $pointType->payee()->addPoint($pointType->getPoints());
+            $pointType->payee()?->addPoint($pointType->getPoints());
 
             return true;
         }
@@ -48,10 +48,6 @@ trait HasReputations
     {
         $reputation = $pointType->firstReputation();
 
-        if (! $reputation) {
-            return false;
-        }
-
         $reputation->undo();
 
         return true;
@@ -60,17 +56,15 @@ trait HasReputations
     /**
      * Reputations of user relation
      *
-     * @return HasMany<User>
+     * @return HasMany<User, $this>
      */
     public function reputations(): HasMany
     {
-        return $this->hasMany(config('gamify.reputation_model'), 'payee_id');
+        return $this->hasMany(config('gamify.reputation_model'), 'payee_id'); // @phpstan-ignore-line
     }
 
     /**
      * Store a reputation for point
-     *
-     * @return mixed
      *
      * @throws InvalidPayeeModelException
      * @throws PointSubjectNotSetException
@@ -82,7 +76,9 @@ trait HasReputations
             return false;
         }
 
-        return $pointType->storeReputation($meta) instanceof \Laravelcm\Gamify\Models\Reputation;
+        $pointType->storeReputation($meta);
+
+        return true;
     }
 
     /**
@@ -122,7 +118,7 @@ trait HasReputations
     {
         $point = $this->{$this->getReputationField()};
 
-        return $formatted ? Number::abbreviate($point) : (int) $point;
+        return $formatted ? (string) Number::abbreviate($point) : (int) $point;
     }
 
     /**
@@ -130,6 +126,7 @@ trait HasReputations
      */
     protected function getReputationField(): string
     {
+        // @phpstan-ignore-next-line
         return property_exists($this, 'reputationColumn')
             ? $this->reputationColumn
             : 'reputation';

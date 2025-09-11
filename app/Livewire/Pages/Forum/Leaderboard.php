@@ -20,10 +20,10 @@ final class Leaderboard extends Component
         $leaders = collect();
 
         /** @var Collection $leaderboard */
-        $leaderboard = User::mostSolutionsInLastDays(365)
+        $leaderboard = User::query()->mostSolutionsInLastDays(365)
             ->take(30)
             ->get()
-            ->reject(fn ($leaderboard) => $leaderboard->solutions_count === 0); // @phpstan-ignore-line
+            ->reject(fn ($leaderboard): bool => $leaderboard->solutions_count === 0); // @phpstan-ignore-line
 
         if ($leaderboard->count() > 3) {
             $leaders = $leaderboard->slice(0, 3);
@@ -35,7 +35,7 @@ final class Leaderboard extends Component
                 key: 'members',
                 ttl: now()->addWeek(),
                 callback: fn () => $leaderboard->reject(
-                    fn (User $user) => in_array($user->id, $leaders->pluck('id')->toArray()) // @phpstan-ignore-line
+                    fn (User $user): bool => in_array($user->id, $leaders->pluck('id')->toArray()) // @phpstan-ignore-line
                 )
             ),
             'leaders' => Cache::remember(

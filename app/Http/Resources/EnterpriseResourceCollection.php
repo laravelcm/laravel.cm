@@ -9,7 +9,7 @@ final class EnterpriseResourceCollection extends PaginationResourceCollection
     public function toArray($request): array
     {
         return [
-            'data' => $this->collection->transform(fn ($enterprise) => new EnterpriseResource($enterprise)),
+            'data' => $this->collection->transform(fn ($enterprise): EnterpriseResource => new EnterpriseResource($enterprise)),
             'pagination' => $this->pagination,
             'filters' => $this->filters,
         ];

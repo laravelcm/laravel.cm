@@ -14,6 +14,6 @@ final class SendUnbanNotificationListener
      */
     public function handle(UserUnbannedEvent $event): void
     {
-        SendUnbanEmailJob::dispatch($event->user);
+        dispatch(new SendUnbanEmailJob($event->user));
     }
 }
