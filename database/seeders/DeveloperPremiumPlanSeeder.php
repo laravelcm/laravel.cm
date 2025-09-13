@@ -14,10 +14,10 @@ final class DeveloperPremiumPlanSeeder extends Seeder
 {
     public function run(): void
     {
-        $rookiePlan = Plan::create([
-            'name' => 'Le Rookie',
+        $rookiePlan = Plan::query()->create([
+            'name' => 'Builder',
             'description' => 'Pour tous ceux qui veulent apprendre et avoir le contenu minimal',
-            'type' => PlanType::DEVELOPER->value,
+            'type' => PlanType::DEVELOPER,
             'price' => 2000,
             'signup_fee' => 0,
             'invoice_period' => 1,
@@ -34,10 +34,10 @@ final class DeveloperPremiumPlanSeeder extends Seeder
             new Feature(['name' => 'Accès au code source des tutoriels', 'value' => 1, 'sort_order' => 5]),
         ]);
 
-        $proPlan = Plan::create([
-            'name' => 'Le Pro',
+        $proPlan = Plan::query()->create([
+            'name' => 'Artisan',
             'description' => 'Pour les professionnels du métier',
-            'type' => PlanType::DEVELOPER->value,
+            'type' => PlanType::DEVELOPER,
             'price' => 5000,
             'signup_fee' => 0,
             'invoice_period' => 1,
