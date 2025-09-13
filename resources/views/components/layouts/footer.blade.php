@@ -1,8 +1,8 @@
-<footer class="bg-gray-900 p-3" aria-labelledby="footerHeading">
+<footer class="bg-gray-900 border-t border-white/5 p-3" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">{{ __('global.footer.title') }}</h2>
     <div class="relative rounded-xl overflow-hidden dark:bg-gray-800">
         <x-container class="relative z-10">
-            <div class="py-12 sm:py-16 lg:grid lg:grid-cols-3 lg:gap-8 lg:py-20">
+            <div class="py-12 sm:py-16 lg:grid lg:grid-cols-3 lg:gap-8 lg:py-20 xl:pt-24">
                 <div class="space-y-3">
                     <x-brand class="h-12 w-auto text-white sm:h-16" aria-hidden="true" />
                     <p class="inline-flex flex-wrap items-center text-gray-400 text-sm">
@@ -51,17 +51,17 @@
                         <h3 class="text-sm font-semibold uppercase tracking-wider text-white">
                             {{ __('global.joins_us.title') }}
                         </h3>
-                        <p class="mt-6 text-sm text-gray-300">
+                        <p class="mt-6 text-sm text-gray-400">
                             {{ __('global.joins_us.description') }}
                         </p>
                     </div>
-                    <div class="mt-6 space-y-6">
+                    <div class="mt-8 space-y-8">
                         <div class="flex items-center text-sm font-medium space-x-4 sm:space-x-6">
-                            <a href="https://discord.gg/KNp6brbyVD?utm_source=laravel.cm" target="_blank" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
+                            <a href="https://discord.gg/KNp6brbyVD?utm_source=laravel.cm" target="_blank" class="inline-flex items-center gap-2 text-gray-400 hover:text-white">
                                 <x-icon.discord class="size-5 text-[#5865F2]" aria-hidden="true" />
                                 Discord
                             </a>
-                            <a href="https://t.me/laravelcameroun?utm_source=laravel.cm" target="_blank" class="inline-flex items-center gap-2 text-gray-300 hover:text-white">
+                            <a href="https://t.me/laravelcameroun?utm_source=laravel.cm" target="_blank" class="inline-flex items-center gap-2 text-gray-400 hover:text-white">
                                 <x-icon.telegram class="size-5 text-[#34AADF]" aria-hidden="true" />
                                 Telegram
                             </a>
@@ -70,11 +70,39 @@
                     </div>
                 </div>
             </div>
-            <div class="border-t border-white/10 py-6 sm:flex sm:items-center sm:justify-between lg:py-8">
+            <div
+                class="relative py-12 text-gray-600"
+                x-data="{ spotlight: { x: 0, y: 0 } }"
+                @mousemove="const rect = $el.getBoundingClientRect(); spotlight = { x: $event.clientX - rect.left, y: $event.clientY - rect.top }"
+            >
+                <div
+                    class="w-full"
+                    {{--x-bind:style="
+                        'mask-image: radial-gradient(circle at ' +
+                            spotlight.x +
+                            'px ' +
+                            spotlight.y +
+                            'px, black 0%, transparent 150px); -webkit-mask-image: radial-gradient(circle at ' +
+                            spotlight.x +
+                            'px ' +
+                            spotlight.y +
+                            'px, black 0%, transparent 600px);'
+                    "--}}
+                    {{--style="mask-image: radial-gradient(circle at 160px 378.609375px, black 0%, transparent 150px); -webkit-mask-image: radial-gradient(circle at 160px 378.609375px, black 0%, transparent 600px);"--}}
+                >
+                    <x-icon.community class="size-full" aria-hidden="true" />
+                </div>
+            </div>
+            <div class="border-t border-white/5 py-6 sm:flex sm:items-center sm:justify-between lg:py-8">
                 <p class="text-center text-sm leading-6 text-gray-400 lg:text-left">
                     {{ __('global.footer.copyright', ['date' => date('Y')]) }}
                 </p>
                 <div class="mt-4 flex items-center justify-center space-x-4 sm:mt-0 lg:justify-start">
+                    <a href="https://github.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
+                        <span class="sr-only">GitHub</span>
+                        <x-icon.github class="size-6" aria-hidden="true" />
+                    </a>
+
                     <a href="https://twitter.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                         <span class="sr-only">Twitter</span>
                         <x-icon.twitter class="size-5" aria-hidden="true" />
@@ -90,11 +118,6 @@
                         <x-icon.linkedin class="size-6" aria-hidden="true" />
                     </a>
 
-                    <a href="https://github.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
-                        <span class="sr-only">GitHub</span>
-                        <x-icon.github class="size-6" aria-hidden="true" />
-                    </a>
-
                     <a href="https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                         <span class="sr-only">YouTube</span>
                         <x-icon.youtube class="size-6" aria-hidden="true" />
@@ -103,7 +126,7 @@
             </div>
         </x-container>
 
-        @if(isHolidayWeek())
+        @if (isHolidayWeek())
             <div class="absolute z-0 inset-y-0 right-0">
                 <x-icon.christmas-tree class="size-full text-gray-800/30 dark:text-gray-700/20" aria-hidden="true" />
             </div>

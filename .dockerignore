@@ -27,11 +27,13 @@ README.md
 .idea
 .vscode
 .junie
+.claude
 
 # Git
 .gitignore
 .gitattributes
 .github
+.gitkeep
 
 # Others
 art
