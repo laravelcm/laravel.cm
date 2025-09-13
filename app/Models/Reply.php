@@ -91,7 +91,7 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
         $query->has('solutionTo');
     }
 
-    public function delete(): ?bool
+    public function delete(): bool
     {
         $this->deleteReplies();
 

@@ -120,7 +120,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     public function isSolved(): bool
     {
-        return $this->solution_reply_id !== null;
+        return filled($this->solution_reply_id);
     }
 
     public function wasResolvedBy(User $user): bool
@@ -152,7 +152,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
         $this->save();
     }
 
-    public function delete(): ?bool
+    public function delete(): bool
     {
         $this->channels()->detach();
         $this->deleteReplies();

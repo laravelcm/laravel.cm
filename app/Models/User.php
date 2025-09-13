@@ -168,7 +168,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         return $this->name;
     }
 
-    public function getFilamentAvatarUrl(): ?string
+    public function getFilamentAvatarUrl(): string
     {
         return $this->profile_photo_url;
     }

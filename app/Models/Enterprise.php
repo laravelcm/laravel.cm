@@ -48,18 +48,18 @@ final class Enterprise extends Model implements HasMedia
             ->singleFile()
             ->acceptsMimeTypes([
                 'image/jpg',
-                'image/jpeg',
                 'image/png',
                 'image/svg',
                 'image/gif',
+                'image/webp',
             ]);
 
         $this->addMediaCollection('cover')
             ->singleFile()
             ->acceptsMimeTypes([
                 'image/jpg',
-                'image/jpeg',
                 'image/png',
+                'image/webp',
             ]);
     }
 
@@ -95,7 +95,7 @@ final class Enterprise extends Model implements HasMedia
      * @param  string[]  $filters
      */
     #[Scope]
-    public function filters(Builder $query, Request $request, array $filters = []): Builder
+    protected function filters(Builder $query, Request $request, array $filters = []): Builder
     {
         return new EnterpriseFilters($request)->add($filters)->filter($query);
     }
