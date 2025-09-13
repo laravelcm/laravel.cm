@@ -78,6 +78,7 @@ export default {
           yellow: '#ffdc44',
         },
         black: '#161B22',
+        gray: colors.zinc,
         green: colors.emerald,
         primary: colors.emerald,
       },

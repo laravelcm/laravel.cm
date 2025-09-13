@@ -8,7 +8,6 @@ use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\ValueObject\PhpVersion;
 use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
 use RectorLaravel\Rector\Empty_\EmptyToBlankAndFilledFuncRector;
-use RectorLaravel\Rector\Expr\AppEnvironmentComparisonToParameterRector;
 use RectorLaravel\Rector\MethodCall\AssertStatusToAssertMethodRector;
 use RectorLaravel\Rector\StaticCall\DispatchToHelperFunctionsRector;
 use RectorLaravel\Rector\StaticCall\EloquentMagicMethodToQueryBuilderRector;
@@ -30,7 +29,6 @@ return RectorConfig::configure()
     ])
     ->withRules([
         AddGenericReturnTypeToRelationsRector::class,
-        AppEnvironmentComparisonToParameterRector::class,
         AssertStatusToAssertMethodRector::class,
         DispatchToHelperFunctionsRector::class,
         EloquentMagicMethodToQueryBuilderRector::class,

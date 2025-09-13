@@ -50,7 +50,7 @@ final class FakePointTypeWithoutSubject extends PointType
         $this->subject = $subject;
     }
 
-    public function payee(): ?User
+    public function payee(): User
     {
         return new User;
     }

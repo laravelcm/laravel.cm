@@ -58,7 +58,7 @@ final class DiscussionResource extends Resource
                     ->icon('untitledui-eye')
                     ->iconButton()
                     ->color('gray')
-                    ->url(fn (Discussion $record) => route('discussions.show', $record))
+                    ->url(fn (Discussion $record): string => route('discussions.show', $record))
                     ->openUrlInNewTab(),
                 Tables\Actions\DeleteAction::make()
                     ->iconButton(),

@@ -147,7 +147,7 @@ final class ArticleResource extends Resource
                         }),
                     Tables\Actions\Action::make('show')
                         ->icon('untitledui-eye')
-                        ->url(fn (Article $record) => route('articles.show', $record))
+                        ->url(fn (Article $record): string => route('articles.show', $record))
                         ->openUrlInNewTab()
                         ->label('Afficher'),
                     Tables\Actions\DeleteAction::make(),

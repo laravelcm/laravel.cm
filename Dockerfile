@@ -137,5 +137,5 @@ COPY --from=frontend --chown=www-data:www-data /app/public/build ./public/build
 # Application source
 COPY --chown=www-data:www-data . /var/www/html
 
-# Install Octane with FrankenPHP
+# Start Octane with FrankenPHP
 RUN php artisan octane:start --server=frankenphp -n

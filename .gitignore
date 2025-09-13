@@ -7,6 +7,7 @@ pnpm-lock.yml
 /vendor
 composer.phar
 /.junie
+/.claude
 /.idea
 /.vscode
 .phpunit.cache

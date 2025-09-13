@@ -5,24 +5,27 @@ declare(strict_types=1);
 namespace App\Traits;
 
 use App\Models\SocialAccount;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait HasProfilePhoto
 {
-    public function getProfilePhotoUrlAttribute(): ?string
+    protected function profilePhotoUrl(): Attribute
     {
-        if ($this->avatar_type === 'storage') {
-            return $this->getFirstMediaUrl('avatar');
-        }
+        return Attribute::get(function (): ?string {
+            if ($this->avatar_type === 'storage') {
+                return $this->getFirstMediaUrl('avatar');
+            }
 
-        if (! in_array($this->avatar_type, ['avatar', 'storage'])) {
-            /** @var SocialAccount $social_avatar */
-            $social_avatar = $this->providers->firstWhere('provider', $this->avatar_type);
+            if (! in_array($this->avatar_type, ['avatar', 'storage'])) {
+                /** @var SocialAccount $social_avatar */
+                $social_avatar = $this->providers->firstWhere('provider', $this->avatar_type);
 
-            // @phpstan-ignore-next-line
-            return $social_avatar ? $social_avatar->avatar : $this->defaultProfilePhotoUrl();
-        }
+                // @phpstan-ignore-next-line
+                return $social_avatar ? $social_avatar->avatar : $this->defaultProfilePhotoUrl();
+            }
 
-        return $this->defaultProfilePhotoUrl();
+            return $this->defaultProfilePhotoUrl();
+        });
     }
 
     protected function defaultProfilePhotoUrl(): ?string
