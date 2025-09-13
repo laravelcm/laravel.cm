@@ -8,7 +8,6 @@ phpstan.neon
 phpunit.xml
 rector.php
 pint.json
-postcss.config.js
 tests
 stubs
 app-modules/**/tests
@@ -18,18 +17,14 @@ app-modules/**/tests
 .editorconfig
 .prettierignore
 .prettierrc
-CHANGELOG.md
-CLAUDE.md
-CODE_OF_CONDUCT.md
-CONTRIBUTING.md
-LICENSE.md
-README.md
+*.md
 .idea
 .vscode
 .junie
 .claude
 
 # Git
+.git
 .gitignore
 .gitattributes
 .github

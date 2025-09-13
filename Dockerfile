@@ -128,14 +128,14 @@ USER www-data
 COPY --from=composer --chown=www-data:www-data /var/www/html/public/css ./public/css
 COPY --from=composer --chown=www-data:www-data /var/www/html/public/js ./public/js
 
-# Application source
-COPY --chown=www-data:www-data . /var/www/html
-
 # Composer dependencies
 COPY --from=composer --chown=www-data:www-data /var/www/html/vendor ./vendor
 
 # Application assets
 COPY --from=frontend --chown=www-data:www-data /app/public/build ./public/build
+
+# Application source
+COPY --chown=www-data:www-data . /var/www/html
 
 # Start Octane with FrankenPHP
 RUN php artisan octane:install --server=frankenphp -n
