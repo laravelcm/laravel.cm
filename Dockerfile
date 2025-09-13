@@ -138,4 +138,4 @@ COPY --from=frontend --chown=www-data:www-data /app/public/build ./public/build
 COPY --chown=www-data:www-data . /var/www/html
 
 # Start Octane with FrankenPHP
-RUN php artisan octane:start --server=frankenphp -n
+RUN php artisan octane:install --server=frankenphp -n
