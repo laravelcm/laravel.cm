@@ -11,7 +11,11 @@ final class ChannelSeeder extends Seeder
 {
     public function run(): void
     {
-        $authentification = Channel::create(['name' => 'Authentification', 'slug' => 'authentification', 'color' => '#31c48d']);
+        $authentification = Channel::query()->create([
+            'name' => 'Authentification',
+            'slug' => 'authentification',
+            'color' => '#31c48d',
+        ]);
         $authentification->items()->createMany([
             ['name' => 'Breeze', 'slug' => 'breeze'],
             ['name' => 'Fortify', 'slug' => 'fortify'],
@@ -21,14 +25,22 @@ final class ChannelSeeder extends Seeder
             ['name' => 'UI', 'slug' => 'ui'],
         ]);
 
-        $javascript = Channel::create(['name' => 'JavaScript', 'slug' => 'javascript', 'color' => '#fdae3f']);
+        $javascript = Channel::query()->create([
+            'name' => 'JavaScript',
+            'slug' => 'javascript',
+            'color' => '#fdae3f',
+        ]);
         $javascript->items()->createMany([
             ['name' => 'React', 'slug' => 'react'],
             ['name' => 'Vue.js', 'slug' => 'vue-js'],
             ['name' => 'Alpine.js', 'slug' => 'alpine-js'],
         ]);
 
-        $laravel = Channel::create(['name' => 'Laravel', 'slug' => 'laravel', 'color' => '#ff2d20']);
+        $laravel = Channel::query()->create([
+            'name' => 'Laravel',
+            'slug' => 'laravel',
+            'color' => '#ff2d20',
+        ]);
         $laravel->items()->createMany([
             ['name' => 'Blade', 'slug' => 'blade'],
             ['name' => 'Eloquent', 'slug' => 'eloquent'],
@@ -42,14 +54,22 @@ final class ChannelSeeder extends Seeder
             ['name' => 'Laragon', 'slug' => 'laragon'],
         ]);
 
-        $framework = Channel::create(['name' => 'Framework', 'slug' => 'framework', 'color' => '#fb70a9']);
+        $framework = Channel::query()->create([
+            'name' => 'Framework',
+            'slug' => 'framework',
+            'color' => '#fb70a9',
+        ]);
         $framework->items()->createMany([
             ['name' => 'Inertia', 'slug' => 'inertia'],
             ['name' => 'Livewire', 'slug' => 'livewire'],
             ['name' => 'TailwindCSS', 'slug' => 'tailwindcss'],
         ]);
 
-        $hosting = Channel::create(['name' => 'Hosting', 'slug' => 'hosting', 'color' => '#0080ff']);
+        $hosting = Channel::query()->create([
+            'name' => 'Hosting',
+            'slug' => 'hosting',
+            'color' => '#0080ff',
+        ]);
         $hosting->items()->createMany([
             ['name' => 'Digital Ocean', 'slug' => 'digital-ocean'],
             ['name' => 'Forge', 'slug' => 'forge'],
@@ -59,18 +79,30 @@ final class ChannelSeeder extends Seeder
             ['name' => 'AWS', 'slug' => 'aws'],
         ]);
 
-        $outils = Channel::create(['name' => 'Outils', 'slug' => 'outils', 'color' => '#333333']);
-        $outils->items()->createMany([
+        $tools = Channel::query()->create([
+            'name' => 'Outils',
+            'slug' => 'outils',
+            'color' => '#333333',
+        ]);
+        $tools->items()->createMany([
             ['name' => 'Github Actions', 'slug' => 'github-actions'],
-            ['name' => 'Gitlab', 'slug' => 'gitlab'],
+            ['name' => 'Gitlab CI', 'slug' => 'gitlab-ci'],
         ]);
 
-        $design = Channel::create(['name' => 'Design', 'slug' => 'design', 'color' => '#6D28D9']);
+        $design = Channel::query()->create([
+            'name' => 'Design',
+            'slug' => 'design',
+            'color' => '#6D28D9',
+        ]);
         $design->items()->createMany([
             ['name' => 'UI/UX', 'slug' => 'ui-ux'],
         ]);
 
-        $divers = Channel::create(['name' => 'Divers', 'slug' => 'divers', 'color' => '#DB2777']);
+        $divers = Channel::query()->create([
+            'name' => 'Divers',
+            'slug' => 'divers',
+            'color' => '#DB2777',
+        ]);
         $divers->items()->createMany([
             ['name' => 'Laravel.cm', 'slug' => 'laravelcm'],
             ['name' => 'Gaming', 'slug' => 'gaming'],

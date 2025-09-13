@@ -1,32 +1,32 @@
 services:
     traefik:
-        image: traefik:v3.5
+        image: 'traefik:v3.5'
         command:
-            - "--api.dashboard=true"
-            - "--api.insecure=true"
-            - "--providers.docker=true"
-            - "--providers.docker.exposedbydefault=false"
-            - "--providers.docker.network=traefik"
-            - "--entrypoints.web.address=:80"
-            - "--entrypoints.websecure.address=:443"
-            - "--serverstransport.insecureskipverify=true"
+            - '--api.dashboard=true'
+            - '--api.insecure=true'
+            - '--providers.docker=true'
+            - '--providers.docker.exposedbydefault=false'
+            - '--providers.docker.network=traefik'
+            - '--entrypoints.web.address=:80'
+            - '--entrypoints.websecure.address=:443'
+            - '--serverstransport.insecureskipverify=true'
         ports:
-            - "80:80"
-            - "443:443"
-            - "8080:8080" # Dashboard Traefik
+            - '80:80'
+            - '443:443'
+            - '8080:8080'
         volumes:
-            - "/var/run/docker.sock:/var/run/docker.sock:ro"
-            - "traefik-letsencrypt:/letsencrypt"
+            - '/var/run/docker.sock:/var/run/docker.sock:ro'
+            - 'traefik-letsencrypt:/letsencrypt'
         networks:
             - traefik
             - sail
         labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.traefik.rule=Host(`traefik.local`)"
-            - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+            - traefik.enable=true
+            - traefik.http.routers.traefik.rule=Host(`traefik.local`)
+            - traefik.http.services.traefik.loadbalancer.server.port=8080
     laravelcm:
         build:
-            context: '.'
+            context: .
             dockerfile: Dockerfile
             target: development
             args:
@@ -34,7 +34,7 @@ services:
                 WWWGROUP: '${WWWGROUP}'
                 NODE_VERSION: '22'
                 PHP_VERSION: 8.4
-        image: 'laravelcm/php'
+        image: laravelcm/php
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -48,7 +48,7 @@ services:
             XDG_CONFIG_HOME: /var/www/html/config
             XDG_DATA_HOME: /var/www/html/data
         healthcheck:
-            test: [ "CMD", "curl", "-f", "http://localhost:${APP_PORT:-8080}/up" ]
+            test: ['CMD', 'curl', '-f', 'http://localhost:${APP_PORT:-8080}/up']
             timeout: 30s
         volumes:
             - '.:/var/www/html'
@@ -56,7 +56,7 @@ services:
             - sail
             - traefik
         depends_on:
-            - mysql
+            - pgsql
             - redis
             - typesense
             - minio
@@ -64,22 +64,21 @@ services:
             - soketi
             - traefik
         labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.laravelcm.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)"
-            - "traefik.http.routers.laravelcm.entrypoints=websecure"
-            - "traefik.http.routers.laravelcm.tls=true"
-            - "traefik.http.services.laravelcm.loadbalancer.server.port=${APP_PORT:-8080}"
-            # Redirection HTTP vers HTTPS
-            - "traefik.http.routers.laravelcm-insecure.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)"
-            - "traefik.http.routers.laravelcm-insecure.entrypoints=web"
-            - "traefik.http.routers.laravelcm-insecure.middlewares=redirect-to-https"
-            - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+            - traefik.enable=true
+            - 'traefik.http.routers.laravelcm.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)'
+            - traefik.http.routers.laravelcm.entrypoints=websecure
+            - traefik.http.routers.laravelcm.tls=true
+            - 'traefik.http.services.laravelcm.loadbalancer.server.port=${APP_PORT:-8080}'
+            - 'traefik.http.routers.laravelcm-insecure.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)'
+            - traefik.http.routers.laravelcm-insecure.entrypoints=web
+            - traefik.http.routers.laravelcm-insecure.middlewares=redirect-to-https
+            - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
     schedule:
-        image: 'laravelcm/php'
-        command: ["artisan", "schedule:work"]
+        image: laravelcm/php
+        command: ['artisan', 'schedule:work']
         stop_signal: SIGTERM
         healthcheck:
-            test: ["CMD", "healthcheck-schedule"]
+            test: ['CMD', 'healthcheck-schedule']
             start_period: 10s
         volumes:
             - '.:/var/www/html'
@@ -87,14 +86,18 @@ services:
             - sail
         depends_on:
             - laravelcm
-            - mysql
+            - pgsql
             - redis
     queue:
-        image: 'laravelcm/php'
-        command: ["artisan", "queue:work", "--tries=3", "--queue=default,media"]
+        image: laravelcm/php
+        command:
+            - artisan
+            - 'queue:work'
+            - '--tries=3'
+            - '--queue=default,media'
         stop_signal: SIGTERM
         healthcheck:
-            test: ["CMD", "healthcheck-queue"]
+            test: ['CMD', 'healthcheck-queue']
             start_period: 10s
         volumes:
             - '.:/var/www/html'
@@ -102,31 +105,31 @@ services:
             - sail
         depends_on:
             - laravelcm
-            - mysql
+            - pgsql
             - redis
-    mysql:
-        image: 'mysql:8.0'
+    pgsql:
+        image: 'postgres:17-alpine'
         ports:
-            - '${FORWARD_DB_PORT:-3306}:3306'
+            - '${FORWARD_DB_PORT:-5432}:5432'
         environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ROOT_HOST: '%'
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ALLOW_EMPTY_PASSWORD: 1
-        command: --default-authentication-plugin=mysql_native_password
+            PGPASSWORD: '${DB_PASSWORD:-secret}'
+            POSTGRES_DB: '${DB_DATABASE}'
+            POSTGRES_USER: '${DB_USERNAME}'
+            POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
         volumes:
-            - 'sail-mysql:/var/lib/mysql'
-            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+            - 'sail-pgsql:/var/lib/postgresql/data'
+            - './vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
         networks:
             - sail
         healthcheck:
             test:
                 - CMD
-                - mysqladmin
-                - ping
-                - '-p${DB_PASSWORD}'
+                - pg_isready
+                - '-q'
+                - '-d'
+                - '${DB_DATABASE}'
+                - '-U'
+                - '${DB_USERNAME}'
             retries: 3
             timeout: 5s
     redis:
@@ -211,8 +214,6 @@ networks:
     traefik:
         driver: bridge
 volumes:
-    sail-mysql:
-        driver: local
     sail-redis:
         driver: local
     sail-typesense:
@@ -220,4 +221,6 @@ volumes:
     sail-minio:
         driver: local
     traefik-letsencrypt:
+        driver: local
+    sail-pgsql:
         driver: local

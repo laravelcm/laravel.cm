@@ -9,8 +9,22 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Laravelcm\Subscriptions\Models\Plan as Model;
 
+/**
+ * @mixin Model
+ *
+ * @property-read PlanType $type
+ */
 final class Plan extends Model
 {
+    protected $guarded = [];
+
+    protected function casts(): array
+    {
+        return [
+            'type' => PlanType::class,
+        ];
+    }
+
     /**
      * @param  Builder<Plan>  $query
      */
