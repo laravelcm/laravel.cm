@@ -17,21 +17,21 @@ final class UpdateArticleAction
             throw new CannotUpdateApprovedArticle(__('notifications.exceptions.approved_article'));
         }
 
-        if ($articleData->published_at) {
+        if (! $articleData->published_at instanceof Carbon) {
             $articleData->published_at = new Carbon(
                 time: $articleData->published_at,
                 timezone: config('app.timezone')
             );
         }
 
-        if ($articleData->submitted_at) {
+        if (! $articleData->submitted_at instanceof Carbon) {
             $articleData->submitted_at = new Carbon(
                 time: $articleData->submitted_at,
                 timezone: config('app.timezone')
             );
         }
 
-        if ($articleData->declined_at) {
+        if ($articleData->declined_at instanceof Carbon) {
             $articleData->declined_at = null;
         }
 

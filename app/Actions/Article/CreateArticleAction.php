@@ -13,14 +13,14 @@ final class CreateArticleAction
 {
     public function execute(ArticleData $articleData): Article
     {
-        if ($articleData->published_at) {
+        if (! $articleData->published_at instanceof Carbon) {
             $articleData->published_at = new Carbon(
                 time: $articleData->published_at,
                 timezone: config('app.timezone')
             );
         }
 
-        if ($articleData->submitted_at) {
+        if (! $articleData->submitted_at instanceof Carbon) {
             $articleData->submitted_at = new Carbon(
                 time: $articleData->submitted_at,
                 timezone: config('app.timezone')
