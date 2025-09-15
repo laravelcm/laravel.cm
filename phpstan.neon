@@ -15,6 +15,7 @@ parameters:
         - app/Models/Traits/HasSlug.php
         - app-modules/*/vendor/*
         - app-modules/*/tests/*
+        - app-modules/*/config/*
     ignoreErrors:
         - "#^Cannot access property \\$transaction on array\\|object\\.$#"
         - identifier: missingType.iterableValue

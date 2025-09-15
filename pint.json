@@ -4,7 +4,6 @@
     "array_syntax": true,
     "declare_parentheses": true,
     "declare_strict_types": true,
-    "final_class": true,
     "blank_line_before_statement": {
       "statements": [
         "break",
