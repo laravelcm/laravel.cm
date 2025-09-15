@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Laravelcm\DatabaseMigration\Console\Commands;
+namespace Laravelcm\DatabaseMigration\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
@@ -11,7 +11,7 @@ use Symfony\Component\Finder\Finder;
 
 final class MigrateFilesToS3Command extends Command
 {
-    protected $signature = 'files:migrate-to-s3
+    protected $signature = 'lcm:migrate-files-to-s3
                             {--target-disk=s3 : Target S3 disk name}
                             {--dry-run : Show what would be migrated without actually doing it}
                             {--chunk=100 : Number of files to process per chunk}';
@@ -28,7 +28,9 @@ final class MigrateFilesToS3Command extends Command
     {
         $this->info('🚀 Starting file migration to S3...');
 
-        $targetDisk = (string) $this->option('target-disk');
+        /** @var string $targetDisk */
+        $targetDisk = $this->option('target-disk');
+        /** @var bool $isDryRun */
         $isDryRun = $this->option('dry-run');
         /** @var int<1, max> $chunkSize */
         $chunkSize = max(1, (int) $this->option('chunk'));
@@ -47,6 +49,7 @@ final class MigrateFilesToS3Command extends Command
 
             foreach ($sourceDirs as $sourceDir) {
                 $this->info("📁 Processing directory: {$sourceDir['path']}");
+
                 $this->migrateDirectory($sourceDir, $targetDisk, $chunkSize, $isDryRun);
             }
 
