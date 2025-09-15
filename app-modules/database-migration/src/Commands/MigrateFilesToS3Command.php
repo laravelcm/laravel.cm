@@ -11,7 +11,7 @@ use Symfony\Component\Finder\Finder;
 
 final class MigrateFilesToS3Command extends Command
 {
-    protected $signature = 'files:migrate-to-s3
+    protected $signature = 'lcm:migrate-files-to-s3
                             {--target-disk=s3 : Target S3 disk name}
                             {--dry-run : Show what would be migrated without actually doing it}
                             {--chunk=100 : Number of files to process per chunk}';

@@ -6,6 +6,7 @@ namespace Laravelcm\DatabaseMigration\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Laravelcm\DatabaseMigration\Commands\MigrateDatabaseCommand;
+use Laravelcm\DatabaseMigration\Commands\MigrateFilesToS3Command;
 use Laravelcm\DatabaseMigration\Commands\SshTunnelCommand;
 use Laravelcm\DatabaseMigration\Services\DatabaseMigrationService;
 use Laravelcm\DatabaseMigration\Services\SshTunnelService;
@@ -29,6 +30,7 @@ final class DatabaseMigrationServiceProvider extends ServiceProvider
             $this->commands([
                 SshTunnelCommand::class,
                 MigrateDatabaseCommand::class,
+                MigrateFilesToS3Command::class,
             ]);
 
             $this->publishes([
