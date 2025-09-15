@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "254eaff8463abafb7d59a0d7164d98b8",
+    "content-hash": "27dc1cc0157a668ee520e87bbf4c967d",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -5709,6 +5709,45 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.10.1"
             },
             "time": "2025-01-27T14:24:01+00:00"
+        },
+        {
+            "name": "laravelcm/database-migration",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/database-migration",
+                "reference": "3cde3251cf41fd249a4005581fcdba9c0989ca9c"
+            },
+            "require": {
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "pestphp/pest": "^3.8",
+                "pestphp/pest-plugin-laravel": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravelcm\\DatabaseMigration\\Providers\\DatabaseMigrationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravelcm\\DatabaseMigration\\": "src/",
+                    "Laravelcm\\DatabaseMigration\\Database\\Factories\\": "database/factories/",
+                    "Laravelcm\\DatabaseMigration\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Module laravelcm/database-migration for Laravel.cm - Migration tools from MySQL to PostgreSQL with SSH tunnel support",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "laravelcm/gamify",

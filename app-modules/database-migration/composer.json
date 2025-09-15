@@ -1,0 +1,29 @@
+{
+    "name": "laravelcm/database-migration",
+    "description": "Module laravelcm/database-migration for Laravel.cm - Migration tools from MySQL to PostgreSQL with SSH tunnel support",
+    "type": "library",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.4"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.8",
+        "pestphp/pest-plugin-laravel": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laravelcm\\DatabaseMigration\\": "src/",
+            "Laravelcm\\DatabaseMigration\\Database\\Factories\\": "database/factories/",
+            "Laravelcm\\DatabaseMigration\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laravelcm\\DatabaseMigration\\Providers\\DatabaseMigrationServiceProvider"
+            ]
+        }
+    }
+}
