@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Laravelcm\DatabaseMigration\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Laravelcm\DatabaseMigration\Console\Commands\MigrateDatabaseCommand;
-use Laravelcm\DatabaseMigration\Console\Commands\SshTunnelCommand;
+use Laravelcm\DatabaseMigration\Commands\MigrateDatabaseCommand;
+use Laravelcm\DatabaseMigration\Commands\SshTunnelCommand;
 use Laravelcm\DatabaseMigration\Services\DatabaseMigrationService;
 use Laravelcm\DatabaseMigration\Services\SshTunnelService;
 

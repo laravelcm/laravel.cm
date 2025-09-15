@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Laravelcm\DatabaseMigration\Console\Commands;
+namespace Laravelcm\DatabaseMigration\Commands;
 
 use Illuminate\Console\Command;
 use Laravelcm\DatabaseMigration\Exceptions\SshTunnelException;

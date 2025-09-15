@@ -4,7 +4,7 @@
 
 <p align="center">
     <a href="https://laravel.com">
-        <img alt="Laravel v11.x" src="https://img.shields.io/badge/Laravel-v11.x-FF2D20">
+        <img alt="Laravel v12.x" src="https://img.shields.io/badge/Laravel-v12.x-FF2D20">
     </a>
     <a href="https://github.com/laravelcm/laravel.cm/actions">
         <img src="https://github.com/laravelcm/laravel.cm/workflows/Tests/badge.svg" alt="Build Status" />
@@ -31,7 +31,7 @@ Vous pouvez rejoindre la communauté ou nous suivre via nos différentes platefo
 - [Twitter](https://twitter.com/laravelcm)
 - [Facebook](https://www.facebook.com/laravelcm)
 
-## Sponsors
+## Sponsors 💰
 
 Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainage. Si vous souhaitez devenir sponsor, veuillez visiter <a href="https://laravel.cm/sponsors">la page Laravel.cm de Sponsoring</a>.
 
@@ -40,16 +40,16 @@ Nous tenons à remercier ces **entreprises extraordinaires** pour leur parrainag
 - [NotchPay](https://notchpay.co?utm_source=laravel.cm) 
 - [LN UI](https://ui.lndev.me?utm_source=laravel.cm) 
 
-## Caractéristiques Serveur
+## Caractéristiques Serveur 📝
 
 Les dépendances suivantes sont nécessaires pour démarrer l'installation.
 
-- PHP >= 8.2
+- [php](https://www.php.net/docs.php) version 8.4 minimum
+- [Docker](https://docs.docker.com/get-docker/) et [Docker Compose](https://docs.docker.com/compose/install/)
 - [Composer](https://getcomposer.org/download/)
-- [Yarn](https://yarnpkg.com/getting-started/install)
-- [Valet](https://laravel.com/docs/valet#installation) or [Herd](https://herd.laravel.com)
+- [Laravel server requirements](https://laravel.com/docs/deployment#server-requirements)
 
-## Installation
+## Installation 🚀
 
 > Notez que vous êtes libre d'ajuster l'emplacement `~/Sites/laravel.cm` à n'importe quel répertoire de votre choix sur votre machine. Ce faisant, assurez-vous d'exécuter la commande `valet link` (si vous utilisez Laravel Valet) dans le répertoire souhaité.
 
