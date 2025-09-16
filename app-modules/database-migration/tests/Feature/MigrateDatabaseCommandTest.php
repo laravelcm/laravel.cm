@@ -11,9 +11,10 @@ it('has migrate database command', function (): void {
 });
 
 it('can run dry run migration', function (): void {
-    // Mock the services
     $mockTunnelService = $this->mock(SshTunnelService::class);
     $mockTunnelService->shouldReceive('isActive')->andReturn(true);
+    $mockTunnelService->shouldReceive('destroy')->once();
+    $mockTunnelService->shouldReceive('forceCleanupTempKeyFile')->once();
 
     $mockMigrationService = $this->mock(DatabaseMigrationService::class);
     $mockMigrationService->shouldReceive('getSourceTables')
@@ -37,10 +38,11 @@ it('can run dry run migration', function (): void {
 });
 
 it('activates ssh tunnel if not active', function (): void {
-    // Mock the services
     $mockTunnelService = $this->mock(SshTunnelService::class);
     $mockTunnelService->shouldReceive('isActive')->andReturn(false, true);
     $mockTunnelService->shouldReceive('activate')->once();
+    $mockTunnelService->shouldReceive('destroy')->once();
+    $mockTunnelService->shouldReceive('forceCleanupTempKeyFile')->once();
 
     $mockMigrationService = $this->mock(DatabaseMigrationService::class);
     $mockMigrationService->shouldReceive('getSourceTables')
@@ -59,7 +61,6 @@ it('activates ssh tunnel if not active', function (): void {
 });
 
 it('fails when ssh tunnel cannot be activated', function (): void {
-    // Mock the services
     $mockTunnelService = $this->mock(SshTunnelService::class);
     $mockTunnelService->shouldReceive('isActive')->andReturn(false);
     $mockTunnelService->shouldReceive('activate')->once();
@@ -72,9 +73,10 @@ it('fails when ssh tunnel cannot be activated', function (): void {
 });
 
 it('can migrate specific tables', function (): void {
-    // Mock the services
     $mockTunnelService = $this->mock(SshTunnelService::class);
     $mockTunnelService->shouldReceive('isActive')->andReturn(true);
+    $mockTunnelService->shouldReceive('destroy')->once();
+    $mockTunnelService->shouldReceive('forceCleanupTempKeyFile')->once();
 
     $mockMigrationService = $this->mock(DatabaseMigrationService::class);
     $mockMigrationService->shouldReceive('getTableRecordCount')
