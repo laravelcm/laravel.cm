@@ -11,7 +11,7 @@ use Laravelcm\DatabaseMigration\Services\SshTunnelService;
 final class MigrateDatabaseCommand extends Command
 {
     protected $signature = 'db:migrate-mysql-to-pgsql
-                            {--tables=* : Specific tables to migrate (optional)}
+                            {--tables= : Specific tables to migrate (optional)}
                             {--chunk=1000 : Number of records to process per chunk}
                             {--dry-run : Show what would be migrated without actually doing it}';
 
@@ -23,9 +23,9 @@ final class MigrateDatabaseCommand extends Command
     ): int {
         $this->info('🚀 Starting MySQL to PostgreSQL migration...');
 
-        // Ensure SSH tunnel is active
         if (! $tunnelService->isActive()) {
             $this->warn('SSH tunnel is not active. Attempting to activate...');
+
             $tunnelService->activate();
         }
 
@@ -46,8 +46,7 @@ final class MigrateDatabaseCommand extends Command
         }
 
         try {
-            // Get tables to migrate
-            $tables = $specificTables ?: $migrationService->getSourceTables();
+            $tables = $specificTables ? explode(',', $specificTables) : $migrationService->getSourceTables();
 
             if (blank($tables)) {
                 $this->error('❌ No tables found to migrate');
@@ -60,24 +59,34 @@ final class MigrateDatabaseCommand extends Command
             $progressBar = $this->output->createProgressBar(count($tables));
             $progressBar->start();
 
-            foreach ($tables as $table) {
-                if ($table === null) {
-                    continue;
+            if (! $isDryRun) {
+                $migrationService->disableForeignKeyConstraints();
+            }
+
+            try {
+                foreach ($tables as $table) {
+                    if (blank($table)) {
+                        continue;
+                    }
+
+                    $this->newLine();
+                    $this->info("🔄 Migrating table: {$table}");
+
+                    if (! $isDryRun) {
+                        $migrationService->migrateTable($table, $chunkSize, function ($processed, $total): void {
+                            $this->line(" 📊 Processed {$processed}/{$total} records");
+                        });
+                    } else {
+                        $count = $migrationService->getTableRecordCount($table);
+                        $this->line(" 📊 Would migrate {$count} records");
+                    }
+
+                    $progressBar->advance();
                 }
-
-                $this->newLine();
-                $this->info("🔄 Migrating table: {$table}");
-
+            } finally {
                 if (! $isDryRun) {
-                    $migrationService->migrateTable($table, $chunkSize, function ($processed, $total): void {
-                        $this->line("   📊 Processed {$processed}/{$total} records");
-                    });
-                } else {
-                    $count = $migrationService->getTableRecordCount($table);
-                    $this->line("   📊 Would migrate {$count} records");
+                    $migrationService->enableForeignKeyConstraints();
                 }
-
-                $progressBar->advance();
             }
 
             $progressBar->finish();
@@ -95,6 +104,14 @@ final class MigrateDatabaseCommand extends Command
             $this->error("❌ Migration failed: {$e->getMessage()}");
 
             return Command::FAILURE;
+        } finally {
+            $this->info('🧹 Cleaning up SSH tunnel and temporary files...');
+
+            $tunnelService->destroy();
+            $this->info('✅ SSH tunnel destroyed');
+
+            $tunnelService->forceCleanupTempKeyFile();
+            $this->info('✅ Temporary SSH key file cleaned up');
         }
     }
 }
