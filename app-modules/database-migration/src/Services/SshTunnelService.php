@@ -208,7 +208,7 @@ class SshTunnelService
 
     private function isBase64Encoded(string $data): bool
     {
-        if (! preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $data)) {
+        if (in_array(preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $data), [0, false], true)) {
             return false;
         }
 
