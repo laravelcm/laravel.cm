@@ -89,7 +89,7 @@ services:
             - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
     schedule:
         image: laravelcm/php
-        command: ['artisan', 'schedule:work']
+        command: ['artisan', 'schedule:run']
         stop_signal: SIGTERM
         healthcheck:
             test: ['CMD', 'healthcheck-schedule']
@@ -105,9 +105,12 @@ services:
     queue:
         image: laravelcm/php
         command:
-            - artisan
-            - 'queue:work'
-            - '--tries=3'
+            - 'artisan'
+            - 'queue:listen'
+            - 'database'
+            - '--sleep=10'
+            - '--quiet'
+            - '--force'
             - '--queue=default,media'
         stop_signal: SIGTERM
         healthcheck:
