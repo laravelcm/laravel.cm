@@ -75,7 +75,6 @@ class SshTunnelService
             $this->log('SSH tunnel destroyed successfully');
         }
 
-        // Nettoyer le fichier temporaire de clé SSH s'il existe
         $this->cleanupTempKeyFile();
 
         return $result;
@@ -95,7 +94,6 @@ class SshTunnelService
 
         $this->runCommand($command);
 
-        // Wait for connection to establish
         usleep(config('ssh-tunnel.connection.wait_microseconds', 1000000));
 
         $this->log('SSH tunnel creation command executed', ['command' => $command]);
@@ -105,7 +103,6 @@ class SshTunnelService
     {
         $config = config('ssh-tunnel');
 
-        // Build netcat verification command
         $this->ncCommand = sprintf(
             '%s -vz %s %d > /dev/null 2>&1',
             $config['executables']['nc'],
@@ -113,7 +110,6 @@ class SshTunnelService
             $config['local']['port']
         );
 
-        // Build bash verification command
         $this->bashCommand = sprintf(
             'timeout 1 %s -c \'cat < /dev/null > /dev/tcp/%s/%d\' > /dev/null 2>&1',
             $config['executables']['bash'],
@@ -121,7 +117,6 @@ class SshTunnelService
             $config['local']['port']
         );
 
-        // Build SSH tunnel command with identity file handling
         $identityOption = $this->buildIdentityOption($config);
 
         $this->sshCommand = sprintf(
@@ -149,27 +144,22 @@ class SshTunnelService
 
     private function buildIdentityOption(array $config): string
     {
-        // Si une clé privée est fournie via variable d'environnement
         if (! empty($config['ssh']['private_key_content'])) {
             $tempKeyFile = $this->createTempKeyFile($config['ssh']['private_key_content']);
 
             return sprintf('-i %s', $tempKeyFile);
         }
 
-        // Sinon utiliser le fichier d'identité classique
         return sprintf('-i %s', $config['ssh']['identity_file']);
     }
 
     private function createTempKeyFile(string $keyContent): string
     {
-        // Nettoyer et normaliser le contenu de la clé SSH
         $cleanedKeyContent = $this->normalizeKeyContent($keyContent);
 
-        // Utiliser un nom de fichier plus persistant basé sur un hash du contenu
         $keyHash = hash('sha256', $cleanedKeyContent);
         $tempFile = sys_get_temp_dir().'/ssh_key_'.substr($keyHash, 0, 16);
 
-        // Si le fichier existe déjà avec le même contenu, le réutiliser
         if (file_exists($tempFile)) {
             $existingContent = file_get_contents($tempFile);
             if ($existingContent === $cleanedKeyContent) {
@@ -180,19 +170,16 @@ class SshTunnelService
             }
         }
 
-        // Écrire le contenu de la clé dans le fichier temporaire
         if (file_put_contents($tempFile, $cleanedKeyContent) === false) {
             throw new SshTunnelException('Unable to write SSH key to temporary file');
         }
 
-        // Définir les permissions appropriées pour la clé SSH (600)
         if (chmod($tempFile, 0600) === false) {
             unlink($tempFile);
 
             throw new SshTunnelException('Unable to set proper permissions on SSH key file');
         }
 
-        // Stocker la référence pour le nettoyage ultérieur
         $this->tempKeyFile = $tempFile;
 
         $this->log('Temporary SSH key file created', ['file' => $tempFile]);
@@ -202,18 +189,39 @@ class SshTunnelService
 
     private function normalizeKeyContent(string $keyContent): string
     {
-        // Remplacer les \n littéraux par de vrais retours à la ligne
-        $normalized = str_replace('\\n', "\n", $keyContent);
+        if ($this->isBase64Encoded($keyContent)) {
+            $decoded = base64_decode($keyContent, true);
+            if ($decoded !== false) {
+                $keyContent = $decoded;
+            }
+        }
 
-        // Nettoyer les espaces en début/fin
+        $normalized = str_replace('\\n', "\n", $keyContent);
         $normalized = trim($normalized);
 
-        // S'assurer que la clé se termine par un retour à la ligne
         if (! str_ends_with($normalized, "\n")) {
             $normalized .= "\n";
         }
 
         return $normalized;
+    }
+
+    private function isBase64Encoded(string $data): bool
+    {
+        if (in_array(preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $data), [0, false], true)) {
+            return false;
+        }
+
+        if (str_contains($data, '-----BEGIN') || str_contains($data, '-----END')) {
+            return false;
+        }
+
+        $decoded = base64_decode($data, true);
+        if ($decoded === false) {
+            return false;
+        }
+
+        return str_contains($decoded, '-----BEGIN') && str_contains($decoded, '-----END');
     }
 
     private function cleanupTempKeyFile(): void
