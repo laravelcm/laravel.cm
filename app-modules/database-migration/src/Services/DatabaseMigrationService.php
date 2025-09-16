@@ -43,11 +43,11 @@ class DatabaseMigrationService
         return [
             'migrations',
             'password_resets',
-            'password_reset_tokens',
             'personal_access_tokens',
             'failed_jobs',
             'jobs',
             'job_batches',
+            'temporary_uploads',
         ];
     }
 
@@ -61,45 +61,65 @@ class DatabaseMigrationService
             ->count();
     }
 
-    /**
-     * Migrate a single table from source to target
-     */
     public function migrateTable(string $table, int $chunkSize = 1000, ?callable $progressCallback = null): void
     {
-        // First, ensure the table exists in target database
         if (! Schema::connection($this->targetConnection)->hasTable($table)) {
-            throw new \Exception("Table '{$table}' does not exist in target database. Run migrations first.");
+            return;
         }
 
-        // Clear existing data in target table
         DB::connection($this->targetConnection)->table($table)->truncate();
 
         $totalRecords = $this->getTableRecordCount($table);
         $processedRecords = 0;
 
-        // Process data in chunks
-        DB::connection($this->sourceConnection)
-            ->table($table)
-            ->orderBy('id')
-            ->chunk($chunkSize, function (Collection $records) use (
-                $table,
-                &$processedRecords,
-                $totalRecords,
-                $progressCallback
-            ): void {
-                $data = $records->map(fn ($record): array => $this->transformRecord((array) $record))->toArray();
+        $query = DB::connection($this->sourceConnection)->table($table);
 
-                // Insert into target database
-                DB::connection($this->targetConnection)
-                    ->table($table)
-                    ->insert($data);
+        if ($this->hasIdColumn($table)) {
+            $query->orderBy('id');
+        } else {
+            $columns = Schema::connection($this->sourceConnection)->getColumnListing($table);
 
-                $processedRecords += count($records);
+            if (! empty($columns)) {
+                $query->orderBy($columns[0]);
+            }
+        }
 
-                if ($progressCallback) {
-                    $progressCallback($processedRecords, $totalRecords);
-                }
-            });
+        $query->chunk($chunkSize, function (Collection $records) use (
+            $table,
+            &$processedRecords,
+            $totalRecords,
+            $progressCallback
+        ): void {
+            $data = $records->map(fn ($record): array => $this->transformRecord((array) $record))->toArray();
+
+            DB::connection($this->targetConnection)
+                ->table($table)
+                ->insert($data);
+
+            $processedRecords += count($records);
+
+            if ($progressCallback) {
+                $progressCallback($processedRecords, $totalRecords);
+            }
+        });
+    }
+
+    public function disableForeignKeyConstraints(): void
+    {
+        DB::connection($this->targetConnection)
+            ->statement('SET session_replication_role = replica;');
+    }
+
+    public function enableForeignKeyConstraints(): void
+    {
+        DB::connection($this->targetConnection)
+            ->statement('SET session_replication_role = DEFAULT;');
+    }
+
+    private function hasIdColumn(string $table): bool
+    {
+        return Schema::connection($this->sourceConnection)
+            ->hasColumn($table, 'id');
     }
 
     /**
@@ -112,13 +132,8 @@ class DatabaseMigrationService
     {
         foreach ($record as $key => $value) {
             // Handle MySQL boolean fields (tinyint) to PostgreSQL boolean
-            if (is_int($value) && in_array($value, [0, 1]) && preg_match('/^(is_|has_|can_|should_|enabled|active|published|verified)/', $key)) {
+            if (is_int($value) && in_array($value, [0, 1]) && preg_match('/^(is_|has_|can_|should_|enabled|active|certified|public|featured|published|pinned|opt_in|sponsored|verified|locked)/', $key)) {
                 $record[$key] = (bool) $value;
-            }
-
-            // Handle empty strings that should be null in PostgreSQL
-            if ($value === '') {
-                $record[$key] = null;
             }
 
             // Handle MySQL timestamp '0000-00-00 00:00:00' to null

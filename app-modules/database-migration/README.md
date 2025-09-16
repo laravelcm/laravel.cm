@@ -44,10 +44,18 @@ Configure your environment variables in `.env`:
 # SSH Tunnel Configuration
 SSH_TUNNEL_USER=your-ssh-user
 SSH_TUNNEL_HOSTNAME=your-server.com
-SSH_TUNNEL_IDENTITY_FILE=/path/to/your/private/key
 SSH_TUNNEL_LOCAL_PORT=3307
 SSH_TUNNEL_BIND_PORT=3306
 SSH_TUNNEL_BIND_ADDRESS=127.0.0.1
+
+# Option 1: Utiliser un fichier de clé SSH (par défaut)
+SSH_TUNNEL_IDENTITY_FILE=/path/to/your/private/key
+
+# Option 2: Utiliser le contenu de la clé SSH via variable d'environnement (recommandé pour Docker)
+SSH_TUNNEL_PRIVATE_KEY="-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAFwAAAAdzc2gtcn
+... (votre clé SSH privée complète ici) ...
+-----END OPENSSH PRIVATE KEY-----"
 SSH_TUNNEL_AUTO_ACTIVATE=false
 SSH_TUNNEL_LOGGING_ENABLED=true
 SSH_TUNNEL_LOGGING_CHANNEL=default

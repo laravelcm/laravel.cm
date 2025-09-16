@@ -7,117 +7,399 @@ services:
                 NODE_VERSION: 22
                 PHP_VERSION: 8.4
         image: laravelcm/php
+        restart: unless-stopped
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         healthcheck:
-            test: ['CMD', 'curl', '-f', 'http://localhost:${APP_PORT:-8080}/up']
+            test: [ 'CMD', 'curl', '-f', 'http://localhost:${APP_PORT:-8080}/up' ]
             timeout: 30s
         environment:
-          APP_NAME: ${APP_NAME}
-          APP_ENV: ${APP_ENV}
-          APP_KEY: ${APP_KEY}
-          APP_DEBUG: ${APP_DEBUG}
-          APP_DOMAIN: ${APP_DOMAIN}
-          APP_URL: ${APP_URL}
-          ASSET_URL: ${ASSET_URL}
-          APP_TIMEZONE: ${APP_TIMEZONE}
-          APP_LOCALE: ${APP_LOCALE}
-          APP_FALLBACK_LOCALE: ${APP_FALLBACK_LOCALE}
-          APP_MAINTENANCE_DRIVER: ${APP_MAINTENANCE_DRIVER}
-          BCRYPT_ROUNDS: ${BCRYPT_ROUNDS}
-          DB_CONNECTION: ${DB_CONNECTION}
-          DB_HOST: ${DB_HOST}
-          DB_PORT: ${DB_PORT}
-          DB_DATABASE: ${DB_DATABASE}
-          DB_USERNAME: ${DB_USERNAME}
-          DB_PASSWORD: ${DB_PASSWORD}
-          LOG_CHANNEL: ${LOG_CHANNEL}
-          LOG_STACK: ${LOG_STACK}
-          LOG_DEPRECATIONS_CHANNEL: ${LOG_DEPRECATIONS_CHANNEL}
-          LOG_LEVEL: ${LOG_LEVEL}
-          SESSION_DRIVER: ${SESSION_DRIVER}
-          SESSION_LIFETIME: ${SESSION_LIFETIME}
-          SESSION_ENCRYPT: ${SESSION_ENCRYPT}
-          SESSION_PATH: ${SESSION_PATH}
-          SESSION_DOMAIN: ${SESSION_DOMAIN}
-          BROADCAST_CONNECTION: ${BROADCAST_CONNECTION}
-          FILESYSTEM_DISK: ${FILESYSTEM_DISK}
-          MEDIA_DISK: ${MEDIA_DISK}
-          FILAMENT_FILESYSTEM_DISK: ${MEDIA_DISK}
-          FILAMENT_PATH: ${FILAMENT_PATH}
-          QUEUE_CONNECTION: ${QUEUE_CONNECTION}
-          CACHE_STORE: ${CACHE_STORE}
-          CACHE_PREFIX: ${CACHE_PREFIX}
-          MEMCACHED_HOST: ${MEMCACHED_HOST}
-          REDIS_URL: ${REDIS_URL}
-          MAIL_MAILER: ${MAIL_MAILER}
-          MAIL_HOST: ${MAIL_HOST}
-          MAIL_PORT: ${MAIL_PORT}
-          MAIL_USERNAME: ${MAIL_USERNAME}
-          MAIL_PASSWORD: ${MAIL_PASSWORD}
-          MAIL_ENCRYPTION: ${MAIL_ENCRYPTION}
-          MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
-          MAIL_FROM_NAME: ${MAIL_FROM_NAME}
-          MAIL_SUPPORT: ${MAIL_SUPPORT}
-          AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-          AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-          AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
-          AWS_BUCKET: ${AWS_BUCKET}
-          AWS_ENDPOINT: ${AWS_ENDPOINT}
-          AWS_URL: ${AWS_URL}
-          AWS_USE_PATH_STYLE_ENDPOINT: ${AWS_USE_PATH_STYLE_ENDPOINT}
-          AWS_DIRECTORY: ${AWS_DIRECTORY}
-          VITE_APP_NAME: ${VITE_APP_NAME}
-          OPENAI_API_KEY: ${OPENAI_API_KEY}
-          OPENAI_ORGANIZATION: ${OPENAI_ORGANIZATION}
-          OPENAI_PROJECT: ${OPENAI_PROJECT}
-          ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
-          ANTHROPIC_API_VERSION: ${ANTHROPIC_API_VERSION}
-          OLLAMA_URL: ${OLLAMA_URL}
-          DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
-          SCOUT_DRIVER: ${SCOUT_DRIVER}
-          TYPESENSE_HOST: ${TYPESENSE_HOST}
-          TYPESENSE_PORT: ${TYPESENSE_PORT}
-          TYPESENSE_PROTOCOL: ${TYPESENSE_PROTOCOL}
-          TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
-          STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
-          STRIPE_VERSION: ${STRIPE_VERSION}
-          NOTCHPAY_PUBLIC_KEY: ${NOTCHPAY_PUBLIC_KEY}
-          NOTCHPAY_SECRET_KEY: ${NOTCHPAY_SECRET_KEY}
-          MARKDOWNX_GIPHY_API_KEY: ${MARKDOWNX_GIPHY_API_KEY}
-          TORCHLIGHT_TOKEN: ${TORCHLIGHT_TOKEN}
-          TORCHLIGHT_THEME: ${TORCHLIGHT_THEME}
-          TWITTER_CONSUMER_KEY: ${TWITTER_CONSUMER_KEY}
-          TWITTER_CONSUMER_SECRET: ${TWITTER_CONSUMER_SECRET}
-          TWITTER_ACCESS_TOKEN: ${TWITTER_ACCESS_TOKEN}
-          TWITTER_ACCESS_SECRET: ${TWITTER_ACCESS_SECRET}
-          TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
-          TELEGRAM_CHANNEL: ${TELEGRAM_CHANNEL}
-          GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
-          GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
-          GITHUB_REDIRECT: ${GITHUB_REDIRECT}
-          GITHUB_FINE_GRAINED_TOKEN: ${GITHUB_FINE_GRAINED_TOKEN}
-          NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
-          NIGHTWATCH_REQUEST_SAMPLE_RATE: ${NIGHTWATCH_REQUEST_SAMPLE_RATE}
-          OCTANE_SERVER: 'frankenphp'
-          CADDY_GLOBAL_OPTIONS: |
-            servers {
-                trusted_proxies static private_ranges
-            }
-          CADDY_SERVER_EXTRA_DIRECTIVES: |
-            @static {
-                file
-                path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2
-            }
-            header @static Cache-Control "public, max-age=31536000, s-maxage=31536000"
-          FRANKENPHP_CONFIG: |
-            worker {
-                file ./public/frankenphp-worker.php
-            }
+            APP_NAME: ${APP_NAME}
+            APP_ENV: ${APP_ENV}
+            APP_KEY: ${APP_KEY}
+            APP_DEBUG: ${APP_DEBUG}
+            APP_DOMAIN: ${APP_DOMAIN}
+            APP_URL: ${APP_URL}
+            ASSET_URL: ${ASSET_URL}
+            APP_TIMEZONE: ${APP_TIMEZONE}
+            APP_LOCALE: ${APP_LOCALE}
+            APP_FALLBACK_LOCALE: ${APP_FALLBACK_LOCALE}
+            APP_MAINTENANCE_DRIVER: ${APP_MAINTENANCE_DRIVER}
+            BCRYPT_ROUNDS: ${BCRYPT_ROUNDS}
+            DB_CONNECTION: ${DB_CONNECTION}
+            DB_HOST: ${DB_HOST}
+            DB_PORT: ${DB_PORT}
+            DB_DATABASE: ${DB_DATABASE}
+            DB_USERNAME: ${DB_USERNAME}
+            DB_PASSWORD: ${DB_PASSWORD}
+            LOG_CHANNEL: ${LOG_CHANNEL}
+            LOG_STACK: ${LOG_STACK}
+            LOG_DEPRECATIONS_CHANNEL: ${LOG_DEPRECATIONS_CHANNEL}
+            LOG_LEVEL: ${LOG_LEVEL}
+            SESSION_DRIVER: ${SESSION_DRIVER}
+            SESSION_LIFETIME: ${SESSION_LIFETIME}
+            SESSION_ENCRYPT: ${SESSION_ENCRYPT}
+            SESSION_PATH: ${SESSION_PATH}
+            SESSION_DOMAIN: ${SESSION_DOMAIN}
+            BROADCAST_CONNECTION: ${BROADCAST_CONNECTION}
+            FILESYSTEM_DISK: ${FILESYSTEM_DISK}
+            MEDIA_DISK: ${MEDIA_DISK}
+            FILAMENT_FILESYSTEM_DISK: ${MEDIA_DISK}
+            FILAMENT_PATH: ${FILAMENT_PATH}
+            QUEUE_CONNECTION: ${QUEUE_CONNECTION}
+            CACHE_STORE: ${CACHE_STORE}
+            CACHE_PREFIX: ${CACHE_PREFIX}
+            MEMCACHED_HOST: ${MEMCACHED_HOST}
+            REDIS_URL: ${REDIS_URL}
+            MAIL_MAILER: ${MAIL_MAILER}
+            MAIL_HOST: ${MAIL_HOST}
+            MAIL_PORT: ${MAIL_PORT}
+            MAIL_USERNAME: ${MAIL_USERNAME}
+            MAIL_PASSWORD: ${MAIL_PASSWORD}
+            MAIL_ENCRYPTION: ${MAIL_ENCRYPTION}
+            MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
+            MAIL_FROM_NAME: ${MAIL_FROM_NAME}
+            MAIL_SUPPORT: ${MAIL_SUPPORT}
+            AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+            AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+            AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+            AWS_BUCKET: ${AWS_BUCKET}
+            AWS_ENDPOINT: ${AWS_ENDPOINT}
+            AWS_URL: ${AWS_URL}
+            AWS_USE_PATH_STYLE_ENDPOINT: ${AWS_USE_PATH_STYLE_ENDPOINT}
+            AWS_DIRECTORY: ${AWS_DIRECTORY}
+            VITE_APP_NAME: ${VITE_APP_NAME}
+            OPENAI_API_KEY: ${OPENAI_API_KEY}
+            OPENAI_ORGANIZATION: ${OPENAI_ORGANIZATION}
+            OPENAI_PROJECT: ${OPENAI_PROJECT}
+            ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+            ANTHROPIC_API_VERSION: ${ANTHROPIC_API_VERSION}
+            OLLAMA_URL: ${OLLAMA_URL}
+            DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
+            SCOUT_DRIVER: ${SCOUT_DRIVER}
+            TYPESENSE_HOST: ${TYPESENSE_HOST}
+            TYPESENSE_PORT: ${TYPESENSE_PORT}
+            TYPESENSE_PROTOCOL: ${TYPESENSE_PROTOCOL}
+            TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
+            STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+            STRIPE_VERSION: ${STRIPE_VERSION}
+            NOTCHPAY_PUBLIC_KEY: ${NOTCHPAY_PUBLIC_KEY}
+            NOTCHPAY_SECRET_KEY: ${NOTCHPAY_SECRET_KEY}
+            MARKDOWNX_GIPHY_API_KEY: ${MARKDOWNX_GIPHY_API_KEY}
+            TORCHLIGHT_TOKEN: ${TORCHLIGHT_TOKEN}
+            TORCHLIGHT_THEME: ${TORCHLIGHT_THEME}
+            TWITTER_CONSUMER_KEY: ${TWITTER_CONSUMER_KEY}
+            TWITTER_CONSUMER_SECRET: ${TWITTER_CONSUMER_SECRET}
+            TWITTER_ACCESS_TOKEN: ${TWITTER_ACCESS_TOKEN}
+            TWITTER_ACCESS_SECRET: ${TWITTER_ACCESS_SECRET}
+            TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+            TELEGRAM_CHANNEL: ${TELEGRAM_CHANNEL}
+            GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+            GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+            GITHUB_REDIRECT: ${GITHUB_REDIRECT}
+            GITHUB_FINE_GRAINED_TOKEN: ${GITHUB_FINE_GRAINED_TOKEN}
+            NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
+            NIGHTWATCH_REQUEST_SAMPLE_RATE: ${NIGHTWATCH_REQUEST_SAMPLE_RATE}
+            SSH_TUNNEL_USER: '${SSH_TUNNEL_USER:-}'
+            SSH_TUNNEL_HOSTNAME: '${SSH_TUNNEL_HOSTNAME:-}'
+            SSH_TUNNEL_PORT: '${SSH_TUNNEL_PORT:-22}'
+            SSH_TUNNEL_PRIVATE_KEY: '${SSH_TUNNEL_PRIVATE_KEY:-}'
+            SSH_TUNNEL_LOCAL_PORT: '${SSH_TUNNEL_LOCAL_PORT:-3307}'
+            SSH_TUNNEL_BIND_ADDRESS: '${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}'
+            SSH_TUNNEL_BIND_PORT: '${SSH_TUNNEL_BIND_PORT:-3306}'
+            SSH_TUNNEL_VERIFY_PROCESS: '${SSH_TUNNEL_VERIFY_PROCESS:-bash}'
+            DB_CONNECTION_SECOND: '${DB_CONNECTION_SECOND:-mysql}'
+            DB_HOST_SECOND: '${DB_HOST_SECOND:-127.0.0.1}'
+            DB_PORT_SECOND: '${DB_PORT_SECOND:-3307}'
+            DB_DATABASE_SECOND: '${DB_DATABASE_SECOND:-}'
+            DB_USERNAME_SECOND: '${DB_USERNAME_SECOND:-}'
+            DB_PASSWORD_SECOND: '${DB_PASSWORD_SECOND:-}'
+            OCTANE_SERVER: 'frankenphp'
+            CADDY_GLOBAL_OPTIONS: |
+                servers {
+                    trusted_proxies static private_ranges
+                }
+            CADDY_SERVER_EXTRA_DIRECTIVES: |
+                @static {
+                    file
+                    path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2
+                }
+                header @static Cache-Control "public, max-age=31536000, s-maxage=31536000"
+            FRANKENPHP_CONFIG: |
+                worker {
+                    file ./public/frankenphp-worker.php
+                }
         volumes:
-          - storage:/var/www/html/storage
+            - storage:/var/www/html/storage
         networks:
             - dokploy-network
+    schedule:
+      image: laravelcm/php
+      restart: unless-stopped
+      command: ['artisan', 'schedule:run']
+      stop_signal: SIGTERM
+      healthcheck:
+        test: ['CMD', 'healthcheck-schedule']
+        start_period: 10s
+      environment:
+        APP_NAME: ${APP_NAME}
+        APP_ENV: ${APP_ENV}
+        APP_KEY: ${APP_KEY}
+        APP_DEBUG: ${APP_DEBUG}
+        APP_DOMAIN: ${APP_DOMAIN}
+        APP_URL: ${APP_URL}
+        ASSET_URL: ${ASSET_URL}
+        APP_TIMEZONE: ${APP_TIMEZONE}
+        APP_LOCALE: ${APP_LOCALE}
+        APP_FALLBACK_LOCALE: ${APP_FALLBACK_LOCALE}
+        APP_MAINTENANCE_DRIVER: ${APP_MAINTENANCE_DRIVER}
+        BCRYPT_ROUNDS: ${BCRYPT_ROUNDS}
+        DB_CONNECTION: ${DB_CONNECTION}
+        DB_HOST: ${DB_HOST}
+        DB_PORT: ${DB_PORT}
+        DB_DATABASE: ${DB_DATABASE}
+        DB_USERNAME: ${DB_USERNAME}
+        DB_PASSWORD: ${DB_PASSWORD}
+        LOG_CHANNEL: ${LOG_CHANNEL}
+        LOG_STACK: ${LOG_STACK}
+        LOG_DEPRECATIONS_CHANNEL: ${LOG_DEPRECATIONS_CHANNEL}
+        LOG_LEVEL: ${LOG_LEVEL}
+        SESSION_DRIVER: ${SESSION_DRIVER}
+        SESSION_LIFETIME: ${SESSION_LIFETIME}
+        SESSION_ENCRYPT: ${SESSION_ENCRYPT}
+        SESSION_PATH: ${SESSION_PATH}
+        SESSION_DOMAIN: ${SESSION_DOMAIN}
+        BROADCAST_CONNECTION: ${BROADCAST_CONNECTION}
+        FILESYSTEM_DISK: ${FILESYSTEM_DISK}
+        MEDIA_DISK: ${MEDIA_DISK}
+        FILAMENT_FILESYSTEM_DISK: ${MEDIA_DISK}
+        FILAMENT_PATH: ${FILAMENT_PATH}
+        QUEUE_CONNECTION: ${QUEUE_CONNECTION}
+        CACHE_STORE: ${CACHE_STORE}
+        CACHE_PREFIX: ${CACHE_PREFIX}
+        MEMCACHED_HOST: ${MEMCACHED_HOST}
+        REDIS_URL: ${REDIS_URL}
+        MAIL_MAILER: ${MAIL_MAILER}
+        MAIL_HOST: ${MAIL_HOST}
+        MAIL_PORT: ${MAIL_PORT}
+        MAIL_USERNAME: ${MAIL_USERNAME}
+        MAIL_PASSWORD: ${MAIL_PASSWORD}
+        MAIL_ENCRYPTION: ${MAIL_ENCRYPTION}
+        MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
+        MAIL_FROM_NAME: ${MAIL_FROM_NAME}
+        MAIL_SUPPORT: ${MAIL_SUPPORT}
+        AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+        AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+        AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+        AWS_BUCKET: ${AWS_BUCKET}
+        AWS_ENDPOINT: ${AWS_ENDPOINT}
+        AWS_URL: ${AWS_URL}
+        AWS_USE_PATH_STYLE_ENDPOINT: ${AWS_USE_PATH_STYLE_ENDPOINT}
+        AWS_DIRECTORY: ${AWS_DIRECTORY}
+        VITE_APP_NAME: ${VITE_APP_NAME}
+        OPENAI_API_KEY: ${OPENAI_API_KEY}
+        OPENAI_ORGANIZATION: ${OPENAI_ORGANIZATION}
+        OPENAI_PROJECT: ${OPENAI_PROJECT}
+        ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+        ANTHROPIC_API_VERSION: ${ANTHROPIC_API_VERSION}
+        OLLAMA_URL: ${OLLAMA_URL}
+        DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
+        SCOUT_DRIVER: ${SCOUT_DRIVER}
+        TYPESENSE_HOST: ${TYPESENSE_HOST}
+        TYPESENSE_PORT: ${TYPESENSE_PORT}
+        TYPESENSE_PROTOCOL: ${TYPESENSE_PROTOCOL}
+        TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
+        STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+        STRIPE_VERSION: ${STRIPE_VERSION}
+        NOTCHPAY_PUBLIC_KEY: ${NOTCHPAY_PUBLIC_KEY}
+        NOTCHPAY_SECRET_KEY: ${NOTCHPAY_SECRET_KEY}
+        MARKDOWNX_GIPHY_API_KEY: ${MARKDOWNX_GIPHY_API_KEY}
+        TORCHLIGHT_TOKEN: ${TORCHLIGHT_TOKEN}
+        TORCHLIGHT_THEME: ${TORCHLIGHT_THEME}
+        TWITTER_CONSUMER_KEY: ${TWITTER_CONSUMER_KEY}
+        TWITTER_CONSUMER_SECRET: ${TWITTER_CONSUMER_SECRET}
+        TWITTER_ACCESS_TOKEN: ${TWITTER_ACCESS_TOKEN}
+        TWITTER_ACCESS_SECRET: ${TWITTER_ACCESS_SECRET}
+        TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+        TELEGRAM_CHANNEL: ${TELEGRAM_CHANNEL}
+        GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+        GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+        GITHUB_REDIRECT: ${GITHUB_REDIRECT}
+        GITHUB_FINE_GRAINED_TOKEN: ${GITHUB_FINE_GRAINED_TOKEN}
+        NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
+        NIGHTWATCH_REQUEST_SAMPLE_RATE: ${NIGHTWATCH_REQUEST_SAMPLE_RATE}
+        SSH_TUNNEL_USER: '${SSH_TUNNEL_USER:-}'
+        SSH_TUNNEL_HOSTNAME: '${SSH_TUNNEL_HOSTNAME:-}'
+        SSH_TUNNEL_PORT: '${SSH_TUNNEL_PORT:-22}'
+        SSH_TUNNEL_PRIVATE_KEY: '${SSH_TUNNEL_PRIVATE_KEY:-}'
+        SSH_TUNNEL_LOCAL_PORT: '${SSH_TUNNEL_LOCAL_PORT:-3307}'
+        SSH_TUNNEL_BIND_ADDRESS: '${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}'
+        SSH_TUNNEL_BIND_PORT: '${SSH_TUNNEL_BIND_PORT:-3306}'
+        SSH_TUNNEL_VERIFY_PROCESS: '${SSH_TUNNEL_VERIFY_PROCESS:-bash}'
+        DB_CONNECTION_SECOND: '${DB_CONNECTION_SECOND:-mysql}'
+        DB_HOST_SECOND: '${DB_HOST_SECOND:-127.0.0.1}'
+        DB_PORT_SECOND: '${DB_PORT_SECOND:-3307}'
+        DB_DATABASE_SECOND: '${DB_DATABASE_SECOND:-}'
+        DB_USERNAME_SECOND: '${DB_USERNAME_SECOND:-}'
+        DB_PASSWORD_SECOND: '${DB_PASSWORD_SECOND:-}'
+        OCTANE_SERVER: 'frankenphp'
+        CADDY_GLOBAL_OPTIONS: |
+          servers {
+              trusted_proxies static private_ranges
+          }
+        CADDY_SERVER_EXTRA_DIRECTIVES: |
+          @static {
+              file
+              path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2
+          }
+          header @static Cache-Control "public, max-age=31536000, s-maxage=31536000"
+        FRANKENPHP_CONFIG: |
+          worker {
+              file ./public/frankenphp-worker.php
+          }
+      volumes:
+        - storage:/var/www/html/storage
+      networks:
+        - dokploy-network
+      depends_on:
+        - universy-app
+    queue:
+      image: laravelcm/php
+      restart: unless-stopped
+      command:
+        - 'artisan'
+        - 'queue:listen'
+        - 'database'
+        - '--sleep=10'
+        - '--quiet'
+        - '--force'
+        - '--queue=default,media'
+      stop_signal: SIGTERM
+      healthcheck:
+        test: [ 'CMD', 'healthcheck-queue' ]
+        start_period: 10s
+      environment:
+        APP_NAME: ${APP_NAME}
+        APP_ENV: ${APP_ENV}
+        APP_KEY: ${APP_KEY}
+        APP_DEBUG: ${APP_DEBUG}
+        APP_DOMAIN: ${APP_DOMAIN}
+        APP_URL: ${APP_URL}
+        ASSET_URL: ${ASSET_URL}
+        APP_TIMEZONE: ${APP_TIMEZONE}
+        APP_LOCALE: ${APP_LOCALE}
+        APP_FALLBACK_LOCALE: ${APP_FALLBACK_LOCALE}
+        APP_MAINTENANCE_DRIVER: ${APP_MAINTENANCE_DRIVER}
+        BCRYPT_ROUNDS: ${BCRYPT_ROUNDS}
+        DB_CONNECTION: ${DB_CONNECTION}
+        DB_HOST: ${DB_HOST}
+        DB_PORT: ${DB_PORT}
+        DB_DATABASE: ${DB_DATABASE}
+        DB_USERNAME: ${DB_USERNAME}
+        DB_PASSWORD: ${DB_PASSWORD}
+        LOG_CHANNEL: ${LOG_CHANNEL}
+        LOG_STACK: ${LOG_STACK}
+        LOG_DEPRECATIONS_CHANNEL: ${LOG_DEPRECATIONS_CHANNEL}
+        LOG_LEVEL: ${LOG_LEVEL}
+        SESSION_DRIVER: ${SESSION_DRIVER}
+        SESSION_LIFETIME: ${SESSION_LIFETIME}
+        SESSION_ENCRYPT: ${SESSION_ENCRYPT}
+        SESSION_PATH: ${SESSION_PATH}
+        SESSION_DOMAIN: ${SESSION_DOMAIN}
+        BROADCAST_CONNECTION: ${BROADCAST_CONNECTION}
+        FILESYSTEM_DISK: ${FILESYSTEM_DISK}
+        MEDIA_DISK: ${MEDIA_DISK}
+        FILAMENT_FILESYSTEM_DISK: ${MEDIA_DISK}
+        FILAMENT_PATH: ${FILAMENT_PATH}
+        QUEUE_CONNECTION: ${QUEUE_CONNECTION}
+        CACHE_STORE: ${CACHE_STORE}
+        CACHE_PREFIX: ${CACHE_PREFIX}
+        MEMCACHED_HOST: ${MEMCACHED_HOST}
+        REDIS_URL: ${REDIS_URL}
+        MAIL_MAILER: ${MAIL_MAILER}
+        MAIL_HOST: ${MAIL_HOST}
+        MAIL_PORT: ${MAIL_PORT}
+        MAIL_USERNAME: ${MAIL_USERNAME}
+        MAIL_PASSWORD: ${MAIL_PASSWORD}
+        MAIL_ENCRYPTION: ${MAIL_ENCRYPTION}
+        MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS}
+        MAIL_FROM_NAME: ${MAIL_FROM_NAME}
+        MAIL_SUPPORT: ${MAIL_SUPPORT}
+        AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+        AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+        AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+        AWS_BUCKET: ${AWS_BUCKET}
+        AWS_ENDPOINT: ${AWS_ENDPOINT}
+        AWS_URL: ${AWS_URL}
+        AWS_USE_PATH_STYLE_ENDPOINT: ${AWS_USE_PATH_STYLE_ENDPOINT}
+        AWS_DIRECTORY: ${AWS_DIRECTORY}
+        VITE_APP_NAME: ${VITE_APP_NAME}
+        OPENAI_API_KEY: ${OPENAI_API_KEY}
+        OPENAI_ORGANIZATION: ${OPENAI_ORGANIZATION}
+        OPENAI_PROJECT: ${OPENAI_PROJECT}
+        ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+        ANTHROPIC_API_VERSION: ${ANTHROPIC_API_VERSION}
+        OLLAMA_URL: ${OLLAMA_URL}
+        DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
+        SCOUT_DRIVER: ${SCOUT_DRIVER}
+        TYPESENSE_HOST: ${TYPESENSE_HOST}
+        TYPESENSE_PORT: ${TYPESENSE_PORT}
+        TYPESENSE_PROTOCOL: ${TYPESENSE_PROTOCOL}
+        TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
+        STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+        STRIPE_VERSION: ${STRIPE_VERSION}
+        NOTCHPAY_PUBLIC_KEY: ${NOTCHPAY_PUBLIC_KEY}
+        NOTCHPAY_SECRET_KEY: ${NOTCHPAY_SECRET_KEY}
+        MARKDOWNX_GIPHY_API_KEY: ${MARKDOWNX_GIPHY_API_KEY}
+        TORCHLIGHT_TOKEN: ${TORCHLIGHT_TOKEN}
+        TORCHLIGHT_THEME: ${TORCHLIGHT_THEME}
+        TWITTER_CONSUMER_KEY: ${TWITTER_CONSUMER_KEY}
+        TWITTER_CONSUMER_SECRET: ${TWITTER_CONSUMER_SECRET}
+        TWITTER_ACCESS_TOKEN: ${TWITTER_ACCESS_TOKEN}
+        TWITTER_ACCESS_SECRET: ${TWITTER_ACCESS_SECRET}
+        TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+        TELEGRAM_CHANNEL: ${TELEGRAM_CHANNEL}
+        GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+        GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+        GITHUB_REDIRECT: ${GITHUB_REDIRECT}
+        GITHUB_FINE_GRAINED_TOKEN: ${GITHUB_FINE_GRAINED_TOKEN}
+        NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
+        NIGHTWATCH_REQUEST_SAMPLE_RATE: ${NIGHTWATCH_REQUEST_SAMPLE_RATE}
+        SSH_TUNNEL_USER: '${SSH_TUNNEL_USER:-}'
+        SSH_TUNNEL_HOSTNAME: '${SSH_TUNNEL_HOSTNAME:-}'
+        SSH_TUNNEL_PORT: '${SSH_TUNNEL_PORT:-22}'
+        SSH_TUNNEL_PRIVATE_KEY: '${SSH_TUNNEL_PRIVATE_KEY:-}'
+        SSH_TUNNEL_LOCAL_PORT: '${SSH_TUNNEL_LOCAL_PORT:-3307}'
+        SSH_TUNNEL_BIND_ADDRESS: '${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}'
+        SSH_TUNNEL_BIND_PORT: '${SSH_TUNNEL_BIND_PORT:-3306}'
+        SSH_TUNNEL_VERIFY_PROCESS: '${SSH_TUNNEL_VERIFY_PROCESS:-bash}'
+        DB_CONNECTION_SECOND: '${DB_CONNECTION_SECOND:-mysql}'
+        DB_HOST_SECOND: '${DB_HOST_SECOND:-127.0.0.1}'
+        DB_PORT_SECOND: '${DB_PORT_SECOND:-3307}'
+        DB_DATABASE_SECOND: '${DB_DATABASE_SECOND:-}'
+        DB_USERNAME_SECOND: '${DB_USERNAME_SECOND:-}'
+        DB_PASSWORD_SECOND: '${DB_PASSWORD_SECOND:-}'
+        OCTANE_SERVER: 'frankenphp'
+        CADDY_GLOBAL_OPTIONS: |
+          servers {
+              trusted_proxies static private_ranges
+          }
+        CADDY_SERVER_EXTRA_DIRECTIVES: |
+          @static {
+              file
+              path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2
+          }
+          header @static Cache-Control "public, max-age=31536000, s-maxage=31536000"
+        FRANKENPHP_CONFIG: |
+          worker {
+              file ./public/frankenphp-worker.php
+          }
+      volumes:
+        - storage:/var/www/html/storage
+      networks:
+        - dokploy-network
+      depends_on:
+        - laravelcm
 networks:
     dokploy-network:
         external: true

@@ -57,6 +57,7 @@ return [
         'hostname' => env('SSH_TUNNEL_HOSTNAME'),
         'port' => env('SSH_TUNNEL_PORT', 22),
         'identity_file' => env('SSH_TUNNEL_IDENTITY_FILE', '~/.ssh/id_rsa'),
+        'private_key_content' => env('SSH_TUNNEL_PRIVATE_KEY'),
         'options' => env('SSH_TUNNEL_SSH_OPTIONS', '-o StrictHostKeyChecking=no'),
         'verbosity' => env('SSH_TUNNEL_VERBOSITY', ''),
     ],

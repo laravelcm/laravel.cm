@@ -7,7 +7,6 @@ use Rector\Config\RectorConfig;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\ValueObject\PhpVersion;
 use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
-use RectorLaravel\Rector\Empty_\EmptyToBlankAndFilledFuncRector;
 use RectorLaravel\Rector\MethodCall\AssertStatusToAssertMethodRector;
 use RectorLaravel\Rector\StaticCall\DispatchToHelperFunctionsRector;
 use RectorLaravel\Rector\StaticCall\EloquentMagicMethodToQueryBuilderRector;
@@ -32,7 +31,6 @@ return RectorConfig::configure()
         AssertStatusToAssertMethodRector::class,
         DispatchToHelperFunctionsRector::class,
         EloquentMagicMethodToQueryBuilderRector::class,
-        EmptyToBlankAndFilledFuncRector::class,
     ])
     ->withSkip([
         __DIR__.'/app/Listeners',
