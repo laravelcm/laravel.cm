@@ -122,6 +122,10 @@ ENV PHP_OPCACHE_ENABLE=1
 ENV PHP_MEMORY_LIMIT=512M
 ENV SSL_MODE=mixed
 
+USER root
+
+RUN apt-get update && apt-get install -y openssh-client && rm -rf /var/lib/apt/lists/*
+
 USER www-data
 
 # Copy Filament assets from Composer
