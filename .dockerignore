@@ -12,6 +12,7 @@ tests
 stubs
 app-modules/**/tests
 .phpunit.cache
+.ai
 
 # Ide
 .editorconfig
