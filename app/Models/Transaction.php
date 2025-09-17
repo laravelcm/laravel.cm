@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property-read int $id
+ * @property-read string $id
  * @property array<array-key, mixed>|null $metadata
  */
 final class Transaction extends Model

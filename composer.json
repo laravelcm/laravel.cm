@@ -18,7 +18,6 @@
     "codeat3/blade-phosphor-icons": "^2.0",
     "cyrildewit/eloquent-viewable": "^7.0",
     "doctrine/dbal": "^4.2.1",
-    "dutchcodingcompany/livewire-recaptcha": "^1.0",
     "filament/filament": "^3.3",
     "filament/spatie-laravel-media-library-plugin": "^3.3",
     "filament/spatie-laravel-translatable-plugin": "^3.3",
