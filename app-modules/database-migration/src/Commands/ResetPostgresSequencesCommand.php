@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Laravelcm\DatabaseMigration\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 final class ResetPostgresSequencesCommand extends Command
 {
@@ -25,35 +25,38 @@ final class ResetPostgresSequencesCommand extends Command
         $this->info('🔄 Resetting PostgreSQL sequences...');
         $this->newLine();
 
-        $tables = collect(Schema::getTableListing())
-            ->filter(fn (string $table): bool => Schema::hasColumn($table, 'id'))
-            ->filter(fn (string $table): bool => $this->hasSequence($table));
+        $tablesWithSequences = $this->getTablesWithSequences();
 
-        if ($tables->isEmpty()) {
+        if ($tablesWithSequences->isEmpty()) {
             $this->warn('❌ No tables with sequences found');
 
             return Command::SUCCESS;
         }
 
-        $progressBar = $this->output->createProgressBar($tables->count());
+        $progressBar = $this->output->createProgressBar($tablesWithSequences->count());
         $progressBar->start();
 
         $resetCount = 0;
         $skipCount = 0;
 
-        foreach ($tables as $table) {
+        foreach ($tablesWithSequences as $sequenceInfo) {
             try {
-                $maxId = DB::table($table)->max('id') ?? 0;
+                $tableName = $sequenceInfo->table_name;
+                $sequenceName = $sequenceInfo->sequence_name;
+                $columnName = $sequenceInfo->column_name;
+
+                $maxId = DB::table($tableName)->max($columnName) ?? 0;
+                $nextVal = $maxId + 1;
 
                 if ($isDryRun) {
-                    $this->line("Would reset {$table}_id_seq to {$maxId}");
+                    $this->line("Would reset {$sequenceName} to {$nextVal} (max {$columnName}: {$maxId})");
                 } else {
-                    DB::statement("SELECT setval('{$table}_id_seq', COALESCE(MAX(id), 1)) FROM {$table};");
+                    DB::statement('SELECT setval(?, GREATEST(?, 1))', [$sequenceName, $nextVal]);
                 }
 
                 $resetCount++;
             } catch (\Exception $e) {
-                $this->line("⚠️  Skipped {$table}: {$e->getMessage()}");
+                $this->line("⚠️  Skipped {$sequenceInfo->table_name}: {$e->getMessage()}");
                 $skipCount++;
             }
 
@@ -72,14 +75,31 @@ final class ResetPostgresSequencesCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function hasSequence(string $table): bool
+    private function getTablesWithSequences(): Collection
     {
         try {
-            $result = DB::select("SELECT 1 FROM pg_class WHERE relname = '{$table}_id_seq' AND relkind = 'S'");
+            $result = DB::select("
+                SELECT
+                    t.relname AS table_name,
+                    a.attname AS column_name,
+                    s.relname AS sequence_name
+                FROM pg_class s
+                JOIN pg_depend d ON d.objid = s.oid
+                JOIN pg_class t ON d.refobjid = t.oid
+                JOIN pg_attribute a ON (d.refobjid, d.refobjsubid) = (a.attrelid, a.attnum)
+                JOIN pg_namespace n ON n.oid = s.relnamespace
+                WHERE s.relkind = 'S'
+                  AND d.deptype = 'a'
+                  AND t.relkind = 'r'
+                  AND n.nspname = 'public'
+                ORDER BY t.relname, a.attname
+            ");
 
-            return ! empty($result);
-        } catch (\Exception) {
-            return false;
+            return collect($result);
+        } catch (\Exception $e) {
+            $this->warn("Error querying sequences: {$e->getMessage()}");
+
+            return collect();
         }
     }
 }
