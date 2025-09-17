@@ -27,7 +27,7 @@
     "internachi/modular": "^2.3",
     "jenssegers/agent": "^2.6.4",
     "laravel-notification-channels/telegram": "^6.0",
-    "laravel-notification-channels/twitter": "^8.1",
+    "laravel-notification-channels/twitter": "^9.0",
     "laravel/framework": "^12.0",
     "laravel/nightwatch": "^1.13",
     "laravel/octane": "^2.12",
