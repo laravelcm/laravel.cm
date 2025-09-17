@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2edfd9d18edfbefc90804a7d87bbce42",
+    "content-hash": "dcaf4e943baf8325569764063dd82cc1",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -7961,16 +7961,16 @@
         },
         {
             "name": "notchpay/notchpay-php",
-            "version": "1.6.1",
+            "version": "2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/notchpay/notchpay-php.git",
-                "reference": "78f673d2d5a8e88dbe89aa90a297ce6ecfcdc84b"
+                "reference": "0964e77adab2c463a74e261da99609f5e5480430"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/notchpay/notchpay-php/zipball/78f673d2d5a8e88dbe89aa90a297ce6ecfcdc84b",
-                "reference": "78f673d2d5a8e88dbe89aa90a297ce6ecfcdc84b",
+                "url": "https://api.github.com/repos/notchpay/notchpay-php/zipball/0964e77adab2c463a74e261da99609f5e5480430",
+                "reference": "0964e77adab2c463a74e261da99609f5e5480430",
                 "shasum": ""
             },
             "require": {
@@ -8030,9 +8030,9 @@
             ],
             "support": {
                 "issues": "https://github.com/notchpay/notchpay-php/issues",
-                "source": "https://github.com/notchpay/notchpay-php/tree/1.6.1"
+                "source": "https://github.com/notchpay/notchpay-php/tree/2.0"
             },
-            "time": "2024-04-10T07:46:14+00:00"
+            "time": "2025-05-24T10:43:17+00:00"
         },
         {
             "name": "nunomaduro/termwind",
