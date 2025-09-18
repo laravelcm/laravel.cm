@@ -41,6 +41,7 @@
     "livewire/volt": "^1.6",
     "mckenziearts/blade-untitledui-icons": "^1.4",
     "notchpay/notchpay-php": "^1.6",
+    "predis/predis": "^3.2",
     "ramsey/uuid": "^4.7.4",
     "spatie/laravel-data": "^4.10",
     "spatie/laravel-feed": "^4.2.1",

@@ -23,10 +23,10 @@ final class Home extends Component
             'plans' => Cache::remember(
                 key: 'plans',
                 ttl: now()->addYear(),
-                callback: fn () => Plan::query()->developer()->get()
+                callback: fn (): Collection => Plan::query()->developer()->get()
             ),
-            'latestArticles' => Cache::remember(
-                key: 'latestArticles',
+            'articles' => Cache::tags('articles')->remember(
+                key: 'home.articles',
                 ttl: $ttl,
                 callback: fn (): Collection => Article::with(['tags', 'media', 'user', 'user.transactions', 'user.media']) // @phpstan-ignore-line
                     ->published()
@@ -37,8 +37,8 @@ final class Home extends Component
                     ->limit(4)
                     ->get()
             ),
-            'latestThreads' => Cache::remember(
-                key: 'latestThreads',
+            'threads' => Cache::tags('threads')->remember(
+                key: 'home.threads',
                 ttl: $ttl,
                 callback: fn (): Collection => Thread::with(['user', 'user.transactions', 'user.media'])
                     ->whereNull('solution_reply_id')
@@ -47,8 +47,8 @@ final class Home extends Component
                     ->limit(4)
                     ->get()
             ),
-            'latestDiscussions' => Cache::remember(
-                key: 'latestDiscussions',
+            'discussions' => Cache::tags('discussions')->remember(
+                key: 'home.discussions',
                 ttl: $ttl,
                 callback: fn (): Collection => Discussion::with(['user', 'user.transactions', 'user.media']) // @phpstan-ignore-line
                     ->recent()

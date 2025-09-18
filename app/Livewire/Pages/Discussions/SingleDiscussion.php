@@ -14,6 +14,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 final class SingleDiscussion extends Component implements HasActions, HasForms
@@ -25,7 +26,14 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
 
     public function mount(): void
     {
-        views($this->discussion)->cooldown(now()->addHours(2))->record();
+        /** @var Discussion $discussion */
+        $discussion = Cache::remember(
+            key: 'discussion-'.$this->discussion->id,
+            ttl: now()->addDays(3),
+            callback: fn () => $this->discussion->load('user:id,name,username', 'user.media', 'tags')
+        );
+
+        views($discussion)->cooldown(now()->addHours(2))->record();
 
         // @phpstan-ignore-next-line
         seo()
@@ -36,7 +44,7 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
             ->twitterDescription($this->discussion->excerpt(100))
             ->withUrl();
 
-        $this->discussion->load('tags', 'replies', 'reactions', 'user', 'user.media');
+        $this->discussion = $discussion;
     }
 
     public function editAction(): Action
@@ -80,7 +88,6 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
             ->requiresConfirmation()
             ->successNotificationTitle(__('notifications.discussion.deleted'))
             ->action(function (): void {
-
                 app(DeleteDiscussionAction::class)->execute($this->discussion);
 
                 $this->redirectRoute('discussions.index',  navigate: true);

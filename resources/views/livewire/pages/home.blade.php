@@ -38,7 +38,7 @@
                 <div
                     class="mx-auto mt-8 grid max-w-xl gap-10 lg:mt-10 lg:max-w-none lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-3 lg:gap-x-12"
                 >
-                    @foreach ($latestArticles as $article)
+                    @foreach ($articles as $article)
                         @if ($loop->first)
                             <div class="lg:row-span-3">
                                 <x-articles.card :article="$article" :icon-link="true" />
@@ -59,12 +59,12 @@
                 </div>
             </div>
 
-            @if ($latestThreads->isNotEmpty())
+            @if ($threads->isNotEmpty())
                 <div class="py-12 lg:py-20">
                     <x-section-header :title="__('pages/home.threads.title')" :content="__('pages/home.threads.description')" />
 
                     <div class="mt-10 grid gap-10 lg:mt-12 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-12">
-                        @foreach ($latestThreads as $thread)
+                        @foreach ($threads as $thread)
                             <div>
                                 <div class="text-sm flex items-center text-gray-500 dark:text-gray-400">
                                     <x-link
@@ -118,7 +118,7 @@
                 <x-section-header :title="__('pages/home.discussions.title')" :content="__('pages/home.discussions.description')" />
 
                 <div class="mt-8 grid gap-8 md:grid-cols-3 md:gap-x-10 lg:mt-12">
-                    @foreach ($latestDiscussions as $discussion)
+                    @foreach ($discussions as $discussion)
                         <div>
                             <div class="relative flex items-center gap-1 text-sm text-gray-400 dark:text-gray-500">
                                 <x-user.avatar
@@ -175,7 +175,7 @@
                 <div class="h-full xl:relative xl:col-start-2">
                     <img
                         loading="lazy"
-                        class="h-full w-full object-cover opacity-25 xl:absolute xl:inset-0"
+                        class="size-full object-cover opacity-25 xl:absolute xl:inset-0"
                         src="{{ asset('/images/developer.jpg') }}"
                         alt="Developer working on laptop"
                     />

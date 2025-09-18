@@ -26,9 +26,6 @@
                         <ul class="mt-6 space-y-3">
                             <x-footer-link :title="__('global.navigation.about')" :url="route('about')" />
                             <x-footer-link :title="__('global.navigation.sponsors')" :url="route('sponsors')" />
-                            <a class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white" href="https://snippets.laravel.cm?utm_source=laravel.cm" target="_blank" rel="noopener noreferrer" title="Laravel Snippets">
-                                {{ __('global.navigation.snippets') }}
-                            </a>
                             <x-footer-link
                                 :title="__('global.navigation.branding')"
                                 url="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md"
