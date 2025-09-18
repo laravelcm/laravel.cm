@@ -57,7 +57,8 @@ return [
             'throw' => false,
         ],
 
-        'media' => [
+        // @ToDo: After move from Laravel Forge rename this to media
+        'media-s3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
@@ -69,6 +70,15 @@ return [
             'root' => env('AWS_ROOT', 'public'),
             'visibility' => 'public',
             'directory_visibility' => 'public',
+            'throw' => false,
+        ],
+
+        // @ToDo: After move from Laravel Forge remove this disk
+        'media' => [
+            'driver' => 'local',
+            'root' => public_path('media'),
+            'url' => env('APP_URL').'/media',
+            'visibility' => 'public',
             'throw' => false,
         ],
     ],

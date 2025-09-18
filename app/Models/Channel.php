@@ -39,6 +39,7 @@ final class Channel extends Model
         self::saving(function (self $channel): void {
             /** @var self $record */
             $record = self::query()->find($channel->parent_id);
+
             if ($channel->parent_id && $record->exists() && $record->parent_id) {
                 throw CannotAddChannelToChild::childChannelCannotBeParent($channel);
             }
