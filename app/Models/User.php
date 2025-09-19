@@ -35,20 +35,20 @@ use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property-read int $id
- * @property string $name
- * @property string $email
- * @property string $username
- * @property string $avatar_type
- * @property string $profile_photo_url
- * @property string|null $location
- * @property string|null $phone_number
- * @property string|null $github_profile
- * @property string|null $twitter_profile
- * @property string|null $linkedin_profile
- * @property string|null $bio
- * @property string|null $website
- * @property string|null $banned_reason
- * @property array<array-key, mixed> $settings
+ * @property-read string $name
+ * @property-read string $email
+ * @property-read string $username
+ * @property-read string $avatar_type
+ * @property-read string $profile_photo_url
+ * @property-read string|null $location
+ * @property-read string|null $phone_number
+ * @property-read string|null $github_profile
+ * @property-read string|null $twitter_profile
+ * @property-read string|null $linkedin_profile
+ * @property-read string|null $bio
+ * @property-read string|null $website
+ * @property-read string|null $banned_reason
+ * @property-read array<array-key, mixed> $settings
  * @property-read \Illuminate\Support\Carbon|null $email_verified_at
  * @property-read \Illuminate\Support\Carbon|null $last_login_at
  * @property-read \Illuminate\Support\Carbon|null $banned_at
@@ -87,9 +87,6 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'last_active_at',
     ];
 
-    protected $with = [
-        'providers',
-    ];
 
     protected function casts(): array
     {
@@ -130,7 +127,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     public function hasProvider(string $provider): bool
     {
-        return array_any($this->providers, fn ($p): bool => $p->provider === $provider); // @phpstan-ignore-line
+        return $this->providers->contains(fn ($p): bool => $p->provider === $provider);
     }
 
     public function hasEnterprise(): bool

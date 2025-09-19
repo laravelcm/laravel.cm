@@ -16,7 +16,7 @@ trait HasSlug
 
     public static function findBySlug(string $slug): static
     {
-        return static::where('slug', $slug)->firstOrFail();
+        return static::query()->where('slug', $slug)->firstOrFail();
     }
 
     private function generateUniqueSlug(string $value): string

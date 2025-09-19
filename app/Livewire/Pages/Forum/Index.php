@@ -46,11 +46,11 @@ final class Index extends Component
 
     public string $search = '';
 
-    public int $perPage = 30;
+    public int $perPage = 20;
 
     public function mount(): void
     {
-        if (! blank($this->channel)) {
+        if (filled($this->channel)) {
             $this->currentChannel = Channel::findBySlug($this->channel);
         }
     }
@@ -73,11 +73,10 @@ final class Index extends Component
 
     protected function applyPopular(Builder $query): Builder
     {
-        if (! blank($this->popular)) {
+        if (filled($this->popular)) {
             return $query // @phpstan-ignore-line
-                ->withCount('replies')
                 ->orderByDesc('replies_count')
-                ->OrderByViews();
+                ->orderByDesc('views_count');
         }
 
         return $query;
@@ -85,7 +84,7 @@ final class Index extends Component
 
     protected function applySearch(Builder $query): Builder
     {
-        if (! blank($this->search)) {
+        if (filled($this->search)) {
             return $query->where(function (Builder $query): void {
                 $query->where('title', 'like', '%'.$this->search.'%');
             });
@@ -98,10 +97,12 @@ final class Index extends Component
     {
         if (filled($this->solved)) {
             // @phpstan-ignore-next-line
-            return match ($this->solved) {
+            $query = match ($this->solved) {
                 'no' => $query->scopes('unresolved'),
                 'yes' => $query->scopes('resolved'),
             };
+
+            return $query->withCount('replies')->withViewsCount();
         }
 
         return $query;
@@ -165,8 +166,17 @@ final class Index extends Component
 
     public function render(): View
     {
-        $query = Thread::with(['channels', 'channels.parent', 'user', 'user.media'])
-            ->withCount('replies');
+        $query = Thread::with([
+            'channels',
+            'channels.parent',
+            'user:id,username,name,avatar_type',
+            'user.providers:id,user_id,provider,avatar',
+            'user.media',
+        ]);
+
+        if (blank($this->solved)) {
+            $query->withCount('replies')->withViewsCount();
+        }
 
         $query = $this->applyChannel($query);
         $query = $this->applySearch($query);
@@ -177,9 +187,7 @@ final class Index extends Component
         $query = $this->applyUnAnswer($query);
         $query = $this->applySorting($query);
 
-        $threads = $query
-            ->scopes('withViewsCount')
-            ->paginate($this->perPage);
+        $threads = $query->paginate($this->perPage);
 
         return view('livewire.pages.forum.index', [
             'threads' => $threads,

@@ -4,10 +4,10 @@
 ])
 
 <article class="rounded-xl p-4 bg-white ring-1 ring-gray-200/50 transition duration-200 ease-in-out dark:bg-gray-800 dark:ring-white/10 dark:hover:bg-white/10 lg:p-5" aria-labelledby="{{ $thread->slug }}">
-    <x-forum.thread-channels :thread="$thread" />
+    <x-forum.thread-channels :$thread />
 
     <div class="flex items-center gap-4">
-        <h2 id="question-title-{{ $thread->id }}" class="truncate text-lg font-heading/7 font-semibold text-gray-900 dark:text-white lg:text-xl">
+        <h2 id="question-title-{{ $thread->id }}" class="truncate font-heading/7 font-semibold text-gray-900 dark:text-white lg:text-lg">
             <x-link :href="route('forum.show', $thread)" class="hover:underline">
                 {{ $thread->subject() }}
             </x-link>
@@ -47,6 +47,6 @@
             </span>
         </div>
 
-        <x-forum.thread-metadata :thread="$thread" />
+        <x-forum.thread-metadata :$thread />
     </div>
 </article>

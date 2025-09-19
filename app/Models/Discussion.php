@@ -30,17 +30,17 @@ use Spatie\Sitemap\Tags\Url;
 
 /**
  * @property-read int $id
- * @property string $title
- * @property string $slug
- * @property string $body
- * @property bool $locked
- * @property bool $is_pinned
- * @property string|null $locale
- * @property int $user_id
+ * @property-read string $title
+ * @property-read string $slug
+ * @property-read string $body
+ * @property-read bool $locked
+ * @property-read bool $is_pinned
+ * @property-read string|null $locale
+ * @property-read int $user_id
  * @property-read int $count_all_replies_with_child
+ * @property-read User $user
  * @property-read \Illuminate\Support\Carbon $created_at
  * @property-read \Illuminate\Support\Carbon $updated_at
- * @property-read User $user
  * @property-read \Illuminate\Support\Collection<array-key, SpamReport> $spamReports
  * @property-read \Illuminate\Support\Collection<array-key, Reply> $replies
  * @property-read \Illuminate\Support\Collection<array-key, Tag> $tags
@@ -72,6 +72,11 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
         ];
     }
 
+    public function newEloquentBuilder($query): DiscussionQueryBuilder
+    {
+        return new DiscussionQueryBuilder($query);
+    }
+
     protected function countAllRepliesWithChild(): Attribute
     {
         return Attribute::make(
@@ -86,11 +91,6 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
                 return $count;
             }
         );
-    }
-
-    public function newEloquentBuilder($query): DiscussionQueryBuilder
-    {
-        return new DiscussionQueryBuilder($query);
     }
 
     public function getRouteKeyName(): string
