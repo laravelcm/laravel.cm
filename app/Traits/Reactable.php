@@ -15,6 +15,13 @@ trait Reactable
 {
     public function getReactionsSummary(): Collection
     {
+        if ($this->relationLoaded('reactions') && $this->reactions->isNotEmpty()) {
+            return $this->reactions->groupBy('name')->map(fn ($group) => (object) [
+                'name' => $group->first()->name,
+                'count' => $group->sum('count') ?: $group->count(),
+            ])->values();
+        }
+
         return $this->reactions()
             ->getQuery()
             ->select('name', DB::raw('count(*) as count'))

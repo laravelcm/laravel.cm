@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 final class SinglePost extends Component
@@ -19,7 +20,10 @@ final class SinglePost extends Component
         /** @var User $user */
         $user = Auth::user();
 
-        $article = $this->article->load(['media', 'user'])->loadCount('views');
+        $article = Cache::rememberForever(
+            key: 'article.'.$this->article->id,
+            callback: fn (): Article => $this->article->load('user:id,name,username,avatar_type', 'tags', 'media')->loadCount('views'),
+        );
 
         abort_unless(
             $article->isPublished() || ($user && $article->isAuthoredBy($user)) || ($user && $user->hasAnyRole(['admin', 'moderator'])), // @phpstan-ignore-line

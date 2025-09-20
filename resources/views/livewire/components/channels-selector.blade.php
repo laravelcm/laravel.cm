@@ -42,7 +42,7 @@
             aria-activedescendant="listbox-option"
             style="display: none;"
         >
-            @isset($slug)
+            @isset ($slug)
                 <div class="relative border-b border-gray-200 dark:border-white/20">
                     <button
                         type="button"
@@ -54,7 +54,7 @@
                 </div>
             @endisset
             <div class="max-h-96 overflow-auto">
-                @foreach($channels as $channel)
+                @foreach ($this->channels as $channel)
                     <div class="relative">
                         <div class="sticky top-0 bg-gray-50/90 dark:bg-gray-900/80 text-xs z-50 px-5 py-1 text-gray-700 dark:text-gray-300 font-semibold backdrop-blur-sm ring-1 ring-gray-900/10 dark:ring-white/10">
                             <div class="flex items-center justify-between gap-4">

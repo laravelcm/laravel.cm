@@ -12,7 +12,7 @@
     <div class="mt-5">
         <div class="space-y-4">
             @foreach ($this->threads as $thread)
-                <x-forum.thread-summary :thread="$thread">
+                <x-forum.thread-summary :$thread>
                     <x-slot name="buttons">
                         @can('update', $thread)
                             {{ $this->editAction()(['id' => $thread->id]) }}

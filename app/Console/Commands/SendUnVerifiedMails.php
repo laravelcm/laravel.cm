@@ -17,7 +17,7 @@ final class SendUnVerifiedMails extends Command
 
     public function handle(): void
     {
-        foreach (User::unVerifiedUsers()->get() as $user) {
+        foreach (User::query()->scopes('unVerifiedUsers')->get() as $user) {
             Mail::to($user)->send(new SendMailToUnVerifiedUsers($user));
         }
     }

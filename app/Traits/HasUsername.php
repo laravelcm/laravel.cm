@@ -15,7 +15,7 @@ trait HasUsername
 
     public static function findByUsername(string $username): self
     {
-        return static::where('username', $username)->firstOrFail();
+        return static::query()->where('username', $username)->firstOrFail();
     }
 
     private function generateUniqueUsername(string $value): string

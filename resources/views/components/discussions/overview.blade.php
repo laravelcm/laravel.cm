@@ -49,27 +49,19 @@
             </time>
         </div>
         <div class="hidden space-x-3 sm:flex sm:items-center">
-            @if ($discussion->getReactionsSummary()->isNotEmpty())
-                <div class="flex items-center justify-center gap-2">
-                    @foreach ($discussion->reactions as $reaction)
-                        <img
-                            loading="lazy"
-                            class="size-4"
-                            src="{{ asset("/images/reactions/{$reaction->name}.svg") }}"
-                            alt="{{ $reaction->name }} emoji"
-                        />
-                    @endforeach
-
-                    <span class="text-sm font-medium text-gray-400 dark:text-gray-500">
-                        {{ $discussion->reactions->count() }}
+            @if ($discussion->reactions_count > 0)
+                <p class="inline-flex items-center text-sm justify-center gap-2">
+                    <x-untitledui-heart class="size-5 text-gray-500 dark:text-gray-400" stroke-width="1.5" aria-hidden="true" />
+                    <span class="text-gray-700 font-mono proportional-nums slashed-zero dark:text-gray-300">
+                        {{ $discussion->reactions_count }}
                     </span>
-                </div>
+                </p>
             @endif
 
             <p class="inline-flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
                 <x-untitledui-message-dots-square class="size-5" stroke-width="1.5" aria-hidden="true" />
-                <span class="text-gray-700 dark:text-gray-300">
-                    {{ $discussion->count_all_replies_with_child }}
+                <span class="text-gray-700 font-mono proportional-nums slashed-zero dark:text-gray-300">
+                    {{ $discussion->replies_count }}
                 </span>
                 <span class="sr-only">{{ __('pages/discussion.total_answer') }}</span>
             </p>

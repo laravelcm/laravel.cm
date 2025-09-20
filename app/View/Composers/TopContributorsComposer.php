@@ -16,11 +16,11 @@ final class TopContributorsComposer
             key: 'contributors',
             ttl: now()->addWeek(),
             callback: fn () => User::with('media')
-                ->withCount('discussions')
+                ->select('id', 'username', 'name', 'avatar_type')
                 ->scopes('topContributors')
+                ->limit(5)
                 ->get()
                 ->filter(fn (User $contributor): bool => $contributor->discussions_count >= 1)
-                ->take(5)
         );
 
         $view->with('topContributors', $topContributors);

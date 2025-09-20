@@ -1,6 +1,7 @@
 import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm'
 import '../../vendor/laravelcm/livewire-slide-overs/resources/js/slide-over';
 
+import '@tailwindplus/elements'
 import intersect from '@alpinejs/intersect'
 import Tooltip from '@ryangjchandler/alpine-tooltip'
 import collapse from '@alpinejs/collapse'

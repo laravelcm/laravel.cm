@@ -18,23 +18,16 @@ final class SingleTag extends Component
 
     public Tag $tag;
 
-    public function mount(): void
-    {
-        $this->locale = config('app.locale');
-    }
-
     public function render(): View
     {
         return view('livewire.pages.articles.tag', [
-            'articles' => Article::with(['tags', 'user', 'user.transactions']) // @phpstan-ignore-line
+            'articles' => Article::with(['tags', 'user:id,name,username,avatar_type']) // @phpstan-ignore-line
                 ->whereHas('tags', function ($query): void {
                     $query->where('id', $this->tag->id);
                 })
                 ->withCount(['views', 'reactions'])
-                ->orderByDesc('sponsored_at')
-                ->orderByDesc('published_at')
                 ->published()
-                ->notPinned()
+                ->orderByDesc('published_at')
                 ->forLocale($this->locale)
                 ->paginate($this->perPage),
         ])->title($this->tag->name);

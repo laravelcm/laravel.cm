@@ -16,11 +16,14 @@ use Spatie\Translatable\HasTranslations;
 
 /**
  * @property-read int $id
- * @property string $name
- * @property string $slug
- * @property array $description
- * @property string $color
- * @property int | null $parent_id
+ * @property-read string $name
+ * @property-read string $slug
+ * @property-read string|null $description
+ * @property-read string $color
+ * @property-read int|null $parent_id
+ * @property-read Channel|null $parent
+ * @property-read \Illuminate\Support\Collection<array-key, Channel> $items
+ * @property-read \Illuminate\Support\Collection<array-key, Thread> $threads
  */
 final class Channel extends Model
 {
@@ -39,6 +42,7 @@ final class Channel extends Model
         self::saving(function (self $channel): void {
             /** @var self $record */
             $record = self::query()->find($channel->parent_id);
+
             if ($channel->parent_id && $record->exists() && $record->parent_id) {
                 throw CannotAddChannelToChild::childChannelCannotBeParent($channel);
             }

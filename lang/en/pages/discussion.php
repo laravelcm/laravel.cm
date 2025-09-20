@@ -6,7 +6,7 @@ return [
 
     'title' => 'All discussion topics',
     'contributors' => [
-        'top' => 'Top Contributors',
+        'top' => 'Top contributors',
         'description' => 'The people who started the most discussions on the site.',
     ],
     'empty' => 'Discussions without comments',

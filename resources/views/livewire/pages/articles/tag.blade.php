@@ -30,7 +30,8 @@
                 <x-locale-selector :$locale />
             </div>
         </div>
-        @if($tag->description)
+
+        @if ($tag->description)
             <p class="mt-2 text-gray-500 dark:text-gray-400">
                 {{ $tag->description }}
             </p>
@@ -40,7 +41,7 @@
     <div x-data x-intersect="@this.call('loadMore')" class="mt-12 lg:mt-16">
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-12">
             @foreach ($articles as $article)
-                <x-articles.card-author :article="$article" wire:key="{{ $article->slug }}" />
+                <x-articles.card-author :$article wire:key="{{ $article->slug }}" />
             @endforeach
         </div>
 

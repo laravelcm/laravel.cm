@@ -4,7 +4,7 @@
 
 <article class="rounded-xl p-4 bg-white ring-1 ring-gray-200/50 transition duration-200 ease-in-out dark:bg-gray-800 dark:ring-white/10 dark:hover:bg-white/10 lg:p-5" aria-labelledby="{{ $thread->slug }}">
     <div class="flex items-center justify-between gap-4">
-        <x-forum.thread-channels :thread="$thread" />
+        <x-forum.thread-channels :$thread />
         <div class="hidden items-center gap-2 lg:flex">
             @isset($buttons)
                 {{ $buttons }}
@@ -35,6 +35,6 @@
     </div>
 
     <div class="mt-6">
-        <x-forum.thread-metadata :thread="$thread" />
+        <x-forum.thread-metadata :$thread />
     </div>
 </article>

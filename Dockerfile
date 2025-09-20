@@ -8,10 +8,6 @@ FROM ghcr.io/yieldstudio/php:${PHP_VERSION}-frankenphp AS base
 
 ENV HEALTHCHECK_PATH="/up"
 
-## Uncomment if you need to install additional PHP extensions
-# USER root
-# RUN install-php-extensions bcmath gd
-
 ############################################
 # Development Image
 ############################################

@@ -17,7 +17,7 @@
         </x-link>
     </div>
     <x-container>
-        @if(isHolidayWeek())
+        @if (isHolidayWeek())
             <div class="relative">
                 <div class="absolute z-0 lg:left-1/4">
                     <img loading="lazy" src="{{ asset('images/decoration.gif') }}" class="w-auto h-10" alt="Christmas decoration">
@@ -27,6 +27,7 @@
                 </div>
             </div>
         @endif
+
         <nav class="flex z-10 h-16 items-center justify-between lg:h-20">
             <div class="flex flex-1 items-center">
                 <div class="flex shrink-0 items-center">
@@ -72,8 +73,7 @@
 
                         <x-launch-content />
 
-                        <!-- Profile dropdown -->
-                        <x-dropdown-profile />
+                        <livewire:components.user-dropdown />
                     @endguest
                 </div>
 

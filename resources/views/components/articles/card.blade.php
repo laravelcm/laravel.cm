@@ -4,16 +4,17 @@
     'iconLink' => false,
 ])
 
-<div
-    @class(['relative space-y-6', 'lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0' => $isSummary])
->
+<div @class([
+    'relative space-y-6',
+    'lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0' => $isSummary
+])>
     @php
         $media = ! empty($article->getFirstMediaUrl('media'))
             ? $article->getFirstMediaUrl('media')
             : asset('images/socialcard.png')
     @endphp
 
-    @if(! $isSummary)
+    @if (! $isSummary)
         <div class="aspect-[2/1] w-full rounded-lg bg-gray-100 overflow-hidden shadow-sm transition group-hover:opacity-80">
             <img
                 loading="lazy"

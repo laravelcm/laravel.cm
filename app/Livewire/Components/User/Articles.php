@@ -29,7 +29,8 @@ final class Articles extends Component implements HasActions, HasForms
     #[Computed]
     public function articles(): LengthAwarePaginator
     {
-        return Article::with('tags', 'reactions')
+        return Article::with('tags')
+            ->withCount('reactions')
             ->where('user_id', Auth::id())
             ->latest()
             ->paginate(10);

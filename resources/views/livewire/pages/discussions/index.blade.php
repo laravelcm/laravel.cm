@@ -8,10 +8,10 @@
                 >
                     <div class="border-b border-gray-200">
                         <nav class="flex items-center space-x-3">
-                            @foreach($tags as $tag)
+                            @foreach ($tags as $tag)
                                 <button
                                     type="button"
-                                    @if($tag->slug === $currentTag)
+                                    @if ($tag->slug === $currentTag)
                                         aria-current="page"
                                     @endif
                                     @class([
@@ -69,7 +69,7 @@
 
             <div class="divide-y divide-gray-200/60 dark:divide-gray-700">
                 @foreach ($discussions as $discussion)
-                    <x-discussions.overview :discussion="$discussion" />
+                    <x-discussions.overview :$discussion />
                 @endforeach
             </div>
 

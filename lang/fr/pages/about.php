@@ -51,7 +51,7 @@ return [
 
     ],
     'our_team' => [
-        'title' => 'Voir l\'équipe',
+        'title' => 'Contributeurs',
         'description' => ' Laravel Cameroun est une idée de Meetup qui a été initiée puis transformée en une communauté de développeurs',
     ],
 

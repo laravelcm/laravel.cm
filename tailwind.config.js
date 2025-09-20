@@ -83,9 +83,9 @@ export default {
         primary: colors.emerald,
       },
       fontFamily: {
-        heading: ['Lexend', ...fontFamily.sans],
-        mono: ['JetBrains Mono', ...fontFamily.mono],
-        sans: ['DM Sans', ...fontFamily.sans],
+        heading: ['Rota', ...fontFamily.sans],
+        mono: ['Geist Mono', ...fontFamily.mono],
+        sans: ['Instrument Sans', ...fontFamily.sans],
       },
       width: {
         90: '22.5rem'
@@ -97,7 +97,7 @@ export default {
               borderRadius: theme('borderRadius.lg')
             },
             'h1, h2, h3, h4': {
-              fontFamily: "Lexend, sans-serif",
+              fontFamily: 'Rota, sans-serif',
             },
             blockquote: {
               fontStyle: 'normal',
@@ -110,7 +110,7 @@ export default {
             },
             'pre, code, p > code': {
               fontWeight: theme('fontWeight.medium'),
-              fontFamily: 'JetBrains Mono, monospace',
+              fontFamily: 'Geist Mono, monospace',
               color: theme('colors.amber.500'),
             },
             'li strong, strong' : {

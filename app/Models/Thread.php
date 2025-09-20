@@ -219,13 +219,14 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     /**
      * @param  Builder<Thread>  $query
+     * @return Builder<Thread>
      */
     #[Scope]
-    protected function channel(Builder $query, Channel $channel): void
+    protected function channel(Builder $query, Channel $channel): Builder
     {
-        $query->whereHas('channels', function ($query) use ($channel): void {
+        return $query->whereHas('channels', function ($query) use ($channel): void {
             if ($channel->hasItems()) {
-                $query->whereIn('channels.id', array_merge([$channel->id], $channel->items->modelKeys()));
+                $query->whereIn('channels.id', array_merge([$channel->id], $channel->items->modelKeys())); // @phpstan-ignore-line
             } else {
                 $query->where('channels.slug', $channel->slug);
             }
@@ -243,20 +244,22 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     /**
      * @param  Builder<Thread>  $query
+     * @return Builder<Thread>
      */
     #[Scope]
-    protected function resolved(Builder $query): void
+    protected function resolved(Builder $query): Builder
     {
-        $query->feedQuery()->whereNotNull('solution_reply_id');
+        return $query->whereNotNull('solution_reply_id');
     }
 
     /**
      * @param  Builder<Thread>  $query
+     * @return Builder<Thread>
      */
     #[Scope]
-    protected function unresolved(Builder $query): void
+    protected function unresolved(Builder $query): Builder
     {
-        $query->feedQuery()->whereNull('solution_reply_id');
+        return $query->whereNull('solution_reply_id');
     }
 
     /**
@@ -267,25 +270,27 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     #[Scope]
     protected function filter(Builder $builder, Request $request, array $filters = []): Builder
     {
-        return (new ThreadFilters($request))->add($filters)->filter($builder);
+        return new ThreadFilters($request)->add($filters)->filter($builder);
     }
 
     /**
      * @param  Builder<Thread>  $query
+     * @return Builder<Thread>
      */
     #[Scope]
-    protected function active(Builder $query): void
+    protected function active(Builder $query): Builder
     {
-        $query->whereHas('replies');
+        return $query->whereHas('replies');
     }
 
     /**
      * @param  Builder<Thread>  $query
+     * @return Builder<Thread>
      */
     #[Scope]
-    protected function feedQuery(Builder $query): void
+    protected function feedQuery(Builder $query): Builder
     {
-        $query->with([
+        return $query->with([
             'solutionReply',
             'replies',
             'reactions',
@@ -300,8 +305,8 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
             ->orderBy('latest_creation', 'DESC')
             ->groupBy('threads.id')
             ->select('threads.*', DB::raw('
-                CASE WHEN COALESCE(MAX(replies.created_at), 0) > threads.created_at
-                THEN COALESCE(MAX(replies.created_at), 0)
+                CASE WHEN COALESCE(MAX(replies.created_at), threads.created_at) > threads.created_at
+                THEN COALESCE(MAX(replies.created_at), threads.created_at)
                 ELSE threads.created_at
                 END AS latest_creation
             '));

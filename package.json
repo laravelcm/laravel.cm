@@ -27,5 +27,8 @@
     "tailwindcss": "^3.4.10",
     "tippy.js": "^6.3.7",
     "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "@tailwindplus/elements": "^1.0.13"
   }
 }

@@ -8,19 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-
     <title>
         {{ isset($title) ? $title . ' | ' : '' }} {{ __('global.site_name') }}
         {{ is_active('home') ? '- '. __('pages/home.title') : '' }}
     </title>
-
     <meta property="og:site_name" content="Laravel.cm" />
     <meta property="og:language" content="{{ str_replace('_', '-', app()->getLocale()) }}" />
     <x-seo::meta />
 
-    <!-- Styles -->
-    @googlefonts
     @include('partials._favicons')
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
     @livewireStyles
     @filamentStyles

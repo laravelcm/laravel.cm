@@ -25,7 +25,7 @@ use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
 /**
- * @property Form $form
+ * @property-read Form $form
  */
 final class ArticleForm extends SlideOverComponent implements HasForms
 {
@@ -40,7 +40,7 @@ final class ArticleForm extends SlideOverComponent implements HasForms
     {
         // @phpstan-ignore-next-line
         $this->article = filled($articleId)
-            ? Article::query()->findOrFail($articleId)
+            ? Article::with('tags')->findOrFail($articleId)
             : new Article;
 
         $this->form->fill(array_merge($this->article->toArray(), [
@@ -53,11 +53,6 @@ final class ArticleForm extends SlideOverComponent implements HasForms
     public static function panelMaxWidth(): string
     {
         return '6xl';
-    }
-
-    public static function closePanelOnEscape(): bool
-    {
-        return false;
     }
 
     public static function closePanelOnClickAway(): bool

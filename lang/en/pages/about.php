@@ -7,8 +7,7 @@ return [
     'title' => 'About us',
     'description' => 'We build an Open Source community of learners and teachers',
     'second_description_part_one' => 'Everyone teaches, everyone learns',
-    'second_description_part_two' => '. That\'s the spirit behind the community. A community that aims to grow and
-                        gives everyone the chance to share their knowledge and learn.',
+    'second_description_part_two' => '. That\'s the spirit behind the community. A community that aims to grow and gives everyone the chance to share their knowledge and learn.',
 
     'stats' => [
         'member_discord' => 'Members on Discord',
@@ -20,8 +19,7 @@ return [
     'first_description' => 'Launched in June 2018, Laravel CM quickly began to grow and kick off its activities
                             activities with a first Meetup for its overall presentation and objectives. This Meetup
                             registered over 100 participants',
-    'second_description' => 'During this event, we recorded the participation of companies such as
-                            such as:',
+    'second_description' => 'During this event, we recorded the participation of companies such as:',
     'list' => [
         'one' => [
             'title' => 'incubator',
@@ -51,8 +49,7 @@ return [
 
     ],
     'our_team' => [
-        'title' => 'Meet the Team',
+        'title' => 'The Team',
         'description' => 'Laravel Cameroun is a Meetup idea that was initiated and then transformed into a community of developers.',
     ],
-
 ];

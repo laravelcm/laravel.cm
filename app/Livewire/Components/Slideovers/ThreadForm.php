@@ -36,7 +36,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms
     public function mount(?int $threadId = null): void
     {
         $this->thread = filled($threadId)
-            ? Thread::query()->findOrFail($threadId)
+            ? Thread::with('channels')->findOrFail($threadId)
             : new Thread;
 
         $this->form->fill(array_merge($this->thread->toArray(), [
@@ -48,11 +48,6 @@ final class ThreadForm extends SlideOverComponent implements HasForms
     public static function panelMaxWidth(): string
     {
         return '2xl';
-    }
-
-    public static function closePanelOnEscape(): bool
-    {
-        return false;
     }
 
     public static function closePanelOnClickAway(): bool

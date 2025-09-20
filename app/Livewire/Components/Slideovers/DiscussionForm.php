@@ -65,7 +65,7 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
                     ->relationship(
                         name: 'tags',
                         titleAttribute: 'name',
-                        modifyQueryUsing: fn ($query) => $query->whereJsonContains('concerns', 'discussion')
+                        modifyQueryUsing: fn ($query) => $query->whereRaw("jsonb_exists(concerns::jsonb, ?)", ['discussion'])
                     )
                     ->required()
                     ->minItems(1)
@@ -134,11 +134,6 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
     public static function panelMaxWidth(): string
     {
         return '2xl';
-    }
-
-    public static function closePanelOnEscape(): bool
-    {
-        return false;
     }
 
     public static function closePanelOnClickAway(): bool

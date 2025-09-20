@@ -1,6 +1,6 @@
 services:
     traefik:
-        image: 'traefik:v3.5'
+        image: traefik:v3.5
         command:
             - '--api.dashboard=true'
             - '--api.insecure=true'
@@ -9,11 +9,13 @@ services:
             - '--providers.docker.network=traefik'
             - '--entrypoints.web.address=:80'
             - '--entrypoints.websecure.address=:443'
+            - '--entrypoints.devtools.address=:8000'
             - '--serverstransport.insecureskipverify=true'
         ports:
             - '80:80'
             - '443:443'
             - '8080:8080'
+            - '8000:8000'
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock:ro'
             - 'traefik-letsencrypt:/letsencrypt'
@@ -79,11 +81,11 @@ services:
             - traefik
         labels:
             - traefik.enable=true
-            - 'traefik.http.routers.laravelcm.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)'
+            - traefik.http.routers.laravelcm.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)
             - traefik.http.routers.laravelcm.entrypoints=websecure
             - traefik.http.routers.laravelcm.tls=true
-            - 'traefik.http.services.laravelcm.loadbalancer.server.port=${APP_PORT:-8080}'
-            - 'traefik.http.routers.laravelcm-insecure.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)'
+            - traefik.http.services.laravelcm.loadbalancer.server.port=${APP_PORT:-8080}
+            - traefik.http.routers.laravelcm-insecure.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)
             - traefik.http.routers.laravelcm-insecure.entrypoints=web
             - traefik.http.routers.laravelcm-insecure.middlewares=redirect-to-https
             - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
@@ -225,6 +227,18 @@ services:
             - '${PUSHER_METRICS_PORT:-9601}:9601'
         networks:
             - sail
+    buggregator:
+        image: ghcr.io/buggregator/server:latest
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.laravelcm-buggregator.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)
+            - traefik.http.routers.laravelcm-buggregator.entrypoints=devtools
+            - traefik.http.routers.laravelcm-buggregator.tls=true
+            - traefik.http.routers.laravelcm-buggregator.service=laravelcm-buggregator
+            - traefik.http.services.laravelcm-buggregator.loadbalancer.server.port=8000
+        networks:
+            - sail
+            - traefik
 networks:
     sail:
         driver: bridge

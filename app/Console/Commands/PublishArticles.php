@@ -21,8 +21,9 @@ final class PublishArticles extends Command
 
         foreach ($articles as $article) {
             /** @var Article $article */
-            $article->published_at = $article->submitted_at;
-            $article->save();
+            $article->update([
+                'published_at' => $article->submitted_at,
+            ]);
         }
 
         $count = $articles->count();
