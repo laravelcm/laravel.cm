@@ -22,7 +22,7 @@ final class Home extends Component
             'articles' => Cache::tags('articles')->remember(
                 key: 'home.articles',
                 ttl: $ttl,
-                callback: fn (): Collection => Article::with(['tags', 'media']) // @phpstan-ignore-line
+                callback: fn (): Collection => Article::with(['tags', 'media'])
                     ->latest('published_at')
                     ->published()
                     ->limit(4)
@@ -34,7 +34,7 @@ final class Home extends Component
                 callback: fn (): Collection => Thread::with([
                     'user:id,username,name,avatar_type',
                     'user.media',
-                    'user.providers:id,user_id,provider,avatar'
+                    'user.providers:id,user_id,provider,avatar',
                 ])
                     ->whereNull('solution_reply_id')
                     ->whereBetween('threads.created_at', [now()->subMonths(3), now()])
@@ -48,8 +48,8 @@ final class Home extends Component
                 callback: fn (): Collection => Discussion::with([
                     'user:id,username,name,avatar_type',
                     'user.media',
-                    'user.providers:id,user_id,provider,avatar'
-                ]) // @phpstan-ignore-line
+                    'user.providers:id,user_id,provider,avatar',
+                ])
                     ->recent()
                     ->limit(3)
                     ->get()

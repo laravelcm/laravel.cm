@@ -64,7 +64,7 @@
                                 <x-forum.thread-channels :$thread class="hidden lg:flex" />
                             </div>
                             <div class="mt-4 rounded-lg bg-gray-50 dark:bg-gray-900 py-2 px-4">
-                                <h1 class="text-xl font-heading font-bold text-gray-900 dark:text-white leading-7">
+                                <h1 class="text-xl font-bold text-gray-900 dark:text-white leading-7">
                                     {{ $thread->title }}
                                 </h1>
                             </div>

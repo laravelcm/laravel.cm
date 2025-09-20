@@ -10,20 +10,23 @@ final class UserObserver
 {
     public function updated(User $user): void
     {
+        if ($user->isDirty(['avatar_type', 'name'])) {
+            $user->flushAvatarCache();
+        }
+
         $media = $user->getMedia('avatar')->first();
 
-        if ($media) {
-            $user->avatar_type = 'storage';
-        }
+        $avatar_type = match ($user->avatar_type) {
+            'storage' => $media,
+            'avatar' => ! $media && $user->providers->isEmpty(),
+        };
 
         if (! $media && $user->providers->isNotEmpty()) {
-            $user->avatar_type = $user->providers->first()->provider;
+            $avatar_type = $user->providers->first()->provider;
         }
 
-        if (! $media && $user->providers->isEmpty()) {
-            $user->avatar_type = 'avatar';
-        }
-
-        $user->saveQuietly();
+        $user->saveQuietly([
+            'avatar_type' => $avatar_type,
+        ]);
     }
 }

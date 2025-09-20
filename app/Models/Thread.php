@@ -219,13 +219,14 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     /**
      * @param  Builder<Thread>  $query
+     * @return Builder<Thread>
      */
     #[Scope]
-    protected function channel(Builder $query, Channel $channel): void
+    protected function channel(Builder $query, Channel $channel): Builder
     {
-        $query->whereHas('channels', function ($query) use ($channel): void {
+        return $query->whereHas('channels', function ($query) use ($channel): void {
             if ($channel->hasItems()) {
-                $query->whereIn('channels.id', array_merge([$channel->id], $channel->items->modelKeys()));
+                $query->whereIn('channels.id', array_merge([$channel->id], $channel->items->modelKeys())); // @phpstan-ignore-line
             } else {
                 $query->where('channels.slug', $channel->slug);
             }

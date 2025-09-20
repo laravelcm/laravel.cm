@@ -26,8 +26,8 @@ final class Profile extends Component
             ttl: now()->addDays(3),
             callback: fn () => Article::with('media', 'tags')
                 ->select('id', 'title', 'slug', 'body', 'published_at')
-                ->whereBelongsTo($this->user)
                 ->published()
+                ->whereBelongsTo($this->user)
                 ->recent()
                 ->limit(5)
                 ->get()

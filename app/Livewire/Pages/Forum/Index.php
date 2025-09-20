@@ -74,7 +74,7 @@ final class Index extends Component
     protected function applyPopular(Builder $query): Builder
     {
         if (filled($this->popular)) {
-            return $query // @phpstan-ignore-line
+            return $query
                 ->orderByDesc('replies_count')
                 ->orderByDesc('views_count');
         }

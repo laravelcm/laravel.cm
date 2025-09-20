@@ -101,7 +101,7 @@
     ],
     "dev:install": [
       "./vendor/bin/sail up -d",
-      "./vendor/bin/sail artisan migrate --seed",
+      "./vendor/bin/sail artisan migrate",
       "./vendor/bin/sail npm install --no-update-notifier",
       "./vendor/bin/sail stop"
     ],

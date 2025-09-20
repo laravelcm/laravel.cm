@@ -20,7 +20,7 @@ final class ChannelsSelector extends Component
 
     public function selectedChannel(int $channelId): void
     {
-        $this->slug = $this->channels->find($channelId)?->slug;
+        $this->slug = $this->channels->firstWhere('id', $channelId)?->slug;
 
         $this->dispatch('channelUpdated', channelId: $channelId);
     }
@@ -38,7 +38,7 @@ final class ChannelsSelector extends Component
         return $this->channels->firstWhere('slug', $this->slug);
     }
 
-    #[Computed(persist: true, seconds: 3600*24*30, cache: true)]
+    #[Computed(persist: true, seconds: 3600 * 24 * 30, cache: true)]
     public function channels(): Collection
     {
         return Channel::with('items')->whereNull('parent_id')->get();

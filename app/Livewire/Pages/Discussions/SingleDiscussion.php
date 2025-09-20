@@ -30,7 +30,7 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
         $discussion = Cache::remember(
             key: 'discussion-'.$this->discussion->id,
             ttl: now()->addDays(3),
-            callback: fn () => $this->discussion->load('user:id,name,username', 'user.media', 'tags')
+            callback: fn (): Discussion => $this->discussion->load('user:id,name,username,avatar_type', 'tags')
         );
 
         views($discussion)->cooldown(now()->addHours(2))->record();

@@ -1,4 +1,4 @@
-<footer class="bg-gray-900 border-t border-white/5 p-3" aria-labelledby="footerHeading">
+<footer class="bg-gray-900 border-t border-white/5 p-3 dark:border-none" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">{{ __('global.footer.title') }}</h2>
     <div class="relative rounded-xl overflow-hidden dark:bg-gray-800">
         <x-container class="relative z-10">

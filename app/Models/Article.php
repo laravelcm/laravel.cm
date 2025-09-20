@@ -9,12 +9,14 @@ use App\Models\Builders\ArticleQueryBuilder;
 use App\Models\Traits\HasAuthor;
 use App\Models\Traits\HasLocaleScope;
 use App\Models\Traits\HasSlug;
+use App\Observers\ArticleObserver;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -25,19 +27,19 @@ use Spatie\Sitemap\Tags\Url;
 
 /**
  * @property-read int $id
- * @property string $title
- * @property string $slug
- * @property string $body
- * @property bool $show_toc
- * @property bool $is_pinned
- * @property int $is_sponsored
- * @property string|null $canonical_url
- * @property string|null $reason
- * @property int|null $tweet_id
- * @property int $user_id
- * @property string|null $locale
+ * @property-read string $title
+ * @property-read string $slug
+ * @property-read string $body
+ * @property-read bool $show_toc
+ * @property-read bool $is_pinned
+ * @property-read int $is_sponsored
+ * @property-read string|null $canonical_url
+ * @property-read string|null $reason
+ * @property-read int|null $tweet_id
+ * @property-read int $user_id
+ * @property-read string|null $locale
  * @property-read User $user
- * @property \Illuminate\Support\Carbon|null $published_at
+ * @property-read \Illuminate\Support\Carbon|null $published_at
  * @property-read \Illuminate\Support\Carbon|null $submitted_at
  * @property-read \Illuminate\Support\Carbon|null $approved_at
  * @property-read \Illuminate\Support\Carbon|null $shared_at
@@ -47,6 +49,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read \Illuminate\Support\Carbon $updated_at
  * @property \Illuminate\Database\Eloquent\Collection<int, Tag> $tags
  */
+#[ObservedBy(ArticleObserver::class)]
 final class Article extends Model implements HasMedia, ReactableInterface, Sitemapable, Viewable
 {
     use HasAuthor;
@@ -93,6 +96,18 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
             ->setLastModificationDate(Carbon::create($this->updated_at)) // @phpstan-ignore-line
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
             ->setPriority(0.5);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('media')
+            ->singleFile()
+            ->acceptsMimeTypes([
+                'image/jpg',
+                'image/png',
+                'image/webp',
+                'image/avif',
+            ]);
     }
 
     public function excerpt(int $limit = 110): string
@@ -193,13 +208,6 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
     public function isNotAwaitingApproval(): bool
     {
         return ! $this->isAwaitingApproval();
-    }
-
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('media')
-            ->singleFile()
-            ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png']);
     }
 
     public function markAsShared(): void
