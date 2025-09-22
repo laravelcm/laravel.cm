@@ -42,4 +42,4 @@ jobs:
       - name: 🧱 Build JS Dependencies
         run: yarn build
       - name: 🕵️‍♂️ Run Pest Tests
-        run: ./vendor/bin/pest --parallel --processes=4 --bail
+        run: ./vendor/bin/pest --configuration=phpunit.ci.xml --parallel --processes=4 --bail
