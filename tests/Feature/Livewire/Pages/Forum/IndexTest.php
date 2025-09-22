@@ -24,7 +24,7 @@ describe(Index::class, function (): void {
         App::setLocale('fr');
 
         Livewire::test(Index::class)
-            ->assertViewHas('threads', fn ($threads): bool => count($threads) === 30)
+            ->assertViewHas('threads', fn ($threads): bool => count($threads) === 20)
             ->assertSee(__('pagination.next'))
             ->assertOk();
     });

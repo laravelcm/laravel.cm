@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Contracts\HasCachedMediaInterface;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia;
 
@@ -17,13 +18,13 @@ final readonly class MediaCacheService
         return Cache::remember(
             $cacheKey,
             $model->getCacheTtl(),
-            fn () => $this->resolveMediaUrl($model, $collection, $conversion)
+            fn (): ?string => $this->resolveMediaUrl($model, $collection, $conversion)
         );
     }
 
     public function flushCache(HasCachedMediaInterface&HasMedia $model, ?string $collection = null): void
     {
-        $collections = $collection ? [$collection] : $model->getMediaCollections();
+        $collections = filled($collection) ? Arr::wrap($collection) : $model->getMediaCollections();
 
         foreach ($collections as $collectionName) {
             $this->flushCollectionCache($model, $collectionName);
@@ -32,18 +33,18 @@ final readonly class MediaCacheService
 
     private function resolveMediaUrl(HasMedia $model, string $collection, ?string $conversion = null): ?string
     {
-        $media = $model->getFirstMedia($collection);
+        $media = $model->getFirstMedia($collection); // @phpstan-ignore-line
 
         if (! $media) {
             return null;
         }
 
-        return $conversion ? $media->getUrl($conversion) : $media->getUrl();
+        return filled($conversion) ? $media->getUrl($conversion) : $media->getUrl();
     }
 
     private function buildCacheKey(HasCachedMediaInterface $model, string $collection, ?string $conversion = null): string
     {
-        $suffix = $conversion ? ".{$conversion}" : '';
+        $suffix = filled($conversion) ? ".{$conversion}" : '';
 
         return "{$model->getCacheKey($collection)}{$suffix}";
     }

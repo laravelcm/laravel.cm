@@ -16,8 +16,8 @@ trait Reactable
     public function getReactionsSummary(): Collection
     {
         if ($this->relationLoaded('reactions') && $this->reactions->isNotEmpty()) {
-            return $this->reactions->groupBy('name')->map(fn ($group) => (object) [
-                'name' => $group->first()->name,
+            return $this->reactions->groupBy('name')->map(fn ($group): array => [ // @phpstan-ignore-line
+                'name' => $group->first()->name, // @phpstan-ignore-line
                 'count' => $group->sum('count') ?: $group->count(),
             ])->values();
         }

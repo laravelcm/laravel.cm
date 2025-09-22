@@ -51,7 +51,7 @@ final class CacheInvalidationService
         match ($driver) {
             'redis' => $this->invalidateRedisPattern($pattern),
             'database' => $this->invalidateDatabasePattern($pattern),
-            default => $this->invalidateFallbackPattern($pattern),
+            default => $this->invalidateFallbackPattern(),
         };
     }
 
@@ -65,7 +65,7 @@ final class CacheInvalidationService
                 Redis::connection($connection)->del($keys);
             }
         } catch (\Exception $e) {
-            $this->invalidateFallbackPattern($pattern);
+            $this->invalidateFallbackPattern();
         }
     }
 
@@ -76,7 +76,7 @@ final class CacheInvalidationService
             ->delete();
     }
 
-    private function invalidateFallbackPattern(string $pattern): void
+    private function invalidateFallbackPattern(): void
     {
         Cache::flush();
     }

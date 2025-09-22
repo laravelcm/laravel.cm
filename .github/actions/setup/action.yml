@@ -8,7 +8,7 @@ runs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: "8.4"
-        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_pgsql, bcmath, soap, intl, gd, exif, iconv, imagick
         tools: composer:v2
         coverage: none
     - name: ℹ Setup Problem Matches

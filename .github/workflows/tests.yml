@@ -15,6 +15,21 @@ jobs:
   pest:
     runs-on: ubuntu-22.04
 
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: sail
+          POSTGRES_DB: testing
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: 👀 Checkout
         uses: actions/checkout@v5
@@ -27,4 +42,4 @@ jobs:
       - name: 🧱 Build JS Dependencies
         run: yarn build
       - name: 🕵️‍♂️ Run Pest Tests
-        run: ./vendor/bin/pest
+        run: ./vendor/bin/pest --parallel --processes=4 --bail

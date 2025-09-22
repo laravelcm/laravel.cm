@@ -21,6 +21,7 @@ final class Index extends Component
     public function render(): View
     {
         return view('livewire.pages.articles.index', [
+            // @phpstan-ignore-next-line
             'articles' => Article::with([
                 'tags',
                 'user:id,username,name,avatar_type',
@@ -29,7 +30,7 @@ final class Index extends Component
                 ->withCount(['views', 'reactions'])
                 ->published()
                 ->orderByDesc('published_at')
-                ->forLocale($this->locale) // @phpstan-ignore-line
+                ->forLocale($this->locale)
                 ->simplePaginate(21),
             'tags' => Cache::remember(
                 key: 'articles.tags',

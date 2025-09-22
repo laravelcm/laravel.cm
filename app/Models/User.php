@@ -11,6 +11,7 @@ use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
 use App\Traits\Reacts;
+use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
@@ -49,7 +50,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read string|null $bio
  * @property-read string|null $website
  * @property-read string|null $banned_reason
- * @property-read array<array-key, mixed> $settings
+ * @property-read array<array-key, mixed>|null $settings
  * @property-read \Illuminate\Support\Carbon|null $email_verified_at
  * @property-read \Illuminate\Support\Carbon|null $last_login_at
  * @property-read \Illuminate\Support\Carbon|null $banned_at
@@ -67,8 +68,10 @@ use Spatie\Permission\Traits\HasRoles;
 #[ObservedBy(UserObserver::class)]
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasCachedMediaInterface, HasMedia, HasName, MustVerifyEmail
 {
-    use Gamify;
+    /** @use HasFactory<UserFactory> */
     use HasFactory;
+
+    use Gamify;
     use HasPlanSubscriptions;
     use HasProfilePhoto;
     use HasRoles;

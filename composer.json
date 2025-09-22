@@ -118,7 +118,10 @@
     "types": "phpstan analyse --memory-limit=-1",
     "rector": "./vendor/bin/rector",
     "rector:preview": "./vendor/bin/rector --dry-run",
-    "test": "./vendor/bin/sail pest"
+    "test": [
+      "Composer\\Config::disableProcessTimeout",
+      "./vendor/bin/sail artisan test --parallel --processes=4"
+    ]
   },
   "config": {
     "optimize-autoloader": true,

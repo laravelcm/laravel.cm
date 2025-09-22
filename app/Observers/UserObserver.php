@@ -14,12 +14,13 @@ final class UserObserver
             $user->flushAvatarCache();
         }
 
+        $avatar_type = 'avatar';
+
         $media = $user->getMedia('avatar')->first();
 
-        $avatar_type = match ($user->avatar_type) {
-            'storage' => $media,
-            'avatar' => ! $media && $user->providers->isEmpty(),
-        };
+        if ($media) {
+            $avatar_type = 'storage';
+        }
 
         if (! $media && $user->providers->isNotEmpty()) {
             $avatar_type = $user->providers->first()->provider;
