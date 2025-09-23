@@ -1,47 +1,37 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Computed;
+use Livewire\Volt\Component;
+
+new class extends Component {
+    #[Computed(persist: true)]
+    public function user(): User
+    {
+        return Auth::user()->loadMissing('providers:id,user_id,provider,avatar');
+    }
+}; ?>
+
 @php
-    $user = \Illuminate\Support\Facades\Auth::user();
+    $user = $this->user;
 @endphp
 
-<div x-data="{ open: false }"
-     @keydown.window.escape="open = false"
-     @keydown.escape.stop="open = false;"
-     @click.outside="open = false;"
-     class="relative"
->
-    <div>
-        <button
-            type="button"
-            class="flex rounded-full bg-white text-sm dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
-            id="user-menu-button"
-            x-ref="button"
-            @click="open =! open"
-            aria-expanded="false"
-            aria-haspopup="true"
-            x-bind:aria-expanded="open.toString()"
-        >
-            <span class="sr-only">{{ __('global.open_navigation') }}</span>
-            <x-user.avatar :user="$user" class="size-8" />
-        </button>
-    </div>
+<el-dropdown class="inline-block">
+    <button
+        type="button"
+        class="flex rounded-full bg-white text-sm dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+    >
+        <span class="sr-only">{{ __('global.open_navigation') }}</span>
+        <x-user.avatar :$user class="size-8" />
+    </button>
 
-    <div
-        x-show="open"
-        x-transition:enter="transition duration-100 ease-out"
-        x-transition:enter-start="scale-95 transform opacity-0"
-        x-transition:enter-end="scale-100 transform opacity-100"
-        x-transition:leave="transition duration-75 ease-in"
-        x-transition:leave-start="scale-100 transform opacity-100"
-        x-transition:leave-end="scale-95 transform opacity-0"
-        class="absolute -right-4 mt-2 w-60 origin-top-right divide-y divide-gray-200 dark:divide-white/20 rounded-lg bg-white py-1 shadow ring-1 ring-black ring-opacity-5 dark:bg-gray-800 dark:ring-white/20 focus:outline-none"
-        x-ref="menu"
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="user-menu-button"
-        tabindex="-1"
-        @keydown.tab="open = false"
-        @keydown.enter.prevent="open = false;"
-        @keyup.space.prevent="open = false;"
-        style="display: none"
+    <el-menu
+        anchor="bottom end"
+        class="m-0 w-60 origin-top-right divide-y divide-gray-200 dark:divide-white/20 rounded-lg  bg-white py-1 shadow ring-1 ring-black ring-opacity-5 dark:bg-gray-800 dark:ring-white/10 transition [--anchor-gap:theme(spacing.2)] [transition-behavior:allow-discrete] data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+        popover
     >
         <div class="px-3.5 py-3">
             <p class="text-xs text-gray-500 dark:text-gray-400">
@@ -204,5 +194,5 @@
 
             <livewire:components.logout />
         </div>
-    </div>
-</div>
+    </el-menu>
+</el-dropdown>

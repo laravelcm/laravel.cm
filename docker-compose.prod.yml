@@ -7,7 +7,7 @@ services:
                 NODE_VERSION: 22
                 PHP_VERSION: 8.4
         image: laravelcm/php
-        restart: unless-stopped
+        restart: always
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         healthcheck:
@@ -50,7 +50,7 @@ services:
             CACHE_STORE: ${CACHE_STORE}
             CACHE_PREFIX: ${CACHE_PREFIX}
             MEMCACHED_HOST: ${MEMCACHED_HOST}
-            REDIS_URL: ${REDIS_URL}
+            REDIS_CLIENT: 'phpredis'
             REDIS_HOST: ${REDIS_HOST}
             REDIS_PASSWORD: ${REDIS_PASSWORD}
             REDIS_PORT: ${REDIS_PORT}
@@ -142,7 +142,7 @@ services:
             - dokploy-network
     schedule:
         image: laravelcm/php
-        restart: unless-stopped
+        restart: always
         command: ['artisan', 'schedule:run']
         stop_signal: SIGTERM
         healthcheck:
@@ -185,7 +185,7 @@ services:
             CACHE_STORE: ${CACHE_STORE}
             CACHE_PREFIX: ${CACHE_PREFIX}
             MEMCACHED_HOST: ${MEMCACHED_HOST}
-            REDIS_URL: ${REDIS_URL}
+            REDIS_CLIENT: 'phpredis'
             REDIS_HOST: ${REDIS_HOST}
             REDIS_PASSWORD: ${REDIS_PASSWORD}
             REDIS_PORT: ${REDIS_PORT}
@@ -279,7 +279,7 @@ services:
             - laravelcm
     queue:
         image: laravelcm/php
-        restart: unless-stopped
+        restart: always
         command:
             - 'artisan'
             - 'queue:listen'
@@ -329,7 +329,7 @@ services:
             CACHE_STORE: ${CACHE_STORE}
             CACHE_PREFIX: ${CACHE_PREFIX}
             MEMCACHED_HOST: ${MEMCACHED_HOST}
-            REDIS_URL: ${REDIS_URL}
+            REDIS_CLIENT: 'phpredis'
             REDIS_HOST: ${REDIS_HOST}
             REDIS_PASSWORD: ${REDIS_PASSWORD}
             REDIS_PORT: ${REDIS_PORT}

@@ -1,4 +1,4 @@
-<footer class="bg-gray-900 border-t border-white/5 p-3" aria-labelledby="footerHeading">
+<footer class="bg-gray-900 border-t border-white/5 p-3 dark:border-none" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">{{ __('global.footer.title') }}</h2>
     <div class="relative rounded-xl overflow-hidden dark:bg-gray-800">
         <x-container class="relative z-10">
@@ -26,9 +26,6 @@
                         <ul class="mt-6 space-y-3">
                             <x-footer-link :title="__('global.navigation.about')" :url="route('about')" />
                             <x-footer-link :title="__('global.navigation.sponsors')" :url="route('sponsors')" />
-                            <a class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white" href="https://snippets.laravel.cm?utm_source=laravel.cm" target="_blank" rel="noopener noreferrer" title="Laravel Snippets">
-                                {{ __('global.navigation.snippets') }}
-                            </a>
                             <x-footer-link
                                 :title="__('global.navigation.branding')"
                                 url="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md"

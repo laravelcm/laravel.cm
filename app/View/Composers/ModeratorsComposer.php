@@ -17,7 +17,7 @@ final class ModeratorsComposer
             Cache::remember(
                 key: 'moderators',
                 ttl: now()->addMonths(6),
-                callback: fn () => User::moderators()->get()
+                callback: fn () => User::query()->scopes('moderators')->get()
             )
         );
     }

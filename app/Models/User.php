@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Contracts\HasCachedMediaInterface;
 use App\Enums\TransactionStatus;
 use App\Observers\UserObserver;
 use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
 use App\Traits\Reacts;
+use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
@@ -35,20 +37,20 @@ use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property-read int $id
- * @property string $name
- * @property string $email
- * @property string $username
- * @property string $avatar_type
- * @property string $profile_photo_url
- * @property string|null $location
- * @property string|null $phone_number
- * @property string|null $github_profile
- * @property string|null $twitter_profile
- * @property string|null $linkedin_profile
- * @property string|null $bio
- * @property string|null $website
- * @property string|null $banned_reason
- * @property array<array-key, mixed> $settings
+ * @property-read string $name
+ * @property-read string $email
+ * @property-read string $username
+ * @property-read string $avatar_type
+ * @property-read string $profile_photo_url
+ * @property-read string|null $location
+ * @property-read string|null $phone_number
+ * @property-read string|null $github_profile
+ * @property-read string|null $twitter_profile
+ * @property-read string|null $linkedin_profile
+ * @property-read string|null $bio
+ * @property-read string|null $website
+ * @property-read string|null $banned_reason
+ * @property-read array<array-key, mixed>|null $settings
  * @property-read \Illuminate\Support\Carbon|null $email_verified_at
  * @property-read \Illuminate\Support\Carbon|null $last_login_at
  * @property-read \Illuminate\Support\Carbon|null $banned_at
@@ -64,10 +66,12 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read int $discussions_count
  */
 #[ObservedBy(UserObserver::class)]
-final class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
+final class User extends Authenticatable implements FilamentUser, HasAvatar, HasCachedMediaInterface, HasMedia, HasName, MustVerifyEmail
 {
-    use Gamify;
+    /** @use HasFactory<UserFactory> */
     use HasFactory;
+
+    use Gamify;
     use HasPlanSubscriptions;
     use HasProfilePhoto;
     use HasRoles;
@@ -85,10 +89,6 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'two_factor_recovery_codes',
         'two_factor_secret',
         'last_active_at',
-    ];
-
-    protected $with = [
-        'providers',
     ];
 
     protected function casts(): array
@@ -130,7 +130,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     public function hasProvider(string $provider): bool
     {
-        return array_any($this->providers, fn ($p): bool => $p->provider === $provider); // @phpstan-ignore-line
+        return $this->providers->contains(fn ($p): bool => $p->provider === $provider);
     }
 
     public function hasEnterprise(): bool
@@ -325,11 +325,12 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function hasActivity(Builder $query): void
+    protected function hasActivity(Builder $query): Builder
     {
-        $query->where(function ($query): void {
+        return $query->where(function ($query): void {
             $query->has('threads')
                 ->orHas('replyAble');
         });
@@ -337,49 +338,54 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function moderators(Builder $query): void
+    protected function moderators(Builder $query): Builder
     {
-        $query->whereHas('roles', function ($query): void {
+        return $query->whereHas('roles', function ($query): void {
             $query->where('name', '<>', 'user');
         });
     }
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function withoutRole(Builder $query): void
+    protected function withoutRole(Builder $query): Builder
     {
-        $query->whereDoesntHave('roles');
+        return $query->whereDoesntHave('roles');
     }
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function verifiedUsers(Builder $query): void
+    protected function verifiedUsers(Builder $query): Builder
     {
-        $query->whereNotNull('email_verified_at');
+        return $query->whereNotNull('email_verified_at');
     }
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function unVerifiedUsers(Builder $query): void
+    protected function unVerifiedUsers(Builder $query): Builder
     {
-        $query->whereNull('email_verified_at');
+        return $query->whereNull('email_verified_at');
     }
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function mostSolutions(Builder $query, ?int $inLastDays = null): void
+    protected function mostSolutions(Builder $query, ?int $inLastDays = null): Builder
     {
-        $query->withCount(['replyAble as solutions_count' => function ($query) use ($inLastDays) {
+        return $query->withCount(['replyAble as solutions_count' => function ($query) use ($inLastDays) {
             $query->where('replyable_type', 'thread')
                 ->join('threads', 'threads.solution_reply_id', '=', 'replies.id');
 
@@ -393,11 +399,12 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function mostSubmissions(Builder $query, ?int $inLastDays = null): void
+    protected function mostSubmissions(Builder $query, ?int $inLastDays = null): Builder
     {
-        $query->withCount(['articles as articles_count' => function ($query) use ($inLastDays) {
+        return $query->withCount(['articles as articles_count' => function ($query) use ($inLastDays) {
             if (filled($inLastDays)) {
                 $query->where('articles.approved_at', '>', now()->subDays($inLastDays));
             }
@@ -408,29 +415,32 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function mostSolutionsInLastDays(Builder $query, int $days): void
+    protected function mostSolutionsInLastDays(Builder $query, int $days): Builder
     {
-        $query->mostSolutions($days);
+        return $query->mostSolutions($days);
     }
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function mostSubmissionsInLastDays(Builder $query, int $days): void
+    protected function mostSubmissionsInLastDays(Builder $query, int $days): Builder
     {
-        $query->mostSubmissions($days);
+        return $query->mostSubmissions($days);
     }
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function withCounts(Builder $query): void
+    protected function withCounts(Builder $query): Builder
     {
-        $query->withCount([
+        return $query->withCount([
             'discussions as discussions_count',
             'articles as articles_count',
             'threads as threads_count',
@@ -442,29 +452,32 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function topContributors(Builder $query): void
+    protected function topContributors(Builder $query): Builder
     {
-        $query->withCount(['discussions'])->orderByDesc('discussions_count');
+        return $query->withCount('discussions')->orderByDesc('discussions_count');
     }
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function isBanned(Builder $query): void
+    protected function isBanned(Builder $query): Builder
     {
-        $query->whereNotNull('banned_at');
+        return $query->whereNotNull('banned_at');
     }
 
     /**
      * @param  Builder<User>  $query
+     * @return Builder<User>
      */
     #[Scope]
-    protected function isNotBanned(Builder $query): void
+    protected function isNotBanned(Builder $query): Builder
     {
-        $query->whereNull('banned_at');
+        return $query->whereNull('banned_at');
     }
 
     /**

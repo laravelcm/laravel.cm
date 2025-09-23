@@ -7,7 +7,7 @@
         <div class="relative lg:grid lg:grid-cols-10 lg:gap-12">
             <div class="hidden lg:col-span-2 lg:block">
                 <nav class="sticky top-10 space-y-6">
-                    @isset($buttons)
+                    @isset ($buttons)
                         {{ $buttons }}
                     @endisset
 
@@ -85,7 +85,7 @@
                 {{ $slot }}
             </div>
 
-            @if(! request()->routeIs('forum.leaderboard') && \Illuminate\Support\Facades\Auth::guest())
+            @if (! request()->routeIs('forum.leaderboard') && \Illuminate\Support\Facades\Auth::guest())
                 <aside class="hidden lg:block lg:col-span-2">
                     <x-sticky-content class="space-y-10">
                         <x-ads />
