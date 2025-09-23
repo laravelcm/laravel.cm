@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Support\Collection;
 use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
 use App\Contracts\SpamReportableContract;
@@ -40,10 +41,10 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read User $user
  * @property-read \Illuminate\Support\Carbon $created_at
  * @property-read \Illuminate\Support\Carbon $updated_at
- * @property-read \Illuminate\Support\Collection<array-key, SpamReport> $spamReports
- * @property-read \Illuminate\Support\Collection<array-key, Reply> $replies
- * @property-read \Illuminate\Support\Collection<array-key, Tag> $tags
- * @property-read \Illuminate\Support\Collection<array-key, Reaction> $reactions
+ * @property-read Collection<array-key, SpamReport> $spamReports
+ * @property-read Collection<array-key, Reply> $replies
+ * @property-read Collection<array-key, Tag> $tags
+ * @property-read Collection<array-key, Reaction> $reactions
  */
 final class Discussion extends Model implements ReactableInterface, ReplyInterface, Sitemapable, SpamReportableContract, SubscribeInterface, Viewable
 {

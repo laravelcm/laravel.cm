@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Discussion;
 
+use Filament\Actions\Contracts\HasActions;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\Textarea;
 use App\Actions\Discussion\CreateDiscussionReplyAction;
 use App\Models\Discussion;
 use App\Models\Reply;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -20,10 +23,11 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 
 /**
- * @property Form $form
+ * @property \Filament\Schemas\Schema $form
  */
-final class Comments extends Component implements HasForms
+final class Comments extends Component implements HasForms, HasActions
 {
+    use InteractsWithActions;
     use InteractsWithForms;
 
     public Discussion $discussion;
@@ -35,11 +39,11 @@ final class Comments extends Component implements HasForms
         $this->form->fill();
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\Textarea::make('body')
+        return $schema
+            ->components([
+                Textarea::make('body')
                     ->hiddenLabel()
                     ->placeholder(__('pages/discussion.placeholder'))
                     ->rows(3)

@@ -4,24 +4,27 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\ChannelResource\Pages;
 
+use LaraZeus\SpatieTranslatable\Resources\Pages\ListRecords\Concerns\Translatable;
+use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
+use Filament\Actions\CreateAction;
+use Filament\Support\Enums\Width;
 use App\Filament\Resources\ChannelResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Support\Enums\MaxWidth;
 
 final class ListChannels extends ListRecords
 {
-    use ListRecords\Concerns\Translatable;
+    use Translatable;
 
     protected static string $resource = ChannelResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\LocaleSwitcher::make(),
-            Actions\CreateAction::make()
+            LocaleSwitcher::make(),
+            CreateAction::make()
                 ->slideOver()
-                ->modalWidth(MaxWidth::Large),
+                ->modalWidth(Width::Large),
         ];
     }
 }

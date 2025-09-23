@@ -4,13 +4,20 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\User;
 
+use Filament\Actions\Contracts\HasActions;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Schemas\Components\Utilities\Set;
 use App\Actions\User\UpdateUserProfileAction;
 use App\Models\User;
 use App\Traits\FormatSocialAccount;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Blade;
@@ -19,11 +26,12 @@ use Livewire\Component;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 
 /**
- * @property Form $form
+ * @property \Filament\Schemas\Schema $form
  * @property User $user
  */
-final class Profile extends Component implements HasForms
+final class Profile extends Component implements HasForms, HasActions
 {
+    use InteractsWithActions;
     use FormatSocialAccount;
     use InteractsWithForms;
 
@@ -40,49 +48,49 @@ final class Profile extends Component implements HasForms
         $this->currentUserEmail = $this->user->email;
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\Section::make(__('pages/account.settings.profile_title'))
+        return $schema
+            ->components([
+                Section::make(__('pages/account.settings.profile_title'))
                     ->description(__('pages/account.settings.profile_description'))
                     ->aside()
                     ->schema([
-                        Forms\Components\SpatieMediaLibraryFileUpload::make('avatar')
+                        SpatieMediaLibraryFileUpload::make('avatar')
                             ->label(__('validation.attributes.avatar'))
                             ->collection('avatar')
                             ->helperText(__('pages/account.settings.avatar_description'))
                             ->image()
                             ->avatar()
                             ->maxSize(1024),
-                        Forms\Components\TextInput::make('username')
+                        TextInput::make('username')
                             ->label(__('validation.attributes.username'))
                             ->prefix('laravel.cm/user/@')
                             ->required()
                             ->unique(ignoreRecord: true)
                             ->maxLength(30)
                             ->rules(['lowercase', 'alpha_dash']),
-                        Forms\Components\Textarea::make('bio')
+                        Textarea::make('bio')
                             ->label(__('validation.attributes.bio'))
                             ->hint(__('global.characters', ['number' => 160]))
                             ->maxLength(160)
                             ->afterStateUpdated(fn (?string $state): string => trim(strip_tags((string) $state)))
                             ->helperText(__('pages/account.settings.bio_description')),
-                        Forms\Components\TextInput::make('website')
+                        TextInput::make('website')
                             ->label(__('validation.attributes.website'))
                             ->prefixIcon('untitledui-globe')
                             ->placeholder('https://laravel.cm')
                             ->url(),
                     ]),
 
-                Forms\Components\Section::make(__('pages/account.settings.personal_information_title'))
+                Section::make(__('pages/account.settings.personal_information_title'))
                     ->description(__('pages/account.settings.personal_information_description'))
                     ->aside()
                     ->schema([
-                        Forms\Components\TextInput::make('name')
+                        TextInput::make('name')
                             ->label(__('validation.attributes.last_name'))
                             ->required(),
-                        Forms\Components\TextInput::make('email')
+                        TextInput::make('email')
                             ->label(__('validation.attributes.email'))
                             ->suffixIcon(fn (): string => $this->user->hasVerifiedEmail() ? 'heroicon-m-check-circle' : 'heroicon-m-exclamation-triangle')
                             ->suffixIconColor(fn (): string => $this->user->hasVerifiedEmail() ? 'success' : 'warning')
@@ -90,22 +98,22 @@ final class Profile extends Component implements HasForms
                             ->email()
                             ->unique(ignoreRecord: true)
                             ->required(),
-                        Forms\Components\TextInput::make('location')
+                        TextInput::make('location')
                             ->label(__('validation.attributes.location')),
                         PhoneInput::make('phone_number')
                             ->label(__('validation.attributes.phone')),
                     ]),
 
-                Forms\Components\Section::make(__('pages/account.settings.social_network_title'))
+                Section::make(__('pages/account.settings.social_network_title'))
                     ->description(__('pages/account.settings.social_network_description'))
                     ->aside()
                     ->schema([
-                        Forms\Components\TextInput::make('github_profile')
+                        TextInput::make('github_profile')
                             ->label(__('GitHub'))
                             ->placeholder('laravelcm')
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state): mixed => $set('github_profile', $this->formatGithubHandle($state)))
+                            ->afterStateUpdated(fn (Set $set, ?string $state): mixed => $set('github_profile', $this->formatGithubHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                     <x-icon.github
@@ -114,12 +122,12 @@ final class Profile extends Component implements HasForms
                                     />
                                 Blade))
                             ),
-                        Forms\Components\TextInput::make('twitter_profile')
+                        TextInput::make('twitter_profile')
                             ->label(__('Twitter'))
                             ->helperText(__('pages/account.settings.twitter_helper_text'))
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state): mixed => $set('twitter_profile', $this->formatTwitterHandle($state)))
+                            ->afterStateUpdated(fn (Set $set, ?string $state): mixed => $set('twitter_profile', $this->formatTwitterHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                     <x-icon.twitter
@@ -128,12 +136,12 @@ final class Profile extends Component implements HasForms
                                     />
                                 Blade))
                             ),
-                        Forms\Components\TextInput::make('linkedin_profile')
+                        TextInput::make('linkedin_profile')
                             ->label(__('LinkedIn'))
                             ->placeholder('laravelcm')
                             ->unique(ignoreRecord: true)
                             ->maxLength(255)
-                            ->afterStateUpdated(fn (Forms\Set $set, ?string $state): mixed => $set('linkedin_profile', $this->formatLinkedinHandle($state)))
+                            ->afterStateUpdated(fn (Set $set, ?string $state): mixed => $set('linkedin_profile', $this->formatLinkedinHandle($state)))
                             ->prefix(
                                 fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                     <x-icon.linkedin

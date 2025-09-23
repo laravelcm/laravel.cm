@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
+use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use App\Models\Reaction;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -42,7 +43,7 @@ trait Reactable
     }
 
     /**
-     * @return MorphToMany<Reaction, $this, \Illuminate\Database\Eloquent\Relations\MorphPivot>
+     * @return MorphToMany<Reaction, $this, MorphPivot>
      */
     public function reactions(): MorphToMany
     {

@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
+use Illuminate\Support\Collection;
 use App\Models\Subscribe;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
- * @property-read \Illuminate\Support\Collection<array-key, Subscribe> $subscribes
+ * @property-read Collection<array-key, Subscribe> $subscribes
  */
 trait HasSubscribers
 {

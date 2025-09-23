@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources\ArticleResource\Pages;
 
+use Filament\Schemas\Components\Tabs\Tab;
 use App\Filament\Resources\ArticleResource;
 use App\Models\Article;
 use Closure;
-use Filament\Resources\Components\Tab;
 use Filament\Resources\Pages\ListRecords;
 
 final class ListArticles extends ListRecords

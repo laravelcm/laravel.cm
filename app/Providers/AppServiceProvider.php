@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Filament\Actions\CreateAction;
+use Filament\Actions\Action;
+use Filament\Support\Enums\Width;
+use Filament\Actions\EditAction;
 use App\Http\Resources\ReplyResource;
 use App\Models\Article;
 use App\Models\Discussion;
@@ -15,7 +19,6 @@ use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
 use Carbon\Carbon;
 use Filament\Support\Colors\Color;
-use Filament\Support\Enums\MaxWidth;
 use Filament\Support\Facades\FilamentColor;
 use Filament\Support\Facades\FilamentIcon;
 use Filament\Tables;
@@ -99,15 +102,15 @@ final class AppServiceProvider extends ServiceProvider
             'actions::edit-action' => 'untitledui-edit-03',
         ]);
 
-        Tables\Actions\CreateAction::configureUsing(
-            fn (Tables\Actions\Action $action): Tables\Actions\Action => $action->iconButton()
-                ->modalWidth(MaxWidth::ExtraLarge)
+        CreateAction::configureUsing(
+            fn (Action $action): Action => $action->iconButton()
+                ->modalWidth(Width::ExtraLarge)
                 ->slideOver()
         );
 
-        Tables\Actions\EditAction::configureUsing(
-            fn (Tables\Actions\Action $action): Tables\Actions\Action => $action->iconButton()
-                ->modalWidth(MaxWidth::ExtraLarge)
+        EditAction::configureUsing(
+            fn (Action $action): Action => $action->iconButton()
+                ->modalWidth(Width::ExtraLarge)
                 ->slideOver()
         );
     }

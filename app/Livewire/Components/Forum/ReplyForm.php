@@ -4,23 +4,27 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Forum;
 
+use Filament\Actions\Contracts\HasActions;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\MarkdownEditor;
 use App\Actions\Forum\CreateReplyAction;
 use App\Models\Reply;
 use App\Models\Thread;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 /**
- * @property Form $form
+ * @property \Filament\Schemas\Schema $form
  */
-final class ReplyForm extends Component implements HasForms
+final class ReplyForm extends Component implements HasForms, HasActions
 {
+    use InteractsWithActions;
     use InteractsWithForms;
 
     public Thread $thread;
@@ -53,11 +57,11 @@ final class ReplyForm extends Component implements HasForms
         $this->reply = null;
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\MarkdownEditor::make('body')
+        return $schema
+            ->components([
+                MarkdownEditor::make('body')
                     ->hiddenLabel()
                     ->fileAttachmentsDisk('public')
                     ->autofocus()

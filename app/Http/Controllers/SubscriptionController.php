@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Thread;
 use App\Models\Subscribe;
 use Illuminate\Http\RedirectResponse;
 
@@ -11,7 +12,7 @@ final class SubscriptionController extends Controller
 {
     public function unsubscribe(Subscribe $subscription): RedirectResponse
     {
-        /** @var \App\Models\Thread $thread */
+        /** @var Thread $thread */
         $thread = $subscription->subscribeAble;
 
         $thread->subscribes()->where('user_id', $subscription->user->id)->delete();

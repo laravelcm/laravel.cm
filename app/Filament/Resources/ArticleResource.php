@@ -4,6 +4,18 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\Action;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\BulkAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Tables\Filters\TernaryFilter;
+use Filament\Support\Enums\Width;
+use App\Filament\Resources\ArticleResource\Pages\ListArticles;
 use App\Actions\Article\ApprovedArticleAction;
 use App\Actions\Article\DeclineArticleAction;
 use App\Filament\Resources\ArticleResource\Pages;
@@ -13,9 +25,7 @@ use Awcodes\FilamentBadgeableColumn\Components\BadgeableColumn;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
-use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
-use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,7 +36,7 @@ final class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-newspaper';
 
     public static function getNavigationGroup(): string
     {
@@ -38,13 +48,13 @@ final class ArticleResource extends Resource
         return $table
             ->modifyQueryUsing(fn (Builder $query): Builder => $query->latest())
             ->columns([
-                Tables\Columns\SpatieMediaLibraryImageColumn::make('media')
+                SpatieMediaLibraryImageColumn::make('media')
                     ->collection('media')
                     ->label('Image'),
-                Tables\Columns\TextColumn::make('title')
+                TextColumn::make('title')
                     ->label('Titre')
                     ->limit(50)
-                    ->tooltip(function (Tables\Columns\TextColumn $column): ?string {
+                    ->tooltip(function (TextColumn $column): ?string {
                         $state = $column->getState();
 
                         if (strlen($state) <= $column->getCharacterLimit()) {
@@ -55,18 +65,18 @@ final class ArticleResource extends Resource
                     })
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('user.name')
+                TextColumn::make('user.name')
                     ->label('Auteur')
                     ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->label(__('Date de création'))
                     ->date(),
-                Tables\Columns\IconColumn::make('published_at')
+                IconColumn::make('published_at')
                     ->label('Publié')
                     ->getStateUsing(fn (Article $record): bool => $record->isPublished())
                     ->boolean(),
-                Tables\Columns\TextColumn::make('submitted_at')
+                TextColumn::make('submitted_at')
                     ->label('Soumission')
                     ->placeholder('N/A')
                     ->date(),
@@ -102,9 +112,9 @@ final class ArticleResource extends Resource
                     })
                     ->sortable(),
             ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    Tables\Actions\Action::make('approved')
+            ->recordActions([
+                ActionGroup::make([
+                    Action::make('approved')
                         ->visible(fn (Article $record): bool => $record->isAwaitingApproval())
                         ->label('Approuver')
                         ->icon('heroicon-s-check')
@@ -118,12 +128,12 @@ final class ArticleResource extends Resource
 
                             app(ApprovedArticleAction::class)->execute($record);
                         }),
-                    Tables\Actions\Action::make('declined')
+                    Action::make('declined')
                         ->visible(fn (Article $record): bool => $record->isAwaitingApproval())
                         ->label('Décliner')
                         ->icon('heroicon-s-x-mark')
                         ->color('warning')
-                        ->form([
+                        ->schema([
                             Textarea::make('reason')
                                 ->label(__('Raison du refus'))
                                 ->maxLength(255)
@@ -145,16 +155,16 @@ final class ArticleResource extends Resource
                                 ->success()
                                 ->send();
                         }),
-                    Tables\Actions\Action::make('show')
+                    Action::make('show')
                         ->icon('untitledui-eye')
                         ->url(fn (Article $record): string => route('articles.show', $record))
                         ->openUrlInNewTab()
                         ->label('Afficher'),
-                    Tables\Actions\DeleteAction::make(),
+                    DeleteAction::make(),
                 ]),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
+            ->toolbarActions([
+                BulkActionGroup::make([
                     BulkAction::make('declined')
                         ->label('Décliner la sélection')
                         ->icon('heroicon-s-x-mark')
@@ -166,28 +176,28 @@ final class ArticleResource extends Resource
                         ->modalHeading('Décliner')
                         ->modalDescription('Voulez-vous vraiment décliner ces articles ?')
                         ->modalSubmitActionLabel('Confirmer'),
-                    Tables\Actions\DeleteBulkAction::make(),
+                    DeleteBulkAction::make(),
                 ]),
             ])
             ->filters([
-                Tables\Filters\TernaryFilter::make('submitted_at')
+                TernaryFilter::make('submitted_at')
                     ->label('Soumis')
                     ->nullable(),
-                Tables\Filters\TernaryFilter::make('declined_at')
+                TernaryFilter::make('declined_at')
                     ->label('Décliner')
                     ->nullable(),
-                Tables\Filters\TernaryFilter::make('approved_at')
+                TernaryFilter::make('approved_at')
                     ->label('Approuver')
                     ->nullable(),
             ], layout: FiltersLayout::AboveContentCollapsible)
             ->filtersFormColumns(4)
-            ->filtersFormWidth(MaxWidth::FourExtraLarge);
+            ->filtersFormWidth(Width::FourExtraLarge);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListArticles::route('/'),
+            'index' => ListArticles::route('/'),
         ];
     }
 }

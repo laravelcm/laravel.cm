@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App\Providers\Filament;
 
+use Backstage\FilamentMails\FilamentMails;
+use Backstage\FilamentMails\FilamentMailsPlugin;
+use Filament\Pages\Dashboard;
+use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\SpatieLaravelTranslatablePlugin;
 use Illuminate\Contracts\View\View;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -19,8 +21,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Vormkracht10\FilamentMails\Facades\FilamentMails;
-use Vormkracht10\FilamentMails\FilamentMailsPlugin;
 
 final class AdminPanelProvider extends PanelProvider
 {
@@ -44,13 +44,13 @@ final class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->pages([
-                Pages\Dashboard::class,
+                Dashboard::class,
             ])
             ->widgets([
                 //
             ])
             ->plugins([
-                SpatieLaravelTranslatablePlugin::make()
+                SpatieTranslatablePlugin::make()
                     ->defaultLocales(['fr', 'en']),
                 FilamentMailsPlugin::make(),
             ])

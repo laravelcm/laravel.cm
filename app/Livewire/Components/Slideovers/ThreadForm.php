@@ -4,6 +4,16 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Slideovers;
 
+use Filament\Actions\Contracts\HasActions;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\ToggleButtons;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Placeholder;
 use App\Actions\Forum\CreateThreadAction;
 use App\Actions\Forum\UpdateThreadAction;
 use App\Exceptions\UnverifiedUserException;
@@ -12,7 +22,6 @@ use App\Models\Thread;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -22,10 +31,11 @@ use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
 /**
- * @property Form $form
+ * @property \Filament\Schemas\Schema $form
  */
-final class ThreadForm extends SlideOverComponent implements HasForms
+final class ThreadForm extends SlideOverComponent implements HasForms, HasActions
 {
+    use InteractsWithActions;
     use InteractsWithForms;
     use WithAuthenticatedUser;
 
@@ -55,29 +65,29 @@ final class ThreadForm extends SlideOverComponent implements HasForms
         return false;
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\Hidden::make('user_id'),
-                Forms\Components\TextInput::make('title')
+        return $schema
+            ->components([
+                Hidden::make('user_id'),
+                TextInput::make('title')
                     ->label(__('validation.attributes.title'))
                     ->helperText(__('pages/forum.min_thread_length'))
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set): void {
+                    ->afterStateUpdated(function (string $operation, $state, Set $set): void {
                         $set('slug', Str::slug($state));
                     })
                     ->minLength(10),
-                Forms\Components\Hidden::make('slug'),
-                Forms\Components\Select::make('channels')
+                Hidden::make('slug'),
+                Select::make('channels')
                     ->multiple()
                     ->relationship(titleAttribute: 'name')
                     ->preload()
                     ->required()
                     ->minItems(1)
                     ->maxItems(3),
-                Forms\Components\ToggleButtons::make('locale')
+                ToggleButtons::make('locale')
                     ->label(__('validation.attributes.locale'))
                     ->options([
                         'en' => 'En',
@@ -85,7 +95,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms
                     ])
                     ->helperText(__('global.locale_help'))
                     ->grouped(),
-                Forms\Components\MarkdownEditor::make('body')
+                MarkdownEditor::make('body')
                     ->fileAttachmentsDisk('public')
                     ->toolbarButtons([
                         'attachFiles',
@@ -98,7 +108,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms
                     ->label(__('validation.attributes.content'))
                     ->required()
                     ->minLength(20),
-                Forms\Components\Placeholder::make('')
+                Placeholder::make('')
                     ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                         <x-torchlight />
                     Blade))),

@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components;
 
+use Filament\Actions\Contracts\HasActions;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
+use Filament\Schemas\Components\Group;
+use Filament\Forms\Components\Select;
+use Filament\Schemas\Components\Utilities\Get;
 use App\Enums\PaymentType;
 use App\Enums\TransactionType;
 use App\Models\Transaction;
@@ -11,7 +19,6 @@ use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +30,11 @@ use NotchPay\NotchPay;
 use NotchPay\Payment;
 
 /**
- * @property-read Form $form
+ * @property-read \Filament\Schemas\Schema $form
  */
-final class SponsorSubscription extends Component implements HasForms
+final class SponsorSubscription extends Component implements HasForms, HasActions
 {
+    use InteractsWithActions;
     use InteractsWithForms;
 
     public ?array $data = [];
@@ -44,19 +52,19 @@ final class SponsorSubscription extends Component implements HasForms
         ]);
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
+        return $schema
+            ->components([
+                TextInput::make('name')
                     ->label(__('validation.attributes.name'))
                     ->minLength(5)
                     ->required(),
-                Forms\Components\TextInput::make('email')
+                TextInput::make('email')
                     ->label(__('validation.attributes.email'))
                     ->email()
                     ->required(),
-                Forms\Components\ToggleButtons::make('profile')
+                ToggleButtons::make('profile')
                     ->label(__('pages/sponsoring.sponsor_form.profile'))
                     ->options([
                         'developer' => __('validation.attributes.freelance'),
@@ -67,13 +75,13 @@ final class SponsorSubscription extends Component implements HasForms
                         'company' => 'phosphor-buildings-duotone',
                     ])
                     ->grouped(),
-                Forms\Components\TextInput::make('website')
+                TextInput::make('website')
                     ->label(__('global.website'))
                     ->prefixIcon('heroicon-m-globe-alt')
                     ->url(),
-                Forms\Components\Group::make()
+                Group::make()
                     ->schema([
-                        Forms\Components\Select::make('currency')
+                        Select::make('currency')
                             ->label(__('validation.attributes.currency'))
                             ->live()
                             ->native()
@@ -82,16 +90,16 @@ final class SponsorSubscription extends Component implements HasForms
                                 'eur' => 'EUR',
                                 'usd' => 'USD',
                             ]),
-                        Forms\Components\TextInput::make('amount')
+                        TextInput::make('amount')
                             ->label(__('validation.attributes.amount'))
                             ->integer()
                             ->required()
                             ->afterStateUpdated(fn (?int $state): float|int => filled($state) ? abs($state) : 0) // @phpstan-ignore-line
-                            ->prefix(fn (Forms\Get $get): ?string => match ($get('currency')) {
+                            ->prefix(fn (Get $get): ?string => match ($get('currency')) {
                                 'usd' => '$',
                                 default => null
                             })
-                            ->suffix(fn (Forms\Get $get): ?string => match ($get('currency')) {
+                            ->suffix(fn (Get $get): ?string => match ($get('currency')) {
                                 'eur' => '€',
                                 'xaf' => 'FCFA',
                                 default => null,

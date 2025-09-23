@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Support\Carbon;
 use App\Contracts\HasCachedMediaInterface;
 use App\Enums\TransactionStatus;
 use App\Observers\UserObserver;
@@ -51,12 +52,12 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read string|null $website
  * @property-read string|null $banned_reason
  * @property-read array<array-key, mixed>|null $settings
- * @property-read \Illuminate\Support\Carbon|null $email_verified_at
- * @property-read \Illuminate\Support\Carbon|null $last_login_at
- * @property-read \Illuminate\Support\Carbon|null $banned_at
- * @property-read \Illuminate\Support\Carbon $created_at
- * @property-read \Illuminate\Support\Carbon $updated_at
- * @property-read \Illuminate\Support\Carbon|null $last_active_at
+ * @property-read Carbon|null $email_verified_at
+ * @property-read Carbon|null $last_login_at
+ * @property-read Carbon|null $banned_at
+ * @property-read Carbon $created_at
+ * @property-read Carbon $updated_at
+ * @property-read Carbon|null $last_active_at
  * @property-read \Illuminate\Support\Collection<array-key, Activity> $activities
  * @property-read \Illuminate\Support\Collection<array-key, Article> $articles
  * @property-read \Illuminate\Support\Collection<array-key, Thread> $threads

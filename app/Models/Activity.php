@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Support\Carbon;
+use Database\Factories\ActivityFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,25 +20,25 @@ use Illuminate\Support\Collection;
  * @property string $type
  * @property array|null $data
  * @property int $user_id
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
- * @property-read \Illuminate\Database\Eloquent\Model $subject
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property-read Model $subject
  * @property-read User $user
  *
- * @method static \Database\Factories\ActivityFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Activity newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Activity newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Activity query()
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereData($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereSubjectId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereSubjectType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Activity whereUserId($value)
+ * @method static ActivityFactory factory($count = null, $state = [])
+ * @method static Builder|Activity newModelQuery()
+ * @method static Builder|Activity newQuery()
+ * @method static Builder|Activity query()
+ * @method static Builder|Activity whereCreatedAt($value)
+ * @method static Builder|Activity whereData($value)
+ * @method static Builder|Activity whereId($value)
+ * @method static Builder|Activity whereSubjectId($value)
+ * @method static Builder|Activity whereSubjectType($value)
+ * @method static Builder|Activity whereType($value)
+ * @method static Builder|Activity whereUpdatedAt($value)
+ * @method static Builder|Activity whereUserId($value)
  *
- * @mixin \Illuminate\Database\Eloquent\Model
+ * @mixin Model
  */
 final class Activity extends Model
 {

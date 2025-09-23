@@ -4,6 +4,16 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Slideovers;
 
+use Filament\Actions\Contracts\HasActions;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\ToggleButtons;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Placeholder;
 use App\Actions\Discussion\CreateOrUpdateDiscussionAction;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Traits\WithAuthenticatedUser;
@@ -11,7 +21,6 @@ use App\Models\Discussion;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -21,10 +30,11 @@ use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
 /**
- * @property Form $form
+ * @property \Filament\Schemas\Schema $form
  */
-final class DiscussionForm extends SlideOverComponent implements HasForms
+final class DiscussionForm extends SlideOverComponent implements HasForms, HasActions
 {
+    use InteractsWithActions;
     use InteractsWithForms;
     use WithAuthenticatedUser;
 
@@ -45,22 +55,22 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
         ]));
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\Hidden::make('user_id'),
-                Forms\Components\TextInput::make('title')
+        return $schema
+            ->components([
+                Hidden::make('user_id'),
+                TextInput::make('title')
                     ->label(__('validation.attributes.title'))
                     ->helperText(__('pages/discussion.min_discussion_length'))
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set): void {
+                    ->afterStateUpdated(function (string $operation, $state, Set $set): void {
                         $set('slug', Str::slug($state));
                     })
                     ->minLength(10),
-                Forms\Components\Hidden::make('slug'),
-                Forms\Components\Select::make('tags')
+                Hidden::make('slug'),
+                Select::make('tags')
                     ->multiple()
                     ->relationship(
                         name: 'tags',
@@ -71,12 +81,12 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
                     ->minItems(1)
                     ->maxItems(3)
                     ->preload(),
-                Forms\Components\ToggleButtons::make('locale')
+                ToggleButtons::make('locale')
                     ->label(__('validation.attributes.locale'))
                     ->options(['en' => 'En', 'fr' => 'Fr'])
                     ->helperText(__('global.locale_help'))
                     ->grouped(),
-                Forms\Components\MarkdownEditor::make('body')
+                MarkdownEditor::make('body')
                     ->toolbarButtons([
                         'blockquote',
                         'bold',
@@ -88,7 +98,7 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
                     ->maxHeight('18.25rem')
                     ->required()
                     ->minLength(20),
-                Forms\Components\Placeholder::make('')
+                Placeholder::make('')
                     ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                         <x-torchlight />
                     Blade))),

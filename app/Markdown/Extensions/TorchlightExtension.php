@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Markdown\Extensions;
 
+use Stringable;
 use App\Markdown\BaseExtension;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
@@ -28,7 +29,7 @@ final class TorchlightExtension extends BaseExtension implements ExtensionInterf
      * This method just proxies to our base class, but the
      * signature has to match Commonmark V2.
      *
-     * @return mixed|string|\Stringable|null
+     * @return mixed|string|Stringable|null
      */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {

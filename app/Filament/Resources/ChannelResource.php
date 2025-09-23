@@ -4,11 +4,23 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\ColorPicker;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Forms\Components\Textarea;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ColorColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\ChannelResource\Pages\ListChannels;
 use App\Filament\Resources\ChannelResource\Pages;
 use App\Models\Channel;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -21,27 +33,27 @@ final class ChannelResource extends Resource
 
     protected static ?string $model = Channel::class;
 
-    protected static ?string $navigationIcon = 'untitledui-git-branch';
+    protected static string | \BackedEnum | null $navigationIcon = 'untitledui-git-branch';
 
     public static function getNavigationGroup(): string
     {
         return __('Forum');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
+        return $schema
+            ->components([
+                TextInput::make('name')
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(fn ($state, Forms\Set $set): mixed => $set('slug', Str::slug($state)))
+                    ->afterStateUpdated(fn ($state, Set $set): mixed => $set('slug', Str::slug($state)))
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('slug')
+                TextInput::make('slug')
                     ->readOnly()
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Select::make('parent_id')
+                Select::make('parent_id')
                     ->relationship(
                         name: 'parent',
                         titleAttribute: 'name',
@@ -50,13 +62,13 @@ final class ChannelResource extends Resource
                     ->live()
                     ->default(null)
                     ->columnSpanFull(),
-                Forms\Components\ColorPicker::make('color')
+                ColorPicker::make('color')
                     ->label('Couleur')
                     ->hex()
                     ->live()
                     ->columnSpanFull()
-                    ->required(fn (Forms\Get $get): bool => $get('parent_id') === null),
-                Forms\Components\Textarea::make('description')
+                    ->required(fn (Get $get): bool => $get('parent_id') === null),
+                Textarea::make('description')
                     ->rows(4)
                     ->columnSpanFull(),
             ]);
@@ -66,39 +78,39 @@ final class ChannelResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->label('Nom')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('parent.name')
+                TextColumn::make('parent.name')
                     ->label('Parent')
                     ->placeholder('N/A')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('thread_number')
+                TextColumn::make('thread_number')
                     ->label('Nombre de sujets')
                     ->getStateUsing(fn ($record) => $record->threads()->count()),
-                Tables\Columns\ColorColumn::make('color')
+                ColorColumn::make('color')
                     ->label('Couleur')
                     ->placeholder('N/A'),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->label('Date')
                     ->date()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
+            ->recordActions([
+                EditAction::make(),
+                DeleteAction::make()
                     ->iconButton(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListChannels::route('/'),
+            'index' => ListChannels::route('/'),
         ];
     }
 }

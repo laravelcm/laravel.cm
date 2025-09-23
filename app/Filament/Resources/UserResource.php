@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 namespace App\Filament\Resources;
 
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TernaryFilter;
+use Filament\Actions\Action;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\BulkAction;
+use App\Filament\Resources\UserResource\Pages\ListUsers;
 use App\Actions\User\BanUserAction;
 use App\Actions\User\UnBanUserAction;
 use App\Filament\Resources\UserResource\Pages;
@@ -21,7 +29,7 @@ final class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'untitledui-users-02';
+    protected static string | \BackedEnum | null $navigationIcon = 'untitledui-users-02';
 
     public static function getNavigationGroup(): string
     {
@@ -38,7 +46,7 @@ final class UserResource extends Resource
                     ->latest();
             })
             ->columns([
-                Tables\Columns\ImageColumn::make('profile_photo_url')
+                ImageColumn::make('profile_photo_url')
                     ->label('Avatar')
                     ->circular(),
                 BadgeableColumn::make('name')
@@ -50,25 +58,25 @@ final class UserResource extends Resource
                     ->description(fn (User $record): ?string => $record->location)
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('email')
+                TextColumn::make('email')
                     ->label('Email')
                     ->icon('untitledui-inbox')
                     ->description(fn (User $record): ?string => $record->phone_number),
-                Tables\Columns\TextColumn::make('email_verified_at')
+                TextColumn::make('email_verified_at')
                     ->label(__('user.validate_email'))
                     ->placeholder('N/A')
                     ->date(),
-                Tables\Columns\TextColumn::make(name: 'created_at')
+                TextColumn::make(name: 'created_at')
                     ->label(__('user.inscription'))
                     ->date(),
             ])
             ->filters([
-                Tables\Filters\TernaryFilter::make('email_verified_at')
+                TernaryFilter::make('email_verified_at')
                     ->label(__('user.email_verified'))
                     ->nullable(),
             ])
-            ->actions([
-                Tables\Actions\Action::make('ban')
+            ->recordActions([
+                Action::make('ban')
                     ->label(__('actions.ban'))
                     ->icon('untitledui-archive')
                     ->color('warning')
@@ -76,7 +84,7 @@ final class UserResource extends Resource
                     ->modalHeading(__('user.ban.heading'))
                     ->modalDescription(__('user.ban.description'))
                     ->authorize('ban', User::class)
-                    ->form([
+                    ->schema([
                         TextInput::make('banned_reason')
                             ->label(__('user.ban.reason'))
                             ->required(),
@@ -92,7 +100,7 @@ final class UserResource extends Resource
                             ->send();
                     })
                     ->requiresConfirmation(),
-                Tables\Actions\Action::make('unban')
+                Action::make('unban')
                     ->label(__('actions.unban'))
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
@@ -109,11 +117,11 @@ final class UserResource extends Resource
                             ->send();
                     })
                     ->requiresConfirmation(),
-                Tables\Actions\DeleteAction::make(),
+                DeleteAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-                Tables\Actions\BulkAction::make('delete_banned')
+            ->toolbarActions([
+                DeleteBulkAction::make(),
+                BulkAction::make('delete_banned')
                     ->label(__('Supprimer les utilisateurs bannis'))
                     ->icon('heroicon-o-trash')
                     ->color('danger')
@@ -150,7 +158,7 @@ final class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
+            'index' => ListUsers::route('/'),
         ];
     }
 }

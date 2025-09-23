@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use App\Contracts\ReactableInterface;
 use App\Models\Builders\ArticleQueryBuilder;
 use App\Models\Traits\HasAuthor;
@@ -47,7 +48,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read \Illuminate\Support\Carbon|null $sponsored_at
  * @property-read \Illuminate\Support\Carbon $created_at
  * @property-read \Illuminate\Support\Carbon $updated_at
- * @property \Illuminate\Database\Eloquent\Collection<int, Tag> $tags
+ * @property Collection<int, Tag> $tags
  */
 #[ObservedBy(ArticleObserver::class)]
 final class Article extends Model implements HasMedia, ReactableInterface, Sitemapable, Viewable

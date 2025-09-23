@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Support\Collection;
 use App\Exceptions\CannotAddChannelToChild;
 use App\Models\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,8 +23,8 @@ use Spatie\Translatable\HasTranslations;
  * @property-read string $color
  * @property-read int|null $parent_id
  * @property-read Channel|null $parent
- * @property-read \Illuminate\Support\Collection<array-key, Channel> $items
- * @property-read \Illuminate\Support\Collection<array-key, Thread> $threads
+ * @property-read Collection<array-key, Channel> $items
+ * @property-read Collection<array-key, Thread> $threads
  */
 final class Channel extends Model
 {
