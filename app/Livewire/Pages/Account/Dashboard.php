@@ -18,7 +18,7 @@ final class Dashboard extends Component
     #[Computed]
     public function user(): User
     {
-        return User::with('providers')
+        return User::query()
             ->scopes('withCounts')
             ->find(Auth::id());
     }

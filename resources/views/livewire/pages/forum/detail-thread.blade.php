@@ -10,7 +10,7 @@
             </x-buttons.primary>
 
             @auth
-                <livewire:components.forum.subscribe :thread="$thread" />
+                <livewire:components.forum.subscribe :$thread />
             @endauth
         </div>
     </x-slot:buttons>
@@ -35,7 +35,7 @@
                                     :with-background="false"
                                     direction="vertical"
                                 />
-                                <x-forum.thread-metadata :thread="$thread" class="gap-3 text-xs" vertical />
+                                <x-forum.thread-metadata :$thread class="gap-3 text-xs" vertical />
                             </div>
                         </div>
                         <div class="group min-w-0 flex-1 rounded-xl bg-white p-5 ring-1 ring-inset text-wrap overflow-hidden ring-gray-200/60 dark:bg-gray-800 dark:ring-white/10 lg:py-6 lg:px-8">
@@ -61,10 +61,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <x-forum.thread-channels :thread="$thread" class="hidden lg:flex" />
+                                <x-forum.thread-channels :$thread class="hidden lg:flex" />
                             </div>
                             <div class="mt-4 rounded-lg bg-gray-50 dark:bg-gray-900 py-2 px-4">
-                                <h1 class="text-xl font-heading font-bold text-gray-900 dark:text-white leading-7">
+                                <h1 class="text-xl font-bold text-gray-900 dark:text-white leading-7">
                                     {{ $thread->title }}
                                 </h1>
                             </div>
@@ -98,7 +98,7 @@
 
                 @if ($thread->replies->isNotEmpty())
                     @foreach ($thread->replies as $reply)
-                        <livewire:components.forum.reply wire:key="$reply->id" :thread="$thread" :reply="$reply" />
+                        <livewire:components.forum.reply wire:key="$reply->id" :$thread :$reply />
                     @endforeach
                 @endif
             </div>
@@ -122,7 +122,7 @@
                     </p>
                 </x-info-panel>
             @else
-                <livewire:components.forum.reply-form :thread="$thread" />
+                <livewire:components.forum.reply-form :$thread />
             @endif
         @else
             @guest

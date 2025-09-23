@@ -69,9 +69,9 @@
                         <span>{{ __('global.read_time', ['time' => $article->readTime()]) }}</span>
                     </div>
 
-                    <div class="flex items-center text-gray-500 dark:text-gray-400">
-                        <span class="text-xl">👏</span>
-                        {{ count($article->reactions) }}
+                    <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                        <x-untitledui-heart class="size-5" aria-hidden="true" />
+                        {{ $article->reactions_count }}
                     </div>
                 </div>
             </div>

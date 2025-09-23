@@ -41,10 +41,10 @@
     "livewire/volt": "^1.6",
     "mckenziearts/blade-untitledui-icons": "^1.4",
     "notchpay/notchpay-php": "^1.6",
+    "predis/predis": "^3.2",
     "ramsey/uuid": "^4.7.4",
     "spatie/laravel-data": "^4.10",
     "spatie/laravel-feed": "^4.2.1",
-    "spatie/laravel-google-fonts": "^1.2.3",
     "spatie/laravel-permission": "^6.10.0",
     "spatie/laravel-sitemap": "^7.3",
     "stevebauman/location": "^7.4.0",
@@ -101,7 +101,7 @@
     ],
     "dev:install": [
       "./vendor/bin/sail up -d",
-      "./vendor/bin/sail artisan migrate --seed",
+      "./vendor/bin/sail artisan migrate",
       "./vendor/bin/sail npm install --no-update-notifier",
       "./vendor/bin/sail stop"
     ],
@@ -118,7 +118,10 @@
     "types": "phpstan analyse --memory-limit=-1",
     "rector": "./vendor/bin/rector",
     "rector:preview": "./vendor/bin/rector --dry-run",
-    "test": "./vendor/bin/sail pest"
+    "test": [
+      "Composer\\Config::disableProcessTimeout",
+      "./vendor/bin/sail artisan test --parallel --processes=4"
+    ]
   },
   "config": {
     "optimize-autoloader": true,

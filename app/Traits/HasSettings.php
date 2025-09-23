@@ -15,13 +15,11 @@ trait HasSettings
         return $default;
     }
 
-    public function settings(array $revisions, bool $save = true): self
+    public function settings(array $revisions): self
     {
-        $this->settings = array_merge($this->settings ?? [], $revisions);
-
-        if ($save) {
-            $this->save();
-        }
+        $this->update([
+            'settings' => array_merge($this->settings ?? [], $revisions),
+        ]);
 
         return $this;
     }

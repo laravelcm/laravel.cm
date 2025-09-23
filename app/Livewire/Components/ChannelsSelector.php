@@ -6,12 +6,13 @@ namespace App\Livewire\Components;
 
 use App\Models\Channel;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 /**
- * @property Channel | null $currentChannel
+ * @property-read Channel|null $currentChannel
+ * @property-read Collection<int, Channel> $channels
  */
 final class ChannelsSelector extends Component
 {
@@ -19,7 +20,7 @@ final class ChannelsSelector extends Component
 
     public function selectedChannel(int $channelId): void
     {
-        $this->slug = Channel::query()->find($channelId)?->slug;
+        $this->slug = $this->channels->firstWhere('id', $channelId)?->slug;
 
         $this->dispatch('channelUpdated', channelId: $channelId);
     }
@@ -34,17 +35,17 @@ final class ChannelsSelector extends Component
     #[Computed]
     public function currentChannel(): ?Channel
     {
-        return filled($this->slug) ? Channel::findBySlug($this->slug) : null;
+        return $this->channels->firstWhere('slug', $this->slug);
+    }
+
+    #[Computed(persist: true, seconds: 3600 * 24 * 30, cache: true)]
+    public function channels(): Collection
+    {
+        return Channel::with('items')->whereNull('parent_id')->get();
     }
 
     public function render(): View
     {
-        return view('livewire.components.channels-selector', [
-            'channels' => Cache::remember(
-                'channels',
-                now()->addMonth(),
-                fn () => Channel::with('items')->whereNull('parent_id')->get()
-            ),
-        ]);
+        return view('livewire.components.channels-selector');
     }
 }

@@ -140,13 +140,13 @@
         <div class="lg:grid lg:grid-cols-3 lg:gap-x-16">
             <div class="lg:col-span-2">
                 <div :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
-                    <x-user.articles :user="$user" :articles="$this->articles" />
+                    <x-user.articles :$user :articles="$this->articles" />
                 </div>
                 <div x-cloak :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
-                    <x-user.discussions :user="$user" :discussions="$this->discussions" />
+                    <x-user.discussions :$user :discussions="$this->discussions" />
                 </div>
                 <div x-cloak :id="$id(tabId + '-content')" x-show="tabContentActive($el)">
-                    <x-user.threads :user="$user" :threads="$this->threads" />
+                    <x-user.threads :$user :threads="$this->threads" />
                 </div>
             </div>
             <aside class="hidden lg:block">
