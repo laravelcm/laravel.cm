@@ -9,6 +9,7 @@ use Laravelcm\DatabaseMigration\Commands\MigrateDatabaseCommand;
 use Laravelcm\DatabaseMigration\Commands\MigrateFilesToS3Command;
 use Laravelcm\DatabaseMigration\Commands\ResetPostgresSequencesCommand;
 use Laravelcm\DatabaseMigration\Commands\SshTunnelCommand;
+use Laravelcm\DatabaseMigration\Commands\UpdateStorageUrlsCommand;
 use Laravelcm\DatabaseMigration\Services\DatabaseMigrationService;
 use Laravelcm\DatabaseMigration\Services\SshTunnelService;
 
@@ -33,6 +34,7 @@ final class DatabaseMigrationServiceProvider extends ServiceProvider
                 MigrateDatabaseCommand::class,
                 MigrateFilesToS3Command::class,
                 ResetPostgresSequencesCommand::class,
+                UpdateStorageUrlsCommand::class,
             ]);
 
             $this->publishes([

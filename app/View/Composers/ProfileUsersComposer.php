@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\View\Composers;
 
 use App\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
@@ -15,9 +16,12 @@ final class ProfileUsersComposer
         $view->with(
             'users',
             Cache::remember(
-                key: 'avatar_users',
+                key: 'avatars',
                 ttl: now()->addWeek(),
-                callback: fn () => User::verifiedUsers()->inRandomOrder()->take(10)->get()
+                callback: fn (): Collection => User::query()->scopes('verifiedUsers')
+                    ->inRandomOrder()
+                    ->take(10)
+                    ->get()
             )
         );
     }

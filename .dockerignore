@@ -4,8 +4,9 @@ node_modules
 # Laravel
 .mcp.json
 .env.example
+.env.testing
 phpstan.neon
-phpunit.xml
+phpunit.*.xml
 rector.php
 pint.json
 tests

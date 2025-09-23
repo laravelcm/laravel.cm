@@ -17,7 +17,7 @@ final class AssignUserRole extends Command
     {
         $this->info('Assigning user role to all users...');
 
-        foreach (User::withoutRole()->get() as $user) {
+        foreach (User::query()->scopes('withoutRole')->get() as $user) {
             $user->assignRole('user');
         }
 

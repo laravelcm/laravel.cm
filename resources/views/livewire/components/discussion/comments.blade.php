@@ -3,7 +3,7 @@
         <ul role="list" class="space-y-5">
             @foreach ($this->comments as $comment)
                 <li class="comment" id="reply-{{ $comment->id }}">
-                    <livewire:components.discussion.comment :comment="$comment" :key="$comment->id" />
+                    <livewire:components.discussion.comment :$comment :key="$comment->id" />
                 </li>
             @endforeach
         </ul>

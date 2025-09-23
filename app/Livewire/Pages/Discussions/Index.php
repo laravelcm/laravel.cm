@@ -9,6 +9,7 @@ use App\Models\Discussion;
 use App\Models\Tag;
 use App\Traits\WithLocale;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -53,21 +54,24 @@ final class Index extends Component
     public function render(): View
     {
         /** @var DiscussionQueryBuilder $query */
-        $query = Discussion::with(['tags', 'replies', 'user', 'user.media', 'reactions']) // @phpstan-ignore-line
-            ->withCount('replies')
+        $query = Discussion::with([ // @phpstan-ignore-line
+            'tags',
+            'user:id,name,username,avatar_type',
+        ])
+            ->withCount(['reactions', 'replies'])
             ->forLocale($this->locale)
             ->notPinned();
 
         $tags = Cache::remember(
             key: 'discussions.tags',
             ttl: now()->addWeek(),
-            callback: fn () => Tag::query()
+            callback: fn (): Collection => Tag::query()
                 ->whereJsonContains('concerns', ['discussion'])
                 ->orderBy('name')
                 ->get()
         );
 
-        if (! blank($this->currentTag)) {
+        if (filled($this->currentTag)) {
             $query->forTag($this->currentTag); // @phpstan-ignore-line
         }
 

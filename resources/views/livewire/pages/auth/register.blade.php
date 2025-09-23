@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use DutchCodingCompany\LivewireRecaptcha\ValidatesRecaptcha;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Volt\Component;
@@ -14,7 +13,6 @@ new class extends Component {
     public string $password = '';
     public string $gRecaptchaResponse;
 
-    #[ValidatesRecaptcha]
     public function register(): void
     {
         $validated = $this->validate([

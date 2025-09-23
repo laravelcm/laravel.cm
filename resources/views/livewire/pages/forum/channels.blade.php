@@ -14,13 +14,13 @@
 
     <div>
         <div>
-            <h1 class="text-xl font-bold font-heading text-gray-900 dark:text-white lg:text-2xl">
+            <h1 class="text-xl font-semibold font-heading text-gray-900 dark:text-white lg:text-2xl">
                 {{ __('pages/channel.title') }}
             </h1>
-            <x-forum.channels-grid :channels="$channels" />
+            <x-forum.channels-grid :$channels />
         </div>
         <div class="mt-10">
-            <h1 class="text-xl font-bold font-heading text-gray-900 dark:text-white lg:text-2xl">
+            <h1 class="text-xl font-semibold font-heading text-gray-900 dark:text-white lg:text-2xl">
                 {{ __('pages/channel.subtitle') }}
             </h1>
             <x-forum.channels-grid :channels="$childChannels" />
