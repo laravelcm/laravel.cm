@@ -1,0 +1,39 @@
+.prose img {
+  border-radius: theme(borderRadius.lg);
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-family: Rota, sans-serif;
+}
+
+.prose blockquote {
+  font-style: normal;
+}
+
+.prose blockquote p:first-of-type::before {
+  content: none;
+}
+
+.prose blockquote p:first-of-type::after {
+  content: none;
+}
+
+.prose pre, .prose code, .prose p > code {
+  font-weight: theme(fontWeight.medium);
+  font-family: "Geist Mono", monospace;
+  color: theme(colors.amber.500);
+}
+
+.prose li strong, .prose strong {
+  color: theme(colors.gray.700);
+  font-weight: 400;
+}
+
+.prose.heading-off h1,
+.prose.heading-off h2,
+.prose.heading-off h3,
+.prose.heading-off h4,
+.prose.heading-off h5 {
+  margin: 10px 0;
+  font-size: theme(fontSize.base);
+}

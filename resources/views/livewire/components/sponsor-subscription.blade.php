@@ -3,7 +3,7 @@
         <x-buttons.primary @click="$dispatch('open-modal', { id: 'sponsoring' })">
             {{ __('pages/sponsoring.sponsor') }}
         </x-buttons.primary>
-        <a href="https://github.com/sponsors/mckenziearts" target="_blank" class="inline-flex justify-center gap-2 py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900">
+        <a href="https://github.com/sponsors/mckenziearts" target="_blank" class="inline-flex justify-center gap-2 py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-xs text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900">
             <x-icon.github class="size-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />
             {{ __('pages/sponsoring.sponsor_github') }}
         </a>

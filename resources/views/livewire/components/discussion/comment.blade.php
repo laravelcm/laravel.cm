@@ -33,7 +33,7 @@
                                 type="button"
                                 wire:click="delete"
                                 wire:confirm="{{ __('pages/discussion.confirm_comment_remove') }}"
-                                class="inline-flex items-center text-xs leading-5 text-danger-500 hover:underline focus:outline-none"
+                                class="inline-flex items-center text-xs leading-5 text-danger-500 hover:underline focus:outline-hidden"
                             >
                                 {{ __('actions.delete') }}
                             </button>

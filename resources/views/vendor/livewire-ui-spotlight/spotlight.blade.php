@@ -39,7 +39,7 @@
              class="fixed flex items-center justify-center w-full h-auto px-4 pt-16 text-gray-300 transition-all transform sm:pt-24 sm:px-0">
             <template x-if="inputPlaceholder == '{{ trans('livewire-ui-spotlight::spotlight.placeholder') }}'">
                 <div class="w-full max-w-lg">
-                    <div class="overflow-hidden divide-y divide-gray-300 bg-gray-200 rounded-xl shadow-xl bg-opacity-20">
+                    <div class="overflow-hidden divide-y divide-gray-300 bg-gray-200/20 rounded-xl shadow-xl">
                         <div class="flex items-center p-5">
                             <div class="px-2 text-sm text-gray-200">{{ __('livewire-ui-spotlight::spotlight.type') }} </div>
                             <div class="px-3 py-1.5 text-xs font-medium text-gray-100 uppercase bg-gray-900 rounded-lg">
@@ -74,7 +74,7 @@
                 </div>
             </template>
             <template x-if="inputPlaceholder != '{{ trans('livewire-ui-spotlight::spotlight.placeholder') }}'">
-                <div class="w-full max-w-lg p-5 bg-gray-100 rounded-lg shadow-xl bg-opacity-10">
+                <div class="w-full max-w-lg p-5 bg-gray-100/10 rounded-lg shadow-xl">
                     <span>{{ __('pagination.next') }}, </span>
                     <span x-text="inputPlaceholder" class="lowercase"></span>
                 </div>
@@ -100,7 +100,7 @@
                        @keydown.prevent.arrow-down="selectDown()" x-ref="input" x-model="input"
                        type="text"
                        style="caret-color: #6b7280; border: 0 !important;"
-                       class="appearance-none w-full bg-transparent px-6 py-4 text-gray-300 text-lg placeholder-gray-500 focus:border-0 focus:border-transparent focus:shadow-none outline-none focus:outline-none"
+                       class="appearance-none w-full bg-transparent px-6 py-4 text-gray-300 text-lg placeholder-gray-500 focus:border-0 focus:border-transparent focus:shadow-none outline-hidden focus:outline-hidden"
                        x-bind:placeholder="inputPlaceholder">
             </div>
             <div class="border-t border-gray-800" x-show="filteredItems().length > 0" style="display: none;">

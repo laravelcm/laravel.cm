@@ -1,6 +1,6 @@
 .fi-body {
   .fi-simple-header .fi-logo {
-    @apply h-16 !important;
+    @apply !h-16;
     > svg {
       @apply h-full;
     }
@@ -10,7 +10,7 @@
     .fi-sidebar-header {
       @apply bg-white ring-1 ring-gray-200/60 lg:shadow-none dark:bg-gray-900 dark:ring-white/10;
       .fi-logo {
-        @apply h-10 !important;
+        @apply !h-10;
         > svg {
           @apply h-full;
         }

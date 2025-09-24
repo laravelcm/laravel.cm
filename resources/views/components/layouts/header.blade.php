@@ -81,7 +81,7 @@
                 <div class="lg:hidden">
                     <button
                         type="button"
-                        class="inline-flex items-center justify-center py-2 text-gray-400 hover:text-gray-500 dark:text-gray-400 focus:outline-none"
+                        class="inline-flex items-center justify-center py-2 text-gray-400 hover:text-gray-500 dark:text-gray-400 focus:outline-hidden"
                         aria-controls="mobile-menu"
                         @click="open = !open"
                         aria-expanded="false"
@@ -104,7 +104,7 @@
                         @click.away="open = false"
                         style="display: none"
                     >
-                        <div class="divide-y-2 divide-gray-50 rounded-xl bg-white shadow-md ring-1 ring-black ring-opacity-5 dark:bg-gray-800 dark:divide-white/10 dark:ring-white/10">
+                        <div class="divide-y-2 divide-gray-50 rounded-xl bg-white shadow-md ring-1 ring-black/5 dark:bg-gray-800 dark:divide-white/10 dark:ring-white/10">
                             <div class="p-4">
                                 <div class="flex items-center justify-between">
                                     <div>
@@ -113,7 +113,7 @@
                                     <div class="-mr-2">
                                         <button
                                             type="button"
-                                            class="relative inline-flex items-center justify-center rounded-lg bg-white p-2 text-gray-400 dark:text-gray-500 dark:bg-gray-900 dark:hover:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-50 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                                            class="relative inline-flex items-center justify-center rounded-lg bg-white p-2 text-gray-400 dark:text-gray-500 dark:bg-gray-900 dark:hover:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-50 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-primary-500"
                                             @click="open = false;"
                                         >
                                             <span class="absolute -inset-0.5"></span>

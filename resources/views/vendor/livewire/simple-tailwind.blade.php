@@ -31,7 +31,7 @@
                             wire:click="setPage('{{ $paginator->previousCursor()->encode() }}','{{ $paginator->getCursorName() }}')"
                             x-on:click="{{ $scrollIntoViewJsSnippet }}"
                             wire:loading.attr="disabled"
-                            class="focus:shadow-outline-green relative inline-flex items-center rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:text-gray-500 dark:text-gray-400 focus:border-green-300 focus:outline-none active:bg-skin-footer"
+                            class="focus:shadow-outline-green relative inline-flex items-center rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:text-gray-500 dark:text-gray-400 focus:border-green-300 focus:outline-hidden active:bg-skin-footer"
                         >
                             {!! __('pagination.previous') !!}
                         </button>
@@ -42,7 +42,7 @@
                             x-on:click="{{ $scrollIntoViewJsSnippet }}"
                             wire:loading.attr="disabled"
                             dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}"
-                            class="focus:shadow-outline-green relative inline-flex items-center rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:text-gray-500 dark:text-gray-400 focus:border-green-300 focus:outline-none active:bg-skin-footer"
+                            class="focus:shadow-outline-green relative inline-flex items-center rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:text-gray-500 dark:text-gray-400 focus:border-green-300 focus:outline-hidden active:bg-skin-footer"
                         >
                             {!! __('pagination.previous') !!}
                         </button>
@@ -61,7 +61,7 @@
                             wire:click="setPage('{{ $paginator->nextCursor()->encode() }}','{{ $paginator->getCursorName() }}')"
                             x-on:click="{{ $scrollIntoViewJsSnippet }}"
                             wire:loading.attr="disabled"
-                            class="focus:shadow-outline-green relative inline-flex items-center rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:text-gray-500 dark:text-gray-400 focus:border-green-300 focus:outline-none active:bg-skin-footer"
+                            class="focus:shadow-outline-green relative inline-flex items-center rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:text-gray-500 dark:text-gray-400 focus:border-green-300 focus:outline-hidden active:bg-skin-footer"
                         >
                             {!! __('pagination.next') !!}
                         </button>
@@ -72,7 +72,7 @@
                             x-on:click="{{ $scrollIntoViewJsSnippet }}"
                             wire:loading.attr="disabled"
                             dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}"
-                            class="focus:shadow-outline-green relative inline-flex items-center rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:text-gray-500 dark:text-gray-400 focus:border-green-300 focus:outline-none active:bg-skin-footer"
+                            class="focus:shadow-outline-green relative inline-flex items-center rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium leading-5 text-gray-900 transition duration-150 ease-in-out hover:text-gray-500 dark:text-gray-400 focus:border-green-300 focus:outline-hidden active:bg-skin-footer"
                         >
                             {!! __('pagination.next') !!}
                         </button>

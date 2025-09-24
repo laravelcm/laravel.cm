@@ -18,7 +18,7 @@
                         <div>
                             <h2
                                 id="notification-date-{{ Str::slug($date) }}"
-                                class="inline-flex items-center gap-x-3 rounded-full bg-primary-600 bg-opacity-20 px-2.5 py-1.5 font-heading text-sm font-medium text-white"
+                                class="inline-flex items-center gap-x-3 rounded-full bg-primary-600/20 px-2.5 py-1.5 font-heading text-sm font-medium text-white"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
