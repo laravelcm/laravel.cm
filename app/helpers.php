@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Models\Thread;
 use App\Models\Discussion;
+use App\Models\Thread;
 use Carbon\Carbon;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Auth;
@@ -85,7 +85,7 @@ if (! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.
      *
-     * @param Thread|Discussion $replyAble
+     * @param  Thread|Discussion  $replyAble
      */
     function route_to_reply_able(mixed $replyAble): string
     {

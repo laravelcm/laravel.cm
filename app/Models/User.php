@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Support\Carbon;
 use App\Contracts\HasCachedMediaInterface;
 use App\Enums\TransactionStatus;
 use App\Observers\UserObserver;
@@ -28,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Contracts\User as SocialUser;
 use Laravelcm\Gamify\Traits\Gamify;
@@ -69,10 +69,10 @@ use Spatie\Permission\Traits\HasRoles;
 #[ObservedBy(UserObserver::class)]
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasCachedMediaInterface, HasMedia, HasName, MustVerifyEmail
 {
+    use Gamify;
+
     /** @use HasFactory<UserFactory> */
     use HasFactory;
-
-    use Gamify;
     use HasPlanSubscriptions;
     use HasProfilePhoto;
     use HasRoles;

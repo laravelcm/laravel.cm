@@ -2,30 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Channels;
 
-use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
-use Filament\Schemas\Schema;
-use Filament\Forms\Components\TextInput;
-use Filament\Schemas\Components\Utilities\Set;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\ColorPicker;
-use Filament\Schemas\Components\Utilities\Get;
-use Filament\Forms\Components\Textarea;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ColorColumn;
-use Filament\Actions\EditAction;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
-use App\Filament\Resources\ChannelResource\Pages\ListChannels;
-use App\Filament\Resources\ChannelResource\Pages;
 use App\Models\Channel;
-use Filament\Forms;
+use Filament\Actions;
+use Filament\Forms\Components;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Schemas\Components\Utilities;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
 
 final class ChannelResource extends Resource
 {
@@ -33,7 +22,7 @@ final class ChannelResource extends Resource
 
     protected static ?string $model = Channel::class;
 
-    protected static string | \BackedEnum | null $navigationIcon = 'untitledui-git-branch';
+    protected static string|\BackedEnum|null $navigationIcon = 'untitledui-git-branch';
 
     public static function getNavigationGroup(): string
     {
@@ -44,16 +33,16 @@ final class ChannelResource extends Resource
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                Components\TextInput::make('name')
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(fn ($state, Set $set): mixed => $set('slug', Str::slug($state)))
+                    ->afterStateUpdated(fn ($state, Utilities\Set $set): mixed => $set('slug', Str::slug($state)))
                     ->columnSpanFull(),
-                TextInput::make('slug')
+                Components\TextInput::make('slug')
                     ->readOnly()
                     ->required()
                     ->columnSpanFull(),
-                Select::make('parent_id')
+                Components\Select::make('parent_id')
                     ->relationship(
                         name: 'parent',
                         titleAttribute: 'name',
@@ -62,13 +51,13 @@ final class ChannelResource extends Resource
                     ->live()
                     ->default(null)
                     ->columnSpanFull(),
-                ColorPicker::make('color')
+                Components\ColorPicker::make('color')
                     ->label('Couleur')
                     ->hex()
                     ->live()
                     ->columnSpanFull()
-                    ->required(fn (Get $get): bool => $get('parent_id') === null),
-                Textarea::make('description')
+                    ->required(fn (Utilities\Get $get): bool => $get('parent_id') === null),
+                Components\Textarea::make('description')
                     ->rows(4)
                     ->columnSpanFull(),
             ]);
@@ -78,39 +67,38 @@ final class ChannelResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')
+                Columns\TextColumn::make('name')
                     ->label('Nom')
                     ->searchable(),
-                TextColumn::make('parent.name')
+                Columns\TextColumn::make('parent.name')
                     ->label('Parent')
                     ->placeholder('N/A')
                     ->sortable(),
-                TextColumn::make('thread_number')
+                Columns\TextColumn::make('thread_number')
                     ->label('Nombre de sujets')
                     ->getStateUsing(fn ($record) => $record->threads()->count()),
-                ColorColumn::make('color')
+                Columns\ColorColumn::make('color')
                     ->label('Couleur')
                     ->placeholder('N/A'),
-                TextColumn::make('created_at')
+                Columns\TextColumn::make('created_at')
                     ->label('Date')
                     ->date()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->recordActions([
-                EditAction::make(),
-                DeleteAction::make()
-                    ->iconButton(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make()->iconButton(),
             ])
             ->toolbarActions([
-                DeleteBulkAction::make(),
+                Actions\DeleteBulkAction::make(),
             ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => ListChannels::route('/'),
+            'index' => Pages\ListChannels::route('/'),
         ];
     }
 }

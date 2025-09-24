@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
-use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use App\Models\Reaction;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

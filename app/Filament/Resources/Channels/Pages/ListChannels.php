@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\ChannelResource\Pages;
+namespace App\Filament\Resources\Channels\Pages;
 
-use LaraZeus\SpatieTranslatable\Resources\Pages\ListRecords\Concerns\Translatable;
-use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
+use App\Filament\Resources\Channels\ChannelResource;
 use Filament\Actions\CreateAction;
-use Filament\Support\Enums\Width;
-use App\Filament\Resources\ChannelResource;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Support\Enums\Width;
+use LaraZeus\SpatieTranslatable\Actions\LocaleSwitcher;
+use LaraZeus\SpatieTranslatable\Resources\Pages\ListRecords\Concerns\Translatable;
 
 final class ListChannels extends ListRecords
 {

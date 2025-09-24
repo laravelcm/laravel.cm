@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Filament\Resources\TagResource;
-use App\Filament\Resources\TagResource\Pages\ListTags;
+use App\Filament\Resources\Tags\Pages\ListTags;
+use App\Filament\Resources\Tags\TagResource;
 use App\Models\Tag;
 use Filament\Actions\CreateAction;
 use Filament\Actions\EditAction;

@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\TagResource\Pages;
+namespace App\Filament\Resources\Tags\Pages;
 
+use App\Filament\Resources\Tags\TagResource;
 use Filament\Actions\CreateAction;
-use Filament\Support\Enums\Width;
-use App\Filament\Resources\TagResource;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Support\Enums\Width;
 
 final class ListTags extends ListRecords
 {

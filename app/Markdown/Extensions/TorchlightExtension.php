@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Markdown\Extensions;
 
-use Stringable;
 use App\Markdown\BaseExtension;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
@@ -13,6 +12,7 @@ use League\CommonMark\Extension\ExtensionInterface;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
+use Stringable;
 
 final class TorchlightExtension extends BaseExtension implements ExtensionInterface, NodeRendererInterface
 {

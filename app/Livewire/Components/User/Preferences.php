@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\User;
 
-use Filament\Actions\Contracts\HasActions;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Schemas\Schema;
-use Filament\Forms\Components\ToggleButtons;
-use Filament\Forms\Components\Select;
 use App\Models\User;
-use Filament\Forms;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
@@ -23,7 +22,7 @@ use Livewire\Component;
  * @property \Filament\Schemas\Schema $form
  * @property User $user
  */
-final class Preferences extends Component implements HasForms, HasActions
+final class Preferences extends Component implements HasActions, HasForms
 {
     use InteractsWithActions;
     use InteractsWithForms;

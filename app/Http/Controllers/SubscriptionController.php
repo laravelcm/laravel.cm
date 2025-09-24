@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Thread;
 use App\Models\Subscribe;
+use App\Models\Thread;
 use Illuminate\Http\RedirectResponse;
 
 final class SubscriptionController extends Controller

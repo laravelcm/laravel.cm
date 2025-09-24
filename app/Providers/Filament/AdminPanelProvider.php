@@ -6,11 +6,10 @@ namespace App\Providers\Filament;
 
 use Backstage\FilamentMails\FilamentMails;
 use Backstage\FilamentMails\FilamentMailsPlugin;
-use Filament\Pages\Dashboard;
-use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Illuminate\Contracts\View\View;
@@ -21,6 +20,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 
 final class AdminPanelProvider extends PanelProvider
 {

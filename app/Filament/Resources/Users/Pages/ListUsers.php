@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\UserResource\Pages;
+namespace App\Filament\Resources\Users\Pages;
 
-use Filament\Schemas\Components\Tabs\Tab;
-use App\Filament\Resources\UserResource;
+use App\Filament\Resources\Users\UserResource;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Schemas\Components\Tabs\Tab;
 
 final class ListUsers extends ListRecords
 {

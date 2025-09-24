@@ -1,5 +1,5 @@
 <header {{ $attributes->twMerge(['class' => 'relative z-30 bg-white dark:bg-gray-900 lg:bg-transparent']) }}>
-    <div class="flex items-center justify-center py-1.5 bg-green-700 text-white text-sm xl:text-base">
+    <div class="hidden items-center justify-center py-1.5 bg-green-700 text-white text-sm xl:text-base">
         <x-link
             :href="route('sponsors')"
             class="group inline-flex items-center"

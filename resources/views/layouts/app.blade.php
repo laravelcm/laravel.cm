@@ -28,11 +28,11 @@
 
     @if (! auth()->check())
         <script>
-            localStorage.setItem('theme', 'light')
+            localStorage.setItem('theme', 'dark')
         </script>
     @else
         <script>
-            const theme = localStorage.getItem('theme') ?? @js(auth()->user()->setting('theme', 'light'))
+            const theme = localStorage.getItem('theme') ?? @js(auth()->user()->setting('theme', 'dark'))
 
             if (
                 theme === 'dark' ||

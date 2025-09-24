@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\DiscussionResource\Pages;
+namespace App\Filament\Resources\Discussions\Pages;
 
-use App\Filament\Resources\DiscussionResource;
+use App\Filament\Resources\Discussions\DiscussionResource;
 use Filament\Resources\Pages\ListRecords;
 
 final class ListDiscussions extends ListRecords

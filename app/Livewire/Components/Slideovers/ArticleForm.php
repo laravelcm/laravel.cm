@@ -4,22 +4,6 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Slideovers;
 
-use Filament\Actions\Contracts\HasActions;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Schemas\Schema;
-use Filament\Schemas\Components\Group;
-use Filament\Forms\Components\TextInput;
-use Filament\Schemas\Components\Utilities\Set;
-use Filament\Forms\Components\Hidden;
-use Filament\Schemas\Components\Grid;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\DatePicker;
-use Filament\Schemas\Components\Utilities\Get;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\ToggleButtons;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Placeholder;
 use App\Actions\Article\CreateArticleAction;
 use App\Actions\Article\UpdateArticleAction;
 use App\Data\ArticleData;
@@ -27,10 +11,16 @@ use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Article;
 use Carbon\Carbon;
-use Filament\Forms;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Components\Utilities;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +32,7 @@ use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 /**
  * @property-read \Filament\Schemas\Schema $form
  */
-final class ArticleForm extends SlideOverComponent implements HasForms, HasActions
+final class ArticleForm extends SlideOverComponent implements HasActions, HasForms
 {
     use InteractsWithActions;
     use InteractsWithForms;
@@ -82,42 +72,42 @@ final class ArticleForm extends SlideOverComponent implements HasForms, HasActio
             ->components([
                 Group::make()
                     ->schema([
-                        TextInput::make('title')
+                        Components\TextInput::make('title')
                             ->label(__('validation.attributes.title'))
                             ->minLength(10)
                             ->required()
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn ($state, Set $set): mixed => $set('slug', Str::slug($state))),
-                        Hidden::make('slug'),
-                        TextInput::make('canonical_url')
+                            ->afterStateUpdated(fn ($state, Utilities\Set $set): mixed => $set('slug', Str::slug($state))),
+                        Components\Hidden::make('slug'),
+                        Components\TextInput::make('canonical_url')
                             ->label(__('pages/article.form.canonical_url'))
                             ->helperText(__('pages/article.canonical_help')),
                         Grid::make()
                             ->schema([
-                                Toggle::make('is_draft')
+                                Components\Toggle::make('is_draft')
                                     ->label(__('pages/article.form.draft'))
                                     ->live()
                                     ->offIcon('untitledui-check')
                                     ->onColor('success')
                                     ->onIcon('untitledui-pencil-line')
                                     ->helperText(__('pages/article.draft_help')),
-                                DatePicker::make('published_at')
+                                Components\DatePicker::make('published_at')
                                     ->label(__('pages/article.form.published_at'))
                                     ->closeOnDateSelection()
                                     ->prefixIcon('untitledui-calendar-date')
                                     ->native(false)
-                                    ->visible(fn (Get $get): bool => $get('is_draft') === false)
-                                    ->required(fn (Get $get): bool => $get('is_draft') === false),
+                                    ->visible(fn (Utilities\Get $get): bool => $get('is_draft') === false)
+                                    ->required(fn (Utilities\Get $get): bool => $get('is_draft') === false),
                             ]),
                     ])
                     ->columnSpan(2),
                 Group::make()
                     ->schema([
-                        SpatieMediaLibraryFileUpload::make('media')
+                        Components\SpatieMediaLibraryFileUpload::make('media')
                             ->collection('media')
                             ->label(__('pages/article.form.cover'))
                             ->maxSize(1024),
-                        Select::make('tags')
+                        Components\Select::make('tags')
                             ->multiple()
                             ->relationship(
                                 name: 'tags',
@@ -128,7 +118,7 @@ final class ArticleForm extends SlideOverComponent implements HasForms, HasActio
                             ->required()
                             ->minItems(1)
                             ->maxItems(3),
-                        ToggleButtons::make('locale')
+                        Components\ToggleButtons::make('locale')
                             ->label(__('validation.attributes.locale'))
                             ->options(['en' => 'En', 'fr' => 'Fr'])
                             ->helperText(__('global.locale_help'))
@@ -137,7 +127,7 @@ final class ArticleForm extends SlideOverComponent implements HasForms, HasActio
                     ->columnSpan(1),
                 Group::make()
                     ->schema([
-                        MarkdownEditor::make('body')
+                        Components\MarkdownEditor::make('body')
                             ->toolbarButtons([
                                 'attachFiles',
                                 'blockquote',
@@ -155,7 +145,7 @@ final class ArticleForm extends SlideOverComponent implements HasForms, HasActio
                             ->minLength(10)
                             ->maxHeight('20.25rem')
                             ->required(),
-                        Placeholder::make('')
+                        Components\Placeholder::make('')
                             ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                 <x-torchlight />
                             Blade))),

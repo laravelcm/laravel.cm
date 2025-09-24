@@ -4,22 +4,21 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components;
 
-use Filament\Actions\Contracts\HasActions;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Schemas\Schema;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\ToggleButtons;
-use Filament\Schemas\Components\Group;
-use Filament\Forms\Components\Select;
-use Filament\Schemas\Components\Utilities\Get;
 use App\Enums\PaymentType;
 use App\Enums\TransactionType;
 use App\Models\Transaction;
 use App\Models\User;
-use Filament\Forms;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -32,7 +31,7 @@ use NotchPay\Payment;
 /**
  * @property-read \Filament\Schemas\Schema $form
  */
-final class SponsorSubscription extends Component implements HasForms, HasActions
+final class SponsorSubscription extends Component implements HasActions, HasForms
 {
     use InteractsWithActions;
     use InteractsWithForms;

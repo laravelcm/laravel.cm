@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Traits;
 
-use Illuminate\Support\Collection;
 use App\Http\Resources\AuthenticateUserResource;
 use App\Http\Resources\EnterpriseResource;
 use App\Models\User;
+use Illuminate\Support\Collection;
 
 /**
  * @phpstan-ignore trait.unused

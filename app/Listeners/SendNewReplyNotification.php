@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Listeners;
 
-use App\Models\Thread;
 use App\Events\ReplyWasCreated;
 use App\Models\Subscribe;
+use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\NewReplyNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;

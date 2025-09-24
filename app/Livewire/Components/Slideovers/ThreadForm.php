@@ -4,25 +4,19 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Slideovers;
 
-use Filament\Actions\Contracts\HasActions;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Schemas\Schema;
-use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\TextInput;
-use Filament\Schemas\Components\Utilities\Set;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\ToggleButtons;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Placeholder;
 use App\Actions\Forum\CreateThreadAction;
 use App\Actions\Forum\UpdateThreadAction;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Thread;
-use Filament\Forms;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
@@ -33,7 +27,7 @@ use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 /**
  * @property \Filament\Schemas\Schema $form
  */
-final class ThreadForm extends SlideOverComponent implements HasForms, HasActions
+final class ThreadForm extends SlideOverComponent implements HasActions, HasForms
 {
     use InteractsWithActions;
     use InteractsWithForms;
@@ -69,8 +63,8 @@ final class ThreadForm extends SlideOverComponent implements HasForms, HasAction
     {
         return $schema
             ->components([
-                Hidden::make('user_id'),
-                TextInput::make('title')
+                Components\Hidden::make('user_id'),
+                Components\TextInput::make('title')
                     ->label(__('validation.attributes.title'))
                     ->helperText(__('pages/forum.min_thread_length'))
                     ->required()
@@ -79,15 +73,15 @@ final class ThreadForm extends SlideOverComponent implements HasForms, HasAction
                         $set('slug', Str::slug($state));
                     })
                     ->minLength(10),
-                Hidden::make('slug'),
-                Select::make('channels')
+                Components\Hidden::make('slug'),
+                Components\Select::make('channels')
                     ->multiple()
                     ->relationship(titleAttribute: 'name')
                     ->preload()
                     ->required()
                     ->minItems(1)
                     ->maxItems(3),
-                ToggleButtons::make('locale')
+                Components\ToggleButtons::make('locale')
                     ->label(__('validation.attributes.locale'))
                     ->options([
                         'en' => 'En',
@@ -95,7 +89,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms, HasAction
                     ])
                     ->helperText(__('global.locale_help'))
                     ->grouped(),
-                MarkdownEditor::make('body')
+                Components\MarkdownEditor::make('body')
                     ->fileAttachmentsDisk('public')
                     ->toolbarButtons([
                         'attachFiles',
@@ -108,7 +102,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms, HasAction
                     ->label(__('validation.attributes.content'))
                     ->required()
                     ->minLength(20),
-                Placeholder::make('')
+                Components\Placeholder::make('')
                     ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                         <x-torchlight />
                     Blade))),

@@ -29,7 +29,7 @@ final class GetGithubRepositoriesAction
 
         return Cache::remember(
             key: 'github-repositories',
-            ttl: now()->addWeek(),
+            ttl: now()->addMonth(),
             callback: fn () => collect($response->json())
                 ->reject(fn (array $value): bool => $value['fork'] === true || ! in_array($value['name'], $only))
                 ->map(fn (array $data): RepositoryData => RepositoryData::from($data))

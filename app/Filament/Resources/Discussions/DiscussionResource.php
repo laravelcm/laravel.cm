@@ -2,19 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Discussions;
 
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\IconColumn;
-use Filament\Actions\Action;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use App\Filament\Resources\DiscussionResource\Pages\ListDiscussions;
-use App\Filament\Resources\DiscussionResource\Pages;
 use App\Models\Discussion;
+use Filament\Actions;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Columns;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,7 +16,7 @@ final class DiscussionResource extends Resource
 {
     protected static ?string $model = Discussion::class;
 
-    protected static string | \BackedEnum | null $navigationIcon = 'untitledui-message-chat-square';
+    protected static string|\BackedEnum|null $navigationIcon = 'untitledui-message-chat-square';
 
     public static function getNavigationGroup(): string
     {
@@ -34,45 +27,48 @@ final class DiscussionResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')
-                    ->label('Titre')
+                Columns\TextColumn::make('title')
+                    ->label(__('Titre'))
                     ->limit(50)
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('user.name')
-                    ->label('Auteur')
+                Columns\TextColumn::make('user.name')
+                    ->label(__('Auteur'))
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('count_all_replies_with_child')
-                    ->label('Commentaires'),
-                IconColumn::make('locked')
-                    ->label('Vérrouillé')
+                Columns\TextColumn::make('count_all_replies_with_child')
+                    ->label(__('Commentaires')),
+                Columns\IconColumn::make('locked')
+                    ->label(__('Vérrouillé'))
                     ->boolean()
                     ->trueIcon('untitledui-lock-04')
                     ->trueColor('warning')
                     ->falseIcon('untitledui-lock-unlocked-04')
                     ->falseColor('gray'),
-                TextColumn::make('created_at')
-                    ->label('Date')
+                Columns\TextColumn::make('created_at')
+                    ->label(__('Date'))
                     ->date(),
             ])
             ->filters([
-                Filter::make('is_pinned')->query(fn (Builder $query) => $query->where('is_pinned', true))->label('Epinglé'),
-                Filter::make('is_locked')->query(fn (Builder $query) => $query->where('locked', true))->label('Vérrouillé'),
+                Filter::make('is_pinned')
+                    ->query(fn (Builder $query) => $query->where('is_pinned', true))
+                    ->label(__('Epinglé')),
+                Filter::make('is_locked')
+                    ->query(fn (Builder $query) => $query->where('locked', true))
+                    ->label(__('Vérrouillé')),
             ])
             ->recordActions([
-                Action::make('show')
+                Actions\Action::make('show')
                     ->icon('untitledui-eye')
                     ->iconButton()
                     ->color('gray')
                     ->url(fn (Discussion $record): string => route('discussions.show', $record))
                     ->openUrlInNewTab(),
-                DeleteAction::make()
-                    ->iconButton(),
+                Actions\DeleteAction::make()->iconButton(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -80,7 +76,7 @@ final class DiscussionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListDiscussions::route('/'),
+            'index' => Pages\ListDiscussions::route('/'),
         ];
     }
 }

@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\User;
 
-use Filament\Actions\Contracts\HasActions;
 use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Schemas\Schema;
+use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +20,7 @@ use Livewire\Component;
 /**
  * @property \Filament\Schemas\Schema $form
  */
-final class Password extends Component implements HasForms, HasActions
+final class Password extends Component implements HasActions, HasForms
 {
     use InteractsWithActions;
     use InteractsWithForms;

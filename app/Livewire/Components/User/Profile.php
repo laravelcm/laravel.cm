@@ -4,21 +4,20 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\User;
 
-use Filament\Actions\Contracts\HasActions;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Schemas\Schema;
-use Filament\Schemas\Components\Section;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Schemas\Components\Utilities\Set;
 use App\Actions\User\UpdateUserProfileAction;
 use App\Models\User;
 use App\Traits\FormatSocialAccount;
-use Filament\Forms;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\HtmlString;
@@ -29,10 +28,10 @@ use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
  * @property \Filament\Schemas\Schema $form
  * @property User $user
  */
-final class Profile extends Component implements HasForms, HasActions
+final class Profile extends Component implements HasActions, HasForms
 {
-    use InteractsWithActions;
     use FormatSocialAccount;
+    use InteractsWithActions;
     use InteractsWithForms;
 
     public ?array $data = [];
