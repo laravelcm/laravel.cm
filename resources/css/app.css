@@ -1,13 +1,17 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
+@import 'tailwindcss';
 @import 'base.css';
 @import 'tag.css';
 @import 'forms.css';
 @import 'torchlight.css';
 @import 'forum.css';
 @import 'header.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @property --border-angle {
   inherits: false;

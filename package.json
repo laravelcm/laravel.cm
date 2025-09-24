@@ -13,6 +13,8 @@
     "@ryangjchandler/alpine-tooltip": "^2.0.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/vite": "^4.1.13",
+    "@tailwindplus/elements": "^1.0.13",
     "@tailwindcss/typography": "^0.5.10",
     "alpinejs": "^3.12.0",
     "autoprefixer": "^10.4.16",
@@ -24,11 +26,8 @@
     "postcss-preset-env": "^10.1.0",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.6.8",
-    "tailwindcss": "^3.4.10",
+    "tailwindcss": "^4.1.13",
     "tippy.js": "^6.3.7",
     "vite": "^7.1.7"
-  },
-  "dependencies": {
-    "@tailwindplus/elements": "^1.0.13"
   }
 }
