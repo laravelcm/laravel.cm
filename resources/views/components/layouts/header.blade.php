@@ -1,5 +1,10 @@
-<header {{ $attributes->twMerge(['class' => 'relative z-30 bg-white dark:bg-gray-900 lg:bg-transparent']) }}>
-    <div class="hidden items-center justify-center py-1.5 bg-green-700 text-white text-sm xl:text-base">
+<header
+    x-data="{ scrolled: false }"
+    x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 50)"
+    :class="scrolled ? 'bg-white/80 backdrop-blur-lg dark:bg-gray-900/80' : 'bg-transparent backdrop-blur-none'"
+    class="fixed inset-x-0 z-30 border-b border-dotted border-gray-200 dark:border-white/10 transition-all duration-300 ease-in-out"
+>
+    <div class="hidden items-center justify-center py-1.5 bg-primary-700 text-white text-sm xl:text-base">
         <x-link
             :href="route('sponsors')"
             class="group inline-flex items-center"
@@ -28,11 +33,11 @@
             </div>
         @endif
 
-        <nav class="flex z-10 h-16 items-center justify-between lg:h-20">
+        <nav class="flex z-10 h-16 items-center justify-between">
             <div class="flex flex-1 items-center">
                 <div class="flex shrink-0 items-center">
                     <x-link :href="route('home')" class="inline-flex items-center gap-1">
-                        <x-brand.icon class="block h-8 w-auto sm:h-9" aria-hidden="true" />
+                        <x-brand.icon class="block h-7 w-auto sm:h-8" aria-hidden="true" />
                         @if (isHolidayWeek())
                             <div class="relative flex flex-col text-center group">
                                 <x-icon.christmas-town class="w-auto h-8" aria-hidden="true" />
@@ -49,7 +54,10 @@
             </div>
 
             <div x-data="{ open: false }" class="flex items-center gap-6">
-                @include('partials._search')
+                <!-- @ToDo: Replace with the command palette modal search -->
+                <div class="hidden">
+                    @include('partials._search')
+                </div>
 
                 <!-- Large screen authenticate links -->
                 <div class="hidden items-center gap-6 lg:flex">
@@ -58,10 +66,9 @@
                             :href="route('login')"
                             :title="__('pages/auth.login.page_title')"
                         />
-                        <x-nav.item
-                            :href="route('register')"
-                            :title="__('pages/auth.register.page_title')"
-                        />
+                        <x-buttons.primary :href="route('register')">
+                            {{ __('pages/auth.register.page_title') }}
+                        </x-buttons.primary>
                     @else
                         <x-nav.item :href="route('notifications')">
                             <x-slot:title>
@@ -71,7 +78,10 @@
                             </x-slot:title>
                         </x-nav.item>
 
-                        <x-launch-content />
+                        <!-- @ToDo: Remove this component after added command palette modal search -->
+                        <div class="hidden">
+                            <x-launch-content />
+                        </div>
 
                         <livewire:components.user-dropdown />
                     @endguest

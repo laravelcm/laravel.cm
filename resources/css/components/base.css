@@ -60,3 +60,13 @@ input { width: 100%; }
 .iti--inline-dropdown .iti__dropdown-content {
   @apply !mt-2 !rounded-lg !border-gray-200 dark:!border-white/10 !shadow;
 }
+
+/* Gradient */
+.section-gradient {
+  background: radial-gradient(60% 60% at 22% 0, #f4f4f5, #ffffff);
+  position: relative
+}
+
+.dark .section-gradient {
+  background: radial-gradient(60% 60% at 22% 0, #0d1d1c, #151515);
+}

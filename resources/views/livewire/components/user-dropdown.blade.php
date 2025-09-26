@@ -22,15 +22,15 @@ new class extends Component {
 <el-dropdown class="inline-block">
     <button
         type="button"
-        class="flex rounded-full bg-white text-sm dark:bg-gray-800 focus:outline-hidden focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+        class="flex rounded-full bg-white text-sm dark:bg-gray-800 focus:outline-hidden focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
     >
         <span class="sr-only">{{ __('global.open_navigation') }}</span>
-        <x-user.avatar :$user class="size-8" />
+        <x-user.avatar :$user class="size-7" />
     </button>
 
     <el-menu
         anchor="bottom end"
-        class="m-0 w-60 origin-top-right divide-y divide-gray-200 dark:divide-white/20 rounded-lg  bg-white py-1 shadow ring-1 ring-black/5 dark:bg-gray-800 dark:ring-white/10 transition [--anchor-gap:theme(spacing.2)] [transition-behavior:allow-discrete] data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+        class="m-0 w-60 origin-top-right divide-y divide-gray-200 dark:divide-white/10 rounded-lg  bg-white py-1 shadow ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10 transition [--anchor-gap:theme(spacing.2)] [transition-behavior:allow-discrete] data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
         popover
     >
         <div class="px-3.5 py-3">

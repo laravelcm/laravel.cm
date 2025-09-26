@@ -6,7 +6,7 @@
     <x-container class="py-12">
         <div class="relative lg:grid lg:grid-cols-10 lg:gap-12">
             <div class="hidden lg:col-span-2 lg:block">
-                <nav class="sticky top-10 space-y-6">
+                <nav class="sticky top-20 space-y-6">
                     @isset ($buttons)
                         {{ $buttons }}
                     @endisset

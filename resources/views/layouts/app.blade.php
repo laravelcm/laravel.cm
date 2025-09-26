@@ -47,7 +47,7 @@
 </head>
 <body class="h-full bg-gray-50 font-sans text-gray-500 antialiased dark:text-gray-400 dark:bg-gray-900 selection:bg-primary-500 selection:text-gray-950">
     <div id="main-site" class="flex min-h-screen flex-col justify-between">
-        <x-layouts.header {{ $attributes->class($attributes->get('header-class')) }} />
+        <x-layouts.header />
 
         <main class="relative z-20 w-full flex-1">
             {{ $slot }}
