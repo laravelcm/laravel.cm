@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Support\Collection;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -22,8 +23,8 @@ use Spatie\Translatable\HasTranslations;
  * @property-read string $color
  * @property-read int|null $parent_id
  * @property-read Channel|null $parent
- * @property-read \Illuminate\Support\Collection<array-key, Channel> $items
- * @property-read \Illuminate\Support\Collection<array-key, Thread> $threads
+ * @property-read Collection<array-key, Channel> $items
+ * @property-read Collection<array-key, Thread> $threads
  */
 final class Channel extends Model
 {

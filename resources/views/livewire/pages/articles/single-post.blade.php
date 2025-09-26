@@ -27,7 +27,7 @@
             <div class="lg:grid lg:grid-cols-5 lg:gap-16">
                 <div class="lg:col-span-3">
                     @auth
-                        @if($article->isNotPublished() && $article->isAuthoredBy(\Illuminate\Support\Facades\Auth::user()))
+                        @if ($article->isNotPublished() && $article->isAuthoredBy(\Illuminate\Support\Facades\Auth::user()))
                             <div class="border-l-4 border-yellow-400 rounded-r-lg ring-1 ring-yellow-200 bg-yellow-50 p-4 mb-10 dark:bg-yellow-800/20 dark:ring-yellow-800">
                                 <div class="flex">
                                     <div class="shrink-0">
@@ -132,21 +132,21 @@
                                 <div class="mt-4 flex flex-wrap gap-2">
                                     <a
                                         href="https://twitter.com/share?text={{ urlencode('"' . $article->title . '" par ' . ($article->user->twitter() ? '@' . $article->user->twitter() : $article->user->name) . ' #caparledev - ') }}&url={{ urlencode(route('articles.show', $article)) }}"
-                                        class="inline-flex items-center py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
+                                        class="inline-flex items-center py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-xs text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
                                         target="_blank"
                                     >
                                         <x-icon.twitter class="size-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />
                                     </a>
                                     <a
                                         href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('articles.show', $article)) }}&quote={{ urlencode('"' . $article->title . '" par ' . $article->user->name . ' - ') }}"
-                                        class="inline-flex items-center py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
+                                        class="inline-flex items-center py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-xs text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
                                         target="_blank"
                                     >
                                         <x-icon.facebook class="size-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />
                                     </a>
                                     <a
                                         href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(route('articles.show', $article)) }}&title={{ urlencode('"' . $article->title . '" par ' . $article->user->name . ' - ') }}"
-                                        class="inline-flex items-center py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-sm text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
+                                        class="inline-flex items-center py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-xs text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900"
                                         target="_blank"
                                     >
                                         <x-icon.linkedin class="size-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />

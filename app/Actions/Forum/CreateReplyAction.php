@@ -24,6 +24,7 @@ final class CreateReplyAction
         $reply->save();
 
         givePoint(new ReplyCreated($model, $user));
+
         event(new ReplyWasCreated($reply));
     }
 }

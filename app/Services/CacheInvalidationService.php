@@ -38,6 +38,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
@@ -64,7 +65,7 @@ final class CacheInvalidationService
             if (! empty($keys)) {
                 Redis::connection($connection)->del($keys);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->invalidateFallbackPattern();
         }
     }

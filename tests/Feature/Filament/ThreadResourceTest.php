@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Filament\Resources\ThreadResource;
+use App\Filament\Resources\Threads\ThreadResource;
 use App\Models\Thread;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Livewire\Livewire;
@@ -21,7 +21,7 @@ beforeEach(function (): void {
 
 describe(ThreadResource::class, function (): void {
     it('page can display table with records', function (): void {
-        Livewire::test(ThreadResource\Pages\ListThreads::class)
+        Livewire::test(Threads\Pages\ListThreads::class)
             ->assertCanSeeTableRecords($this->threads);
     });
 })->group('threads');

@@ -15,7 +15,7 @@
     <div class="relative">
         <button
             type="button"
-            class="relative inline-flex w-full cursor-default items-center gap-2 rounded-lg bg-white dark:bg-gray-800 py-2 pl-3 pr-10 text-left text-gray-900 dark:text-white ring-1 ring-inset ring-gray-200 dark:ring-white/10 focus:outline-none focus:ring-2 focus:ring-primary-600 sm:w-52 sm:text-sm sm:leading-6"
+            class="relative inline-flex w-full cursor-default items-center gap-2 rounded-lg bg-white dark:bg-gray-800 py-2 pl-3 pr-10 text-left text-gray-900 dark:text-white ring-1 ring-inset ring-gray-200 dark:ring-white/10 focus:outline-hidden focus:ring-2 focus:ring-primary-600 sm:w-52 sm:text-sm sm:leading-6"
             aria-haspopup="listbox"
             aria-expanded="true"
             aria-labelledby="listbolabel"
@@ -35,7 +35,7 @@
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
             @click.away="open = false"
-            class="absolute z-10 mt-1 w-60 rounded-lg bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black dark:ring-white/10 ring-opacity-5 focus:outline-none overflow-hidden sm:text-sm"
+            class="absolute z-10 mt-1 w-60 rounded-lg bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black/5 dark:ring-white/10 focus:outline-hidden overflow-hidden sm:text-sm"
             tabindex="-1"
             role="listbox"
             aria-labelledby="listbolabel"

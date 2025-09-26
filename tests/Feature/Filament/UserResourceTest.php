@@ -7,8 +7,8 @@ use App\Actions\User\UnBanUserAction;
 use App\Events\UserBannedEvent;
 use App\Events\UserUnbannedEvent;
 use App\Exceptions\UserAlreadyBannedException;
-use App\Filament\Resources\UserResource;
-use App\Filament\Resources\UserResource\Pages\ListUsers;
+use App\Filament\Resources\Users\Pages\ListUsers;
+use App\Filament\Resources\Users\UserResource;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Event;
@@ -20,9 +20,11 @@ use function Pest\Laravel\get;
 
 beforeEach(function (): void {
     Event::fake();
-    $this->user = User::factory(['email' => 'user@laravel.cm'])->create();
     Role::create(['name' => 'admin']);
+
+    $this->user = User::factory(['email' => 'user@laravel.cm'])->create();
     $this->user->assignRole(['admin']);
+
     $this->actingAs($this->user, 'web');
 });
 

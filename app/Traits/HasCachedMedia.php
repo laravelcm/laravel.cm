@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Traits;
 
 use App\Services\MediaCacheService;
+use DateTimeInterface;
 
 trait HasCachedMedia
 {
@@ -18,7 +19,7 @@ trait HasCachedMedia
         );
     }
 
-    public function getCacheTtl(): \DateTimeInterface
+    public function getCacheTtl(): DateTimeInterface
     {
         return now()->addYear();
     }

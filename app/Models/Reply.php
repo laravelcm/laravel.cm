@@ -77,7 +77,7 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
         return $matches[1];
     }
 
-    public function to(ReplyInterface $replyable): void
+    public function to(ReplyInterface|Model $replyable): void
     {
         $this->replyAble()->associate($replyable); // @phpstan-ignore-line
     }
@@ -86,9 +86,9 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
      * @param  Builder<Reply>  $query
      */
     #[Scope]
-    protected function isSolution(Builder $query): void
+    protected function isSolution(Builder $query): Builder
     {
-        $query->has('solutionTo');
+        return $query->has('solutionTo');
     }
 
     public function delete(): bool

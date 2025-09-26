@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Tags;
 
-use App\Filament\Resources\TagResource\Pages;
 use App\Models\Tag;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Actions;
+use Filament\Forms\Components;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 
@@ -17,28 +18,28 @@ final class TagResource extends Resource
 {
     protected static ?string $model = Tag::class;
 
-    protected static ?string $navigationIcon = 'untitledui-tag-03';
+    protected static string|\BackedEnum|null $navigationIcon = 'untitledui-tag-03';
 
     public static function getNavigationGroup(): string
     {
         return __('Contenu');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
+        return $schema
+            ->components([
+                Components\TextInput::make('name')
                     ->live(onBlur: true)
                     ->required()
                     ->unique(ignoreRecord: true)
-                    ->afterStateUpdated(fn ($state, Forms\Set $set): mixed => $set('slug', Str::slug($state)))
+                    ->afterStateUpdated(fn ($state, Set $set): mixed => $set('slug', Str::slug($state)))
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('slug')
+                Components\TextInput::make('slug')
                     ->readOnly()
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Select::make('concerns')
+                Components\Select::make('concerns')
                     ->multiple()
                     ->options([
                         'post' => 'Article',
@@ -47,8 +48,7 @@ final class TagResource extends Resource
                     ])
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
+                Components\Textarea::make('description')->columnSpanFull(),
             ]);
     }
 
@@ -56,18 +56,16 @@ final class TagResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make(name: 'concerns'),
+                TextColumn::make('name')->searchable(),
+                TextColumn::make(name: 'concerns'),
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make()
-                    ->iconButton(),
+            ->recordActions([
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Filament\Resources\ChannelResource;
-use App\Filament\Resources\ChannelResource\Pages\ListChannels;
+use App\Filament\Resources\Channels\ChannelResource;
+use App\Filament\Resources\Channels\Pages\ListChannels;
 use App\Models\Channel;
 use Filament\Actions\CreateAction;
 use Filament\Actions\EditAction;

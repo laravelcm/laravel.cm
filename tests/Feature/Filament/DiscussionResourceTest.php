@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Filament\Resources\DiscussionResource;
-use App\Filament\Resources\DiscussionResource\Pages\ListDiscussions;
+use App\Filament\Resources\Discussions\DiscussionResource;
+use App\Filament\Resources\Discussions\Pages\ListDiscussions;
 use App\Models\Discussion;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Livewire\Livewire;

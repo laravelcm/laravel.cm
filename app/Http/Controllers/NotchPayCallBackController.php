@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Enums\TransactionStatus;
 use App\Events\SponsoringPaymentInitialize;
 use App\Models\Transaction;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -49,7 +50,7 @@ final class NotchPayCallBackController extends Controller
                 );
             }
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e->getMessage());
 
             session()->flash(

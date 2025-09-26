@@ -16,7 +16,7 @@
                         <x-brand.icon class="block h-12 w-auto sm:h-14" aria-hidden="true" />
                     </div>
                     <div class="min-w-0 flex-1">
-                        <div class="focus:outline-none">
+                        <div class="focus:outline-hidden">
                             <p class="text-sm font-medium text-gray-900 dark:text-white">{{ __('global.site_name') }}</p>
                             <div class="mt-2 flex items-center space-x-4">
                                 <a href="https://twitter.com/laravelcm" class="text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500">

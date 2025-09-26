@@ -1,6 +1,6 @@
 <x-filament::modal width="5xl" id="launch" :close-by-escaping="false">
     <x-slot name="trigger">
-        <button type="button" class="inline-flex items-center text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white focus:outline-none">
+        <button type="button" class="inline-flex items-center text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white focus:outline-hidden">
             <span class="sr-only">{{ __('global.open_navigation') }}</span>
             <x-untitledui-plus class="size-5" aria-hidden="true" />
         </button>

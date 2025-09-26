@@ -23,6 +23,7 @@ use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
@@ -40,10 +41,10 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read User $user
  * @property-read \Illuminate\Support\Carbon $created_at
  * @property-read \Illuminate\Support\Carbon $updated_at
- * @property-read \Illuminate\Support\Collection<array-key, SpamReport> $spamReports
- * @property-read \Illuminate\Support\Collection<array-key, Reply> $replies
- * @property-read \Illuminate\Support\Collection<array-key, Tag> $tags
- * @property-read \Illuminate\Support\Collection<array-key, Reaction> $reactions
+ * @property-read Collection<array-key, SpamReport> $spamReports
+ * @property-read Collection<array-key, Reply> $replies
+ * @property-read Collection<array-key, Tag> $tags
+ * @property-read Collection<array-key, Reaction> $reactions
  */
 final class Discussion extends Model implements ReactableInterface, ReplyInterface, Sitemapable, SpamReportableContract, SubscribeInterface, Viewable
 {

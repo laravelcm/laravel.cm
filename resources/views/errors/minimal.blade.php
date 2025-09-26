@@ -27,7 +27,7 @@
                         <div class="min-w-0 flex-1">
                             <h3 class="font-medium text-gray-900 dark:text-white">
                                 <span class="rounded-lg focus-within:ring-2 focus-within:ring-primary-500 focus-within:ring-offset-2">
-                                    <x-link :href="route('forum.index')" class="focus:outline-none">
+                                    <x-link :href="route('forum.index')" class="focus:outline-hidden">
                                         <span class="absolute inset-0" aria-hidden="true"></span>
                                         {{ __('global.navigation.forum') }}
                                     </x-link>
@@ -51,7 +51,7 @@
                         <div class="min-w-0 flex-1">
                             <h3 class="font-medium text-gray-900 dark:text-white">
                                 <span class="rounded-lg focus-within:ring-2 focus-within:ring-primary-500 focus-within:ring-offset-2">
-                                    <x-link :href="route('articles.index')" class="focus:outline-none">
+                                    <x-link :href="route('articles.index')" class="focus:outline-hidden">
                                         <span class="absolute inset-0" aria-hidden="true"></span>
                                         {{ __('global.navigation.articles') }}
                                     </x-link>
@@ -75,7 +75,7 @@
                         <div class="min-w-0 flex-1">
                             <h3 class="font-medium text-gray-900 dark:text-white">
                                 <span class="rounded-sm focus-within:ring-2 focus-within:ring-primary-500 focus-within:ring-offset-2">
-                                    <x-link :href="route('rules')" class="focus:outline-none">
+                                    <x-link :href="route('rules')" class="focus:outline-hidden">
                                         <span class="absolute inset-0" aria-hidden="true"></span>
                                         {{ __('global.navigation.rules') }}
                                     </x-link>
@@ -99,7 +99,7 @@
                         <div class="min-w-0 flex-1">
                             <h3 class="font-medium text-gray-900 dark:text-white">
                                 <span class="rounded-lg focus-within:ring-2 focus-within:ring-primary-500 focus-within:ring-offset-2">
-                                    <x-link href="#" class="focus:outline-none">
+                                    <x-link href="#" class="focus:outline-hidden">
                                         <span class="absolute inset-0" aria-hidden="true"></span>
                                         {{ __('global.navigation.podcasts') }}
                                     </x-link>

@@ -15,10 +15,10 @@
     @endphp
 
     @if (! $isSummary)
-        <div class="aspect-[2/1] w-full rounded-lg bg-gray-100 overflow-hidden shadow-sm transition group-hover:opacity-80">
+        <div class="aspect-[2/1] w-full rounded-lg bg-gray-100 overflow-hidden shadow-xs transition group-hover:opacity-80">
             <img
                 loading="lazy"
-                class="rounded-lg object-cover shadow-sm group-hover:opacity-75"
+                class="rounded-lg object-cover shadow-xs group-hover:opacity-75"
                 src="{{ $media }}"
                 alt="{{ $article->title }}"
             />

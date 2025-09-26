@@ -1,5 +1,5 @@
 <div
-    class="relative space-y-3 bg-white dark:bg-gray-800 ring-1 ring-gray-200 rounded-lg p-4 dark:ring-white/10 shadow-sm transition-all transform duration-200 ease-in-out hover:scale-105 hover:rotate-2 overflow-hidden">
+    class="relative space-y-3 bg-white dark:bg-gray-800 ring-1 ring-gray-200 rounded-lg p-4 dark:ring-white/10 shadow-xs transition-all transform duration-200 ease-in-out hover:scale-105 hover:rotate-2 overflow-hidden">
     <div
         class="absolute left-1/2 top-0 ml-[3rem] h-[8rem] w-[10.25rem] dark:[mask-image:linear-gradient(white,transparent)]">
         <div

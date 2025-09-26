@@ -130,7 +130,7 @@
                     </button>
                 @endforeach
                 <div x-ref="tabMarker" class="absolute left-0 z-10 h-full w-1/2 duration-300 ease-out" x-cloak>
-                    <div class="h-full w-full rounded-lg bg-gray-50 ring-1 ring-gray-200 dark:ring-white/10 dark:bg-gray-800 shadow-sm"></div>
+                    <div class="h-full w-full rounded-lg bg-gray-50 ring-1 ring-gray-200 dark:ring-white/10 dark:bg-gray-800 shadow-xs"></div>
                 </div>
             </div>
         </x-container>

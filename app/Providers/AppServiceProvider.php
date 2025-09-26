@@ -14,11 +14,11 @@ use App\View\Composers\InactiveDiscussionsComposer;
 use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
 use Carbon\Carbon;
+use Filament\Actions;
 use Filament\Support\Colors\Color;
-use Filament\Support\Enums\MaxWidth;
+use Filament\Support\Enums\Width;
 use Filament\Support\Facades\FilamentColor;
 use Filament\Support\Facades\FilamentIcon;
-use Filament\Tables;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
@@ -86,7 +86,6 @@ final class AppServiceProvider extends ServiceProvider
     protected function configureFilament(): void
     {
         FilamentColor::register([
-            'primary' => Color::Emerald,
             'danger' => Color::Red,
             'info' => Color::Blue,
             'success' => Color::Green,
@@ -99,16 +98,20 @@ final class AppServiceProvider extends ServiceProvider
             'actions::edit-action' => 'untitledui-edit-03',
         ]);
 
-        Tables\Actions\CreateAction::configureUsing(
-            fn (Tables\Actions\Action $action): Tables\Actions\Action => $action->iconButton()
-                ->modalWidth(MaxWidth::ExtraLarge)
+        Actions\CreateAction::configureUsing(
+            fn (Actions\Action $action): Actions\Action => $action->iconButton()
+                ->modalWidth(Width::ExtraLarge)
                 ->slideOver()
         );
 
-        Tables\Actions\EditAction::configureUsing(
-            fn (Tables\Actions\Action $action): Tables\Actions\Action => $action->iconButton()
-                ->modalWidth(MaxWidth::ExtraLarge)
+        Actions\EditAction::configureUsing(
+            fn (Actions\Action $action): Actions\Action => $action->iconButton()
+                ->modalWidth(Width::ExtraLarge)
                 ->slideOver()
+        );
+
+        Actions\DeleteAction::configureUsing(
+            fn (Actions\Action $action): Actions\Action => $action->iconButton()
         );
     }
 

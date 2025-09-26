@@ -44,7 +44,7 @@ new class extends Component
                             id="email-address"
                             name="email"
                             autocomplete="email"
-                            required="true"
+                            :required="true"
                             wire:model="form.email"
                             aria-label="{{ __('validation.attributes.email') }}"
                             :placeholder="__('validation.attributes.email')"
@@ -55,7 +55,7 @@ new class extends Component
                             type="password"
                             id="password"
                             name="password"
-                            required="true"
+                            :required="true"
                             wire:model="form.password"
                             aria-label="{{ __('validation.attributes.password') }}"
                             :placeholder="__('validation.attributes.password')"
@@ -84,7 +84,7 @@ new class extends Component
                 <div>
                     <x-buttons.submit wire:loading.attr="data-loading" class="group w-full">
                         <span class="absolute pointer-events-none inset-y-0 left-0 flex items-center pl-3">
-                            <x-untitledui-lock class="size-5 text-green-500 group-hover:text-green-600" aria-hidden="true" />
+                            <x-untitledui-lock class="size-5 text-primary-500 group-hover:text-primary-600" aria-hidden="true" />
                         </span>
                         {{ __('pages/auth.login.submit') }}
                     </x-buttons.submit>

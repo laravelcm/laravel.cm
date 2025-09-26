@@ -67,7 +67,7 @@
                     <button
                         @click="slideLeft()"
                         type="button"
-                        class="flex size-8 items-center justify-center rounded-full text-gray-400 transition duration-200 ease-in-out hover:bg-gray-50 focus:outline-none dark:bg-gray-800 dark:text-gray-500"
+                        class="flex size-8 items-center justify-center rounded-full text-gray-400 transition duration-200 ease-in-out hover:bg-gray-50 focus:outline-hidden dark:bg-gray-800 dark:text-gray-500"
                     >
                         <x-untitledui-chevron-left class="size-6" aria-hidden="true" />
                     </button>
@@ -103,7 +103,7 @@
                     <button
                         @click="slideRight()"
                         type="button"
-                        class="flex size-8 items-center justify-center rounded-full text-gray-400 transition duration-200 ease-in-out hover:bg-gray-50 focus:outline-none dark:bg-gray-800 dark:text-gray-500"
+                        class="flex size-8 items-center justify-center rounded-full text-gray-400 transition duration-200 ease-in-out hover:bg-gray-50 focus:outline-hidden dark:bg-gray-800 dark:text-gray-500"
                     >
                         <x-untitledui-chevron-right class="size-6" aria-hidden="true" />
                     </button>

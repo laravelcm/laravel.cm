@@ -42,9 +42,8 @@ services:
             SESSION_PATH: ${SESSION_PATH}
             SESSION_DOMAIN: ${SESSION_DOMAIN}
             BROADCAST_CONNECTION: ${BROADCAST_CONNECTION}
-            FILESYSTEM_DISK: ${FILESYSTEM_DISK}
             MEDIA_DISK: ${MEDIA_DISK}
-            FILAMENT_FILESYSTEM_DISK: ${MEDIA_DISK}
+            FILESYSTEM_DISK: ${FILESYSTEM_DISK}
             FILAMENT_PATH: ${FILAMENT_PATH}
             QUEUE_CONNECTION: ${QUEUE_CONNECTION}
             CACHE_STORE: ${CACHE_STORE}
@@ -177,9 +176,8 @@ services:
             SESSION_PATH: ${SESSION_PATH}
             SESSION_DOMAIN: ${SESSION_DOMAIN}
             BROADCAST_CONNECTION: ${BROADCAST_CONNECTION}
-            FILESYSTEM_DISK: ${FILESYSTEM_DISK}
             MEDIA_DISK: ${MEDIA_DISK}
-            FILAMENT_FILESYSTEM_DISK: ${MEDIA_DISK}
+            FILESYSTEM_DISK: ${FILESYSTEM_DISK}
             FILAMENT_PATH: ${FILAMENT_PATH}
             QUEUE_CONNECTION: ${QUEUE_CONNECTION}
             CACHE_STORE: ${CACHE_STORE}
@@ -257,20 +255,6 @@ services:
             DB_PASSWORD_SECOND: '${DB_PASSWORD_SECOND:-}'
             BOOST_BROWSER_LOGS_WATCHER: '${BOOST_BROWSER_LOGS_WATCHER:-false}'
             OCTANE_SERVER: 'frankenphp'
-            CADDY_GLOBAL_OPTIONS: |
-                servers {
-                    trusted_proxies static private_ranges
-                }
-            CADDY_SERVER_EXTRA_DIRECTIVES: |
-                @static {
-                    file
-                    path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2
-                }
-                header @static Cache-Control "public, max-age=31536000, s-maxage=31536000"
-            FRANKENPHP_CONFIG: |
-                worker {
-                    file ./public/frankenphp-worker.php
-                }
         volumes:
             - storage:/var/www/html/storage
         networks:
@@ -321,9 +305,8 @@ services:
             SESSION_PATH: ${SESSION_PATH}
             SESSION_DOMAIN: ${SESSION_DOMAIN}
             BROADCAST_CONNECTION: ${BROADCAST_CONNECTION}
-            FILESYSTEM_DISK: ${FILESYSTEM_DISK}
             MEDIA_DISK: ${MEDIA_DISK}
-            FILAMENT_FILESYSTEM_DISK: ${MEDIA_DISK}
+            FILESYSTEM_DISK: ${FILESYSTEM_DISK}
             FILAMENT_PATH: ${FILAMENT_PATH}
             QUEUE_CONNECTION: ${QUEUE_CONNECTION}
             CACHE_STORE: ${CACHE_STORE}
@@ -401,20 +384,6 @@ services:
             DB_PASSWORD_SECOND: '${DB_PASSWORD_SECOND:-}'
             BOOST_BROWSER_LOGS_WATCHER: '${BOOST_BROWSER_LOGS_WATCHER:-false}'
             OCTANE_SERVER: 'frankenphp'
-            CADDY_GLOBAL_OPTIONS: |
-                servers {
-                    trusted_proxies static private_ranges
-                }
-            CADDY_SERVER_EXTRA_DIRECTIVES: |
-                @static {
-                    file
-                    path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2
-                }
-                header @static Cache-Control "public, max-age=31536000, s-maxage=31536000"
-            FRANKENPHP_CONFIG: |
-                worker {
-                    file ./public/frankenphp-worker.php
-                }
         volumes:
             - storage:/var/www/html/storage
         networks:

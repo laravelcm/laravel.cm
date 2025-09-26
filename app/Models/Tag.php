@@ -7,7 +7,9 @@ namespace App\Models;
 use App\Models\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Support\Collection;
 
 /**
  * @property-read int $id
@@ -15,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @property-read string $slug
  * @property-read string|null $description
  * @property-read array $concerns
- * @property-read \Illuminate\Support\Collection<array-key, Article> $articles
+ * @property-read Collection<array-key, Article> $articles
  */
 final class Tag extends Model
 {
@@ -34,7 +36,7 @@ final class Tag extends Model
     }
 
     /**
-     * @return MorphToMany<Article, $this, \Illuminate\Database\Eloquent\Relations\MorphPivot>
+     * @return MorphToMany<Article, $this, MorphPivot>
      */
     public function articles(): MorphToMany
     {
