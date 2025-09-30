@@ -70,4 +70,4 @@ describe(DetailThread::class, function (): void {
             ->and($thread->replies->first()->user->id)
             ->toBe($user->id);
     })->skip();
-});
+})->group('forum');

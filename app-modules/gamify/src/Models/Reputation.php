@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * @property-read int $id
- * @property int $point
+ * @property-read int $point
  * @property-read User|null $payee
  * @property-read \Illuminate\Support\Carbon $created_at
  * @property-read \Illuminate\Support\Carbon $updated_at
@@ -28,19 +28,11 @@ final class Reputation extends Model
         return $this->belongsTo(config('gamify.payee_model'), 'payee_id'); // @phpstan-ignore-line
     }
 
-    /**
-     * Get the owning subject model
-     */
     public function subject(): MorphTo
     {
         return $this->morphTo();
     }
 
-    /**
-     * Undo last point
-     *
-     * @throws \Exception
-     */
     public function undo(): void
     {
         if ($this->exists) {

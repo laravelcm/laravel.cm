@@ -50,9 +50,9 @@ new class extends Component
 
             <form class="mt-8" wire:submit="sendPasswordResetLink">
                 <div class="block">
-                    <x-filament-forms::field-wrapper.label for="email">
+                    <x-forms.label for="email">
                         {{ __('validation.attributes.email') }}
-                    </x-filament-forms::field-wrapper.label>
+                    </x-forms.label>
                     <x-filament::input.wrapper>
                         <x-filament::input
                             type="text"

@@ -7,6 +7,7 @@ use App\Filament\Resources\Tags\TagResource;
 use App\Models\Tag;
 use Filament\Actions\CreateAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\Testing\TestAction;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Livewire\Livewire;
 
@@ -36,7 +37,7 @@ describe(TagResource::class, function (): void {
                 'concerns' => [],
                 'description' => 'Description du tag '.$name,
             ])
-            ->assertHasActionErrors(['name' => 'required', 'concerns' => 'required']);
+            ->assertHasFormErrors(['name' => 'required', 'concerns' => 'required']);
     });
 
     it('Admin can create tag', function (): void {
@@ -48,22 +49,22 @@ describe(TagResource::class, function (): void {
                 'concerns' => ['post', 'tutorial'],
                 'description' => 'Description du tag '.$name,
             ])
-            ->assertHasNoActionErrors()
+            ->assertHasNoFormErrors()
             ->assertStatus(200);
     });
 
     it('Admin can edit tag', function (): void {
+        /** @var Tag $tag */
         $tag = Tag::factory()->create();
 
         Livewire::test(ListTags::class)
-            ->callTableAction(EditAction::class, $tag, data: [
+            ->callAction(TestAction::make(EditAction::class)->table($tag), data: [
                 'name' => 'Edited tag',
             ])
-            ->assertHasNoTableActionErrors();
+            ->assertHasNoFormErrors();
 
         $tag->refresh();
 
         expect($tag->name)->toBe('Edited tag');
     });
-
 })->group('tags');

@@ -16,6 +16,7 @@ use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Group;
@@ -145,8 +146,9 @@ final class ArticleForm extends SlideOverComponent implements HasActions, HasFor
                             ->minLength(10)
                             ->maxHeight('20.25rem')
                             ->required(),
-                        Components\Placeholder::make('')
-                            ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
+                        TextEntry::make('placeholder')
+                            ->hiddenLabel()
+                            ->state(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                 <x-torchlight />
                             Blade))),
                     ])

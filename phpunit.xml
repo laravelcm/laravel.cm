@@ -25,7 +25,6 @@
     <server name="QUEUE_CONNECTION" value="sync"/>
     <server name="SESSION_DRIVER" value="array"/>
     <server name="TELESCOPE_ENABLED" value="false"/>
-    <server name="VIEW_COMPILED_PATH" value="/tmp/views"/>
     <server name="LOG_CHANNEL" value="null"/>
     <env name="PEST_PARALLEL_PROCESSES" value="4"/>
   </php>

@@ -21,6 +21,7 @@ use App\Traits\RecordsActivity;
 use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Database\Factories\ThreadFactory;
 use Exception;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
@@ -59,6 +60,8 @@ use Spatie\Feed\FeedItem;
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;
+
+    /** @use HasFactory<ThreadFactory> */
     use HasFactory;
     use HasLocaleScope;
     use HasReplies;
@@ -70,7 +73,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     use Reactable;
     use RecordsActivity;
 
-    public const FEED_PAGE_SIZE = 20;
+    public const int FEED_PAGE_SIZE = 20;
 
     protected $guarded = [];
 

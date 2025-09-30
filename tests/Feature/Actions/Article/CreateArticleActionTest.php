@@ -29,4 +29,4 @@ describe(CreateArticleAction::class, function (): void {
             ->and($article->user_id)
             ->toBe($this->user->id);
     });
-})->group('Articles');
+})->group('articles');

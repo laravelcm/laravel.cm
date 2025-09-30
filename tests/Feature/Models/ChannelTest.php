@@ -7,6 +7,7 @@ use App\Models\Channel;
 
 describe(Channel::class, function (): void {
     test('channel can have children', function (): void {
+        /** @var Channel $channel */
         $channel = Channel::factory()->create();
         Channel::factory()->count(2)
             ->create(['parent_id' => $channel->id]);

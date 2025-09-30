@@ -5,11 +5,11 @@
   "version": "1.1.0",
   "license": "proprietary",
   "require": {
-    "php": "^8.3"
+    "php": "^8.4"
   },
   "require-dev": {
-    "pestphp/pest": "^2.32",
-    "pestphp/pest-plugin-laravel": "^2.1"
+    "pestphp/pest": "^3.8",
+    "pestphp/pest-plugin-laravel": "^3.0"
   },
   "autoload": {
     "psr-4": {

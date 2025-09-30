@@ -50,4 +50,4 @@ describe(CreateDiscussionAction::class, function (): void {
             ->and($discussion->user_id)
             ->toBe($this->user->id);
     });
-})->group('Discussions');
+})->group('discussions');

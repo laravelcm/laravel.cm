@@ -10,10 +10,11 @@ use Illuminate\Support\Facades\Notification;
 use Spatie\Permission\Models\Role;
 
 beforeEach(function (): void {
-    $this->user = $this->login();
-    $this->discussion = Discussion::factory()->create(['user_id' => $this->user->id]);
     Role::create(['name' => 'admin']);
     Notification::fake();
+
+    $this->user = $this->login();
+    $this->discussion = Discussion::factory()->create(['user_id' => $this->user->id]);
 });
 
 describe(ConvertDiscussionToThreadAction::class, function (): void {

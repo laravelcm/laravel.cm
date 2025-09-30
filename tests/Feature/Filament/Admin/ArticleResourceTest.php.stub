@@ -3,7 +3,10 @@
 declare(strict_types=1);
 
 use App\Filament\Resources\Articles\ArticleResource;
+use App\Filament\Resources\Articles\Pages\ListArticles;
 use App\Models\Article;
+use Carbon\Carbon;
+// use Filament\Actions\Testing\TestAction;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
 
@@ -23,42 +26,43 @@ beforeEach(function (): void {
 
 describe(ArticleResource::class, function (): void {
     it('page can display table with records', function (): void {
-        Livewire::test(Articles\Pages\ListArticles::class)
+        Livewire::test(ListArticles::class)
             ->assertCanSeeTableRecords($this->articles);
-    })->group('articles');
+    });
 
     it('admin user can approved article', function (): void {
+        /** @var Article $article */
         $article = $this->articles->first();
 
-        Livewire::test(Articles\Pages\ListArticles::class)
+        Livewire::test(ListArticles::class)
             ->callTableAction('approved', $article);
 
         $article->refresh();
 
-        expect($article->approved_at)->toBeInstanceOf(\Carbon\Carbon::class)
+        expect($article->approved_at)->toBeInstanceOf(Carbon::class)
             ->and($article->declined_at)->toBeNull();
 
-        Livewire::test(Articles\Pages\ListArticles::class)
+        Livewire::test(ListArticles::class)
             ->assertTableActionHidden('approved', $article)
             ->assertTableActionHidden('declined', $article);
-    })->group('articles');
+    });
 
     it('admin user can declined article', function (): void {
+        /** @var Article $article */
         $article = $this->articles->first();
 
-        Livewire::test(Articles\Pages\ListArticles::class)
+        Livewire::test(ListArticles::class)
             ->callTableAction('declined', $article, data: [
                 'reason' => 'Ce contenu ne respecte pas nos règles éditoriales.',
             ]);
 
         $article->refresh();
 
-        expect($article->declined_at)->toBeInstanceOf(\Carbon\Carbon::class)
+        expect($article->declined_at)->toBeInstanceOf(Carbon::class)
             ->and($article->approved_at)->toBeNull();
 
-        Livewire::test(Articles\Pages\ListArticles::class)
+        Livewire::test(ListArticles::class)
             ->assertTableActionHidden('approved', $article)
             ->assertTableActionHidden('declined', $article);
-
-    })->group('articles');
-});
+    });
+})->group('articles');

@@ -37,6 +37,7 @@ describe(ReportSpam::class, function (): void {
     });
 
     it('user cannot report twice as spam', function (): void {
+        /** @var Thread $thread */
         $thread = Thread::factory()->create();
         $user = $this->login();
 

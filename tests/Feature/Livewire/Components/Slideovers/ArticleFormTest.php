@@ -9,5 +9,5 @@ describe(ArticleForm::class, function (): void {
     it('return redirect to unauthenticated user', function (): void {
         Livewire::test(ArticleForm::class)
             ->assertStatus(302);
-    })->group('articles');
-})->group('article');
+    });
+})->group('articles');

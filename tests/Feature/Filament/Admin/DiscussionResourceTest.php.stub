@@ -20,7 +20,6 @@ beforeEach(function (): void {
 });
 
 describe(DiscussionResource::class, function (): void {
-
     it('page can display table with records', function (): void {
         Livewire::test(ListDiscussions::class)
             ->assertCanSeeTableRecords($this->discussions);

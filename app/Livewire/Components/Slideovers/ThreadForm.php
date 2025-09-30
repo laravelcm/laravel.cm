@@ -14,6 +14,7 @@ use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
@@ -102,8 +103,9 @@ final class ThreadForm extends SlideOverComponent implements HasActions, HasForm
                     ->label(__('validation.attributes.content'))
                     ->required()
                     ->minLength(20),
-                Components\Placeholder::make('')
-                    ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
+                TextEntry::make('placeholder')
+                    ->hiddenLabel()
+                    ->state(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                         <x-torchlight />
                     Blade))),
             ])
