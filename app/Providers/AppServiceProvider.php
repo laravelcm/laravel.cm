@@ -13,6 +13,7 @@ use App\Models\User;
 use App\View\Composers\InactiveDiscussionsComposer;
 use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
+use ArchTech\SEO\SEOManager;
 use Carbon\Carbon;
 use Filament\Actions;
 use Filament\Support\Colors\Color;
@@ -126,8 +127,10 @@ final class AppServiceProvider extends ServiceProvider
 
     protected function configureSeo(): void
     {
-        // @phpstan-ignore-next-line
-        seo()
+        /** @var SEOManager $seoManager */
+        $seoManager = seo();
+
+        $seoManager
             ->title(
                 default: __('pages/home.title'),
                 modify: fn (string $title): string => $title.' | '.__('global.site_name')

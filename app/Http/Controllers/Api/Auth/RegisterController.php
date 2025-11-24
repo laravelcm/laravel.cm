@@ -85,9 +85,10 @@ final class RegisterController extends Controller
 
         // TODO: Send new company registration notification on Slack
 
-        $user->last_login_at = Carbon::now();
-        $user->last_login_ip = $request->ip();
-        $user->save();
+        $user->update([
+            'last_login_at' => now(),
+            'last_login_ip' => $request->getClientIp(),
+        ]);
 
         return response()->json([
             'message' => __('Votre compte a été crée avec succès via Google.'),

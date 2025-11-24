@@ -1,13 +1,9 @@
 /node_modules
 npm-debug.log
 yarn-error.log
-yarn.lock
 package-json.lock
-pnpm-lock.yml
 /vendor
 composer.phar
-/.junie
-/.claude
 /.idea
 /.vscode
 .phpunit.cache

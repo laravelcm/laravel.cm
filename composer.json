@@ -133,8 +133,6 @@
       "php-http/discovery": false
     }
   },
-  "prefer-stable": true,
-  "minimum-stability": "stable",
   "repositories": [
     {
       "type": "path",
@@ -143,5 +141,7 @@
         "symlink": true
       }
     }
-  ]
+  ],
+  "prefer-stable": true,
+  "minimum-stability": "stable"
 }
