@@ -11,11 +11,17 @@ use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Article;
 use Carbon\Carbon;
-use Filament\Forms;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Components\Utilities;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -25,10 +31,11 @@ use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
 /**
- * @property-read Form $form
+ * @property-read \Filament\Schemas\Schema $form
  */
-final class ArticleForm extends SlideOverComponent implements HasForms
+final class ArticleForm extends SlideOverComponent implements HasActions, HasForms
 {
+    use InteractsWithActions;
     use InteractsWithForms;
     use WithAuthenticatedUser;
 
@@ -60,48 +67,48 @@ final class ArticleForm extends SlideOverComponent implements HasForms
         return false;
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\Group::make()
+        return $schema
+            ->components([
+                Group::make()
                     ->schema([
-                        Forms\Components\TextInput::make('title')
+                        Components\TextInput::make('title')
                             ->label(__('validation.attributes.title'))
                             ->minLength(10)
                             ->required()
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn ($state, Forms\Set $set): mixed => $set('slug', Str::slug($state))),
-                        Forms\Components\Hidden::make('slug'),
-                        Forms\Components\TextInput::make('canonical_url')
+                            ->afterStateUpdated(fn ($state, Utilities\Set $set): mixed => $set('slug', Str::slug($state))),
+                        Components\Hidden::make('slug'),
+                        Components\TextInput::make('canonical_url')
                             ->label(__('pages/article.form.canonical_url'))
                             ->helperText(__('pages/article.canonical_help')),
-                        Forms\Components\Grid::make()
+                        Grid::make()
                             ->schema([
-                                Forms\Components\Toggle::make('is_draft')
+                                Components\Toggle::make('is_draft')
                                     ->label(__('pages/article.form.draft'))
                                     ->live()
                                     ->offIcon('untitledui-check')
                                     ->onColor('success')
                                     ->onIcon('untitledui-pencil-line')
                                     ->helperText(__('pages/article.draft_help')),
-                                Forms\Components\DatePicker::make('published_at')
+                                Components\DatePicker::make('published_at')
                                     ->label(__('pages/article.form.published_at'))
                                     ->closeOnDateSelection()
                                     ->prefixIcon('untitledui-calendar-date')
                                     ->native(false)
-                                    ->visible(fn (Forms\Get $get): bool => $get('is_draft') === false)
-                                    ->required(fn (Forms\Get $get): bool => $get('is_draft') === false),
+                                    ->visible(fn (Utilities\Get $get): bool => $get('is_draft') === false)
+                                    ->required(fn (Utilities\Get $get): bool => $get('is_draft') === false),
                             ]),
                     ])
                     ->columnSpan(2),
-                Forms\Components\Group::make()
+                Group::make()
                     ->schema([
-                        Forms\Components\SpatieMediaLibraryFileUpload::make('media')
+                        Components\SpatieMediaLibraryFileUpload::make('media')
                             ->collection('media')
                             ->label(__('pages/article.form.cover'))
                             ->maxSize(1024),
-                        Forms\Components\Select::make('tags')
+                        Components\Select::make('tags')
                             ->multiple()
                             ->relationship(
                                 name: 'tags',
@@ -112,16 +119,16 @@ final class ArticleForm extends SlideOverComponent implements HasForms
                             ->required()
                             ->minItems(1)
                             ->maxItems(3),
-                        Forms\Components\ToggleButtons::make('locale')
+                        Components\ToggleButtons::make('locale')
                             ->label(__('validation.attributes.locale'))
                             ->options(['en' => 'En', 'fr' => 'Fr'])
                             ->helperText(__('global.locale_help'))
                             ->grouped(),
                     ])
                     ->columnSpan(1),
-                Forms\Components\Group::make()
+                Group::make()
                     ->schema([
-                        Forms\Components\MarkdownEditor::make('body')
+                        Components\MarkdownEditor::make('body')
                             ->toolbarButtons([
                                 'attachFiles',
                                 'blockquote',
@@ -139,8 +146,9 @@ final class ArticleForm extends SlideOverComponent implements HasForms
                             ->minLength(10)
                             ->maxHeight('20.25rem')
                             ->required(),
-                        Forms\Components\Placeholder::make('')
-                            ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
+                        TextEntry::make('placeholder')
+                            ->hiddenLabel()
+                            ->state(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                                 <x-torchlight />
                             Blade))),
                     ])

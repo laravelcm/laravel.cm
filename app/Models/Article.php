@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -47,7 +48,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read \Illuminate\Support\Carbon|null $sponsored_at
  * @property-read \Illuminate\Support\Carbon $created_at
  * @property-read \Illuminate\Support\Carbon $updated_at
- * @property \Illuminate\Database\Eloquent\Collection<int, Tag> $tags
+ * @property Collection<int, Tag> $tags
  */
 #[ObservedBy(ArticleObserver::class)]
 final class Article extends Model implements HasMedia, ReactableInterface, Sitemapable, Viewable

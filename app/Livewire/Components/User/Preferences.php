@@ -5,22 +5,26 @@ declare(strict_types=1);
 namespace App\Livewire\Components\User;
 
 use App\Models\User;
-use Filament\Forms;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 /**
- * @property Form $form
+ * @property \Filament\Schemas\Schema $form
  * @property User $user
  */
-final class Preferences extends Component implements HasForms
+final class Preferences extends Component implements HasActions, HasForms
 {
+    use InteractsWithActions;
     use InteractsWithForms;
 
     public ?array $data = [];
@@ -39,11 +43,11 @@ final class Preferences extends Component implements HasForms
         return Auth::user(); // @phpstan-ignore-line
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\ToggleButtons::make('theme')
+        return $schema
+            ->components([
+                ToggleButtons::make('theme')
                     ->label('Theme')
                     ->options([
                         'light' => 'Light',
@@ -54,7 +58,7 @@ final class Preferences extends Component implements HasForms
                         'dark' => 'phosphor-moon-duotone',
                     ])
                     ->grouped(),
-                Forms\Components\Select::make('locale')
+                Select::make('locale')
                     ->label(__('global.language'))
                     ->options([
                         'fr' => __('global.french'),

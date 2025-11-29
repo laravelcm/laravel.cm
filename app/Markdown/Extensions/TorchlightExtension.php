@@ -12,6 +12,7 @@ use League\CommonMark\Extension\ExtensionInterface;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
+use Stringable;
 
 final class TorchlightExtension extends BaseExtension implements ExtensionInterface, NodeRendererInterface
 {
@@ -28,7 +29,7 @@ final class TorchlightExtension extends BaseExtension implements ExtensionInterf
      * This method just proxies to our base class, but the
      * signature has to match Commonmark V2.
      *
-     * @return mixed|string|\Stringable|null
+     * @return mixed|string|Stringable|null
      */
     public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {

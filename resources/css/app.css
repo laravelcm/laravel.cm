@@ -1,47 +1,134 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss';
 
-@import 'base.css';
-@import 'tag.css';
-@import 'forms.css';
-@import 'torchlight.css';
-@import 'forum.css';
-@import 'header.css';
+@import './components/base.css';
+@import './components/forms.css';
+@import './components/forum.css';
+@import './components/header.css';
+@import './components/tag.css';
+@import './components/torchlight.css';
+@import './components/typography.css';
+
+@plugin '@tailwindcss/typography';
+@plugin '@tailwindcss/forms';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/filament/**/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+:root {
+  --laravel: #F56857;
+  --livewire: #fb70a9;
+  --inertia: #8b5cf6;
+  --javascript: #f7df1e;
+  --typesript: #007acc;
+  --react: #53c1de;
+  --vue-js: #41b883;
+  --php: #777bb3;
+  --digital-ocean: #0080ff;
+  --forge: #19b69b;
+  --packages: #4f46e5;
+  --outils: #22d3ee;
+  --tailwindcss: #06b6d4;
+  --design: #78350f;
+  --alpinejs: #2d3441;
+  --open-source: #f97316;
+  --freelance: #f43f5e;
+  --salaire: #c7d2fe;
+  --projets: #14b8a6;
+  --entrepreneuriat: #0ea5e9;
+  --paiement-en-ligne: #10b981;
+  --branding: #ec4899;
+  --applications: #0284c7;
+  --developpement: #4d7c0f;
+  --event: #36bffa;
+  --tutoriel: #164e63;
+  --communaute: #dd2590;
+  --astuces: #d6bbfb;
+}
+
+@theme {
+  /* Custom Colors */
+  --color-flag-green: #099170;
+  --color-flag-red: #e21b30;
+  --color-flag-yellow: #ffdc44;
+  --color-black: #161B22;
+
+  --color-gray-50: oklch(98.5% 0 0);
+  --color-gray-100: oklch(96.7% 0.001 286.375);
+  --color-gray-200: oklch(92% 0.004 286.32);
+  --color-gray-300: oklch(87.1% 0.006 286.286);
+  --color-gray-400: oklch(70.5% 0.015 286.067);
+  --color-gray-500: oklch(55.2% 0.016 285.938);
+  --color-gray-600: oklch(44.2% 0.017 285.786);
+  --color-gray-700: oklch(37% 0.013 285.805);
+  --color-gray-800: oklch(27.4% 0.006 286.033);
+  --color-gray-900: oklch(21% 0.006 285.885);
+  --color-gray-950: oklch(14.1% 0.005 285.823);
+
+  --color-primary-50: #ecfdf6;
+  --color-primary-100: #d2f9e8;
+  --color-primary-200: #a9f1d5;
+  --color-primary-300: #71e4be;
+  --color-primary-400: #38cfa2;
+  --color-primary-500: #15b48a;
+  --color-primary-600: #099170;
+  --color-primary-700: #07755d;
+  --color-primary-800: #085d4b;
+  --color-primary-900: #084c3f;
+  --color-primary-950: #032b24;
+
+  /* Font Families */
+  --font-family-heading: Rota, ui-sans-serif, system-ui;
+  --font-family-mono: "Geist Mono", ui-monospace, monospace;
+  --font-family-sans: "Instrument Sans", ui-sans-serif, system-ui;
+
+  /* Custom Widths */
+  --width-90: 22.5rem;
+
+  /* Animation Variables */
+  --marquee-duration: 15s;
+
+  /* Animation Durations */
+  --animate-fade-in: fade-in 0.5s linear forwards;
+  --animate-marquee: marquee var(--marquee-duration) linear infinite;
+  --animate-spin-slow: spin 4s linear infinite;
+  --animate-spin-slower: spin 6s linear infinite;
+  --animate-spin-reverse: spin-reverse 1s linear infinite;
+  --animate-spin-reverse-slow: spin-reverse 4s linear infinite;
+  --animate-spin-reverse-slower: spin-reverse 6s linear infinite;
+  --animate-scroll-slow: scroll 30s linear infinite;
+  --animate-rotate: rotate 8s linear infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes marquee {
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes spin-reverse {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg) scale(10); }
+  100% { transform: rotate(-360deg) scale(10); }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @property --border-angle {
   inherits: false;
   initial-value: 0deg;
   syntax: '<angle>';
-}
-
-:root {
-    --laravel: #F56857;
-    --livewire: #fb70a9;
-    --inertia: #8b5cf6;
-    --javascript: #f7df1e;
-    --typesript: #007acc;
-    --react: #53c1de;
-    --vue-js: #41b883;
-    --php: #777bb3;
-    --digital-ocean: #0080ff;
-    --forge: #19b69b;
-    --packages: #4f46e5;
-    --outils: #22d3ee;
-    --tailwindcss: #06b6d4;
-    --design: #78350f;
-    --alpinejs: #2d3441;
-    --open-source: #f97316;
-    --freelance: #f43f5e;
-    --salaire: #c7d2fe;
-    --projets: #14b8a6;
-    --entrepreneuriat: #0ea5e9;
-    --paiement-en-ligne: #10b981;
-    --branding: #ec4899;
-    --applications: #0284c7;
-    --developpement: #4d7c0f;
-    --event: #36bffa;
-    --tutoriel: #164e63;
-    --communaute: #dd2590;
-    --astuces: #d6bbfb;
 }

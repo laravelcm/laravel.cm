@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\User;
 
-use Filament\Forms;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,10 +18,11 @@ use Illuminate\Validation\Rules\Password as RulesPassword;
 use Livewire\Component;
 
 /**
- * @property Form $form
+ * @property \Filament\Schemas\Schema $form
  */
-final class Password extends Component implements HasForms
+final class Password extends Component implements HasActions, HasForms
 {
+    use InteractsWithActions;
     use InteractsWithForms;
 
     public ?array $data = [];
@@ -29,17 +32,17 @@ final class Password extends Component implements HasForms
         $this->form->fill();
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('current_password')
+        return $schema
+            ->components([
+                TextInput::make('current_password')
                     ->label(__('validation.attributes.current_password'))
                     ->password()
                     ->currentPassword()
                     ->required()
                     ->visible(fn (): bool => Auth::user()?->hasPassword() ?? false),
-                Forms\Components\TextInput::make('password')
+                TextInput::make('password')
                     ->label(__('validation.attributes.password'))
                     ->helperText(__('pages/account.settings.password_helpText'))
                     ->password()
@@ -54,7 +57,7 @@ final class Password extends Component implements HasForms
                             ->uncompromised(),
                     ])
                     ->confirmed(),
-                Forms\Components\TextInput::make('password_confirmation')
+                TextInput::make('password_confirmation')
                     ->label(__('validation.attributes.password_confirmation'))
                     ->password()
                     ->revealable()

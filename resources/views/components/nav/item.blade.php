@@ -14,7 +14,7 @@
 
 <x-link
     :href="$href"
-    {{ $attributes->class(['inline-flex items-center text-sm font-medium', $activeClasses]) }}
+    {{ $attributes->class(['relative inline-flex items-center text-sm font-medium', $activeClasses]) }}
 >
     {{ $title }}
 </x-link>

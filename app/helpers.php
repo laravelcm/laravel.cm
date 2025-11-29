@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Models\Discussion;
+use App\Models\Thread;
 use Carbon\Carbon;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Auth;
@@ -83,11 +85,11 @@ if (! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.
      *
-     * @param  App\Models\Thread|App\Models\Discussion  $replyAble
+     * @param  Thread|Discussion  $replyAble
      */
     function route_to_reply_able(mixed $replyAble): string
     {
-        $routeName = $replyAble instanceof \App\Models\Thread ? 'forum.show' : 'discussions.show';
+        $routeName = $replyAble instanceof Thread ? 'forum.show' : 'discussions.show';
 
         return route($routeName, $replyAble->slug);
     }

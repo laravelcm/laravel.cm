@@ -1,0 +1,59 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Filament\Resources\Channels\ChannelResource;
+use App\Filament\Resources\Channels\Pages\ListChannels;
+use App\Models\Channel;
+use Filament\Actions\CreateAction;
+use Filament\Actions\EditAction;
+// use Filament\Actions\Testing\TestAction;
+use Livewire\Livewire;
+
+beforeEach(function (): void {
+    $this->user = $this->login(['email' => 'joe@laravel.cm']);
+});
+
+describe(ChannelResource::class, function (): void {
+    it('page can display table with records', function (): void {
+        $channels = Channel::factory()
+            ->count(10)
+            ->create();
+
+        Livewire::test(ListChannels::class)
+            ->assertCanSeeTableRecords($channels);
+    });
+
+    it('Admin user can create channel', function (): void {
+        Livewire::test(ListChannels::class)
+            ->callAction(CreateAction::class, data: [
+                'name' => $name = 'my channel',
+                'color' => '#FFFFFF',
+            ])
+            ->assertHasNoActionErrors()
+            ->assertStatus(200);
+
+        $channel = Channel::query()->first();
+
+        expect($channel)
+            ->toBeInstanceOf(Channel::class)
+            ->and($channel->name)
+            ->toBe($name);
+    });
+
+    it('Admin user can edit channel', function (): void {
+        /** @var Channel $channel */
+        $channel = Channel::factory()->create();
+
+        Livewire::test(ListChannels::class)
+            ->callTableAction(EditAction::class, $channel, data: [
+                'name' => 'Edited channel',
+                'color' => '#FFFFFF',
+            ])
+            ->assertHasNoTableActionErrors();
+
+        $channel->refresh();
+
+        expect($channel->name)->toBe('Edited channel');
+    });
+})->group('channels');

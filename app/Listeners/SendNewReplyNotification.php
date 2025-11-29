@@ -6,6 +6,7 @@ namespace App\Listeners;
 
 use App\Events\ReplyWasCreated;
 use App\Models\Subscribe;
+use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\NewReplyNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -17,7 +18,7 @@ final class SendNewReplyNotification implements ShouldQueue
 
     public function handle(ReplyWasCreated $event): void
     {
-        /** @var \App\Models\Thread $thread */
+        /** @var Thread $thread */
         $thread = $event->reply->replyAble;
 
         foreach ($thread->subscribes as $subscription) {

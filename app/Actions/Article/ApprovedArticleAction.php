@@ -11,8 +11,7 @@ final class ApprovedArticleAction
 {
     public function execute(Article $article): Article
     {
-        $article->approved_at = now();
-        $article->save();
+        $article->update(['approved_at' => now()]);
 
         givePoint(new ArticlePublished($article));
 

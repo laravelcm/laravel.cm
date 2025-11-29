@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Contracts\User as SocialUser;
 use Laravelcm\Gamify\Traits\Gamify;
@@ -51,12 +52,12 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read string|null $website
  * @property-read string|null $banned_reason
  * @property-read array<array-key, mixed>|null $settings
- * @property-read \Illuminate\Support\Carbon|null $email_verified_at
- * @property-read \Illuminate\Support\Carbon|null $last_login_at
- * @property-read \Illuminate\Support\Carbon|null $banned_at
- * @property-read \Illuminate\Support\Carbon $created_at
- * @property-read \Illuminate\Support\Carbon $updated_at
- * @property-read \Illuminate\Support\Carbon|null $last_active_at
+ * @property-read Carbon|null $email_verified_at
+ * @property-read Carbon|null $last_login_at
+ * @property-read Carbon|null $banned_at
+ * @property-read Carbon $created_at
+ * @property-read Carbon $updated_at
+ * @property-read Carbon|null $last_active_at
  * @property-read \Illuminate\Support\Collection<array-key, Activity> $activities
  * @property-read \Illuminate\Support\Collection<array-key, Article> $articles
  * @property-read \Illuminate\Support\Collection<array-key, Thread> $threads
@@ -68,10 +69,10 @@ use Spatie\Permission\Traits\HasRoles;
 #[ObservedBy(UserObserver::class)]
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasCachedMediaInterface, HasMedia, HasName, MustVerifyEmail
 {
+    use Gamify;
+
     /** @use HasFactory<UserFactory> */
     use HasFactory;
-
-    use Gamify;
     use HasPlanSubscriptions;
     use HasProfilePhoto;
     use HasRoles;

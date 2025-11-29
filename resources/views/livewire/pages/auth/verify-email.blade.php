@@ -60,7 +60,7 @@ new class extends Component
                     <form wire:click="logout">
                         <button
                             type="submit"
-                            class="text-sm text-gray-500 dark:text-gray-400 underline hover:text-gray-900 focus:outline-none"
+                            class="text-sm text-gray-500 dark:text-gray-400 underline hover:text-gray-900 focus:outline-hidden"
                         >
                             {{ __('global.logout') }}
                         </button>

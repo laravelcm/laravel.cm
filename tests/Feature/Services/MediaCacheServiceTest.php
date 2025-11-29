@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 beforeEach(function (): void {
     $this->service = app(MediaCacheService::class);
     $this->user = User::factory()->create();
+
     Cache::flush();
     Storage::fake('public');
 
@@ -19,13 +20,13 @@ beforeEach(function (): void {
 
 describe(MediaCacheService::class, function (): void {
     it('caches media URL when media exists', function (): void {
-        $media = $this->user->addMedia($this->testFile)
+        $this->user->addMedia($this->testFile)
             ->toMediaCollection('avatar');
 
         $url = $this->service->getCachedMediaUrl($this->user, 'avatar');
 
-        expect($url)->not->toBeNull();
-        expect(Cache::has($this->user->getCacheKey('avatar')))->toBeTrue();
+        expect($url)->not->toBeNull()
+            ->and(Cache::has($this->user->getCacheKey('avatar')))->toBeTrue();
     });
 
     it('returns null when no media exists', function (): void {
@@ -71,17 +72,17 @@ describe(MediaCacheService::class, function (): void {
     });
 
     it('handles media conversions', function (): void {
-        $media = $this->user->addMedia($this->testFile)
+        $this->user->addMedia($this->testFile)
             ->toMediaCollection('avatar');
 
         $originalUrl = $this->service->getCachedMediaUrl($this->user, 'avatar');
 
-        expect($originalUrl)->not->toBeNull();
-        expect(Cache::has($this->user->getCacheKey('avatar')))->toBeTrue();
+        expect($originalUrl)->not->toBeNull()
+            ->and(Cache::has($this->user->getCacheKey('avatar')))->toBeTrue();
     });
 
     it('respects cache TTL configuration', function (): void {
-        $media = $this->user->addMedia($this->testFile)
+        $this->user->addMedia($this->testFile)
             ->toMediaCollection('avatar');
 
         $this->service->getCachedMediaUrl($this->user, 'avatar');
@@ -92,9 +93,9 @@ describe(MediaCacheService::class, function (): void {
         $cachedUrl = Cache::get($cacheKey);
         expect($cachedUrl)->not->toBeNull();
     });
-})->group('Services', 'Media', 'Cache');
+})->group('media', 'Cache');
 
-describe('HasCachedMedia trait', function (): void {
+describe('HasCachedMedia', function (): void {
     it('generates correct cache keys', function (): void {
         $key = $this->user->getCacheKey('avatar');
         expect($key)->toBe("user.{$this->user->id}.media.avatar");
@@ -102,13 +103,13 @@ describe('HasCachedMedia trait', function (): void {
 
     it('provides correct cache TTL', function (): void {
         $ttl = $this->user->getCacheTtl();
-        expect($ttl)->toBeInstanceOf(DateTimeInterface::class);
-        expect($ttl->diff(now())->days)->toBeGreaterThan(360);
+        expect($ttl)->toBeInstanceOf(DateTimeInterface::class)
+            ->and($ttl->diff(now())->days)->toBeGreaterThan(360);
     });
 
     it('flushes media cache correctly', function (): void {
         $testFile = UploadedFile::fake()->image('test.jpg', 150, 150);
-        $media = $this->user->addMedia($testFile)
+        $this->user->addMedia($testFile)
             ->toMediaCollection('avatar');
 
         $this->service->getCachedMediaUrl($this->user, 'avatar');
@@ -122,4 +123,4 @@ describe('HasCachedMedia trait', function (): void {
         $collections = $this->user->getMediaCollections();
         expect($collections)->toContain('avatar');
     });
-})->group('Traits', 'Media', 'Cache');
+})->group('media', 'cache');

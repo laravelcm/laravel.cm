@@ -9,11 +9,15 @@ use App\Actions\Forum\UpdateThreadAction;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Thread;
-use Filament\Forms;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
@@ -22,10 +26,11 @@ use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
 /**
- * @property Form $form
+ * @property \Filament\Schemas\Schema $form
  */
-final class ThreadForm extends SlideOverComponent implements HasForms
+final class ThreadForm extends SlideOverComponent implements HasActions, HasForms
 {
+    use InteractsWithActions;
     use InteractsWithForms;
     use WithAuthenticatedUser;
 
@@ -55,29 +60,29 @@ final class ThreadForm extends SlideOverComponent implements HasForms
         return false;
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\Hidden::make('user_id'),
-                Forms\Components\TextInput::make('title')
+        return $schema
+            ->components([
+                Components\Hidden::make('user_id'),
+                Components\TextInput::make('title')
                     ->label(__('validation.attributes.title'))
                     ->helperText(__('pages/forum.min_thread_length'))
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set): void {
+                    ->afterStateUpdated(function (string $operation, $state, Set $set): void {
                         $set('slug', Str::slug($state));
                     })
                     ->minLength(10),
-                Forms\Components\Hidden::make('slug'),
-                Forms\Components\Select::make('channels')
+                Components\Hidden::make('slug'),
+                Components\Select::make('channels')
                     ->multiple()
                     ->relationship(titleAttribute: 'name')
                     ->preload()
                     ->required()
                     ->minItems(1)
                     ->maxItems(3),
-                Forms\Components\ToggleButtons::make('locale')
+                Components\ToggleButtons::make('locale')
                     ->label(__('validation.attributes.locale'))
                     ->options([
                         'en' => 'En',
@@ -85,7 +90,7 @@ final class ThreadForm extends SlideOverComponent implements HasForms
                     ])
                     ->helperText(__('global.locale_help'))
                     ->grouped(),
-                Forms\Components\MarkdownEditor::make('body')
+                Components\MarkdownEditor::make('body')
                     ->fileAttachmentsDisk('public')
                     ->toolbarButtons([
                         'attachFiles',
@@ -98,8 +103,9 @@ final class ThreadForm extends SlideOverComponent implements HasForms
                     ->label(__('validation.attributes.content'))
                     ->required()
                     ->minLength(20),
-                Forms\Components\Placeholder::make('')
-                    ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
+                TextEntry::make('placeholder')
+                    ->hiddenLabel()
+                    ->state(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                         <x-torchlight />
                     Blade))),
             ])

@@ -1,7 +1,7 @@
 <div>
-    <div class="relative isolate">
-        <x-container class="mx-auto max-w-3xl py-16 sm:pt-32 lg:pb-20 lg:pt-40">
-            <div class="text-center">
+    <div class="section-gradient overflow-hidden isolate pt-16">
+        <x-container class="border-x border-gray-200 dark:border-white/10 border-dotted">
+            <div class="mx-auto max-w-3xl py-20 sm:pt-32 lg:pt-44 text-center">
                 <h1 class="font-heading text-4xl font-semibold tracking-tight text-primary-600 sm:leading-none lg:text-6xl">
                     {{ __('global.site_name') }}
                 </h1>
@@ -23,13 +23,13 @@
                     </x-buttons.default>
                 </div>
             </div>
-        </x-container>
 
-        <x-join-sponsors :title="__('pages/home.work_associations')" />
+            <x-join-sponsors :title="__('pages/home.work_associations')" />
+        </x-container>
     </div>
 
     <x-container>
-        <div class="divide-y divide-gray-200 dark:divide-white/10">
+        <div class="divide-y divide-gray-200 divide-dotted dark:divide-white/10">
             <div class="py-12 lg:py-20">
                 <x-section-header
                     :title="__('pages/home.popular_posts.title')"
@@ -72,13 +72,9 @@
                                 <div class="text-sm flex items-center text-gray-500 dark:text-gray-400">
                                     <x-link
                                         :href="route('profile', $thread->user)"
-                                        class="inline-flex items-center gap-1.5 hover:underline"
+                                        class="inline-flex items-center gap-1.5 truncate hover:underline"
                                     >
-                                        <x-user.avatar
-                                            :user="$thread->user"
-                                            class="size-6"
-                                            span="-right-1 -top-1 size-4 ring-1"
-                                        />
+                                        <x-user.avatar :user="$thread->user" class="size-6" />
                                         <span>{{ '@' . $thread->user->username }}</span>
                                     </x-link>
                                     <span class="inline-flex gap-1.5">
@@ -89,17 +85,17 @@
                                     </span>
                                 </div>
                                 <x-link :href="route('forum.show', $thread)" class="mt-3 block">
-                                    <p class="text-xl font-medium text-gray-900 dark:text-white">
+                                    <p class="text-lg font-medium text-gray-900 dark:text-white">
                                         {{ $thread->subject() }}
                                     </p>
-                                    <p class="mt-3 text-gray-500 dark:text-gray-400">
+                                    <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
                                         {!! $thread->excerpt() !!}
                                     </p>
                                 </x-link>
-                                <div class="mt-3">
+                                <div class="mt-4">
                                     <x-link
                                         :href="route('forum.show', $thread)"
-                                        class="font-medium text-green-600 hover:text-green-500 hover:underline"
+                                        class="font-medium text-sm text-primary-500 hover:text-primary-600 hover:underline"
                                     >
                                         {{ __('pages/home.threads.show') }}
                                     </x-link>
@@ -124,36 +120,37 @@
                     @foreach ($discussions as $discussion)
                         <div>
                             <div class="relative flex items-center gap-1 text-sm text-gray-400 dark:text-gray-500">
-                                <x-user.avatar
-                                    :user="$discussion->user"
-                                    class="size-6"
-                                    container="mr-1.5"
-                                    span="-right-1 -top-1 size-4 ring-1"
-                                />
-                                <x-link
-                                    :href="route('profile', $discussion->user)"
-                                    class="text-gray-900 hover:underline dark:text-white"
-                                >
-                                    {{ $discussion->user->name }}
-                                    <span class="absolute inset-0"></span>
-                                </x-link>
+                                <div class="flex items-center gap-2 truncate">
+                                    <x-user.avatar
+                                        :user="$discussion->user"
+                                        class="size-6"
+                                        span="-right-1 -top-1 size-4 ring-1"
+                                    />
+                                    <x-link
+                                        :href="route('profile', $discussion->user)"
+                                        class="text-gray-900 truncate hover:underline dark:text-white"
+                                    >
+                                        {{ $discussion->user->name }}
+                                        <span class="absolute inset-0"></span>
+                                    </x-link>
+                                </div>
                                 <span aria-hidden="true">&middot;</span>
-                                <time datetime="{{ $discussion->created_at }}">
+                                <time class="whitespace-nowrap" datetime="{{ $discussion->created_at }}">
                                     {{ $discussion->created_at->diffForHumans() }}
                                 </time>
                             </div>
                             <x-link :href="route('discussions.show', $discussion)" class="mt-2 block">
-                                <p class="text-xl font-semibold text-gray-900 dark:text-white">
+                                <p class="text-lg font-semibold text-gray-900 dark:text-white">
                                     {{ $discussion->title }}
                                 </p>
-                                <p class="mt-3 text-gray-500 dark:text-gray-400">
+                                <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
                                     {!! $discussion->excerpt() !!}
                                 </p>
                             </x-link>
-                            <div class="mt-3">
+                            <div class="mt-4">
                                 <x-link
                                     :href="route('discussions.show', $discussion)"
-                                    class="font-medium text-flag-green hover:text-green-500 hover:underline"
+                                    class="font-medium text-sm text-primary-500 hover:text-primary-600 hover:underline"
                                 >
                                     {{ __('pages/home.discussions.read') }}
                                 </x-link>
@@ -191,10 +188,10 @@
         </div>
         <div class="mx-auto max-w-4xl px-4 lg:max-w-7xl xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
             <div class="relative pb-64 pt-12 sm:pb-64 sm:pt-24 xl:col-start-1 xl:pb-24">
-                <h2 class="font-mono text-sm font-semibold uppercase tracking-wide text-green-300">
+                <h2 class="text-sm font-semibold uppercase tracking-wide text-primary-500">
                     {{ __('global.navigation.about') }}
                 </h2>
-                <p class="mt-3 text-3xl font-extrabold font-heading text-white">
+                <p class="mt-3 text-3xl font-bold font-heading text-white">
                     {{ __('pages/home.about.heading') }}
                 </p>
                 <p class="mt-5 text-lg text-gray-400">

@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-use Vormkracht10\Mails\Models\Mail;
-use Vormkracht10\Mails\Models\MailAttachment;
-use Vormkracht10\Mails\Models\MailEvent;
+use Backstage\Mails\Events\MailEvent;
+use Backstage\Mails\Models\Mail;
+use Backstage\Mails\Models\MailAttachment;
 
 return [
 
     // Eloquent model to use for sent emails
-
     'models' => [
         'mail' => Mail::class,
         'event' => MailEvent::class,
@@ -17,7 +16,6 @@ return [
     ],
 
     // Table names for saving sent emails and polymorphic relations to database
-
     'database' => [
         'tables' => [
             'mails' => 'mails',

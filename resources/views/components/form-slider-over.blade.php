@@ -14,7 +14,7 @@
                 <div class="ml-3 flex h-7 items-center">
                     <button
                         type="button"
-                        class="rounded-lg bg-white text-gray-400 hover:text-gray-500 focus:outline-none dark:bg-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
+                        class="rounded-lg bg-white text-gray-400 hover:text-gray-500 focus:outline-hidden dark:bg-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
                         wire:click="$dispatch('closePanel')"
                     >
                         <span class="sr-only">{{ __('global.close_navigation') }}</span>

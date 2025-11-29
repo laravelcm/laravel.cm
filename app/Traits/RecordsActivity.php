@@ -50,7 +50,7 @@ trait RecordsActivity
 
     protected function getActivityType(string $event): string
     {
-        $type = mb_strtolower((new ReflectionClass($this))->getShortName());
+        $type = mb_strtolower(new ReflectionClass($this)->getShortName());
 
         return "{$event}_{$type}";
     }

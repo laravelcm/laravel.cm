@@ -7,9 +7,10 @@ namespace App\Traits;
 use App\Models\Subscribe;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Collection;
 
 /**
- * @property-read \Illuminate\Support\Collection<array-key, Subscribe> $subscribes
+ * @property-read Collection<array-key, Subscribe> $subscribes
  */
 trait HasSubscribers
 {

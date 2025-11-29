@@ -5,12 +5,12 @@
 <div
     {{ $attributes->twMerge(['class' => 'inline-flex items-center justify-start rounded-lg bg-gray-100/50 p-1 h-10 ring-1 ring-gray-200 dark:ring-white/10 dark:bg-gray-800 sm:w-auto']) }}
 >
-    @foreach(config('lcm.supported_locales') as $supportedLocale)
+    @foreach (config('lcm.supported_locales') as $supportedLocale)
         <button
             type="button"
             aria-disabled="false"
             wire:click="selectLocale('{{ $supportedLocale }}')"
-            @if($supportedLocale === $locale)
+            @if ($supportedLocale === $locale)
                 aria-current="page"
             @endif
             @class([

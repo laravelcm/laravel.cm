@@ -1,6 +1,7 @@
-@import '/vendor/filament/filament/resources/css/theme.css';
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
 
-@config './tailwind.config.js';
+@source '../../../../app/Filament';
+@source '../../../../resources/views/filament';
 
 *::-webkit-scrollbar-track {
   background-color: transparent;
@@ -31,69 +32,4 @@
 
 .hide-scroll::-webkit-scrollbar {
   display: none;
-}
-
-.fi-body {
-  .fi-simple-header .fi-logo {
-    @apply h-16 !important;
-    > svg {
-      @apply h-full;
-    }
-  }
-
-  &.fi-panel-admin {
-    .fi-sidebar-header {
-      @apply bg-white ring-1 ring-gray-200/60 lg:shadow-none dark:bg-gray-900 dark:ring-white/10;
-      .fi-logo {
-        @apply h-10 !important;
-        > svg {
-          @apply h-full;
-        }
-      }
-
-      .fi-icon-btn {
-        @apply size-10 text-gray-400 rounded-lg -translate-x-2 translate-y-px hover:bg-gray-100 dark:text-gray-500 dark:hover:bg-gray-800;
-        svg {
-          display:none;
-        }
-        &::after {
-          content: url('data:image/svg+xml;utf8,<svg class="size-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="none"><path d="M2.74902 6.75C2.74902 5.09315 4.09217 3.75 5.74902 3.75H18.2507C19.9075 3.75 21.2507 5.09315 21.2507 6.75V17.25C21.2507 18.9069 19.9075 20.25 18.2507 20.25H5.74902C4.09217 20.25 2.74902 18.9069 2.74902 17.25V6.75Z" stroke="%23a9a9af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.25 3.75V20.25" stroke="%23a9a9af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.75 7.75L7.25 7.75" stroke="%23a9a9af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.75 11L7.25 11" stroke="%23a9a9af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.75 14.25L7.25 14.25" stroke="%23a9a9af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');
-          @apply size-6 inline-block; /* Ensure the element can have a color */
-        }
-        &:hover::after {
-          content: url('data:image/svg+xml;utf8,<svg class="size-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="none"><path d="M2.74902 6.75C2.74902 5.09315 4.09217 3.75 5.74902 3.75H18.2507C19.9075 3.75 21.2507 5.09315 21.2507 6.75V17.25C21.2507 18.9069 19.9075 20.25 18.2507 20.25H5.74902C4.09217 20.25 2.74902 18.9069 2.74902 17.25V6.75Z" stroke="%2349494f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.25 3.75V20.25" stroke="%2349494f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.75 7.75L7.25 7.75" stroke="%2349494f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.75 11L7.25 11" stroke="%2349494f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.75 14.25L7.25 14.25" stroke="%2349494f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>');
-          @apply inline-block; /* Ensure the element can have a color */
-        }
-      }
-    }
-
-    .fi-topbar {
-      > nav {
-        @apply shadow-none ring-1 ring-gray-200/60 bg-white dark:bg-gray-900 dark:ring-white/10;
-      }
-    }
-
-    .fi-sidebar-nav {
-      @apply px-0;
-
-      .fi-sidebar-nav-groups {
-        @apply px-2;
-      }
-
-      .fi-sidebar-item {
-        @apply border-l-4 border-transparent rounded-none hover:bg-gray-100 hover:border-gray-200 dark:hover:bg-gray-900 dark:hover:border-gray-700;
-        &.fi-active {
-          @apply border-primary-400 hover:border-primary-400 hover:bg-transparent;
-        }
-      }
-
-      .fi-sidebar-item-button, .fi-sidebar-group-button {
-        @apply bg-transparent px-5;
-      }
-    }
-
-    .fi-main-ctn {
-      @apply bg-transparent;
-    }
-  }
 }

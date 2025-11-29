@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Article;
 use App\Observers\MediaObserver;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -25,7 +26,8 @@ describe(MediaObserver::class, function (): void {
 
     it('only flushes cache for models implementing HasCachedMediaInterface', function (): void {
         $observer = new MediaObserver;
-        $article = \App\Models\Article::factory()->create();
+        /** @var Article $article */
+        $article = Article::factory()->create();
 
         $media = new Media([
             'model_type' => get_class($article),
@@ -41,4 +43,4 @@ describe(MediaObserver::class, function (): void {
 
         expect(true)->toBeTrue();
     });
-})->group('Observers', 'Media', 'Cache');
+})->group('media', 'cache');

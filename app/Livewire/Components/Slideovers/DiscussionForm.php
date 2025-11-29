@@ -8,11 +8,15 @@ use App\Actions\Discussion\CreateOrUpdateDiscussionAction;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Discussion;
-use Filament\Forms;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Notifications\Notification;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
@@ -21,10 +25,11 @@ use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
 /**
- * @property Form $form
+ * @property \Filament\Schemas\Schema $form
  */
-final class DiscussionForm extends SlideOverComponent implements HasForms
+final class DiscussionForm extends SlideOverComponent implements HasActions, HasForms
 {
+    use InteractsWithActions;
     use InteractsWithForms;
     use WithAuthenticatedUser;
 
@@ -45,38 +50,38 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
         ]));
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\Hidden::make('user_id'),
-                Forms\Components\TextInput::make('title')
+        return $schema
+            ->components([
+                Components\Hidden::make('user_id'),
+                Components\TextInput::make('title')
                     ->label(__('validation.attributes.title'))
                     ->helperText(__('pages/discussion.min_discussion_length'))
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set): void {
+                    ->afterStateUpdated(function (string $operation, $state, Set $set): void {
                         $set('slug', Str::slug($state));
                     })
                     ->minLength(10),
-                Forms\Components\Hidden::make('slug'),
-                Forms\Components\Select::make('tags')
+                Components\Hidden::make('slug'),
+                Components\Select::make('tags')
                     ->multiple()
                     ->relationship(
                         name: 'tags',
                         titleAttribute: 'name',
-                        modifyQueryUsing: fn ($query) => $query->whereRaw("jsonb_exists(concerns::jsonb, ?)", ['discussion'])
+                        modifyQueryUsing: fn ($query) => $query->whereRaw('jsonb_exists(concerns::jsonb, ?)', ['discussion'])
                     )
                     ->required()
                     ->minItems(1)
                     ->maxItems(3)
                     ->preload(),
-                Forms\Components\ToggleButtons::make('locale')
+                Components\ToggleButtons::make('locale')
                     ->label(__('validation.attributes.locale'))
                     ->options(['en' => 'En', 'fr' => 'Fr'])
                     ->helperText(__('global.locale_help'))
                     ->grouped(),
-                Forms\Components\MarkdownEditor::make('body')
+                Components\MarkdownEditor::make('body')
                     ->toolbarButtons([
                         'blockquote',
                         'bold',
@@ -88,8 +93,9 @@ final class DiscussionForm extends SlideOverComponent implements HasForms
                     ->maxHeight('18.25rem')
                     ->required()
                     ->minLength(20),
-                Forms\Components\Placeholder::make('')
-                    ->content(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
+                TextEntry::make('placeholder')
+                    ->hiddenLabel()
+                    ->state(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
                         <x-torchlight />
                     Blade))),
             ])

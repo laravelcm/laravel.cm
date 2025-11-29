@@ -30,5 +30,4 @@ it('delete user action can remove discussion point ', function (): void {
 
     expect($user->getPoints())
         ->toBe(0);
-
 });
