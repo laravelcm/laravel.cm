@@ -64,4 +64,22 @@ describe('Authentication', function (): void {
 
         $this->assertGuest();
     });
+
+    test('users are redirected to intended url after login', function (): void {
+        $user = User::factory()->create();
+
+        session()->put('url.intended', '/articles');
+
+        $component = Volt::test('pages.auth.login')
+            ->set('form.email', $user->email)
+            ->set('form.password', 'password');
+
+        $component->call('login');
+
+        $component
+            ->assertHasNoErrors()
+            ->assertRedirect('/articles');
+
+        $this->assertAuthenticated();
+    });
 });
