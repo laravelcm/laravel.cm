@@ -69,7 +69,7 @@ class DatabaseMigrationService
             $totalRecords,
             $progressCallback
         ): void {
-            $data = $records->map(fn (array $record): array => $this->transformRecord($record))->all();
+            $data = $records->map(fn (object $record): array => $this->transformRecord((array) $record))->all();
 
             DB::connection($this->targetConnection)
                 ->table($table)
