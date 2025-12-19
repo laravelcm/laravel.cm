@@ -25,6 +25,6 @@ final class PostArticleToTelegram extends Notification
     {
         return TelegramMessage::create()
             ->to('@laravelcm')
-            ->content("{$this->article->title} ".route('articles.show', $this->article->slug));
+            ->content($this->article->title.' '.route('articles.show', $this->article->slug));
     }
 }

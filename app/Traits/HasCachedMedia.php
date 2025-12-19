@@ -13,7 +13,7 @@ trait HasCachedMedia
     {
         return sprintf(
             '%s.%d.media.%s',
-            strtolower(class_basename($this)),
+            mb_strtolower(class_basename($this)),
             $this->getKey(),
             $collection
         );
@@ -26,7 +26,7 @@ trait HasCachedMedia
 
     public function flushMediaCache(?string $collection = null): void
     {
-        app(MediaCacheService::class)->flushCache($this, $collection);
+        resolve(MediaCacheService::class)->flushCache($this, $collection);
     }
 
     public function getMediaCollections(): array
@@ -36,6 +36,6 @@ trait HasCachedMedia
 
     public function getCachedMediaUrl(string $collection, ?string $conversion = null): ?string
     {
-        return app(MediaCacheService::class)->getCachedMediaUrl($this, $collection, $conversion);
+        return resolve(MediaCacheService::class)->getCachedMediaUrl($this, $collection, $conversion);
     }
 }

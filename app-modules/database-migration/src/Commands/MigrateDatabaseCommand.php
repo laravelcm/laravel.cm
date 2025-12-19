@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Laravelcm\DatabaseMigration\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 use Laravelcm\DatabaseMigration\Services\DatabaseMigrationService;
 use Laravelcm\DatabaseMigration\Services\SshTunnelService;
@@ -70,15 +71,15 @@ final class MigrateDatabaseCommand extends Command
                     }
 
                     $this->newLine();
-                    $this->info("🔄 Migrating table: {$table}");
+                    $this->info('🔄 Migrating table: '.$table);
 
                     if (! $isDryRun) {
-                        $migrationService->migrateTable($table, $chunkSize, function ($processed, $total): void {
-                            $this->line(" 📊 Processed {$processed}/{$total} records");
+                        $migrationService->migrateTable($table, $chunkSize, function (string $processed, $total): void {
+                            $this->line(sprintf(' 📊 Processed %s/%s records', $processed, $total));
                         });
                     } else {
                         $count = $migrationService->getTableRecordCount($table);
-                        $this->line(" 📊 Would migrate {$count} records");
+                        $this->line(sprintf(' 📊 Would migrate %d records', $count));
                     }
 
                     $progressBar->advance();
@@ -100,8 +101,8 @@ final class MigrateDatabaseCommand extends Command
 
             return Command::SUCCESS;
 
-        } catch (\Exception $e) {
-            $this->error("❌ Migration failed: {$e->getMessage()}");
+        } catch (Exception $exception) {
+            $this->error('❌ Migration failed: '.$exception->getMessage());
 
             return Command::FAILURE;
         } finally {

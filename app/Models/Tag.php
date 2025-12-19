@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Traits\HasSlug;
+use Database\Factories\TagFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
@@ -15,25 +16,20 @@ use Illuminate\Support\Collection;
  * @property-read int $id
  * @property-read string $name
  * @property-read string $slug
- * @property-read string|null $description
- * @property-read array $concerns
- * @property-read Collection<array-key, Article> $articles
+ * @property-read ?string $description
+ * @property-read array<string, mixed> $concerns
+ * @property-read Collection<int, Article> $articles
  */
 final class Tag extends Model
 {
+    /** @use HasFactory<TagFactory> */
     use HasFactory;
+
     use HasSlug;
 
     public $timestamps = false;
 
     protected $guarded = [];
-
-    protected function casts(): array
-    {
-        return [
-            'concerns' => 'array',
-        ];
-    }
 
     /**
      * @return MorphToMany<Article, $this, MorphPivot>
@@ -41,5 +37,12 @@ final class Tag extends Model
     public function articles(): MorphToMany
     {
         return $this->morphedByMany(Article::class, 'taggable');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'concerns' => 'array',
+        ];
     }
 }

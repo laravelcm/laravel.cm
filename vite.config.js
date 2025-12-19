@@ -1,40 +1,57 @@
-import laravel, { refreshPaths } from 'laravel-vite-plugin'
-import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite'
+import laravel, { refreshPaths } from "laravel-vite-plugin";
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+import dotenv from "dotenv";
+
+dotenv.config({ path: ".env" });
+
+const APP_HOST = process.env.APP_URL
+  ? new URL(process.env.APP_URL).host
+  : "laravelcm.local";
+const VITE_PORT = 5173;
 
 export default defineConfig({
   plugins: [
     laravel({
       input: [
-        'resources/css/app.css',
-        'resources/js/app.js',
-        'resources/css/filament/admin/theme.css',
+        "resources/css/app.css",
+        "resources/js/app.js",
+        "resources/css/filament/admin/theme.css",
       ],
       refresh: [
-        'app/Livewire/**',
-        'app/Filament/**',
-        ...refreshPaths,
+        "app/Livewire/**",
+        "app/Filament/**",
+        "app-modules/*/Livewire/**",
+        "app-modules/*/Filament/**",
+        ...refreshPaths
       ],
     }),
     {
-      name: 'blade',
+      name: "blade",
       handleHotUpdate({ file, server }) {
-        if (file.endsWith('.blade.php')) {
+        if (file.endsWith(".blade.php")) {
           server.ws.send({
-            type: 'full-reload',
-            path: '*',
+            type: "full-reload",
+            path: "*",
           });
         }
       },
     },
     tailwindcss(),
   ],
-  server: {
-    host: '0.0.0.0',
-    port: 5173,
-    hmr: {
-      host: 'localhost',
-      port: 5173,
+  resolve: {
+    alias: {
+      "@": "/resources/js",
     },
   },
-})
+  server: {
+    host: "0.0.0.0",
+    port: VITE_PORT,
+    strictPort: true,
+    hmr: {
+      host: APP_HOST,
+      port: VITE_PORT,
+      protocol: "wss",
+    },
+  },
+});

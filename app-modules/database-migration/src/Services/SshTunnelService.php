@@ -25,6 +25,13 @@ class SshTunnelService
         $this->buildCommands();
     }
 
+    public function __destruct()
+    {
+        // Ne pas nettoyer automatiquement à la destruction pour permettre
+        // la réutilisation du fichier pendant la durée de vie de l'application
+        // Le nettoyage doit être fait explicitement via forceCleanupTempKeyFile()
+    }
+
     public function activate(): int
     {
         if ($this->isActive()) {
@@ -43,7 +50,7 @@ class SshTunnelService
                 return 2;
             }
 
-            usleep(config('ssh-tunnel.connection.wait_microseconds', 1000000));
+            \Illuminate\Support\Sleep::usleep(config('ssh-tunnel.connection.wait_microseconds', 1000000));
         }
 
         throw new SshTunnelException(
@@ -80,6 +87,11 @@ class SshTunnelService
         return $result;
     }
 
+    public function forceCleanupTempKeyFile(): void
+    {
+        $this->cleanupTempKeyFile();
+    }
+
     private function createTunnel(): void
     {
         $nohupPath = config('ssh-tunnel.executables.nohup');
@@ -94,7 +106,7 @@ class SshTunnelService
 
         $this->runCommand($command);
 
-        usleep(config('ssh-tunnel.connection.wait_microseconds', 1000000));
+        \Illuminate\Support\Sleep::usleep(config('ssh-tunnel.connection.wait_microseconds', 1000000));
 
         $this->log('SSH tunnel creation command executed', ['command' => $command]);
     }
@@ -111,7 +123,7 @@ class SshTunnelService
         );
 
         $this->bashCommand = sprintf(
-            'timeout 1 %s -c \'cat < /dev/null > /dev/tcp/%s/%d\' > /dev/null 2>&1',
+            "timeout 1 %s -c 'cat < /dev/null > /dev/tcp/%s/%d' > /dev/null 2>&1",
             $config['executables']['bash'],
             $config['local']['address'],
             $config['local']['port']
@@ -144,7 +156,7 @@ class SshTunnelService
 
     private function buildIdentityOption(array $config): string
     {
-        if (! empty($config['ssh']['private_key_content'])) {
+        if (filled($config['ssh']['private_key_content'])) {
             $tempKeyFile = $this->createTempKeyFile($config['ssh']['private_key_content']);
 
             return sprintf('-i %s', $tempKeyFile);
@@ -158,7 +170,7 @@ class SshTunnelService
         $cleanedKeyContent = $this->normalizeKeyContent($keyContent);
 
         $keyHash = hash('sha256', $cleanedKeyContent);
-        $tempFile = sys_get_temp_dir().'/ssh_key_'.substr($keyHash, 0, 16);
+        $tempFile = sys_get_temp_dir().'/ssh_key_'.mb_substr($keyHash, 0, 16);
 
         if (file_exists($tempFile)) {
             $existingContent = file_get_contents($tempFile);
@@ -170,9 +182,7 @@ class SshTunnelService
             }
         }
 
-        if (file_put_contents($tempFile, $cleanedKeyContent) === false) {
-            throw new SshTunnelException('Unable to write SSH key to temporary file');
-        }
+        throw_if(file_put_contents($tempFile, $cleanedKeyContent) === false, SshTunnelException::class, 'Unable to write SSH key to temporary file');
 
         if (chmod($tempFile, 0600) === false) {
             unlink($tempFile);
@@ -197,7 +207,7 @@ class SshTunnelService
         }
 
         $normalized = str_replace('\\n', "\n", $keyContent);
-        $normalized = trim($normalized);
+        $normalized = mb_trim($normalized);
 
         if (! str_ends_with($normalized, "\n")) {
             $normalized .= "\n";
@@ -232,20 +242,9 @@ class SshTunnelService
             } else {
                 $this->log('Failed to cleanup temporary SSH key file', ['file' => $this->tempKeyFile]);
             }
+
             $this->tempKeyFile = null;
         }
-    }
-
-    public function forceCleanupTempKeyFile(): void
-    {
-        $this->cleanupTempKeyFile();
-    }
-
-    public function __destruct()
-    {
-        // Ne pas nettoyer automatiquement à la destruction pour permettre
-        // la réutilisation du fichier pendant la durée de vie de l'application
-        // Le nettoyage doit être fait explicitement via forceCleanupTempKeyFile()
     }
 
     private function log(string $message, array $context = []): void

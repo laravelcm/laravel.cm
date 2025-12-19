@@ -88,15 +88,14 @@ final class ArticleQueryBuilder extends Builder
 
     public function recent(): self
     {
-        return $this->orderByDesc('published_at')
-            ->orderByDesc('created_at');
+        return $this->latest('published_at')->latest();
     }
 
     public function popular(): self
     {
         return $this->withCount('reactions')
             ->orderBy('reactions_count', 'desc')
-            ->orderBy('published_at', 'desc');
+            ->latest('published_at');
     }
 
     public function trending(): self
@@ -105,6 +104,6 @@ final class ArticleQueryBuilder extends Builder
             $query->where('created_at', '>=', now()->subWeek());
         }])
             ->orderBy('reactions_count', 'desc')
-            ->orderBy('published_at', 'desc');
+            ->latest('published_at');
     }
 }

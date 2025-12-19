@@ -1,26 +1,26 @@
 {
-    "name": "StubComposerName",
-    "description": "Module StubComposerName for Laravel.cm",
-    "type": "library",
-    "version": "1.0",
-    "license": "proprietary",
-    "require": {
-        "filament/filament": "^3.2"
-    },
-    "autoload": {
-        "psr-4": {
-            "Laravelcm\\StubClassNamePrefix\\": "src/",
-            "Laravelcm\\StubClassNamePrefix\\Tests\\": "tests/",
-            "Laravelcm\\StubClassNamePrefix\\Database\\Factories\\": "database/factories/",
-            "Laravelcm\\StubClassNamePrefix\\Database\\Seeders\\": "database/seeders/"
-        }
-    },
-    "minimum-stability": "stable",
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Laravelcm\\StubClassNamePrefix\\Providers\\StubClassNamePrefixServiceProvider"
-            ]
-        }
+  "name": "StubComposerName",
+  "description": "Module StubComposerName for Laravel.cm",
+  "type": "library",
+  "version": "1.0",
+  "license": "proprietary",
+  "require": {
+    "filament/filament": "^3.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Laravelcm\\StubClassNamePrefix\\": "src/",
+      "Laravelcm\\StubClassNamePrefix\\Tests\\": "tests/",
+      "Laravelcm\\StubClassNamePrefix\\Database\\Factories\\": "database/factories/",
+      "Laravelcm\\StubClassNamePrefix\\Database\\Seeders\\": "database/seeders/"
     }
+  },
+  "minimum-stability": "stable",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Laravelcm\\StubClassNamePrefix\\Providers\\StubClassNamePrefixServiceProvider"
+      ]
+    }
+  }
 }

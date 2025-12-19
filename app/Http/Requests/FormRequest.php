@@ -17,7 +17,7 @@ abstract class FormRequest extends LaravelFormRequest
      */
     abstract public function rules(): array;
 
-    public function failedValidation(Validator $validator): JsonResponse
+    protected function failedValidation(Validator $validator): JsonResponse
     {
         $transformed = [];
 

@@ -10,11 +10,11 @@ final class CannotCreateUser extends Exception
 {
     public static function duplicateEmailAddress(string $emailAddress): self
     {
-        return new CannotCreateUser("Cet adresse e-mail [{$emailAddress}] existe déjà.");
+        return new self(sprintf('Cet adresse e-mail [%s] existe déjà.', $emailAddress));
     }
 
     public static function duplicateUsername(string $username): self
     {
-        return new CannotCreateUser("Ce pseudo [{$username}] existe déjà.");
+        return new self(sprintf('Ce pseudo [%s] existe déjà.', $username));
     }
 }

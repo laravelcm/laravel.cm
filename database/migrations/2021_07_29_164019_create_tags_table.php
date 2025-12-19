@@ -6,19 +6,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateTagsTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table): void {
+        Schema::create('tags', static function (Blueprint $table): void {
             $table->id();
+
             $table->string('name');
             $table->string('slug');
             $table->text('description')->nullable();
             $table->json('concerns');
         });
 
-        Schema::create('taggables', function (Blueprint $table): void {
+        Schema::create('taggables', static function (Blueprint $table): void {
             $table->foreignId('tag_id');
             $table->morphs('taggable');
         });
@@ -29,4 +30,4 @@ final class CreateTagsTable extends Migration
         Schema::dropIfExists('taggables');
         Schema::dropIfExists('tags');
     }
-}
+};

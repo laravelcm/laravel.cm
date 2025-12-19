@@ -32,7 +32,7 @@ describe(Profile::class, function (): void {
             ->and($this->user->email)->toBe($this->user->email);
     });
 
-    it('user can\'t update profil if required information was not send', function (): void {
+    it("user can't update profil if required information was not send", function (): void {
         Livewire::test(Profile::class, ['user' => $this->user])
             ->fillForm([
                 'email' => null,
@@ -49,7 +49,7 @@ describe(Profile::class, function (): void {
 
         $data = ['email' => 'newemail@laravelcm.cm'];
 
-        app(UpdateUserProfileAction::class)
+        resolve(UpdateUserProfileAction::class)
             ->execute($data, $this->user, (string) $this->user->email);
 
         Event::assertDispatched(EmailAddressWasChanged::class);

@@ -6,13 +6,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateReactionsTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('reactions', function (Blueprint $table): void {
+        Schema::create('reactions', static function (Blueprint $table): void {
             $table->id();
+
             $table->string('name');
+
             $table->timestamps();
         });
     }
@@ -21,4 +23,4 @@ final class CreateReactionsTable extends Migration
     {
         Schema::dropIfExists('reactions');
     }
-}
+};

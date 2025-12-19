@@ -1,16 +1,16 @@
 ARG PHP_VERSION=8.4
 ARG NODE_VERSION=22
 
-############################################
+#---------------------------------
 # Base Image
-############################################
+#---------------------------------
 FROM ghcr.io/yieldstudio/php:${PHP_VERSION}-frankenphp AS base
 
 ENV HEALTHCHECK_PATH="/up"
 
-############################################
+#---------------------------------
 # Development Image
-############################################
+#---------------------------------
 FROM base AS development
 
 ARG WWWUSER
@@ -19,7 +19,7 @@ ARG NODE_VERSION=22
 ARG MYSQL_CLIENT="mysql-client"
 ARG POSTGRES_VERSION=17
 
-ENV XDEBUG_MODE="off"
+ENV XDEBUG_MODE="coverage,debug"
 ENV XDEBUG_CONFIG="client_host=host.docker.internal"
 ENV PHP_MEMORY_LIMIT=1024M
 
@@ -27,7 +27,9 @@ USER root
 
 RUN apt-get update && apt-get upgrade -y \
     && mkdir -p /etc/apt/keyrings \
-    && apt-get install -y gnupg gosu curl ca-certificates zip unzip git supervisor sqlite3 libcap2-bin libpng-dev python3 dnsutils librsvg2-bin fswatch ffmpeg nano  \
+    && apt-get install -y gnupg gosu curl ca-certificates zip unzip git supervisor sqlite3 libcap2-bin libpng-dev python3 dnsutils librsvg2-bin fswatch ffmpeg nano \
+    libevent-2.1-7 libevent-core-2.1-7 libevent-extra-2.1-7 libevent-openssl-2.1-7 libevent-pthreads-2.1-7 \
+    libflite1 flite1-dev libenchant-2-2 libsecret-1-0 libmanette-0.2-0 libgles2-mesa libx264-dev \
     && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
     && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_VERSION.x nodistro main" > /etc/apt/sources.list.d/nodesource.list \
     && apt-get update \
@@ -49,13 +51,13 @@ RUN docker-php-set-id www-data $WWWUSER:$WWWGROUP \
     && docker-php-set-file-permissions --owner $WWWUSER:$WWWGROUP --service frankenphp \
     && useradd -mNo -g www-data -u $(id -u www-data) sail
 
-RUN install-php-extensions xdebug
+RUN install-php-extensions xdebug sockets
 
 USER www-data
 
-############################################
+#---------------------------------
 # CI image
-############################################
+#---------------------------------
 FROM base AS ci
 
 ENV AUTORUN_ENABLED=false
@@ -69,11 +71,11 @@ ENV XDEBUG_CONFIG="client_host=host.docker.internal client_port=9003"
 # the PHP-FPM pool to run as www-data
 USER root
 
-RUN install-php-extensions xdebug
+RUN install-php-extensions xdebug sockets
 
-############################################
+#---------------------------------
 # Composer Build
-############################################
+#---------------------------------
 FROM base AS composer
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -83,9 +85,9 @@ COPY --chown=www-data:www-data . .
 RUN composer install --no-dev --no-interaction --no-scripts --prefer-dist \
     && composer dump-autoload --classmap-authoritative --no-dev --optimize
 
-############################################
+#---------------------------------
 # Assets Build
-############################################
+#---------------------------------
 FROM node:${NODE_VERSION}-slim AS frontend
 
 WORKDIR /app
@@ -108,15 +110,18 @@ RUN if [ -f yarn.lock ]; then \
         echo "No lock file found, skipping asset build."; \
     fi
 
-############################################
+#---------------------------------
 # Production Image
-############################################
+#---------------------------------
 FROM base
 
-ENV AUTORUN_ENABLED=true
-ENV PHP_OPCACHE_ENABLE=1
-ENV PHP_MEMORY_LIMIT=512M
-ENV SSL_MODE=mixed
+ENV \
+    AUTORUN_ENABLED=true \
+    SSL_MODE=off \
+    PHP_OPCACHE_ENABLE=1 \
+    PHP_MEMORY_LIMIT=512M \
+    OCTANE_SERVER=frankenphp \
+    HEALTHCHECK_PATH="/up"
 
 USER root
 
@@ -124,17 +129,11 @@ RUN apt-get update && apt-get install -y openssh-client && rm -rf /var/lib/apt/l
 
 USER www-data
 
-# Copy Filament assets from Composer
 COPY --from=composer --chown=www-data:www-data /var/www/html/public/css ./public/css
 COPY --from=composer --chown=www-data:www-data /var/www/html/public/js ./public/js
-
-# Composer dependencies
 COPY --from=composer --chown=www-data:www-data /var/www/html/vendor ./vendor
-
-# Application assets
 COPY --from=frontend --chown=www-data:www-data /app/public/build ./public/build
 
-# Application source
 COPY --chown=www-data:www-data . /var/www/html
 
 # Start Octane with FrankenPHP

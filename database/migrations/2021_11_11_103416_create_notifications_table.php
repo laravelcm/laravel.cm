@@ -6,15 +6,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateNotificationsTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('notifications', function (Blueprint $table): void {
+        Schema::create('notifications', static function (Blueprint $table): void {
             $table->uuid('id')->primary();
+
             $table->string('type');
             $table->morphs('notifiable');
             $table->text('data');
+
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
@@ -24,4 +26,4 @@ final class CreateNotificationsTable extends Migration
     {
         Schema::dropIfExists('notifications');
     }
-}
+};

@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateViewsTable extends Migration
+return new class extends Migration
 {
     /**
      * The database schema.
@@ -15,9 +15,6 @@ final class CreateViewsTable extends Migration
      */
     protected $schema;
 
-    /**
-     * The table name.
-     */
     protected string $table;
 
     public function __construct()
@@ -33,9 +30,11 @@ final class CreateViewsTable extends Migration
     {
         $this->schema->create($this->table, function (Blueprint $table): void {
             $table->bigIncrements('id');
+
             $table->morphs('viewable');
             $table->text('visitor')->nullable();
             $table->string('collection')->nullable();
+
             $table->timestamp('viewed_at')->useCurrent();
         });
     }
@@ -44,4 +43,4 @@ final class CreateViewsTable extends Migration
     {
         Schema::dropIfExists($this->table);
     }
-}
+};

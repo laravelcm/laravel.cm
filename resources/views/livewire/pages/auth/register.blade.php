@@ -8,9 +8,13 @@ use Illuminate\Validation\Rules\Password;
 
 new class extends Component {
     public string $name = '';
+
     public string $email = '';
+
     public string $username = '';
+
     public string $password = '';
+
     public string $gRecaptchaResponse;
 
     public function register(): void

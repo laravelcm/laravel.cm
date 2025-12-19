@@ -17,7 +17,7 @@ final class CheckIfBanned
         if (Auth::check() && Auth::user()->banned()) {
             Auth::logout();
 
-            return redirect()->route('login')->withErrors([
+            return to_route('login')->withErrors([
                 'email' => __('user.ban.message'),
             ]);
         }

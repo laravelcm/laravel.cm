@@ -5,16 +5,19 @@ declare(strict_types=1);
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Date;
 
 uses(Tests\TestCase::class, RefreshDatabase::class)
     ->in('Feature', '../app-modules/*/tests');
 
+/**
+ * @return Thread|Collection<int, Thread>
+ */
 function createThreadFromToday(int $count = 1): Thread|Collection
 {
-    $today = Carbon::now();
+    $today = Date::now();
 
     if ($count === 1) {
         return Thread::factory()->create(['created_at' => $today]);
@@ -27,14 +30,14 @@ function createThreadFromToday(int $count = 1): Thread|Collection
 
 function createThreadFromYesterday(): Thread
 {
-    $yesterday = Carbon::yesterday();
+    $yesterday = Date::yesterday();
 
     return Thread::factory()->create(['created_at' => $yesterday]);
 }
 
 function createThreadFromTwoDaysAgo(): Thread
 {
-    $twoDaysAgo = Carbon::now()->subDays(2);
+    $twoDaysAgo = Date::now()->subDays(2);
 
     return Thread::factory()->create(['created_at' => $twoDaysAgo]);
 }

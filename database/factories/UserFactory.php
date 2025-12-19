@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
+/**
+ * @extends Factory<User>
+ */
 final class UserFactory extends Factory
 {
     protected $model = User::class;
@@ -27,21 +30,21 @@ final class UserFactory extends Factory
 
     public function unverified(): self
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (array $attributes): array => [
             'email_verified_at' => null,
         ]);
     }
 
     public function lastMonth(): self
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (array $attributes): array => [
             'created_at' => now()->subMonth(),
         ]);
     }
 
     public function banned(): self
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (array $attributes): array => [
             'banned_at' => now(),
             'banned_reason' => 'Violation des règles de la communauté',
         ]);
@@ -49,7 +52,7 @@ final class UserFactory extends Factory
 
     public function unbanned(): self
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn (array $attributes): array => [
             'banned_at' => null,
             'banned_reason' => null,
         ]);

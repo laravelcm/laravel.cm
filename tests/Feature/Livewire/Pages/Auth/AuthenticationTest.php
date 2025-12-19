@@ -6,7 +6,7 @@ use App\Models\User;
 use Livewire\Volt\Volt;
 
 /**
- * @var \Tests\TestCase $this
+ * @var Tests\TestCase $this
  */
 describe('Authentication', function (): void {
     test('login screen can be rendered', function (): void {

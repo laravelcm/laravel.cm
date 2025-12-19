@@ -6,18 +6,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateGamifyTables extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('reputations', function (Blueprint $table): void {
+        Schema::create('reputations', static function (Blueprint $table): void {
             $table->id();
+
             $table->string('name');
-            $table->mediumInteger('point', false)->default(0);
+            $table->mediumInteger('point')->default(0);
             $table->bigInteger('subject_id')->nullable();
             $table->string('subject_type')->nullable();
             $table->unsignedBigInteger('payee_id')->nullable();
             $table->text('meta')->nullable();
+
             $table->timestamps();
         });
     }
@@ -26,4 +28,4 @@ final class CreateGamifyTables extends Migration
     {
         Schema::dropIfExists('reputations');
     }
-}
+};

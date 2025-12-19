@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Laravelcm\DatabaseMigration\Providers;
 
+use Exception;
 use Illuminate\Support\ServiceProvider;
 use Laravelcm\DatabaseMigration\Commands\MigrateDatabaseCommand;
 use Laravelcm\DatabaseMigration\Commands\MigrateFilesToS3Command;
@@ -47,9 +48,9 @@ final class DatabaseMigrationServiceProvider extends ServiceProvider
             $this->app->booted(function (): void {
                 try {
                     $this->app->make(SshTunnelService::class)->activate();
-                } catch (\Exception $e) {
+                } catch (Exception $exception) {
                     // Log error but don't break the application
-                    logger()->error('Failed to auto-activate SSH tunnel: '.$e->getMessage());
+                    logger()->error('Failed to auto-activate SSH tunnel: '.$exception->getMessage());
                 }
             });
         }

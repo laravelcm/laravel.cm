@@ -1,30 +1,33 @@
-let tableOfContents = document.querySelector('.toc')
+let tableOfContents = document.querySelector(".toc");
 // console.log(tableOfContents)
 if (tableOfContents) {
-    let headers = [].slice
-        .call(document.querySelectorAll('.anchor'))
-        .map(({ name, offsetTop: position }) => ({ name, position }))
-        .reverse()
+  let headers = [].slice
+    .call(document.querySelectorAll(".anchor"))
+    .map(({ name, offsetTop: position }) => ({ name, position }))
+    .reverse();
 
-    highlightLink(headers[headers.length - 1].id)
+  highlightLink(headers[headers.length - 1].id);
 
-    window.addEventListener('scroll', (event) => {
-        let position = (document.documentElement.scrollTop || document.body.scrollTop) + 34
-        let current = headers.filter((header) => header.position < position)[0] || headers[headers.length - 1]
-        let active = document.querySelector('.toc .active')
+  window.addEventListener("scroll", (event) => {
+    let position =
+      (document.documentElement.scrollTop || document.body.scrollTop) + 34;
+    let current =
+      headers.filter((header) => header.position < position)[0] ||
+      headers[headers.length - 1];
+    let active = document.querySelector(".toc .active");
 
-        if (active) {
-            active.classList.remove('active')
-        }
+    if (active) {
+      active.classList.remove("active");
+    }
 
-        highlightLink(current.name)
-    })
+    highlightLink(current.name);
+  });
 }
 
 function highlightLink(name) {
-    let highlight = document.querySelector(`.toc a[href="#${name}"]`)
+  let highlight = document.querySelector(`.toc a[href="#${name}"]`);
 
-    if (highlight) {
-        highlight.parentNode.classList.add('active')
-    }
+  if (highlight) {
+    highlight.parentNode.classList.add("active");
+  }
 }

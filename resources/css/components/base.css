@@ -1,59 +1,67 @@
 html,
-body { height: 100%; }
-input { width: 100%; }
+body {
+  height: 100%;
+}
+input {
+  width: 100%;
+}
 
 [x-cloak] {
-    display: none !important;
+  display: none !important;
 }
 
 @font-face {
-  font-family: 'Rota';
-  src: url('../../fonts/rota/rota-semibold-webfont.woff2') format('woff2'),
-  url('../../fonts/rota/rota-semibold-webfont.woff') format('woff');
+  font-family: "Rota";
+  src:
+    url("../../fonts/rota/rota-semibold-webfont.woff2") format("woff2"),
+    url("../../fonts/rota/rota-semibold-webfont.woff") format("woff");
   font-weight: 600;
   font-style: swap;
 }
 
 @font-face {
-  font-family: 'Rota';
-  src: url('../../fonts/rota/rota-regular-webfont.woff2') format('woff2'),
-  url('../../fonts/rota/rota-regular-webfont.woff') format('woff');
+  font-family: "Rota";
+  src:
+    url("../../fonts/rota/rota-regular-webfont.woff2") format("woff2"),
+    url("../../fonts/rota/rota-regular-webfont.woff") format("woff");
   font-weight: 400;
   font-style: swap;
 }
 
 @font-face {
-  font-family: 'Rota';
-  src: url('../../fonts/rota/rota-medium-webfont.woff2') format('woff2'),
-  url('../../fonts/rota/rota-medium-webfont.woff') format('woff');
+  font-family: "Rota";
+  src:
+    url("../../fonts/rota/rota-medium-webfont.woff2") format("woff2"),
+    url("../../fonts/rota/rota-medium-webfont.woff") format("woff");
   font-weight: 500;
   font-style: swap;
 }
 
 @font-face {
-  font-family: 'Rota';
-  src: url('../../fonts/rota/rota-bold-webfont.woff2') format('woff2'),
-  url('../../fonts/rota/rota-bold-webfont.woff') format('woff');
+  font-family: "Rota";
+  src:
+    url("../../fonts/rota/rota-bold-webfont.woff2") format("woff2"),
+    url("../../fonts/rota/rota-bold-webfont.woff") format("woff");
   font-weight: 700;
   font-style: swap;
 }
 
 .hide-scroll::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .prose iframe {
-    @apply w-full;
+  @apply w-full;
 }
 
 .animate-scroll-slow:nth-child(2) {
-    animation-duration: 40s;
-    animation-delay: 500ms;
+  animation-duration: 40s;
+  animation-delay: 500ms;
 }
 
 .animate-scroll-slow:nth-child(3) {
-    animation-duration: 50s;
-    animation-delay: 750ms;
+  animation-duration: 50s;
+  animation-delay: 750ms;
 }
 
 /* Fix style for the phone country input */
@@ -64,7 +72,7 @@ input { width: 100%; }
 /* Gradient */
 .section-gradient {
   background: radial-gradient(60% 60% at 22% 0, #f4f4f5, #ffffff);
-  position: relative
+  position: relative;
 }
 
 .dark .section-gradient {

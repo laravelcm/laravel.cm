@@ -32,10 +32,10 @@ final class BenchmarkCommand extends Command
         $testCases = $this->getTestCases();
 
         foreach ($testCases as $description => $value) {
-            $this->line("<fg=cyan>Testing: {$description}</fg=cyan>");
+            $this->line(sprintf('<fg=cyan>Testing: %s</fg=cyan>', $description));
 
             $blankMetrics = $this->measurePerformance(fn (): bool => blank($value));
-            $emptyMetrics = $this->measurePerformance(fn (): bool => empty($value));
+            $emptyMetrics = $this->measurePerformance(fn (): bool => blank($value));
 
             $this->displayResults($blankMetrics, $emptyMetrics);
             $this->newLine();
@@ -95,7 +95,7 @@ final class BenchmarkCommand extends Command
             : round($blankMetrics['time'] / $emptyMetrics['time'], 2);
 
         $winner = $isFasterBlank ? 'blank()' : 'empty()';
-        $this->line("  <fg=bright-green>{$winner} is {$ratio}x faster</fg=bright-green>");
+        $this->line(sprintf('  <fg=bright-green>%s is %sx faster</fg=bright-green>', $winner, $ratio));
     }
 
     private function formatTime(float $timeInSeconds): string

@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Laravelcm\Subscriptions\Models\Plan as Model;
 
 /**
- * @mixin Model
- *
  * @property-read PlanType $type
+ *
+ * @mixin Model
  */
 final class Plan extends Model
 {
@@ -31,7 +31,7 @@ final class Plan extends Model
     #[Scope]
     protected function developer(Builder $query): void
     {
-        $query->where('type', PlanType::DEVELOPER->value);
+        $query->where('type', PlanType::DEVELOPER);
     }
 
     /**
@@ -40,6 +40,6 @@ final class Plan extends Model
     #[Scope]
     protected function enterprise(Builder $query): void
     {
-        $query->where('type', PlanType::ENTERPRISE->value);
+        $query->where('type', PlanType::ENTERPRISE);
     }
 }

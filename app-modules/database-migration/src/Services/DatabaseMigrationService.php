@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Laravelcm\DatabaseMigration\Services;
 
+use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -34,24 +35,6 @@ class DatabaseMigrationService
     }
 
     /**
-     * Get tables that should be excluded from migration
-     *
-     * @return array<string>
-     */
-    private function getExcludedTables(): array
-    {
-        return [
-            'migrations',
-            'password_resets',
-            'personal_access_tokens',
-            'failed_jobs',
-            'jobs',
-            'job_batches',
-            'temporary_uploads',
-        ];
-    }
-
-    /**
      * Get the number of records in a table
      */
     public function getTableRecordCount(string $table): int
@@ -79,7 +62,7 @@ class DatabaseMigrationService
         } else {
             $columns = Schema::connection($this->sourceConnection)->getColumnListing($table);
 
-            if (! empty($columns)) {
+            if (filled($columns)) {
                 $query->orderBy($columns[0]);
             }
         }
@@ -90,7 +73,7 @@ class DatabaseMigrationService
             $totalRecords,
             $progressCallback
         ): void {
-            $data = $records->map(fn ($record): array => $this->transformRecord((array) $record))->toArray();
+            $data = $records->map(fn ($record): array => $this->transformRecord((array) $record))->all();
 
             DB::connection($this->targetConnection)
                 ->table($table)
@@ -98,7 +81,7 @@ class DatabaseMigrationService
 
             $processedRecords += count($records);
 
-            if ($progressCallback) {
+            if ($progressCallback !== null) {
                 $progressCallback($processedRecords, $totalRecords);
             }
         });
@@ -114,35 +97,6 @@ class DatabaseMigrationService
     {
         DB::connection($this->targetConnection)
             ->statement('SET session_replication_role = DEFAULT;');
-    }
-
-    private function hasIdColumn(string $table): bool
-    {
-        return Schema::connection($this->sourceConnection)
-            ->hasColumn($table, 'id');
-    }
-
-    /**
-     * Transform a record for PostgreSQL compatibility
-     *
-     * @param  array<string, mixed>  $record
-     * @return array<string, mixed>
-     */
-    private function transformRecord(array $record): array
-    {
-        foreach ($record as $key => $value) {
-            // Handle MySQL boolean fields (tinyint) to PostgreSQL boolean
-            if (is_int($value) && in_array($value, [0, 1]) && preg_match('/^(is_|has_|can_|should_|enabled|active|certified|public|featured|published|pinned|opt_in|sponsored|verified|locked)/', $key)) {
-                $record[$key] = (bool) $value;
-            }
-
-            // Handle MySQL timestamp '0000-00-00 00:00:00' to null
-            if ($value === '0000-00-00 00:00:00') {
-                $record[$key] = null;
-            }
-        }
-
-        return $record;
     }
 
     /**
@@ -180,19 +134,66 @@ class DatabaseMigrationService
         try {
             DB::connection($this->sourceConnection)->getPdo();
             $results['source'] = true;
-        } catch (\Exception $e) {
+        } catch (Exception $exception) {
             $results['source'] = false;
-            $results['source_error'] = $e->getMessage();
+            $results['source_error'] = $exception->getMessage();
         }
 
         try {
             DB::connection($this->targetConnection)->getPdo();
             $results['target'] = true;
-        } catch (\Exception $e) {
+        } catch (Exception $exception) {
             $results['target'] = false;
-            $results['target_error'] = $e->getMessage();
+            $results['target_error'] = $exception->getMessage();
         }
 
         return $results;
+    }
+
+    /**
+     * Get tables that should be excluded from migration
+     *
+     * @return array<string>
+     */
+    private function getExcludedTables(): array
+    {
+        return [
+            'migrations',
+            'password_resets',
+            'personal_access_tokens',
+            'failed_jobs',
+            'jobs',
+            'job_batches',
+            'temporary_uploads',
+        ];
+    }
+
+    private function hasIdColumn(string $table): bool
+    {
+        return Schema::connection($this->sourceConnection)
+            ->hasColumn($table, 'id');
+    }
+
+    /**
+     * Transform a record for PostgreSQL compatibility
+     *
+     * @param  array<string, mixed>  $record
+     * @return array<string, mixed>
+     */
+    private function transformRecord(array $record): array
+    {
+        foreach ($record as $key => $value) {
+            // Handle MySQL boolean fields (tinyint) to PostgreSQL boolean
+            if (is_int($value) && in_array($value, [0, 1]) && preg_match('/^(is_|has_|can_|should_|enabled|active|certified|public|featured|published|pinned|opt_in|sponsored|verified|locked)/', $key)) {
+                $record[$key] = (bool) $value;
+            }
+
+            // Handle MySQL timestamp '0000-00-00 00:00:00' to null
+            if ($value === '0000-00-00 00:00:00') {
+                $record[$key] = null;
+            }
+        }
+
+        return $record;
     }
 }

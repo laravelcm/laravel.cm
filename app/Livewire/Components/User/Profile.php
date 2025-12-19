@@ -25,7 +25,7 @@ use Livewire\Component;
 use Ysfkaya\FilamentPhoneInput\Forms\PhoneInput;
 
 /**
- * @property \Filament\Schemas\Schema $form
+ * @property Schema $form
  * @property User $user
  */
 final class Profile extends Component implements HasActions, HasForms
@@ -73,7 +73,7 @@ final class Profile extends Component implements HasActions, HasForms
                             ->label(__('validation.attributes.bio'))
                             ->hint(__('global.characters', ['number' => 160]))
                             ->maxLength(160)
-                            ->afterStateUpdated(fn (?string $state): string => trim(strip_tags((string) $state)))
+                            ->afterStateUpdated(fn (?string $state): string => mb_trim(strip_tags((string) $state)))
                             ->helperText(__('pages/account.settings.bio_description')),
                         TextInput::make('website')
                             ->label(__('validation.attributes.website'))
@@ -167,7 +167,7 @@ final class Profile extends Component implements HasActions, HasForms
     {
         $this->validate();
 
-        app(UpdateUserProfileAction::class)->execute(
+        resolve(UpdateUserProfileAction::class)->execute(
             data: $this->form->getState(),
             user: $this->user,
             currentUserEmail: $this->currentUserEmail,

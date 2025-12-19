@@ -22,7 +22,7 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 
 /**
- * @property \Filament\Schemas\Schema $form
+ * @property Schema $form
  */
 final class Comments extends Component implements HasActions, HasForms
 {

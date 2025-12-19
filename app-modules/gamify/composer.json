@@ -5,7 +5,8 @@
   "version": "1.1.0",
   "license": "proprietary",
   "require": {
-    "php": "^8.4"
+    "php": "^8.4",
+    "Illuminate/Support": "^11.0|^12.0"
   },
   "require-dev": {
     "pestphp/pest": "^3.8",
@@ -15,16 +16,12 @@
     "psr-4": {
       "Laravelcm\\Gamify\\": "src/",
       "Laravelcm\\Gamify\\Database\\Factories\\": "database/factories/",
-      "Laravelcm\\Gamify\\Database\\Seeders\\": "database/seeders/"
+      "Laravelcm\\Gamify\\Database\\Seeders\\": "database/seeders/",
+      "Laravelcm\\Gamify\\Tests\\": "tests/"
     },
     "files": [
       "src/helpers.php"
     ]
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Laravelcm\\Gamify\\Tests\\": "tests/"
-    }
   },
   "minimum-stability": "stable",
   "extra": {

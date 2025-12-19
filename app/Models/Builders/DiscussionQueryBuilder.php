@@ -24,8 +24,7 @@ final class DiscussionQueryBuilder extends Builder
 
     public function recent(): self
     {
-        return $this->orderBy('is_pinned', 'desc')
-            ->orderBy('created_at', 'desc');
+        return $this->orderBy('is_pinned', 'desc')->latest();
     }
 
     public function popular(): self
@@ -44,7 +43,6 @@ final class DiscussionQueryBuilder extends Builder
 
     public function noComments(): self
     {
-        return $this->whereDoesntHave('replies')
-            ->orderByDesc('created_at');
+        return $this->whereDoesntHave('replies')->latest();
     }
 }

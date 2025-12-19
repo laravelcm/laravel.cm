@@ -15,7 +15,7 @@ describe(Profile::class, function (): void {
             'location' => 'Cameroon',
             'username' => 'lcm_user',
         ];
-        app(UpdateUserProfileAction::class)
+        resolve(UpdateUserProfileAction::class)
             ->execute($data, $this->user, (string) $this->user->email);
 
         $this->user->refresh();

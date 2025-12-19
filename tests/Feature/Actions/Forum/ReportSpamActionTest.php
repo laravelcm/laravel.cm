@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 
 /**
- * @var \Tests\TestCase $this
+ * @var Tests\TestCase $this
  */
 beforeEach(function (): void {
     $this->user = $this->login();
@@ -27,12 +27,12 @@ describe(ReportSpamAction::class, function (): void {
         $user = User::factory()->create();
         $thread = Thread::factory()->create();
 
-        app(CreateReplyAction::class)->execute(
+        resolve(CreateReplyAction::class)->execute(
             body: fake()->sentence(),
             model: $thread,
         );
 
-        app(ReportSpamAction::class)->execute(
+        resolve(ReportSpamAction::class)->execute(
             user: $user,
             model: Reply::query()->first(),
             content: fake()->sentence(),
@@ -60,7 +60,7 @@ describe(ReportSpamAction::class, function (): void {
             'reportable_id' => $reply->id,
         ]);
 
-        app(ReportSpamAction::class)->execute(
+        resolve(ReportSpamAction::class)->execute(
             user: $user,
             model: $reply,
         );

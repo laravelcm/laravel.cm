@@ -1,29 +1,60 @@
+# Dependencies
 /node_modules
-npm-debug.log
-yarn-error.log
-package-json.lock
 /vendor
-composer.phar
-/.idea
-/.vscode
-.phpunit.cache
-.phpunit.result.cache
+
+# Build outputs
 /public/build
 /public/hot
 /public/storage
-/public/fonts
-/public/media
 /public/css
 /public/js
+/public/fonts
 /public/**/*.xml
+
+# Storage
 /storage/*.key
-/storage/framework/cache
 /storage/pail
+
+# Environment files
 .env
 .env.backup
+.env.local
+.env.production
+.env.staging
+.env.testing
+
+# Testing
+/.phpunit.cache
+.phpunit.result.cache
+
+# Laravel Homestead
+Homestead.json
+Homestead.yaml
+
+# Package manager files
+auth.json
+npm-debug.log
+yarn-error.log
+
+# IDE and editor files
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+.phpactor.json
 .DS_Store
+*.DS_Store
 Thumbs.db
 
+# Docker and deployment
+docker-compose.override.yml
+compose.override.yml
+.composer-packages
+.docker/traefik/certs
+
+# Octane
 **/caddy
 frankenphp
 frankenphp-worker.php
+/public/frankenphp-worker.php

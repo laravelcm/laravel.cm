@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Laravelcm\DatabaseMigration\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -43,13 +44,13 @@ final class UpdateStorageUrlsCommand extends Command
         $newBaseUrl = $this->getNewBaseUrl($newDisk);
 
         if (! $newBaseUrl) {
-            $this->error("❌ Could not determine base URL for disk: {$newDisk}");
+            $this->error('❌ Could not determine base URL for disk: '.$newDisk);
 
             return Command::FAILURE;
         }
 
-        $this->info("Old domain: {$oldDomain}");
-        $this->info("New base URL: {$newBaseUrl}");
+        $this->info('Old domain: '.$oldDomain);
+        $this->info('New base URL: '.$newBaseUrl);
         $this->newLine();
 
         $totalUpdated = 0;
@@ -65,7 +66,7 @@ final class UpdateStorageUrlsCommand extends Command
                     continue;
                 }
 
-                $this->info("📋 Processing {$table}.{$column} - {$recordCount} records found");
+                $this->info(sprintf('📋 Processing %s.%s - %d records found', $table, $column, $recordCount));
 
                 $progressBar = $this->output->createProgressBar($recordCount);
                 $progressBar->start();
@@ -80,6 +81,7 @@ final class UpdateStorageUrlsCommand extends Command
                                 ->where('id', $record->id)
                                 ->update([$column => $newContent]);
                         }
+
                         $updated++;
                     }
 
@@ -91,9 +93,9 @@ final class UpdateStorageUrlsCommand extends Command
 
                 if ($updated > 0) {
                     if ($isDryRun) {
-                        $this->line("  Would update {$updated} records in {$table}.{$column}");
+                        $this->line(sprintf('  Would update %d records in %s.%s', $updated, $table, $column));
                     } else {
-                        $this->line("  ✅ Updated {$updated} records in {$table}.{$column}");
+                        $this->line(sprintf('  ✅ Updated %d records in %s.%s', $updated, $table, $column));
                     }
                 }
 
@@ -103,9 +105,9 @@ final class UpdateStorageUrlsCommand extends Command
 
         $this->newLine();
         if ($isDryRun) {
-            $this->info("✅ Dry run completed - {$totalUpdated} records would be updated out of {$totalRecords} total records with old URLs");
+            $this->info(sprintf('✅ Dry run completed - %d records would be updated out of %d total records with old URLs', $totalUpdated, $totalRecords));
         } else {
-            $this->info("✅ URL migration completed - {$totalUpdated} records updated out of {$totalRecords} total records with old URLs");
+            $this->info(sprintf('✅ URL migration completed - %d records updated out of %d total records with old URLs', $totalUpdated, $totalRecords));
         }
 
         return Command::SUCCESS;
@@ -114,7 +116,7 @@ final class UpdateStorageUrlsCommand extends Command
     private function getNewBaseUrl(string $disk): ?string
     {
         try {
-            $diskConfig = config("filesystems.disks.{$disk}");
+            $diskConfig = config('filesystems.disks.'.$disk);
 
             if (! $diskConfig) {
                 return null;
@@ -124,17 +126,17 @@ final class UpdateStorageUrlsCommand extends Command
                 $baseUrl = '';
 
                 if (isset($diskConfig['url']) && $diskConfig['url']) {
-                    $baseUrl = rtrim($diskConfig['url'], '/');
+                    $baseUrl = mb_rtrim($diskConfig['url'], '/');
                 } else {
                     $bucket = $diskConfig['bucket'] ?? '';
                     $region = $diskConfig['region'] ?? '';
                     if ($bucket && $region) {
-                        $baseUrl = "https://{$bucket}.s3.{$region}.amazonaws.com";
+                        $baseUrl = sprintf('https://%s.s3.%s.amazonaws.com', $bucket, $region);
                     }
                 }
 
                 if ($baseUrl && isset($diskConfig['root']) && $diskConfig['root']) {
-                    $root = trim($diskConfig['root'], '/');
+                    $root = mb_trim($diskConfig['root'], '/');
 
                     if (filled($root)) {
                         $baseUrl .= '/'.$root;
@@ -145,8 +147,8 @@ final class UpdateStorageUrlsCommand extends Command
             }
 
             return Storage::disk($disk)->url('');
-        } catch (\Exception $e) {
-            $this->error("Error getting base URL for disk {$disk}: ".$e->getMessage());
+        } catch (Exception $exception) {
+            $this->error(sprintf('Error getting base URL for disk %s: ', $disk).$exception->getMessage());
 
             return null;
         }
@@ -157,7 +159,7 @@ final class UpdateStorageUrlsCommand extends Command
         return collect(
             DB::table($table)
                 ->select('id', $column)
-                ->where($column, 'LIKE', "%{$oldDomain}%")
+                ->where($column, 'LIKE', sprintf('%%%s%%', $oldDomain))
                 ->get()
         );
     }

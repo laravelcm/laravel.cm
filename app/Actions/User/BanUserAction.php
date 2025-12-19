@@ -13,13 +13,9 @@ final class BanUserAction
 {
     public function execute(User $user, string $reason): void
     {
-        if ($user->isAdmin() || $user->isModerator()) {
-            throw new CannotBanAdminException('Impossible de bannir un administrateur.');
-        }
+        throw_if($user->isAdmin() || $user->isModerator(), CannotBanAdminException::class, 'Impossible de bannir un administrateur.');
 
-        if ($user->banned()) {
-            throw new UserAlreadyBannedException('Impossible de bannir cet utilisateur car il est déjà banni.');
-        }
+        throw_if($user->banned(), UserAlreadyBannedException::class, 'Impossible de bannir cet utilisateur car il est déjà banni.');
 
         $user->update([
             'banned_at' => now(),

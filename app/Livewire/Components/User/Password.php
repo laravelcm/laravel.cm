@@ -18,7 +18,7 @@ use Illuminate\Validation\Rules\Password as RulesPassword;
 use Livewire\Component;
 
 /**
- * @property \Filament\Schemas\Schema $form
+ * @property-read Schema $form
  */
 final class Password extends Component implements HasActions, HasForms
 {

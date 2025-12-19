@@ -24,7 +24,7 @@ describe(ConvertDiscussionToThreadAction::class, function (): void {
             'replyable_id' => $this->discussion->id,
         ]);
 
-        $thread = app(ConvertDiscussionToThreadAction::class)->execute(discussion: $this->discussion);
+        $thread = resolve(ConvertDiscussionToThreadAction::class)->execute(discussion: $this->discussion);
 
         expect($thread)->toBeInstanceOf(Thread::class)
             ->and(Discussion::query()->find($this->discussion->id))
@@ -50,7 +50,7 @@ describe(ConvertDiscussionToThreadAction::class, function (): void {
             'replyable_id' => $this->discussion->id,
         ]);
 
-        $thread = app(ConvertDiscussionToThreadAction::class)->execute(discussion: $this->discussion);
+        $thread = resolve(ConvertDiscussionToThreadAction::class)->execute(discussion: $this->discussion);
 
         expect($thread)->toBeInstanceOf(Thread::class);
 

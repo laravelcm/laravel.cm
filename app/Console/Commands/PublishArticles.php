@@ -28,7 +28,7 @@ final class PublishArticles extends Command
 
         $count = $articles->count();
 
-        $this->comment("Published {$count} articles.");
+        $this->comment(sprintf('Published %s articles.', $count));
 
         $this->info('All done!');
     }

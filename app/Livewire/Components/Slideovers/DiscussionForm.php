@@ -25,7 +25,7 @@ use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
 /**
- * @property \Filament\Schemas\Schema $form
+ * @property Schema $form
  */
 final class DiscussionForm extends SlideOverComponent implements HasActions, HasForms
 {
@@ -36,6 +36,16 @@ final class DiscussionForm extends SlideOverComponent implements HasActions, Has
     public ?Discussion $discussion = null;
 
     public ?array $data = [];
+
+    public static function panelMaxWidth(): string
+    {
+        return '2xl';
+    }
+
+    public static function closePanelOnClickAway(): bool
+    {
+        return false;
+    }
 
     public function mount(?int $discussionId = null): void
     {
@@ -118,7 +128,7 @@ final class DiscussionForm extends SlideOverComponent implements HasActions, Has
 
         $this->validate();
 
-        $discussion = app(CreateOrUpdateDiscussionAction::class)->handle(
+        $discussion = resolve(CreateOrUpdateDiscussionAction::class)->handle(
             formValues : $this->form->getState(),
             discussionId: $this->discussion?->id
         );
@@ -135,16 +145,6 @@ final class DiscussionForm extends SlideOverComponent implements HasActions, Has
             ->send();
 
         $this->redirect(route('discussions.show', ['discussion' => $discussion]), navigate: true);
-    }
-
-    public static function panelMaxWidth(): string
-    {
-        return '2xl';
-    }
-
-    public static function closePanelOnClickAway(): bool
-    {
-        return false;
     }
 
     public function render(): View

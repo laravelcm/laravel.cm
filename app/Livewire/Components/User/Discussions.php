@@ -71,7 +71,7 @@ final class Discussions extends Component implements HasActions, HasForms
 
                 $this->authorize('delete', $discussion);
 
-                app(DeleteDiscussionAction::class)->execute($discussion);
+                resolve(DeleteDiscussionAction::class)->execute($discussion);
 
                 Notification::make()
                     ->success()

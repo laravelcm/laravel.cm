@@ -22,7 +22,7 @@ final class DiscussionTableSeeder extends Seeder
             ->get()
             ->modelKeys();
         $discussions = Discussion::factory()->count(20)->create([
-            'user_id' => (int) array_rand($usersIds),
+            'user_id' => array_rand($usersIds),
         ]);
 
         foreach ($discussions as $discussion) {

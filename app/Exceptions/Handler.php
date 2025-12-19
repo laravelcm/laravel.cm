@@ -21,7 +21,7 @@ final class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e): void {
             if ($this->shouldReport($e) && app()->bound('sentry')) {
-                app('sentry')->captureException($e);
+                resolve('sentry')->captureException($e);
             }
         });
     }

@@ -30,6 +30,7 @@ final class PremiumController extends Controller
             foreach ($usersRow as $user) {
                 $usersArray[$key][] = new PremiumUserResource($user);
             }
+
             $premium->push($usersArray[$key]);
         }
 

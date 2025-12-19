@@ -7,6 +7,9 @@ namespace Database\Factories;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Tag>
+ */
 final class TagFactory extends Factory
 {
     protected $model = Tag::class;
@@ -14,8 +17,8 @@ final class TagFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->text(15),
-            'slug' => $this->faker->slug(),
+            'name' => fake()->text(15),
+            'slug' => fake()->slug(),
             'concerns' => ['post', 'discussion', 'tutorial'],
         ];
     }

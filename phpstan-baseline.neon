@@ -1,0 +1,1675 @@
+parameters:
+	ignoreErrors:
+		-
+			rawMessage: 'Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''.'
+			identifier: larastan.noEnvCallsOutsideOfConfig
+			count: 23
+			path: app-modules/database-migration/config/ssh-tunnel.php
+
+		-
+			rawMessage: Binary operation "." between mixed and '/' results in an error.
+			identifier: binaryOp.invalid
+			count: 1
+			path: app-modules/database-migration/src/Commands/MigrateFilesToS3Command.php
+
+		-
+			rawMessage: Cannot access offset 'driver' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Commands/MigrateFilesToS3Command.php
+
+		-
+			rawMessage: Cannot access offset 'root' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Commands/MigrateFilesToS3Command.php
+
+		-
+			rawMessage: Binary operation "+" between mixed and 1 results in an error.
+			identifier: binaryOp.invalid
+			count: 1
+			path: app-modules/database-migration/src/Commands/ResetPostgresSequencesCommand.php
+
+		-
+			rawMessage: Cannot access property $column_name on mixed.
+			identifier: property.nonObject
+			count: 1
+			path: app-modules/database-migration/src/Commands/ResetPostgresSequencesCommand.php
+
+		-
+			rawMessage: Cannot access property $sequence_name on mixed.
+			identifier: property.nonObject
+			count: 1
+			path: app-modules/database-migration/src/Commands/ResetPostgresSequencesCommand.php
+
+		-
+			rawMessage: Cannot access property $table_name on mixed.
+			identifier: property.nonObject
+			count: 2
+			path: app-modules/database-migration/src/Commands/ResetPostgresSequencesCommand.php
+
+		-
+			rawMessage: 'Parameter #5 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Commands/ResetPostgresSequencesCommand.php
+
+		-
+			rawMessage: Cannot access offset 'bucket' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Commands/UpdateStorageUrlsCommand.php
+
+		-
+			rawMessage: Cannot access offset 'driver' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Commands/UpdateStorageUrlsCommand.php
+
+		-
+			rawMessage: Cannot access offset 'region' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Commands/UpdateStorageUrlsCommand.php
+
+		-
+			rawMessage: Cannot access offset 'root' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Commands/UpdateStorageUrlsCommand.php
+
+		-
+			rawMessage: Cannot access offset 'url' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Commands/UpdateStorageUrlsCommand.php
+
+		-
+			rawMessage: Cannot access property $id on mixed.
+			identifier: property.nonObject
+			count: 1
+			path: app-modules/database-migration/src/Commands/UpdateStorageUrlsCommand.php
+
+		-
+			rawMessage: 'Parameter #1 $string of function mb_rtrim expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Commands/UpdateStorageUrlsCommand.php
+
+		-
+			rawMessage: 'Parameter #1 $string of function mb_trim expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Commands/UpdateStorageUrlsCommand.php
+
+		-
+			rawMessage: 'Parameter #2 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Commands/UpdateStorageUrlsCommand.php
+
+		-
+			rawMessage: 'Parameter #3 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Commands/UpdateStorageUrlsCommand.php
+
+		-
+			rawMessage: 'Method Laravelcm\DatabaseMigration\Services\DatabaseMigrationService::getSourceTables() should return array<string> but returns array<mixed>.'
+			identifier: return.type
+			count: 1
+			path: app-modules/database-migration/src/Services/DatabaseMigrationService.php
+
+		-
+			rawMessage: Cannot access offset 'address' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'bash' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'bind_address' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'bind_port' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'executables' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'hostname' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'local' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 5
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'nc' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'options' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'port' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'remote' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'ssh' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 6
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'user' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Cannot access offset 'verbosity' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #1 $channel of static method Illuminate\Log\LogManager::channel() expects string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #1 $config of method Laravelcm\DatabaseMigration\Services\SshTunnelService::buildIdentityOption() expects array, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #1 $duration of static method Illuminate\Support\Sleep::usleep() expects int, mixed given.'
+			identifier: argument.type
+			count: 2
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #10 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #11 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #2 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 4
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #3 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 3
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #4 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 4
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #6 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #7 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #8 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: 'Parameter #9 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app-modules/database-migration/src/Services/SshTunnelService.php
+
+		-
+			rawMessage: Access to an undefined property PHPUnit\Framework\TestCase::$app.
+			identifier: property.notFound
+			count: 7
+			path: app-modules/database-migration/tests/Feature/MigrateDatabaseCommandTest.php
+
+		-
+			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::artisan().'
+			identifier: method.notFound
+			count: 5
+			path: app-modules/database-migration/tests/Feature/MigrateDatabaseCommandTest.php
+
+		-
+			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::mock().'
+			identifier: method.notFound
+			count: 7
+			path: app-modules/database-migration/tests/Feature/MigrateDatabaseCommandTest.php
+
+		-
+			rawMessage: Access to an undefined property PHPUnit\Framework\TestCase::$app.
+			identifier: property.notFound
+			count: 2
+			path: app-modules/database-migration/tests/Feature/SshTunnelCommandTest.php
+
+		-
+			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::artisan().'
+			identifier: method.notFound
+			count: 3
+			path: app-modules/database-migration/tests/Feature/SshTunnelCommandTest.php
+
+		-
+			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::spy().'
+			identifier: method.notFound
+			count: 2
+			path: app-modules/database-migration/tests/Feature/SshTunnelCommandTest.php
+
+		-
+			rawMessage: Access to an undefined property PHPUnit\Framework\TestCase::$service.
+			identifier: property.notFound
+			count: 2
+			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
+
+		-
+			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::mock().'
+			identifier: method.notFound
+			count: 4
+			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
+
+		-
+			rawMessage: 'Call to method toBe() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 1
+			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
+
+		-
+			rawMessage: 'Call to method toBeArray() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 1
+			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
+
+		-
+			rawMessage: 'Call to method toBeInstanceOf() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 1
+			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
+
+		-
+			rawMessage: 'Call to method toBeTrue() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 4
+			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
+
+		-
+			rawMessage: 'Call to method toContain() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 1
+			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
+
+		-
+			rawMessage: 'Call to method toHaveKey() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 4
+			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
+
+		-
+			rawMessage: Unable to resolve the template type TValue in call to function expect
+			identifier: argument.templateType
+			count: 1
+			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
+
+		-
+			rawMessage: Access to an undefined property PHPUnit\Framework\TestCase::$service.
+			identifier: property.notFound
+			count: 2
+			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
+
+		-
+			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::mock().'
+			identifier: method.notFound
+			count: 2
+			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
+
+		-
+			rawMessage: 'Call to method toBeFalse() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 1
+			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
+
+		-
+			rawMessage: 'Call to method toBeInstanceOf() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 1
+			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
+
+		-
+			rawMessage: 'Call to method toThrow() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 1
+			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
+
+		-
+			rawMessage: Unable to resolve the template type TValue in call to function expect
+			identifier: argument.templateType
+			count: 1
+			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
+
+		-
+			rawMessage: 'Call to function property_exists() with $this(Laravelcm\Gamify\PointType) and ''payee'' will always evaluate to true.'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app-modules/gamify/src/PointType.php
+
+		-
+			rawMessage: Property Laravelcm\Gamify\PointType::$name has no type specified.
+			identifier: missingType.property
+			count: 1
+			path: app-modules/gamify/src/PointType.php
+
+		-
+			rawMessage: Property Laravelcm\Gamify\PointType::$payee has no type specified.
+			identifier: missingType.property
+			count: 1
+			path: app-modules/gamify/src/PointType.php
+
+		-
+			rawMessage: Property Laravelcm\Gamify\PointType::$points has no type specified.
+			identifier: missingType.property
+			count: 1
+			path: app-modules/gamify/src/PointType.php
+
+		-
+			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakeCreatePostPoint::$points has no type specified.
+			identifier: missingType.property
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakeCreatePostPoint.php
+
+		-
+			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakePayeeFieldPoint::$points has no type specified.
+			identifier: missingType.property
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakePayeeFieldPoint.php
+
+		-
+			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakePointTypeWithoutPayee::$points has no type specified.
+			identifier: missingType.property
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakePointTypeWithoutPayee.php
+
+		-
+			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakePointTypeWithoutSubject::$point has no type specified.
+			identifier: missingType.property
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakePointTypeWithoutSubject.php
+
+		-
+			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakePointWithoutPoint::$payee has no type specified.
+			identifier: missingType.property
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakePointWithoutPoint.php
+
+		-
+			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakeWelcomeUserWithFalseQualifier::$points has no type specified.
+			identifier: missingType.property
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithFalseQualifier.php
+
+		-
+			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakeWelcomeUserWithNamePoint::$points has no type specified.
+			identifier: missingType.property
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithNamePoint.php
+
+		-
+			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakeWelcomeUserWithNamePoint::$name has no type specified.
+			identifier: missingType.property
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithNamePoint.php
+
+		-
+			rawMessage: Access to an undefined property PHPUnit\Framework\TestCase::$user.
+			identifier: property.notFound
+			count: 30
+			path: app-modules/gamify/tests/Feature/PointTest.php
+
+		-
+			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::createPost().'
+			identifier: method.notFound
+			count: 5
+			path: app-modules/gamify/tests/Feature/PointTest.php
+
+		-
+			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::createUser().'
+			identifier: method.notFound
+			count: 1
+			path: app-modules/gamify/tests/Feature/PointTest.php
+
+		-
+			rawMessage: 'Call to method skip() of internal class Pest\PendingCalls\TestCall from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 1
+			path: app-modules/gamify/tests/Feature/PointTest.php
+
+		-
+			rawMessage: 'Call to method throws() of internal class Pest\PendingCalls\TestCall from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 3
+			path: app-modules/gamify/tests/Feature/PointTest.php
+
+		-
+			rawMessage: 'Call to method toBe() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 11
+			path: app-modules/gamify/tests/Feature/PointTest.php
+
+		-
+			rawMessage: 'Call to method toBeInstanceOf() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 2
+			path: app-modules/gamify/tests/Feature/PointTest.php
+
+		-
+			rawMessage: 'Call to method toHaveCount() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 2
+			path: app-modules/gamify/tests/Feature/PointTest.php
+
+		-
+			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::createUser().'
+			identifier: method.notFound
+			count: 4
+			path: app-modules/gamify/tests/Feature/ReputationTest.php
+
+		-
+			rawMessage: 'Call to method toBe() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
+			identifier: method.internalClass
+			count: 7
+			path: app-modules/gamify/tests/Feature/ReputationTest.php
+
+		-
+			rawMessage: 'Property Laravelcm\Gamify\PointType::$subject (Illuminate\Database\Eloquent\Model|null) does not accept mixed.'
+			identifier: assign.propertyType
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakeCreatePostPoint.php
+
+		-
+			rawMessage: 'Property Laravelcm\Gamify\PointType::$subject (Illuminate\Database\Eloquent\Model|null) does not accept mixed.'
+			identifier: assign.propertyType
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakePayeeFieldPoint.php
+
+		-
+			rawMessage: 'Property Laravelcm\Gamify\PointType::$subject (Illuminate\Database\Eloquent\Model|null) does not accept mixed.'
+			identifier: assign.propertyType
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakePointTypeWithoutPayee.php
+
+		-
+			rawMessage: 'Method Laravelcm\Gamify\Tests\Fixtures\FakePointTypeWithoutSubject::__construct() has parameter $subject with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakePointTypeWithoutSubject.php
+
+		-
+			rawMessage: 'Method Laravelcm\Gamify\Tests\Fixtures\FakePointWithoutPoint::__construct() has parameter $subject with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakePointWithoutPoint.php
+
+		-
+			rawMessage: Access to an undefined property Illuminate\Database\Eloquent\Model::$user.
+			identifier: property.notFound
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithFalseQualifier.php
+
+		-
+			rawMessage: 'Method Laravelcm\Gamify\Tests\Fixtures\FakeWelcomeUserWithFalseQualifier::__construct() has parameter $subject with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithFalseQualifier.php
+
+		-
+			rawMessage: Constructor of class Laravelcm\Gamify\Tests\Fixtures\FakeWelcomeUserWithNamePoint has an unused parameter $subject.
+			identifier: constructor.unusedParameter
+			count: 1
+			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithNamePoint.php
+
+		-
+			rawMessage: Cannot access property $id on App\Models\User|null.
+			identifier: property.nonObject
+			count: 1
+			path: app/Actions/Article/CreateArticleAction.php
+
+		-
+			rawMessage: 'Cannot call method isAdmin() on App\Models\User|null.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Actions/Article/CreateArticleAction.php
+
+		-
+			rawMessage: 'Cannot call method isModerator() on App\Models\User|null.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Actions/Article/CreateArticleAction.php
+
+		-
+			rawMessage: 'Parameter $timezone of class Carbon\Carbon constructor expects DateTimeZone|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 5
+			path: app/Actions/Article/CreateArticleAction.php
+
+		-
+			rawMessage: 'Parameter $timezone of class Carbon\Carbon constructor expects DateTimeZone|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 2
+			path: app/Actions/Article/UpdateArticleAction.php
+
+		-
+			rawMessage: 'Parameter #1 $subject of class App\Gamify\Points\ReplyCreated constructor expects App\Models\Reply, Illuminate\Database\Eloquent\Model given.'
+			identifier: argument.type
+			count: 1
+			path: app/Actions/Discussion/CreateDiscussionReplyAction.php
+
+		-
+			rawMessage: 'Parameter #1 $subject of class App\Gamify\Points\ReplyCreated constructor expects App\Models\Reply, App\Contracts\ReplyInterface given.'
+			identifier: argument.type
+			count: 1
+			path: app/Actions/Forum/CreateReplyAction.php
+
+		-
+			rawMessage: Property App\Models\Subscribe::$uuid is not writable.
+			identifier: assign.propertyReadOnly
+			count: 1
+			path: app/Actions/Forum/SubscribeToThreadAction.php
+
+		-
+			rawMessage: 'Method App\Actions\GetGithubRepositoriesAction::__invoke() should return Illuminate\Support\Collection but returns mixed.'
+			identifier: return.type
+			count: 2
+			path: app/Actions/GetGithubRepositoriesAction.php
+
+		-
+			rawMessage: 'Parameter #1 $callback of method Illuminate\Support\Collection<(int|string),mixed>::map() expects callable(mixed, int|string): App\Data\RepositoryData, Closure(array): App\Data\RepositoryData given.'
+			identifier: argument.type
+			count: 1
+			path: app/Actions/GetGithubRepositoriesAction.php
+
+		-
+			rawMessage: 'Parameter #1 $token of static method Illuminate\Http\Client\PendingRequest<false>::withToken() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Actions/GetGithubRepositoriesAction.php
+
+		-
+			rawMessage: 'Parameter #1 $value of function collect expects Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Actions/GetGithubRepositoriesAction.php
+
+		-
+			rawMessage: Unable to resolve the template type TKey in call to function collect
+			identifier: argument.templateType
+			count: 1
+			path: app/Actions/GetGithubRepositoriesAction.php
+
+		-
+			rawMessage: Unable to resolve the template type TValue in call to function collect
+			identifier: argument.templateType
+			count: 1
+			path: app/Actions/GetGithubRepositoriesAction.php
+
+		-
+			rawMessage: 'Parameter #1 $spamReport of class App\Notifications\ReportedSpamToTelegram constructor expects App\Models\SpamReport, Illuminate\Database\Eloquent\Model given.'
+			identifier: argument.type
+			count: 1
+			path: app/Actions/ReportSpamAction.php
+
+		-
+			rawMessage: Property App\Models\User::$email_verified_at is not writable.
+			identifier: assign.propertyReadOnly
+			count: 1
+			path: app/Actions/User/UpdateUserProfileAction.php
+
+		-
+			rawMessage: 'Cannot call method get() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Console/Commands/AssignUserRole.php
+
+		-
+			rawMessage: 'Parameter #2 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Console/Commands/Cleanup/DeleteOldUnverifiedUsers.php
+
+		-
+			rawMessage: 'Parameter #1 $value of static method Illuminate\Support\Facades\Hash::make() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Console/Commands/CreateAdminUser.php
+
+		-
+			rawMessage: 'Cannot call method get() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Console/Commands/SendUnVerifiedMails.php
+
+		-
+			rawMessage: 'Parameter #1 $callback of method Illuminate\Database\Eloquent\Builder<Illuminate\Database\Eloquent\Model>::each() expects callable(Illuminate\Database\Eloquent\Model, int): mixed, Closure(iterable|Spatie\Sitemap\Contracts\Sitemapable|Spatie\Sitemap\Tags\Url|string): void given.'
+			identifier: argument.type
+			count: 1
+			path: app/Console/Commands/Sitemap/GenerateArticlesSitemapCommand.php
+
+		-
+			rawMessage: 'Parameter #1 $callback of method Illuminate\Database\Eloquent\Builder<Illuminate\Database\Eloquent\Model>::each() expects callable(Illuminate\Database\Eloquent\Model, int): mixed, Closure(iterable|Spatie\Sitemap\Contracts\Sitemapable|Spatie\Sitemap\Tags\Url|string): void given.'
+			identifier: argument.type
+			count: 1
+			path: app/Console/Commands/Sitemap/GenerateDiscussionsSitemapCommand.php
+
+		-
+			rawMessage: Anonymous function should return string|null but returns mixed.
+			identifier: return.type
+			count: 1
+			path: app/Filament/Resources/Articles/ArticleResource.php
+
+		-
+			rawMessage: 'Parameter #1 $string of function mb_strlen expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Filament/Resources/Articles/ArticleResource.php
+
+		-
+			rawMessage: 'Cannot call method filter() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Filters/AbstractFilters.php
+
+		-
+			rawMessage: 'Parameter #1 $key of method App\Filters\AbstractFilter::resolveFilterValue() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Filters/Thread/SortByFilter.php
+
+		-
+			rawMessage: 'Property Laravelcm\Gamify\PointType::$subject (Illuminate\Database\Eloquent\Model|null) does not accept mixed.'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Gamify/Points/AddPhone.php
+
+		-
+			rawMessage: 'Property Laravelcm\Gamify\PointType::$subject (Illuminate\Database\Eloquent\Model|null) does not accept mixed.'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Gamify/Points/AddSocialLinks.php
+
+		-
+			rawMessage: 'Call to an undefined method App\Models\User::createToken().'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Api/Auth/LoginController.php
+
+		-
+			rawMessage: 'Call to an undefined method App\Models\User::tokens().'
+			identifier: method.notFound
+			count: 2
+			path: app/Http/Controllers/Api/Auth/LoginController.php
+
+		-
+			rawMessage: 'Cannot call method currentAccessToken() on App\Models\User|null.'
+			identifier: method.nonObject
+			count: 2
+			path: app/Http/Controllers/Api/Auth/LoginController.php
+
+		-
+			rawMessage: Negated boolean expression is always false.
+			identifier: booleanNot.alwaysFalse
+			count: 1
+			path: app/Http/Controllers/Api/Auth/LoginController.php
+
+		-
+			rawMessage: 'Parameter #1 $string of function mb_strtolower expects string, mixed given.'
+			identifier: argument.type
+			count: 2
+			path: app/Http/Controllers/Api/Auth/LoginController.php
+
+		-
+			rawMessage: Property App\Models\User::$last_login_at is not writable.
+			identifier: assign.propertyReadOnly
+			count: 1
+			path: app/Http/Controllers/Api/Auth/LoginController.php
+
+		-
+			rawMessage: 'Call to an undefined method App\Models\User::createToken().'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Controllers/Api/Auth/RegisterController.php
+
+		-
+			rawMessage: Cannot access offset 'email' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Http/Controllers/Api/Auth/RegisterController.php
+
+		-
+			rawMessage: Cannot access offset 'id' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Http/Controllers/Api/Auth/RegisterController.php
+
+		-
+			rawMessage: Cannot access offset 'idToken' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Http/Controllers/Api/Auth/RegisterController.php
+
+		-
+			rawMessage: Cannot access offset 'name' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Http/Controllers/Api/Auth/RegisterController.php
+
+		-
+			rawMessage: Cannot access offset 'photoUrl' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Http/Controllers/Api/Auth/RegisterController.php
+
+		-
+			rawMessage: Cannot access offset 'provider' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: app/Http/Controllers/Api/Auth/RegisterController.php
+
+		-
+			rawMessage: 'Parameter #1 $provider of method App\Models\User::hasProvider() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Api/Auth/RegisterController.php
+
+		-
+			rawMessage: 'Parameter #1 $string of function mb_strtolower expects string, mixed given.'
+			identifier: argument.type
+			count: 3
+			path: app/Http/Controllers/Api/Auth/RegisterController.php
+
+		-
+			rawMessage: 'Parameter #1 $value of static method Illuminate\Support\Facades\Hash::make() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Api/Auth/RegisterController.php
+
+		-
+			rawMessage: 'Parameter #1 $value of static method Illuminate\Support\Facades\Hash::make() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/Api/Auth/ResetPasswordController.php
+
+		-
+			rawMessage: Binary operation "." between mixed and '/email/verify…' results in an error.
+			identifier: binaryOp.invalid
+			count: 2
+			path: app/Http/Controllers/Api/Auth/VerifyEmailController.php
+
+		-
+			rawMessage: 'Cannot call method limit() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Api/Enterprise/PublicController.php
+
+		-
+			rawMessage: 'Cannot call method chunk() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Controllers/Api/PremiumController.php
+
+		-
+			rawMessage: 'Parameter $apiKey of static method NotchPay\NotchPay::setApiKey() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/NotchPayCallBackController.php
+
+		-
+			rawMessage: 'Parameter $reference of static method NotchPay\Payment::verify() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/NotchPayCallBackController.php
+
+		-
+			rawMessage: Access to an undefined property Laravel\Socialite\Contracts\User::$avatar.
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/OAuthController.php
+
+		-
+			rawMessage: Access to an undefined property Laravel\Socialite\Contracts\User::$id.
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Controllers/OAuthController.php
+
+		-
+			rawMessage: Access to an undefined property Laravel\Socialite\Contracts\User::$token.
+			identifier: property.notFound
+			count: 2
+			path: app/Http/Controllers/OAuthController.php
+
+		-
+			rawMessage: 'Parameter #1 $replyAble of function route_to_reply_able expects App\Models\Discussion|App\Models\Thread, Illuminate\Database\Eloquent\Model|null given.'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/ReplyAbleController.php
+
+		-
+			rawMessage: 'Parameter #1 $replyAble of function route_to_reply_able expects App\Models\Discussion|App\Models\Thread, Illuminate\Database\Eloquent\Model|null given.'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Controllers/SubscriptionController.php
+
+		-
+			rawMessage: 'Parameter #1 $locale of method Illuminate\Foundation\Application::setLocale() expects string, mixed given.'
+			identifier: argument.type
+			count: 2
+			path: app/Http/Middleware/LocaleMiddleware.php
+
+		-
+			rawMessage: 'Parameter #2 $haystack of function in_array expects array, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Middleware/LocaleMiddleware.php
+
+		-
+			rawMessage: Access to an undefined property App\Http\Resources\AuthenticateUserResource::$reputation.
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/AuthenticateUserResource.php
+
+		-
+			rawMessage: 'Call to an undefined method App\Http\Resources\DateTimeResource::diffForHumans().'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Resources/DateTimeResource.php
+
+		-
+			rawMessage: 'Call to an undefined method App\Http\Resources\DateTimeResource::toDateTimeString().'
+			identifier: method.notFound
+			count: 1
+			path: app/Http/Resources/DateTimeResource.php
+
+		-
+			rawMessage: Access to an undefined property App\Http\Resources\EnterpriseResource::$slug.
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/EnterpriseResource.php
+
+		-
+			rawMessage: Access to an undefined property App\Http\Resources\EnterpriseResourceCollection::$pagination.
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/EnterpriseResourceCollection.php
+
+		-
+			rawMessage: 'Cannot call method transform() on Illuminate\Support\Collection|null.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Resources/EnterpriseResourceCollection.php
+
+		-
+			rawMessage: Access to an undefined property App\Http\Resources\PaginationResourceCollection::$pagination.
+			identifier: property.notFound
+			count: 1
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Cannot call method currentPage() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Cannot call method firstItem() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Cannot call method getCollection() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Cannot call method lastItem() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Cannot call method lastPage() on mixed.'
+			identifier: method.nonObject
+			count: 2
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Cannot call method nextPageUrl() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Cannot call method perPage() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Cannot call method previousPageUrl() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Cannot call method total() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Cannot call method url() on mixed.'
+			identifier: method.nonObject
+			count: 2
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Method App\Http\Resources\PaginationResourceCollection::__construct() has parameter $filters with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Http/Resources/PaginationResourceCollection.php
+
+		-
+			rawMessage: 'Parameter #1 $time of class Carbon\Carbon constructor expects Carbon\Month|Carbon\WeekDay|DateTimeInterface|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Livewire/Components/Slideovers/ArticleForm.php
+
+		-
+			rawMessage: 'Cannot call method distinct() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Livewire/Components/SponsorSubscription.php
+
+		-
+			rawMessage: 'Parameter #1 $emailAddress of static method App\Models\User::findByEmailAddress() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Livewire/Components/SponsorSubscription.php
+
+		-
+			rawMessage: 'Parameter $apiKey of static method NotchPay\NotchPay::setApiKey() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Livewire/Components/SponsorSubscription.php
+
+		-
+			rawMessage: 'Method App\Livewire\Components\User\Activities::activities() should return Illuminate\Support\Collection but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Livewire/Components/User/Activities.php
+
+		-
+			rawMessage: 'Parameter $value of static method Illuminate\Support\Facades\Hash::make() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Livewire/Components/User/Password.php
+
+		-
+			rawMessage: 'Parameter #2 $default of method App\Models\User::setting() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Livewire/Components/User/Preferences.php
+
+		-
+			rawMessage: 'Cannot call method withCount() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Livewire/Components/User/Threads.php
+
+		-
+			rawMessage: 'Cannot call method find() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Livewire/Pages/Account/Dashboard.php
+
+		-
+			rawMessage: 'Method App\Livewire\Pages\Account\Profile::articles() should return Illuminate\Support\Collection but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Livewire/Pages/Account/Profile.php
+
+		-
+			rawMessage: 'Method App\Livewire\Pages\Account\Profile::discussions() should return Illuminate\Support\Collection but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Livewire/Pages/Account/Profile.php
+
+		-
+			rawMessage: 'Method App\Livewire\Pages\Account\Profile::threads() should return Illuminate\Support\Collection but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Livewire/Pages/Account/Profile.php
+
+		-
+			rawMessage: Cannot access property $title on mixed.
+			identifier: property.nonObject
+			count: 2
+			path: app/Livewire/Pages/Articles/SinglePost.php
+
+		-
+			rawMessage: 'Cannot call method canonicalUrl() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Livewire/Pages/Articles/SinglePost.php
+
+		-
+			rawMessage: 'Cannot call method excerpt() on mixed.'
+			identifier: method.nonObject
+			count: 2
+			path: app/Livewire/Pages/Articles/SinglePost.php
+
+		-
+			rawMessage: 'Cannot call method getFirstMediaUrl() on mixed.'
+			identifier: method.nonObject
+			count: 2
+			path: app/Livewire/Pages/Articles/SinglePost.php
+
+		-
+			rawMessage: 'Cannot call method isPublished() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Livewire/Pages/Articles/SinglePost.php
+
+		-
+			rawMessage: 'Property App\Livewire\Pages\Articles\SinglePost::$article (App\Models\Article) does not accept mixed.'
+			identifier: assign.propertyType
+			count: 1
+			path: app/Livewire/Pages/Articles/SinglePost.php
+
+		-
+			rawMessage: 'Cannot call method withCount() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Livewire/Pages/Forum/Index.php
+
+		-
+			rawMessage: 'Method App\Livewire\Pages\Forum\Index::applyChannel() should return Illuminate\Database\Eloquent\Builder but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Livewire/Pages/Forum/Index.php
+
+		-
+			rawMessage: 'Argument of an invalid type mixed supplied for foreach, only iterables are supported.'
+			identifier: foreach.nonIterable
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: Cannot access offset 0 on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Cannot call method getInfoWords() on class-string|object.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Method App\Markdown\BaseExtension::bind() has parameter $environment with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Method App\Markdown\BaseExtension::getContent() has parameter $node with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Method App\Markdown\BaseExtension::getInfo() has parameter $node with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Method App\Markdown\BaseExtension::getLanguage() has parameter $node with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Method App\Markdown\BaseExtension::getLiteralContent() has parameter $node with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Method App\Markdown\BaseExtension::getTheme() has parameter $node with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Method App\Markdown\BaseExtension::isCodeNode() has parameter $node with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Method App\Markdown\BaseExtension::makeTorchlightBlock() has parameter $node with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Method App\Markdown\BaseExtension::renderNode() has parameter $node with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Parameter #1 $haystack of static method Illuminate\Support\Str::startsWith() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Parameter #1 $string of static method League\CommonMark\Util\Xml::escape() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Parameter #1 $subject of static method Illuminate\Support\Str::after() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Property App\Markdown\BaseExtension::$customBlockRenderer (callable) on left side of ?? is not nullable.'
+			identifier: nullCoalesce.property
+			count: 1
+			path: app/Markdown/BaseExtension.php
+
+		-
+			rawMessage: 'Method App\Markdown\Extensions\TorchlightExtension::getLiteralContent() has parameter $node with no type specified.'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Markdown/Extensions/TorchlightExtension.php
+
+		-
+			rawMessage: 'Offset 2 on array<string, mixed> in isset() does not exist.'
+			identifier: isset.offset
+			count: 1
+			path: app/Markdown/MarkdownHelper.php
+
+		-
+			rawMessage: 'Parameter #2 $string of function explode expects string, string|null given.'
+			identifier: argument.type
+			count: 1
+			path: app/Markdown/MarkdownHelper.php
+
+		-
+			rawMessage: 'Parameter #2 $tagArray of static method App\Markdown\MarkdownHelper::replaceCodeSandboxTag() expects array<string, mixed>, list<string> given.'
+			identifier: argument.type
+			count: 1
+			path: app/Markdown/MarkdownHelper.php
+
+		-
+			rawMessage: Result of && is always false.
+			identifier: booleanAnd.alwaysFalse
+			count: 1
+			path: app/Markdown/MarkdownHelper.php
+
+		-
+			rawMessage: 'Method App\Models\Activity::feed() should return Illuminate\Support\Collection<int, App\Models\Activity> but returns Illuminate\Database\Eloquent\Collection<string, Illuminate\Database\Eloquent\Collection<int, App\Models\Activity>>.'
+			identifier: return.type
+			count: 1
+			path: app/Models/Activity.php
+
+		-
+			rawMessage: 'Method App\Models\Activity::latestFeed() should return Illuminate\Support\Collection<int, Illuminate\Database\Eloquent\Model> but returns Illuminate\Database\Eloquent\Collection<int, App\Models\Activity>.'
+			identifier: return.type
+			count: 1
+			path: app/Models/Activity.php
+
+		-
+			rawMessage: 'Method App\Models\Article::findBySlug() should return App\Models\Article but returns Illuminate\Database\Eloquent\Model.'
+			identifier: return.type
+			count: 1
+			path: app/Models/Article.php
+
+		-
+			rawMessage: 'Method App\Models\Discussion::findBySlug() should return App\Models\Discussion but returns Illuminate\Database\Eloquent\Model.'
+			identifier: return.type
+			count: 1
+			path: app/Models/Discussion.php
+
+		-
+			rawMessage: 'Method App\Models\Transaction::getMetadata() should return array<string, mixed>|string but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Models/Transaction.php
+
+		-
+			rawMessage: Anonymous function should return string but returns mixed.
+			identifier: return.type
+			count: 1
+			path: app/Models/User.php
+
+		-
+			rawMessage: 'Parameter #1 $string of function ucwords expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Models/User.php
+
+		-
+			rawMessage: 'Parameter #3 ...$values of function sprintf expects bool|float|int|string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Models/User.php
+
+		-
+			rawMessage: 'Parameter #1 $chatId of method NotificationChannels\Telegram\TelegramBase::to() expects int|string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Notifications/ArticleSubmitted.php
+
+		-
+			rawMessage: 'Cannot call method replyAbleSubject() on Illuminate\Database\Eloquent\Model|null.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Notifications/NewReplyNotification.php
+
+		-
+			rawMessage: 'Binary operation "." between ''Auteur: '' and mixed results in an error.'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Notifications/NewSponsorPaymentNotification.php
+
+		-
+			rawMessage: 'Offset ''laravel_cm_id'' might not exist on array<string, mixed>|string.'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: app/Notifications/NewSponsorPaymentNotification.php
+
+		-
+			rawMessage: 'Offset ''name'' might not exist on array<string, mixed>|string.'
+			identifier: offsetAccess.notFound
+			count: 1
+			path: app/Notifications/NewSponsorPaymentNotification.php
+
+		-
+			rawMessage: 'Parameter #1 $chatId of method NotificationChannels\Telegram\TelegramBase::to() expects int|string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Notifications/NewSponsorPaymentNotification.php
+
+		-
+			rawMessage: Access to an undefined property Illuminate\Database\Eloquent\Model::$slug.
+			identifier: property.notFound
+			count: 1
+			path: app/Notifications/PendingArticlesNotification.php
+
+		-
+			rawMessage: Access to an undefined property Illuminate\Database\Eloquent\Model::$submitted_at.
+			identifier: property.notFound
+			count: 1
+			path: app/Notifications/PendingArticlesNotification.php
+
+		-
+			rawMessage: Access to an undefined property Illuminate\Database\Eloquent\Model::$title.
+			identifier: property.notFound
+			count: 1
+			path: app/Notifications/PendingArticlesNotification.php
+
+		-
+			rawMessage: Access to an undefined property Illuminate\Database\Eloquent\Model::$user.
+			identifier: property.notFound
+			count: 2
+			path: app/Notifications/PendingArticlesNotification.php
+
+		-
+			rawMessage: 'Parameter #1 $chatId of method NotificationChannels\Telegram\TelegramBase::to() expects int|string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Notifications/PendingArticlesNotification.php
+
+		-
+			rawMessage: 'Cannot call method subject() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Notifications/PostThreadToTelegram.php
+
+		-
+			rawMessage: Using nullsafe property access on non-nullable type App\Models\User. Use -> instead.
+			identifier: nullsafe.neverNull
+			count: 4
+			path: app/Notifications/YouWereMentioned.php
+
+		-
+			rawMessage: 'Parameter #1 $name of static method Illuminate\Redis\RedisManager::connection() expects string|UnitEnum|null, mixed given.'
+			identifier: argument.type
+			count: 2
+			path: app/Services/CacheInvalidationService.php
+
+		-
+			rawMessage: 'Parameter #1 $table of static method Illuminate\Database\Connection::table() expects Closure|Illuminate\Contracts\Database\Query\Expression|Illuminate\Database\Query\Builder|string|UnitEnum, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: app/Services/CacheInvalidationService.php
+
+		-
+			rawMessage: 'Method App\Services\MediaCacheService::getCachedMediaUrl() should return string|null but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/Services/MediaCacheService.php
+
+		-
+			rawMessage: 'Cannot call method get() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/View/Composers/ModeratorsComposer.php
+
+		-
+			rawMessage: 'Cannot call method inRandomOrder() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/View/Composers/ProfileUsersComposer.php
+
+		-
+			rawMessage: 'Cannot call method limit() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/View/Composers/TopContributorsComposer.php
+
+		-
+			rawMessage: Cannot cast mixed to string.
+			identifier: cast.string
+			count: 1
+			path: app/helpers.php
+
+		-
+			rawMessage: 'Function get_current_theme() should return string but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: app/helpers.php
+
+		-
+			rawMessage: 'Parameter #2 $string of function explode expects string, bool|string given.'
+			identifier: argument.type
+			count: 1
+			path: config/app.php
+
+		-
+			rawMessage: 'Parameter #1 $title of static method Illuminate\Support\Str::slug() expects string, bool|string given.'
+			identifier: argument.type
+			count: 1
+			path: config/cache.php
+
+		-
+			rawMessage: 'Parameter #1 $title of static method Illuminate\Support\Str::slug() expects string, bool|string given.'
+			identifier: argument.type
+			count: 1
+			path: config/database.php
+
+		-
+			rawMessage: Binary operation "." between mixed and '/@%%s' results in an error.
+			identifier: binaryOp.invalid
+			count: 1
+			path: config/markdown.php
+
+		-
+			rawMessage: 'Parameter #1 $title of static method Illuminate\Support\Str::slug() expects string, bool|string given.'
+			identifier: argument.type
+			count: 1
+			path: config/session.php
+
+		-
+			rawMessage: Variable $attributes on left side of ?? is never defined.
+			identifier: nullCoalesce.variable
+			count: 1
+			path: database/factories/ArticleFactory.php
+
+		-
+			rawMessage: Variable $attributes on left side of ?? is never defined.
+			identifier: nullCoalesce.variable
+			count: 1
+			path: database/factories/DiscussionFactory.php
+
+		-
+			rawMessage: Variable $attributes on left side of ?? is never defined.
+			identifier: nullCoalesce.variable
+			count: 1
+			path: database/factories/ReplyFactory.php
+
+		-
+			rawMessage: Variable $attributes on left side of ?? is never defined.
+			identifier: nullCoalesce.variable
+			count: 1
+			path: database/factories/ThreadFactory.php
+
+		-
+			rawMessage: Cannot access offset 'model_morph_key' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 8
+			path: database/migrations/2021_09_14_172248_create_permission_tables.php
+
+		-
+			rawMessage: Cannot access offset 'permission_pivot_key' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: database/migrations/2021_09_14_172248_create_permission_tables.php
+
+		-
+			rawMessage: Cannot access offset 'role_pivot_key' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: database/migrations/2021_09_14_172248_create_permission_tables.php
+
+		-
+			rawMessage: Cannot access offset 'team_foreign_key' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 10
+			path: database/migrations/2021_09_14_172248_create_permission_tables.php
+
+		-
+			rawMessage: 'Parameter #1 $column of method Illuminate\Database\Schema\Blueprint::unsignedBigInteger() expects string, mixed given.'
+			identifier: argument.type
+			count: 9
+			path: database/migrations/2021_09_14_172248_create_permission_tables.php
+
+		-
+			rawMessage: 'Parameter #1 $columns of method Illuminate\Database\Schema\Blueprint::foreign() expects array|string, mixed given.'
+			identifier: argument.type
+			count: 4
+			path: database/migrations/2021_09_14_172248_create_permission_tables.php
+
+		-
+			rawMessage: 'Parameter #1 $columns of method Illuminate\Database\Schema\Blueprint::index() expects array|string, mixed given.'
+			identifier: argument.type
+			count: 3
+			path: database/migrations/2021_09_14_172248_create_permission_tables.php
+
+		-
+			rawMessage: 'Parameter #1 $key of method Illuminate\Contracts\Cache\Repository::forget() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2021_09_14_172248_create_permission_tables.php
+
+		-
+			rawMessage: 'Parameter #1 $name of method Illuminate\Cache\CacheManager::store() expects string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2021_09_14_172248_create_permission_tables.php
+
+		-
+			rawMessage: 'Parameter #1 $table of method Illuminate\Database\Schema\ForeignKeyDefinition::on() expects string, mixed given.'
+			identifier: argument.type
+			count: 4
+			path: database/migrations/2021_09_14_172248_create_permission_tables.php
+
+		-
+			rawMessage: 'Parameter #1 $table of static method Illuminate\Support\Facades\Schema::create() expects string, mixed given.'
+			identifier: argument.type
+			count: 5
+			path: database/migrations/2021_09_14_172248_create_permission_tables.php
+
+		-
+			rawMessage: 'Parameter #1 $name of static method Illuminate\Support\Facades\Schema::connection() expects string|null, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2021_11_04_094343_create_views_table.php
+
+		-
+			rawMessage: 'Property Illuminate\Database\Migrations\Migration@anonymous/database/migrations/2021_11_04_094343_create_views_table.php:9::$schema (Illuminate\Support\Facades\Schema) does not accept Illuminate\Database\Schema\Builder.'
+			identifier: assign.propertyType
+			count: 1
+			path: database/migrations/2021_11_04_094343_create_views_table.php
+
+		-
+			rawMessage: 'Property Illuminate\Database\Migrations\Migration@anonymous/database/migrations/2021_11_04_094343_create_views_table.php:9::$table (string) does not accept mixed.'
+			identifier: assign.propertyType
+			count: 1
+			path: database/migrations/2021_11_04_094343_create_views_table.php
+
+		-
+			rawMessage: 'Parameter #1 $table of static method Illuminate\Support\Facades\Schema::create() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2023_10_03_064550_create_plans_table.php
+
+		-
+			rawMessage: 'Parameter #1 $table of static method Illuminate\Support\Facades\Schema::dropIfExists() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2023_10_03_064550_create_plans_table.php
+
+		-
+			rawMessage: 'Parameter #1 $table of static method Illuminate\Support\Facades\Schema::create() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2023_10_03_064551_create_plan_features_table.php
+
+		-
+			rawMessage: 'Parameter #1 $table of static method Illuminate\Support\Facades\Schema::dropIfExists() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2023_10_03_064551_create_plan_features_table.php
+
+		-
+			rawMessage: 'Parameter #1 $table of static method Illuminate\Support\Facades\Schema::create() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2023_10_03_064552_create_plan_subscriptions_table.php
+
+		-
+			rawMessage: 'Parameter #1 $table of static method Illuminate\Support\Facades\Schema::dropIfExists() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2023_10_03_064552_create_plan_subscriptions_table.php
+
+		-
+			rawMessage: 'Parameter #1 $table of static method Illuminate\Support\Facades\Schema::create() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2023_10_03_064553_create_plan_subscription_usage_table.php
+
+		-
+			rawMessage: 'Parameter #1 $table of static method Illuminate\Support\Facades\Schema::dropIfExists() expects string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: database/migrations/2023_10_03_064553_create_plan_subscription_usage_table.php
+
+		-
+			rawMessage: 'Called ''modelKeys'' on Laravel collection, but could have been retrieved as a query.'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 2
+			path: database/seeders/Fixtures/ArticleTableSeeder.php
+
+		-
+			rawMessage: 'Parameter #1 $input of function array_rand expects non-empty-array, array<int, (int|string)> given.'
+			identifier: argument.type
+			count: 12
+			path: database/seeders/Fixtures/ArticleTableSeeder.php
+
+		-
+			rawMessage: 'Called ''modelKeys'' on Laravel collection, but could have been retrieved as a query.'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 2
+			path: database/seeders/Fixtures/DiscussionTableSeeder.php
+
+		-
+			rawMessage: 'Parameter #1 $input of function array_rand expects non-empty-array, array<int, (int|string)> given.'
+			identifier: argument.type
+			count: 2
+			path: database/seeders/Fixtures/DiscussionTableSeeder.php
+
+		-
+			rawMessage: 'Called ''modelKeys'' on Laravel collection, but could have been retrieved as a query.'
+			identifier: larastan.noUnnecessaryCollectionCall
+			count: 1
+			path: database/seeders/Fixtures/ThreadTableSeeder.php
+
+		-
+			rawMessage: 'Parameter #1 $input of function array_rand expects non-empty-array, array<int, (int|string)> given.'
+			identifier: argument.type
+			count: 2
+			path: database/seeders/Fixtures/ThreadTableSeeder.php

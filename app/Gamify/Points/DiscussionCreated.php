@@ -9,9 +9,11 @@ use Laravelcm\Gamify\PointType;
 
 final class DiscussionCreated extends PointType
 {
-    public int $points = 20;
+    /** @var int */
+    public $points = 20;
 
-    protected string $payee = 'user';
+    /** @var string */
+    public $payee = 'user';
 
     public function __construct(Discussion $subject)
     {

@@ -22,7 +22,7 @@ final class NewReplyEmail extends Mailable implements ShouldQueue
     public function build(): self
     {
         $subject = $this->reply->replyAble
-            ? "Re: {$this->reply->replyAble->subject()}" // @phpstan-ignore-line
+            ? 'Re: '.$this->reply->replyAble->subject() // @phpstan-ignore-line
             : 'New Reply';
 
         return $this->subject($subject)

@@ -2,7 +2,10 @@
   border-radius: theme(borderRadius.lg);
 }
 
-.prose h1, .prose h2, .prose h3, .prose h4 {
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
   font-family: Rota, sans-serif;
 }
 
@@ -18,13 +21,16 @@
   content: none;
 }
 
-.prose pre, .prose code, .prose p > code {
+.prose pre,
+.prose code,
+.prose p > code {
   font-weight: theme(fontWeight.medium);
   font-family: "Geist Mono", monospace;
   color: theme(colors.amber.500);
 }
 
-.prose li strong, .prose strong {
+.prose li strong,
+.prose strong {
   color: theme(colors.gray.700);
   font-weight: 400;
 }

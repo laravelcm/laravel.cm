@@ -55,7 +55,7 @@ final class DetailThread extends Component implements HasActions, HasForms
             ->authorize('delete', $this->thread)
             ->requiresConfirmation()
             ->action(function (): void {
-                app(DeleteThreadAction::class)->execute($this->thread);
+                resolve(DeleteThreadAction::class)->execute($this->thread);
 
                 $this->redirectRoute('forum.index', navigate: true);
             });

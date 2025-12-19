@@ -11,6 +11,14 @@ use ReflectionClass;
 
 trait RecordsActivity
 {
+    /**
+     * @return MorphMany<Activity, $this>
+     */
+    public function activities(): MorphMany
+    {
+        return $this->morphMany(Activity::class, 'subject');
+    }
+
     protected static function bootRecordsActivity(): void
     {
         if (Auth::guest()) {
@@ -52,14 +60,6 @@ trait RecordsActivity
     {
         $type = mb_strtolower(new ReflectionClass($this)->getShortName());
 
-        return "{$event}_{$type}";
-    }
-
-    /**
-     * @return MorphMany<Activity, $this>
-     */
-    public function activities(): MorphMany
-    {
-        return $this->morphMany(Activity::class, 'subject');
+        return sprintf('%s_%s', $event, $type);
     }
 }

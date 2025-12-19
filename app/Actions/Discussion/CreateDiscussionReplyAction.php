@@ -16,7 +16,7 @@ final class CreateDiscussionReplyAction
     {
         $reply = new Reply(['body' => $body]);
         $reply->authoredBy($user);
-        $reply->to($model); // @phpstan-ignore-line
+        $reply->to($model);
         $reply->save();
 
         $user->givePoint(new ReplyCreated($model, $user));

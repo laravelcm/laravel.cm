@@ -19,7 +19,7 @@ final class SubscriptionController extends Controller
 
         session()->flash('status', __('Vous êtes maintenant désabonné de ce sujet.'));
 
-        return redirect()->route('forum.show', $thread->slug);
+        return to_route('forum.show', $thread->slug);
     }
 
     public function redirect(int $id, string $type): RedirectResponse
