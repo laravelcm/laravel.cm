@@ -9,9 +9,9 @@ services:
         image: laravelcm/php
         restart: always
         extra_hosts:
-            - 'host.docker.internal:host-gateway'
+            - "host.docker.internal:host-gateway"
         healthcheck:
-            test: ['CMD', 'curl', '-f', 'http://localhost:${APP_PORT:-8080}/up']
+            test: ["CMD", "curl", "-f", "http://localhost:${APP_PORT:-8080}/up"]
             timeout: 30s
         environment:
             APP_NAME: ${APP_NAME}
@@ -49,7 +49,7 @@ services:
             CACHE_STORE: ${CACHE_STORE}
             CACHE_PREFIX: ${CACHE_PREFIX}
             MEMCACHED_HOST: ${MEMCACHED_HOST}
-            REDIS_CLIENT: 'phpredis'
+            REDIS_CLIENT: "phpredis"
             REDIS_HOST: ${REDIS_HOST}
             REDIS_PASSWORD: ${REDIS_PASSWORD}
             REDIS_PORT: ${REDIS_PORT}
@@ -103,24 +103,24 @@ services:
             UNSPLASH_ACCESS_KEY: ${UNSPLASH_ACCESS_KEY}
             NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
             NIGHTWATCH_REQUEST_SAMPLE_RATE: ${NIGHTWATCH_REQUEST_SAMPLE_RATE}
-            SSH_TUNNEL_USER: '${SSH_TUNNEL_USER:-}'
-            SSH_TUNNEL_HOSTNAME: '${SSH_TUNNEL_HOSTNAME:-}'
-            SSH_TUNNEL_PORT: '${SSH_TUNNEL_PORT:-22}'
-            SSH_TUNNEL_LOCAL_PORT: '${SSH_TUNNEL_LOCAL_PORT:-3307}'
-            SSH_TUNNEL_BIND_ADDRESS: '${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}'
-            SSH_TUNNEL_BIND_PORT: '${SSH_TUNNEL_BIND_PORT:-3306}'
-            SSH_TUNNEL_VERIFY_PROCESS: '${SSH_TUNNEL_VERIFY_PROCESS:-bash}'
-            SSH_TUNNEL_IDENTITY_FILE: '${SSH_TUNNEL_IDENTITY_FILE:-}'
-            SSH_TUNNEL_PRIVATE_KEY: '${SSH_TUNNEL_PRIVATE_KEY:-}'
-            SSH_TUNNEL_VERBOSITY: '${SSH_TUNNEL_VERBOSITY:--vvv}'
-            DB_CONNECTION_SECOND: '${DB_CONNECTION_SECOND:-mysql}'
-            DB_HOST_SECOND: '${DB_HOST_SECOND:-127.0.0.1}'
-            DB_PORT_SECOND: '${DB_PORT_SECOND:-3307}'
-            DB_DATABASE_SECOND: '${DB_DATABASE_SECOND:-}'
-            DB_USERNAME_SECOND: '${DB_USERNAME_SECOND:-}'
-            DB_PASSWORD_SECOND: '${DB_PASSWORD_SECOND:-}'
-            BOOST_BROWSER_LOGS_WATCHER: '${BOOST_BROWSER_LOGS_WATCHER:-false}'
-            OCTANE_SERVER: 'frankenphp'
+            SSH_TUNNEL_USER: "${SSH_TUNNEL_USER:-}"
+            SSH_TUNNEL_HOSTNAME: "${SSH_TUNNEL_HOSTNAME:-}"
+            SSH_TUNNEL_PORT: "${SSH_TUNNEL_PORT:-22}"
+            SSH_TUNNEL_LOCAL_PORT: "${SSH_TUNNEL_LOCAL_PORT:-3307}"
+            SSH_TUNNEL_BIND_ADDRESS: "${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}"
+            SSH_TUNNEL_BIND_PORT: "${SSH_TUNNEL_BIND_PORT:-3306}"
+            SSH_TUNNEL_VERIFY_PROCESS: "${SSH_TUNNEL_VERIFY_PROCESS:-bash}"
+            SSH_TUNNEL_IDENTITY_FILE: "${SSH_TUNNEL_IDENTITY_FILE:-}"
+            SSH_TUNNEL_PRIVATE_KEY: "${SSH_TUNNEL_PRIVATE_KEY:-}"
+            SSH_TUNNEL_VERBOSITY: "${SSH_TUNNEL_VERBOSITY:--vvv}"
+            DB_CONNECTION_SECOND: "${DB_CONNECTION_SECOND:-mysql}"
+            DB_HOST_SECOND: "${DB_HOST_SECOND:-127.0.0.1}"
+            DB_PORT_SECOND: "${DB_PORT_SECOND:-3307}"
+            DB_DATABASE_SECOND: "${DB_DATABASE_SECOND:-}"
+            DB_USERNAME_SECOND: "${DB_USERNAME_SECOND:-}"
+            DB_PASSWORD_SECOND: "${DB_PASSWORD_SECOND:-}"
+            BOOST_BROWSER_LOGS_WATCHER: "${BOOST_BROWSER_LOGS_WATCHER:-false}"
+            OCTANE_SERVER: "frankenphp"
             CADDY_GLOBAL_OPTIONS: |
                 servers {
                     trusted_proxies static private_ranges
@@ -139,13 +139,14 @@ services:
             - storage:/var/www/html/storage
         networks:
             - dokploy-network
+
     schedule:
         image: laravelcm/php
         restart: always
-        command: ['artisan', 'schedule:run']
+        command: ["artisan", "schedule:run"]
         stop_signal: SIGTERM
         healthcheck:
-            test: ['CMD', 'healthcheck-schedule']
+            test: ["CMD", "healthcheck-schedule"]
             start_period: 10s
         environment:
             APP_NAME: ${APP_NAME}
@@ -183,7 +184,7 @@ services:
             CACHE_STORE: ${CACHE_STORE}
             CACHE_PREFIX: ${CACHE_PREFIX}
             MEMCACHED_HOST: ${MEMCACHED_HOST}
-            REDIS_CLIENT: 'phpredis'
+            REDIS_CLIENT: "phpredis"
             REDIS_HOST: ${REDIS_HOST}
             REDIS_PASSWORD: ${REDIS_PASSWORD}
             REDIS_PORT: ${REDIS_PORT}
@@ -237,44 +238,45 @@ services:
             UNSPLASH_ACCESS_KEY: ${UNSPLASH_ACCESS_KEY}
             NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
             NIGHTWATCH_REQUEST_SAMPLE_RATE: ${NIGHTWATCH_REQUEST_SAMPLE_RATE}
-            SSH_TUNNEL_USER: '${SSH_TUNNEL_USER:-}'
-            SSH_TUNNEL_HOSTNAME: '${SSH_TUNNEL_HOSTNAME:-}'
-            SSH_TUNNEL_PORT: '${SSH_TUNNEL_PORT:-22}'
-            SSH_TUNNEL_LOCAL_PORT: '${SSH_TUNNEL_LOCAL_PORT:-3307}'
-            SSH_TUNNEL_BIND_ADDRESS: '${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}'
-            SSH_TUNNEL_BIND_PORT: '${SSH_TUNNEL_BIND_PORT:-3306}'
-            SSH_TUNNEL_VERIFY_PROCESS: '${SSH_TUNNEL_VERIFY_PROCESS:-bash}'
-            SSH_TUNNEL_IDENTITY_FILE: '${SSH_TUNNEL_IDENTITY_FILE:-}'
-            SSH_TUNNEL_PRIVATE_KEY: '${SSH_TUNNEL_PRIVATE_KEY:-}'
-            SSH_TUNNEL_VERBOSITY: '${SSH_TUNNEL_VERBOSITY:--vvv}'
-            DB_CONNECTION_SECOND: '${DB_CONNECTION_SECOND:-mysql}'
-            DB_HOST_SECOND: '${DB_HOST_SECOND:-127.0.0.1}'
-            DB_PORT_SECOND: '${DB_PORT_SECOND:-3307}'
-            DB_DATABASE_SECOND: '${DB_DATABASE_SECOND:-}'
-            DB_USERNAME_SECOND: '${DB_USERNAME_SECOND:-}'
-            DB_PASSWORD_SECOND: '${DB_PASSWORD_SECOND:-}'
-            BOOST_BROWSER_LOGS_WATCHER: '${BOOST_BROWSER_LOGS_WATCHER:-false}'
-            OCTANE_SERVER: 'frankenphp'
+            SSH_TUNNEL_USER: "${SSH_TUNNEL_USER:-}"
+            SSH_TUNNEL_HOSTNAME: "${SSH_TUNNEL_HOSTNAME:-}"
+            SSH_TUNNEL_PORT: "${SSH_TUNNEL_PORT:-22}"
+            SSH_TUNNEL_LOCAL_PORT: "${SSH_TUNNEL_LOCAL_PORT:-3307}"
+            SSH_TUNNEL_BIND_ADDRESS: "${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}"
+            SSH_TUNNEL_BIND_PORT: "${SSH_TUNNEL_BIND_PORT:-3306}"
+            SSH_TUNNEL_VERIFY_PROCESS: "${SSH_TUNNEL_VERIFY_PROCESS:-bash}"
+            SSH_TUNNEL_IDENTITY_FILE: "${SSH_TUNNEL_IDENTITY_FILE:-}"
+            SSH_TUNNEL_PRIVATE_KEY: "${SSH_TUNNEL_PRIVATE_KEY:-}"
+            SSH_TUNNEL_VERBOSITY: "${SSH_TUNNEL_VERBOSITY:--vvv}"
+            DB_CONNECTION_SECOND: "${DB_CONNECTION_SECOND:-mysql}"
+            DB_HOST_SECOND: "${DB_HOST_SECOND:-127.0.0.1}"
+            DB_PORT_SECOND: "${DB_PORT_SECOND:-3307}"
+            DB_DATABASE_SECOND: "${DB_DATABASE_SECOND:-}"
+            DB_USERNAME_SECOND: "${DB_USERNAME_SECOND:-}"
+            DB_PASSWORD_SECOND: "${DB_PASSWORD_SECOND:-}"
+            BOOST_BROWSER_LOGS_WATCHER: "${BOOST_BROWSER_LOGS_WATCHER:-false}"
+            OCTANE_SERVER: "frankenphp"
         volumes:
             - storage:/var/www/html/storage
         networks:
             - dokploy-network
         depends_on:
             - laravelcm
+
     queue:
         image: laravelcm/php
         restart: always
         command:
-            - 'artisan'
-            - 'queue:listen'
-            - 'database'
-            - '--sleep=10'
-            - '--quiet'
-            - '--force'
-            - '--queue=default,media'
+            - "artisan"
+            - "queue:listen"
+            - "database"
+            - "--sleep=10"
+            - "--quiet"
+            - "--force"
+            - "--queue=default,media"
         stop_signal: SIGTERM
         healthcheck:
-            test: ['CMD', 'healthcheck-queue']
+            test: ["CMD", "healthcheck-queue"]
             start_period: 10s
         environment:
             APP_NAME: ${APP_NAME}
@@ -312,7 +314,7 @@ services:
             CACHE_STORE: ${CACHE_STORE}
             CACHE_PREFIX: ${CACHE_PREFIX}
             MEMCACHED_HOST: ${MEMCACHED_HOST}
-            REDIS_CLIENT: 'phpredis'
+            REDIS_CLIENT: "phpredis"
             REDIS_HOST: ${REDIS_HOST}
             REDIS_PASSWORD: ${REDIS_PASSWORD}
             REDIS_PORT: ${REDIS_PORT}
@@ -366,30 +368,31 @@ services:
             UNSPLASH_ACCESS_KEY: ${UNSPLASH_ACCESS_KEY}
             NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
             NIGHTWATCH_REQUEST_SAMPLE_RATE: ${NIGHTWATCH_REQUEST_SAMPLE_RATE}
-            SSH_TUNNEL_USER: '${SSH_TUNNEL_USER:-}'
-            SSH_TUNNEL_HOSTNAME: '${SSH_TUNNEL_HOSTNAME:-}'
-            SSH_TUNNEL_PORT: '${SSH_TUNNEL_PORT:-22}'
-            SSH_TUNNEL_LOCAL_PORT: '${SSH_TUNNEL_LOCAL_PORT:-3307}'
-            SSH_TUNNEL_BIND_ADDRESS: '${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}'
-            SSH_TUNNEL_BIND_PORT: '${SSH_TUNNEL_BIND_PORT:-3306}'
-            SSH_TUNNEL_VERIFY_PROCESS: '${SSH_TUNNEL_VERIFY_PROCESS:-bash}'
-            SSH_TUNNEL_IDENTITY_FILE: '${SSH_TUNNEL_IDENTITY_FILE:-}'
-            SSH_TUNNEL_PRIVATE_KEY: '${SSH_TUNNEL_PRIVATE_KEY:-}'
-            SSH_TUNNEL_VERBOSITY: '${SSH_TUNNEL_VERBOSITY:--vvv}'
-            DB_CONNECTION_SECOND: '${DB_CONNECTION_SECOND:-mysql}'
-            DB_HOST_SECOND: '${DB_HOST_SECOND:-127.0.0.1}'
-            DB_PORT_SECOND: '${DB_PORT_SECOND:-3307}'
-            DB_DATABASE_SECOND: '${DB_DATABASE_SECOND:-}'
-            DB_USERNAME_SECOND: '${DB_USERNAME_SECOND:-}'
-            DB_PASSWORD_SECOND: '${DB_PASSWORD_SECOND:-}'
-            BOOST_BROWSER_LOGS_WATCHER: '${BOOST_BROWSER_LOGS_WATCHER:-false}'
-            OCTANE_SERVER: 'frankenphp'
+            SSH_TUNNEL_USER: "${SSH_TUNNEL_USER:-}"
+            SSH_TUNNEL_HOSTNAME: "${SSH_TUNNEL_HOSTNAME:-}"
+            SSH_TUNNEL_PORT: "${SSH_TUNNEL_PORT:-22}"
+            SSH_TUNNEL_LOCAL_PORT: "${SSH_TUNNEL_LOCAL_PORT:-3307}"
+            SSH_TUNNEL_BIND_ADDRESS: "${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}"
+            SSH_TUNNEL_BIND_PORT: "${SSH_TUNNEL_BIND_PORT:-3306}"
+            SSH_TUNNEL_VERIFY_PROCESS: "${SSH_TUNNEL_VERIFY_PROCESS:-bash}"
+            SSH_TUNNEL_IDENTITY_FILE: "${SSH_TUNNEL_IDENTITY_FILE:-}"
+            SSH_TUNNEL_PRIVATE_KEY: "${SSH_TUNNEL_PRIVATE_KEY:-}"
+            SSH_TUNNEL_VERBOSITY: "${SSH_TUNNEL_VERBOSITY:--vvv}"
+            DB_CONNECTION_SECOND: "${DB_CONNECTION_SECOND:-mysql}"
+            DB_HOST_SECOND: "${DB_HOST_SECOND:-127.0.0.1}"
+            DB_PORT_SECOND: "${DB_PORT_SECOND:-3307}"
+            DB_DATABASE_SECOND: "${DB_DATABASE_SECOND:-}"
+            DB_USERNAME_SECOND: "${DB_USERNAME_SECOND:-}"
+            DB_PASSWORD_SECOND: "${DB_PASSWORD_SECOND:-}"
+            BOOST_BROWSER_LOGS_WATCHER: "${BOOST_BROWSER_LOGS_WATCHER:-false}"
+            OCTANE_SERVER: "frankenphp"
         volumes:
             - storage:/var/www/html/storage
         networks:
             - dokploy-network
         depends_on:
             - laravelcm
+
 networks:
     dokploy-network:
         external: true

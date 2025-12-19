@@ -65,17 +65,17 @@ pre code.torchlight .summary-caret {
 .torchlight .summary-caret-empty::after,
 .torchlight details .summary-caret-middle::after,
 .torchlight details .summary-caret-end::after {
-  content: ' ';
+  content: " ";
 }
 
 /* Show a minus sign when the block is open. */
 .torchlight details[open] .summary-caret-start::after {
-  content: '-';
+  content: "-";
 }
 
 /* And a plus sign when the block is closed. */
 .torchlight details:not([open]) .summary-caret-start::after {
-  content: '+';
+  content: "+";
 }
 
 /* Hide the [...] indicator when open. */

@@ -6,8 +6,8 @@
     <p class="text-center text-lg font-medium leading-8 text-gray-700 dark:text-gray-300">
         {{ $title }}
     </p>
-    <div class="mt-4 flex items-center justify-center">
-        <div class="inline-flex divide-x divide-dotted divide-gray-200 dark:divide-white/10 flex-wrap items-center justify-center border border-dotted border-gray-200 dark:border-white/10 rounded-lg">
+    <div class="mt-4 py-6 relative flex items-center justify-center border-y border-dotted border-gray-200 dark:border-white/10 lg:py-10">
+        <div class="inline-flex flex-wrap items-center justify-center">
             <div class="flex items-center justify-center px-4 py-2.5 lg:px-6">
                 <a href="https://shopperlabs.co" target="_blank" class="flex items-center">
                     <x-icon.shopper-labs class="h-6 w-auto text-gray-900 dark:text-white" aria-hidden="true" />
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="mt-6 text-center lg:mt-10">
+    <div class="mt-6 text-center">
         <x-link
             class="text-sm leading-5 text-primary-500 hover:text-primary-600 hover:underline hover:decoration-1 hover:decoration-dotted hover:decoration-primary-500"
             target="_blank"

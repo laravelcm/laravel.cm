@@ -1,18 +1,18 @@
 .iti {
-    display: block;
+  display: block;
 }
 
 .iti__selected-flag {
-    padding: 0 10px;
+  padding: 0 10px;
 }
 
-input[type='number'] {
-    -moz-appearance: textfield; /* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }

@@ -1,0 +1,17 @@
+{
+    "agents": [
+        "claude_code",
+        "gemini",
+        "phpstorm"
+    ],
+    "editors": [
+        "claude_code",
+        "gemini",
+        "phpstorm",
+        "vscode"
+    ],
+    "guidelines": [
+        "filament/filament"
+    ],
+    "sail": true
+}

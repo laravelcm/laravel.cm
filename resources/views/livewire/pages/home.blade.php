@@ -1,7 +1,7 @@
 <div>
     <div class="section-gradient overflow-hidden isolate pt-16">
-        <x-container class="border-x border-gray-200 dark:border-white/10 border-dotted">
-            <div class="mx-auto max-w-3xl py-20 sm:pt-32 lg:pt-44 text-center">
+        <x-container class="border-x border-gray-200 dark:border-white/10 border-dotted px-0">
+            <div class="mx-auto px-4 max-w-3xl py-20 sm:pt-32 lg:pt-44 text-center">
                 <h1 class="font-heading text-4xl font-semibold tracking-tight text-primary-600 sm:leading-none lg:text-6xl">
                     {{ __('global.site_name') }}
                 </h1>

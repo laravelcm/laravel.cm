@@ -1,12 +1,12 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@import './components/base.css';
-@import './components/forms.css';
-@import './components/forum.css';
-@import './components/header.css';
-@import './components/tag.css';
-@import './components/torchlight.css';
-@import './components/typography.css';
+@import "./components/base.css";
+@import "./components/forms.css";
+@import "./components/forum.css";
+@import "./components/header.css";
+@import "./components/tag.css";
+@import "./components/torchlight.css";
+@import "./components/typography.css";
 
 @plugin '@tailwindcss/typography';
 @plugin '@tailwindcss/forms';
@@ -18,7 +18,7 @@
 @source '../**/*.js';
 
 :root {
-  --laravel: #F56857;
+  --laravel: #f56857;
   --livewire: #fb70a9;
   --inertia: #8b5cf6;
   --javascript: #f7df1e;
@@ -53,7 +53,7 @@
   --color-flag-green: #099170;
   --color-flag-red: #e21b30;
   --color-flag-yellow: #ffdc44;
-  --color-black: #161B22;
+  --color-black: #161b22;
 
   --color-gray-50: oklch(98.5% 0 0);
   --color-gray-100: oklch(96.7% 0.001 286.375);
@@ -103,26 +103,42 @@
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes marquee {
-  100% { transform: translateY(-50%); }
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
 @keyframes spin-reverse {
-  to { transform: rotate(-360deg); }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 
 @keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 @keyframes rotate {
-  0% { transform: rotate(0deg) scale(10); }
-  100% { transform: rotate(-360deg) scale(10); }
+  0% {
+    transform: rotate(0deg) scale(10);
+  }
+  100% {
+    transform: rotate(-360deg) scale(10);
+  }
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -130,5 +146,5 @@
 @property --border-angle {
   inherits: false;
   initial-value: 0deg;
-  syntax: '<angle>';
+  syntax: "<angle>";
 }
