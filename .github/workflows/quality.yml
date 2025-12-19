@@ -18,6 +18,9 @@ jobs:
         uses: actions/checkout@v6
       - name: 🪄 Setup PHP
         uses: ./.github/actions/setup
+        with:
+          flux-username: ${{ secrets.FLUX_USERNAME }}
+          flux-license-key: ${{ secrets.FLUX_LICENSE_KEY }}
       - name: 🔮 Install Composer Dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
       - name: Install Node Dependencies & Build Assets
@@ -32,6 +35,9 @@ jobs:
         uses: actions/checkout@v6
       - name: 🪄 Setup
         uses: ./.github/actions/setup
+        with:
+          flux-username: ${{ secrets.FLUX_USERNAME }}
+          flux-license-key: ${{ secrets.FLUX_LICENSE_KEY }}
       - name: 🔮 Install Composer Dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
       - name: 🕵️‍♂️ Run PHPStan
@@ -44,6 +50,9 @@ jobs:
         uses: actions/checkout@v6
       - name: 🪄 Setup PHP
         uses: ./.github/actions/setup
+        with:
+          flux-username: ${{ secrets.FLUX_USERNAME }}
+          flux-license-key: ${{ secrets.FLUX_LICENSE_KEY }}
       - name: 🔮 Install Composer Dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
       - name: 🕵️‍♂️ Run PHPStan
@@ -56,6 +65,9 @@ jobs:
         uses: actions/checkout@v6
       - name: 🪄 Setup
         uses: ./.github/actions/setup
+        with:
+          flux-username: ${{ secrets.FLUX_USERNAME }}
+          flux-license-key: ${{ secrets.FLUX_LICENSE_KEY }}
       - name: 🕵️‍♂️ Run Composer Validate
         run: composer validate
       - name: 🕵️‍♂️ Run Composer Audit
