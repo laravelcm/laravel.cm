@@ -31,8 +31,8 @@ final class User extends SpotlightCommand
 
     public function searchUser(string $query): Collection
     {
-        return UserModel::query()->where('name', 'like', "%{$query}%")
-            ->orWhere('username', 'like', "%{$query}%")
+        return UserModel::query()->where('name', 'like', sprintf('%%%s%%', $query))
+            ->orWhere('username', 'like', sprintf('%%%s%%', $query))
             ->get()
             ->map(fn (UserModel $user): SpotlightSearchResult => new SpotlightSearchResult(
                 $user->id,

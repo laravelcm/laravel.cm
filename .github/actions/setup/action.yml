@@ -7,19 +7,22 @@ runs:
     - name: 🐘 Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: "8.4"
+        php-version: 8.4
         extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_pgsql, bcmath, soap, intl, gd, exif, iconv, imagick
         tools: composer:v2
-        coverage: none
+        coverage: xdebug
     - name: ℹ Setup Problem Matches
       shell: sh
       run: |
         echo "::add-matcher::${{ runner.tool_cache }}/php.json"
         echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+    - name: Add Flux Credentials Loaded From ENV
+      shell: sh
+      run: composer config http-basic.composer.fluxui.dev "${{ secrets.FLUX_USERNAME }}" "${{ secrets.FLUX_LICENSE_KEY }}"
     - name: 🗂 Get composer cache directory
       id: composer-cache
       shell: sh
-      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
     - name: Cache dependencies
       uses: actions/cache@v4
       with:

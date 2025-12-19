@@ -9,6 +9,7 @@ use App\Actions\Article\DeclineArticleAction;
 use App\Models\Article;
 use Awcodes\BadgeableColumn\Components\Badge;
 use Awcodes\BadgeableColumn\Components\BadgeableColumn;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
@@ -26,7 +27,7 @@ final class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-newspaper';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-newspaper';
 
     public static function getNavigationGroup(): string
     {
@@ -47,7 +48,7 @@ final class ArticleResource extends Resource
                     ->tooltip(function (Columns\TextColumn $column): ?string {
                         $state = $column->getState();
 
-                        if (strlen($state) <= $column->getCharacterLimit()) {
+                        if (mb_strlen($state) <= $column->getCharacterLimit()) {
                             return null;
                         }
 
@@ -114,7 +115,7 @@ final class ArticleResource extends Resource
                         ->action(function (Article $record): void {
                             Gate::authorize('approve', $record);
 
-                            app(ApprovedArticleAction::class)->execute($record);
+                            resolve(ApprovedArticleAction::class)->execute($record);
                         }),
                     Actions\Action::make('declined')
                         ->visible(fn (Article $record): bool => $record->isAwaitingApproval())
@@ -135,7 +136,7 @@ final class ArticleResource extends Resource
                         ->action(function (array $data, Article $record): void {
                             Gate::authorize('decline', $record);
 
-                            app(DeclineArticleAction::class)->execute($data['reason'], $record);
+                            resolve(DeclineArticleAction::class)->execute($data['reason'], $record);
 
                             Notification::make()
                                 ->title('Article décliné')

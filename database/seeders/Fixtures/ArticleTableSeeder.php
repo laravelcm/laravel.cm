@@ -123,10 +123,10 @@ And you will be prompted for the user's name and password.
             'approved_at' => now(),
             'show_toc' => false,
             'canonical_url' => null,
-            'user_id' => (int) array_rand($usersIds),
+            'user_id' => array_rand($usersIds),
         ]);
         $article1->syncTags(array_rand($tagsIds, 3));
-        $article1->addMediaFromUrl("https://unsplash.it/1920/1080?random={$article1->id}")
+        $article1->addMediaFromUrl('https://unsplash.it/1920/1080?random='.$article1->id)
             ->toMediaCollection('media');
 
         /** @var Article $article2 */
@@ -390,10 +390,10 @@ And you will be prompted for the user's name and password.
             'approved_at' => null,
             'show_toc' => true,
             'canonical_url' => null,
-            'user_id' => (int) array_rand($usersIds),
+            'user_id' => array_rand($usersIds),
         ]);
         $article2->syncTags(array_rand($tagsIds, 3));
-        $article2->addMediaFromUrl("https://unsplash.it/1920/1080?random={$article2->id}")
+        $article2->addMediaFromUrl('https://unsplash.it/1920/1080?random='.$article2->id)
             ->toMediaCollection('media');
 
         /** @var Article $article3 */
@@ -513,10 +513,10 @@ Copyright (c) 2022 Unlayer. [MIT](LICENSE) Licensed.
             'approved_at' => now()->addHours(3),
             'show_toc' => array_rand([true, false]),
             'canonical_url' => null,
-            'user_id' => (int) array_rand($usersIds),
+            'user_id' => array_rand($usersIds),
         ]);
         $article3->syncTags(array_rand($tagsIds, 3));
-        $article3->addMediaFromUrl("https://unsplash.it/1920/1080?random={$article3->id}")
+        $article3->addMediaFromUrl('https://unsplash.it/1920/1080?random='.$article3->id)
             ->toMediaCollection('media');
 
         /** @var Article $article4 */
@@ -1097,10 +1097,10 @@ Awesome Laravel is licensed under a  [Creative Commons Attribution 4.0 Internati
             'approved_at' => now()->addDay()->addHours(2),
             'show_toc' => true,
             'canonical_url' => null,
-            'user_id' => (int) array_rand($usersIds),
+            'user_id' => array_rand($usersIds),
         ]);
         $article4->syncTags(array_rand($tagsIds, 3));
-        $article4->addMediaFromUrl("https://unsplash.it/1920/1080?random={$article4->id}")
+        $article4->addMediaFromUrl('https://unsplash.it/1920/1080?random='.$article4->id)
             ->toMediaCollection('media');
 
         /** @var Article $article5 */
@@ -1171,10 +1171,10 @@ MIT
             'approved_at' => now()->addHours(5),
             'show_toc' => false,
             'canonical_url' => null,
-            'user_id' => (int) array_rand($usersIds),
+            'user_id' => array_rand($usersIds),
         ]);
         $article5->syncTags(array_rand($tagsIds, 3));
-        $article5->addMediaFromUrl("https://unsplash.it/1920/1080?random={$article5->id}")
+        $article5->addMediaFromUrl('https://unsplash.it/1920/1080?random='.$article5->id)
             ->toMediaCollection('media');
 
         /** @var Article $article6 */
@@ -1249,10 +1249,10 @@ https://www.digitalocean.com/community/tools/nginx?domains.0.server.domain=test.
             'approved_at' => now()->subHour(),
             'show_toc' => false,
             'canonical_url' => null,
-            'user_id' => (int) array_rand($usersIds),
+            'user_id' => array_rand($usersIds),
         ]);
         $article6->syncTags(array_rand($tagsIds, 3));
-        $article6->addMediaFromUrl("https://unsplash.it/1920/1080?random={$article6->id}")
+        $article6->addMediaFromUrl('https://unsplash.it/1920/1080?random='.$article6->id)
             ->toMediaCollection('media');
     }
 }

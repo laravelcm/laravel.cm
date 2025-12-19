@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Livewire\Pages;
 
 use App\Policies\NotificationPolicy;
-use Carbon\Carbon;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -60,7 +59,7 @@ final class Notifications extends Component
                 ->take(10)
                 ->get()
                 ->groupBy(
-                    fn ($notification): string => Carbon::parse($notification->created_at)->format('M, Y')
+                    fn ($notification): string => \Illuminate\Support\Facades\Date::parse($notification->created_at)->format('M, Y')
                 ),
         ]);
     }

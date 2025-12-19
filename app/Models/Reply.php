@@ -12,7 +12,8 @@ use App\Models\Traits\HasReplies;
 use App\Traits\HasSpamReports;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
+use Database\Factories\ReplyFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,19 +26,23 @@ use Illuminate\Support\Str;
 
 /**
  * @property-read int $id
- * @property string $body
- * @property int $user_id
- * @property Carbon $created_at
- * @property Carbon $updated_at
- * @property User $user
- * @property int $replyable_id
- * @property string $replyable_type
- * @property Collection | SpamReport[] $spamReports
+ * @property-read string $body
+ * @property-read int $user_id
+ * @property-read User $user
+ * @property-read int $replyable_id
+ * @property-read string $replyable_type
+ * @property-read CarbonInterface $created_at
+ * @property-read CarbonInterface $updated_at
+ * @property-read Collection<int, SpamReport> $spamReports
+ * @property-read ?Thread $solutionTo
  */
 final class Reply extends Model implements ReactableInterface, ReplyInterface, SpamReportableContract
 {
     use HasAuthor;
+
+    /** @use HasFactory<ReplyFactory> */
     use HasFactory;
+
     use HasReplies;
     use HasSpamReports;
     use Reactable;
@@ -57,12 +62,12 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
 
     public function getPathUrl(): string
     {
-        return "#reply-{$this->id}";
+        return '#reply-'.$this->id;
     }
 
     public function wasJustPublished(): bool
     {
-        return $this->created_at->gt(Carbon::now()->subMinute());
+        return $this->created_at->gt(\Illuminate\Support\Facades\Date::now()->subMinute());
     }
 
     public function excerpt(int $limit = 100): string
@@ -80,15 +85,6 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
     public function to(ReplyInterface|Model $replyable): void
     {
         $this->replyAble()->associate($replyable); // @phpstan-ignore-line
-    }
-
-    /**
-     * @param  Builder<Reply>  $query
-     */
-    #[Scope]
-    protected function isSolution(Builder $query): Builder
-    {
-        return $query->has('solutionTo');
     }
 
     public function delete(): bool
@@ -124,5 +120,14 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
     public function replyAble(): MorphTo
     {
         return $this->morphTo('replyAble', 'replyable_type', 'replyable_id');
+    }
+
+    /**
+     * @param  Builder<Reply>  $query
+     */
+    #[Scope]
+    protected function isSolution(Builder $query): Builder
+    {
+        return $query->has('solutionTo');
     }
 }

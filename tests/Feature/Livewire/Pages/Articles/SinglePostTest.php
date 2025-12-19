@@ -11,7 +11,7 @@ use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
 
 /**
- * @var \Tests\TestCase $this
+ * @var Tests\TestCase $this
  */
 beforeEach(function (): void {
     $this->user = User::factory()->create();
@@ -102,14 +102,14 @@ describe(SinglePost::class, function (): void {
     it('caches article data on first load', function (): void {
         Cache::flush();
 
-        expect(Cache::has("article.{$this->article->id}"))->toBeFalse();
+        expect(Cache::has('article.'.$this->article->id))->toBeFalse();
 
         Livewire::test(SinglePost::class, ['article' => $this->article])
             ->assertStatus(200);
 
-        expect(Cache::has("article.{$this->article->id}"))->toBeTrue();
+        expect(Cache::has('article.'.$this->article->id))->toBeTrue();
 
-        $cachedArticle = Cache::get("article.{$this->article->id}");
+        $cachedArticle = Cache::get('article.'.$this->article->id);
         expect($cachedArticle->id)->toBe($this->article->id);
         expect($cachedArticle->relationLoaded('user'))->toBeTrue();
         expect($cachedArticle->relationLoaded('tags'))->toBeTrue();
@@ -119,13 +119,13 @@ describe(SinglePost::class, function (): void {
     it('uses cached article data on subsequent loads', function (): void {
         Cache::flush();
 
-        expect(Cache::has("article.{$this->article->id}"))->toBeFalse();
+        expect(Cache::has('article.'.$this->article->id))->toBeFalse();
 
         Livewire::test(SinglePost::class, ['article' => $this->article]);
 
-        expect(Cache::has("article.{$this->article->id}"))->toBeTrue();
+        expect(Cache::has('article.'.$this->article->id))->toBeTrue();
 
-        $cachedArticle = Cache::get("article.{$this->article->id}");
+        $cachedArticle = Cache::get('article.'.$this->article->id);
         expect($cachedArticle)->not->toBeNull();
         expect($cachedArticle->title)->toBe('Test Article Title');
     });
@@ -168,21 +168,21 @@ describe(SinglePost::class, function (): void {
     it('invalidates cache when article is updated', function (): void {
         // Créer le cache initial
         Livewire::test(SinglePost::class, ['article' => $this->article]);
-        expect(Cache::has("article.{$this->article->id}"))->toBeTrue();
+        expect(Cache::has('article.'.$this->article->id))->toBeTrue();
 
         // Simuler une mise à jour d'article qui devrait invalider le cache
-        Cache::forget("article.{$this->article->id}");
+        Cache::forget('article.'.$this->article->id);
 
         $this->article->update(['title' => 'Updated Title']);
 
         // Vérifier que le cache est bien invalidé
-        expect(Cache::has("article.{$this->article->id}"))->toBeFalse();
+        expect(Cache::has('article.'.$this->article->id))->toBeFalse();
 
         // Nouveau chargement devrait recréer le cache avec les nouvelles données
         Livewire::test(SinglePost::class, ['article' => $this->article->fresh()])
             ->assertStatus(200)
             ->assertSee('Updated Title');
 
-        expect(Cache::has("article.{$this->article->id}"))->toBeTrue();
+        expect(Cache::has('article.'.$this->article->id))->toBeTrue();
     });
 })->group('articles');

@@ -6,15 +6,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateRepliesTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('replies', function (Blueprint $table): void {
+        Schema::create('replies', static function (Blueprint $table): void {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
             $table->morphs('replyable');
             $table->text('body');
+
             $table->timestamps();
         });
     }
@@ -23,4 +25,4 @@ final class CreateRepliesTable extends Migration
     {
         Schema::dropIfExists('replies');
     }
-}
+};

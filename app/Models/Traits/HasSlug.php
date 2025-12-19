@@ -9,19 +9,20 @@ use Illuminate\Support\Str;
 
 trait HasSlug
 {
-    protected function slug(): Attribute
-    {
-        return Attribute::set(fn (string $value) => $this->generateUniqueSlug($value));
-    }
-
     public static function findBySlug(string $slug): static
     {
         return static::query()->where('slug', $slug)->firstOrFail();
     }
 
+    protected function slug(): Attribute
+    {
+        return Attribute::set(fn (string $value): string => $this->generateUniqueSlug($value));
+    }
+
     private function generateUniqueSlug(string $value): string
     {
-        $slug = $originalSlug = Str::slug($value) ?: Str::random(5);
+        $slug = Str::slug($value) ?: Str::random(5);
+        $originalSlug = Str::slug($value) ?: Str::random(5);
         $counter = 0;
 
         while ($this->slugExists($slug, $this->exists ? $this->id : null)) {
@@ -34,9 +35,9 @@ trait HasSlug
 
     private function slugExists(string $slug, ?int $ignoreId = null): bool
     {
-        $query = $this->where('slug', $slug);
+        $query = static::query()->where('slug', $slug);
 
-        if (! blank($ignoreId)) {
+        if (filled($ignoreId)) {
             $query->where('id', '!=', $ignoreId);
         }
 

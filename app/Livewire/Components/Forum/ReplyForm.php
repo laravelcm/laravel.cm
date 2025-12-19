@@ -19,7 +19,7 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 
 /**
- * @property \Filament\Schemas\Schema $form
+ * @property Schema $form
  */
 final class ReplyForm extends Component implements HasActions, HasForms
 {
@@ -92,7 +92,7 @@ final class ReplyForm extends Component implements HasActions, HasForms
     {
         $this->authorize('create', Reply::class);
 
-        app(CreateReplyAction::class)->execute(
+        resolve(CreateReplyAction::class)->execute(
             body: (string) $this->body,
             model: $this->thread,
         );

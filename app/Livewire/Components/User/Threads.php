@@ -73,7 +73,7 @@ final class Threads extends Component implements HasActions, HasForms
 
                 $this->authorize('delete', $thread);
 
-                app(DeleteThreadAction::class)->execute($thread);
+                resolve(DeleteThreadAction::class)->execute($thread);
                 Notification::make()
                     ->success()
                     ->title(__('notifications.thread.deleted'))

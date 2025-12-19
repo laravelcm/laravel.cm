@@ -9,32 +9,34 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Enterprise>
+ * @extends Factory<Enterprise>
  */
 final class EnterpriseFactory extends Factory
 {
+    protected $model = Enterprise::class;
+
     public function definition(): array
     {
         return [
-            'name' => $this->faker->company(),
-            'slug' => $this->faker->unique()->slug(),
-            'website' => $this->faker->unique()->url(),
-            'about' => $this->faker->words(250, true),
-            'address' => $this->faker->address(),
-            'description' => $this->faker->sentence(10),
-            'founded_in' => $this->faker->date('Y'),
-            'ceo' => $this->faker->firstName(),
+            'name' => fake()->company(),
+            'slug' => fake()->unique()->slug(),
+            'website' => fake()->unique()->url(),
+            'about' => fake()->words(250, true),
+            'address' => fake()->address(),
+            'description' => fake()->sentence(10),
+            'founded_in' => fake()->date('Y'),
+            'ceo' => fake()->firstName(),
             'is_featured' => array_rand([true, false]),
             'is_certified' => array_rand([true, false]),
             'is_public' => array_rand([true, false]),
-            'user_id' => array_rand(User::all()->modelKeys()),
+            'user_id' => User::factory(),
         ];
     }
 
     public function configure(): self
     {
         return $this->afterCreating(function (Enterprise $enterprise): void {
-            $enterprise->addMediaFromUrl("https://source.unsplash.com/random/800x800/?img={$enterprise->id}")
+            $enterprise->addMediaFromUrl('https://source.unsplash.com/random/800x800/?img='.$enterprise->id)
                 ->toMediaCollection('logo');
         });
     }

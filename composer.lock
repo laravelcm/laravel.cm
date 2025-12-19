@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11c1913b7c98158b0dd2ecda81beab53",
+    "content-hash": "dc9a5146fb5d07d86bff8a1c4281d06d",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1815,112 +1815,6 @@
             "time": "2024-07-08T12:26:09+00:00"
         },
         {
-            "name": "doctrine/dbal",
-            "version": "4.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/dbal.git",
-                "reference": "3d544473fb93f5c25b483ea4f4ce99f8c4d9d44c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/3d544473fb93f5c25b483ea4f4ce99f8c4d9d44c",
-                "reference": "3d544473fb93f5c25b483ea4f4ce99f8c4d9d44c",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/deprecations": "^1.1.5",
-                "php": "^8.2",
-                "psr/cache": "^1|^2|^3",
-                "psr/log": "^1|^2|^3"
-            },
-            "require-dev": {
-                "doctrine/coding-standard": "14.0.0",
-                "fig/log-test": "^1",
-                "jetbrains/phpstorm-stubs": "2023.2",
-                "phpstan/phpstan": "2.1.30",
-                "phpstan/phpstan-phpunit": "2.0.7",
-                "phpstan/phpstan-strict-rules": "^2",
-                "phpunit/phpunit": "11.5.23",
-                "slevomat/coding-standard": "8.24.0",
-                "squizlabs/php_codesniffer": "4.0.0",
-                "symfony/cache": "^6.3.8|^7.0|^8.0",
-                "symfony/console": "^5.4|^6.3|^7.0|^8.0"
-            },
-            "suggest": {
-                "symfony/console": "For helpful console commands such as SQL execution and import of files."
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Doctrine\\DBAL\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
-                },
-                {
-                    "name": "Roman Borschel",
-                    "email": "roman@code-factory.org"
-                },
-                {
-                    "name": "Benjamin Eberlei",
-                    "email": "kontakt@beberlei.de"
-                },
-                {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com"
-                }
-            ],
-            "description": "Powerful PHP database abstraction layer (DBAL) with many features for database schema introspection and management.",
-            "homepage": "https://www.doctrine-project.org/projects/dbal.html",
-            "keywords": [
-                "abstraction",
-                "database",
-                "db2",
-                "dbal",
-                "mariadb",
-                "mssql",
-                "mysql",
-                "oci8",
-                "oracle",
-                "pdo",
-                "pgsql",
-                "postgresql",
-                "queryobject",
-                "sasql",
-                "sql",
-                "sqlite",
-                "sqlserver",
-                "sqlsrv"
-            ],
-            "support": {
-                "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/4.4.1"
-            },
-            "funding": [
-                {
-                    "url": "https://www.doctrine-project.org/sponsorship.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.patreon.com/phpdoctrine",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fdbal",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2025-12-04T10:11:03+00:00"
-        },
-        {
             "name": "doctrine/deprecations",
             "version": "1.1.5",
             "source": {
@@ -2265,6 +2159,65 @@
                 }
             ],
             "time": "2025-03-06T22:45:56+00:00"
+        },
+        {
+            "name": "filafly/filament-icons",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filafly/filament-icons.git",
+                "reference": "091b9098751f8c893fb8caa6eb6cf39e9a3a984c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filafly/filament-icons/zipball/091b9098751f8c893fb8caa6eb6cf39e9a3a984c",
+                "reference": "091b9098751f8c893fb8caa6eb6cf39e9a3a984c",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^4.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.20",
+                "phpunit/phpunit": "^11.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Filafly\\Icons\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nolan Nordlund",
+                    "email": "nolan@filafly.com",
+                    "homepage": "https://www.filafly.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Core package for managing Filament icon drivers via a common interface.",
+            "homepage": "https://filafly.com/plugins/filament-icons",
+            "keywords": [
+                "Phosphor",
+                "carbon",
+                "filament",
+                "font awesome",
+                "iconoir",
+                "icons",
+                "laravel",
+                "replace",
+                "swap"
+            ],
+            "support": {
+                "issues": "https://github.com/filafly/filament-icons/issues",
+                "source": "https://github.com/filafly/filament-icons/tree/v2.0.1"
+            },
+            "time": "2025-10-15T18:30:12+00:00"
         },
         {
             "name": "filament/actions",
@@ -5088,7 +5041,7 @@
             "dist": {
                 "type": "path",
                 "url": "app-modules/database-migration",
-                "reference": "b02428e7b5250a27c88966f0e131b900431f9e26"
+                "reference": "df9a1bcf3f53cab40d1387bae66cde1b6e0534bc"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0",
@@ -5108,11 +5061,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Laravelcm\\DatabaseMigration\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
+                    "Laravelcm\\DatabaseMigration\\": "src/",
                     "Laravelcm\\DatabaseMigration\\Tests\\": "tests/"
                 }
             },
@@ -5131,9 +5080,10 @@
             "dist": {
                 "type": "path",
                 "url": "app-modules/gamify",
-                "reference": "343936faa71e1f1cf7ccc207fc7c78a6c4f0a6a0"
+                "reference": "b41769f219151b7f6b9315e18adc657e09c963de"
             },
             "require": {
+                "illuminate/support": "^11.0|^12.0",
                 "php": "^8.4"
             },
             "require-dev": {
@@ -5152,16 +5102,12 @@
                 "psr-4": {
                     "Laravelcm\\Gamify\\": "src/",
                     "Laravelcm\\Gamify\\Database\\Factories\\": "database/factories/",
-                    "Laravelcm\\Gamify\\Database\\Seeders\\": "database/seeders/"
+                    "Laravelcm\\Gamify\\Database\\Seeders\\": "database/seeders/",
+                    "Laravelcm\\Gamify\\Tests\\": "tests/"
                 },
                 "files": [
                     "src/helpers.php"
                 ]
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Laravelcm\\Gamify\\Tests\\": "tests/"
-                }
             },
             "license": [
                 "proprietary"
@@ -6866,6 +6812,59 @@
                 }
             ],
             "time": "2025-02-25T12:25:58+00:00"
+        },
+        {
+            "name": "mckenziearts/filament-untitledui-icons",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mckenziearts/filament-untitledui-icons.git",
+                "reference": "9490462c2c78a77c748e18b289edbd7dab8082fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mckenziearts/filament-untitledui-icons/zipball/9490462c2c78a77c748e18b289edbd7dab8082fb",
+                "reference": "9490462c2c78a77c748e18b289edbd7dab8082fb",
+                "shasum": ""
+            },
+            "require": {
+                "filafly/filament-icons": "^2.0",
+                "filament/filament": "^4.0",
+                "mckenziearts/blade-untitledui-icons": "^1.4",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.22"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mckenziearts\\Icons\\Untitledui\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arthur Monney",
+                    "email": "monneylobe@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Untitledui icon pack for Filament Icons",
+            "keywords": [
+                "Untitledui",
+                "filament",
+                "icons",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/mckenziearts/filament-untitledui-icons/issues",
+                "source": "https://github.com/mckenziearts/filament-untitledui-icons/tree/v1.0"
+            },
+            "time": "2025-12-18T22:31:54+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -8647,55 +8646,6 @@
                 }
             ],
             "time": "2025-07-05T09:03:01+00:00"
-        },
-        {
-            "name": "psr/cache",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/cache.git",
-                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/cache/zipball/aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
-                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.0.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Cache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "https://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for caching libraries",
-            "keywords": [
-                "cache",
-                "psr",
-                "psr-6"
-            ],
-            "support": {
-                "source": "https://github.com/php-fig/cache/tree/3.0.0"
-            },
-            "time": "2021-02-03T23:26:27+00:00"
         },
         {
             "name": "psr/clock",
@@ -18781,5 +18731,5 @@
         "ext-json": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.6.0"
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Threads;
 
 use App\Models\Thread;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns;
@@ -15,7 +16,7 @@ final class ThreadResource extends Resource
 {
     protected static ?string $model = Thread::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-chat-bubble-left-right';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
     public static function getNavigationGroup(): string
     {

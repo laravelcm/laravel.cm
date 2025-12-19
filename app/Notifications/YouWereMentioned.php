@@ -30,8 +30,8 @@ final class YouWereMentioned extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject(__('Nouvelle mention: :subject', ['subject' => $thread->subject()]))
             ->line(__(':name vous a mentionné dans le sujet :subject', ['name' => $this->reply->user?->name, 'subject' => $thread->subject()]))
-            ->action(__('Afficher'), url($thread->getPathUrl()."#reply-{$this->reply->id}"))
-            ->line(__('Merci d\'utiliser Laravel Cameroun!'));
+            ->action(__('Afficher'), url($thread->getPathUrl().('#reply-'.$this->reply->id)))
+            ->line(__("Merci d'utiliser Laravel Cameroun!"));
     }
 
     public function toArray(): array

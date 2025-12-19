@@ -11,6 +11,6 @@ final class CouldNotMarkReplyAsSolution extends Exception
 {
     public static function replyAbleIsNotAThread(Reply $reply): self
     {
-        return new self("La réponse avec l'identifiant [{$reply->id} n'est pas lié à un thread.]");
+        return new self(sprintf("La réponse avec l'identifiant [%d n'est pas lié à un thread.]", $reply->id));
     }
 }

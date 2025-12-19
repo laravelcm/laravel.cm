@@ -33,7 +33,9 @@ final class PendingArticlesNotification extends Notification
     private function content(): string
     {
         $heading = "*Articles soumis en attente d'approbation!*";
-        $messages = "{$heading}\n\n";
+        $messages = $heading.'
+
+';
 
         foreach ($this->pendingArticles as $article) {
             $messages .= __(

@@ -20,9 +20,8 @@ final class OAuthController extends Controller
     public function redirectToProvider(string $provider): RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
     {
         if (! in_array($provider, $this->getAcceptedProviders(), true)) {
-            return redirect()
-                ->route('login')
-                ->withErrors(__('La connexion via :provider n\'est pas disponible', ['provider' => e($provider)]));
+            return to_route('login')
+                ->withErrors(__("La connexion via :provider n'est pas disponible", ['provider' => e($provider)]));
         }
 
         return $this->getAuthorizationFirst($provider);
@@ -32,17 +31,17 @@ final class OAuthController extends Controller
     {
         try {
             $socialiteUser = $this->getSocialiteUser($provider);
-        } catch (InvalidStateException $exception) {
+        } catch (InvalidStateException $invalidStateException) {
             session()->flash('error', __('La demande a expirée. Veuillez réessayer.'));
 
-            return redirect()->route('login');
+            return to_route('login');
         }
 
         try {
             $user = User::findOrCreateSocialUserProvider($socialiteUser, $provider);
-        } catch (ModelNotFoundException $exception) {
+        } catch (ModelNotFoundException $modelNotFoundException) {
             // @phpstan-ignore-next-line
-            return $this->userNotFound($socialiteUser->getRaw(), $exception->getMessage());
+            return $this->userNotFound($socialiteUser->getRaw(), $modelNotFoundException->getMessage());
         }
 
         $this->updateOrRegisterProvider($user, $socialiteUser, $provider);
@@ -61,7 +60,7 @@ final class OAuthController extends Controller
     {
         session(['socialData' => $socialUser->toArray()]);
 
-        return redirect()->route('register')->withErrors($errorMessage);
+        return to_route('register')->withErrors($errorMessage);
     }
 
     private function updateOrRegisterProvider(User $user, SocialUser $socialiteUser, string $provider): void

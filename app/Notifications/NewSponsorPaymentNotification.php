@@ -20,8 +20,8 @@ final class NewSponsorPaymentNotification extends Notification implements Should
     public function via(mixed $notifiable): array
     {
         if (
-            ! blank(config('services.telegram-bot-api.token')) &&
-            ! blank(config('services.telegram-bot-api.channel'))
+            filled(config('services.telegram-bot-api.token')) &&
+            filled(config('services.telegram-bot-api.channel'))
         ) {
             return [TelegramChannel::class];
         }

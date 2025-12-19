@@ -5,19 +5,25 @@ declare(strict_types=1);
 namespace Laravelcm\Gamify\Models;
 
 use App\Models\User;
+use Carbon\CarbonInterface;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Laravelcm\Gamify\Database\Factories\ReputationFactory;
 
 /**
  * @property-read int $id
  * @property-read int $point
- * @property-read User|null $payee
- * @property-read \Illuminate\Support\Carbon $created_at
- * @property-read \Illuminate\Support\Carbon $updated_at
+ * @property-read CarbonInterface $created_at
+ * @property-read CarbonInterface $updated_at
+ * @property-read ?User $payee
  */
 final class Reputation extends Model
 {
+    /** @use HasFactory<ReputationFactory> */
+    use HasFactory;
+
     protected $guarded = [];
 
     /**

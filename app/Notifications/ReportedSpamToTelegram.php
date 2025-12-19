@@ -25,7 +25,7 @@ final class ReportedSpamToTelegram extends Notification
     {
         return TelegramMessage::create()
             ->to('@laravelcm')
-            ->content("{$this->spamReport->user?->name} vient de reporter un contenu spam")
+            ->content($this->spamReport->user?->name.' vient de reporter un contenu spam')
             ->button('Voir les spams', route('filament.admin.pages.dashboard'));
     }
 }

@@ -50,12 +50,12 @@ final class NotchPayCallBackController extends Controller
                 );
             }
 
-        } catch (Exception $e) {
-            Log::error($e->getMessage());
+        } catch (Exception $exception) {
+            Log::error($exception->getMessage());
 
             session()->flash(
                 key: 'error',
-                value: __('Une erreur s\'est produite lors de votre paiement. Veuillez relancer Merci.')
+                value: __("Une erreur s'est produite lors de votre paiement. Veuillez relancer Merci.")
             );
         }
 

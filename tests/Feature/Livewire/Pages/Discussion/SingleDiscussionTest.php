@@ -20,7 +20,7 @@ it('delete user action can remove discussion point ', function (): void {
         'tags' => [],
     ]);
 
-    $discussion = app(CreateDiscussionAction::class)->execute($discussionData);
+    $discussion = resolve(CreateDiscussionAction::class)->execute($discussionData);
 
     Livewire::test(SingleDiscussion::class, ['discussion' => $discussion])
         ->callAction('deleteAction')

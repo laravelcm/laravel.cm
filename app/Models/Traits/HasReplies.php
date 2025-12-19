@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Models\Traits;
 
 use App\Models\Reply;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Support\Collection;
 
 trait HasReplies
 {
     /**
-     * @return Collection<array-key, Reply>
+     * @return Collection<int, Reply>
      */
     public function latestReplies(int $amount = 5): Collection
     {
@@ -33,7 +33,7 @@ trait HasReplies
     public function solutionReplyUrl(): string
     {
         // @phpstan-ignore-next-line
-        return $this->getPathUrl()."#reply-{$this->solution_reply_id}";
+        return $this->getPathUrl().('#reply-'.$this->solution_reply_id);
     }
 
     public function isConversationOld(): bool

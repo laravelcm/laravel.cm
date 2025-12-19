@@ -16,7 +16,7 @@ final class CreateThreadAction
         return DB::transaction(function () use ($formValues) {
             $thread = Thread::query()->create($formValues);
 
-            app(SubscribeToThreadAction::class)->execute($thread);
+            resolve(SubscribeToThreadAction::class)->execute($thread);
 
             givePoint(new ThreadCreated($thread));
 

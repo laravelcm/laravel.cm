@@ -59,7 +59,7 @@ return [
     |
     */
 
-    'tests_base' => 'Tests\TestCase',
+    'tests_base' => Tests\TestCase::class,
 
     /*
     |--------------------------------------------------------------------------

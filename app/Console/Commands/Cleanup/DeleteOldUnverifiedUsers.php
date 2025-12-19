@@ -32,7 +32,7 @@ final class DeleteOldUnverifiedUsers extends Command
 
         $count = $query->delete();
 
-        $this->comment("Deleted {$count} unverified users.");
+        $this->comment(sprintf('Deleted %d unverified users.', $count));
 
         $this->info('All done!');
     }

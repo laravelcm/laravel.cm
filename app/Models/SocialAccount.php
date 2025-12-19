@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Database\Factories\SocialAccountFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -12,12 +14,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property-read string $provider
  * @property-read string $provider_id
  * @property-read int $user_id
- * @property-read string|null $token
- * @property-read string|null $avatar
+ * @property-read ?string $token
+ * @property-read ?string $avatar
  * @property-read User $user
  */
 final class SocialAccount extends Model
 {
+    /** @use HasFactory<SocialAccountFactory> */
+    use HasFactory;
+
     protected $guarded = [];
 
     /**

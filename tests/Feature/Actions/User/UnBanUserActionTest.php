@@ -9,7 +9,7 @@ describe(UnBanUserAction::class, function (): void {
     it('can unban user', function (): void {
         $user = User::factory()->banned()->create();
 
-        app(UnBanUserAction::class)->execute($user);
+        resolve(UnBanUserAction::class)->execute($user);
 
         $user->refresh();
 

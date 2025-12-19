@@ -18,12 +18,14 @@ use App\Traits\HasSubscribers;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Database\Factories\DiscussionFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
@@ -35,21 +37,24 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read string $body
  * @property-read bool $locked
  * @property-read bool $is_pinned
- * @property-read string|null $locale
+ * @property-read ?string $locale
  * @property-read int $user_id
  * @property-read int $count_all_replies_with_child
  * @property-read User $user
- * @property-read \Illuminate\Support\Carbon $created_at
- * @property-read \Illuminate\Support\Carbon $updated_at
- * @property-read Collection<array-key, SpamReport> $spamReports
- * @property-read Collection<array-key, Reply> $replies
- * @property-read Collection<array-key, Tag> $tags
- * @property-read Collection<array-key, Reaction> $reactions
+ * @property-read CarbonInterface $created_at
+ * @property-read CarbonInterface $updated_at
+ * @property-read Collection<int, SpamReport> $spamReports
+ * @property-read Collection<int, Reply> $replies
+ * @property-read Collection<int, Tag> $tags
+ * @property-read Collection<int, Reaction> $reactions
  */
 final class Discussion extends Model implements ReactableInterface, ReplyInterface, Sitemapable, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;
+
+    /** @use HasFactory<DiscussionFactory> */
     use HasFactory;
+
     use HasLocaleScope;
     use HasReplies;
     use HasSlug;
@@ -63,14 +68,6 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     protected $guarded = [];
 
     protected bool $removeViewsOnDelete = true;
-
-    protected function casts(): array
-    {
-        return [
-            'locked' => 'boolean',
-            'is_pinned' => 'boolean',
-        ];
-    }
 
     public function newEloquentBuilder($query): DiscussionQueryBuilder
     {
@@ -105,7 +102,7 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     public function toSitemapTag(): Url
     {
         return Url::create(route('discussions.show', $this))
-            ->setLastModificationDate(Carbon::create($this->updated_at)) // @phpstan-ignore-line
+            ->setLastModificationDate(Date::create($this->updated_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
             ->setPriority(0.5);
     }
@@ -131,5 +128,13 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
         $this->deleteReplies();
 
         return parent::delete();
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'locked' => 'boolean',
+            'is_pinned' => 'boolean',
+        ];
     }
 }

@@ -56,7 +56,7 @@ return [
 
     'supported_locales' => ['fr', 'en'],
 
-    'notch-pay-public-token' => env('NOTCHPAY_PUBLIC_KEY', null),
+    'notch-pay-public-token' => env('NOTCHPAY_PUBLIC_KEY'),
 
     /*
     |--------------------------------------------------------------------------

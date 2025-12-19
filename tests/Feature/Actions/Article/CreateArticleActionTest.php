@@ -15,7 +15,7 @@ beforeEach(function (): void {
 
 describe(CreateArticleAction::class, function (): void {
     it('return the created article', function (): void {
-        $article = app(CreateArticleAction::class)->execute(ArticleData::from([
+        $article = resolve(CreateArticleAction::class)->execute(ArticleData::from([
             'title' => 'Article title',
             'slug' => 'Article slug',
             'published_at' => now(),

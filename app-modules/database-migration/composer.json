@@ -14,11 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Laravelcm\\DatabaseMigration\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
+      "Laravelcm\\DatabaseMigration\\": "src/",
       "Laravelcm\\DatabaseMigration\\Tests\\": "tests/"
     }
   },

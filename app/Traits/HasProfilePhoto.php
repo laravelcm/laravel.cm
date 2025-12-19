@@ -12,15 +12,6 @@ trait HasProfilePhoto
 {
     use HasCachedMedia;
 
-    protected function profilePhotoUrl(): Attribute
-    {
-        return Attribute::get(fn (): string => Cache::remember(
-            "user.{$this->id}.profile_photo_url",
-            now()->addYear(),
-            fn (): string => $this->resolveProfilePhotoUrl()
-        ));
-    }
-
     public function getMediaCollections(): array
     {
         return ['avatar'];
@@ -28,9 +19,23 @@ trait HasProfilePhoto
 
     public function flushAvatarCache(): void
     {
-        Cache::forget("user.{$this->id}.profile_photo_url");
+        Cache::forget(sprintf('user.%s.profile_photo_url', $this->id));
 
         $this->flushMediaCache('avatar');
+    }
+
+    protected function profilePhotoUrl(): Attribute
+    {
+        return Attribute::get(fn (): string => Cache::remember(
+            sprintf('user.%s.profile_photo_url', $this->id),
+            now()->addYear(),
+            fn (): string => $this->resolveProfilePhotoUrl()
+        ));
+    }
+
+    protected function defaultProfilePhotoUrl(): string
+    {
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=065F46&background=D1FAE5';
     }
 
     private function resolveProfilePhotoUrl(): string
@@ -49,10 +54,5 @@ trait HasProfilePhoto
         }
 
         return $this->defaultProfilePhotoUrl();
-    }
-
-    protected function defaultProfilePhotoUrl(): string
-    {
-        return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=065F46&background=D1FAE5';
     }
 }

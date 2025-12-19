@@ -9,6 +9,7 @@ use App\Actions\User\UnBanUserAction;
 use App\Models\User;
 use Awcodes\BadgeableColumn\Components\Badge;
 use Awcodes\BadgeableColumn\Components\BadgeableColumn;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
@@ -22,7 +23,7 @@ final class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'untitledui-users-02';
+    protected static string|BackedEnum|null $navigationIcon = 'untitledui-users-02';
 
     public static function getNavigationGroup(): string
     {
@@ -45,7 +46,7 @@ final class UserResource extends Resource
                 BadgeableColumn::make('name')
                     ->suffixBadges([
                         Badge::make('username')
-                            ->label(fn (User $record): string => "@{$record->username}")
+                            ->label(fn (User $record): string => '@'.$record->username)
                             ->color('gray'),
                     ])
                     ->description(fn (User $record): ?string => $record->location)
@@ -83,7 +84,7 @@ final class UserResource extends Resource
                             ->required(),
                     ])
                     ->action(function (User $record, array $data): void {
-                        app(BanUserAction::class)->execute($record, $data['banned_reason']);
+                        resolve(BanUserAction::class)->execute($record, $data['banned_reason']);
 
                         Notification::make()
                             ->success()
@@ -100,7 +101,7 @@ final class UserResource extends Resource
                     ->visible(fn (User $record): bool => $record->banned_at !== null)
                     ->authorize('unban', User::class)
                     ->action(function (User $record): void {
-                        app(UnBanUserAction::class)->execute($record);
+                        resolve(UnBanUserAction::class)->execute($record);
 
                         Notification::make()
                             ->success()

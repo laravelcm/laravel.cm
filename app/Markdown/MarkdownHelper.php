@@ -73,6 +73,7 @@ final class MarkdownHelper
             if (isset($tagArray[3]) && $tagArray[3] !== '%}') {
                 $defaultTag = $tagArray[3];
             }
+
             $codepenEmbed = '<div class="overflow-hidden border border-skin-light rounded-lg"><iframe loading="lazy" height="600" style="width: 100%;" scrolling="no" src="'.$codepenEmbedURL.'?height=600&theme-id=24057&'.$defaultTag.'" frameborder="no" allowtransparency="true" allowfullscreen="true"></iframe></div>';
             $html = str_replace($original_string, $codepenEmbed, $html);
         }

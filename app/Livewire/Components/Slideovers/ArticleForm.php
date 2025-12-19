@@ -31,7 +31,7 @@ use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
 /**
- * @property-read \Filament\Schemas\Schema $form
+ * @property-read Schema $form
  */
 final class ArticleForm extends SlideOverComponent implements HasActions, HasForms
 {
@@ -42,6 +42,16 @@ final class ArticleForm extends SlideOverComponent implements HasActions, HasFor
     public ?Article $article = null;
 
     public ?array $data = [];
+
+    public static function panelMaxWidth(): string
+    {
+        return '6xl';
+    }
+
+    public static function closePanelOnClickAway(): bool
+    {
+        return false;
+    }
 
     public function mount(?int $articleId = null): void
     {
@@ -55,16 +65,6 @@ final class ArticleForm extends SlideOverComponent implements HasActions, HasFor
             'published_at' => $this->article->published_at,
             'locale' => $this->article->locale ?? app()->getLocale(),
         ]));
-    }
-
-    public static function panelMaxWidth(): string
-    {
-        return '6xl';
-    }
-
-    public static function closePanelOnClickAway(): bool
-    {
-        return false;
     }
 
     public function form(Schema $schema): Schema
@@ -184,7 +184,7 @@ final class ArticleForm extends SlideOverComponent implements HasActions, HasFor
         ];
 
         if ($this->article?->id) {
-            $article = app(UpdateArticleAction::class)->execute(
+            $article = resolve(UpdateArticleAction::class)->execute(
                 articleData: ArticleData::from(array_merge($state, $publishedFields)),
                 article: $this->article
             );
@@ -198,7 +198,7 @@ final class ArticleForm extends SlideOverComponent implements HasActions, HasFor
                 ->success()
                 ->send();
         } else {
-            $article = app(CreateArticleAction::class)->execute(
+            $article = resolve(CreateArticleAction::class)->execute(
                 ArticleData::from(array_merge($state, $publishedFields))
             );
 

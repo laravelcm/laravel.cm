@@ -21,7 +21,7 @@ beforeEach(function (): void {
 it('user can create a thread', function (): void {
     $channels = Channel::factory()->count(2)->create();
 
-    $thread = app(CreateThreadAction::class)->execute([
+    $thread = resolve(CreateThreadAction::class)->execute([
         'title' => 'thread title',
         'slug' => 'thread-title',
         'user_id' => $this->user->id,

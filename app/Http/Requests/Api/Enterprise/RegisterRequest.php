@@ -18,9 +18,9 @@ final class RegisterRequest extends FormRequest
         $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
 
         return [
-            'name' => 'required',
+            'name' => ['required'],
             'website' => 'required|unique:enterprises,website|regex:'.$regex,
-            'user_id' => 'required',
+            'user_id' => ['required'],
         ];
     }
 }

@@ -36,7 +36,7 @@ final class ReportSpam extends Component implements HasActions, HasForms
             ->requiresConfirmation()
             ->action(function (): void {
                 try {
-                    app(ReportSpamAction::class)->execute(
+                    resolve(ReportSpamAction::class)->execute(
                         user: Auth::user(), // @phpstan-ignore-line
                         model: $this->model,
                         content: $this->reason,
@@ -49,9 +49,9 @@ final class ReportSpam extends Component implements HasActions, HasForms
                         ->send();
 
                     $this->reset('reason');
-                } catch (CanReportSpamException $e) {
+                } catch (CanReportSpamException $canReportSpamException) {
                     Notification::make()
-                        ->title($e->getMessage())
+                        ->title($canReportSpamException->getMessage())
                         ->danger()
                         ->duration(3500)
                         ->send();

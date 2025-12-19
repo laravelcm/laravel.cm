@@ -6,15 +6,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateMediaTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('media', function (Blueprint $table): void {
+        Schema::create('media', static function (Blueprint $table): void {
             $table->bigIncrements('id');
 
             $table->morphs('model');
-            $table->uuid('uuid')->nullable()->unique();
+            $table->uuid()->nullable()->unique();
             $table->string('collection_name');
             $table->string('name');
             $table->string('file_name');
@@ -36,4 +36,4 @@ final class CreateMediaTable extends Migration
     {
         Schema::dropIfExists('media');
     }
-}
+};

@@ -6,12 +6,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateUsersTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table): void {
+        Schema::create('users', static function (Blueprint $table): void {
             $table->id();
+
             $table->string('name');
             $table->string('email')->unique()->index();
             $table->string('username')->unique()->index();
@@ -30,6 +31,7 @@ final class CreateUsersTable extends Migration
             $table->boolean('opt_in')->default(false);
             $table->json('settings')->nullable();
             $table->rememberToken();
+
             $table->timestamps();
         });
     }
@@ -38,4 +40,4 @@ final class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
-}
+};

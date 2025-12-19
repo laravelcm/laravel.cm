@@ -33,7 +33,7 @@ final class Article extends SpotlightCommand
     {
         return ArticleModel::with('user')
             ->published()
-            ->where('title', 'like', "%{$query}%")
+            ->where('title', 'like', sprintf('%%%s%%', $query))
             ->get()
             ->map(fn (ArticleModel $article): SpotlightSearchResult => new SpotlightSearchResult( // @phpstan-ignore-line
                 $article->slug,

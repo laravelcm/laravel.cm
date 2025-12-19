@@ -1,5 +1,5 @@
 {
-  "name": "laravel/laravel",
+  "name": "laravelcm/laravelcm",
   "type": "project",
   "description": "The Laravel Framework.",
   "keywords": [
@@ -17,7 +17,6 @@
     "awcodes/filament-badgeable-column": "^3.0.1",
     "codeat3/blade-phosphor-icons": "^2.3",
     "cyrildewit/eloquent-viewable": "^7.0.6",
-    "doctrine/dbal": "^4.4.1",
     "filament/filament": "^4.3.1",
     "filament/spatie-laravel-media-library-plugin": "^4.3.1",
     "gehrisandro/tailwind-merge-laravel": "^1.3",
@@ -33,15 +32,15 @@
     "laravel/octane": "^2.13.3",
     "laravel/socialite": "^5.24.0",
     "laravel/tinker": "^2.10.2",
-    "laravelcm/database-migration": ">=1",
+    "laravelcm/database-migration": "^1.0",
     "laravelcm/gamify": "^1.1",
     "laravelcm/laravel-subscriptions": "^1.5",
     "laravelcm/livewire-slide-overs": "^1.0.8",
     "league/flysystem-aws-s3-v3": "^3.30.1",
-    "livewire/flux": ">=2.10.2",
-    "livewire/flux-pro": ">=2.10.2",
+    "livewire/flux": "^2.10.2",
+    "livewire/flux-pro": "^2.10.2",
     "livewire/volt": "^1.10.1",
-    "mckenziearts/blade-untitledui-icons": "^1.4",
+    "mckenziearts/filament-untitledui-icons": "^1.0",
     "notchpay/notchpay-php": "^1.6.1",
     "predis/predis": "^3.3",
     "ramsey/uuid": "^4.9.2",
@@ -91,6 +90,23 @@
     }
   },
   "scripts": {
+    "dev:install": [
+      "composer install",
+      "./vendor/bin/sail up -d",
+      "./vendor/bin/sail artisan octane:install --server=frankenphp",
+      "./vendor/bin/sail npm install --no-update-notifier",
+      "./vendor/bin/sail npm run build",
+      "./vendor/bin/sail stop"
+    ],
+    "dev:uninstall": "docker compose down --rmi all --volumes --remove-orphans",
+    "dev:run": [
+      "Composer\\Config::disableProcessTimeout",
+      "./vendor/bin/sail up -d",
+      "./vendor/bin/sail npm config set update-notifier false",
+      "./vendor/bin/sail npx concurrently -c \"#505b92,#d32d21\" \"composer install\" \"npm install --no-update-notifier\" --names=composer,npm",
+      "./vendor/bin/sail npx concurrently -c \"#fb7185,#fdba74\" \"artisan pail --timeout=0\" \"npm run dev\" --names=logs,vite"
+    ],
+    "dev:stop": "./vendor/bin/sail down",
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover --ansi",
@@ -112,34 +128,17 @@
       "composer bump",
       "npx npm-check-updates -u"
     ],
-    "dev:install": [
-      "composer install",
-      "./vendor/bin/sail up -d",
-      "./vendor/bin/sail artisan octane:install --server=frankenphp",
-      "./vendor/bin/sail npm install --no-update-notifier",
-      "./vendor/bin/sail npm run build",
-      "./vendor/bin/sail stop"
+    "lint": [
+      "rector",
+      "pint --parallel",
+      "npm run lint"
     ],
-    "dev:unsinstall": "docker compose down --rmi all --volumes --remove-orphans",
-    "dev:run": [
-      "Composer\\Config::disableProcessTimeout",
-      "./vendor/bin/sail up -d",
-      "./vendor/bin/sail npm config set update-notifier false",
-      "./vendor/bin/sail npx concurrently -c \"#505b92,#d32d21\" \"composer install\" \"npm install --no-update-notifier\" --names=composer,npm",
-      "./vendor/bin/sail npx concurrently -c \"#fb7185,#fdba74\" \"artisan pail --timeout=0\" \"npm run dev\" --names=logs,vite"
-    ],
-    "dev:stop": "./vendor/bin/sail down",
     "test:lint": [
       "pint --parallel --test",
       "rector --dry-run",
       "npm run test:lint"
     ],
-    "lint": [
-      "rector",
-      "pint --parallel",
-      "npm run lint:fix"
-    ],
-    "test:unit": "pest --parallel",
+    "test:unit": "pest --parallel --coverage --min=30.0",
     "test:types": "phpstan analyse --memory-limit=-1",
     "test:type-coverage": "pest --type-coverage --min=98 --memory-limit=-1",
     "test": [

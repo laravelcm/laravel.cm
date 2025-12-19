@@ -6,13 +6,17 @@ use App\Models\User;
 use Laravelcm\Gamify\Exceptions\InvalidPayeeModelException;
 use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
 use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
+use Laravelcm\Gamify\PointType;
 use Laravelcm\Gamify\Tests\Fixtures;
 
+/**
+ * @var Tests\TestCase $this
+ */
 beforeEach(function (): void {
     $this->user = $this->createUser();
 });
 
-describe('PointType', function (): void {
+describe(PointType::class, function (): void {
     it('sets point type name from class name', function (): void {
         $point = new Fixtures\FakeCreatePostPoint($this->user);
 

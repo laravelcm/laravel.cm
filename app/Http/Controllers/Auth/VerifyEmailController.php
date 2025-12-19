@@ -19,7 +19,7 @@ final class VerifyEmailController extends Controller
         $user = $request->user();
 
         if ($user === null) {
-            return redirect()->route('login');
+            return to_route('login');
         }
 
         if ($user->hasVerifiedEmail()) {

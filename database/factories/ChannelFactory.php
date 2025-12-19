@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Channel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Channel>
+ */
 final class ChannelFactory extends Factory
 {
+    protected $model = Channel::class;
+
     public function definition(): array
     {
         return [
-            'name' => $this->faker->text(15),
-            'slug' => $this->faker->unique()->slug(),
+            'name' => fake()->text(15),
+            'slug' => fake()->unique()->slug(),
         ];
     }
 }

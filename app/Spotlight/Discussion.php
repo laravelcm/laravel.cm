@@ -32,7 +32,7 @@ final class Discussion extends SpotlightCommand
     public function searchDiscussion(string $query): Collection
     {
         return DiscussionModel::with('user')
-            ->where('title', 'like', "%{$query}%")
+            ->where('title', 'like', sprintf('%%%s%%', $query))
             ->get()
             // @phpstan-ignore-next-line
             ->map(fn (DiscussionModel $discussion): SpotlightSearchResult => new SpotlightSearchResult(

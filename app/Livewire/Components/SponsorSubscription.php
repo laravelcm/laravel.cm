@@ -29,7 +29,7 @@ use NotchPay\NotchPay;
 use NotchPay\Payment;
 
 /**
- * @property-read \Filament\Schemas\Schema $form
+ * @property-read Schema $form
  */
 final class SponsorSubscription extends Component implements HasActions, HasForms
 {
@@ -161,8 +161,8 @@ final class SponsorSubscription extends Component implements HasActions, HasForm
             ]);
 
             $this->redirect($payload->authorization_url); // @phpstan-ignore-line
-        } catch (ApiException $e) {
-            Log::error($e->getMessage());
+        } catch (ApiException $apiException) {
+            Log::error($apiException->getMessage());
 
             Notification::make()
                 ->title(__('notifications.sponsor_error_title'))

@@ -9,7 +9,7 @@ use Laravelcm\Gamify\PointType;
 
 final class FakePointTypeWithoutSubject extends PointType
 {
-    protected int $point = 12;
+    public $point = 12;
 
     public function __construct($subject = null)
     {
