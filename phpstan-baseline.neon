@@ -1462,12 +1462,6 @@ parameters:
 			rawMessage: 'Parameter #1 $title of static method Illuminate\Support\Str::slug() expects string, bool|string given.'
 			identifier: argument.type
 			count: 1
-			path: config/cache.php
-
-		-
-			rawMessage: 'Parameter #1 $title of static method Illuminate\Support\Str::slug() expects string, bool|string given.'
-			identifier: argument.type
-			count: 1
 			path: config/database.php
 
 		-
