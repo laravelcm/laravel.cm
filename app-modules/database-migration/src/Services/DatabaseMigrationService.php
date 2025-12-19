@@ -22,21 +22,17 @@ class DatabaseMigrationService
      */
     public function getSourceTables(): array
     {
-        $tables = DB::connection($this->sourceConnection)
-            ->select('SHOW TABLES');
+        $tables = DB::connection($this->sourceConnection)->select('SHOW TABLES');
 
         $tableColumn = 'Tables_in_'.DB::connection($this->sourceConnection)->getDatabaseName();
 
         return collect($tables)
             ->pluck($tableColumn)
-            ->reject(fn ($table): bool => in_array($table, $this->getExcludedTables()))
+            ->reject(fn (string $table): bool => in_array($table, $this->getExcludedTables()))
             ->values()
             ->toArray();
     }
 
-    /**
-     * Get the number of records in a table
-     */
     public function getTableRecordCount(string $table): int
     {
         return DB::connection($this->sourceConnection)
@@ -73,7 +69,7 @@ class DatabaseMigrationService
             $totalRecords,
             $progressCallback
         ): void {
-            $data = $records->map(fn ($record): array => $this->transformRecord((array) $record))->all();
+            $data = $records->map(fn (array $record): array => $this->transformRecord($record))->all();
 
             DB::connection($this->targetConnection)
                 ->table($table)
@@ -170,8 +166,7 @@ class DatabaseMigrationService
 
     private function hasIdColumn(string $table): bool
     {
-        return Schema::connection($this->sourceConnection)
-            ->hasColumn($table, 'id');
+        return Schema::connection($this->sourceConnection)->hasColumn($table, 'id');
     }
 
     /**
