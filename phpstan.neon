@@ -11,19 +11,16 @@ parameters:
 
     level: 8
 
-    excludePaths:
-        - app/Http/Resources/
-        - app/Actions/
-        - app/Notifications/
-        - app/Http/Controllers/*
-        - app/Markdown/*
-        - app/Models/Traits/HasSlug.php
-
     tmpDir: /tmp/phpstan
 
     excludePaths:
         - app-modules/*/*/tests/*
         - tests
+        - app/Http/
+        - app/Actions/
+        - app/Notifications/
+        - app/Markdown/*
+        - app/Models/Traits/HasSlug.php
 
     ignoreErrors:
         - "#^Cannot access property \\$transaction on array\\|object\\.$#"
