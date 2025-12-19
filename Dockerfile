@@ -78,11 +78,15 @@ RUN install-php-extensions xdebug sockets
 #---------------------------------
 FROM base AS composer
 
+ARG FLUX_USERNAME
+ARG FLUX_LICENSE_KEY
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY --chown=www-data:www-data composer.* ./
 COPY --chown=www-data:www-data . .
 
-RUN composer install --no-dev --no-interaction --no-scripts --prefer-dist \
+RUN composer config http-basic.composer.fluxui.dev "${FLUX_USERNAME}" "${FLUX_LICENSE_KEY}" \
+    && composer install --no-dev --no-interaction --no-scripts --prefer-dist \
     && composer dump-autoload --classmap-authoritative --no-dev --optimize
 
 #---------------------------------

@@ -6,6 +6,8 @@ services:
             args:
                 NODE_VERSION: 22
                 PHP_VERSION: 8.4
+                FLUX_USERNAME: ${FLUX_USERNAME}
+                FLUX_LICENSE_KEY: ${FLUX_LICENSE_KEY}
         image: laravelcm/php
         restart: always
         extra_hosts:
