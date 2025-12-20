@@ -100,7 +100,8 @@ services:
                 condition: service_started
             memcached:
                 condition: service_started
-            # - soketi
+            soketi:
+                condition: service_healthy
         labels:
             - traefik.enable=true
             - traefik.http.routers.laravelcm.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)
@@ -135,16 +136,7 @@ services:
         networks:
             - sail
         healthcheck:
-            test:
-                [
-                    "CMD",
-                    "pg_isready",
-                    "-q",
-                    "-d",
-                    "${DB_DATABASE}",
-                    "-U",
-                    "${DB_USERNAME}",
-                ]
+            test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
             retries: 3
             timeout: 5s
 

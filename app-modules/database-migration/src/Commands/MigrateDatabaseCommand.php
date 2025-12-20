@@ -74,7 +74,7 @@ final class MigrateDatabaseCommand extends Command
                     $this->info('🔄 Migrating table: '.$table);
 
                     if (! $isDryRun) {
-                        $migrationService->migrateTable($table, $chunkSize, function (string $processed, int $total): void {
+                        $migrationService->migrateTable($table, $chunkSize, function (int $processed, int $total): void {
                             $this->line(sprintf(' 📊 Processed %s/%s records', $processed, $total));
                         });
                     } else {
