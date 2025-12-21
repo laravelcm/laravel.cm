@@ -1429,12 +1429,6 @@ parameters:
 			path: app/View/Composers/ModeratorsComposer.php
 
 		-
-			rawMessage: 'Cannot call method inRandomOrder() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/View/Composers/ProfileUsersComposer.php
-
-		-
 			rawMessage: 'Cannot call method limit() on mixed.'
 			identifier: method.nonObject
 			count: 1

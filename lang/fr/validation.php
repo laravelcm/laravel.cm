@@ -207,4 +207,9 @@ return [
         'currency' => 'Devise',
     ],
 
+    'hints' => [
+        'password' => 'Doit comporter au moins 8 caractères, dont une majuscule, un chiffre et un caractère spécial.',
+        'username' => 'Ceci sera affiché publiquement.',
+    ],
+
 ];

@@ -46,6 +46,10 @@ input {
   font-style: swap;
 }
 
+.animate-cube {
+  animation: cube 6s ease-in-out infinite;
+}
+
 .hide-scroll::-webkit-scrollbar {
   display: none;
 }
@@ -66,7 +70,7 @@ input {
 
 /* Fix style for the phone country input */
 .iti--inline-dropdown .iti__dropdown-content {
-  @apply !mt-2 !rounded-lg !border-gray-200 dark:!border-white/10 !shadow;
+  @apply mt-2! rounded-lg! border-gray-200! dark:border-white/10! shadow!;
 }
 
 /* Gradient */

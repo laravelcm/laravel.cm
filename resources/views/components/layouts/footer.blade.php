@@ -23,11 +23,11 @@
                         {{ __('global.footer.resources') }}
                     </h3>
                     <ul class="mt-6 space-y-3">
-                        <x-footer-link :title="__('global.navigation.about')" :url="route('about')" />
-                        <x-footer-link :title="__('global.navigation.sponsors')" :url="route('sponsors')" />
+                        <x-footer-link :title="__('global.navigation.about')" :href="route('about')" />
+                        <x-footer-link :title="__('global.navigation.sponsors')" :href="route('sponsors')" />
                         <x-footer-link
                             :title="__('global.navigation.branding')"
-                            url="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md"
+                            href="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md"
                         />
                     </ul>
                 </div>
@@ -36,9 +36,9 @@
                         {{ __('global.footer.legal') }}
                     </h3>
                     <ul class="mt-6 space-y-3">
-                        <x-footer-link :title="__('global.navigation.terms')" :url="route('terms')" />
-                        <x-footer-link :title="__('global.navigation.privacy')" :url="route('privacy')" />
-                        <x-footer-link :title="__('global.navigation.rules')" :url="route('rules')" />
+                        <x-footer-link :title="__('global.navigation.terms')" :href="route('terms')" />
+                        <x-footer-link :title="__('global.navigation.privacy')" :href="route('privacy')" />
+                        <x-footer-link :title="__('global.navigation.rules')" :href="route('rules')" />
                     </ul>
                 </div>
             </div>

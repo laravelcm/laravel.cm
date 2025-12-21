@@ -1,23 +1,9 @@
-import {
-  Livewire,
-  Alpine,
-} from "../../vendor/livewire/livewire/dist/livewire.esm";
-import "../../vendor/laravelcm/livewire-slide-overs/resources/js/slide-over";
-
 import "@tailwindplus/elements";
-import intersect from "@alpinejs/intersect";
-import Tooltip from "@ryangjchandler/alpine-tooltip";
-import collapse from "@alpinejs/collapse";
 
+import "../../vendor/laravelcm/livewire-slide-overs/resources/js/slide-over";
 import "./utils/helpers";
 import "./utils/scrollspy";
 import "./utils/clipboard";
-
-Alpine.plugin(intersect);
-Alpine.plugin(Tooltip);
-Alpine.plugin(collapse);
-
-window.Alpine = Alpine;
 
 document.addEventListener("alpine:init", () => {
   const theme =
@@ -65,5 +51,3 @@ document.addEventListener("alpine:init", () => {
       : document.documentElement.classList.remove("dark");
   });
 });
-
-Livewire.start();

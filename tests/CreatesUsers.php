@@ -9,6 +9,9 @@ use App\Models\User;
 
 trait CreatesUsers
 {
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
     public function login(array $attributes = []): User
     {
         $user = $this->createUser($attributes);
@@ -23,6 +26,9 @@ trait CreatesUsers
         $this->be($user);
     }
 
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
     public function createUser(array $attributes = []): User
     {
         return User::factory()->create(array_merge([
@@ -33,6 +39,9 @@ trait CreatesUsers
         ], $attributes));
     }
 
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
     public function createPost(array $attributes = []): Article
     {
         return Article::factory()->create(array_merge([

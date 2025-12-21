@@ -1,8 +1,24 @@
 <div>
     <div class="section-gradient overflow-hidden isolate pt-16">
-        <x-container class="border-x border-gray-200 dark:border-white/10 border-dotted px-0">
-            <div class="mx-auto px-4 max-w-3xl py-20 sm:pt-32 lg:pt-44 text-center">
-                <h1 class="font-heading text-4xl font-semibold tracking-tight text-primary-600 sm:leading-none lg:text-6xl">
+        <x-container class="border-x border-dotted border-gray-300 dark:border-white/10 px-0">
+            <div class="mx-auto px-4 max-w-3xl py-20 sm:pt-32 text-center">
+                <x-link :href="route('sponsors')" class="group inline-flex items-center justify-center rounded-full px-2 py-1.5 bg-primary-700 text-white text-sm">
+                    <span class="rounded-full bg-flag-green px-2 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white">
+                        ⚡️ {{ __('pages/home.sponsor.title') }}
+                    </span>
+                    <span class="ml-4 hidden text-sm sm:block">
+                        {{ __('pages/home.sponsor.description') }}
+                    </span>
+                    <span class="ml-4 text-sm sm:hidden">
+                        {{ __('pages/home.sponsor.description_small') }}
+                    </span>
+                    <x-heroicon-s-chevron-right
+                        class="ml-2 size-5 text-white transition-all duration-300 ease-in-out group-hover:translate-x-1"
+                        aria-hidden="true"
+                    />
+                </x-link>
+
+                <h1 class="mt-4 font-heading text-4xl font-semibold tracking-tight text-primary-600 sm:leading-none lg:text-6xl lg:mt-8">
                     {{ __('global.site_name') }}
                 </h1>
                 <p class="mt-3 text-base text-gray-700 dark:text-white sm:mt-5 sm:text-lg">
@@ -10,17 +26,17 @@
                 </p>
                 <div class="mt-10 gap-4 sm:flex sm:items-center sm:justify-center">
                     @auth
-                        <x-buttons.primary :href="route('forum.index')" class="w-full sm:w-auto">
+                        <flux:button :href="route('forum.index')" variant="primary" class="w-full border-0 sm:w-auto" wire:navigate>
                             {{ __('actions.new_thread') }}
-                        </x-buttons.primary>
+                        </flux:button>
                     @else
-                        <x-buttons.primary :href="route('register')" class="w-full sm:w-auto">
+                        <flux:button :href="route('register')" variant="primary" class="w-full border-0 sm:w-auto" wire:navigate>
                             {{ __('pages/home.join_community') }}
-                        </x-buttons.primary>
+                        </flux:button>
                     @endauth
-                    <x-buttons.default :href="route('forum.index')" class="mt-4 w-full sm:mt-0 sm:w-auto">
+                    <flux:button :href="route('forum.index')" class="mt-4 w-full sm:mt-0 sm:w-auto" wire:navigate>
                         {{ __('pages/home.visit_forum') }}
-                    </x-buttons.default>
+                    </flux:button>
                 </div>
             </div>
 
@@ -29,7 +45,7 @@
     </div>
 
     <x-container>
-        <div class="divide-y divide-gray-200 divide-dotted dark:divide-white/10">
+        <div class="divide-y divide-gray-300 divide-dotted dark:divide-white/10">
             <div class="py-12 lg:py-20">
                 <x-section-header
                     :title="__('pages/home.popular_posts.title')"

@@ -6,7 +6,7 @@
     <p class="text-center text-lg font-medium leading-8 text-gray-700 dark:text-gray-300">
         {{ $title }}
     </p>
-    <div class="mt-4 py-6 relative flex items-center justify-center border-y border-dotted border-gray-200 dark:border-white/10 lg:py-10">
+    <div class="mt-4 py-6 relative flex items-center justify-center border-y border-dotted border-gray-300 dark:border-white/10 lg:py-10">
         <div class="inline-flex flex-wrap items-center justify-center">
             <div class="flex items-center justify-center px-4 py-2.5 lg:px-6">
                 <a href="https://shopperlabs.co" target="_blank" class="flex items-center">

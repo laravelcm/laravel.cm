@@ -2,16 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Auth;
-
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Volt\Volt;
 
-// @ToDo: Update this file to match the actual user update password view
-
 /**
- * @var \Tests\TestCase $this
+ * @var Tests\TestCase $this
  */
 describe('Auth/PasswordUpdate', function (): void {
     test('password can be updated', function (): void {

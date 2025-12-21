@@ -43,15 +43,15 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read string $username
  * @property-read string $avatar_type
  * @property-read string $profile_photo_url
- * @property-read string|null $location
- * @property-read string|null $phone_number
- * @property-read string|null $github_profile
- * @property-read string|null $twitter_profile
- * @property-read string|null $linkedin_profile
- * @property-read string|null $bio
- * @property-read string|null $website
- * @property-read string|null $banned_reason
- * @property-read array<array-key, mixed>|null $settings
+ * @property-read ?string $location
+ * @property-read ?string $phone_number
+ * @property-read ?string $github_profile
+ * @property-read ?string $twitter_profile
+ * @property-read ?string $linkedin_profile
+ * @property-read ?string $bio
+ * @property-read ?string $website
+ * @property-read ?string $banned_reason
+ * @property-read array<string, mixed>|null $settings
  * @property-read CarbonInterface|null $email_verified_at
  * @property-read CarbonInterface|null $last_login_at
  * @property-read CarbonInterface|null $banned_at
@@ -92,9 +92,9 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'last_active_at',
     ];
 
-    public static function findByEmailAddress(string $emailAddress): self
+    public static function findByEmailAddress(string $emailAddress): ?self
     {
-        return self::query()->where('email', $emailAddress)->firstOrFail();
+        return self::query()->where('email', $emailAddress)->first();
     }
 
     public static function findOrCreateSocialUserProvider(SocialUser $socialUser, string $provider, string $role = 'user'): self
@@ -152,11 +152,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if (str_ends_with($this->email, '@laravel.cm')) {
-            return true;
-        }
-
-        if ($this->isModerator()) {
+        if (str_ends_with($this->email, '@laravel.cm') && $this->isModerator()) {
             return true;
         }
 
@@ -215,6 +211,9 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         }
     }
 
+    /**
+     * @return Collection<int, Article>
+     */
     public function latestArticles(int $amount = 10): Collection
     {
         return $this->articles()->latest()->limit($amount)->get();

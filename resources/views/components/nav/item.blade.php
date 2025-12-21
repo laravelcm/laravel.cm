@@ -13,7 +13,7 @@
 @endphp
 
 <x-link
-    :href="$href"
+    :$href
     {{ $attributes->class(['relative inline-flex items-center text-sm font-medium', $activeClasses]) }}
 >
     {{ $title }}

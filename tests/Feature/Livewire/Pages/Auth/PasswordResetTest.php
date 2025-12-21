@@ -2,31 +2,31 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Auth;
-
+use App\Livewire\Pages\Auth\ForgotPassword;
+use App\Livewire\Pages\Auth\ResetPassword;
 use App\Models\User;
-use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 use Illuminate\Support\Facades\Notification;
-use Livewire\Volt\Volt;
+use Livewire\Livewire;
 
 test('reset password link screen can be rendered', function (): void {
     $response = $this->get('/forgot-password');
 
     $response
-        ->assertSeeVolt('pages.auth.forgot-password')
-        ->assertStatus(200);
-})->skip();
+        ->assertOk()
+        ->assertSeeLivewire(ForgotPassword::class);
+});
 
 test('reset password link can be requested', function (): void {
     Notification::fake();
 
     $user = User::factory()->create();
 
-    Volt::test('pages.auth.forgot-password')
+    Livewire::test(ForgotPassword::class)
         ->set('email', $user->email)
         ->call('sendPasswordResetLink');
 
-    Notification::assertSentTo($user, ResetPassword::class);
+    Notification::assertSentTo($user, ResetPasswordNotification::class);
 });
 
 test('reset password screen can be rendered', function (): void {
@@ -34,43 +34,44 @@ test('reset password screen can be rendered', function (): void {
 
     $user = User::factory()->create();
 
-    Volt::test('pages.auth.forgot-password')
+    Livewire::test(ForgotPassword::class)
         ->set('email', $user->email)
         ->call('sendPasswordResetLink');
 
-    Notification::assertSentTo($user, ResetPassword::class, function ($notification): true {
+    Notification::assertSentTo($user, ResetPasswordNotification::class, function ($notification): true {
         $response = $this->get('/reset-password/'.$notification->token);
 
         $response
-            ->assertSeeVolt('pages.auth.reset-password')
-            ->assertStatus(200);
+            ->assertOk()
+            ->assertSeeLivewire(ResetPassword::class);
 
         return true;
     });
-})->skip();
+});
 
-// @ToDo: Make this test work with the correct redirect
 test('password can be reset with valid token', function (): void {
     Notification::fake();
 
     $user = User::factory()->create();
 
-    Volt::test('pages.auth.forgot-password')
+    Livewire::test(ForgotPassword::class)
         ->set('email', $user->email)
         ->call('sendPasswordResetLink');
 
-    Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user): true {
-        $component = Volt::test('pages.auth.reset-password', ['token' => $notification->token])
+    Notification::assertSentTo($user, ResetPasswordNotification::class, function ($notification) use ($user): true {
+        $password = 'NewStrongP@ssw0rd123!';
+
+        $component = Livewire::test(ResetPassword::class, ['token' => $notification->token])
             ->set('email', $user->email)
-            ->set('password', 'password')
-            ->set('password_confirmation', 'password');
+            ->set('password', $password)
+            ->set('password_confirmation', $password);
 
         $component->call('resetPassword');
 
         $component
-            ->assertRedirect('/login')
-            ->assertHasNoErrors();
+            ->assertHasNoErrors()
+            ->assertRedirect(route('login', absolute: false));
 
         return true;
     });
-})->skip();
+});

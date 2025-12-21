@@ -1,99 +1,44 @@
-<?php
-
-declare(strict_types=1);
-
-use App\Livewire\Forms\LoginForm;
-use Illuminate\Support\Facades\Session;
-use Livewire\Attributes\Title;
-use Livewire\Volt\Component;
-
-new class extends Component
-{
-    public LoginForm $form;
-
-    public function login(): void
-    {
-        $this->validate();
-
-        $this->form->authenticate();
-
-        Session::regenerate();
-
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
-    }
-}; ?>
-
-<div>
-    <x-container class="flex min-h-full items-center justify-center py-16 sm:pt-24">
-        <div class="w-full max-w-md space-y-8">
-            <div class="space-y-5">
-                <x-validation-errors />
-
-                <x-status-message />
-
-                <h2 class="text-center font-heading text-3xl font-extrabold text-gray-900 dark:text-white">
-                    {{ __('pages/auth.login.title') }}
-                </h2>
-            </div>
-
-            <form class="space-y-6" wire:submit="login">
-                <div class="space-y-4">
-                    <x-filament::input.wrapper>
-                        <x-filament::input
-                            type="text"
-                            id="email-address"
-                            name="email"
-                            autocomplete="email"
-                            :required="true"
-                            wire:model="form.email"
-                            aria-label="{{ __('validation.attributes.email') }}"
-                            :placeholder="__('validation.attributes.email')"
-                        />
-                    </x-filament::input.wrapper>
-                    <x-filament::input.wrapper>
-                        <x-filament::input
-                            type="password"
-                            id="password"
-                            name="password"
-                            :required="true"
-                            wire:model="form.password"
-                            aria-label="{{ __('validation.attributes.password') }}"
-                            :placeholder="__('validation.attributes.password')"
-                        />
-                    </x-filament::input.wrapper>
-                </div>
-
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <label class="inline-flex items-center gap-2 cursor-pointer text-sm text-gray-500 dark:text-gray-400">
-                            <x-filament::input.checkbox id="remember_me" name="remember_me" />
-                            {{ __('pages/auth.login.remember_me') }}
-                        </label>
-                    </div>
-
-                    <div class="text-sm">
-                        <x-link
-                            :href="route('password.request')"
-                            class="font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
-                        >
-                            {{ __('pages/auth.login.forgot_password') }}
-                        </x-link>
-                    </div>
-                </div>
-
-                <div>
-                    <x-buttons.submit wire:loading.attr="data-loading" class="group w-full">
-                        <span class="absolute pointer-events-none inset-y-0 left-0 flex items-center pl-3">
-                            <x-untitledui-lock class="size-5 text-primary-500 group-hover:text-primary-600" aria-hidden="true" />
-                        </span>
-                        {{ __('pages/auth.login.submit') }}
-                    </x-buttons.submit>
-                </div>
-            </form>
+<x-layouts.auth-card>
+    <div class="w-full max-w-sm space-y-8">
+        <div class="space-y-6">
+            <flux:heading level="2" class="text-center font-heading" size="xl">
+                {{ __('pages/auth.login.title') }}
+            </flux:heading>
 
             @include('partials._socials-link')
-        </div>
-    </x-container>
 
-    <x-join-sponsors :title="__('global.sponsor_thanks')" />
-</div>
+            <flux:separator :text="__('pages/auth.continue')" />
+        </div>
+
+        <form wire:submit="login" class="flex flex-col gap-6">
+            <flux:input
+                :label="__('validation.attributes.email')"
+                type="email"
+                wire:model="form.email"
+                placeholder="email@gmail.com"
+            />
+
+            <flux:field>
+                <div class="mb-3 flex justify-between">
+                    <flux:label>{{ __('validation.attributes.password') }}</flux:label>
+
+                    <flux:link :href="route('password.request')" variant="subtle" class="text-sm" wire:navigate>
+                        {{ __('pages/auth.login.forgot_password') }}
+                    </flux:link>
+                </div>
+
+                <flux:input type="password" placeholder="*******" wire:model="form.password" />
+            </flux:field>
+
+            <flux:checkbox :label="__('pages/auth.login.remember_me')" wire:model="form.remember" />
+
+            <flux:button variant="primary" type="submit" class="w-full border-0">
+                {{ __('pages/auth.login.submit') }}
+            </flux:button>
+        </form>
+
+        <flux:subheading class="text-center">
+            {{ __('pages/auth.login.first') }} <flux:link :href="route('register')" wire:navigate>{{ __('pages/auth.register.page_title') }}</flux:link>
+        </flux:subheading>
+    </div>
+</x-layouts.auth-card>
