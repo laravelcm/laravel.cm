@@ -65,6 +65,8 @@
   --color-flag-red: #e21b30;
   --color-flag-yellow: #ffdc44;
   --color-black: #161b22;
+  --color-line-black: #151715;
+  --color-dark-green: #0d1d1c;
 
   --color-gray-50: oklch(98.5% 0 0);
   --color-gray-100: oklch(96.7% 0.001 286.375);
@@ -119,6 +121,42 @@
     --color-accent-content: var(--color-emerald-400);
     --color-accent-foreground: var(--color-white);
   }
+}
+
+@utility line-t {
+  @apply relative before:absolute before:top-0 before:-left-[100vw] before:h-0 before:w-[200vw] before:border-t before:border-dotted before:border-gray-300 dark:before:border-white/20;
+}
+
+@utility line-b {
+  @apply relative after:absolute after:bottom-0 after:-left-[100vw] after:h-0 after:w-[200vw] after:border-b after:border-dotted after:border-gray-300 dark:after:border-white/20;
+}
+
+@utility line-y {
+  @apply relative;
+  @apply before:absolute before:top-0 before:-left-[100vw] before:h-0 before:w-[200vw] before:border-t before:border-dotted before:border-gray-300 dark:before:border-white/20;
+  @apply after:absolute after:bottom-0 after:-left-[100vw] after:h-0 after:w-[200vw] after:border-b after:border-dotted after:border-gray-300 dark:after:border-white/20;
+}
+
+@utility line-l {
+  @apply absolute left-0 top-0 w-0 h-[200vh] -translate-y-[100vh] border-l border-dotted border-gray-300 dark:border-white/20;
+}
+
+@utility line-r {
+  @apply absolute right-0 top-0 w-0 h-[200vh] -translate-y-[100vh] border-r border-dotted border-gray-300 dark:border-white/20;
+}
+
+@utility line-x {
+  @apply relative;
+  @apply before:absolute before:left-0 before:top-0 before:w-0 before:h-[200vh] before:-translate-y-[100vh] before:border-l before:border-dotted before:border-gray-300 dark:before:border-white/20;
+  @apply after:absolute after:right-0 after:top-0 after:w-0 after:h-[200vh] after:-translate-y-[100vh] after:border-r after:border-dotted after:border-gray-300 dark:after:border-white/20;
+}
+
+@utility bg-dotted {
+  @apply relative overflow-hidden bg-gray-950/2.5 after:pointer-events-none after:absolute after:inset-0 after:border-x after:border-dotted after:border-gray-300 dark:after:border-white/20 bg-[radial-gradient(var(--pattern-fg)_1px,transparent_0)] bg-size-[10px_10px] bg-fixed [--pattern-fg:var(--color-gray-950)]/5 dark:[--pattern-fg:var(--color-white)]/10;
+}
+
+@utility border-line {
+  @apply border-dotted border-gray-300 dark:border-white/20;
 }
 
 @keyframes fade-in {

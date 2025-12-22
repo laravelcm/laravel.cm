@@ -27,7 +27,9 @@
     <x-seo::meta />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 
     @fluxAppearance
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -63,7 +65,7 @@
         </script>
     @endif
 </head>
-<body class="h-full bg-gray-50 font-sans text-gray-500 antialiased dark:text-gray-400 dark:bg-gray-900 selection:bg-primary-500 selection:text-white">
+<body class="h-full font-sans text-gray-500 antialiased dark:text-gray-400 dark:bg-line-black selection:bg-primary-500 selection:text-white">
     {{ $slot }}
 
     <livewire:wire-elements-modal />

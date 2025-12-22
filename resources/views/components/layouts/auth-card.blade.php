@@ -4,15 +4,11 @@
 
 <div class="flex min-h-screen overflow-hidden">
     <div class="flex-1 flex justify-center items-center">
-        <div @class([
-            'p-1 relative bg-gray-100 dark:bg-gray-800',
-            'before:absolute before:top-0 before:h-px before:w-[200vw] before:bg-gray-950/5 dark:before:bg-white/10 before:-left-[100vw]',
-            'after:absolute after:bottom-0 after:h-px after:w-[200vw] after:bg-gray-950/5 dark:after:bg-white/10 after:-left-[100vw]',
-        ])>
-            <div class="absolute left-0 top-0 w-px h-[200vh] bg-gray-950/5 dark:bg-white/10 -translate-y-[100vh]"></div>
-            <div class="absolute right-0 top-0 w-px h-[200vh] bg-gray-950/5 dark:bg-white/10 -translate-y-[100vh]"></div>
+        <div class="p-1 bg-gray-100 dark:bg-gray-800 line-y">
+            <div class="line-l"></div>
+            <div class="line-r"></div>
 
-            <div class="bg-white ring-1 ring-gray-200 dark:ring-white/10 dark:bg-gray-900 p-8 rounded-lg">
+            <div class="bg-white ring-1 ring-gray-200 dark:ring-white/10 dark:bg-line-black p-8 rounded-lg">
                 {{ $slot }}
             </div>
         </div>
@@ -26,7 +22,7 @@
         />
 
         <div class="ring-1 rounded-xl ring-gray-200 bg-gray-100 p-1 size-full dark:bg-gray-800 dark:ring-white/20">
-            <div class="relative bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-white/10 rounded-lg text-gray-700 dark:text-white flex flex-col flex-1 size-full items-start justify-end p-10">
+            <div class="relative bg-white dark:bg-line-black ring-1 ring-gray-200 dark:ring-white/10 rounded-lg text-gray-700 dark:text-white flex flex-col flex-1 size-full items-start justify-end p-10">
                 @if ($content)
                     <div class="mb-14">
                         {{ $content }}

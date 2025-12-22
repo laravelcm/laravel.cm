@@ -1,7 +1,6 @@
 @props([
     'article',
     'isSummary' => false,
-    'iconLink' => false,
 ])
 
 <div @class([
@@ -15,7 +14,7 @@
     @endphp
 
     @if (! $isSummary)
-        <div class="aspect-[2/1] w-full rounded-lg bg-gray-100 overflow-hidden shadow-xs transition group-hover:opacity-80">
+        <div class="aspect-4/2 w-full rounded-lg bg-gray-100 overflow-hidden shadow-xs transition group-hover:opacity-80 dark:bg-gray-800">
             <img
                 loading="lazy"
                 class="rounded-lg object-cover shadow-xs group-hover:opacity-75"
@@ -50,15 +49,10 @@
             <h4 class="text-lg font-bold font-heading leading-6 text-gray-900 transition duration-200 ease-in-out dark:text-white dark:group-hover:text-primary-500 group-hover:text-primary-600 lg:text-xl">
                 {{ $article->title }}
             </h4>
-
-            @if ($iconLink)
-                <x-untitledui-link-external-01 class="hidden size-5 text-gray-500 dark:text-gray-400 lg:inline" aria-hidden="true" />
-            @endif
-
             <span class="absolute inset-0"></span>
         </x-link>
-        <p class="mt-1 line-clamp-3 leading-6 text-gray-500 dark:text-gray-400">
-            {!! $article->excerpt(150) !!}
+        <p class="mt-3 line-clamp-4 text-gray-500 dark:text-gray-400">
+            {!! $article->excerpt(200) !!}
         </p>
     </div>
 </div>
