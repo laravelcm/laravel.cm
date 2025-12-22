@@ -68,6 +68,15 @@ input {
   animation-delay: 750ms;
 }
 
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.region-path {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
 /* Fix style for the phone country input */
 .iti--inline-dropdown .iti__dropdown-content {
   @apply mt-2! rounded-lg! border-gray-200! dark:border-white/10! shadow!;
