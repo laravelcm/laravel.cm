@@ -100,8 +100,7 @@ services:
                 condition: service_started
             memcached:
                 condition: service_started
-            soketi:
-                condition: service_healthy
+            # soketi
         labels:
             - traefik.enable=true
             - traefik.http.routers.laravelcm.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)

@@ -10,6 +10,7 @@ return [
         'forgot_password' => 'Forgot your password?',
         'remember_me' => 'Remember me',
         'submit' => 'Log in',
+        'first' => 'First time around here?',
     ],
 
     'register' => [
@@ -17,8 +18,10 @@ return [
         'join_us' => 'Join Laravel Cameroon',
         'joins_description' => "Join nearly 1000 developers and designers. Because there's more to life than code.",
         'password_placeholder' => 'Password (min. 8 characters)',
+        'email_verification_title' => 'Account creation',
         'email_verification_status' => 'Please check your e-mail address to log in.',
         'submit' => 'Create account',
+        'already' => 'Already have an account?',
         'advantages' => [
             'heading' => 'Open your mind and discover new horizons.',
             'quote' => 'A lone developer is like an isolated node—limited in reach, influence, and growth. Just as software thrives on interconnected components, so do developers flourish in the collaborative ecosystem of a community.',
@@ -38,6 +41,7 @@ return [
         'page_title' => 'Forgot password',
         'title' => 'Password reset',
         'description' => "Forgot your password? No problem at all. Just give us your e-mail address and we'll e-mail you a e-mail you a password reset link that will allow you to choose a new one. a new one.",
+        'go_back' => 'Go back to Log in',
     ],
 
     'continue' => 'Or continue with',

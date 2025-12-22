@@ -8,7 +8,7 @@ use App\Models\Article;
 use App\Models\Discussion;
 use App\Models\Thread;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 

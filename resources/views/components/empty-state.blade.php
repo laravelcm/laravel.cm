@@ -4,7 +4,7 @@
 
 <div {{ $attributes->twMerge(['class' => 'relative isolate overflow-hidden flex items-center justify-center rounded-xl px-6 py-20 bg-white ring-1 ring-gray-200 dark:bg-gray-800 dark:ring-white/20']) }}>
     <div class="mx-auto max-w-sm text-center">
-        <svg class="absolute inset-0 -z-10 h-1/2 w-full stroke-gray-200 dark:stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
+        <svg class="absolute inset-0 -z-10 h-1/2 w-full stroke-gray-200 dark:stroke-white/10 mask-[radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
             <defs>
                 <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc{{ $id }}" width="75" height="75" x="50%" y="-1" patternUnits="userSpaceOnUse">
                     <path d="M.5 200V.5H200" fill="none" />

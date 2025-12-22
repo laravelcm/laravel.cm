@@ -8,10 +8,10 @@
 >
     <testsuites>
         <testsuite name="Feature">
-            <directory>./tests/Feature</directory>
+            <directory>tests/Feature</directory>
         </testsuite>
         <testsuite name="Modules">
-            <directory>./app-modules/*/tests</directory>
+            <directory>app-modules/*/tests</directory>
         </testsuite>
     </testsuites>
     <source>
@@ -19,6 +19,10 @@
             <directory>app</directory>
             <directory>app-modules</directory>
         </include>
+        <exclude>
+            <directory>app-modules/*/resources</directory>
+            <directory>app-modules/*/database</directory>
+        </exclude>
     </source>
     <php>
         <ini name="memory_limit" value="-1"/>

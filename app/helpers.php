@@ -6,6 +6,7 @@ use App\Models\Discussion;
 use App\Models\Thread;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use League\CommonMark\Output\RenderedContentInterface;
 
 if (! function_exists('active')) {
@@ -38,9 +39,9 @@ if (! function_exists('md_to_html')) {
 if (! function_exists('replace_links')) {
     function replace_links(string $markdown): string
     {
-        return (new LinkFinder([
+        return new LinkFinder([
             'attrs' => ['target' => '_blank', 'rel' => 'nofollow'],
-        ]))->processHtml($markdown);
+        ])->processHtml($markdown);
     }
 }
 
@@ -97,10 +98,10 @@ if (! function_exists('route_to_reply_able')) {
 if (! function_exists('isHolidayWeek')) {
     function isHolidayWeek(): bool
     {
-        $now = Illuminate\Support\Facades\Date::now();
+        $now = Date::now();
 
-        $holidayStart = Illuminate\Support\Facades\Date::createFromDate($now->year, 12, 21)->startOfDay();
-        $holidayEnd = Illuminate\Support\Facades\Date::createFromDate($now->year + 1, 1, 2)->endOfDay();
+        $holidayStart = Date::createFromDate($now->year, 12, 21)->startOfDay();
+        $holidayEnd = Date::createFromDate($now->year + 1, 1, 2)->endOfDay();
 
         return $now->between($holidayStart, $holidayEnd);
     }

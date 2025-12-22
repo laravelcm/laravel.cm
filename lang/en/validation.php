@@ -183,7 +183,7 @@ return [
         'date' => 'date',
         'day' => 'day',
         'description' => 'description',
-        'email' => 'Adresse email',
+        'email' => 'Email address',
         'excerpt' => 'excerpt',
         'first_name' => 'First name',
         'gender' => 'Gender',
@@ -212,6 +212,11 @@ return [
         'freelance' => 'Freelance',
         'amount' => 'Amount',
         'currency' => 'Currency',
+    ],
+
+    'hints' => [
+        'password' => 'Must be at least 8 characters long, include an uppercase letter, a number, and a special character.',
+        'username' => 'This will be publicly displayed.',
     ],
 
 ];

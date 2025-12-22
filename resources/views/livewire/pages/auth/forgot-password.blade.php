@@ -1,82 +1,35 @@
-<?php
-
-declare(strict_types=1);
-
-use Illuminate\Support\Facades\Password;
-use Livewire\Attributes\Layout;
-use Livewire\Volt\Component;
-
-new class extends Component
-{
-    public string $email = '';
-
-    public function sendPasswordResetLink(): void
-    {
-        $this->validate([
-            'email' => ['required', 'string', 'email'],
-        ]);
-
-        $status = Password::sendResetLink(
-            $this->only('email')
-        );
-
-        if ($status != Password::RESET_LINK_SENT) {
-            $this->addError('email', __($status));
-
-            return;
-        }
-
-        $this->reset('email');
-
-        session()->flash('status', __($status));
-    }
-}; ?>
-
-<div>
-    <div class="flex min-h-full items-center justify-center py-16 sm:py-24">
-        <div class="w-full max-w-md">
-            <div class="space-y-5">
-                <x-status-message />
-
-                <x-validation-errors />
-
-                <h2 class="text-center font-heading text-3xl font-extrabold text-gray-900 dark:text-white sm:text-left">
-                    {{ __('pages/auth.forgot.page_title') }}
-                </h2>
-                <div class="mt-4 text-sm text-gray-500 dark:text-gray-400">
-                    {{ __('pages/auth.forgot.description') }}
-                </div>
+<x-layouts.auth-card>
+    <div class="w-full max-w-sm space-y-8">
+        <div>
+            <flux:heading level="2" class="font-heading" size="xl">
+                {{ __('pages/auth.forgot.page_title') }}
+            </flux:heading>
+            <div class="mt-4 text-sm text-gray-500 dark:text-gray-400">
+                {{ __('pages/auth.forgot.description') }}
             </div>
-
-            <form class="mt-8" wire:submit="sendPasswordResetLink">
-                <div class="block">
-                    <x-forms.label for="email">
-                        {{ __('validation.attributes.email') }}
-                    </x-forms.label>
-                    <x-filament::input.wrapper>
-                        <x-filament::input
-                            type="text"
-                            id="email"
-                            name="email"
-                            wire:model="email"
-                            autocomplete="email"
-                            required="true"
-                            :value="old('email')"
-                            autofocus="true"
-                        />
-                    </x-filament::input.wrapper>
-                </div>
-
-                <div class="mt-4 flex items-center justify-end">
-                    <x-buttons.submit
-                        :title="__('pages/auth.forgot.title')"
-                        class="relative w-full"
-                        wire:loading.attr="data-loading"
-                    />
-                </div>
-            </form>
         </div>
-    </div>
 
-    <x-join-sponsors :title="__('global.sponsor_thanks')" />
-</div>
+        <form wire:submit="sendPasswordResetLink">
+            <flux:input
+                :label="__('validation.attributes.email')"
+                type="email"
+                wire:model="email"
+                autocomplete="email"
+                placeholder="email@gmail.com"
+                :value="old('email')"
+                autofocus="true"
+                required
+            />
+
+            <div class="mt-4 flex items-center justify-end">
+                <flux:button variant="primary" type="submit" class="w-full border-0">
+                    {{ __('pages/auth.forgot.title') }}
+                </flux:button>
+            </div>
+        </form>
+
+        <flux:link :href="route('login')" class="inline-flex text-sm" wire:navigate>
+            {{ __('pages/auth.forgot.go_back') }} →
+        </flux:link>
+    </div>
+</x-layouts.auth-card>

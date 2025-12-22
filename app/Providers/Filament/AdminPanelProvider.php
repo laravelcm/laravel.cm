@@ -10,6 +10,7 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Support\Colors\Color;
 use Illuminate\Contracts\View\View;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -31,6 +32,10 @@ final class AdminPanelProvider extends PanelProvider
             ->login()
             ->colors([
                 'primary' => '#099170',
+                'danger' => Color::Red,
+                'info' => Color::Blue,
+                'success' => Color::Green,
+                'warning' => Color::Amber,
             ])
             ->sidebarWidth('18.75rem')
             ->sidebarCollapsibleOnDesktop()

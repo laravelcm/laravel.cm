@@ -42,6 +42,9 @@ final class TagSeeder extends Seeder
         $this->createTag('Serveur', 'serveur', ['post', 'tutorial']);
     }
 
+    /**
+     * @param  array<string>  $concerns
+     */
     private function createTag(string $name, string $slug, array $concerns = []): void
     {
         Tag::query()->create(['name' => $name, 'slug' => $slug, 'concerns' => $concerns]);

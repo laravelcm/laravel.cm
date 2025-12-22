@@ -3,21 +3,15 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Livewire\Pages\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::middleware('guest')->group(function (): void {
-    Volt::route('register', 'pages.auth.register')
-        ->name('register');
-
-    Volt::route('login', 'pages.auth.login')
-        ->name('login');
-
-    Volt::route('forgot-password', 'pages.auth.forgot-password')
-        ->name('password.request');
-
-    Volt::route('reset-password/{token}', 'pages.auth.reset-password')
-        ->name('password.reset');
+    Route::get('register', Auth\Register::class)->name('register');
+    Route::get('login', Auth\Login::class)->name('login');
+    Route::get('forgot-password', Auth\ForgotPassword::class)->name('password.request');
+    Route::get('reset-password/{token}', Auth\ResetPassword::class)->name('password.reset');
 });
 
 Route::middleware(['auth', 'checkIfBanned'])->group(function (): void {
