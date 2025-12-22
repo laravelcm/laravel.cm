@@ -92,7 +92,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'last_active_at',
     ];
 
-    public static function findByEmailAddress(string $emailAddress): self
+    public static function findByEmailAddress(string $emailAddress): ?self
     {
         return self::query()->where('email', $emailAddress)->first();
     }

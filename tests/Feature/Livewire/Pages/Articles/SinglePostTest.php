@@ -9,7 +9,6 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Livewire;
-use Spatie\Permission\Models\Role;
 
 /**
  * @var Tests\TestCase $this
