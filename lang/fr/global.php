@@ -115,5 +115,16 @@ return [
     'ranking_updated' => 'Ce classement est mis à jour toutes les semaines.',
     'place' => 'Position',
     'user' => 'Utilisateur',
-
+    'regions' => [
+        'en' => 'Extrême-Nord',
+        'no' => 'Nord',
+        'ad' => 'Adamaoua',
+        'nw' => 'Nord-Ouest',
+        'ou' => 'Ouest',
+        'sw' => 'Sud-Ouest',
+        'li' => 'Littoral',
+        'su' => 'Sud',
+        'ce' => 'Centre',
+        'es' => 'Est',
+    ],
 ];

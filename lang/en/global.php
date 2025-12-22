@@ -115,5 +115,16 @@ return [
     'ranking_updated' => 'The rankings are updated weekly.',
     'place' => 'Place',
     'user' => 'User',
-
+    'regions' => [
+        'en' => 'Far Nord',
+        'no' => 'North',
+        'ad' => 'Adamawa',
+        'nw' => 'Nord-West',
+        'ou' => 'West',
+        'sw' => 'South-West',
+        'li' => 'Littoral',
+        'su' => 'South',
+        'ce' => 'Centre',
+        'es' => 'East',
+    ],
 ];
