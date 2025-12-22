@@ -1,7 +1,7 @@
 <header
     x-data="{ scrolled: false }"
     x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 50)"
-    :class="scrolled ? 'bg-white/80 backdrop-blur-lg dark:bg-gray-900/80' : 'bg-transparent backdrop-blur-none'"
+    :class="scrolled ? 'bg-white/80 backdrop-blur-lg dark:bg-[#151515]/80' : 'bg-transparent backdrop-blur-none'"
     class="fixed inset-x-0 z-30 border-b border-dotted border-gray-300 dark:border-white/10 transition-all duration-300 ease-in-out"
 >
     <x-container>

@@ -80,5 +80,5 @@ input {
 }
 
 .dark .section-gradient {
-  background: radial-gradient(60% 60% at 22% 0, #0d1d1c, #151515);
+  background: radial-gradient(60% 60% at 22% 0, #002c22ff, #151515);
 }
