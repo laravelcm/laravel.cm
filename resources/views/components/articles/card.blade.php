@@ -26,14 +26,14 @@
 
     <div @class(['sm:col-span-3' => $isSummary])>
         <div @class([
-            'lg:flex',
+            'flex flex-col lg:flex-row',
             'items-center justify-between gap-4' => ! $isSummary,
             'flex-col justify-between gap-2' => $isSummary,
         ])>
             @if ($article->tags->isNotEmpty())
                 <div class="flex items-center gap-2">
                     @foreach ($article->tags as $tag)
-                        <x-tag :tag="$tag" />
+                        <x-tag :$tag />
                     @endforeach
                 </div>
             @endif

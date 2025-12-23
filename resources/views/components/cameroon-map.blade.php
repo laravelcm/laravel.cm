@@ -110,7 +110,7 @@
         x-transition:leave.duration.400ms
         x-show="hoveredRegion"
     >
-        <span class="absolute top-0 z-0 right-1/2 inline-flex items-center h-40 w-px bg-white/20"></span>
+        <span class="absolute top-0 z-0 right-1/2 inline-flex items-center h-80 w-px bg-white/20"></span>
         <span
             class="inline-flex z-10 items-center px-2 py-1 text-gray-300 text-sm bg-line-black ring-1 ring-white/20 rounded-md"
             x-text="hoveredRegion"></span>

@@ -53,19 +53,21 @@
                 />
             </div>
             <div
-                class="relative line-t grid max-w-xl dark:border-white/20 lg:max-w-none lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-3"
+                class="relative line-t grid dark:border-white/20 lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-3"
             >
                 @foreach ($articles as $article)
                     @if ($loop->first)
-                        <div class="lg:p-6 lg:row-span-3 bg-dotted flex flex-col justify-between">
+                        <div class="px-4 py-6 bg-dotted flex flex-col justify-between lg:px-6 lg:row-span-3">
                             <x-articles.card :$article />
-                            <flux:link :href="route('articles.index')" class="inline-flex items-center gap-2 mt-4 text-primary-600 dark:text-primary-500">
-                                {{ __('pages/home.view_posts') }}
-                                <x-heroicon-o-arrow-long-right class="size-5" aria-hidden="true" />
-                            </flux:link>
+                            <div class="hidden mt-4 sm:block">
+                                <flux:link :href="route('articles.index')" class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-500">
+                                    {{ __('pages/home.view_posts') }}
+                                    <x-heroicon-o-arrow-long-right class="size-5" aria-hidden="true" />
+                                </flux:link>
+                            </div>
                         </div>
                     @else
-                        <div class="lg:col-span-2 lg:p-6">
+                        <div class="px-4 py-6 lg:col-span-2 lg:px-6">
                             <x-articles.card :$article is-summary />
                         </div>
                     @endif
@@ -76,36 +78,36 @@
 
     <div class="line-b overflow-hidden section-gradient">
         <div class="py-2 line-b bg-white dark:bg-line-black">
-            <x-container class="px-6">
-                <div class="inline-flex items-center gap-4">
-                    <x-untitledui-code class="size-4 text-primary-600 dark:text-primary-500" aria-hidden="true" />
+            <x-container class="lg:px-6">
+                <div class="flex items-start gap-4">
+                    <x-untitledui-code class="size-4 shrink-0 text-primary-600 dark:text-primary-500" aria-hidden="true" />
                     <p class="text-gray-700 dark:text-gray-400 text-xs font-mono uppercase">
                         {{ __('pages/home.intro_forum') }}
                     </p>
                 </div>
             </x-container>
         </div>
-        <x-container class="px-0 line-x">
-            <div class="grid [&>div]:pt-10 lg:grid-cols-2 lg:divide-x lg:divide-dotted lg:divide-gray-300 lg:dark:divide-white/20">
+        <x-container class="px-0 lg:line-x">
+            <div class="grid [&>div]:pt-10 lg:grid-cols-2 divide-y divide-dotted divide-gray-300 lg:divide-y-0 lg:divide-x lg:dark:divide-white/20">
                 <div class="space-y-10">
                     <x-section-header
                         :title="__('pages/home.threads.title')"
                         :content="__('pages/home.threads.description')"
-                        class="px-6"
+                        class="px-4 lg:px-6"
                     />
 
                     <div class="border-t border-line grid divide-y divide-dotted divide-gray-300 dark:divide-white/20">
                         @foreach ($threads as $thread)
-                            <div class="p-6 hover:bg-white dark:hover:bg-gray-950/75">
-                                <div class="text-sm flex items-center gap-2 text-gray-500 dark:text-gray-400">
+                            <div class="px-4 py-6 lg:px-6 hover:bg-white dark:hover:bg-gray-950/75">
+                                <div class="text-sm flex flex-wrap items-center gap-2 text-gray-500 dark:text-gray-400">
                                     <x-link
                                         :href="route('profile', $thread->user)"
-                                        class="inline-flex items-center gap-1.5 truncate hover:underline hover:decoration-1 hover:decoration-dotted"
+                                        class="inline-flex items-center gap-1.5 shrink-0 hover:underline hover:decoration-1 hover:decoration-dotted"
                                     >
                                         <x-user.avatar :user="$thread->user" size="xs" />
-                                        <span>{{ '@' . $thread->user->username }}</span>
+                                        <span class="truncate">{{ '@' . $thread->user->username }}</span>
                                     </x-link>
-                                    <span class="inline-flex items-center gap-1.5">
+                                    <span class="inline-flex items-center gap-1.5 shrink-0">
                                         <span>{{ __('global.ask') }}</span>
                                         <time datetime="{{ $thread->created_at }}">
                                             {{ $thread->created_at->diffForHumans() }}
@@ -133,16 +135,16 @@
                     <x-section-header
                         :title="__('pages/home.discussions.title')"
                         :content="__('pages/home.discussions.description')"
-                        class="px-6"
+                        class="px-4 lg:px-6"
                     />
 
                     <div class="border-t border-line flex flex-col flex-1 bg-dotted p-1.5 after:border-0">
                         <div class="grid gap-2">
                             @foreach ($discussions as $discussion)
-                                <div class="p-5 transition duration-200 hover:ring-1 hover:ring-do hover:ring-gray-200 dark:hover:ring-white/10 rounded-lg hover:bg-white dark:hover:bg-gray-950/75">
-                                    <div class="relative flex items-center gap-1 text-sm text-gray-400 dark:text-gray-500">
-                                        <div class="flex items-center gap-2 truncate">
-                                            <x-user.avatar :user="$discussion->user" size="xs" />
+                                <div class="px-3 py-4 lg:px-4 lg:py-5 transition duration-200 hover:ring-1 hover:ring-do hover:ring-gray-200 dark:hover:ring-white/10 rounded-lg hover:bg-white dark:hover:bg-gray-950/75">
+                                    <div class="relative flex flex-wrap items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                                        <div class="flex items-center gap-2 min-w-0 shrink">
+                                            <x-user.avatar :user="$discussion->user" size="xs" class="shrink-0" />
                                             <x-link
                                                 :href="route('profile', $discussion->user)"
                                                 class="text-gray-900 truncate dark:text-white hover:underline hover:decoration-1 hover:decoration-dotted"
@@ -151,8 +153,8 @@
                                                 <span class="absolute inset-0"></span>
                                             </x-link>
                                         </div>
-                                        <span aria-hidden="true">&middot;</span>
-                                        <time class="whitespace-nowrap" datetime="{{ $discussion->created_at }}">
+                                        <span class="shrink-0" aria-hidden="true">&middot;</span>
+                                        <time class="shrink-0" datetime="{{ $discussion->created_at }}">
                                             {{ $discussion->created_at->diffForHumans() }}
                                         </time>
                                     </div>
@@ -171,18 +173,18 @@
                             @endforeach
                         </div>
 
-                        <div class="relative  flex-1 flex flex-col items-end justify-end p-6">
+                        <div class="relative flex-1 flex flex-col items-end justify-end p-6">
                             <p class="text-sm font-mono text-gray-700 dark:text-gray-300 font-medium text-right">
                                 {{ __('pages/home.intro_forum_links') }}
                             </p>
-                            <div class="mt-2 flex items-center gap-4">
+                            <div class="mt-2 flex flex-wrap items-center justify-end gap-4">
                                 <flux:link
                                     :href="route('discussions.index')"
                                     class="group inline-flex items-center gap-2 text-sm text-primary-500 hover:text-primary-600 underline decoration-1 decoration-dotted"
                                     wire:navigate
                                 >
                                     {{ __('pages/home.discussions.show_all') }}
-                                    <x-heroicon-o-arrow-long-right class="size-5" aria-hidden="true" />
+                                    <x-heroicon-o-arrow-long-right class="size-5 shrink-0" aria-hidden="true" />
                                 </flux:link>
                                 <flux:link
                                     :href="route('forum.index')"
@@ -190,7 +192,7 @@
                                     wire:navigate
                                 >
                                     {{ __('pages/home.threads.show_all') }}
-                                    <x-heroicon-o-arrow-long-right class="size-5" aria-hidden="true" />
+                                    <x-heroicon-o-arrow-long-right class="size-5 shrink-0" aria-hidden="true" />
                                 </flux:link>
                             </div>
                         </div>
@@ -214,15 +216,15 @@
                 </div>
             </x-container>
         </div>
-        <div class="absolute bottom-0 w-full xl:inset-0 xl:h-full">
-            <div class="size-full xl:grid xl:grid-cols-2">
-                <div class="h-full flex items-center justify-center xl:relative xl:col-start-2">
+        <div class="hidden absolute bottom-0 w-full lg:block lg:inset-0 lg:h-full">
+            <div class="size-full lg:grid lg:grid-cols-2">
+                <div class="h-full flex items-center justify-center lg:relative lg:col-start-2">
                     <x-cameroon-map />
                 </div>
             </div>
         </div>
-        <div class="mx-auto max-w-4xl px-6 lg:max-w-7xl xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
-            <div class="relative py-12 sm:py-24 xl:col-start-1">
+        <div class="mx-auto max-w-4xl px-4 lg:max-w-7xl lg:grid lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-x-8 lg:px-6">
+            <div class="relative py-12 sm:py-24 lg:col-start-1">
                 <h2 class="text-3xl font-bold font-heading text-white">
                     {{ __('pages/home.about.heading') }}
                 </h2>
@@ -238,7 +240,7 @@
                     <p>
                         <span class="block font-mono proportional-nums slashed-zero text-2xl text-white">2K+</span>
                         <span class="mt-1 block text-base text-gray-400">
-                            <span class="font-medium text-white">{{ __('global.members') }}</span>
+                            <span class="block font-medium text-white sm:inline">{{ __('global.members') }}</span>
                             {{ __('pages/home.about.join_members') }}
                         </span>
                     </p>
@@ -246,7 +248,7 @@
                     <p>
                         <span class="block font-mono proportional-nums slashed-zero text-2xl text-white">50K+</span>
                         <span class="mt-1 block text-base text-gray-400">
-                            <span class="font-medium text-white">{{ __('global.developers') }}</span>
+                            <span class="block font-medium text-white sm:inline">{{ __('global.developers') }}</span>
                             {{ __('pages/home.about.developers_location') }}
                         </span>
                     </p>
@@ -254,7 +256,7 @@
                     <p>
                         <span class="block font-mono proportional-nums slashed-zero text-2xl text-white">25%</span>
                         <span class="mt-1 block text-base text-gray-400">
-                            <span class="font-medium text-white">{{ __('global.event_rates') }}</span>
+                            <span class="block font-medium text-white sm:inline">{{ __('global.event_rates') }}</span>
                             {{ __('pages/home.about.young_community') }}
                         </span>
                     </p>
@@ -262,7 +264,7 @@
                     <p>
                         <span class="block font-mono proportional-nums slashed-zero text-2xl text-white">10K+</span>
                         <span class="mt-1 block text-base text-gray-400">
-                            <span class="font-medium text-white">{{ __('global.stars') }}</span>
+                            <span class="block font-medium text-white sm:inline">{{ __('global.stars') }}</span>
                             {{ __('pages/home.about.projects') }}
                         </span>
                     </p>
