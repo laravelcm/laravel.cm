@@ -101,9 +101,9 @@
                         <div class="divide-y-2 divide-gray-50 rounded-xl bg-white shadow-md ring-1 ring-black/5 dark:bg-gray-800 dark:divide-white/10 dark:ring-white/10">
                             <div class="p-4">
                                 <div class="flex items-center justify-between">
-                                    <div>
+                                    <x-link href="/">
                                         <x-brand class="h-9 w-auto text-gray-900 dark:text-white" aria-hidden="true" />
-                                    </div>
+                                    </x-link>
                                     <div class="-mr-2">
                                         <button
                                             type="button"
@@ -122,13 +122,11 @@
                             </div>
                             <div class="p-4">
                                 @auth
-                                    @php
-                                        $user = \Illuminate\Support\Facades\Auth::user();
-                                    @endphp
+                                    @php $user = auth()->user(); @endphp
 
                                     <div class="flex items-center gap-2">
                                         <div class="shrink-0">
-                                            <x-user.avatar :user="$user" class="size-8" />
+                                            <x-user.avatar :$user class="size-8" />
                                         </div>
                                         <div class="leading-4">
                                             <div class="text-sm font-medium text-gray-900 dark:text-white">
@@ -152,14 +150,8 @@
                                     </div>
                                 @else
                                     <div class="flex flex-col space-y-4">
-                                        <x-nav.item
-                                            :href="route('login')"
-                                            :title="__('pages/auth.login.page_title')"
-                                        />
-                                        <x-nav.item
-                                            :href="route('register')"
-                                            :title="__('pages/auth.register.page_title')"
-                                        />
+                                        <x-nav.item :href="route('login')" :title="__('pages/auth.login.page_title')" />
+                                        <x-nav.item :href="route('register')" :title="__('pages/auth.register.page_title')" />
                                     </div>
                                 @endauth
                             </div>

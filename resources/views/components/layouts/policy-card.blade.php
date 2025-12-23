@@ -1,4 +1,4 @@
-<div class="py-16 lg:py-32 overflow-hidden section-gradient isolate">
+<div class="py-24 lg:py-32 overflow-hidden section-gradient isolate">
     <x-container class="relative grid gap-12 lg:grid-cols-4">
         <div class="hidden lg:block">
             <nav class="space-y-3">
@@ -34,7 +34,7 @@
                 </x-link>
             </nav>
         </div>
-        <div class="lg:col-span-3 border-x border-line">
+        <div class="lg:col-span-3 lg:border-x lg:border-line">
             {{ $slot }}
         </div>
     </x-container>

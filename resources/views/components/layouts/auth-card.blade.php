@@ -3,7 +3,11 @@
 ])
 
 <div class="flex min-h-screen overflow-hidden">
-    <div class="flex-1 flex justify-center items-center">
+    <div class="flex-1 flex flex-col justify-center items-center space-y-6 py-10 px-4 lg:p-0">
+        <x-link href="/" class="group flex items-center gap-3 lg:hidden">
+            <x-brand class="h-12 w-auto text-gray-800 dark:text-white" aria-hidden="true" />
+        </x-link>
+
         <div class="p-1 bg-gray-100 dark:bg-gray-800 line-y">
             <div class="line-l"></div>
             <div class="line-r"></div>

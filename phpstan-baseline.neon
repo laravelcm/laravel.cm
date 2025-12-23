@@ -631,42 +631,6 @@ parameters:
 			path: app/Actions/Forum/SubscribeToThreadAction.php
 
 		-
-			rawMessage: 'Method App\Actions\GetGithubRepositoriesAction::__invoke() should return Illuminate\Support\Collection but returns mixed.'
-			identifier: return.type
-			count: 2
-			path: app/Actions/GetGithubRepositoriesAction.php
-
-		-
-			rawMessage: 'Parameter #1 $callback of method Illuminate\Support\Collection<(int|string),mixed>::map() expects callable(mixed, int|string): App\Data\RepositoryData, Closure(array): App\Data\RepositoryData given.'
-			identifier: argument.type
-			count: 1
-			path: app/Actions/GetGithubRepositoriesAction.php
-
-		-
-			rawMessage: 'Parameter #1 $token of static method Illuminate\Http\Client\PendingRequest<false>::withToken() expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Actions/GetGithubRepositoriesAction.php
-
-		-
-			rawMessage: 'Parameter #1 $value of function collect expects Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Actions/GetGithubRepositoriesAction.php
-
-		-
-			rawMessage: Unable to resolve the template type TKey in call to function collect
-			identifier: argument.templateType
-			count: 1
-			path: app/Actions/GetGithubRepositoriesAction.php
-
-		-
-			rawMessage: Unable to resolve the template type TValue in call to function collect
-			identifier: argument.templateType
-			count: 1
-			path: app/Actions/GetGithubRepositoriesAction.php
-
-		-
 			rawMessage: 'Parameter #1 $spamReport of class App\Notifications\ReportedSpamToTelegram constructor expects App\Models\SpamReport, Illuminate\Database\Eloquent\Model given.'
 			identifier: argument.type
 			count: 1

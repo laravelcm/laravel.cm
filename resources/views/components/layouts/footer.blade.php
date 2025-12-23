@@ -1,6 +1,6 @@
-<footer class="bg-[#151715] border-t border-dotted border-gray-700 dark:border-white/20" aria-labelledby="footerHeading">
+<footer class="bg-line-black border-t border-dotted border-gray-700 dark:border-white/20" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">{{ __('global.footer.title') }}</h2>
-    <x-container class="relative z-10">
+    <x-container class="relative">
         <div class="py-12 sm:py-16 lg:grid lg:grid-cols-3 lg:gap-8 lg:py-20 xl:pt-24">
             <div class="space-y-3">
                 <x-brand class="h-12 w-auto text-white sm:h-16" aria-hidden="true" />
@@ -67,7 +67,7 @@
             </div>
         </div>
         <div
-            class="relative pb-12 text-gray-500"
+            class="hidden pb-12 relative text-gray-500 lg:block"
             x-data="{ spotlight: { x: 0, y: 0 } }"
             @mousemove="const rect = $el.getBoundingClientRect(); spotlight = { x: $event.clientX - rect.left, y: $event.clientY - rect.top }"
         >
@@ -89,34 +89,34 @@
                 <x-icon.community class="size-full" aria-hidden="true" />
             </div>
         </div>
-        <div class="border-t border-white/5 py-6 sm:flex sm:items-center sm:justify-between lg:py-8">
+        <div class="pt-12 border-t border-white/10 border-dashed py-6 sm:flex sm:items-center sm:justify-between lg:py-8">
             <p class="text-center text-sm leading-6 text-gray-400 lg:text-left">
                 {{ __('global.footer.copyright', ['date' => date('Y')]) }}
             </p>
             <div class="mt-4 flex items-center justify-center space-x-4 sm:mt-0 lg:justify-start">
                 <a href="https://github.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">GitHub</span>
-                    <x-icon.github class="size-6" aria-hidden="true" />
+                    <x-icon.github class="size-5" aria-hidden="true" />
                 </a>
 
                 <a href="https://twitter.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">Twitter</span>
-                    <x-icon.twitter class="size-5" aria-hidden="true" />
+                    <x-phosphor-x-logo class="size-5" aria-hidden="true" />
                 </a>
 
                 <a href="https://facebook.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">Facebook</span>
-                    <x-icon.facebook class="size-6" aria-hidden="true" />
+                    <x-phosphor-facebook-logo-fill class="size-5" aria-hidden="true" />
                 </a>
 
                 <a href="https://www.linkedin.com/company/laravel-cameroun?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">LinkedIn</span>
-                    <x-icon.linkedin class="size-6" aria-hidden="true" />
+                    <x-phosphor-linkedin-logo-fill class="size-5" aria-hidden="true" />
                 </a>
 
                 <a href="https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">YouTube</span>
-                    <x-icon.youtube class="size-6" aria-hidden="true" />
+                    <x-phosphor-youtube-logo-fill class="size-5" aria-hidden="true" />
                 </a>
             </div>
         </div>
