@@ -63,6 +63,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     /** @use HasFactory<ThreadFactory> */
     use HasFactory;
+
     use HasLocaleScope;
     use HasReplies;
     use HasSlug;
