@@ -6,7 +6,6 @@ namespace App\Actions\Article;
 
 use App\Models\Article;
 use App\Notifications\ArticleDeclinedNotification;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 final class DeclineArticleAction
@@ -15,7 +14,7 @@ final class DeclineArticleAction
     {
         return DB::transaction(function () use ($reason, $article): Article {
             $article->update([
-                'declined_at' => Carbon::now(),
+                'declined_at' => \Illuminate\Support\Facades\Date::now(),
                 'reason' => $reason,
                 'submitted_at' => null,
             ]);

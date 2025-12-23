@@ -8,7 +8,7 @@ use App\Models\Activity;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Activity>
+ * @extends Factory<Activity>
  */
 final class ActivityFactory extends Factory
 {
@@ -17,7 +17,7 @@ final class ActivityFactory extends Factory
     public function definition(): array
     {
         return [
-
+            //
         ];
     }
 }

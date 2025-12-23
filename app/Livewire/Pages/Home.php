@@ -8,7 +8,7 @@ use App\Models\Article;
 use App\Models\Discussion;
 use App\Models\Thread;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
@@ -19,7 +19,7 @@ final class Home extends Component
         $ttl = now()->addHours(6);
 
         return view('livewire.pages.home', [
-            'articles' => Cache::tags('articles')->remember(
+            'articles' => Cache::tags(['home', 'articles'])->remember(
                 key: 'home.articles',
                 ttl: $ttl,
                 callback: fn (): Collection => Article::with(['tags', 'media'])
@@ -28,7 +28,7 @@ final class Home extends Component
                     ->limit(4)
                     ->get()
             ),
-            'threads' => Cache::tags('threads')->remember(
+            'threads' => Cache::tags(['home', 'threads'])->remember(
                 key: 'home.threads',
                 ttl: $ttl,
                 callback: fn (): Collection => Thread::with([
@@ -37,12 +37,11 @@ final class Home extends Component
                     'user.providers:id,user_id,provider,avatar',
                 ])
                     ->whereNull('solution_reply_id')
-                    ->whereBetween('threads.created_at', [now()->subMonths(3), now()])
                     ->latest()
                     ->limit(4)
                     ->get()
             ),
-            'discussions' => Cache::tags('discussions')->remember(
+            'discussions' => Cache::tags(['home', 'discussions'])->remember(
                 key: 'home.discussions',
                 ttl: $ttl,
                 callback: fn (): Collection => Discussion::with([

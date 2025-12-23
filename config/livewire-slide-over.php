@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'default_position' => \Laravelcm\LivewireSlideOvers\Position::Right,
+    'default_position' => Laravelcm\LivewireSlideOvers\Position::Right,
 
     /*
     |--------------------------------------------------------------------------

@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Models\User;
 use App\Traits\UserResponse;
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +32,7 @@ final class LoginController extends Controller
 
         if (! $user || ! Auth::attempt($sanitized)) {
             throw ValidationException::withMessages([
-                'email' => __('Les informations d\'identification fournies sont incorrectes.'),
+                'email' => __("Les informations d'identification fournies sont incorrectes."),
             ]);
         }
 
@@ -41,7 +40,7 @@ final class LoginController extends Controller
             $user->tokens()->delete();
         }
 
-        $user->last_login_at = Carbon::now();
+        $user->last_login_at = \Illuminate\Support\Facades\Date::now();
         $user->last_login_ip = $request->ip();
         $user->save();
 

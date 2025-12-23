@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 use App\Models\Discussion;
 use App\Models\Thread;
-use Carbon\Carbon;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use League\CommonMark\Output\RenderedContentInterface;
 
 if (! function_exists('active')) {
@@ -15,7 +15,7 @@ if (! function_exists('active')) {
      */
     function active(array $routes, string $activeClass = 'active', string $defaultClass = '', bool $condition = true): string
     {
-        return call_user_func_array([app('router'), 'is'], $routes) && $condition ? $activeClass : $defaultClass;
+        return call_user_func_array([resolve(Illuminate\Routing\Router::class), 'is'], $routes) && $condition ? $activeClass : $defaultClass;
     }
 }
 
@@ -25,7 +25,7 @@ if (! function_exists('is_active')) {
      */
     function is_active(string ...$routes): bool
     {
-        return (bool) call_user_func_array([app('router'), 'is'], $routes);
+        return (bool) call_user_func_array([resolve(Illuminate\Routing\Router::class), 'is'], $routes);
     }
 }
 
@@ -39,9 +39,9 @@ if (! function_exists('md_to_html')) {
 if (! function_exists('replace_links')) {
     function replace_links(string $markdown): string
     {
-        return (new LinkFinder([
+        return new LinkFinder([
             'attrs' => ['target' => '_blank', 'rel' => 'nofollow'],
-        ]))->processHtml($markdown);
+        ])->processHtml($markdown);
     }
 }
 
@@ -60,7 +60,7 @@ if (! function_exists('canonical')) {
      */
     function canonical(string $route, array $params = []): string
     {
-        $page = app('request')->get('page');
+        $page = resolve('request')->get('page');
         $params = array_merge($params, ['page' => $page !== 1 ? $page : null]);
 
         ksort($params);
@@ -98,10 +98,10 @@ if (! function_exists('route_to_reply_able')) {
 if (! function_exists('isHolidayWeek')) {
     function isHolidayWeek(): bool
     {
-        $now = Carbon::now();
+        $now = Date::now();
 
-        $holidayStart = Carbon::createFromDate($now->year, 12, 21)->startOfDay();
-        $holidayEnd = Carbon::createFromDate($now->year + 1, 1, 2)->endOfDay();
+        $holidayStart = Date::createFromDate($now->year, 12, 21)->startOfDay();
+        $holidayEnd = Date::createFromDate($now->year + 1, 1, 2)->endOfDay();
 
         return $now->between($holidayStart, $holidayEnd);
     }

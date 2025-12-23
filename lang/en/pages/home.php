@@ -15,6 +15,8 @@ return [
     'visit_forum' => 'Visit the forum',
     'work_associations' => 'We work with other communities and startups',
     'view_logo_question' => 'Your logo here ?',
+    'intro_forum' => 'Share your bugs and find solutions through questions and discussions',
+    'intro_forum_links' => 'Discover all the discussion topics and questions.',
     'popular_posts' => [
         'title' => 'Popular Posts',
         'description' => 'Discover the most popular articles shared by community members',
@@ -33,7 +35,8 @@ return [
         'show_all' => 'View all discussions',
     ],
     'about' => [
-        'heading' => 'We build an Open Source community of learners and teachers',
+        'intro' => 'What you need to know about Laravel Cameroon',
+        'heading' => 'We build a developers community of learners and teachers',
         'everybody_learn' => 'Everyone teaches, everyone learns',
         'community_spirit' => 'This is the spirit behind the community. A community that aims to grow and give everyone the chance to share their knowledge and learn.',
         'join_members' => 'who joined the various community groups',

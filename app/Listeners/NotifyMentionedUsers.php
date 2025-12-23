@@ -14,6 +14,6 @@ final class NotifyMentionedUsers
     {
         User::query()->whereIn('username', $event->reply->mentionedUsers())
             ->get()
-            ->each(fn ($user) => $user->notify(new YouWereMentioned($event->reply)));
+            ->each(fn (User $user) => $user->notify(new YouWereMentioned($event->reply)));
     }
 }

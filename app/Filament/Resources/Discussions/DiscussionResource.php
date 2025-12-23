@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Discussions;
 
 use App\Models\Discussion;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns;
@@ -16,7 +17,7 @@ final class DiscussionResource extends Resource
 {
     protected static ?string $model = Discussion::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'untitledui-message-chat-square';
+    protected static string|BackedEnum|null $navigationIcon = 'untitledui-message-chat-square';
 
     public static function getNavigationGroup(): string
     {

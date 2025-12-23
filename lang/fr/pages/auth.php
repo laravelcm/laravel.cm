@@ -10,6 +10,7 @@ return [
         'forgot_password' => 'Mot de passe oublié ?',
         'remember_me' => 'Se souvenir de moi',
         'submit' => 'Se connecter',
+        'first' => 'Vous êtes nouveau ?',
     ],
 
     'register' => [
@@ -17,8 +18,10 @@ return [
         'join_us' => 'Rejoindre Laravel Cameroun',
         'joins_description' => 'Rejoignez près de 1000 développeurs et designers. Parce qu’il n y’a pas que le code dans la vie.',
         'password_placeholder' => 'Mot de passe (min. 8 caractères)',
+        'email_verification_title' => 'Création de compte',
         'email_verification_status' => 'Veuillez verifier votre email pour pouvoir vous connecter',
         'submit' => 'Créer mon compte',
+        'already' => 'Vous avez déjà un compte ?',
         'advantages' => [
             'heading' => 'Ouvrez votre esprit pour découvrir de nouveaux horizons.',
             'quote' => "Un développeur solitaire est comme un nœud isolé - limité en termes de portée, d'influence et de croissance. Tout comme les logiciels se développent grâce à des composants interconnectés, les développeurs s'épanouissent dans l'écosystème collaboratif d'une communauté.",
@@ -38,6 +41,7 @@ return [
         'page_title' => 'Mot de passe oublié',
         'title' => 'Réinitialisation du mot de passe',
         'description' => "Mot de passe oublié ? Aucun problème. Communiquez-nous simplement votre adresse e-mail et nous vous enverrons par e-mail un lien de réinitialisation de mot de passe qui vous permettra d'en choisir un nouveau.",
+        'go_back' => 'Retourner à la page de connexion',
     ],
 
     'reset' => [

@@ -20,6 +20,10 @@ abstract class BaseExtension
      */
     protected $customBlockRenderer;
 
+    abstract protected function codeNodes(): array;
+
+    abstract protected function getLiteralContent($node): string;
+
     public function onDocumentParsed(DocumentParsedEvent $event): void
     {
         $walker = $event->getDocument()->walker();
@@ -67,16 +71,12 @@ abstract class BaseExtension
             array_unshift($blocks, $block);
 
             foreach ($blocks as $block) {
-                $inner .= "<code {$block->attrsAsString()}class='{$block->classes}' style='{$block->styles}'>{$block->highlighted}</code>";
+                $inner .= sprintf("<code %sclass='%s' style='%s'>%s</code>", $block->attrsAsString(), $block->classes, $block->styles, $block->highlighted);
             }
 
-            return "<pre>$inner</pre>";
+            return sprintf('<pre>%s</pre>', $inner);
         };
     }
-
-    abstract protected function codeNodes(): array;
-
-    abstract protected function getLiteralContent($node): string;
 
     /**
      * Bind into a Commonmark V1 or V2 environment.
@@ -117,6 +117,8 @@ abstract class BaseExtension
 
             return call_user_func($renderer, static::$torchlightBlocks[$hash]);
         }
+
+        return null;
     }
 
     protected function getContent($node): string
@@ -128,7 +130,7 @@ abstract class BaseExtension
             return $content;
         }
 
-        $file = trim(Str::after($content, '<<<'));
+        $file = mb_trim(Str::after($content, '<<<'));
 
         // It must be only one line, because otherwise it might be a heredoc.
         if (count(explode("\n", $file)) > 1) {

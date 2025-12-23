@@ -6,6 +6,8 @@ use App\Livewire\Pages\Account\Settings;
 use Livewire\Livewire;
 
 it('renders successfully', function (): void {
-    Livewire::test(Settings::class, ['subscriptions' => $this->login()->subscriptions()])
+    $this->login();
+
+    Livewire::test(Settings::class)
         ->assertStatus(200);
 });

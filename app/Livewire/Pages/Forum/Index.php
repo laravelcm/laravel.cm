@@ -71,6 +71,37 @@ final class Index extends Component
         $this->redirectRoute('login', navigate: true);
     }
 
+    public function render(): View
+    {
+        $query = Thread::with([
+            'channels',
+            'channels.parent',
+            'user:id,username,name,avatar_type',
+            'user.providers:id,user_id,provider,avatar',
+            'user.media',
+        ]);
+
+        if (blank($this->solved)) {
+            $query->withCount('replies')->withViewsCount();
+        }
+
+        $query = $this->applyChannel($query);
+        $query = $this->applySearch($query);
+        $query = $this->applySolved($query);
+        $query = $this->applyLocale($query);
+        $query = $this->applyAuthor($query);
+        $query = $this->applySubscribe($query);
+        $query = $this->applyUnAnswer($query);
+        $query = $this->applySorting($query);
+
+        $threads = $query->paginate($this->perPage);
+
+        return view('livewire.pages.forum.index', [
+            'threads' => $threads,
+        ])
+            ->title(__('pages/forum.channel_title', ['channel' => filled($this->currentChannel) ? ' ~ '.$this->currentChannel->name : '']));
+    }
+
     protected function applyPopular(Builder $query): Builder
     {
         if (filled($this->popular)) {
@@ -161,37 +192,6 @@ final class Index extends Component
     {
         return filled($this->popular)
             ? $this->applyPopular($query)
-            : $query->orderByDesc('created_at');
-    }
-
-    public function render(): View
-    {
-        $query = Thread::with([
-            'channels',
-            'channels.parent',
-            'user:id,username,name,avatar_type',
-            'user.providers:id,user_id,provider,avatar',
-            'user.media',
-        ]);
-
-        if (blank($this->solved)) {
-            $query->withCount('replies')->withViewsCount();
-        }
-
-        $query = $this->applyChannel($query);
-        $query = $this->applySearch($query);
-        $query = $this->applySolved($query);
-        $query = $this->applyLocale($query);
-        $query = $this->applyAuthor($query);
-        $query = $this->applySubscribe($query);
-        $query = $this->applyUnAnswer($query);
-        $query = $this->applySorting($query);
-
-        $threads = $query->paginate($this->perPage);
-
-        return view('livewire.pages.forum.index', [
-            'threads' => $threads,
-        ])
-            ->title(__('pages/forum.channel_title', ['channel' => filled($this->currentChannel) ? ' ~ '.$this->currentChannel->name : '']));
+            : $query->latest();
     }
 }

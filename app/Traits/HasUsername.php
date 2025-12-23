@@ -8,19 +8,20 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait HasUsername
 {
-    protected function username(): Attribute
-    {
-        return Attribute::set(fn (string $value): string => $this->generateUniqueUsername($value));
-    }
-
     public static function findByUsername(string $username): self
     {
         return static::query()->where('username', $username)->firstOrFail();
     }
 
+    protected function username(): Attribute
+    {
+        return Attribute::set(fn (string $value): string => $this->generateUniqueUsername($value));
+    }
+
     private function generateUniqueUsername(string $value): string
     {
-        $username = $originalUsername = $value;
+        $username = $value;
+        $originalUsername = $value;
         $counter = 0;
 
         while ($this->usernameExists($username, $this->exists ? $this->id : null)) {

@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Livewire\Pages\Auth\Login;
 use App\Models\User;
-use Livewire\Volt\Volt;
+use Livewire\Livewire;
 
 /**
- * @var \Tests\TestCase $this
+ * @var Tests\TestCase $this
  */
 describe('Authentication', function (): void {
     test('login screen can be rendered', function (): void {
@@ -14,13 +15,13 @@ describe('Authentication', function (): void {
 
         $response
             ->assertOk()
-            ->assertSeeVolt('pages.auth.login');
-    })->skip();
+            ->assertSeeLivewire(Login::class);
+    });
 
     test('users can authenticate using the login screen', function (): void {
         $user = User::factory()->create();
 
-        $component = Volt::test('pages.auth.login')
+        $component = Livewire::test(Login::class)
             ->set('form.email', $user->email)
             ->set('form.password', 'password');
 
@@ -36,7 +37,7 @@ describe('Authentication', function (): void {
     test('users can not authenticate with invalid password', function (): void {
         $user = User::factory()->create();
 
-        $component = Volt::test('pages.auth.login')
+        $component = Livewire::test(Login::class)
             ->set('form.email', $user->email)
             ->set('form.password', 'wrong-password');
 
@@ -54,7 +55,7 @@ describe('Authentication', function (): void {
 
         $this->actingAs($user);
 
-        $component = Volt::test('components.logout');
+        $component = Livewire::test('components.logout');
 
         $component->call('logout');
 

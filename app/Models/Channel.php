@@ -19,12 +19,12 @@ use Spatie\Translatable\HasTranslations;
  * @property-read int $id
  * @property-read string $name
  * @property-read string $slug
- * @property-read string|null $description
+ * @property-read ?string $description
  * @property-read string $color
- * @property-read int|null $parent_id
- * @property-read Channel|null $parent
- * @property-read Collection<array-key, Channel> $items
- * @property-read Collection<array-key, Thread> $threads
+ * @property-read ?int $parent_id
+ * @property-read ?Channel $parent
+ * @property-read Collection<int, Channel> $items
+ * @property-read Collection<int, Thread> $threads
  */
 final class Channel extends Model
 {
@@ -32,23 +32,11 @@ final class Channel extends Model
     use HasSlug;
     use HasTranslations;
 
+    public array $translatable = [
+        'description',
+    ];
+
     protected $guarded = [];
-
-    public array $translatable = ['description'];
-
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        self::saving(function (self $channel): void {
-            /** @var self $record */
-            $record = self::query()->find($channel->parent_id);
-
-            if ($channel->parent_id && $record->exists() && $record->parent_id) {
-                throw CannotAddChannelToChild::childChannelCannotBeParent($channel);
-            }
-        });
-    }
 
     public function getRouteKeyName(): string
     {
@@ -82,5 +70,19 @@ final class Channel extends Model
     public function threads(): BelongsToMany
     {
         return $this->belongsToMany(Thread::class);
+    }
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        self::saving(function (self $channel): void {
+            /** @var self $record */
+            $record = self::query()->find($channel->parent_id);
+
+            if ($channel->parent_id && $record->exists() && $record->parent_id) {
+                throw CannotAddChannelToChild::childChannelCannotBeParent($channel);
+            }
+        });
     }
 }

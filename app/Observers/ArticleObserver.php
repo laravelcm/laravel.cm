@@ -27,7 +27,7 @@ class ArticleObserver
 
     private function invalidateCaches(Article $article): void
     {
-        $cacheService = app(CacheInvalidationService::class);
+        $cacheService = resolve(CacheInvalidationService::class);
 
         Cache::forget('article.'.$article->id);
 

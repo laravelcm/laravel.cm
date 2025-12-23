@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Laravelcm\Gamify\Exceptions;
 
-final class InvalidPayeeModelException extends \Exception
+use Exception;
+
+final class InvalidPayeeModelException extends Exception
 {
     public function __construct()
     {

@@ -1,21 +1,28 @@
 includes:
-    - ./vendor/larastan/larastan/extension.neon
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+    - phar://phpstan.phar/conf/bleedingEdge.neon
+    - phpstan-baseline.neon
 
 parameters:
+
     paths:
         - app
         - app-modules/
-    level: 8
+        - bootstrap/app.php
+        - config
+        - database
+        - public
+        - routes
+
+    level: 9
+
+    tmpDir: /tmp/phpstan
+
     excludePaths:
-        - app/Http/Resources/
-        - app/Actions/
-        - app/Notifications/
-        - app/Http/Controllers/*
-        - app/Markdown/*
-        - app/Models/Traits/HasSlug.php
-        - app-modules/*/vendor/*
-        - app-modules/*/tests/*
-        - app-modules/*/config/*
+        - app-modules/*/*/tests/*
+        - tests
+
     ignoreErrors:
         - "#^Cannot access property \\$transaction on array\\|object\\.$#"
         - identifier: missingType.iterableValue

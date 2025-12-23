@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Channels;
 
 use App\Models\Channel;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Forms\Components;
 use Filament\Resources\Resource;
@@ -22,7 +23,7 @@ final class ChannelResource extends Resource
 
     protected static ?string $model = Channel::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'untitledui-git-branch';
+    protected static string|BackedEnum|null $navigationIcon = 'untitledui-git-branch';
 
     public static function getNavigationGroup(): string
     {

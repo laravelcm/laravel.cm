@@ -42,8 +42,7 @@ final class Profile extends Component
             ttl: now()->addDays(3),
             callback: fn () => Thread::with('channels')
                 ->withCount('replies')
-                ->whereBelongsTo($this->user)
-                ->orderByDesc('created_at')
+                ->whereBelongsTo($this->user)->latest()
                 ->limit(5)
                 ->get()
         );

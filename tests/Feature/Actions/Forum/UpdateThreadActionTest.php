@@ -24,7 +24,7 @@ it('user can edit a thread', function (): void {
 
     $thread->channels()->attach($channels->modelKeys());
 
-    $thread = app(UpdateThreadAction::class)->execute([
+    $thread = resolve(UpdateThreadAction::class)->execute([
         'title' => 'update thread title',
     ], $thread);
 

@@ -44,15 +44,15 @@ final readonly class MediaCacheService
 
     private function buildCacheKey(HasCachedMediaInterface $model, string $collection, ?string $conversion = null): string
     {
-        $suffix = filled($conversion) ? ".{$conversion}" : '';
+        $suffix = filled($conversion) ? '.'.$conversion : '';
 
-        return "{$model->getCacheKey($collection)}{$suffix}";
+        return $model->getCacheKey($collection).$suffix;
     }
 
     private function flushCollectionCache(HasCachedMediaInterface $model, string $collection): void
     {
         $baseKey = $model->getCacheKey($collection);
 
-        app(CacheInvalidationService::class)->invalidateByPattern($baseKey);
+        resolve(CacheInvalidationService::class)->invalidateByPattern($baseKey);
     }
 }

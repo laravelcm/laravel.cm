@@ -3,6 +3,7 @@ node_modules
 
 # Laravel
 .mcp.json
+boost.json
 .env.example
 .env.testing
 phpstan.neon
@@ -13,13 +14,12 @@ tests
 stubs
 app-modules/**/tests
 .phpunit.cache
-.ai
 
 # Ide
 .editorconfig
 .prettierignore
 .prettierrc
-*.md
+*/**/.md
 .idea
 .vscode
 .junie
@@ -34,3 +34,6 @@ app-modules/**/tests
 
 # Others
 art
+.ai
+.docker
+auth.json

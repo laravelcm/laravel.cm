@@ -1,5 +1,7 @@
 #leaderboard {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
     transform-style: preserve-3d;
   }

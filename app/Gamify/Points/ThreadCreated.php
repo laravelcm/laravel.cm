@@ -9,9 +9,11 @@ use Laravelcm\Gamify\PointType;
 
 final class ThreadCreated extends PointType
 {
-    public int $points = 55;
+    /** @var int */
+    public $points = 55;
 
-    protected string $payee = 'user';
+    /** @var string */
+    public $payee = 'user';
 
     public function __construct(Thread $subject)
     {

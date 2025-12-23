@@ -6,11 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class AddReputationFieldOnUserTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table): void {
+        Schema::table('users', static function (Blueprint $table): void {
             $table->unsignedInteger('reputation')
                 ->nullable()
                 ->default(0)
@@ -20,8 +20,8 @@ final class AddReputationFieldOnUserTable extends Migration
 
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table): void {
+        Schema::table('users', static function (Blueprint $table): void {
             $table->dropColumn('reputation');
         });
     }
-}
+};

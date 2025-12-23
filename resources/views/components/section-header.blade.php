@@ -3,7 +3,7 @@
     'content',
 ])
 
-<div>
+<div {{ $attributes }}>
     <h3 class="font-heading font-bold text-xl leading-7 text-gray-900 dark:text-white sm:text-2xl">
         {{ $title }}
     </h3>

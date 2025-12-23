@@ -22,6 +22,6 @@ final class PostThreadToTelegram extends Notification
     {
         return TelegramMessage::create()
             ->to('@laravelcm')
-            ->content("{$notifiable->subject()} ".route('forum.show', $notifiable));
+            ->content($notifiable->subject().' '.route('forum.show', $notifiable));
     }
 }

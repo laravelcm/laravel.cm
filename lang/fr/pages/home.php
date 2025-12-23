@@ -8,13 +8,15 @@ return [
     'description' => 'Laravel Cameroun est le portail de la communauté de développeurs PHP & Laravel au Cameroun, on partage, on apprend, on découvre et on construit une grande communauté.',
     'sponsor' => [
         'title' => 'Sponsor',
-        'description' => 'Montrez votre soutien à Laravel Cameroun aujourd\'hui en sponsorisant',
+        'description' => 'Soutenez Laravel Cameroun aujourd\'hui en sponsorisant',
         'description_small' => 'Soutenez Laravel Cameroun',
     ],
     'join_community' => 'Rejoindre la communauté',
     'visit_forum' => 'Visiter le Forum',
     'work_associations' => 'Nous travaillons avec d’autres communautés et startups',
     'view_logo_question' => 'Votre logo ici ?',
+    'intro_forum' => 'Partager vos bugs et trouver des solutions au travers de questions et échanges',
+    'intro_forum_links' => 'Découvrez tous les sujets de discussions et les questions.',
     'popular_posts' => [
         'title' => 'Articles Populaires',
         'description' => 'Découvrez les articles les plus appréciés et partagés par les membres de la communauté',
@@ -33,7 +35,8 @@ return [
         'show_all' => 'Voir toutes les discussions',
     ],
     'about' => [
-        'heading' => "Nous construisons une communauté Open Source d'apprenants et d'enseignants",
+        'intro' => 'Ce que vous devez savoir de Laravel Cameroun',
+        'heading' => "Nous construisons une communauté de développeurs d'apprenants et d'enseignants",
         'everybody_learn' => 'Tout le monde enseigne, tout le monde apprend',
         'community_spirit' => "Tel est l'esprit qui est derrière la communauté. Une communauté qui se veut grandissante et qui donne la possibilité à tout le monde de partager ses connaissances et d'apprendre.",
         'join_members' => 'qui ont rejoint les différents groupes de la communauté',

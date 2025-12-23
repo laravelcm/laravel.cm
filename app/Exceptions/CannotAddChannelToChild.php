@@ -11,6 +11,6 @@ final class CannotAddChannelToChild extends Exception
 {
     public static function childChannelCannotBeParent(Channel $channel): self
     {
-        return new self("Le channel [{$channel->name} ne peut pas être un channel parent.]");
+        return new self(sprintf('Le channel [%s ne peut pas être un channel parent.]', $channel->name));
     }
 }

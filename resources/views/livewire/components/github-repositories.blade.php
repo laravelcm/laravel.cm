@@ -10,23 +10,27 @@ $repositories = computed(fn () => app()->call(GetGithubRepositoriesAction::class
 
 ?>
 
-<x-container class="relative py-12 space-y-12 lg:py-20 lg:space-y-16">
-    <div>
-        <div class="shrink-0 flex items-center gap-2">
-            <span
-                class="inline-flex items-center justify-center rounded-full p-2 ring-1 ring-black/5 dark:ring-white/10"
-            >
-                <x-icon.tags.open-source class="size-6" aria-hidden="true" />
-            </span>
-            <h2 class="font-heading font-bold text-zinc-900 text-2xl dark:text-white lg:text-3xl">Open source</h2>
+<div class="section-gradient">
+    <div class="line-b">
+        <x-container class="px-6 py-2 border-x border-line">
+            <div class="inline-flex items-center gap-4">
+                <x-icon.tags.open-source class="size-4" aria-hidden="true" />
+                <p class="text-gray-700 text-xs font-mono uppercase dark:text-gray-300">
+                    {{ __('Open source') }}
+                </p>
+            </div>
+        </x-container>
+    </div>
+    <x-container class="relative px-0">
+        <div class="py-12 px-6">
+            <p class="font-heading text-xl font-bold max-w-2xl text-gray-900 dark:text-white lg:text-3xl">
+                {{ __('global.community_oss_description') }}
+            </p>
         </div>
-        <p class="mt-4 max-w-2xl text-gray-500 dark:text-gray-400">
-            {{ __('global.community_oss_description') }}
-        </p>
-    </div>
-    <div class="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
-        @foreach($this->repositories->sortByDesc('stargazers_count') as $repository)
-            <x-repository :repository="$repository" />
-        @endforeach
-    </div>
-</x-container>
+        <div class="grid line-t border-x border-line divide-x divide-y divide-dotted divide-gray-300 dark:divide-white/20 sm:grid-cols-2 lg:grid-cols-3">
+            @foreach ($this->repositories->sortByDesc('stargazers_count') as $repository)
+                <x-repository :$repository />
+            @endforeach
+        </div>
+    </x-container>
+</div>

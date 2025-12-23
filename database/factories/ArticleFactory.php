@@ -8,6 +8,9 @@ use App\Models\Article;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Article>
+ */
 final class ArticleFactory extends Factory
 {
     protected $model = Article::class;
@@ -16,10 +19,10 @@ final class ArticleFactory extends Factory
     {
         return [
             'user_id' => $attributes['user_id'] ?? User::factory(),
-            'title' => $this->faker->sentence(),
-            'body' => $this->faker->paragraphs(3, true),
-            'slug' => $this->faker->unique()->slug(),
-            'locale' => $this->faker->randomElement(['en', 'fr']),
+            'title' => fake()->sentence(),
+            'body' => fake()->paragraphs(3, true),
+            'slug' => fake()->unique()->slug(),
+            'locale' => fake()->randomElement(['en', 'fr']),
         ];
     }
 

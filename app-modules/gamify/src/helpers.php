@@ -27,8 +27,8 @@ if (! function_exists('undoPoint')) {
     /**
      * Undo a given point
      *
-     * @throws \Laravelcm\Gamify\Exceptions\InvalidPayeeModelException
-     * @throws \Laravelcm\Gamify\Exceptions\PointSubjectNotSetException
+     * @throws Laravelcm\Gamify\Exceptions\InvalidPayeeModelException
+     * @throws Laravelcm\Gamify\Exceptions\PointSubjectNotSetException
      */
     function undoPoint(PointType $pointType, ?User $payee = null): void
     {

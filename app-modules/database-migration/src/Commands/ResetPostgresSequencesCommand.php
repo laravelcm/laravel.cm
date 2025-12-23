@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Laravelcm\DatabaseMigration\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -49,14 +50,14 @@ final class ResetPostgresSequencesCommand extends Command
                 $nextVal = $maxId + 1;
 
                 if ($isDryRun) {
-                    $this->line("Would reset {$sequenceName} to {$nextVal} (max {$columnName}: {$maxId})");
+                    $this->line(sprintf('Would reset %s to %s (max %s: %s)', $sequenceName, $nextVal, $columnName, $maxId));
                 } else {
                     DB::statement('SELECT setval(?, GREATEST(?, 1))', [$sequenceName, $nextVal]);
                 }
 
                 $resetCount++;
-            } catch (\Exception $e) {
-                $this->line("⚠️  Skipped {$sequenceInfo->table_name}: {$e->getMessage()}");
+            } catch (Exception $e) {
+                $this->line(sprintf('⚠️  Skipped %s: %s', $sequenceInfo->table_name, $e->getMessage()));
                 $skipCount++;
             }
 
@@ -67,9 +68,9 @@ final class ResetPostgresSequencesCommand extends Command
         $this->newLine(2);
 
         if ($isDryRun) {
-            $this->info("✅ Dry run completed - {$resetCount} sequences would be reset, {$skipCount} skipped");
+            $this->info(sprintf('✅ Dry run completed - %d sequences would be reset, %d skipped', $resetCount, $skipCount));
         } else {
-            $this->info("✅ Sequences reset completed - {$resetCount} reset, {$skipCount} skipped");
+            $this->info(sprintf('✅ Sequences reset completed - %d reset, %d skipped', $resetCount, $skipCount));
         }
 
         return Command::SUCCESS;
@@ -96,8 +97,8 @@ final class ResetPostgresSequencesCommand extends Command
             ");
 
             return collect($result);
-        } catch (\Exception $e) {
-            $this->warn("Error querying sequences: {$e->getMessage()}");
+        } catch (Exception $exception) {
+            $this->warn('Error querying sequences: '.$exception->getMessage());
 
             return collect();
         }

@@ -92,7 +92,7 @@
                                 loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703778123/IMG_1637_yjaqrk.jpg"
                                 alt=""
-                                class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                                class="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                             />
                             <div
                                 class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"
@@ -103,7 +103,7 @@
                                 loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703778121/IMG_1505_j06cwz.jpg"
                                 alt=""
-                                class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-[1/2]"
+                                class="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-1/2"
                             />
                             <div
                                 class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"
@@ -114,7 +114,7 @@
                                 loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703778122/IMG_1609_otohw5.jpg"
                                 alt=""
-                                class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-[2/5]"
+                                class="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-2/5"
                             />
                             <div
                                 class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"
@@ -125,7 +125,7 @@
                                 loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703778121/IMG_1605_zdgdpv.jpg"
                                 alt=""
-                                class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-[4/5]"
+                                class="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-4/5"
                             />
                             <div
                                 class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"
@@ -136,7 +136,7 @@
                                 loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703778122/IMG_1567_hfy747.jpg"
                                 alt=""
-                                class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
+                                class="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                             />
                             <div
                                 class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"
@@ -147,7 +147,7 @@
                                 loading="lazy"
                                 src="https://res.cloudinary.com/dlzdb3m6n/image/upload/v1703782759/phnnfnzxt8khtrth4qem.jpg"
                                 alt=""
-                                class="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-[3/7]"
+                                class="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg lg:aspect-3/7"
                             />
                             <div
                                 class="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10"

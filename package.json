@@ -4,30 +4,28 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prettier": "npx prettier --write ./resources"
+    "lint": "prettier --write resources/",
+    "test:lint": "prettier --check resources/"
   },
   "devDependencies": {
-    "@alpinejs/collapse": "^3.14.3",
-    "@alpinejs/intersect": "^3.6.1",
-    "@awcodes/alpine-floating-ui": "^3.5.0",
     "@ryangjchandler/alpine-tooltip": "^2.0.1",
-    "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/typography": "^0.5.18",
-    "@tailwindcss/vite": "^4.1.13",
-    "@tailwindcss/postcss": "^4.1.13",
-    "@tailwindplus/elements": "^1.0.13",
-    "alpinejs": "^3.12.0",
-    "autoprefixer": "^10.4.16",
-    "highlight.js": "^11.7.0",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindplus/elements": "^1.0.21",
+    "autoprefixer": "^10.4.23",
+    "concurrently": "^9.2.1",
+    "dotenv": "^17.2.3",
+    "highlight.js": "^11.11.1",
     "laravel-vite-plugin": "^2.0.1",
-    "lodash": "^4.17.19",
-    "postcss": "^8.4.32",
-    "postcss-loader": "^8.1.1",
-    "postcss-preset-env": "^10.1.0",
-    "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.6.8",
-    "tailwindcss": "^4.1.13",
+    "lodash": "^4.17.21",
+    "npm-check-updates": "^19.2.0",
+    "prettier": "^3.7.4",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss": "^4.1.18",
     "tippy.js": "^6.3.7",
-    "vite": "^7.1.7"
+    "vite": "^7.3.0"
   }
 }

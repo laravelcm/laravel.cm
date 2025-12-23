@@ -1,4 +1,4 @@
-<footer class="bg-gray-900 border-t border-dotted border-gray-200 dark:border-white/10" aria-labelledby="footerHeading">
+<footer class="bg-[#151715] border-t border-dotted border-gray-700 dark:border-white/20" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">{{ __('global.footer.title') }}</h2>
     <x-container class="relative z-10">
         <div class="py-12 sm:py-16 lg:grid lg:grid-cols-3 lg:gap-8 lg:py-20 xl:pt-24">
@@ -23,11 +23,11 @@
                         {{ __('global.footer.resources') }}
                     </h3>
                     <ul class="mt-6 space-y-3">
-                        <x-footer-link :title="__('global.navigation.about')" :url="route('about')" />
-                        <x-footer-link :title="__('global.navigation.sponsors')" :url="route('sponsors')" />
+                        <x-footer-link :title="__('global.navigation.about')" :href="route('about')" />
+                        <x-footer-link :title="__('global.navigation.sponsors')" :href="route('sponsors')" />
                         <x-footer-link
                             :title="__('global.navigation.branding')"
-                            url="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md"
+                            href="https://github.com/caneco/laravel-country-logomarks/blob/main/src/cm/README.md"
                         />
                     </ul>
                 </div>
@@ -36,9 +36,9 @@
                         {{ __('global.footer.legal') }}
                     </h3>
                     <ul class="mt-6 space-y-3">
-                        <x-footer-link :title="__('global.navigation.terms')" :url="route('terms')" />
-                        <x-footer-link :title="__('global.navigation.privacy')" :url="route('privacy')" />
-                        <x-footer-link :title="__('global.navigation.rules')" :url="route('rules')" />
+                        <x-footer-link :title="__('global.navigation.terms')" :href="route('terms')" />
+                        <x-footer-link :title="__('global.navigation.privacy')" :href="route('privacy')" />
+                        <x-footer-link :title="__('global.navigation.rules')" :href="route('rules')" />
                     </ul>
                 </div>
             </div>

@@ -20,8 +20,8 @@ final class ArticleSubmitted extends Notification implements ShouldQueue
     public function via(mixed $notifiable): array
     {
         if (
-            ! blank(config('services.telegram-bot-api.token')) &&
-            ! blank(config('services.telegram-bot-api.channel'))
+            filled(config('services.telegram-bot-api.token')) &&
+            filled(config('services.telegram-bot-api.channel'))
         ) {
             return [TelegramChannel::class];
         }
@@ -36,7 +36,7 @@ final class ArticleSubmitted extends Notification implements ShouldQueue
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channel'))
             ->content($this->content())
-            ->button('Voir l\'article', $url);
+            ->button("Voir l'article", $url);
     }
 
     private function content(): string

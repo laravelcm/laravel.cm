@@ -29,9 +29,9 @@ trait HasSocialite
     protected function getAuthorizationFirst(string $provider): RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
     {
         $socialite = Socialite::driver($provider);
-        $scopes = config("services.{$provider}.scopes", false);
-        $with = config("services.{$provider}.with", false);
-        $fields = config("services.{$provider}.fields", false);
+        $scopes = config(sprintf('services.%s.scopes', $provider), false);
+        $with = config(sprintf('services.%s.with', $provider), false);
+        $fields = config(sprintf('services.%s.fields', $provider), false);
 
         if ($scopes) {
             $socialite->scopes($scopes); // @phpstan-ignore-line

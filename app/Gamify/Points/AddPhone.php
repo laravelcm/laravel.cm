@@ -8,9 +8,11 @@ use Laravelcm\Gamify\PointType;
 
 final class AddPhone extends PointType
 {
-    public int $points = 10;
+    /** @var int */
+    public $points = 10;
 
-    protected string $payee = 'user';
+    /** @var string */
+    public $payee = 'user';
 
     public function __construct(mixed $subject)
     {

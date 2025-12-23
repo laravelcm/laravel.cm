@@ -73,13 +73,13 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
             ->modalHeading(__('pages/discussion.convert_to_thread'))
             ->modalDescription(__('pages/discussion.text_confirmation'))
             ->action(function (): void {
-                $thread = app(ConvertDiscussionToThreadAction::class)->execute($this->discussion);
+                $thread = resolve(ConvertDiscussionToThreadAction::class)->execute($this->discussion);
 
                 $this->redirectRoute('forum.show', $thread, navigate: true);
             });
     }
 
-    public function deleteAction(): Action
+    public function deleteAction(): DeleteAction
     {
         return DeleteAction::make()
             ->record($this->discussion)
@@ -88,7 +88,7 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
             ->requiresConfirmation()
             ->successNotificationTitle(__('notifications.discussion.deleted'))
             ->action(function (): void {
-                app(DeleteDiscussionAction::class)->execute($this->discussion);
+                resolve(DeleteDiscussionAction::class)->execute($this->discussion);
 
                 $this->redirectRoute('discussions.index',  navigate: true);
             });

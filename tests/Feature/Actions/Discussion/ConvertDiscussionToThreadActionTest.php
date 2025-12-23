@@ -3,14 +3,13 @@
 declare(strict_types=1);
 
 use App\Actions\Discussion\ConvertDiscussionToThreadAction;
+use App\Enums\UserRole;
 use App\Models\Discussion;
 use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Support\Facades\Notification;
-use Spatie\Permission\Models\Role;
 
 beforeEach(function (): void {
-    Role::create(['name' => 'admin']);
     Notification::fake();
 
     $this->user = $this->login();
@@ -24,7 +23,7 @@ describe(ConvertDiscussionToThreadAction::class, function (): void {
             'replyable_id' => $this->discussion->id,
         ]);
 
-        $thread = app(ConvertDiscussionToThreadAction::class)->execute(discussion: $this->discussion);
+        $thread = resolve(ConvertDiscussionToThreadAction::class)->execute(discussion: $this->discussion);
 
         expect($thread)->toBeInstanceOf(Thread::class)
             ->and(Discussion::query()->find($this->discussion->id))
@@ -43,14 +42,14 @@ describe(ConvertDiscussionToThreadAction::class, function (): void {
     });
 
     it('allows admin users to convert any discussion to a forum topic', function (): void {
-        $this->user->assignRole('admin');
+        $this->user->assignRole(UserRole::Admin->value);
 
         Reply::factory()->count(3)->create([
             'replyable_type' => 'discussion',
             'replyable_id' => $this->discussion->id,
         ]);
 
-        $thread = app(ConvertDiscussionToThreadAction::class)->execute(discussion: $this->discussion);
+        $thread = resolve(ConvertDiscussionToThreadAction::class)->execute(discussion: $this->discussion);
 
         expect($thread)->toBeInstanceOf(Thread::class);
 

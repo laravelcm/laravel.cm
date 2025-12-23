@@ -18,13 +18,14 @@ use App\Traits\HasSpamReports;
 use App\Traits\HasSubscribers;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Database\Factories\ThreadFactory;
 use Exception;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -40,22 +41,22 @@ use Spatie\Feed\FeedItem;
 
 /**
  * @property-read int $id
- * @property string $title
- * @property string $slug
- * @property string $body
- * @property int $user_id
- * @property int $solution_reply_id
- * @property bool $locked
- * @property string | null $locale
- * @property Carbon | null $last_posted_at
- * @property Carbon $created_at
- * @property Carbon $updated_at
- * @property int | null $resolved_by
- * @property User | null $resolvedBy
- * @property User $user
- * @property Reply | null $solutionReply
- * @property \Illuminate\Database\Eloquent\Collection | Channel[] $channels
- * @property \Illuminate\Database\Eloquent\Collection | Reply[] $replies
+ * @property-read string $title
+ * @property-read string $slug
+ * @property-read string $body
+ * @property-read int $user_id
+ * @property-read int $solution_reply_id
+ * @property-read bool $locked
+ * @property-read ?string $locale
+ * @property-read ?CarbonInterface $last_posted_at
+ * @property-read CarbonInterface $created_at
+ * @property-read CarbonInterface $updated_at
+ * @property-read ?int $resolved_by
+ * @property-read User $user
+ * @property-read ?User $resolvedBy
+ * @property-read ?Reply $solutionReply
+ * @property-read Collection<int, Channel> $channels
+ * @property-read Collection<int, Reply> $replies
  */
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SpamReportableContract, SubscribeInterface, Viewable
 {
@@ -80,12 +81,28 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     protected bool $removeViewsOnDelete = true;
 
-    protected function casts(): array
+    /**
+     * This will calculate the average resolution time in days of all threads marked as resolved.
+     */
+    public static function resolutionTime(): bool|int
     {
-        return [
-            'locked' => 'boolean',
-            'last_posted_at' => 'datetime',
-        ];
+        try {
+            // @phpstan-ignore-next-line
+            return self::query()
+                ->join('replies', 'threads.solution_reply_id', '=', 'replies.id')
+                ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
+                ->first()
+                ->duration;
+        } catch (Exception $exception) {
+            return false;
+        }
+    }
+
+    public static function getFeedItems(): SupportCollection
+    {
+        return self::with(['reactions'])->feedQuery()
+            ->paginate(self::FEED_PAGE_SIZE)
+            ->getCollection();
     }
 
     public function getRouteKeyName(): string
@@ -168,7 +185,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     public function toFeedItem(): FeedItem
     {
-        $updatedAt = Carbon::parse($this->latest_creation); // @phpstan-ignore-line
+        $updatedAt = \Illuminate\Support\Facades\Date::parse($this->latest_creation); // @phpstan-ignore-line
 
         return FeedItem::create()
             ->id((string) $this->id)
@@ -177,30 +194,6 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
             ->updated($updatedAt)
             ->link(route('forum.show', $this->slug))
             ->authorName($this->user->name);
-    }
-
-    /**
-     * This will calculate the average resolution time in days of all threads marked as resolved.
-     */
-    public static function resolutionTime(): bool|int
-    {
-        try {
-            // @phpstan-ignore-next-line
-            return self::query()
-                ->join('replies', 'threads.solution_reply_id', '=', 'replies.id')
-                ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
-                ->first()
-                ->duration;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
-    public static function getFeedItems(): SupportCollection
-    {
-        return self::with(['reactions'])->feedQuery()
-            ->paginate(self::FEED_PAGE_SIZE)
-            ->getCollection();
     }
 
     /**
@@ -219,6 +212,38 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
         $this->channels()->detach();
 
         $this->unsetRelation('channels');
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function resolvedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'resolved_by');
+    }
+
+    /**
+     * @return BelongsToMany<Channel, $this, Pivot>
+     */
+    public function channels(): BelongsToMany
+    {
+        return $this->belongsToMany(Channel::class);
+    }
+
+    /**
+     * @return BelongsTo<Reply, $this>
+     */
+    public function solutionReply(): BelongsTo
+    {
+        return $this->belongsTo(Reply::class, 'solution_reply_id');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'locked' => 'boolean',
+            'last_posted_at' => 'datetime',
+        ];
     }
 
     /**
@@ -314,29 +339,5 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
                 ELSE threads.created_at
                 END AS latest_creation
             '));
-    }
-
-    /**
-     * @return BelongsTo<User, $this>
-     */
-    public function resolvedBy(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'resolved_by');
-    }
-
-    /**
-     * @return BelongsToMany<Channel, $this, Pivot>
-     */
-    public function channels(): BelongsToMany
-    {
-        return $this->belongsToMany(Channel::class);
-    }
-
-    /**
-     * @return BelongsTo<Reply, $this>
-     */
-    public function solutionReply(): BelongsTo
-    {
-        return $this->belongsTo(Reply::class, 'solution_reply_id');
     }
 }

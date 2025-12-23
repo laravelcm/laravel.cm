@@ -7,10 +7,15 @@ namespace App\View\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-final class SettingsLayout extends Component
+class BaseLayout extends Component
 {
+    public function __construct(
+        public ?string $title,
+        public ?string $canonical
+    ) {}
+
     public function render(): View
     {
-        return view('layouts.settings'); // @phpstan-ignore-line
+        return view('layouts.base');
     }
 }

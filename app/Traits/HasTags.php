@@ -29,19 +29,19 @@ trait HasTags
         $this->unsetRelation('tags');
     }
 
-    #[Scope]
-    protected function forTag(Builder $query, string $tag): void
-    {
-        $query->whereHas('tags', function ($query) use ($tag): void {
-            $query->where('tags.slug', $tag);
-        });
-    }
-
     /**
      * @return MorphToMany<Tag, $this>
      */
     public function tags(): MorphToMany
     {
         return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    #[Scope]
+    protected function forTag(Builder $query, string $tag): void
+    {
+        $query->whereHas('tags', function ($query) use ($tag): void {
+            $query->where('tags.slug', $tag);
+        });
     }
 }

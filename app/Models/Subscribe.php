@@ -5,19 +5,24 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Traits\HasUuid;
+use Database\Factories\SubscribeFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
- * @property string $uuid
- * @property int $user_id
- * @property int $subscribeable_id
- * @property string $subscribeable_type
- * @property User $user
+ * @property-read string $uuid
+ * @property-read int $user_id
+ * @property-read int $subscribeable_id
+ * @property-read string $subscribeable_type
+ * @property-read User $user
  */
 final class Subscribe extends Model
 {
+    /** @use HasFactory<SubscribeFactory> */
+    use HasFactory;
+
     use HasUuid;
 
     /**

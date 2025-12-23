@@ -6,7 +6,9 @@ namespace App\Console\Commands\Sitemap;
 
 use App\Models\Discussion;
 use Illuminate\Console\Command;
+use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 
 final class GenerateDiscussionsSitemapCommand extends Command
 {
@@ -18,8 +20,8 @@ final class GenerateDiscussionsSitemapCommand extends Command
     {
         $sitemap = Sitemap::create();
 
-        Discussion::query()->whereHas('replies')->each(function ($discussion) use ($sitemap): void {
-            $sitemap->add($discussion); // @phpstan-ignore-line
+        Discussion::query()->whereHas('replies')->each(function (string|Url|Sitemapable|iterable $discussion) use ($sitemap): void {
+            $sitemap->add($discussion);
         });
 
         $sitemap->writeToFile(public_path('sitemaps/discussion_sitemap.xml'));

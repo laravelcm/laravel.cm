@@ -10,7 +10,7 @@ describe(BanUserAction::class, function (): void {
     it('can ban user', function (): void {
         $user = User::factory()->unbanned()->create();
 
-        app(BanUserAction::class)->execute($user, 'Violation des règles de la communauté');
+        resolve(BanUserAction::class)->execute($user, 'Violation des règles de la communauté');
 
         $user->refresh();
 

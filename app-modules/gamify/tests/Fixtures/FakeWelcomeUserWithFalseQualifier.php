@@ -9,7 +9,7 @@ use Laravelcm\Gamify\PointType;
 
 final class FakeWelcomeUserWithFalseQualifier extends PointType
 {
-    protected int $points = 10;
+    public $points = 10;
 
     public function __construct($subject)
     {

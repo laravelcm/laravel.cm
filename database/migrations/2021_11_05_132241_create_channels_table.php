@@ -6,16 +6,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateChannelsTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('channels', function (Blueprint $table): void {
+        Schema::create('channels', static function (Blueprint $table): void {
             $table->id();
+            $table->foreignId('parent_id')
+                ->nullable()
+                ->constrained('channels')
+                ->nullOnDelete();
+
             $table->string('name');
             $table->string('slug')->unique();
-            $table->foreignId('parent_id')->nullable()->constrained('channels')->nullOnDelete();
             $table->string('color')->nullable();
+
             $table->timestamps();
         });
     }
@@ -24,4 +29,4 @@ final class CreateChannelsTable extends Migration
     {
         Schema::dropIfExists('channels');
     }
-}
+};

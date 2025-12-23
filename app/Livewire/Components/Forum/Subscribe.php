@@ -20,7 +20,7 @@ final class Subscribe extends Component
     {
         $this->authorize('subscribe', $this->thread);
 
-        app(SubscribeToThreadAction::class)->execute($this->thread);
+        resolve(SubscribeToThreadAction::class)->execute($this->thread);
 
         Notification::make()
             ->title(__('notifications.thread.subscribe'))

@@ -29,8 +29,8 @@ final class SshTunnelCommand extends Command
 
             return $this->activateTunnel($tunnelService);
 
-        } catch (SshTunnelException $e) {
-            $this->error($e->getMessage());
+        } catch (SshTunnelException $sshTunnelException) {
+            $this->error($sshTunnelException->getMessage());
 
             return Command::FAILURE;
         }

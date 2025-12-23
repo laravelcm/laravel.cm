@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 beforeEach(function (): void {
-    $this->service = app(MediaCacheService::class);
+    $this->service = resolve(MediaCacheService::class);
     $this->user = User::factory()->create();
 
     Cache::flush();
@@ -98,7 +98,7 @@ describe(MediaCacheService::class, function (): void {
 describe('HasCachedMedia', function (): void {
     it('generates correct cache keys', function (): void {
         $key = $this->user->getCacheKey('avatar');
-        expect($key)->toBe("user.{$this->user->id}.media.avatar");
+        expect($key)->toBe(sprintf('user.%s.media.avatar', $this->user->id));
     });
 
     it('provides correct cache TTL', function (): void {

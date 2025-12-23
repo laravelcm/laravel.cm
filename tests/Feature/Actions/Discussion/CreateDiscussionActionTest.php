@@ -24,7 +24,7 @@ describe(CreateDiscussionAction::class, function (): void {
             'tags' => [],
         ]);
 
-        $discussion = app(CreateDiscussionAction::class)->execute($discussionData);
+        $discussion = resolve(CreateDiscussionAction::class)->execute($discussionData);
 
         expect($discussion)
             ->toBeInstanceOf(Discussion::class)
@@ -41,7 +41,7 @@ describe(CreateDiscussionAction::class, function (): void {
             'tags' => [$this->tagOne->id, $this->tagTwo->id],
         ]);
 
-        $discussion = app(CreateDiscussionAction::class)->execute($discussionData);
+        $discussion = resolve(CreateDiscussionAction::class)->execute($discussionData);
 
         expect($discussion)
             ->toBeInstanceOf(Discussion::class)

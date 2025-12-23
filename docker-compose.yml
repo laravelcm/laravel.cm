@@ -1,24 +1,35 @@
 services:
     traefik:
-        image: traefik:v3.5
+        image: traefik:v3.6
+        security_opt:
+            - no-new-privileges:true
         command:
-            - '--api.dashboard=true'
-            - '--api.insecure=true'
-            - '--providers.docker=true'
-            - '--providers.docker.exposedbydefault=false'
-            - '--providers.docker.network=traefik'
-            - '--entrypoints.web.address=:80'
-            - '--entrypoints.websecure.address=:443'
-            - '--entrypoints.devtools.address=:8000'
-            - '--serverstransport.insecureskipverify=true'
+            - --api.dashboard=true
+            - --api.insecure=true
+            - --providers.docker=true
+            - --providers.docker.exposedbydefault=false
+            - --providers.docker.network=traefik
+            - --providers.file.directory=/etc/traefik/config
+            - --providers.file.watch=true
+            - --entrypoints.web.address=:80
+            - --entrypoints.websecure.address=:443
+            - --entrypoints.devtools.address=:8000
+            - --entrypoints.vite.address=:5173
+            - --entrypoints.minio.address=:9000
+            - --entrypoints.minio-console.address=:9001
+            - -serverstransport.insecureskipverify=true
         ports:
-            - '80:80'
-            - '443:443'
-            - '8080:8080'
-            - '8000:8000'
+            - "80:80"
+            - "443:443"
+            - "5173:5173"
+            - "9000:9000"
+            - "9001:9001"
+            - "8000:8000"
+            - "8080:8080"
         volumes:
-            - '/var/run/docker.sock:/var/run/docker.sock:ro'
-            - 'traefik-letsencrypt:/letsencrypt'
+            - "/var/run/docker.sock:/var/run/docker.sock:ro"
+            - "traefik-letsencrypt:/letsencrypt"
+            - "./.docker/traefik:/etc/traefik/config"
         networks:
             - traefik
             - sail
@@ -26,207 +37,235 @@ services:
             - traefik.enable=true
             - traefik.http.routers.traefik.rule=Host(`traefik.local`)
             - traefik.http.services.traefik.loadbalancer.server.port=8080
+
     laravelcm:
         build:
             context: .
             dockerfile: Dockerfile
             target: development
             args:
-                WWWUSER: '${WWWUSER}'
-                WWWGROUP: '${WWWGROUP}'
-                NODE_VERSION: '22'
+                WWWUSER: "${WWWUSER}"
+                WWWGROUP: "${WWWGROUP}"
+                NODE_VERSION: 22
                 PHP_VERSION: 8.4
         image: laravelcm/php
         extra_hosts:
-            - 'host.docker.internal:host-gateway'
-        ports:
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+            - "host.docker.internal:host-gateway"
         environment:
             LARAVEL_SAIL: 1
-            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
-            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
-            IGNITION_LOCAL_SITES_PATH: '${PWD}'
-            SUPERVISOR_PHP_COMMAND: "/usr/bin/php -d variables_order=EGPCS /var/www/html/artisan octane:start --server=frankenphp --host=0.0.0.0 --admin-port=2019 --port='${APP_PORT:-80}'"
-            XDG_CONFIG_HOME: /var/www/html/config
-            XDG_DATA_HOME: /var/www/html/data
-            SSH_TUNNEL_USER: '${SSH_TUNNEL_USER:-}'
-            SSH_TUNNEL_HOSTNAME: '${SSH_TUNNEL_HOSTNAME:-}'
-            SSH_TUNNEL_PORT: '${SSH_TUNNEL_PORT:-22}'
-            SSH_TUNNEL_PRIVATE_KEY: '${SSH_TUNNEL_PRIVATE_KEY:-}'
-            SSH_TUNNEL_LOCAL_PORT: '${SSH_TUNNEL_LOCAL_PORT:-3307}'
-            SSH_TUNNEL_BIND_ADDRESS: '${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}'
-            SSH_TUNNEL_BIND_PORT: '${SSH_TUNNEL_BIND_PORT:-3306}'
-            SSH_TUNNEL_VERIFY_PROCESS: '${SSH_TUNNEL_VERIFY_PROCESS:-bash}'
-            DB_CONNECTION_SECOND: '${DB_CONNECTION_SECOND:-mysql}'
-            DB_HOST_SECOND: '${DB_HOST_SECOND:-127.0.0.1}'
-            DB_PORT_SECOND: '${DB_PORT_SECOND:-3307}'
-            DB_DATABASE_SECOND: '${DB_DATABASE_SECOND:-}'
-            DB_USERNAME_SECOND: '${DB_USERNAME_SECOND:-}'
-            DB_PASSWORD_SECOND: '${DB_PASSWORD_SECOND:-}'
+            AUTORUN_ENABLED: true
+            OCTANE_SERVER: "${OCTANE_SERVER:-off}"
+            XDEBUG_MODE: "${SAIL_XDEBUG_MODE:-coverage,debug}"
+            XDEBUG_CONFIG: "${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}"
+            IGNITION_LOCAL_SITES_PATH: "${PWD}"
+            FRANKENPHP_WORKER_CONFIG: |
+                watch app
+                watch bootstrap
+                watch {config,database,public,resources,app-modules}/**/*.php
+                watch routes
+                watch composer.lock
+                watch .env
+            SSH_TUNNEL_USER: "${SSH_TUNNEL_USER:-}"
+            SSH_TUNNEL_HOSTNAME: "${SSH_TUNNEL_HOSTNAME:-}"
+            SSH_TUNNEL_PORT: "${SSH_TUNNEL_PORT:-22}"
+            SSH_TUNNEL_PRIVATE_KEY: "${SSH_TUNNEL_PRIVATE_KEY:-}"
+            SSH_TUNNEL_LOCAL_PORT: "${SSH_TUNNEL_LOCAL_PORT:-3307}"
+            SSH_TUNNEL_BIND_ADDRESS: "${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}"
+            SSH_TUNNEL_BIND_PORT: "${SSH_TUNNEL_BIND_PORT:-3306}"
+            SSH_TUNNEL_VERIFY_PROCESS: "${SSH_TUNNEL_VERIFY_PROCESS:-bash}"
+            DB_CONNECTION_SECOND: "${DB_CONNECTION_SECOND:-mysql}"
+            DB_HOST_SECOND: "${DB_HOST_SECOND:-127.0.0.1}"
+            DB_PORT_SECOND: "${DB_PORT_SECOND:-3307}"
+            DB_DATABASE_SECOND: "${DB_DATABASE_SECOND:-}"
+            DB_USERNAME_SECOND: "${DB_USERNAME_SECOND:-}"
+            DB_PASSWORD_SECOND: "${DB_PASSWORD_SECOND:-}"
         healthcheck:
-            test: ['CMD', 'curl', '-f', 'http://localhost:${APP_PORT:-8080}/up']
+            test: ["CMD", "curl", "-f", "http://localhost:${APP_PORT:-8080}/up"]
             timeout: 30s
         volumes:
-            - '.:/var/www/html'
+            - ".:/var/www/html"
         networks:
             - sail
             - traefik
         depends_on:
-            - pgsql
-            - redis
-            - typesense
-            - minio
-            - mailpit
-            - soketi
-            - traefik
+            traefik:
+                condition: service_started
+            pgsql:
+                condition: service_started
+            redis:
+                condition: service_started
+            typesense:
+                condition: service_started
+            minio:
+                condition: service_started
+            memcached:
+                condition: service_started
+            # soketi
         labels:
             - traefik.enable=true
             - traefik.http.routers.laravelcm.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)
             - traefik.http.routers.laravelcm.entrypoints=websecure
             - traefik.http.routers.laravelcm.tls=true
+            - traefik.http.routers.laravelcm.service=laravelcm
             - traefik.http.services.laravelcm.loadbalancer.server.port=${APP_PORT:-8080}
             - traefik.http.routers.laravelcm-insecure.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)
             - traefik.http.routers.laravelcm-insecure.entrypoints=web
+            - traefik.http.routers.laravelcm-insecure.service=laravelcm
             - traefik.http.routers.laravelcm-insecure.middlewares=redirect-to-https
             - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+            - traefik.http.routers.laravelcm-vite.rule=Host(`${APP_DOMAIN}`)
+            - traefik.http.routers.laravelcm-vite.entrypoints=vite
+            - traefik.http.routers.laravelcm-vite.service=laravelcm-vite
+            - traefik.http.routers.laravelcm-vite.tls=true
+            - traefik.http.routers.laravelcm-vite.middlewares=vite-cors@file
+            - traefik.http.services.laravelcm-vite.loadbalancer.server.port=5173
+
+    pgsql:
+        image: "postgres:17-alpine"
+        ports:
+            - "${FORWARD_DB_PORT:-5432}:5432"
+        environment:
+            PGPASSWORD: "${DB_PASSWORD:-password}"
+            POSTGRES_DB: "${DB_DATABASE}"
+            POSTGRES_USER: "${DB_USERNAME}"
+            POSTGRES_PASSWORD: "${DB_PASSWORD:-password}"
+        volumes:
+            - "sail-pgsql:/var/lib/postgresql/data"
+            - "./vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql"
+        networks:
+            - sail
+        healthcheck:
+            test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
+            retries: 3
+            timeout: 5s
+
     schedule:
         image: laravelcm/php
-        command: ['artisan', 'schedule:run']
+        command: ["artisan", "schedule:work"]
         stop_signal: SIGTERM
         healthcheck:
-            test: ['CMD', 'healthcheck-schedule']
+            test: ["CMD", "healthcheck-schedule"]
             start_period: 10s
         volumes:
-            - '.:/var/www/html'
+            - ".:/var/www/html"
         networks:
             - sail
         depends_on:
             - laravelcm
             - pgsql
             - redis
+
     queue:
         image: laravelcm/php
-        command:
-            - 'artisan'
-            - 'queue:listen'
-            - 'database'
-            - '--sleep=10'
-            - '--quiet'
-            - '--force'
-            - '--queue=default,media'
+        command: ["artisan", "queue:listen", "--tries=3", "--verbose"]
         stop_signal: SIGTERM
         healthcheck:
-            test: ['CMD', 'healthcheck-queue']
+            test: ["CMD", "healthcheck-queue"]
             start_period: 10s
         volumes:
-            - '.:/var/www/html'
+            - ".:/var/www/html"
         networks:
             - sail
         depends_on:
             - laravelcm
             - pgsql
             - redis
-    pgsql:
-        image: 'postgres:17-alpine'
-        ports:
-            - '${FORWARD_DB_PORT:-5432}:5432'
-        environment:
-            PGPASSWORD: '${DB_PASSWORD:-secret}'
-            POSTGRES_DB: '${DB_DATABASE}'
-            POSTGRES_USER: '${DB_USERNAME}'
-            POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
-        volumes:
-            - 'sail-pgsql:/var/lib/postgresql/data'
-            - './vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
-        networks:
-            - sail
-        healthcheck:
-            test:
-                - CMD
-                - pg_isready
-                - '-q'
-                - '-d'
-                - '${DB_DATABASE}'
-                - '-U'
-                - '${DB_USERNAME}'
-            retries: 3
-            timeout: 5s
+
     redis:
-        image: 'redis:alpine'
+        image: "redis:alpine"
         ports:
-            - '${FORWARD_REDIS_PORT:-6379}:6379'
+            - "${FORWARD_REDIS_PORT:-6379}:6379"
         volumes:
-            - 'sail-redis:/data'
+            - "sail-redis:/data"
         networks:
             - sail
         healthcheck:
-            test:
-                - CMD
-                - redis-cli
-                - ping
+            test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
+
     typesense:
-        image: 'typesense/typesense:27.1'
+        image: "typesense/typesense:27.1"
         ports:
-            - '${FORWARD_TYPESENSE_PORT:-8108}:8108'
+            - "${FORWARD_TYPESENSE_PORT:-8108}:8108"
         environment:
-            TYPESENSE_DATA_DIR: '${TYPESENSE_DATA_DIR:-/typesense-data}'
-            TYPESENSE_API_KEY: '${TYPESENSE_API_KEY:-xyz}'
-            TYPESENSE_ENABLE_CORS: '${TYPESENSE_ENABLE_CORS:-true}'
+            TYPESENSE_DATA_DIR: "${TYPESENSE_DATA_DIR:-/typesense-data}"
+            TYPESENSE_API_KEY: "${TYPESENSE_API_KEY:-xyz}"
+            TYPESENSE_ENABLE_CORS: "${TYPESENSE_ENABLE_CORS:-true}"
         volumes:
-            - 'sail-typesense:/typesense-data'
+            - "sail-typesense:/typesense-data"
         networks:
             - sail
         healthcheck:
             test:
-                - CMD
-                - bash
-                - '-c'
-                - 'exec 3<>/dev/tcp/localhost/8108 && printf ''GET /health HTTP/1.1\r\nConnection: close\r\n\r\n'' >&3 && head -n1 <&3 | grep ''200'' && exec 3>&-'
+                [
+                    "CMD",
+                    "bash",
+                    "-c",
+                    'exec 3<>/dev/tcp/localhost/8108 && printf ''GET /health HTTP/1.1\r\nConnection: close\r\n\r\n'' >&3 && head -n1 <&3 | grep ''200'' && exec 3>&-',
+                ]
             retries: 5
             timeout: 7s
+
     minio:
-        image: 'minio/minio:latest'
-        ports:
-            - '${FORWARD_MINIO_PORT:-9000}:9000'
-            - '${FORWARD_MINIO_CONSOLE_PORT:-8900}:8900'
+        image: "minio/minio:latest"
         environment:
             MINIO_ROOT_USER: sail
             MINIO_ROOT_PASSWORD: password
         volumes:
-            - 'sail-minio:/data'
+            - "sail-minio:/data"
         networks:
             - sail
-        command: 'minio server /data --console-address ":8900"'
+        command: 'minio server /data --console-address ":9001"'
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.minio.rule=Host(`${APP_DOMAIN}`)
+            - traefik.http.routers.minio.entrypoints=minio
+            - traefik.http.routers.minio.service=minio
+            - traefik.http.services.minio.loadbalancer.server.port=9000
+            - traefik.http.routers.minio-console.rule=Host(`${APP_DOMAIN}`)
+            - traefik.http.routers.minio-console.entrypoints=minio-console
+            - traefik.http.routers.minio-console.service=minio-console
+            - traefik.http.services.minio-console.loadbalancer.server.port=9001
         healthcheck:
-            test:
-                - CMD
-                - mc
-                - ready
-                - local
+            test: ["CMD", "mc", "ready", "local"]
             retries: 3
             timeout: 5s
-    mailpit:
-        image: 'axllent/mailpit:latest'
-        ports:
-            - '${FORWARD_MAILPIT_PORT:-1025}:1025'
-            - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
+
+    minio-create-buckets:
+        image: minio/mc
+        depends_on:
+            minio:
+                condition: service_healthy
         networks:
             - sail
+        entrypoint: >
+            sh -c "
+            sleep 5;
+            mc alias set local http://minio:9000 ${AWS_ACCESS_KEY_ID:-sail} ${AWS_SECRET_ACCESS_KEY:-password};
+            mc mb local/${AWS_BUCKET:-sail} || true;
+            mc anonymous set download local/${AWS_BUCKET:-sail} || true;
+            "
+
+    memcached:
+        image: "memcached:alpine"
+        networks:
+            - sail
+
     soketi:
-        image: 'quay.io/soketi/soketi:latest-16-alpine'
+        image: "quay.io/soketi/soketi:latest-16-alpine"
         environment:
-            SOKETI_DEBUG: '${SOKETI_DEBUG:-1}'
-            SOKETI_METRICS_SERVER_PORT: '9601'
-            SOKETI_DEFAULT_APP_ID: '${PUSHER_APP_ID}'
-            SOKETI_DEFAULT_APP_KEY: '${PUSHER_APP_KEY}'
-            SOKETI_DEFAULT_APP_SECRET: '${PUSHER_APP_SECRET}'
+            SOKETI_DEBUG: "${SOKETI_DEBUG:-1}"
+            SOKETI_METRICS_SERVER_PORT: "9601"
+            SOKETI_DEFAULT_APP_ID: "${PUSHER_APP_ID}"
+            SOKETI_DEFAULT_APP_KEY: "${PUSHER_APP_KEY}"
+            SOKETI_DEFAULT_APP_SECRET: "${PUSHER_APP_SECRET}"
         ports:
-            - '${PUSHER_PORT:-6001}:6001'
-            - '${PUSHER_METRICS_PORT:-9601}:9601'
+            - "${PUSHER_PORT:-6001}:6001"
+            - "${PUSHER_METRICS_PORT:-9601}:9601"
         networks:
             - sail
+
     buggregator:
         image: ghcr.io/buggregator/server:latest
         labels:
@@ -239,6 +278,7 @@ services:
         networks:
             - sail
             - traefik
+
 networks:
     sail:
         driver: bridge

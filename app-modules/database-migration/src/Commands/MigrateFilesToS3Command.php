@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Laravelcm\DatabaseMigration\Commands;
 
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use SplFileInfo;
 use Symfony\Component\Finder\Finder;
 
 final class MigrateFilesToS3Command extends Command
@@ -48,7 +50,7 @@ final class MigrateFilesToS3Command extends Command
             $sourceDirs = $this->getSourceDirectories();
 
             foreach ($sourceDirs as $sourceDir) {
-                $this->info("📁 Processing directory: {$sourceDir['path']}");
+                $this->info('📁 Processing directory: '.$sourceDir['path']);
 
                 $this->migrateDirectory($sourceDir, $targetDisk, $chunkSize, $isDryRun);
             }
@@ -63,8 +65,8 @@ final class MigrateFilesToS3Command extends Command
 
             return Command::SUCCESS;
 
-        } catch (\Exception $e) {
-            $this->error("❌ Migration failed: {$e->getMessage()}");
+        } catch (Exception $exception) {
+            $this->error('❌ Migration failed: '.$exception->getMessage());
 
             return Command::FAILURE;
         }
@@ -73,28 +75,28 @@ final class MigrateFilesToS3Command extends Command
     private function verifyS3Configuration(string $disk): bool
     {
         try {
-            $config = config("filesystems.disks.{$disk}");
+            $config = config('filesystems.disks.'.$disk);
 
             if (! $config) {
-                $this->error("❌ Disk '{$disk}' not found in configuration");
+                $this->error(sprintf("❌ Disk '%s' not found in configuration", $disk));
 
                 return false;
             }
 
             if ($config['driver'] !== 's3') {
-                $this->error("❌ Disk '{$disk}' is not an S3 disk");
+                $this->error(sprintf("❌ Disk '%s' is not an S3 disk", $disk));
 
                 return false;
             }
 
             // Test S3 connection
             Storage::disk($disk)->files('');
-            $this->info("✅ S3 disk '{$disk}' is properly configured");
+            $this->info(sprintf("✅ S3 disk '%s' is properly configured", $disk));
 
             return true;
 
-        } catch (\Exception $e) {
-            $this->error("❌ S3 configuration error: {$e->getMessage()}");
+        } catch (Exception $exception) {
+            $this->error('❌ S3 configuration error: '.$exception->getMessage());
 
             return false;
         }
@@ -119,7 +121,7 @@ final class MigrateFilesToS3Command extends Command
     private function migrateDirectory(array $sourceDir, string $targetDisk, int $chunkSize, bool $isDryRun): void
     {
         if (! File::exists($sourceDir['path'])) {
-            $this->warn("⚠️  Directory does not exist: {$sourceDir['path']}");
+            $this->warn('⚠️  Directory does not exist: '.$sourceDir['path']);
 
             return;
         }
@@ -132,12 +134,12 @@ final class MigrateFilesToS3Command extends Command
         $this->totalFiles += $totalFiles;
 
         if ($totalFiles === 0) {
-            $this->info("📂 No files found in {$sourceDir['name']}");
+            $this->info('📂 No files found in '.$sourceDir['name']);
 
             return;
         }
 
-        $this->info("📊 Found {$totalFiles} files in {$sourceDir['name']}");
+        $this->info(sprintf('📊 Found %d files in %s', $totalFiles, $sourceDir['name']));
 
         $progressBar = $this->output->createProgressBar($totalFiles);
         $progressBar->setFormat(' %current%/%max% [%bar%] %percent:3s%% %elapsed:6s%/%estimated:-6s% %memory:6s%');
@@ -157,13 +159,13 @@ final class MigrateFilesToS3Command extends Command
         $this->newLine();
     }
 
-    private function migrateFile(\SplFileInfo $file, array $sourceDir, string $targetDisk, bool $isDryRun): void
+    private function migrateFile(SplFileInfo $file, array $sourceDir, string $targetDisk, bool $isDryRun): void
     {
         try {
             $relativePath = str_replace($sourceDir['path'].'/', '', $file->getPathname());
 
             // Get the root directory from S3 disk configuration
-            $diskConfig = config("filesystems.disks.{$targetDisk}");
+            $diskConfig = config('filesystems.disks.'.$targetDisk);
             $rootDir = $diskConfig['root'] ?? 'public';
 
             // Build S3 path: root/relativePath (without additional prefix)
@@ -185,9 +187,9 @@ final class MigrateFilesToS3Command extends Command
                 $this->failedFiles++;
             }
 
-        } catch (\Exception $e) {
+        } catch (Exception $exception) {
             $this->failedFiles++;
-            $this->line("   ❌ Error migrating {$file->getFilename()}: {$e->getMessage()}");
+            $this->line(sprintf('   ❌ Error migrating %s: %s', $file->getFilename(), $exception->getMessage()));
         }
     }
 
@@ -206,7 +208,7 @@ final class MigrateFilesToS3Command extends Command
         );
 
         if ($this->failedFiles > 0) {
-            $this->warn("⚠️  {$this->failedFiles} files failed to migrate. Check the logs above for details.");
+            $this->warn(sprintf('⚠️  %d files failed to migrate. Check the logs above for details.', $this->failedFiles));
         }
     }
 }

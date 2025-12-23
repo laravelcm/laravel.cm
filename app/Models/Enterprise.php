@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Filters\Enterprise\EnterpriseFilters;
 use App\Models\Traits\HasSlug;
 use App\Traits\HasSettings;
+use Database\Factories\EnterpriseFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,26 +22,18 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property-read bool $is_public
  * @property-read bool $is_certified
  * @property-read bool $is_featured
- * @property array<array-key, mixed>|null $settings
+ * @property-read array<string, mixed>|null $settings
  */
 final class Enterprise extends Model implements HasMedia
 {
+    /** @use HasFactory<EnterpriseFactory> */
     use HasFactory;
+
     use HasSettings;
     use HasSlug;
     use InteractsWithMedia;
 
     protected $guarded = [];
-
-    protected function casts(): array
-    {
-        return [
-            'settings' => 'array',
-            'is_public' => 'boolean',
-            'is_certified' => 'boolean',
-            'is_featured' => 'boolean',
-        ];
-    }
 
     public function registerMediaCollections(): void
     {
@@ -61,6 +54,24 @@ final class Enterprise extends Model implements HasMedia
                 'image/png',
                 'image/webp',
             ]);
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'settings' => 'array',
+            'is_public' => 'boolean',
+            'is_certified' => 'boolean',
+            'is_featured' => 'boolean',
+        ];
     }
 
     /**
@@ -98,13 +109,5 @@ final class Enterprise extends Model implements HasMedia
     protected function filters(Builder $query, Request $request, array $filters = []): Builder
     {
         return new EnterpriseFilters($request)->add($filters)->filter($query);
-    }
-
-    /**
-     * @return BelongsTo<User, $this>
-     */
-    public function owner(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -9,6 +9,11 @@ use Ramsey\Uuid\UuidInterface;
 
 trait HasUuid
 {
+    public static function findByUuidOrFail(UuidInterface $uuid): self
+    {
+        return static::where('uuid', $uuid->toString())->firstOrFail();
+    }
+
     public function uuid(): UuidInterface
     {
         return Uuid::fromString($this->uuid);
@@ -22,10 +27,5 @@ trait HasUuid
     public function getIncrementing(): bool
     {
         return false;
-    }
-
-    public static function findByUuidOrFail(UuidInterface $uuid): self
-    {
-        return static::where('uuid', $uuid->toString())->firstOrFail();
     }
 }

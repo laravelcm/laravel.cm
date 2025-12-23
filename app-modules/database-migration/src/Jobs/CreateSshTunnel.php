@@ -13,7 +13,10 @@ use Laravelcm\DatabaseMigration\Services\SshTunnelService;
 
 final class CreateSshTunnel implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public function handle(SshTunnelService $tunnelService): int
     {

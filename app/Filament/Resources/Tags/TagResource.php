@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Filament\Resources\Tags;
 
 use App\Models\Tag;
+use BackedEnum;
 use Filament\Actions;
 use Filament\Forms\Components;
 use Filament\Resources\Resource;
@@ -18,7 +19,7 @@ final class TagResource extends Resource
 {
     protected static ?string $model = Tag::class;
 
-    protected static string|\BackedEnum|null $navigationIcon = 'untitledui-tag-03';
+    protected static string|BackedEnum|null $navigationIcon = 'untitledui-tag-03';
 
     public static function getNavigationGroup(): string
     {

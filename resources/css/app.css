@@ -1,16 +1,22 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@import "../../vendor/livewire/flux/dist/flux.css";
 
-@import './components/base.css';
-@import './components/forms.css';
-@import './components/forum.css';
-@import './components/header.css';
-@import './components/tag.css';
-@import './components/torchlight.css';
-@import './components/typography.css';
+@import "./components/base.css";
+@import "./components/forms.css";
+@import "./components/forum.css";
+@import "./components/header.css";
+@import "./components/tag.css";
+@import "./components/torchlight.css";
+@import "./components/typography.css";
+@import "./components/flux.css";
 
 @plugin '@tailwindcss/typography';
 @plugin '@tailwindcss/forms';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source '../../app/Livewire/**/*.php';
+@source '../../app-modules/*/resources/**/*.blade.php'
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../vendor/filament/**/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -18,7 +24,7 @@
 @source '../**/*.js';
 
 :root {
-  --laravel: #F56857;
+  --laravel: #f56857;
   --livewire: #fb70a9;
   --inertia: #8b5cf6;
   --javascript: #f7df1e;
@@ -49,11 +55,19 @@
 }
 
 @theme {
+  /* Flux Colors */
+  --color-accent: var(--color-emerald-600);
+  --color-accent-content: var(--color-emerald-600);
+  --color-accent-foreground: var(--color-white);
+
   /* Custom Colors */
   --color-flag-green: #099170;
   --color-flag-red: #e21b30;
   --color-flag-yellow: #ffdc44;
-  --color-black: #161B22;
+  --color-black: #161b22;
+  --color-line-black: #151715;
+  --color-dark-green: #0d1d1c;
+  --color-soft-green: #05271f;
 
   --color-gray-50: oklch(98.5% 0 0);
   --color-gray-100: oklch(96.7% 0.001 286.375);
@@ -67,22 +81,22 @@
   --color-gray-900: oklch(21% 0.006 285.885);
   --color-gray-950: oklch(14.1% 0.005 285.823);
 
-  --color-primary-50: #ecfdf6;
-  --color-primary-100: #d2f9e8;
-  --color-primary-200: #a9f1d5;
-  --color-primary-300: #71e4be;
-  --color-primary-400: #38cfa2;
-  --color-primary-500: #15b48a;
-  --color-primary-600: #099170;
-  --color-primary-700: #07755d;
-  --color-primary-800: #085d4b;
-  --color-primary-900: #084c3f;
-  --color-primary-950: #032b24;
+  --color-primary-50: oklch(97.9% 0.021 166.113);
+  --color-primary-100: oklch(95% 0.052 163.051);
+  --color-primary-200: oklch(90.5% 0.093 164.15);
+  --color-primary-300: oklch(84.5% 0.143 164.978);
+  --color-primary-400: oklch(76.5% 0.177 163.223);
+  --color-primary-500: oklch(69.6% 0.17 162.48);
+  --color-primary-600: oklch(59.6% 0.145 163.225);
+  --color-primary-700: oklch(50.8% 0.118 165.612);
+  --color-primary-800: oklch(43.2% 0.095 166.913);
+  --color-primary-900: oklch(37.8% 0.077 168.94);
+  --color-primary-950: oklch(26.2% 0.051 172.552);
 
   /* Font Families */
-  --font-family-heading: Rota, ui-sans-serif, system-ui;
-  --font-family-mono: "Geist Mono", ui-monospace, monospace;
-  --font-family-sans: "Instrument Sans", ui-sans-serif, system-ui;
+  --font-heading: "Space Grotesk", "Rota", ui-sans-serif, system-ui;
+  --font-mono: "Geist Mono", "Fira Code", ui-monospace, monospace;
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui;
 
   /* Custom Widths */
   --width-90: 22.5rem;
@@ -102,33 +116,112 @@
   --animate-rotate: rotate 8s linear infinite;
 }
 
+@layer theme {
+  .dark {
+    --color-accent: var(--color-emerald-600);
+    --color-accent-content: var(--color-emerald-400);
+    --color-accent-foreground: var(--color-white);
+  }
+}
+
+@utility line-t {
+  @apply relative before:absolute before:top-0 before:-left-[100vw] before:h-0 before:w-[200vw] before:border-t before:border-dotted before:border-gray-300 dark:before:border-white/20;
+}
+
+@utility line-b {
+  @apply relative after:absolute after:bottom-0 after:-left-[100vw] after:h-0 after:w-[200vw] after:border-b after:border-dotted after:border-gray-300 dark:after:border-white/20;
+}
+
+@utility line-y {
+  @apply relative;
+  @apply before:absolute before:top-0 before:-left-[100vw] before:h-0 before:w-[200vw] before:border-t before:border-dotted before:border-gray-300 dark:before:border-white/20;
+  @apply after:absolute after:bottom-0 after:-left-[100vw] after:h-0 after:w-[200vw] after:border-b after:border-dotted after:border-gray-300 dark:after:border-white/20;
+}
+
+@utility line-l {
+  @apply absolute left-0 top-0 w-0 h-[200vh] -translate-y-[100vh] border-l border-dotted border-gray-300 dark:border-white/20;
+}
+
+@utility line-r {
+  @apply absolute right-0 top-0 w-0 h-[200vh] -translate-y-[100vh] border-r border-dotted border-gray-300 dark:border-white/20;
+}
+
+@utility line-x {
+  @apply relative;
+  @apply before:absolute before:left-0 before:top-0 before:w-0 before:h-[200vh] before:-translate-y-[100vh] before:border-l before:border-dotted before:border-gray-300 dark:before:border-white/20;
+  @apply after:absolute after:right-0 after:top-0 after:w-0 after:h-[200vh] after:-translate-y-[100vh] after:border-r after:border-dotted after:border-gray-300 dark:after:border-white/20;
+}
+
+@utility bg-dotted {
+  @apply relative overflow-hidden bg-gray-950/2.5 after:pointer-events-none after:absolute after:inset-0 after:border-x after:border-dotted after:border-gray-300 dark:after:border-white/20 bg-[radial-gradient(var(--pattern-fg)_1px,transparent_0)] bg-size-[10px_10px] bg-fixed [--pattern-fg:var(--color-gray-950)]/5 dark:[--pattern-fg:var(--color-white)]/10;
+}
+
+@utility border-line {
+  @apply border-dotted border-gray-300 dark:border-white/20;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes marquee {
-  100% { transform: translateY(-50%); }
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
 @keyframes spin-reverse {
-  to { transform: rotate(-360deg); }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 
 @keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 @keyframes rotate {
-  0% { transform: rotate(0deg) scale(10); }
-  100% { transform: rotate(-360deg) scale(10); }
+  0% {
+    transform: rotate(0deg) scale(10);
+  }
+  100% {
+    transform: rotate(-360deg) scale(10);
+  }
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
+@keyframes cube {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
 
 @property --border-angle {
   inherits: false;
   initial-value: 0deg;
-  syntax: '<angle>';
+  syntax: "<angle>";
 }

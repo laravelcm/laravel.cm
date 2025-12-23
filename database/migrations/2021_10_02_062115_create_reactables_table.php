@@ -6,13 +6,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateReactablesTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('reactables', function (Blueprint $table): void {
+        Schema::create('reactables', static function (Blueprint $table): void {
             $table->id();
             $table->foreignId('reaction_id')->constrained();
+
             $table->morphs('reactable');
             $table->morphs('responder');
         });
@@ -22,4 +23,4 @@ final class CreateReactablesTable extends Migration
     {
         Schema::dropIfExists('reactables');
     }
-}
+};

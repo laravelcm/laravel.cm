@@ -26,7 +26,7 @@ use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 
 /**
- * @property \Filament\Schemas\Schema $form
+ * @property Schema $form
  */
 final class ThreadForm extends SlideOverComponent implements HasActions, HasForms
 {
@@ -38,18 +38,6 @@ final class ThreadForm extends SlideOverComponent implements HasActions, HasForm
 
     public ?array $data = [];
 
-    public function mount(?int $threadId = null): void
-    {
-        $this->thread = filled($threadId)
-            ? Thread::with('channels')->findOrFail($threadId)
-            : new Thread;
-
-        $this->form->fill(array_merge($this->thread->toArray(), [
-            'user_id' => $this->thread->user_id ?? Auth::id(),
-            'locale' => $this->thread->locale ?? app()->getLocale(),
-        ]));
-    }
-
     public static function panelMaxWidth(): string
     {
         return '2xl';
@@ -58,6 +46,20 @@ final class ThreadForm extends SlideOverComponent implements HasActions, HasForm
     public static function closePanelOnClickAway(): bool
     {
         return false;
+    }
+
+    public function mount(?int $threadId = null): void
+    {
+        $this->thread = filled($threadId)
+            ? Thread::with('channels')->findOrFail($threadId)
+            : new Thread;
+
+        if (! $this->thread->exists) {
+            $this->form->fill([
+                'user_id' => Auth::id(),
+                'locale' => app()->getLocale(),
+            ]);
+        }
     }
 
     public function form(Schema $schema): Schema
@@ -70,8 +72,10 @@ final class ThreadForm extends SlideOverComponent implements HasActions, HasForm
                     ->helperText(__('pages/forum.min_thread_length'))
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(function (string $operation, $state, Set $set): void {
-                        $set('slug', Str::slug($state));
+                    ->afterStateUpdated(function (string $operation, ?string $state, Set $set): void {
+                        if ($state) {
+                            $set('slug', Str::slug($state));
+                        }
                     })
                     ->minLength(10),
                 Components\Hidden::make('slug'),
@@ -131,8 +135,8 @@ final class ThreadForm extends SlideOverComponent implements HasActions, HasForm
         $validated = $this->form->getState();
 
         $thread = ($this->thread?->id)
-            ? app(UpdateThreadAction::class)->execute($validated, $this->thread)
-            : app(CreateThreadAction::class)->execute($validated);
+            ? resolve(UpdateThreadAction::class)->execute($validated, $this->thread)
+            : resolve(CreateThreadAction::class)->execute($validated);
 
         $this->form->model($thread)->saveRelationships();
 

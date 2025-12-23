@@ -19,7 +19,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 /**
- * @property \Filament\Schemas\Schema $form
+ * @property Schema $form
  * @property User $user
  */
 final class Preferences extends Component implements HasActions, HasForms

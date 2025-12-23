@@ -11,6 +11,7 @@ use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
 use App\Traits\Reacts;
+use Carbon\CarbonInterface;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
@@ -27,7 +28,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Contracts\User as SocialUser;
 use Laravelcm\Gamify\Traits\Gamify;
@@ -43,28 +43,27 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read string $username
  * @property-read string $avatar_type
  * @property-read string $profile_photo_url
- * @property-read string|null $location
- * @property-read string|null $phone_number
- * @property-read string|null $github_profile
- * @property-read string|null $twitter_profile
- * @property-read string|null $linkedin_profile
- * @property-read string|null $bio
- * @property-read string|null $website
- * @property-read string|null $banned_reason
- * @property-read array<array-key, mixed>|null $settings
- * @property-read Carbon|null $email_verified_at
- * @property-read Carbon|null $last_login_at
- * @property-read Carbon|null $banned_at
- * @property-read Carbon $created_at
- * @property-read Carbon $updated_at
- * @property-read Carbon|null $last_active_at
- * @property-read \Illuminate\Support\Collection<array-key, Activity> $activities
- * @property-read \Illuminate\Support\Collection<array-key, Article> $articles
- * @property-read \Illuminate\Support\Collection<array-key, Thread> $threads
- * @property-read \Illuminate\Support\Collection<array-key, Discussion> $discussions
- * @property-read \Illuminate\Support\Collection<array-key, Subscribe> $subscriptions
- * @property-read \Illuminate\Support\Collection<array-key, SocialAccount> $providers
- * @property-read int $discussions_count
+ * @property-read ?string $location
+ * @property-read ?string $phone_number
+ * @property-read ?string $github_profile
+ * @property-read ?string $twitter_profile
+ * @property-read ?string $linkedin_profile
+ * @property-read ?string $bio
+ * @property-read ?string $website
+ * @property-read ?string $banned_reason
+ * @property-read array<string, mixed>|null $settings
+ * @property-read CarbonInterface|null $email_verified_at
+ * @property-read CarbonInterface|null $last_login_at
+ * @property-read CarbonInterface|null $banned_at
+ * @property-read CarbonInterface $created_at
+ * @property-read CarbonInterface $updated_at
+ * @property-read CarbonInterface|null $last_active_at
+ * @property-read Collection<int, Activity> $activities
+ * @property-read Collection<int, Article> $articles
+ * @property-read Collection<int, Thread> $threads
+ * @property-read Collection<int, Discussion> $discussions
+ * @property-read Collection<int, Subscribe> $subscriptions
+ * @property-read Collection<int, SocialAccount> $providers
  */
 #[ObservedBy(UserObserver::class)]
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasCachedMediaInterface, HasMedia, HasName, MustVerifyEmail
@@ -93,41 +92,32 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'last_active_at',
     ];
 
-    protected function casts(): array
+    public static function findByEmailAddress(string $emailAddress): ?self
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'last_login_at' => 'datetime',
-            'banned_at' => 'datetime',
-            'settings' => 'array',
-            'last_active_at' => 'datetime',
-        ];
+        return self::query()->where('email', $emailAddress)->first();
     }
 
-    protected function rolesLabel(): Attribute
+    public static function findOrCreateSocialUserProvider(SocialUser $socialUser, string $provider, string $role = 'user'): self
     {
-        $roles = $this->getRoleNames()->toArray();
+        $socialEmail = $socialUser->getEmail() ?? sprintf('%s@%s.com', $socialUser->getId(), $provider);
 
-        return Attribute::get(
-            fn (): string => count($roles) > 0
-                ? implode(', ', array_map(fn ($item): string => ucwords($item), $roles))
-                : 'N/A'
-        );
-    }
+        $user = self::query()->where('email', $socialEmail)->first();
 
-    protected function IsSponsor(): Attribute
-    {
-        return Attribute::get(function (): bool {
-            if ($this->transactions_count > 0) {
-                $transaction = $this->transactions()
-                    ->where('status', TransactionStatus::COMPLETE->value)
-                    ->first();
+        if (! $user instanceof self) {
+            $user = self::query()->create([
+                'name' => $socialUser->getName() ?? $socialUser->getNickName() ?? $socialUser->getId(),
+                'email' => $socialEmail,
+                'username' => $socialUser->getNickName() ?? $socialUser->getId(),
+                'github_profile' => $provider === 'github' ? $socialUser->getNickName() : null,
+                'twitter_profile' => $provider === 'twitter' ? $socialUser->getNickName() : null,
+                'email_verified_at' => now(),
+                'avatar_type' => $provider,
+            ]);
 
-                return (bool) $transaction;
-            }
+            $user->assignRole($role);
+        }
 
-            return false;
-        });
+        return $user;
     }
 
     public function hasProvider(string $provider): bool
@@ -162,7 +152,11 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return str_ends_with($this->email, '@laravel.cm') || $this->isModerator() || $this->isAdmin();
+        if (str_ends_with($this->email, '@laravel.cm') && $this->isModerator()) {
+            return true;
+        }
+
+        return $this->isAdmin();
     }
 
     public function getFilamentName(): string
@@ -199,34 +193,6 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
             ]);
     }
 
-    public static function findByEmailAddress(string $emailAddress): self
-    {
-        return self::query()->where('email', $emailAddress)->firstOrFail();
-    }
-
-    public static function findOrCreateSocialUserProvider(SocialUser $socialUser, string $provider, string $role = 'user'): self
-    {
-        $socialEmail = $socialUser->getEmail() ?? "{$socialUser->getId()}@{$provider}.com";
-
-        $user = self::query()->where('email', $socialEmail)->first();
-
-        if (! $user instanceof self) {
-            $user = self::query()->create([
-                'name' => $socialUser->getName() ?? $socialUser->getNickName() ?? $socialUser->getId(),
-                'email' => $socialEmail,
-                'username' => $socialUser->getNickName() ?? $socialUser->getId(),
-                'github_profile' => $provider === 'github' ? $socialUser->getNickName() : null,
-                'twitter_profile' => $provider === 'twitter' ? $socialUser->getNickName() : null,
-                'email_verified_at' => now(),
-                'avatar_type' => $provider,
-            ]);
-
-            $user->assignRole($role);
-        }
-
-        return $user;
-    }
-
     public function deleteThreads(): void
     {
         // We need to explicitly iterate over the threads and delete them
@@ -245,6 +211,9 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         }
     }
 
+    /**
+     * @return Collection<int, Article>
+     */
     public function latestArticles(int $amount = 10): Collection
     {
         return $this->articles()->latest()->limit($amount)->get();
@@ -274,7 +243,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     {
         $password = $this->getAuthPassword();
 
-        return filled($password) || $password !== null; // @phpstan-ignore-line
+        return filled($password);
     }
 
     public function delete(): ?bool
@@ -323,6 +292,123 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     public function notBanned(): bool
     {
         return ! $this->banned();
+    }
+
+    /**
+     * @return HasOne<Enterprise, $this>
+     */
+    public function enterprise(): HasOne
+    {
+        return $this->hasOne(Enterprise::class);
+    }
+
+    /**
+     * @return HasMany<SocialAccount, $this>
+     */
+    public function providers(): HasMany
+    {
+        return $this->hasMany(SocialAccount::class);
+    }
+
+    /**
+     * @return HasMany<Article, $this>
+     */
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    /**
+     * @return HasMany<Activity, $this>
+     */
+    public function activities(): HasMany
+    {
+        return $this->hasMany(Activity::class);
+    }
+
+    /**
+     * @return HasMany<Thread, $this>
+     */
+    public function threads(): HasMany
+    {
+        return $this->hasMany(Thread::class);
+    }
+
+    /**
+     * @return HasMany<Reply, $this>
+     */
+    public function replyAble(): HasMany
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    /**
+     * @return HasMany<Discussion, $this>
+     */
+    public function discussions(): HasMany
+    {
+        return $this->hasMany(Discussion::class);
+    }
+
+    /**
+     * @return HasMany<Subscribe, $this>
+     */
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(Subscribe::class);
+    }
+
+    /**
+     * @return HasMany<Transaction, $this>
+     */
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    /**
+     * @return HasMany<SpamReport, $this>
+     */
+    public function spamReports(): HasMany
+    {
+        return $this->hasMany(SpamReport::class, 'user_id');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'last_login_at' => 'datetime',
+            'banned_at' => 'datetime',
+            'settings' => 'array',
+            'last_active_at' => 'datetime',
+        ];
+    }
+
+    protected function rolesLabel(): Attribute
+    {
+        $roles = $this->getRoleNames()->toArray();
+
+        return Attribute::get(
+            fn (): string => count($roles) > 0
+                ? implode(', ', array_map(fn ($item): string => ucwords($item), $roles))
+                : 'N/A'
+        );
+    }
+
+    protected function IsSponsor(): Attribute
+    {
+        return Attribute::get(function (): bool {
+            if ($this->transactions_count > 0) {
+                $transaction = $this->transactions()
+                    ->where('status', TransactionStatus::COMPLETE->value)
+                    ->first();
+
+                return (bool) $transaction;
+            }
+
+            return false;
+        });
     }
 
     /**
@@ -480,85 +566,5 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     protected function isNotBanned(Builder $query): Builder
     {
         return $query->whereNull('banned_at');
-    }
-
-    /**
-     * @return HasOne<Enterprise, $this>
-     */
-    public function enterprise(): HasOne
-    {
-        return $this->hasOne(Enterprise::class);
-    }
-
-    /**
-     * @return HasMany<SocialAccount, $this>
-     */
-    public function providers(): HasMany
-    {
-        return $this->hasMany(SocialAccount::class);
-    }
-
-    /**
-     * @return HasMany<Article, $this>
-     */
-    public function articles(): HasMany
-    {
-        return $this->hasMany(Article::class);
-    }
-
-    /**
-     * @return HasMany<Activity, $this>
-     */
-    public function activities(): HasMany
-    {
-        return $this->hasMany(Activity::class);
-    }
-
-    /**
-     * @return HasMany<Thread, $this>
-     */
-    public function threads(): HasMany
-    {
-        return $this->hasMany(Thread::class);
-    }
-
-    /**
-     * @return HasMany<Reply, $this>
-     */
-    public function replyAble(): HasMany
-    {
-        return $this->hasMany(Reply::class);
-    }
-
-    /**
-     * @return HasMany<Discussion, $this>
-     */
-    public function discussions(): HasMany
-    {
-        return $this->hasMany(Discussion::class);
-    }
-
-    /**
-     * @return HasMany<Subscribe, $this>
-     */
-    public function subscriptions(): HasMany
-    {
-        return $this->hasMany(Subscribe::class);
-    }
-
-    /**
-     * @return HasMany<Transaction, $this>
-     */
-    public function transactions(): HasMany
-    {
-        return $this->hasMany(Transaction::class);
-    }
-
-    /**
-     * @return HasMany<SpamReport, $this>
-     */
-    public function spamReports(): HasMany
-    {
-        return $this->hasMany(SpamReport::class, 'user_id');
     }
 }

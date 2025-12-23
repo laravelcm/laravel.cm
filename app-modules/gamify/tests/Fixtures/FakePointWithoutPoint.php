@@ -8,7 +8,7 @@ use Laravelcm\Gamify\PointType;
 
 final class FakePointWithoutPoint extends PointType
 {
-    protected string $payee = 'user';
+    public $payee = 'user';
 
     public function __construct($subject = null)
     {

@@ -13,13 +13,14 @@ use App\Observers\ArticleObserver;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -34,21 +35,21 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read bool $show_toc
  * @property-read bool $is_pinned
  * @property-read int $is_sponsored
- * @property-read string|null $canonical_url
- * @property-read string|null $reason
- * @property-read int|null $tweet_id
+ * @property-read ?string $canonical_url
+ * @property-read ?string $reason
+ * @property-read ?int $tweet_id
  * @property-read int $user_id
- * @property-read string|null $locale
+ * @property-read ?string $locale
  * @property-read User $user
- * @property-read \Illuminate\Support\Carbon|null $published_at
- * @property-read \Illuminate\Support\Carbon|null $submitted_at
- * @property-read \Illuminate\Support\Carbon|null $approved_at
- * @property-read \Illuminate\Support\Carbon|null $shared_at
- * @property-read \Illuminate\Support\Carbon|null $declined_at
- * @property-read \Illuminate\Support\Carbon|null $sponsored_at
- * @property-read \Illuminate\Support\Carbon $created_at
- * @property-read \Illuminate\Support\Carbon $updated_at
- * @property Collection<int, Tag> $tags
+ * @property-read ?CarbonInterface $published_at
+ * @property-read ?CarbonInterface $submitted_at
+ * @property-read ?CarbonInterface $approved_at
+ * @property-read ?CarbonInterface $shared_at
+ * @property-read ?CarbonInterface $declined_at
+ * @property-read ?CarbonInterface $sponsored_at
+ * @property-read CarbonInterface $created_at
+ * @property-read CarbonInterface $updated_at
+ * @property-read Collection<int, Tag> $tags
  */
 #[ObservedBy(ArticleObserver::class)]
 final class Article extends Model implements HasMedia, ReactableInterface, Sitemapable, Viewable
@@ -67,18 +68,22 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
 
     protected bool $removeViewsOnDelete = true;
 
-    protected function casts(): array
+    public static function nextForSharing(): ?self
     {
-        return [
-            'submitted_at' => 'datetime',
-            'approved_at' => 'datetime',
-            'declined_at' => 'datetime',
-            'shared_at' => 'datetime',
-            'sponsored_at' => 'datetime',
-            'published_at' => 'datetime',
-            'show_toc' => 'boolean',
-            'is_pinned' => 'boolean',
-        ];
+        // @phpstan-ignore-next-line
+        return self::notShared()
+            ->published()
+            ->orderBy('published_at')
+            ->first();
+    }
+
+    public static function nexForSharingToTelegram(): ?self
+    {
+        // @phpstan-ignore-next-line
+        return self::published()
+            ->whereNull('tweet_id')
+            ->orderBy('published_at', 'asc')
+            ->first();
     }
 
     public function getRouteKeyName(): string
@@ -94,7 +99,7 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
     public function toSitemapTag(): Url
     {
         return Url::create(route('articles.show', $this))
-            ->setLastModificationDate(Carbon::create($this->updated_at)) // @phpstan-ignore-line
+            ->setLastModificationDate(Date::create($this->updated_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
             ->setPriority(0.5);
     }
@@ -121,12 +126,12 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
         return $this->canonical_url ?: route('articles.show', $this->slug);
     }
 
-    public function nextArticle(): ?Article
+    public function nextArticle(): ?self
     {
         return self::published()->where('id', '>', $this->id)->orderBy('id')->first(); // @phpstan-ignore-line
     }
 
-    public function previousArticle(): ?Article
+    public function previousArticle(): ?self
     {
         return self::published()->where('id', '<', $this->id)->orderByDesc('id')->first(); // @phpstan-ignore-line
     }
@@ -183,7 +188,11 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
 
     public function isNotPublished(): bool
     {
-        return $this->isNotSubmitted() || $this->isNotApproved();
+        if ($this->isNotSubmitted()) {
+            return true;
+        }
+
+        return $this->isNotApproved();
     }
 
     public function isPinned(): bool
@@ -216,24 +225,6 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
         $this->update(['shared_at' => now()]);
     }
 
-    public static function nextForSharing(): ?self
-    {
-        // @phpstan-ignore-next-line
-        return self::notShared()
-            ->published()
-            ->orderBy('published_at')
-            ->first();
-    }
-
-    public static function nexForSharingToTelegram(): ?self
-    {
-        // @phpstan-ignore-next-line
-        return self::published()
-            ->whereNull('tweet_id')
-            ->orderBy('published_at', 'asc')
-            ->first();
-    }
-
     public function markAsPublish(): void
     {
         $this->update(['tweet_id' => $this->user->id]);
@@ -244,5 +235,19 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
         $this->removeTags();
 
         return parent::delete();
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'submitted_at' => 'datetime',
+            'approved_at' => 'datetime',
+            'declined_at' => 'datetime',
+            'shared_at' => 'datetime',
+            'sponsored_at' => 'datetime',
+            'published_at' => 'datetime',
+            'show_toc' => 'boolean',
+            'is_pinned' => 'boolean',
+        ];
     }
 }

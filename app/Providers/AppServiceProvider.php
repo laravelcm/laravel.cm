@@ -11,17 +11,14 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use App\View\Composers\InactiveDiscussionsComposer;
-use App\View\Composers\ProfileUsersComposer;
 use App\View\Composers\TopContributorsComposer;
 use ArchTech\SEO\SEOManager;
-use Carbon\Carbon;
 use Filament\Actions;
-use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Width;
-use Filament\Support\Facades\FilamentColor;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
@@ -49,9 +46,9 @@ final class AppServiceProvider extends ServiceProvider
 
     public function registerBladeDirective(): void
     {
-        Blade::directive('title', fn ($expression): string => "<?php \$title = {$expression} ?>");
-        Blade::directive('shareImage', fn ($expression): string => "<?php \$shareImage = {$expression} ?>");
-        Blade::directive('canonical', fn ($expression): string => "<?php \$canonical = {$expression} ?>");
+        Blade::directive('title', fn (string $expression): string => sprintf('<?php $title = %s ?>', $expression));
+        Blade::directive('shareImage', fn (string $expression): string => sprintf('<?php $shareImage = %s ?>', $expression));
+        Blade::directive('canonical', fn (string $expression): string => sprintf('<?php $canonical = %s ?>', $expression));
     }
 
     public function configureMacros(): void
@@ -68,7 +65,6 @@ final class AppServiceProvider extends ServiceProvider
     {
         View::composer('partials._contributions', TopContributorsComposer::class);
         View::composer('partials._contributions', InactiveDiscussionsComposer::class);
-        View::composer('components.profile-users', ProfileUsersComposer::class);
     }
 
     protected function configureEloquent(): void
@@ -86,13 +82,6 @@ final class AppServiceProvider extends ServiceProvider
 
     protected function configureFilament(): void
     {
-        FilamentColor::register([
-            'danger' => Color::Red,
-            'info' => Color::Blue,
-            'success' => Color::Green,
-            'warning' => Color::Amber,
-        ]);
-
         FilamentIcon::register([
             'panels::pages.dashboard.navigation-item' => 'untitledui-home-line',
             'actions::delete-action' => 'untitledui-trash-03',
@@ -122,7 +111,7 @@ final class AppServiceProvider extends ServiceProvider
         setlocale(LC_TIME, 'fr_FR', 'fr', 'FR', 'French', 'fr_FR.UTF-8');
         setlocale(LC_ALL, 'fr_FR', 'fr', 'FR', 'French', 'fr_FR.UTF-8');
 
-        Carbon::setLocale('fr');
+        Date::setLocale('fr');
     }
 
     protected function configureSeo(): void
@@ -137,6 +126,8 @@ final class AppServiceProvider extends ServiceProvider
             )
             ->description(default: __('global.site_description'))
             ->image(default: fn (): string => asset('images/socialcard.png'))
+            ->site('Laravel.cm')
+            ->locale(app()->getLocale())
             ->twitterSite('@laravelcm');
     }
 
@@ -149,8 +140,6 @@ final class AppServiceProvider extends ServiceProvider
 
     protected function configureUrl(): void
     {
-        if (! $this->app->isLocal()) {
-            URL::forceScheme('https');
-        }
+        URL::forceScheme('https');
     }
 }

@@ -1,26 +1,9 @@
 <header
     x-data="{ scrolled: false }"
     x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 50)"
-    :class="scrolled ? 'bg-white/80 backdrop-blur-lg dark:bg-gray-900/80' : 'bg-transparent backdrop-blur-none'"
-    class="fixed inset-x-0 z-30 border-b border-dotted border-gray-200 dark:border-white/10 transition-all duration-300 ease-in-out"
+    :class="scrolled ? 'bg-white/80 backdrop-blur-lg dark:bg-[#151515]/80' : 'bg-transparent backdrop-blur-none'"
+    class="fixed inset-x-0 z-30 border-b border-dotted border-gray-300 dark:border-white/10 transition-all duration-300 ease-in-out"
 >
-    <div class="hidden items-center justify-center py-1.5 bg-primary-700 text-white text-sm xl:text-base">
-        <x-link
-            :href="route('sponsors')"
-            class="group inline-flex items-center"
-        >
-            <span class="rounded-full bg-flag-green px-2 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white">
-                ⚡️ {{ __('pages/home.sponsor.title') }}
-            </span>
-            <span class="ml-4 hidden text-sm sm:block">
-                {{ __('pages/home.sponsor.description') }}
-            </span>
-            <span class="ml-4 text-sm sm:hidden">
-                {{ __('pages/home.sponsor.description_small') }}
-            </span>
-            <x-heroicon-s-chevron-right class="ml-2 size-5 text-white transition-all duration-300 ease-in-out group-hover:translate-x-1" aria-hidden="true" />
-        </x-link>
-    </div>
     <x-container>
         @if (isHolidayWeek())
             <div class="relative">
@@ -38,6 +21,7 @@
                 <div class="flex shrink-0 items-center">
                     <x-link :href="route('home')" class="inline-flex items-center gap-1">
                         <x-brand.icon class="block h-7 w-auto sm:h-8" aria-hidden="true" />
+
                         @if (isHolidayWeek())
                             <div class="relative flex flex-col text-center group">
                                 <x-icon.christmas-town class="w-auto h-8" aria-hidden="true" />
@@ -66,9 +50,9 @@
                             :href="route('login')"
                             :title="__('pages/auth.login.page_title')"
                         />
-                        <x-buttons.primary :href="route('register')">
+                        <flux:button :href="route('register')" variant="primary" class="border-0" wire:navigate>
                             {{ __('pages/auth.register.page_title') }}
-                        </x-buttons.primary>
+                        </flux:button>
                     @else
                         <x-nav.item :href="route('notifications')">
                             <x-slot:title>

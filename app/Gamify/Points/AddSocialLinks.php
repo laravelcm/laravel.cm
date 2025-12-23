@@ -8,9 +8,11 @@ use Laravelcm\Gamify\PointType;
 
 final class AddSocialLinks extends PointType
 {
-    public int $points = 15;
+    /** @var int */
+    public $points = 15;
 
-    protected string $payee = 'user';
+    /** @var string */
+    public $payee = 'user';
 
     public function __construct(mixed $subject)
     {

@@ -6,16 +6,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-final class CreateSubscribesTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('subscribes', function (Blueprint $table): void {
-            $table->uuid('uuid')->index()->unique();
-            $table->primary('uuid');
+        Schema::create('subscribes', static function (Blueprint $table): void {
+            $table->uuid()->primary();
             $table->foreignId('user_id')->index()->constrained();
+
             $table->morphs('subscribeable');
             $table->unique(['user_id', 'subscribeable_id', 'subscribeable_type'], 'subscribes_are_unique');
+
             $table->timestamps();
         });
     }
@@ -24,4 +25,4 @@ final class CreateSubscribesTable extends Migration
     {
         Schema::dropIfExists('subscribes');
     }
-}
+};
