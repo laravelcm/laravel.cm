@@ -73,6 +73,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     /** @use HasFactory<UserFactory> */
     use HasFactory;
+
     use HasPlanSubscriptions;
     use HasProfilePhoto;
     use HasRoles;
