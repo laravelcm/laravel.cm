@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace App\Livewire\Pages\Articles;
 
 use App\Models\Article;
+use App\Models\Builders\ArticleQueryBuilder;
 use App\Models\Tag;
+use App\Models\User;
 use App\Traits\WithLocale;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -17,6 +20,32 @@ final class Index extends Component
 {
     use WithLocale;
     use WithPagination;
+
+    /**
+     * @return Collection<int, User>
+     */
+    #[Computed(cache: true)]
+    public function topAuthors(): Collection
+    {
+        /** @var Collection<int, User> */
+        return Cache::remember(
+            key: 'top_authors',
+            ttl: now()->addWeeks(2),
+            callback: fn (): Collection => User::query()
+                ->select(['id', 'name', 'username', 'avatar_type'])
+                ->whereHas('articles', function ($query): void {
+                    /** @var ArticleQueryBuilder $query */
+                    $query->published();
+                })
+                ->withCount(['articles' => function ($query): void {
+                    /** @var ArticleQueryBuilder $query */
+                    $query->published();
+                }])
+                ->orderByDesc('articles_count')
+                ->limit(5)
+                ->get()
+        );
+    }
 
     public function render(): View
     {
@@ -31,12 +60,13 @@ final class Index extends Component
                 ->published()
                 ->orderByDesc('published_at')
                 ->forLocale($this->locale)
-                ->simplePaginate(21),
-            'tags' => Cache::remember(
-                key: 'articles.tags',
+                ->simplePaginate(20),
+            'tags' => Cache::tags('tags')->remember(
+                key: 'tags',
                 ttl: now()->addWeek(),
                 callback: fn (): Collection => Tag::query()->whereHas('articles', function ($query): void {
-                    $query->published(); // @phpstan-ignore-line
+                    /** @var ArticleQueryBuilder $query */
+                    $query->published();
                 })->orderBy('name')
                     ->get()
             ),

@@ -139,17 +139,17 @@
 }
 
 @utility line-l {
-  @apply absolute left-0 top-0 w-0 h-[200vh] -translate-y-[100vh] border-l border-dotted border-gray-300 dark:border-white/20;
+  @apply absolute left-0 top-0 bottom-0 w-0 border-l border-dotted border-gray-300 dark:border-white/20;
 }
 
 @utility line-r {
-  @apply absolute right-0 top-0 w-0 h-[200vh] -translate-y-[100vh] border-r border-dotted border-gray-300 dark:border-white/20;
+  @apply absolute right-0 top-0 bottom-0 w-0 border-r border-dotted border-gray-300 dark:border-white/20;
 }
 
 @utility line-x {
   @apply relative;
-  @apply before:absolute before:left-0 before:top-0 before:w-0 before:h-[200vh] before:-translate-y-[100vh] before:border-l before:border-dotted before:border-gray-300 dark:before:border-white/20;
-  @apply after:absolute after:right-0 after:top-0 after:w-0 after:h-[200vh] after:-translate-y-[100vh] after:border-r after:border-dotted after:border-gray-300 dark:after:border-white/20;
+  @apply before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0 before:border-l before:border-dotted before:border-gray-300 dark:before:border-white/20;
+  @apply after:absolute after:right-0 after:top-0 after:bottom-0 after:w-0 after:border-r after:border-dotted after:border-gray-300 dark:after:border-white/20;
 }
 
 @utility bg-dotted {
