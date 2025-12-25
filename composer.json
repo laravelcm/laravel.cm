@@ -17,6 +17,7 @@
     "awcodes/filament-badgeable-column": "^3.0.1",
     "codeat3/blade-phosphor-icons": "^2.3",
     "cyrildewit/eloquent-viewable": "^7.0.6",
+    "diglactic/laravel-breadcrumbs": "^10.0",
     "filament/filament": "^4.3.1",
     "filament/spatie-laravel-media-library-plugin": "^4.3.1",
     "gehrisandro/tailwind-merge-laravel": "^1.3",

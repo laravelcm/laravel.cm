@@ -30,7 +30,7 @@
     <div class="relative mt-4 text-sm flex items-center justify-between gap-2">
         <x-link
             :href="route('profile', $article->user->username)"
-            class="inline-flex items-center gap-2 text-gray-700 dark:text-gray-300"
+            class="inline-flex items-center gap-2 text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white"
         >
             <x-user.avatar :user="$article->user" size="xs" />
             <span class="absolute inset-0"></span>

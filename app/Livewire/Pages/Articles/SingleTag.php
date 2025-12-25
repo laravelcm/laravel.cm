@@ -30,6 +30,6 @@ final class SingleTag extends Component
                 ->orderByDesc('published_at')
                 ->forLocale($this->locale)
                 ->paginate($this->perPage),
-        ])->title($this->tag->name);
+        ])->title(__('Tag ~ :name', ['name' => $this->tag->name]));
     }
 }

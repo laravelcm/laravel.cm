@@ -1,27 +1,28 @@
-// Copy to Clipboard.
-let codeBlocks = document.querySelectorAll("#content pre");
+document.addEventListener("alpine:initialized", () => {
+  let codeBlocks = document.querySelectorAll("#content pre");
 
-codeBlocks.forEach((element, key) => {
-  let wrapper = document.createElement("div");
-  wrapper.classList.add("relative", "code-block");
+  codeBlocks.forEach((element, key) => {
+    let wrapper = document.createElement("div");
+    wrapper.classList.add("relative", "code-block");
 
-  element.parentNode.insertBefore(wrapper, element);
-  wrapper.appendChild(element);
+    element.parentNode.insertBefore(wrapper, element);
+    wrapper.appendChild(element);
 
-  let codeElement = element.querySelector("code");
-  codeElement.id = `clipText-${key}`;
+    let codeElement = element.querySelector("code");
+    codeElement.id = `clipText-${key}`;
 
-  // Copy to clipboard button.
-  const copyToClipboardContainer = document.createElement("div");
+    // Copy to clipboard button.
+    const copyToClipboardContainer = document.createElement("div");
 
-  copyToClipboardContainer.innerHTML = `
+    copyToClipboardContainer.innerHTML = `
         <div x-data="{
             copyNotification: false,
             copyToClipboard() {
                 this.copyNotification = true
                 let that = this
+                const codeText = document.getElementById('clipText-${key}').innerText
                 const clipboardItem = new ClipboardItem({
-                  'text/plain': new Blob([\`${codeElement.innerText.replaceAll('"', "\\`")}\`], { type: 'text/plain' })
+                  'text/plain': new Blob([codeText], { type: 'text/plain' })
                 })
                 navigator.clipboard.write([clipboardItem]).then(() => {
                   setTimeout(function() {
@@ -52,9 +53,15 @@ codeBlocks.forEach((element, key) => {
     </div>
   `;
 
-  copyToClipboardContainer.setAttribute("aria-label", "Copy to Clipboard");
-  copyToClipboardContainer.setAttribute("title", "Copy to Clipboard");
-  copyToClipboardContainer.classList.add("copyBtn");
+    copyToClipboardContainer.setAttribute("aria-label", "Copy to Clipboard");
+    copyToClipboardContainer.setAttribute("title", "Copy to Clipboard");
+    copyToClipboardContainer.classList.add("copyBtn");
 
-  wrapper.append(copyToClipboardContainer);
+    wrapper.append(copyToClipboardContainer);
+
+    // Initialize Alpine on the newly added element
+    if (window.Alpine) {
+      window.Alpine.initTree(copyToClipboardContainer);
+    }
+  });
 });
