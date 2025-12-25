@@ -40,14 +40,14 @@
                         <div class="flex-1">
                             <div class="flex items-center gap-2">
                                 <div class="inline-flex rounded-md bg-primary-50 px-2.5 py-1 ring-1 ring-primary-100 dark:bg-primary-800/20 dark:ring-primary-800">
-                                <span class="text-primary-600 text-xs">
-                                    {{ __('global.read_time', ['time' => $article->readTime()]) }}
-                                </span>
+                                    <span class="text-primary-600 text-xs">
+                                        {{ __('global.read_time', ['time' => $article->readTime()]) }}
+                                    </span>
                                 </div>
                                 <span class="text-gray-500 dark:text-gray-400" aria-hidden="true">&middot;</span>
                                 <span class="text-sm leading-5 text-gray-500 dark:text-gray-400">
-                                {{ __('global.page_views', ['number' => $article->views_count]) }}
-                            </span>
+                                    {{ __('global.page_views', ['number' => $article->views_count]) }}
+                                </span>
                             </div>
                             <h1 class="mt-4 font-heading font-extrabold text-3xl text-gray-900 dark:text-white lg:text-4xl">
                                 {{ $article->title }}
@@ -82,7 +82,7 @@
 
                 @if ($media)
                     <div class="mt-4 lg:mt-0 lg:col-span-2">
-                        <div class="relative aspect-video lg:aspect-2/1 rounded-lg shadow-lg overflow-hidden">
+                        <div class="relative aspect-video lg:aspect-2/1 rounded-lg ring-1 ring-gray-200 overflow-hidden dark:ring-0">
                             <img
                                 loading="lazy"
                                 class="object-cover size-full"
