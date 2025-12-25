@@ -6,6 +6,7 @@ namespace App\Livewire\Pages\Articles;
 
 use App\Models\Article;
 use App\Models\User;
+use ArchTech\SEO\SEOManager;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -22,7 +23,9 @@ final class SinglePost extends Component
 
         $article = Cache::rememberForever(
             key: 'article.'.$this->article->id,
-            callback: fn (): Article => $this->article->load('user:id,name,username,avatar_type', 'tags', 'media')->loadCount('views'),
+            callback: fn (): Article => $this->article
+                ->load('user:id,name,username,avatar_type', 'tags', 'media')
+                ->loadCount('views'),
         );
 
         abort_unless(
@@ -38,13 +41,15 @@ final class SinglePost extends Component
             ? $article->getFirstMediaUrl('media')
             : asset('/images/socialcard.png');
 
-        // @phpstan-ignore-next-line
-        seo()
+        /** @var SEOManager $seoManager */
+        $seoManager = seo();
+
+        $seoManager
             ->title($article->title)
-            ->description($article->excerpt(150))
+            ->description($article->excerpt(160))
             ->image($image)
             ->twitterTitle($article->title)
-            ->twitterDescription($article->excerpt(150))
+            ->twitterDescription($article->excerpt(160))
             ->twitterImage($image)
             ->url($article->canonicalUrl());
 

@@ -3,8 +3,17 @@
  overflow-x-auto is recommended.
 */
 pre {
-  @apply my-4 overflow-x-auto rounded-lg;
-  padding: 0 !important;
+  @apply p-0 my-4 overflow-x-auto overflow-y-auto rounded-lg max-h-175;
+}
+
+/* Add ring border in light mode for better visibility */
+pre {
+  @apply ring-1 ring-gray-200;
+}
+
+/* Remove ring in dark mode (background is already visible) */
+:where(.dark, .dark *) pre {
+  @apply ring-0;
 }
 
 /*
@@ -14,7 +23,7 @@ pre {
  colors extend edge to edge.
 */
 pre code.torchlight {
-  @apply block min-w-max py-6 max-h-[43.75rem];
+  @apply block min-w-max py-6;
 }
 
 /*
@@ -90,4 +99,28 @@ pre code.torchlight .summary-caret {
 
 .code-block .copyBtn {
   @apply absolute right-2 top-2 outline-none;
+}
+
+/*
+  Dual theme support for dark/light mode.
+  When using multiple themes, Torchlight renders both code blocks.
+  The first code element is the dark theme, the second is the light theme.
+*/
+
+/* By default (light mode, no .dark class), show light theme and hide dark theme */
+pre code.torchlight:nth-of-type(1) {
+  display: none;
+}
+
+pre code.torchlight:nth-of-type(2) {
+  display: block;
+}
+
+/* In dark mode (.dark class present), show dark theme and hide light theme */
+:where(.dark, .dark *) pre code.torchlight:nth-of-type(1) {
+  display: block;
+}
+
+:where(.dark, .dark *) pre code.torchlight:nth-of-type(2) {
+  display: none;
 }

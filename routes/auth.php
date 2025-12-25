@@ -3,9 +3,13 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\OAuthController;
 use App\Livewire\Pages\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+
+Route::get('auth/{provider}', [OAuthController::class, 'redirectToProvider'])->name('social.auth');
+Route::get('auth/{provider}/callback', [OAuthController::class, 'handleProviderCallback']);
 
 Route::middleware('guest')->group(function (): void {
     Route::get('register', Auth\Register::class)->name('register');
