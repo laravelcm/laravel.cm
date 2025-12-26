@@ -29,20 +29,19 @@ final class DiscussionQueryBuilder extends Builder
 
     public function popular(): self
     {
-        return $this->withCount('reactions')
-            ->orderBy('reactions_count', 'desc');
+        return $this->orderBy('reactions_count', 'desc');
     }
 
     public function active(): self
     {
-        return $this->withCount(['replies' => function ($query): void {
-            $query->where('created_at', '>=', now()->subWeek());
+        return $this->withCount(['replies as recent_replies_count' => function ($query): void {
+            $query->where('created_at', '>=', now()->subWeeks(2));
         }])
-            ->orderBy('replies_count', 'desc');
+            ->orderBy('recent_replies_count', 'desc');
     }
 
     public function noComments(): self
     {
-        return $this->whereDoesntHave('replies')->latest();
+        return $this->whereDoesntHave('replies');
     }
 }

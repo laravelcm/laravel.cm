@@ -82,7 +82,7 @@
 
                 @if ($media)
                     <div class="mt-4 lg:mt-0 lg:col-span-2">
-                        <div class="relative aspect-video lg:aspect-2/1 rounded-lg ring-1 ring-gray-200 overflow-hidden dark:ring-0">
+                        <div class="relative aspect-video rounded-lg ring-1 ring-gray-200 overflow-hidden dark:ring-0">
                             <img
                                 loading="lazy"
                                 class="object-cover size-full"

@@ -15,7 +15,7 @@
             @endif
             @class([
                 'group inline-flex items-center justify-center capitalize whitespace-nowrap rounded-md align-middle font-medium transition-all duration-300 ease-in-out min-w-[32px] text-xs h-8 px-3 w-auto overflow-hidden',
-                'hover:bg-gray-200/30 text-gray-900 dark:text-gray-300 bg-transparent' => $supportedLocale !== $locale,
+                'hover:bg-gray-200/30 text-gray-900 dark:text-gray-300 bg-transparent dark:hover:bg-white/10' => $supportedLocale !== $locale,
                 'bg-white shadow text-gray-700 dark:bg-gray-900 dark:text-white' => $supportedLocale === $locale,
             ])
         >

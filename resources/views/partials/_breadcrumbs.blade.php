@@ -15,11 +15,7 @@
 
             @unless ($loop->last)
                 <li class="inline-flex items-center px-2.5">
-                    <x-untitledui-slash-divider
-                        class="size-4 text-gray-400 dark:text-gray-500"
-                        stroke-width="1.5"
-                        aria-hidden="true"
-                    />
+                    <x-phosphor-caret-right-duotone class="size-4 text-gray-400 dark:text-gray-500" aria-hidden="true" />
                 </li>
             @endif
         @endforeach

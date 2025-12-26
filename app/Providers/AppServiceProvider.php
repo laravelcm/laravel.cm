@@ -4,24 +4,22 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Http\Resources\ReplyResource;
 use App\Models\Article;
 use App\Models\Discussion;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
-use App\View\Composers\InactiveDiscussionsComposer;
-use App\View\Composers\TopContributorsComposer;
 use ArchTech\SEO\SEOManager;
 use Filament\Actions;
 use Filament\Support\Enums\Width;
 use Filament\Support\Facades\FilamentIcon;
+use Filament\View\PanelsIconAlias;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
@@ -35,7 +33,6 @@ final class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->bootViewsComposer();
         $this->configureMacros();
         $this->configureEloquent();
         $this->configureFilament();
@@ -61,15 +58,9 @@ final class AppServiceProvider extends ServiceProvider
         });
     }
 
-    public function bootViewsComposer(): void
-    {
-        View::composer('partials._contributions', TopContributorsComposer::class);
-        View::composer('partials._contributions', InactiveDiscussionsComposer::class);
-    }
-
     protected function configureEloquent(): void
     {
-        ReplyResource::withoutWrapping();
+        JsonResource::withoutWrapping();
 
         Relation::morphMap([
             'article' => Article::class,
@@ -83,9 +74,13 @@ final class AppServiceProvider extends ServiceProvider
     protected function configureFilament(): void
     {
         FilamentIcon::register([
-            'panels::pages.dashboard.navigation-item' => 'untitledui-home-line',
-            'actions::delete-action' => 'untitledui-trash-03',
-            'actions::edit-action' => 'untitledui-edit-03',
+            PanelsIconAlias::PAGES_DASHBOARD_NAVIGATION_ITEM => 'untitledui-home-line',
+            Actions\View\ActionsIconAlias::DELETE_ACTION => 'untitledui-trash-03',
+            Actions\View\ActionsIconAlias::DELETE_ACTION_GROUPED => 'untitledui-trash-03',
+            Actions\View\ActionsIconAlias::DELETE_ACTION_MODAL => 'untitledui-trash-03',
+            Actions\View\ActionsIconAlias::FORCE_DELETE_ACTION_MODAL => 'untitledui-trash-03',
+            Actions\View\ActionsIconAlias::EDIT_ACTION => 'untitledui-edit-03',
+            Actions\View\ActionsIconAlias::EDIT_ACTION_GROUPED => 'untitledui-edit-03',
         ]);
 
         Actions\CreateAction::configureUsing(

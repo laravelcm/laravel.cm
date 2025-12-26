@@ -4,9 +4,9 @@
 
 <article {{ $attributes->twMerge(['class' => 'flex flex-col justify-between p-6 hover:bg-gray-50 dark:hover:bg-white/5']) }}>
     <div class="flex-1">
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2">
             @if ($article->tags->isNotEmpty())
-                <div class="flex items-center gap-x-4">
+                <div class="flex items-center gap-x-2">
                     @foreach ($article->tags as $tag)
                         <x-tag :$tag />
                     @endforeach

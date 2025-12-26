@@ -9,7 +9,7 @@ use App\Models\Discussion;
 use App\Models\Tag;
 use App\Traits\WithLocale;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -62,7 +62,8 @@ final class Index extends Component
             ->forLocale($this->locale)
             ->notPinned();
 
-        $tags = Cache::remember(
+        /** @var Collection<int, Tag> $tags */
+        $tags = Cache::tags(['tags'])->remember(
             key: 'discussions.tags',
             ttl: now()->addWeek(),
             callback: fn (): Collection => Tag::query()

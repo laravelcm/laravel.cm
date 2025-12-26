@@ -1387,18 +1387,6 @@ parameters:
 			path: app/Services/MediaCacheService.php
 
 		-
-			rawMessage: 'Cannot call method get() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/View/Composers/ModeratorsComposer.php
-
-		-
-			rawMessage: 'Cannot call method limit() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/View/Composers/TopContributorsComposer.php
-
-		-
 			rawMessage: Cannot cast mixed to string.
 			identifier: cast.string
 			count: 1
