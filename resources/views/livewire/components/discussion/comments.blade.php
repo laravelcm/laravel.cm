@@ -1,6 +1,6 @@
 <div>
     @if ($this->comments->isNotEmpty())
-        <ul role="list" class="space-y-5">
+        <ul role="list">
             @foreach ($this->comments as $comment)
                 <li class="comment" id="reply-{{ $comment->id }}">
                     <livewire:components.discussion.comment :$comment :key="$comment->id" />
@@ -11,7 +11,7 @@
 
     @auth
         <div class="mt-6 relative flex gap-3">
-            <x-user.avatar :user="\Illuminate\Support\Facades\Auth::user()" class="size-10" />
+            <x-user.avatar :user="auth()->user()" />
 
             <form wire:submit="save" class="min-w-0 flex-1">
                 {{ $this->form }}

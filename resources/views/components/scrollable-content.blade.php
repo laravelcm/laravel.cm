@@ -32,7 +32,7 @@
             }
         },
     }"
-    {{ $attributes->twMerge(['class' => 'relative overflow-hidden']) }}
+    {{ $attributes->twMerge(['class' => 'relative overflow-hidden h-full']) }}
 >
     <div
         x-cloak
@@ -43,12 +43,12 @@
         x-transition:leave="transition duration-300 ease-in"
         x-transition:leave-start="translate-x-0 opacity-100"
         x-transition:leave-end="-translate-x-2 opacity-0"
-        class="absolute top-0 flex h-full w-32 items-center justify-start bg-gradient-to-r from-white px-2.5 dark:from-gray-800"
+        class="absolute top-0 flex h-full w-32 items-center justify-start bg-linear-to-r from-white px-2.5 dark:from-gray-950"
     >
         <button
             @click="slideLeft()"
             type="button"
-            class="flex size-8 items-center justify-center rounded-full text-gray-400 transition duration-200 ease-in-out hover:bg-gray-50 focus:outline-hidden dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-gray-500"
+            class="flex size-8 items-center justify-center rounded-full text-gray-400 transition duration-200 ease-in-out hover:bg-gray-50 focus:outline-hidden dark:bg-gray-950/75 dark:hover:bg-gray-900 dark:text-gray-500"
         >
             <x-untitledui-chevron-left class="size-6" aria-hidden="true" />
         </button>
@@ -56,10 +56,7 @@
 
     <div
         @scroll="onScroll()"
-        @class([
-            'hide-scroll -mb-px overflow-x-auto scroll-smooth pb-2 pl-4 pr-10',
-            $attributes->get('tab-class'),
-        ])
+        class="hide-scroll -my-px overflow-x-auto scroll-smooth pl-4 pr-8 lg:pr-12"
         x-ref="slider"
         :id="$id(scrollableId)"
     >
@@ -74,12 +71,12 @@
         x-transition:leave="transition duration-300 ease-in"
         x-transition:leave-start="translate-x-0 opacity-100"
         x-transition:leave-end="translate-x-2 opacity-0"
-        class="absolute right-0 top-0 flex h-full w-32 items-center justify-end bg-gradient-to-l from-white px-2.5 dark:from-gray-800"
+        class="absolute right-0 top-0 flex h-full w-32 items-center justify-end bg-linear-to-l from-white px-2.5 dark:from-gray-950"
     >
         <button
             @click="slideRight()"
             type="button"
-            class="flex size-8 items-center justify-center rounded-full text-gray-400 transition duration-200 ease-in-out hover:bg-gray-50 focus:outline-hidden dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-gray-500"
+            class="flex size-8 items-center justify-center rounded-full text-gray-400 transition duration-200 ease-in-out hover:bg-gray-50 focus:outline-hidden dark:bg-gray-950/75 dark:hover:bg-gray-900 dark:text-gray-500"
         >
             <x-untitledui-chevron-right class="size-6" aria-hidden="true" />
         </button>

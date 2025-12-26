@@ -21,33 +21,33 @@
     <div class="border-b border-gray-100 dark:border-white/10 lg:hidden">
         <x-container
             x-data="{
-                    displayLeftArrow: false,
-                    displayRightArrow: true,
-                    element: document.getElementById('tags'),
-                    currentTab: document
-                        .getElementById('tags')
-                        .querySelector('.current'),
+                displayLeftArrow: false,
+                displayRightArrow: true,
+                element: document.getElementById('tags'),
+                currentTab: document
+                    .getElementById('tags')
+                    .querySelector('.current'),
 
-                    slideLeft() {
-                        this.element.scrollLeft -= 100
-                        this.onScroll()
-                    },
-                    slideRight() {
-                        this.element.scrollLeft += 100
-                        this.onScroll()
-                    },
-                    onScroll() {
-                        this.displayLeftArrow = this.element.scrollLeft >= 20
-                        let maxScrollPosition =
-                            this.element.scrollWidth - this.element.clientWidth - 20
-                        this.displayRightArrow = this.element.scrollLeft <= maxScrollPosition
-                    },
-                    scrollToActive() {
-                        if (this.currentTab) {
-                            this.element.scrollLeft = this.currentTab.offsetLeft - 50
-                        }
-                    },
-                }"
+                slideLeft() {
+                    this.element.scrollLeft -= 100
+                    this.onScroll()
+                },
+                slideRight() {
+                    this.element.scrollLeft += 100
+                    this.onScroll()
+                },
+                onScroll() {
+                    this.displayLeftArrow = this.element.scrollLeft >= 20
+                    let maxScrollPosition =
+                        this.element.scrollWidth - this.element.clientWidth - 20
+                    this.displayRightArrow = this.element.scrollLeft <= maxScrollPosition
+                },
+                scrollToActive() {
+                    if (this.currentTab) {
+                        this.element.scrollLeft = this.currentTab.offsetLeft - 50
+                    }
+                },
+            }"
             x-init="scrollToActive()"
             class="relative overflow-hidden px-0"
         >
@@ -115,7 +115,7 @@
                 <div class="hidden border-gray-300 border-r border-dotted dark:border-white/20 lg:block">
                     <x-sticky-content class="top-16">
                         <div>
-                            <div class="flex items-start gap-4 px-4 py-2 bg-gray-50 dark:bg-gray-950/50">
+                            <div class="ml-px flex items-start gap-4 px-4 py-2 bg-gray-50 dark:bg-gray-950/50">
                                 <x-phosphor-bookmarks-duotone
                                     class="size-4 shrink-0 text-primary-600 dark:text-primary-500"
                                     aria-hidden="true"
@@ -140,7 +140,7 @@
                             </ul>
                         </div>
                         <div>
-                            <div class="flex items-start gap-4 px-4 py-2 bg-gray-50 dark:bg-gray-950/50">
+                            <div class="ml-px flex items-start gap-4 px-4 py-2 bg-gray-50 dark:bg-gray-950/50">
                                 <x-phosphor-trophy-duotone
                                     class="size-4 shrink-0 text-primary-600 dark:text-primary-500"
                                     aria-hidden="true"

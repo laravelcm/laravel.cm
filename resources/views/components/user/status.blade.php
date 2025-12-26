@@ -1,3 +1,3 @@
-<x-filament::badge color="success" size="sm">
+<flux:badge color="emerald" size="sm">
     {{ __('global.moderator') }}
-</x-filament::badge>
+</flux:badge>

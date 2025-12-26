@@ -14,6 +14,10 @@ Breadcrumbs::for('blog', function (BreadcrumbTrail $trail): void {
     $trail->parent('home');
     $trail->push(__('global.navigation.articles'), route('articles.index'));
 });
+Breadcrumbs::for('discussions', function (BreadcrumbTrail $trail): void {
+    $trail->parent('home');
+    $trail->push(__('global.navigation.discussions'), route('discussions.index'));
+});
 Breadcrumbs::for('tag', function (BreadcrumbTrail $trail, Tag $tag): void {
     $trail->parent('blog');
     $trail->push($tag->name, route('articles.tag', $tag));

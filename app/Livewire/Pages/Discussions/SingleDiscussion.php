@@ -7,6 +7,7 @@ namespace App\Livewire\Pages\Discussions;
 use App\Actions\Discussion\ConvertDiscussionToThreadAction;
 use App\Actions\Discussion\DeleteDiscussionAction;
 use App\Models\Discussion;
+use ArchTech\SEO\SEOManager;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -28,15 +29,17 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
     {
         /** @var Discussion $discussion */
         $discussion = Cache::remember(
-            key: 'discussion-'.$this->discussion->id,
+            key: 'discussion.'.$this->discussion->id,
             ttl: now()->addDays(3),
             callback: fn (): Discussion => $this->discussion->load('user:id,name,username,avatar_type', 'tags')
         );
 
         views($discussion)->cooldown(now()->addHours(2))->record();
 
-        // @phpstan-ignore-next-line
-        seo()
+        /** @var SEOManager $seoManager */
+        $seoManager = seo();
+
+        $seoManager
             ->title($this->discussion->title)
             ->description($this->discussion->excerpt(100))
             ->image(asset('images/socialcard.png'))

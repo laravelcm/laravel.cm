@@ -3,21 +3,16 @@
     'withAuthor' => true,
 ])
 
-<div class="py-6">
+<div {{ $attributes->twMerge(['class' => 'py-6']) }}>
     @if ($discussion->tags->isNotEmpty())
         <div class="flex items-center gap-2">
-            <div class="flex-1">
-                @foreach ($discussion->tags as $tag)
-                    <x-tag
-                        :tag="$tag"
-                        :href="route('discussions.index', ['tag' => $tag->slug])"
-                    />
-                @endforeach
-            </div>
+            @foreach ($discussion->tags as $tag)
+                <x-tag :$tag :href="route('discussions.index', ['tag' => $tag->slug])" />
+            @endforeach
         </div>
     @endif
 
-    <h2 class="mt-4 font-heading/7 text-xl font-semibold text-gray-900 dark:text-white">
+    <h2 class="mt-4 font-heading text-xl/7 font-semibold text-gray-900 dark:text-white">
         <x-link :href="route('discussions.show', $discussion)" class="hover:text-primary-600">
             {{ $discussion->title }}
         </x-link>
@@ -30,15 +25,11 @@
         <div class="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
             @if ($withAuthor)
                 <div class="flex items-center gap-2">
-                    <x-user.avatar
-                        :user="$discussion->user"
-                        class="size-6"
-                        span="-right-1 -top-1 ring-1 size-4"
-                    />
+                    <x-user.avatar :user="$discussion->user" size="xs" />
                 </div>
                 <x-link
                     :href="route('profile', $discussion->user)"
-                    class="text-gray-700 dark:text-gray-300 font-medium hover:underline"
+                    class="text-gray-700 truncate dark:text-gray-300 hover:underline"
                 >
                     {{ $discussion->user->name }}
                 </x-link>
