@@ -1,29 +1,29 @@
 <div>
     <x-slot:buttons>
-        <x-buttons.primary
-            type="button"
-            onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })"
-            class="gap-2 w-full justify-center py-2.5"
-        >
-            {{ __('pages/forum.new_thread') }}
-            <span class="absolute pointer-events-none right-0 pr-3">
-                <x-untitledui-plus class="size-5" aria-hidden="true" />
-            </span>
-        </x-buttons.primary>
+        <div class="px-4">
+            <flux:button
+                type="button"
+                onclick="{{ Auth::check() ? 'Livewire.dispatch(\'openPanel\', { component: \'components.slideovers.thread-form\' })' : 'Livewire.dispatch(\'redirectToLogin\') ' }}"
+                class="border-0 w-full"
+                variant="primary"
+            >
+                {{ __('pages/forum.new_thread') }}
+            </flux:button>
+        </div>
     </x-slot:buttons>
 
-    <div>
+    <div class="p-4">
         <div>
             <h1 class="text-xl font-semibold font-heading text-gray-900 dark:text-white lg:text-2xl">
                 {{ __('pages/channel.title') }}
             </h1>
-            <x-forum.channels-grid :$channels />
+            <x-forum.channels-grid :channels="$this->channels" />
         </div>
         <div class="mt-10">
             <h1 class="text-xl font-semibold font-heading text-gray-900 dark:text-white lg:text-2xl">
                 {{ __('pages/channel.subtitle') }}
             </h1>
-            <x-forum.channels-grid :channels="$childChannels" />
+            <x-forum.channels-grid :channels="$this->childChannels" />
         </div>
     </div>
 </div>

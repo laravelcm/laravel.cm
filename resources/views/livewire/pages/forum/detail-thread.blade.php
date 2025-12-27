@@ -1,13 +1,13 @@
 <div x-data class="relative">
     <x-slot:buttons>
-        <div class="space-y-3">
-            <x-buttons.primary
-                type="button"
+        <div class="space-y-3 px-4">
+            <flux:button
+                variant="primary"
                 onclick="Livewire.dispatchTo('components.forum.reply-form', 'replyForm')"
-                class="gap-2 w-full justify-center py-2.5"
+                class="w-full border-0"
             >
                 {{ __('pages/forum.reply_thread') }}
-            </x-buttons.primary>
+            </flux:button>
 
             @auth
                 <livewire:components.forum.subscribe :$thread />
@@ -16,17 +16,13 @@
     </x-slot:buttons>
 
     <div>
-        <div class="flow-root">
+        <div class="flow-root p-4">
             <div role="listbox" class="-mb-8">
                 <div class="relative pb-8">
-                    <span class="hidden absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-100 dark:bg-white/20 lg:block" aria-hidden="true"></span>
+                    <span class="hidden absolute left-4 top-5 -ml-px h-full w-0.5 bg-gray-100 dark:bg-white/20 lg:block" aria-hidden="true"></span>
                     <div class="relative flex items-start gap-6">
-                        <div class="hidden sticky top-10 flex-col justify-center items-center gap-y-5 lg:flex">
-                            <x-user.avatar
-                                :user="$thread->user"
-                                class="size-10 ring-4 ring-white dark:ring-white/20"
-                                span="-right-1 size-3.5 -top-1"
-                            />
+                        <div class="hidden sticky top-20 flex-col justify-center items-center gap-y-5 lg:flex">
+                            <x-user.avatar :user="$thread->user" size="sm" />
                             <div class="inline-flex flex-col gap-y-3 ring-1 ring-gray-200 bg-white py-3 px-1.5 rounded-full dark:bg-gray-800 dark:ring-white/20">
                                 <livewire:components.reactions
                                     wire:key="$thread->id"
@@ -41,11 +37,7 @@
                         <div class="group min-w-0 flex-1 rounded-xl bg-white p-5 ring-1 ring-inset text-wrap overflow-hidden ring-gray-200/60 dark:bg-gray-800 dark:ring-white/10 lg:py-6 lg:px-8">
                             <div class="flex items-center justify-between gap-4">
                                 <div class="flex items-center gap-2">
-                                    <x-user.avatar
-                                        :user="$thread->user"
-                                        class="size-8 lg:hidden"
-                                        span="-right-1 size-3.5 -top-1"
-                                    />
+                                    <x-user.avatar :user="$thread->user" size="md" />
                                     <div>
                                         <div class="text-sm flex items-center gap-2">
                                             <x-link :href="route('profile', $thread->user->username)" class="font-medium text-gray-900 dark:text-white">
@@ -71,20 +63,20 @@
 
                             <x-markdown-content
                                 :content="$thread->body"
-                                class="mt-5 prose prose-primary !prose-heading-off max-w-none text-gray-500 dark:text-gray-400 dark:prose-invert"
+                                class="mt-5 prose prose-emerald !prose-heading-off max-w-none text-gray-500 dark:text-gray-400 dark:prose-invert"
                             />
 
                             <div class="flex items-center justify-between gap-5">
                                 @can('manage', $thread)
                                     <div class="mt-5 inline-flex">
-                                        <x-filament-actions::group
+                                        {{--<x-filament-actions::group
                                             icon="untitledui-dots-horizontal"
                                             color="gray"
                                             :actions="[
                                                 $this->editAction,
                                                 $this->deleteAction,
                                             ]"
-                                        />
+                                        />--}}
                                     </div>
                                 @endcan
 
@@ -111,14 +103,14 @@
                         {{ __('pages/forum.old_thread') }}
                     </p>
                     <p class="mt-4">
-                        <x-buttons.default
-                            type="button"
+                        <flux:button
+                            variant="primary"
                             onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })"
-                            class="gap-2"
+                            class="border-0"
                         >
                             {{ __('pages/forum.new_thread') }}
                             <span aria-hidden="true">&rarr;</span>
-                        </x-buttons.default>
+                        </flux:button>
                     </p>
                 </x-info-panel>
             @else
@@ -145,10 +137,10 @@
 
                     <form action="{{ route('verification.send') }}" method="POST" class="block">
                         @csrf
-                        <x-buttons.primary type="submit" class="px-3 py-2 gap-2">
+                        <flux:button type="submit" variant="primary" class="border-0">
                             {{ __('pages/forum.received_link') }}
-                            <x-heroicon-o-arrow-long-right class="size-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />
-                        </x-buttons.primary>
+                            {{--<x-heroicon-o-arrow-long-right class="size-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />--}}
+                        </flux:button>
                     </form>
                 </div>
             @endguest

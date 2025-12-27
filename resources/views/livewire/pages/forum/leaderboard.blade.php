@@ -1,19 +1,19 @@
 <div>
     <x-slot:buttons>
-        <x-buttons.primary
-            type="button"
-            onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })"
-            class="gap-2 w-full justify-center py-2.5"
-        >
-            {{ __('pages/forum.new_thread') }}
-            <span class="absolute pointer-events-none right-0 pr-3">
-                <x-untitledui-plus class="size-5" aria-hidden="true" />
-            </span>
-        </x-buttons.primary>
+        <p class="px-4">
+            <flux:button
+                type="button"
+                onclick="{{ Auth::check() ? 'Livewire.dispatch(\'openPanel\', { component: \'components.slideovers.thread-form\' })' : 'Livewire.dispatch(\'redirectToLogin\') ' }}"
+                class="border-0 w-full"
+                variant="primary"
+            >
+                {{ __('pages/forum.new_thread') }}
+            </flux:button>
+        </p>
     </x-slot:buttons>
 
-    <div id="leaderboard">
-        @if($leaders->isNotEmpty())
+    <div id="leaderboard" class="px-6 py-4">
+        @if ($leaders->isNotEmpty())
             @php
                 $first = $leaders->first();
                 $second = $leaders->get(1);
@@ -26,7 +26,7 @@
                         <x-forum.leader :user="$second" :position="2" />
                         <div class="hidden leaderboard w-60 xl:grid">
                             <div class="stage h-12 bg-yellow-300">
-                                <div class="stage-front flex items-center justify-center text-white h-24 bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900"></div>
+                                <div class="stage-front flex items-center justify-center text-white h-24 bg-linear-to-b from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900"></div>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                         <x-forum.leader :user="$first" :position="1" />
                         <div class="hidden leaderboard w-90 xl:grid">
                             <div class="stage h-12 bg-green-500">
-                                <div class="stage-front flex items-center justify-center text-white h-32 bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900"></div>
+                                <div class="stage-front flex items-center justify-center text-white h-32 bg-linear-to-b from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900"></div>
                             </div>
                         </div>
                     </div>
@@ -42,14 +42,14 @@
                         <x-forum.leader :user="$third" :position="3" />
                         <div class="hidden leaderboard w-60 xl:grid">
                             <div class="stage h-12 bg-danger-400">
-                                <div class="stage-front flex items-center justify-center text-white h-[4rem] bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900"></div>
+                                <div class="stage-front flex items-center justify-center text-white h-16 bg-linear-to-b from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-4 w-full max-w-sm mx-auto flex items-center justify-center">
-                    <div class="relative z-10 flex flex-1 w-full items-center overflow-hidden rounded-lg ring-1 ring-gray-200 p-[1px] dark:ring-white/10">
+                    <div class="relative z-10 flex flex-1 w-full items-center overflow-hidden rounded-lg ring-1 ring-gray-200 p-px dark:ring-white/10">
                         <div
                             class="animate-rotate absolute inset-0 h-full w-full rounded-full bg-[conic-gradient(#e21b30_20deg,transparent_120deg)]"
                         ></div>
@@ -84,14 +84,14 @@
                     </div>
                 </div>
 
-                @forelse($members as $user)
+                @forelse ($members as $user)
                     <div class="grid auto-cols grid-flow-col bg-gray-100 rounded-xl px-4 py-3 text-sm text-gray-700 dark:bg-gray-950/50 dark:text-gray-300">
                         <div class="w-10 flex items-center gap-2">
                             <x-phosphor-trophy-duotone class="size-5" aria-hidden="true" />
                             {{ $loop->index + $startPosition }}
                         </div>
                         <div class="w-32 flex items-center gap-2">
-                            <x-user.avatar :user="$user" class="size-7" />
+                            <x-user.avatar :user="$user" size="sm" />
                             <span class="text-gray-500 dark:text-gray-400">
                                 {{ '@' . $user->username }}
                             </span>

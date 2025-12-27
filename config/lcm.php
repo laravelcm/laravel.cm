@@ -15,7 +15,7 @@ return [
             'url' => 'https://github.com/mckenziearts/laravel-notify/?utm_source=laravel.cm&amp;utm_medium=sidebar-widget',
             'image' => 'notify',
             'alt' => 'Laravel Notify',
-            'description' => 'Découvrez la nouvelle version de Laravel Notify pour vos projets Laravel.',
+            'description' => 'Rajouter des notifications sur vos projets Laravel avec Notify.',
         ],
         [
             'url' => 'https://laravelshopper.dev?utm_source=laravel.cm&amp;utm_medium=sidebar-widget',
