@@ -26,7 +26,9 @@ final class DetailThread extends Component implements HasActions, HasForms
 
     public function mount(): void
     {
-        views($this->thread)->cooldown(now()->addHour())->record();
+        views($this->thread)
+            ->cooldown(now()->addHour())
+            ->record();
 
         $this->thread->load('channels', 'channels.parent', 'user', 'user.media', 'replies', 'solutionReply')
             ->loadCount('views');

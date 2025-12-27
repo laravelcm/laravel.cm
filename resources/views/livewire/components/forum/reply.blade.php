@@ -3,14 +3,10 @@
 @endphp
 
 <div x-data class="relative pb-8" id="reply-{{ $reply->id }}">
-    <span class="hidden absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-100 dark:bg-white/20 lg:block" aria-hidden="true"></span>
+    <span class="hidden absolute left-4 top-5 -ml-px h-full w-0.5 bg-gray-100 dark:bg-white/20 lg:block" aria-hidden="true"></span>
     <div class="relative flex items-start gap-6">
-        <div class="hidden sticky top-10 lg:block">
-            <x-user.avatar
-                :user="$reply->user"
-                class="size-10 ring-4 ring-white dark:ring-white/20"
-                span="-right-1 size-3.5 -top-1"
-            />
+        <div class="hidden sticky top-18 lg:block">
+            <x-user.avatar :user="$reply->user" size="sm" />
         </div>
         <div
             @class([
