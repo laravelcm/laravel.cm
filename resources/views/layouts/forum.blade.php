@@ -69,13 +69,6 @@
                             >
                                 {{ __('pages/forum.navigation.no_reply') }}
                             </x-nav.forum-link>
-                            <x-nav.forum-link
-                                :href="route('forum.leaderboard')"
-                                :active="request()->routeIs('forum.leaderboard')"
-                                icon="phosphor-ranking-duotone"
-                            >
-                                {{ __('pages/forum.navigation.leaderboard') }}
-                            </x-nav.forum-link>
                         </div>
                     </x-sticky-content>
                 </div>

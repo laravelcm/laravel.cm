@@ -18,7 +18,7 @@ return [
         'about' => 'A propos',
         'podcasts' => 'Podcasts',
         'jobs' => 'Offres',
-        'sponsors' => 'Soutien',
+        'sponsors' => 'Sponsors',
         'snippets' => 'Snippets',
         'branding' => 'Branding',
         'rules' => 'Code de conduite',

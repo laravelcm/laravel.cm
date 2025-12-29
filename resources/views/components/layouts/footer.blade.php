@@ -1,5 +1,8 @@
-<footer class="bg-line-black border-t border-dotted border-gray-700 dark:border-white/20" aria-labelledby="footerHeading">
+<footer class="relative bg-line-black border-t border-dotted border-gray-700 dark:border-white/20" aria-labelledby="footerHeading">
     <h2 id="footerHeading" class="sr-only">{{ __('global.footer.title') }}</h2>
+    <div class="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-b from-transparent to-line-black">
+        <x-grid-background class="pattern-mask text-white/20" aria-hidden="true" />
+    </div>
     <x-container class="relative">
         <div class="py-12 sm:py-16 lg:grid lg:grid-cols-3 lg:gap-8 lg:py-20 xl:pt-24">
             <div class="space-y-3">

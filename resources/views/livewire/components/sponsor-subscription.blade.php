@@ -1,45 +1,101 @@
-<div x-data class="py-8">
-    <div class="flex items-center gap-4">
-        <x-buttons.primary @click="$dispatch('open-modal', { id: 'sponsoring' })">
-            {{ __('pages/sponsoring.sponsor') }}
-        </x-buttons.primary>
-        <a href="https://github.com/sponsors/mckenziearts" target="_blank" class="inline-flex justify-center gap-2 py-2 px-4 bg-white border-0 ring-1 ring-gray-200 dark:ring-white/20 rounded-lg shadow-xs text-sm text-gray-700 hover:text-gray-900 dark:text-gray-400 hover:bg-white/50 dark:hover:bg-white/10 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-green-500 dark:bg-gray-800 dark:focus:ring-offset-gray-900">
-            <x-icon.github class="size-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />
-            {{ __('pages/sponsoring.sponsor_github') }}
-        </a>
-    </div>
-    <div class="mt-8">
-        <p class="font-medium text-gray-900 dark:text-white text-sm">
+<div class="py-8">
+    <div>
+        <p class="font-medium text-center text-gray-900 dark:text-white lg:text-lg">
             {{ __('pages/sponsoring.current_support') }}
         </p>
-        <div class="mt-6 flex items-center flex-wrap gap-1">
-            @foreach ($sponsors as $sponsor)
-                <x-sponsor-profile :sponsor="$sponsor" />
+        <div class="mt-6 flex items-center justify-center flex-wrap gap-1 mx-auto max-w-3xl">
+            @foreach ($this->sponsors as $sponsor)
+                <x-sponsor-profile :$sponsor />
             @endforeach
+        </div>
+        <div class="mt-10 flex items-center justify-center gap-4">
+            <flux:modal.trigger name="sponsoring">
+                <flux:button variant="primary" class="border-0">
+                    {{ __('pages/sponsoring.sponsor') }}
+                </flux:button>
+            </flux:modal.trigger>
+            <flux:button href="https://github.com/sponsors/mckenziearts">
+                <x-slot name="icon">
+                    <x-icon.github class="size-5" aria-hidden="true" />
+                </x-slot>
+                {{ __('pages/sponsoring.sponsor_github') }}
+            </flux:button>
         </div>
     </div>
 
     <!-- Sponsoring Modal -->
-    <template x-teleport="#main-site">
-        <x-filament::modal id="sponsoring" width="2xl">
-            <x-slot name="heading">
-                {{ __('pages/sponsoring.title') }}
-            </x-slot>
-
+    <flux:modal name="sponsoring" class="w-full sm:max-w-2xl">
+        <div class="absolute inset-x-0 bottom-0 h-1/3 z-0">
+            <x-grid-background class="pattern-mask text-gray-300/50 dark:text-white/10" aria-hidden="true" />
+        </div>
+        <div class="space-y-6 relative">
+            <div>
+                <flux:heading size="lg">{{ __('pages/sponsoring.title') }}</flux:heading>
+            </div>
             <form wire:submit="submit">
-                {{ $this->form }}
-
-                <div class="mt-10 flex items-center justify-end gap-4">
-                    <x-buttons.default @click="$dispatch('close-modal', { id: 'sponsoring' })" type="button">
-                        {{ __('actions.cancel') }}
-                    </x-buttons.default>
-                    <x-buttons.submit
-                        :title="__('pages/sponsoring.sponsor')"
-                        wire:target="submit"
-                        wire:loading.attr="data-loading"
+                <div class="grid gap-4 sm:grid-cols-2 sm:gap-x-6">
+                    <flux:input
+                        :label="__('validation.attributes.name')"
+                        wire:model="form.name"
+                        placeholder="John Doe"
                     />
+                    <flux:input
+                        :label="__('validation.attributes.email')"
+                        type="email"
+                        wire:model="form.email"
+                        placeholder="email@gmail.com"
+                    />
+                    <flux:radio.group
+                        wire:model="form.profile"
+                        variant="segmented"
+                        :label="__('pages/sponsoring.sponsor_form.profile')"
+                    >
+                        <flux:radio value="developer">
+                            <x-slot name="icon">
+                                <x-phosphor-dev-to-logo-duotone class="size-5" aria-hidden="true" />
+                            </x-slot>
+                            {{ __('validation.attributes.freelance') }}
+                        </flux:radio>
+                        <flux:radio value="company">
+                            <x-slot name="icon">
+                                <x-phosphor-buildings-duotone class="size-5" aria-hidden="true" />
+                            </x-slot>
+                            {{ __('validation.attributes.company') }}
+                        </flux:radio>
+                    </flux:radio.group>
+                    <flux:input
+                        :label="__('global.website')"
+                        wire:model="form.website"
+                    >
+                        <x-slot name="icon">
+                            <x-heroicon-m-globe-alt class="size-5" aria-hidden="true" />
+                        </x-slot>
+                    </flux:input>
+                    <flux:field>
+                        <flux:label>{{ __('validation.attributes.amount') }}</flux:label>
+                        <flux:input.group>
+                            <flux:select wire:model="form.currency" class="max-w-fit">
+                                <flux:select.option value="xaf">XAF</flux:select.option>
+                                <flux:select.option value="eur">EUR</flux:select.option>
+                                <flux:select.option value="usd">USD</flux:select.option>
+                            </flux:select>
+
+                            <flux:input wire:model="form.amount" />
+                        </flux:input.group>
+
+                        <flux:error name="form.amount" />
+                    </flux:field>
+                </div>
+                <div class="flex gap-4">
+                    <flux:spacer />
+                    <flux:modal.close>
+                        <flux:button>{{ __('actions.cancel') }}</flux:button>
+                    </flux:modal.close>
+                    <flux:button type="submit" variant="primary" class="border-0">
+                        {{ __('pages/sponsoring.sponsor') }}
+                    </flux:button>
                 </div>
             </form>
-        </x-filament::modal>
-    </template>
+        </div>
+    </flux:modal>
 </div>

@@ -4,165 +4,34 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components;
 
-use App\Enums\PaymentType;
-use App\Enums\TransactionType;
+use App\Livewire\Forms\SponsorForm;
 use App\Models\Transaction;
-use App\Models\User;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\ToggleButtons;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
-use Filament\Schemas\Components\Group;
-use Filament\Schemas\Components\Utilities\Get;
-use Filament\Schemas\Schema;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
-use NotchPay\Exceptions\ApiException;
-use NotchPay\NotchPay;
-use NotchPay\Payment;
+use Throwable;
 
-/**
- * @property-read Schema $form
- */
-final class SponsorSubscription extends Component implements HasActions, HasForms
+final class SponsorSubscription extends Component
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
-
-    public ?array $data = [];
+    public SponsorForm $form;
 
     public function mount(): void
     {
-        $auth = Auth::user();
-
-        $this->form->fill([
-            'email' => $auth?->email,
-            'name' => $auth?->name,
-            'website' => $auth?->website,
-            'profile' => 'developer',
-            'currency' => 'xaf',
-        ]);
-    }
-
-    public function form(Schema $schema): Schema
-    {
-        return $schema
-            ->components([
-                TextInput::make('name')
-                    ->label(__('validation.attributes.name'))
-                    ->minLength(5)
-                    ->required(),
-                TextInput::make('email')
-                    ->label(__('validation.attributes.email'))
-                    ->email()
-                    ->required(),
-                ToggleButtons::make('profile')
-                    ->label(__('pages/sponsoring.sponsor_form.profile'))
-                    ->options([
-                        'developer' => __('validation.attributes.freelance'),
-                        'company' => __('validation.attributes.company'),
-                    ])
-                    ->icons([
-                        'developer' => 'phosphor-dev-to-logo-duotone',
-                        'company' => 'phosphor-buildings-duotone',
-                    ])
-                    ->grouped(),
-                TextInput::make('website')
-                    ->label(__('global.website'))
-                    ->prefixIcon('heroicon-m-globe-alt')
-                    ->url(),
-                Group::make()
-                    ->schema([
-                        Select::make('currency')
-                            ->label(__('validation.attributes.currency'))
-                            ->live()
-                            ->native()
-                            ->options([
-                                'xaf' => 'XAF',
-                                'eur' => 'EUR',
-                                'usd' => 'USD',
-                            ]),
-                        TextInput::make('amount')
-                            ->label(__('validation.attributes.amount'))
-                            ->integer()
-                            ->required()
-                            ->afterStateUpdated(fn (?int $state): float|int => filled($state) ? abs($state) : 0) // @phpstan-ignore-line
-                            ->prefix(fn (Get $get): ?string => match ($get('currency')) {
-                                'usd' => '$',
-                                default => null
-                            })
-                            ->suffix(fn (Get $get): ?string => match ($get('currency')) {
-                                'eur' => '€',
-                                'xaf' => 'FCFA',
-                                default => null,
-                            })
-                            ->columnSpan(3),
-                    ])
-                    ->columns(4)
-                    ->columnSpanFull(),
-            ])
-            ->statePath('data')
-            ->columns();
+        $this->form->setUser(Auth::user());
     }
 
     public function submit(): void
     {
-        $this->validate();
-
-        $email = data_get($this->form->getState(), 'email');
-        $amount = data_get($this->form->getState(), 'amount');
-        $name = data_get($this->form->getState(), 'name');
-
-        /** @var User $user */
-        $user = Auth::check() ? Auth::user() : User::findByEmailAddress(config('lcm.support_email'));
-
-        NotchPay::setApiKey(apiKey: config('lcm.notch-pay-public-token'));
+        $this->form->validate();
 
         try {
-            $payload = Payment::initialize([
-                'amount' => $amount,
-                'email' => $email,
-                'name' => $name,
-                'currency' => data_get($this->form->getState(), 'currency'),
-                'reference' => $user->id.'-'.$user->username.'-'.uniqid(),
-                'callback' => route('notchpay-callback'),
-                'description' => __('Soutien de la communauté Laravel & PHP Cameroun.'),
-            ]);
-
-            Transaction::query()->create([
-                'amount' => $amount,
-                'status' => $payload->transaction->status,
-                'transaction_reference' => $payload->transaction->reference,
-                'user_id' => $user->id,
-                'fees' => blank(get_object_vars($payload->transaction->fees)) ? 0 : $payload->transaction->fees->fee,
-                'type' => TransactionType::ONETIME->value,
-                'metadata' => [
-                    'currency' => $payload->transaction->currency,
-                    'reference' => $payload->transaction->reference,
-                    'merchant' => [
-                        'reference' => $payload->transaction->merchant_reference,
-                        'customer' => $payload->transaction->customer,
-                        'name' => $name,
-                        'email' => $email,
-                        'laravel_cm_id' => Auth::id() ?? null,
-                        'profile' => data_get($this->form->getState(), 'profile'),
-                    ],
-                    'initiated_at' => $payload->transaction->created_at,
-                    'description' => $payload->transaction->description,
-                    'for' => PaymentType::SPONSORING->value,
-                ],
-            ]);
-
-            $this->redirect($payload->authorization_url); // @phpstan-ignore-line
-        } catch (ApiException $apiException) {
-            Log::error($apiException->getMessage());
+            $this->redirect($this->form->support());
+        } catch (Throwable $throwable) {
+            Log::error($throwable->getMessage());
 
             Notification::make()
                 ->title(__('notifications.sponsor_error_title'))
@@ -172,17 +41,27 @@ final class SponsorSubscription extends Component implements HasActions, HasForm
         }
     }
 
+    /**
+     * @return Collection<int, Transaction>
+     */
+    #[Computed(seconds: 3600 * 24 * 30, cache: true, key: 'sponsors')]
+    public function sponsors(): Collection
+    {
+        /** @var Collection<int, Transaction> $transactions */
+        $transactions = Transaction::with(['user', 'user.media']) // @phpstan-ignore-line
+            ->scopes('complete')
+            ->get(['id', 'user_id', 'metadata']);
+
+        return $transactions->unique(function (Transaction $transaction): string|int {
+            /** @var string $email */
+            $email = data_get($transaction->metadata, 'merchant.email');
+
+            return $email ?: $transaction->user_id;
+        });
+    }
+
     public function render(): View
     {
-        return view('livewire.components.sponsor-subscription', [
-            'sponsors' => Cache::remember(
-                key: 'sponsors',
-                ttl: now()->addWeek(),
-                callback: fn () => Transaction::with(['user', 'user.media'])
-                    ->scopes('complete')
-                    ->distinct()
-                    ->get(['id', 'user_id', 'metadata'])
-            ),
-        ]);
+        return view('livewire.components.sponsor-subscription');
     }
 }

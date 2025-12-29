@@ -2,7 +2,7 @@
     {{ $attributes->twMerge(['class' => 'relative isolate overflow-hidden flex items-center justify-center mb-6 shadow-md rounded-xl aspect-[2/1] w-full sm:mb-0 xl:mb-6 bg-gradient-to-b']) }}
 >
     <svg
-        class="absolute inset-0 -z-10 h-full w-full stroke-gray-200/30 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
+        class="absolute inset-0 -z-10 h-full w-full stroke-gray-200/30 mask-[radial-gradient(100%_100%_at_top_right,white,transparent)]"
         aria-hidden="true"
     >
         <defs>

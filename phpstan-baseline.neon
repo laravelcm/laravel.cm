@@ -835,12 +835,6 @@ parameters:
 			path: app/Http/Controllers/Api/PremiumController.php
 
 		-
-			rawMessage: 'Parameter $apiKey of static method NotchPay\NotchPay::setApiKey() expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Http/Controllers/NotchPayCallBackController.php
-
-		-
 			rawMessage: 'Parameter $reference of static method NotchPay\Payment::verify() expects string, mixed given.'
 			identifier: argument.type
 			count: 1
@@ -1001,24 +995,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: app/Livewire/Components/Slideovers/ArticleForm.php
-
-		-
-			rawMessage: 'Cannot call method distinct() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Livewire/Components/SponsorSubscription.php
-
-		-
-			rawMessage: 'Parameter #1 $emailAddress of static method App\Models\User::findByEmailAddress() expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Livewire/Components/SponsorSubscription.php
-
-		-
-			rawMessage: 'Parameter $apiKey of static method NotchPay\NotchPay::setApiKey() expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Livewire/Components/SponsorSubscription.php
 
 		-
 			rawMessage: 'Method App\Livewire\Components\User\Activities::activities() should return Illuminate\Support\Collection but returns mixed.'

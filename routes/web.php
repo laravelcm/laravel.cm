@@ -26,7 +26,7 @@ Route::prefix('discussions')->as('discussions.')->group(function (): void {
 Route::prefix('forum')->as('forum.')->group(function (): void {
     Route::get('/', Pages\Forum\Index::class)->name('index');
     Route::get('/channels', Pages\Forum\Channels::class)->name('channels');
-    Route::get('/leaderboard', Pages\Forum\Leaderboard::class)->name('leaderboard');
+    // Route::get('/leaderboard', Pages\Forum\Leaderboard::class)->name('leaderboard');
     Route::get('/{thread}', Pages\Forum\DetailThread::class)->name('show');
 });
 

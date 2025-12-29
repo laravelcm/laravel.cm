@@ -19,6 +19,7 @@
 @source '../../app-modules/*/resources/**/*.blade.php'
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../vendor/filament/**/*.blade.php';
+@source '../../vendor/mckenziearts/laravel-notify/resources/views/**/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
@@ -158,6 +159,18 @@
 
 @utility border-line {
   @apply border-dotted border-gray-300 dark:border-white/20;
+}
+
+@utility pattern-mask {
+  mask-image: linear-gradient(to bottom, transparent, black 50%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 50%);
+}
+
+@layer theme {
+  .dark .pattern-mask {
+    mask-image: linear-gradient(to bottom, transparent, white 50%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, white 50%);
+  }
 }
 
 @keyframes fadeInUp {

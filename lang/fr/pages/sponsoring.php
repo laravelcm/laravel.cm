@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'title' => 'Soutenir Laravel Cameroun',
     'support' => 'Soutenir en tant qu\'invité ou',
     'support_as' => 'Soutenir comme',
@@ -13,8 +12,8 @@ return [
                 communauté Laravel Cameroun, un endroit pour la communauté, par la communauté. Son code est
                 entièrement <a href="https://github.com/laravelcm/laravel.cm">ouvert (open source)</a>
                 et constitue une ressource d\'apprentissage pour les développeurs. Les développeurs sont
-                libres de poser des <a href="https://github.com/laravelcm/issues">questions</a>,
-                de contribuer au code source ou de s\'en inspirer pour leurs propres projets.',
+                libres de poser des questions,
+                de contribuer au code source et de s\'en inspirer pour leurs propres projets.',
         'two' => "Depuis que nous avons débuté avec la communauté en 2018, nous avons consacré pas mal de
                 temps à la mise en place des fonctionnalités et à la mise à jour régulière du site. Du
                 Design à la conception, en passant par l'intégration et le choix des outils pour le
@@ -33,5 +32,12 @@ return [
     'sponsor_form' => [
         'profile' => 'Vous sponsorisez en tant que',
     ],
-
+    'payment' => [
+        'failed_title' => 'Paiement échoué',
+        'failed_message' => 'Votre paiement a été annulé veuillez relancer pour soutenir Laravel Cameroun, Merci.',
+        'success_title' => 'Paiement réussi',
+        'success_message' => 'Votre paiement a été pris en compte merci de soutenir Laravel Cameroun.',
+        'error_title' => 'Erreur de paiement',
+        'error_message' => "Une erreur s'est produite lors de votre paiement. Veuillez relancer Merci.",
+    ],
 ];
