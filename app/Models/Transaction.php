@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\TransactionStatus;
+use App\Enums\TransactionType;
 use Database\Factories\TransactionFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,7 +16,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property-read string $id
+ * @property-read int $user_id
+ * @property-read int $amount
+ * @property-read ?int $fees
  * @property-read TransactionStatus $status
+ * @property-read TransactionType $type
+ * @property-read string $transaction_reference
  * @property-read array<string, mixed>|null $metadata
  */
 final class Transaction extends Model
@@ -68,6 +74,7 @@ final class Transaction extends Model
         return [
             'metadata' => 'array',
             'status' => TransactionStatus::class,
+            'type' => TransactionType::class,
         ];
     }
 

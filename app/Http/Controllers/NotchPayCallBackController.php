@@ -23,10 +23,10 @@ final class NotchPayCallBackController extends Controller
         $transaction = Transaction::query()
             ->where('transaction_reference', $request->get('reference'))
             ->firstOrFail();
+        /** @var string $apiKey */
+        $apiKey = config('lcm.notch-pay-public-token');
 
-        NotchPay::setApiKey(
-            apiKey: config('lcm.notch-pay-public-token')
-        );
+        NotchPay::setApiKey($apiKey);
 
         try {
             $verifyTransaction = Payment::verify(reference: $request->get('reference'));
@@ -34,29 +34,31 @@ final class NotchPayCallBackController extends Controller
 
             // @phpstan-ignore-next-line
             if ($verifyTransaction->transaction->status === TransactionStatus::CANCELED->value) {
-                session()->flash(
-                    key: 'error',
-                    value: __('Votre paiement a été annulé veuillez relancer pour soutenir Laravel Cameroun, Merci.')
-                );
+                notify()
+                    ->error()
+                    ->title(__('pages/sponsoring.payment.failed_title'))
+                    ->message(__('pages/sponsoring.payment.failed_message'))
+                    ->send();
             } else {
-                // @ToDO: Envoie de mail de notification de remerciement pour le sponsoring si l'utilisateur est dans la base de données
                 event(new SponsoringPaymentInitialize($transaction));
 
                 Cache::forget(key: 'sponsors');
 
-                session()->flash(
-                    key: 'status',
-                    value: __('Votre paiement a été pris en compte merci de soutenir Laravel Cameroun.')
-                );
+                notify()
+                    ->success()
+                    ->title(__('pages/sponsoring.payment.success_title'))
+                    ->message(__('pages/sponsoring.payment.success_message'))
+                    ->send();
             }
 
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
 
-            session()->flash(
-                key: 'error',
-                value: __("Une erreur s'est produite lors de votre paiement. Veuillez relancer Merci.")
-            );
+            notify()
+                ->error()
+                ->title(__('pages/sponsoring.payment.error_title'))
+                ->message(__('pages/sponsoring.payment.error_message'))
+                ->send();
         }
 
         return redirect(route('sponsors'));

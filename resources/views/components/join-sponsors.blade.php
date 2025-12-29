@@ -2,11 +2,13 @@
     'title',
 ])
 
-<div {{ $attributes->twMerge(['class' => 'py-12']) }}>
-    <p class="text-center text-lg font-medium leading-8 text-gray-700 dark:text-gray-300">
-        {{ $title }}
-    </p>
-    <div class="mt-4 py-6 relative flex items-center justify-center border-y border-dotted border-gray-300 dark:border-white/20 lg:py-10">
+<div {{ $attributes->twMerge(['class' => 'relative bg-white flex divide-x divide-gray-200 dark:divide-white/20 dark:bg-line-black']) }}>
+    <div class="hidden px-6 py-4 w-full max-w-xs lg:flex lg:items-center">
+        <p class="font-medium font-mono text-gray-900 dark:text-white">
+            {{ $title }}
+        </p>
+    </div>
+    <div class="p-6 relative flex-1 flex items-center justify-center lg:col-span-4 lg:py-10">
         <div class="inline-flex flex-wrap items-center justify-center">
             <div class="flex items-center justify-center px-4 py-2.5 lg:px-6">
                 <a href="https://shopperlabs.co" target="_blank" class="flex items-center">
@@ -30,14 +32,5 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="mt-6 text-center">
-        <x-link
-            class="text-sm leading-5 text-primary-500 hover:text-primary-600 hover:underline hover:decoration-1 hover:decoration-dotted hover:decoration-primary-500"
-            target="_blank"
-            :href="route('sponsors')"
-        >
-            {{ __('pages/home.view_logo_question') }}
-        </x-link>
     </div>
 </div>

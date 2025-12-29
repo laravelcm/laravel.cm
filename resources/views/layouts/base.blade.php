@@ -68,6 +68,7 @@
 <body class="h-full font-sans text-gray-500 antialiased dark:text-gray-400 dark:bg-line-black selection:bg-primary-500 selection:text-white">
     {{ $slot }}
 
+    <x-notify::notify />
     <livewire:wire-elements-modal />
     <livewire:slide-over-panel />
 

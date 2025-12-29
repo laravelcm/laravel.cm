@@ -1,7 +1,10 @@
 <div class="overflow-hidden">
     <div class="section-gradient isolate pt-16">
-        <x-container class="border-x border-dotted border-gray-300 dark:border-white/20 px-0">
-            <div class="mx-auto px-4 max-w-3xl py-20 sm:pt-32 text-center">
+        <x-container class="relative border-x border-dotted border-gray-300 dark:border-white/20 px-0">
+            <div class="absolute inset-x-0 bottom-0 h-2/3">
+                <x-grid-background class="pattern-mask text-gray-500/50" aria-hidden="true" />
+            </div>
+            <div class="relative mx-auto px-4 max-w-3xl py-20 sm:py-32 text-center">
                 <x-link :href="route('sponsors')" class="group inline-flex items-center justify-center rounded-full px-2 py-1 bg-primary-700 text-white text-sm dark:bg-primary-800/60">
                     <span class="rounded-full bg-flag-green px-2 py-0.5 text-xs font-semibold uppercase leading-5 tracking-wide text-white dark:bg-flag-green/50">
                         ⚡️ {{ __('pages/home.sponsor.title') }}
@@ -40,7 +43,10 @@
                 </div>
             </div>
 
-            <x-join-sponsors :title="__('pages/home.work_associations')" />
+            <x-join-sponsors
+                :title="__('pages/home.work_associations')"
+                class="border-t border-line"
+            />
         </x-container>
     </div>
 

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'title' => 'Support Laravel Cameroon',
     'support' => 'Support as a guest or',
     'support_as' => 'Support as',
@@ -23,5 +22,12 @@ return [
     'sponsor_form' => [
         'profile' => 'You are sponsoring as',
     ],
-
+    'payment' => [
+        'failed_title' => 'Payment failed',
+        'failed_message' => 'Your payment has been canceled, please try again to support Laravel Cameroon, Thank you.',
+        'success_title' => 'Payment successful',
+        'success_message' => 'Your payment has been processed, thank you for supporting Laravel Cameroon.',
+        'error_title' => 'Payment error',
+        'error_message' => 'An error occurred during your payment. Please try again, Thank you.',
+    ],
 ];
