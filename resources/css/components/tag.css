@@ -99,5 +99,5 @@
 }
 
 .is-channel {
-  @apply dark:border-white/20 dark:text-[var(--channel-color)] [&_svg]:dark:hover:fill-white dark:hover:text-white;
+  @apply dark:border-white/20 dark:text-(--channel-color) [&_svg]:dark:hover:fill-white dark:hover:text-white;
 }

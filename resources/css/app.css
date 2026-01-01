@@ -140,11 +140,11 @@
 }
 
 @utility line-l {
-  @apply absolute left-0 top-0 bottom-0 w-0 border-l border-dotted border-gray-300 dark:border-white/20;
+  @apply absolute left-0 top-0 w-0 h-[500vh] -translate-y-[250vh] border-l border-dotted border-gray-300 dark:border-white/20;
 }
 
 @utility line-r {
-  @apply absolute right-0 top-0 bottom-0 w-0 border-r border-dotted border-gray-300 dark:border-white/20;
+  @apply absolute right-0 top-0 w-0 h-[500vh] -translate-y-[250vh] border-r border-dotted border-gray-300 dark:border-white/20;
 }
 
 @utility line-x {

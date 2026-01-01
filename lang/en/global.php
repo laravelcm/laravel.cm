@@ -24,7 +24,7 @@ return [
         'rules' => 'Rules',
         'privacy' => 'Privacy Policy',
         'terms' => 'Terms & Conditions',
-        'settings' => 'Settings',
+        'account' => 'Account',
         'profile' => 'Profile',
         'dashboard' => 'Dashboard',
         'password' => 'Password',

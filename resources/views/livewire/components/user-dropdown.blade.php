@@ -180,7 +180,7 @@ new class extends Component {
                 {{ __('global.navigation.profile') }}
             </x-link>
             <x-link
-                :href="route('settings')"
+                :href="route('account.index')"
                 class="group flex items-center gap-2 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
                 tabindex="-1"
             >
@@ -189,7 +189,7 @@ new class extends Component {
                     stroke-width="1.5"
                     aria-hidden="true"
                 />
-                {{ __('global.navigation.settings') }}
+                {{ __('global.navigation.account') }}
             </x-link>
 
             <livewire:components.logout />

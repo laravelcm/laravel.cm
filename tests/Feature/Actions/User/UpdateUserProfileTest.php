@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 use App\Actions\User\UpdateUserProfileAction;
-use App\Livewire\Components\User\Profile;
+use App\Livewire\Pages\Account\Index;
 
 beforeEach(function (): void {
     $this->user = $this->login();
 });
 
-describe(Profile::class, function (): void {
+describe(Index::class, function (): void {
     it('can update user profile', function (): void {
         $data = [
             'location' => 'Cameroon',

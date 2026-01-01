@@ -42,8 +42,10 @@ Route::get('sponsors', Pages\Sponsoring::class)->name('sponsors');
 Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');
 
 Route::middleware(['auth', 'checkIfBanned', 'verified'])->group(function (): void {
-    Route::get('/settings', Pages\Account\Settings::class)->name('settings');
     Route::get('/dashboard', Pages\Account\Dashboard::class)->name('dashboard');
+    Route::prefix('account')->as('account.')->group(function (): void {
+        Route::get('/', Pages\Account\Index::class)->name('index');
+    });
 });
 
 Route::get('/@{user:username}', Pages\Account\Profile::class)->name('profile');

@@ -205,11 +205,14 @@ return [
         'freelance' => 'Indépendant',
         'amount' => 'Montant',
         'currency' => 'Devise',
+        'dropzone' => 'Déposez votre fichier ou cliquez pour parcourir',
     ],
 
     'hints' => [
         'password' => 'Doit comporter au moins 8 caractères, dont une majuscule, un chiffre et un caractère spécial.',
         'username' => 'Ceci sera affiché publiquement.',
+        'required' => 'Requis',
+        'dropzone' => 'JPG, PNG, GIF, SVG & AVIF jusqu\'à 1MB',
     ],
 
 ];

@@ -637,12 +637,6 @@ parameters:
 			path: app/Actions/ReportSpamAction.php
 
 		-
-			rawMessage: Property App\Models\User::$email_verified_at is not writable.
-			identifier: assign.propertyReadOnly
-			count: 1
-			path: app/Actions/User/UpdateUserProfileAction.php
-
-		-
 			rawMessage: 'Cannot call method get() on mixed.'
 			identifier: method.nonObject
 			count: 1
