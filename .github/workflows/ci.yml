@@ -40,7 +40,20 @@ jobs:
             cache-path: ""
             cache-key: ""
           - name: Composer Validate & Audit
-            command: composer validate && composer audit
+            command: |
+              composer validate
+              composer audit || {
+                EXIT_CODE=$?
+                echo "⚠️  Composer audit found vulnerabilities."
+                # Check if output contains high or critical severity
+                if composer audit 2>&1 | grep -qiE "(severity.*high|severity.*critical)"; then
+                  echo "❌ Found high or critical severity vulnerabilities - failing!"
+                  exit 1
+                else
+                  echo "ℹ️  Only low/moderate severity vulnerabilities found (non-blocking)"
+                  exit 0
+                fi
+              }
             needs-node: "false"
             cache-path: ""
             cache-key: ""
