@@ -94,6 +94,9 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy only composer files first for better caching
 COPY --chown=www-data:www-data composer.json composer.lock* ./
 
+# Copy app-modules directory (required for path dependencies in composer.json)
+COPY --chown=www-data:www-data app-modules/ ./app-modules/
+
 # Configure composer cache directory
 RUN --mount=type=cache,target=/tmp/.composer-cache \
     composer config cache-dir /tmp/.composer-cache
