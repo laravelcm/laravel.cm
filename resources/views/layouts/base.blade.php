@@ -24,7 +24,13 @@
             {{ is_active('home') ? '- '. __('pages/home.title') : '' }}
         </title>
     @endif
+
     <x-seo::meta />
+
+    @if (request()->is('account*'))
+        <meta name="robots" content="noindex, nofollow">
+    @endif
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.bunny.net">

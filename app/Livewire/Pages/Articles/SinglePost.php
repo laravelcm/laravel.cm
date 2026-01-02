@@ -10,6 +10,7 @@ use ArchTech\SEO\SEOManager;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 final class SinglePost extends Component
@@ -21,6 +22,7 @@ final class SinglePost extends Component
         /** @var User $user */
         $user = Auth::user();
 
+        /** @var Article $article */
         $article = Cache::rememberForever(
             key: 'article.'.$this->article->id,
             callback: fn (): Article => $this->article
@@ -45,13 +47,17 @@ final class SinglePost extends Component
         $seoManager = seo();
 
         $seoManager
-            ->title($article->title)
+            ->title(Str::limit($article->title, 60, ''))
             ->description($article->excerpt(160))
             ->image($image)
-            ->twitterTitle($article->title)
+            ->twitterTitle(Str::limit($article->title, 60, ''))
             ->twitterDescription($article->excerpt(160))
             ->twitterImage($image)
             ->url($article->canonicalUrl());
+
+        if ($article->isNotPublished()) {
+            $seoManager->meta('robots', 'noindex, nofollow');
+        }
 
         $this->article = $article;
     }

@@ -13,7 +13,7 @@
     <x-empty-state>
         <div class="relative">
             <div class="relative">
-                <div class="absolute -inset-1 w-72 mx-auto bg-gradient-to-r from-flag-green to-flag-red rounded-lg blur opacity-25"></div>
+                <div class="absolute -inset-1 w-72 mx-auto bg-linear-to-r from-flag-green to-flag-red rounded-lg blur opacity-25"></div>
                 <div class="relative flex items-start w-72 mx-auto shadow z-20 bg-white gap-3 p-4 rounded-lg ring-1 ring-gray-200/50 dark:bg-gray-900 dark:ring-white/10">
                     <div class="size-10 bg-gray-50 border border-gray-200 ring-2 ring-offset-2 ring-offset-gray-50 ring-gray-200/50 dark:ring-offset-gray-900 dark:border-white/20 dark:ring-white/20 rounded-full dark:bg-gray-800"></div>
                     <div class="w-3/4 space-y-2">

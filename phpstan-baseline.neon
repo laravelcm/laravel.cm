@@ -1027,42 +1027,6 @@ parameters:
 			path: app/Livewire/Pages/Account/Profile.php
 
 		-
-			rawMessage: Cannot access property $title on mixed.
-			identifier: property.nonObject
-			count: 2
-			path: app/Livewire/Pages/Articles/SinglePost.php
-
-		-
-			rawMessage: 'Cannot call method canonicalUrl() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Livewire/Pages/Articles/SinglePost.php
-
-		-
-			rawMessage: 'Cannot call method excerpt() on mixed.'
-			identifier: method.nonObject
-			count: 2
-			path: app/Livewire/Pages/Articles/SinglePost.php
-
-		-
-			rawMessage: 'Cannot call method getFirstMediaUrl() on mixed.'
-			identifier: method.nonObject
-			count: 2
-			path: app/Livewire/Pages/Articles/SinglePost.php
-
-		-
-			rawMessage: 'Cannot call method isPublished() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Livewire/Pages/Articles/SinglePost.php
-
-		-
-			rawMessage: 'Property App\Livewire\Pages\Articles\SinglePost::$article (App\Models\Article) does not accept mixed.'
-			identifier: assign.propertyType
-			count: 1
-			path: app/Livewire/Pages/Articles/SinglePost.php
-
-		-
 			rawMessage: 'Cannot call method withCount() on mixed.'
 			identifier: method.nonObject
 			count: 1

@@ -17,7 +17,7 @@
             <div class="absolute scale-90 shadow inset-x-0 -top-4 flex items-start -z-10 bg-white gap-3 p-3 rounded-lg ring-1 ring-gray-200/50 dark:bg-gray-900 dark:ring-white/10">
             </div>
             <div class="relative">
-                <div class="absolute -inset-1 bg-gradient-to-r from-flag-green to-flag-red rounded-lg blur opacity-25"></div>
+                <div class="absolute -inset-1 bg-linear-to-r from-flag-green to-flag-red rounded-lg blur opacity-25"></div>
                 <div class="relative flex items-start z-20 bg-white gap-3 p-3 rounded-lg ring-1 ring-gray-200/50 dark:bg-gray-900 dark:ring-white/10">
                     <div class="w-1/4 h-20 bg-gray-50 ring-1 ring-gray-200/50 dark:ring-white/20 rounded-lg dark:bg-gray-800"></div>
                     <div class="w-3/4 pt-2 space-y-2">
