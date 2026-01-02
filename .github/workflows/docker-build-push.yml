@@ -3,12 +3,12 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     types:
       - closed
     branches:
-      - master
+      - main
   release:
     types:
       - created
@@ -24,7 +24,7 @@ concurrency:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    # Only run on merged PRs (not closed without merge), pushes to master, releases, or manual dispatch
+    # Only run on merged PRs (not closed without merge), pushes to main, releases, or manual dispatch
     if: |
       github.event_name == 'push' ||
       (github.event_name == 'pull_request' && github.event.pull_request.merged == true) ||
@@ -46,7 +46,7 @@ jobs:
             image=moby/buildkit:latest
             network=host
 
-      - name: 🔐 Log in to GitHub Container Registry
+      - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
@@ -93,6 +93,6 @@ jobs:
           cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64
 
-      - name: 📦 Image digest
+      - name: Image digest
         if: steps.build.outputs.digest
         run: echo "Image pushed with digest ${{ steps.build.outputs.digest }}"

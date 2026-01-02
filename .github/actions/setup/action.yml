@@ -17,7 +17,7 @@ runs:
       with:
         php-version: 8.4
         extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, pdo_pgsql, bcmath, soap, intl, gd, exif, iconv, imagick
-        tools: composer:v2
+        tools: composer:latest
         coverage: xdebug
     - name: ℹ Setup Problem Matches
       shell: sh

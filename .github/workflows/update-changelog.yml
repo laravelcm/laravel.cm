@@ -1,11 +1,13 @@
-name: "Update Changelog"
+name: Update Changelog
 
 on:
   release:
-    types: [released]
+    types:
+      - released
 
 jobs:
   update:
+    name: Update Changelog
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -15,6 +17,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
@@ -26,5 +29,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           branch: main
-          commit_message: Update CHANGELOG
+          commit_message: "chore: update CHANGELOG for ${{ github.event.release.name }}"
           file_pattern: CHANGELOG.md
