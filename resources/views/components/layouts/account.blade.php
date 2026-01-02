@@ -12,6 +12,7 @@
                     <x-nav.forum-link
                         :href="route('account.index')"
                         :active="request()->routeIs('account.index')"
+                        wire:current="border-line text-gray-900 bg-gray-50 dark:bg-white/10 dark:text-white"
                         icon="untitledui-user-02"
                         class="border-t-0"
                     >
@@ -20,6 +21,7 @@
                     <x-nav.forum-link
                         :href="route('account.password')"
                         :active="request()->routeIs('account.password')"
+                        wire:current="border-line text-gray-900 bg-gray-50 dark:bg-white/10 dark:text-white"
                         icon="untitledui-lock-keyhole-circle"
                     >
                         {{ __('global.navigation.password') }}
@@ -27,16 +29,18 @@
                     <x-nav.forum-link
                         :href="route('account.preferences')"
                         :active="request()->routeIs('account.preferences')"
+                        wire:current="border-line text-gray-900 bg-gray-50 dark:bg-white/10 dark:text-white"
                         icon="untitledui-sliders-03"
                     >
                         {{ __('global.navigation.preferences') }}
                     </x-nav.forum-link>
                     <x-nav.forum-link
-                        :href="route('account.index')"
-                        :active="request()->routeIs('account.notifications')"
-                        icon="untitledui-bell-04"
+                        :href="route('account.alerts')"
+                        :active="request()->routeIs('account.alerts')"
+                        wire:current="border-line text-gray-900 bg-gray-50 dark:bg-white/10 dark:text-white"
+                        icon="untitledui-alarm-clock"
                     >
-                        {{ __('global.navigation.notifications') }}
+                        {{ __('global.navigation.alerts') }}
                     </x-nav.forum-link>
                 </nav>
             </div>

@@ -31,6 +31,7 @@ return [
         'preferences' => 'Preferences',
         'notifications' => 'Notifications',
         'subscription' => 'Subscription',
+        'alerts' => 'Alerts',
     ],
     'footer' => [
         'title' => 'Footer',

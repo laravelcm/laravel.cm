@@ -47,6 +47,7 @@ Route::middleware(['auth', 'checkIfBanned', 'verified'])->group(function (): voi
         Route::get('/', Pages\Account\Index::class)->name('index');
         Route::get('/password', Pages\Account\Password::class)->name('password');
         Route::get('/preferences', Pages\Account\Preferences::class)->name('preferences');
+        Route::get('/alerts', Pages\Account\Alerts::class)->name('alerts');
     });
 });
 
