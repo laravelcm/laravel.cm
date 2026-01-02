@@ -33,6 +33,7 @@ return [
     'verify_account' => 'Vous devrez vérifier votre compte avant de participer à cette conversation.',
     'received_link' => 'Recevoir un lien',
     'torchlight' => 'Pour le formatage du code (couleur syntaxique, langage, etc) nous utilisons',
+    'lock_thread' => 'Conversation Fermée',
     'old_thread' => 'La dernière réponse à ce sujet remonte à plus de six mois. Pensez à ouvrir un nouveau sujet si vous avez une question similaire.',
     'best_answer' => 'Meilleure réponse',
     'mark_answer' => 'Marquer comme réponse',

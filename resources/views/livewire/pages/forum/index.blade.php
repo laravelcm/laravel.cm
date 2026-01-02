@@ -12,7 +12,7 @@
         </p>
     </x-slot:buttons>
 
-    <div class="p-4 border-b border-line bg-white z-20 flex items-center gap-x-4 sticky top-16 backdrop-blur-lg dark:bg-gray-950/80">
+    <div class="p-4 border-b border-line bg-white z-20 mr-px flex items-center gap-x-4 sticky top-16 backdrop-blur-lg dark:bg-gray-950/80">
         <livewire:components.channels-selector :slug="$channel" />
 
         <div class="flex items-center gap-x-4 lg:flex-1">
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div class="mt-6 px-4">
+    <div class="pt-4 bg-dotted after:border-0 px-4">
         <div class="space-y-4">
             @foreach ($threads as $thread)
                 <x-forum.thread :$thread wire:key="{{ $thread->slug }}" />

@@ -12,14 +12,16 @@
     $iconClasses = $active
         ? 'size-5 text-primary-600 dark:text-primary-500'
         : 'size-5 text-gray-400 dark:text-gray-500';
+
+    $classes = \Illuminate\Support\Arr::toCssClasses([
+        'group relative flex ml-px text-nowrap items-center gap-2 py-2 px-4 border-y hover:border-line text-sm font-medium',
+        $activeClasses
+    ]);
 @endphp
 
 <x-link
     :$href
-    {{ $attributes->class([
-        'group relative flex ml-px items-center gap-2 py-2 px-4 border-y hover:border-line text-sm font-medium',
-        $activeClasses
-    ]) }}
+    {{ $attributes->twMerge(['class' => $classes]) }}
 >
     @if ($active)
         <span class="absolute left-0 inset-y-0 w-0.5 bg-primary-600 dark:bg-primary-500"></span>

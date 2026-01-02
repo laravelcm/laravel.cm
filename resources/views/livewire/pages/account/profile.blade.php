@@ -20,12 +20,12 @@
     }"
     x-init="tabRepositionMarker($refs.tabButtons.firstElementChild)"
 >
-    <div class="shrink-0 bg-gradient-to-b pb-1 from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div class="shrink-0 bg-linear-to-b pb-1 from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <x-container>
             <div class="py-10 lg:flex lg:items-start lg:gap-8 lg:py-12">
                 <x-user.avatar
                     :user="$user"
-                    class="size-24 !ring-4 ring-white dark:ring-gray-800 lg:size-32"
+                    class="size-24 ring-4! ring-white dark:ring-gray-800 lg:size-32"
                     span="right-1 top-0 ring-4 size-6"
                 />
                 <div>

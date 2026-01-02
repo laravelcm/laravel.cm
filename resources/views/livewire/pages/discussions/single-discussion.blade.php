@@ -99,7 +99,7 @@
             </div>
 
             <div class="hidden relative border-l border-y border-line lg:col-span-2 lg:block">
-                <x-sticky-content class="space-y-12 bg-dotted after:border-0">
+                <x-sticky-content class="space-y-8 bg-dotted after:border-0">
                     <livewire:components.discussion.top-contributors />
 
                     <livewire:components.discussion.no-comment-discussions />
