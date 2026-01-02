@@ -637,12 +637,6 @@ parameters:
 			path: app/Actions/ReportSpamAction.php
 
 		-
-			rawMessage: Property App\Models\User::$email_verified_at is not writable.
-			identifier: assign.propertyReadOnly
-			count: 1
-			path: app/Actions/User/UpdateUserProfileAction.php
-
-		-
 			rawMessage: 'Cannot call method get() on mixed.'
 			identifier: method.nonObject
 			count: 1
@@ -1003,18 +997,6 @@ parameters:
 			path: app/Livewire/Components/User/Activities.php
 
 		-
-			rawMessage: 'Parameter $value of static method Illuminate\Support\Facades\Hash::make() expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Livewire/Components/User/Password.php
-
-		-
-			rawMessage: 'Parameter #2 $default of method App\Models\User::setting() expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Livewire/Components/User/Preferences.php
-
-		-
 			rawMessage: 'Cannot call method withCount() on mixed.'
 			identifier: method.nonObject
 			count: 1
@@ -1043,42 +1025,6 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: app/Livewire/Pages/Account/Profile.php
-
-		-
-			rawMessage: Cannot access property $title on mixed.
-			identifier: property.nonObject
-			count: 2
-			path: app/Livewire/Pages/Articles/SinglePost.php
-
-		-
-			rawMessage: 'Cannot call method canonicalUrl() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Livewire/Pages/Articles/SinglePost.php
-
-		-
-			rawMessage: 'Cannot call method excerpt() on mixed.'
-			identifier: method.nonObject
-			count: 2
-			path: app/Livewire/Pages/Articles/SinglePost.php
-
-		-
-			rawMessage: 'Cannot call method getFirstMediaUrl() on mixed.'
-			identifier: method.nonObject
-			count: 2
-			path: app/Livewire/Pages/Articles/SinglePost.php
-
-		-
-			rawMessage: 'Cannot call method isPublished() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Livewire/Pages/Articles/SinglePost.php
-
-		-
-			rawMessage: 'Property App\Livewire\Pages\Articles\SinglePost::$article (App\Models\Article) does not accept mixed.'
-			identifier: assign.propertyType
-			count: 1
-			path: app/Livewire/Pages/Articles/SinglePost.php
 
 		-
 			rawMessage: 'Cannot call method withCount() on mixed.'

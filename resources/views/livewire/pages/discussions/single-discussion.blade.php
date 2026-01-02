@@ -1,4 +1,6 @@
 <x-container class="px-0 lg:line-x">
+    <x-schema.discussion :$discussion />
+
     <div class="pt-20 pb-16 lg:pt-28 " x-data>
         <div class="relative lg:grid lg:grid-cols-7 lg:gap-12">
             <div class="lg:col-span-5 lg:max-w-4xl lg:border-y lg:border-line lg:border-r">

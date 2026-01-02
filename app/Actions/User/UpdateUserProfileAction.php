@@ -9,13 +9,15 @@ use App\Models\User;
 
 final class UpdateUserProfileAction
 {
+    /**
+     * @param  array<string, mixed>  $data
+     */
     public function execute(array $data, User $user, string $currentUserEmail): User
     {
         $user->update($data);
 
         if ($user->email !== $currentUserEmail) {
-            $user->email_verified_at = null;
-            $user->save();
+            $user->update(['email_verified_at' => null]);
 
             event(new EmailAddressWasChanged($user));
         }

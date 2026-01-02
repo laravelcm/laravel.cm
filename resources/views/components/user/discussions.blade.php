@@ -13,7 +13,7 @@
     <x-empty-state>
         <div class="relative">
             <div class="relative">
-                <div class="absolute -inset-1 bg-gradient-to-r rotate-3 w-72 from-flag-green to-flag-red rounded-lg blur opacity-25"></div>
+                <div class="absolute -inset-1 bg-linear-to-r rotate-3 w-72 from-flag-green to-flag-red rounded-lg blur opacity-25"></div>
                 <div class="relative z-20 bg-white gap-3 rotate-3 p-3 w-72 rounded-lg shadow ring-1 ring-gray-200/50 dark:bg-gray-900 dark:ring-white/10">
                     <div class="space-y-2">
                         <div class="grid grid-cols-3 gap-2 w-1/3">

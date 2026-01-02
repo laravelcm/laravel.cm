@@ -6,6 +6,8 @@
         $media = $article->getFirstMediaUrl('media');
     @endphp
 
+    <x-schema.article :$article />
+
     <header class="line-b section-gradient pb-6 pt-20 lg:pt-28">
         <x-container>
             {{ \Diglactic\Breadcrumbs\Breadcrumbs::render('blog') }}
@@ -85,9 +87,10 @@
                         <div class="relative aspect-video rounded-lg ring-1 ring-gray-200 overflow-hidden dark:ring-0">
                             <img
                                 loading="lazy"
+                                decoding="async"
                                 class="object-cover size-full"
                                 src="{{ $media }}"
-                                alt="{{ $article->title }}"
+                                alt="Image d'illustration pour {{ $article->title }}"
                             />
                         </div>
                     </div>

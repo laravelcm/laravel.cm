@@ -212,11 +212,14 @@ return [
         'freelance' => 'Freelance',
         'amount' => 'Amount',
         'currency' => 'Currency',
+        'dropzone' => 'Drop files or click to browse',
     ],
 
     'hints' => [
         'password' => 'Must be at least 8 characters long, include an uppercase letter, a number, and a special character.',
         'username' => 'This will be publicly displayed.',
+        'required' => 'Required',
+        'dropzone' => 'JPG, PNG, GIF, SVG & AVIF up to 1MB',
     ],
 
 ];

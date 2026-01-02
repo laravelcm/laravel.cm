@@ -63,9 +63,9 @@
                         </x-nav.item>
 
                         <!-- @ToDo: Remove this component after added command palette modal search -->
-                        <div class="hidden">
+                        {{--<div class="hidden">
                             <x-launch-content />
-                        </div>
+                        </div>--}}
 
                         <livewire:components.user-dropdown />
                     @endguest
@@ -126,7 +126,7 @@
 
                                     <div class="flex items-center gap-2">
                                         <div class="shrink-0">
-                                            <x-user.avatar :$user class="size-8" />
+                                            <x-user.avatar :$user size="xs" />
                                         </div>
                                         <div class="leading-4">
                                             <div class="text-sm font-medium text-gray-900 dark:text-white">
@@ -143,7 +143,7 @@
                                             :title="__('global.navigation.profile')"
                                         />
                                         <x-nav.item
-                                            :href="route('settings')"
+                                            :href="route('account.index')"
                                             :title="__('global.navigation.settings')"
                                         />
                                         <livewire:components.logout />

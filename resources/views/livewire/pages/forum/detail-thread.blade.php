@@ -1,4 +1,6 @@
 <div x-data class="relative">
+    <x-schema.qa-page :$thread />
+
     <x-slot:buttons>
         <div class="space-y-3 px-4">
             <flux:button

@@ -57,9 +57,7 @@ return [
             'tip' => 'Tip:',
             'first_text' => 'Visit any forum thread and click on the',
             'subscribe' => 'Subscribe',
-            'second_text' => 'in the sidebar. Once clicked, you will receive an e-mail each time a response
-                        is published. The same applies to any type of content that offers this
-                        this option.',
+            'second_text' => 'in the sidebar. Once clicked, you will receive an e-mail each time a response is published.',
         ],
     ],
 

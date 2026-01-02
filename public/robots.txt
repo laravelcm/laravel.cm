@@ -1,17 +1,46 @@
 User-agent: *
 
-# User
+# Pages privées utilisateurs
 Disallow: /@*
+Disallow: /account
+Disallow: /account/*
 Disallow: /dashboard
 Disallow: /dashboard/*
+Disallow: /notifications
 
-# Forum
+# Authentification
+Disallow: /auth/*
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /confirm-password
+Disallow: /verify-email
+
+# Administration
+Disallow: /cp
+Disallow: /cp/*
+
+# Utilitaires et redirections
+Disallow: /replyable/*
+Disallow: /subscribeable/*
+Disallow: /subscriptions/*
+Disallow: /callback-payment
+
+# Pages statiques (faible valeur SEO)
 Disallow: /forum/channels
 Disallow: /forum/channels/*
-Disallow: /rules
-Disallow: /terms
-Disallow: /privacy
-Disallow: /auth/github
 
-# Sitemap
+# Assets techniques
+Disallow: /livewire/*
+Disallow: /flux/*
+Disallow: /filament/*
+Disallow: /_debugbar/*
+
+# Pages légales (index mais pas prioritaires)
+Allow: /rules
+Allow: /terms
+Allow: /privacy
+
+# Sitemaps
 Sitemap: https://laravel.cm/sitemap.xml

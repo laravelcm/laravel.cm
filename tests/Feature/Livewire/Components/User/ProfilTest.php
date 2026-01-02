@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Actions\User\UpdateUserProfileAction;
 use App\Events\EmailAddressWasChanged;
-use App\Livewire\Components\User\Profile;
+use App\Livewire\Pages\Account\Index;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 
@@ -12,19 +12,17 @@ beforeEach(function (): void {
     $this->user = $this->login();
 });
 
-describe(Profile::class, function (): void {
+describe(Index::class, function (): void {
     it('renders successfully', function (): void {
-        Livewire::test(Profile::class, ['user' => $this->user])
+        Livewire::test(Index::class)
             ->assertStatus(200);
     });
 
     it('user can update profil', function (): void {
-        Livewire::test(Profile::class, ['user' => $this->user])
-            ->fillForm([
-                'name' => 'John Doe',
-            ])
+        Livewire::test(Index::class)
+            ->set('form.name', 'John Doe')
             ->call('save')
-            ->assertHasNoFormErrors();
+            ->assertHasNoErrors();
 
         $this->user->refresh();
 
@@ -33,12 +31,10 @@ describe(Profile::class, function (): void {
     });
 
     it("user can't update profil if required information was not send", function (): void {
-        Livewire::test(Profile::class, ['user' => $this->user])
-            ->fillForm([
-                'email' => null,
-            ])
+        Livewire::test(Index::class)
+            ->set('form.email', '')
             ->call('save')
-            ->assertHasFormErrors(['email' => 'required']);
+            ->assertHasErrors(['form.email' => 'required']);
 
         expect($this->user->email)
             ->toBe($this->user->email);

@@ -2,6 +2,7 @@
   @apply h-auto py-2;
 }
 
-[data-flux-input] > input {
+[data-flux-input] > input,
+[data-flux-textarea] {
   @apply focus:outline-none focus:border-transparent focus:ring-2 focus:ring-primary-600 dark:focus:ring-primary-500;
 }
