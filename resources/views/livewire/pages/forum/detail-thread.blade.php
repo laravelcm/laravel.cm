@@ -102,7 +102,7 @@
             @if ($thread->isConversationOld())
                 <div class="p-4 relative">
                     <flux:callout icon="lock-closed" variant="secondary" inline>
-                        <flux:callout.heading>{{ __('Conversation Locked') }}</flux:callout.heading>
+                        <flux:callout.heading>{{ __('pages/forum.lock_thread') }}</flux:callout.heading>
                         <flux:callout.text>{{ __('pages/forum.old_thread') }}</flux:callout.text>
                         <x-slot name="actions">
                             <flux:button onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })">
