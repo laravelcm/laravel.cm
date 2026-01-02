@@ -2,8 +2,8 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches:
-      - main
+    # Temporarily run on all branches for testing
+    # Remove branches restriction to trigger on any branch
   pull_request:
     types:
       - closed
@@ -24,7 +24,7 @@ concurrency:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    # Only run on merged PRs (not closed without merge), pushes to main, releases, or manual dispatch
+    # Temporarily run on all pushes, merged PRs, releases, or manual dispatch
     if: |
       github.event_name == 'push' ||
       (github.event_name == 'pull_request' && github.event.pull_request.merged == true) ||

@@ -83,6 +83,10 @@ FROM base AS composer
 ARG FLUX_USERNAME
 ARG FLUX_LICENSE_KEY
 
+# Convert ARG to ENV to ensure they're available in RUN commands
+ENV FLUX_USERNAME=${FLUX_USERNAME}
+ENV FLUX_LICENSE_KEY=${FLUX_LICENSE_KEY}
+
 WORKDIR /var/www/html
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -90,13 +94,21 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy only composer files first for better caching
 COPY --chown=www-data:www-data composer.json composer.lock* ./
 
-# Configure composer and install dependencies with cache mount
+# Configure composer cache directory
 RUN --mount=type=cache,target=/tmp/.composer-cache \
-    composer config cache-dir /tmp/.composer-cache \
-    && if [ -n "${FLUX_USERNAME}" ] && [ -n "${FLUX_LICENSE_KEY}" ]; then \
-        composer config http-basic.composer.fluxui.dev "${FLUX_USERNAME}" "${FLUX_LICENSE_KEY}"; \
-    fi \
-    && composer install --no-dev --no-interaction --no-scripts --prefer-dist --no-autoloader
+    composer config cache-dir /tmp/.composer-cache
+
+# Validate and configure Flux credentials (required for Flux Pro packages)
+RUN --mount=type=cache,target=/tmp/.composer-cache \
+    if [ -z "$FLUX_USERNAME" ] || [ -z "$FLUX_LICENSE_KEY" ]; then \
+        echo "ERROR: FLUX_USERNAME and FLUX_LICENSE_KEY are required build arguments" >&2; \
+        exit 1; \
+    fi && \
+    composer config http-basic.composer.fluxui.dev "$FLUX_USERNAME" "$FLUX_LICENSE_KEY"
+
+# Install dependencies with cache mount
+RUN --mount=type=cache,target=/tmp/.composer-cache \
+    composer install --no-dev --no-interaction --no-scripts --prefer-dist --no-autoloader
 
 # Copy application code (needed for autoloader generation)
 COPY --chown=www-data:www-data . .
