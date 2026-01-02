@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <x-join-sponsors
+            <x-sponsors
                 :title="__('pages/home.work_associations')"
                 class="border-t border-line"
             />

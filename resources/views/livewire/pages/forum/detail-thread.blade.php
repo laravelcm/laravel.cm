@@ -100,21 +100,17 @@
 
         @can('create', App\Models\Reply::class)
             @if ($thread->isConversationOld())
-                <x-info-panel class="mt-14 text-sm">
-                    <p>
-                        {{ __('pages/forum.old_thread') }}
-                    </p>
-                    <p class="mt-4">
-                        <flux:button
-                            variant="primary"
-                            onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })"
-                            class="border-0"
-                        >
-                            {{ __('pages/forum.new_thread') }}
-                            <span aria-hidden="true">&rarr;</span>
-                        </flux:button>
-                    </p>
-                </x-info-panel>
+                <div class="p-4 relative">
+                    <flux:callout icon="lock-closed" variant="secondary" inline>
+                        <flux:callout.heading>{{ __('pages/forum.lock_thread') }}</flux:callout.heading>
+                        <flux:callout.text>{{ __('pages/forum.old_thread') }}</flux:callout.text>
+                        <x-slot name="actions">
+                            <flux:button onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })">
+                                {{ __('pages/forum.new_thread') }}
+                            </flux:button>
+                        </x-slot>
+                    </flux:callout>
+                </div>
             @else
                 <livewire:components.forum.reply-form :$thread />
             @endif
@@ -149,7 +145,7 @@
         @endcan
     </div>
 
-    <template x-teleport="body">
+    {{--<template x-teleport="body">
         <x-filament-actions::modals />
-    </template>
+    </template>--}}
 </div>

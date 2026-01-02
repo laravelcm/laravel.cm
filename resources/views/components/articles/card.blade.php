@@ -27,7 +27,7 @@
     <div @class(['sm:col-span-3' => $isSummary])>
         <div @class([
             'flex flex-col lg:flex-row',
-            'items-center justify-between gap-4' => ! $isSummary,
+            'justify-between gap-4' => ! $isSummary,
             'flex-col justify-between gap-2' => $isSummary,
         ])>
             @if ($article->tags->isNotEmpty())

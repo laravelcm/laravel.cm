@@ -33,6 +33,7 @@ return [
     'verify_account' => 'You will need to verify your account before participating in this conversation.',
     'received_link' => 'Received link',
     'torchlight' => 'For code formatting (syntax color, language, etc.) we use',
+    'lock_thread' => 'Conversation Locked',
     'old_thread' => 'The last reply to this topic was more than six months ago. Consider opening a new topic if you have a similar question.',
     'best_answer' => 'Best answer',
     'mark_answer' => 'Mark as solution',

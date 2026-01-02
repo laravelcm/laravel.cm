@@ -70,5 +70,5 @@ new class extends Component
         </div>
     </div>
 
-    <x-join-sponsors :title="__('global.sponsor_thanks')" />
+    <x-sponsors :title="__('global.sponsor_thanks')" />
 </div>
