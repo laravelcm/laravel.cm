@@ -10,7 +10,7 @@
             '@type' => 'Answer',
             'text' => strip_tags($thread->solution->body),
             'dateCreated' => $thread->solution->created_at->toIso8601String(),
-            'upvoteCount' => $thread->solution->likesCount,
+            'upvoteCount' => $thread->solution->reactions_count ?? 0,
             'author' => [
                 '@type' => 'Person',
                 'name' => $thread->solution->user->name,
@@ -21,7 +21,7 @@
 
     $answers = $thread->replies()
         ->with('user')
-        ->withCount('likes')
+        ->withCount('reactions')
         ->latest()
         ->limit(10)
         ->get()
@@ -29,7 +29,7 @@
             '@type' => 'Answer',
             'text' => strip_tags($reply->body),
             'dateCreated' => $reply->created_at->toIso8601String(),
-            'upvoteCount' => $reply->likes_count ?? 0,
+            'upvoteCount' => $reply->reactions_count ?? 0,
             'author' => [
                 '@type' => 'Person',
                 'name' => $reply->user->name,
@@ -48,7 +48,7 @@
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@@context": "https://schema.org",
   "@graph": [
     {
       "@type": "QAPage",
@@ -57,7 +57,7 @@
         "name": {{ Js::from($thread->title) }},
         "text": {{ Js::from(strip_tags($thread->body)) }},
         "answerCount": {{ $thread->replies_count ?? 0 }},
-        "upvoteCount": {{ $thread->likesCount ?? 0 }},
+        "upvoteCount": {{ $thread->reactions_count ?? 0 }},
         "dateCreated": {{ Js::from($thread->created_at->toIso8601String()) }},
         "author": {
           "@type": "Person",

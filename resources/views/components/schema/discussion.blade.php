@@ -30,7 +30,7 @@
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
+  "@@context": "https://schema.org",
   "@graph": [
     {
       "@type": "DiscussionForumPosting",
@@ -52,7 +52,7 @@
         {
           "@type": "InteractionCounter",
           "interactionType": "https://schema.org/LikeAction",
-          "userInteractionCount": {{ $discussion->likesCount ?? 0 }}
+          "userInteractionCount": {{ $discussion->reactions_count ?? 0 }}
         }
       ],
       "comment": {!! json_encode($comments, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
