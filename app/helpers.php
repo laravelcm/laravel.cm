@@ -48,9 +48,7 @@ if (! function_exists('replace_links')) {
 if (! function_exists('get_current_theme')) {
     function get_current_theme(): string
     {
-        return Auth::user() ?
-            Auth::user()->setting('theme', 'light') :
-            'light';
+        return Auth::user() ? Auth::user()->setting('theme', 'light') : 'light';
     }
 }
 

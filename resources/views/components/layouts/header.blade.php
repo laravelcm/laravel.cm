@@ -63,9 +63,9 @@
                         </x-nav.item>
 
                         <!-- @ToDo: Remove this component after added command palette modal search -->
-                        <div class="hidden">
+                        {{--<div class="hidden">
                             <x-launch-content />
-                        </div>
+                        </div>--}}
 
                         <livewire:components.user-dropdown />
                     @endguest

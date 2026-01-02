@@ -12,6 +12,7 @@ use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 final class Index extends Component
@@ -62,7 +63,7 @@ final class Index extends Component
         /** @var User $user */
         $user = auth()->user();
 
-        if ($this->form->avatar) {
+        if ($this->form->avatar instanceof TemporaryUploadedFile) {
             $user->clearMediaCollection('avatar');
 
             $user->addMedia($this->form->avatar->getRealPath())

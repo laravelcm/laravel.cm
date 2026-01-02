@@ -45,6 +45,8 @@ Route::middleware(['auth', 'checkIfBanned', 'verified'])->group(function (): voi
     Route::get('/dashboard', Pages\Account\Dashboard::class)->name('dashboard');
     Route::prefix('account')->as('account.')->group(function (): void {
         Route::get('/', Pages\Account\Index::class)->name('index');
+        Route::get('/password', Pages\Account\Password::class)->name('password');
+        Route::get('/preferences', Pages\Account\Preferences::class)->name('preferences');
     });
 });
 

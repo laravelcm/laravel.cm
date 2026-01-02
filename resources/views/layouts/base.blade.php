@@ -46,24 +46,15 @@
         </script>
     @endproduction
 
-    @if (! auth()->check())
-        <script>
-            localStorage.setItem('theme', 'dark')
-        </script>
-    @else
-        <script>
-            const theme = localStorage.getItem('theme') ?? @js(auth()->user()->setting('theme', 'dark'))
-
-            if (
-                theme === 'dark' ||
-                (theme === 'system' &&
-                    window.matchMedia('(prefers-color-scheme: dark)')
-                        .matches)
-            ) {
-                document.documentElement.classList.add('dark')
-            }
-        </script>
-    @endif
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            @auth
+                Flux.appearance = @js(get_current_theme());
+            @else
+                Flux.appearance = 'system';
+            @endauth
+        });
+    </script>
 </head>
 <body class="h-full font-sans text-gray-500 antialiased dark:text-gray-400 dark:bg-line-black selection:bg-primary-500 selection:text-white">
     {{ $slot }}
@@ -78,5 +69,13 @@
 
     @fluxScripts
     @stack('scripts')
+
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('theme-changed', (event) => {
+                Flux.appearance = Array.isArray(event) ? event[0] : event;
+            });
+        });
+    </script>
 </body>
 </html>

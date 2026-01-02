@@ -997,18 +997,6 @@ parameters:
 			path: app/Livewire/Components/User/Activities.php
 
 		-
-			rawMessage: 'Parameter $value of static method Illuminate\Support\Facades\Hash::make() expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Livewire/Components/User/Password.php
-
-		-
-			rawMessage: 'Parameter #2 $default of method App\Models\User::setting() expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Livewire/Components/User/Preferences.php
-
-		-
 			rawMessage: 'Cannot call method withCount() on mixed.'
 			identifier: method.nonObject
 			count: 1
