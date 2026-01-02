@@ -83,6 +83,8 @@ FROM base AS composer
 ARG FLUX_USERNAME
 ARG FLUX_LICENSE_KEY
 
+WORKDIR /var/www/html
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copy only composer files first for better caching
@@ -90,8 +92,10 @@ COPY --chown=www-data:www-data composer.json composer.lock* ./
 
 # Configure composer and install dependencies with cache mount
 RUN --mount=type=cache,target=/tmp/.composer-cache \
-    composer config http-basic.composer.fluxui.dev "${FLUX_USERNAME}" "${FLUX_LICENSE_KEY}" \
-    && composer config cache-dir /tmp/.composer-cache \
+    composer config cache-dir /tmp/.composer-cache \
+    && if [ -n "${FLUX_USERNAME}" ] && [ -n "${FLUX_LICENSE_KEY}" ]; then \
+        composer config http-basic.composer.fluxui.dev "${FLUX_USERNAME}" "${FLUX_LICENSE_KEY}"; \
+    fi \
     && composer install --no-dev --no-interaction --no-scripts --prefer-dist --no-autoloader
 
 # Copy application code (needed for autoloader generation)
