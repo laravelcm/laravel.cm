@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'article' => [
         'created' => 'Your article has been created.',
         'submitted' => 'Thank you for submitting your article. We will only contact you once we have accepted your article.',
@@ -57,4 +56,16 @@ return [
 
     'sponsor_error_title' => 'Payment error',
     'sponsor_error_body' => 'Unable to process payment, please try again later. Thank you',
+
+    'database' => [
+        'mark_as_read' => 'This notification has been marked as read.',
+        'mark_all_as_read' => 'All notifications have been marked as read.',
+        'mark_all_as_read_action' => 'Mark all as read',
+        'no_notifications' => 'No notifications',
+        'no_notifications_message' => 'You have no unread notifications at the moment.',
+        'mentioned_in' => 'mentioned you in',
+        'new_reply_in' => 'New reply in',
+        'new_notification' => 'New notification',
+        'unauthorized_action' => 'This action is unauthorized.',
+    ],
 ];

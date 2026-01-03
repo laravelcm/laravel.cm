@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Notifications;
 
+use App\Enums\NotificationType;
 use App\Mail\NewReplyEmail;
 use App\Models\Reply;
 use App\Models\Subscribe;
@@ -16,7 +17,10 @@ final class NewReplyNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public Reply $reply, public Subscribe $subscription) {}
+    public function __construct(
+        public Reply $reply,
+        public Subscribe $subscription
+    ) {}
 
     public function via(mixed $notifiable): array
     {
@@ -25,7 +29,7 @@ final class NewReplyNotification extends Notification implements ShouldQueue
 
     public function toMail(User $notifiable): NewReplyEmail
     {
-        return (new NewReplyEmail($this->reply, $this->subscription))
+        return new NewReplyEmail($this->reply, $this->subscription)
             ->to($notifiable->email, $notifiable->name);
     }
 
@@ -35,7 +39,7 @@ final class NewReplyNotification extends Notification implements ShouldQueue
     public function toArray(): array
     {
         return [
-            'type' => 'new_reply',
+            'type' => NotificationType::Reply->value,
             'reply' => $this->reply->id,
             'replyable_id' => $this->reply->replyable_id,
             'replyable_type' => $this->reply->replyable_type,

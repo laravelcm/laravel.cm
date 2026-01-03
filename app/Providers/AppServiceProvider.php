@@ -9,6 +9,7 @@ use App\Models\Discussion;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
+use App\Policies\NotificationPolicy;
 use ArchTech\SEO\SEOManager;
 use Filament\Actions;
 use Filament\Support\Enums\Width;
@@ -16,9 +17,11 @@ use Filament\Support\Facades\FilamentIcon;
 use Filament\View\PanelsIconAlias;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -39,6 +42,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureSeo();
         $this->configureCommands();
         $this->configureUrl();
+        $this->configurePolicies();
     }
 
     public function registerBladeDirective(): void
@@ -136,5 +140,10 @@ final class AppServiceProvider extends ServiceProvider
     protected function configureUrl(): void
     {
         URL::forceScheme('https');
+    }
+
+    protected function configurePolicies(): void
+    {
+        Gate::policy(DatabaseNotification::class, NotificationPolicy::class);
     }
 }

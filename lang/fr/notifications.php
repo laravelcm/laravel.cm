@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     'article' => [
         'created' => 'Votre article a été crée.',
         'submitted' => 'Merci d\'avoir soumis votre article. Vous aurez des nouvelles que lorsque nous accepterons votre article.',
@@ -58,4 +57,15 @@ return [
     'sponsor_error_title' => 'Erreur du paiement',
     'sponsor_error_body' => 'Impossible de procéder au paiement, veuillez recommencer plus tard. Merci',
 
+    'database' => [
+        'mark_as_read' => 'Cette notification a été marquée comme lue.',
+        'mark_all_as_read' => 'Toutes les notifications ont été marquées comme lues.',
+        'mark_all_as_read_action' => 'Tout marquer comme lu',
+        'no_notifications' => 'Aucune notification',
+        'no_notifications_message' => 'Vous n\'avez aucune notification non lue pour le moment.',
+        'mentioned_in' => 'vous a mentionné dans',
+        'new_reply_in' => 'Nouvelle réponse dans',
+        'new_notification' => 'Nouvelle notification',
+        'unauthorized_action' => 'Cette action n\'est pas autorisée.',
+    ],
 ];

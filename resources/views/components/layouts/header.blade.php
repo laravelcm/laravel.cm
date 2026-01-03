@@ -54,14 +54,7 @@
                             {{ __('pages/auth.register.page_title') }}
                         </flux:button>
                     @else
-                        <x-nav.item :href="route('notifications')">
-                            <x-slot:title>
-                                <span class="sr-only">{{ __('global.view_notifications') }}</span>
-                                <x-untitledui-bell class="size-5" aria-hidden="true" />
-                                <livewire:components.notification-indicator />
-                            </x-slot:title>
-                        </x-nav.item>
-
+                        <livewire:components.notifications />
                         <!-- @ToDo: Remove this component after added command palette modal search -->
                         {{--<div class="hidden">
                             <x-launch-content />
