@@ -12,7 +12,7 @@ final class NotificationPolicy
 {
     use HandlesAuthorization;
 
-    public const MARK_AS_READ = 'markAsRead';
+    public const string MARK_AS_READ = 'markAsRead';
 
     public function markAsRead(User $user, DatabaseNotification $notification): bool
     {

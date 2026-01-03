@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Http\Middleware as AppMiddleware;
+use Flux\Flux;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -30,5 +32,15 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->renderable(function (AuthorizationException $e) {
+            if (request()->header('X-Livewire')) {
+                Flux::toast(
+                    text: $e->getMessage() ?: __('notifications.database.unauthorized_action'),
+                    heading: $e->getCode(),
+                    variant: 'danger',
+                );
+
+                return response()->noContent();
+            }
+        });
     })->create();

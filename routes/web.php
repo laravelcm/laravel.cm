@@ -34,9 +34,6 @@ Route::get('replyable/{id}/{type}', ReplyAbleController::class)->name('replyable
 Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
     ->name('subscriptions.unsubscribe');
 Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
-Route::get('notifications', Pages\Notifications::class)
-    ->name('notifications')
-    ->middleware(['auth', 'checkIfBanned']);
 
 Route::get('sponsors', Pages\Sponsoring::class)->name('sponsors');
 Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');

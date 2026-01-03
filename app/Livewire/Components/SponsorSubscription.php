@@ -6,7 +6,7 @@ namespace App\Livewire\Components;
 
 use App\Livewire\Forms\SponsorForm;
 use App\Models\Transaction;
-use Filament\Notifications\Notification;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -33,11 +33,11 @@ final class SponsorSubscription extends Component
         } catch (Throwable $throwable) {
             Log::error($throwable->getMessage());
 
-            Notification::make()
-                ->title(__('notifications.sponsor_error_title'))
-                ->body(__('notifications.sponsor_error_body'))
-                ->danger()
-                ->send();
+            Flux::toast(
+                text: __('notifications.sponsor_error_body'),
+                heading: __('notifications.sponsor_error_title'),
+                variant: 'danger',
+            );
         }
     }
 
