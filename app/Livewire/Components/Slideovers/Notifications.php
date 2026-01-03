@@ -2,21 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire\Components;
+namespace App\Livewire\Components\Slideovers;
 
 use App\Policies\NotificationPolicy;
 use Flux\Flux;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Gate;
+use Laravelcm\LivewireSlideOvers\SlideOverComponent;
 use Livewire\Attributes\Computed;
-use Livewire\Component;
 
-final class Notifications extends Component
+final class Notifications extends SlideOverComponent
 {
-    use AuthorizesRequests;
+    public static function panelMaxWidth(): string
+    {
+        return 'xl';
+    }
 
     #[Computed]
     public function hasNotifications(): bool
@@ -36,7 +39,7 @@ final class Notifications extends Component
             ->with('notifiable')
             ->findOrFail($notificationId);
 
-        $this->authorize(NotificationPolicy::MARK_AS_READ, $notification);
+        Gate::authorize(NotificationPolicy::MARK_AS_READ, $notification);
 
         $notification->markAsRead();
 
@@ -62,7 +65,7 @@ final class Notifications extends Component
 
     public function render(): View
     {
-        return view('livewire.pages.notifications', [
+        return view('livewire.components.slideovers.notifications', [
             // @phpstan-ignore-next-line
             'notifications' => Auth::user()
                 ->unreadNotifications()

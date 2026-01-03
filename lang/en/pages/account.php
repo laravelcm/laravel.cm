@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 return [
-
     'dashboard' => [
         'title' => 'Dashboard ~ @:username',
         'stats' => [
-            'discussions' => 'Total Posts / Discussions',
+            'articles' => 'Articles',
+            'discussions' => 'Discussions',
             'experience' => 'Total Experience',
             'thread_reply' => 'Total Reply',
             'thread_resolved' => 'Thread Solved',
@@ -60,5 +60,4 @@ return [
             'second_text' => 'in the sidebar. Once clicked, you will receive an e-mail each time a response is published.',
         ],
     ],
-
 ];

@@ -5,12 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Components\User;
 
 use App\Models\Article;
-use Filament\Actions\Action;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
+use Flux\Flux;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -19,12 +14,12 @@ use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
-final class Articles extends Component implements HasActions, HasForms
+final class Articles extends Component
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
     use WithoutUrlPagination;
     use WithPagination;
+
+    public ?int $articleToDelete = null;
 
     #[Computed]
     public function articles(): LengthAwarePaginator
@@ -36,41 +31,34 @@ final class Articles extends Component implements HasActions, HasForms
             ->paginate(10);
     }
 
-    public function editAction(): Action
+    public function confirmDelete(int $articleId): void
     {
-        return Action::make('edit')
-            ->label(__('actions.edit'))
-            ->color('gray')
-            ->badge()
-            ->action(
-                fn (array $arguments) => $this->dispatch(
-                    'openPanel',
-                    component: 'components.slideovers.article-form',
-                    arguments: ['articleId' => $arguments['id']]
-                )
-            );
+        $this->articleToDelete = $articleId;
+
+        Flux::modal('confirm-delete-article')->show();
     }
 
-    public function deleteAction(): Action
+    public function delete(): void
     {
-        return Action::make('delete')
-            ->label(__('actions.delete'))
-            ->color('danger')
-            ->badge()
-            ->requiresConfirmation()
-            ->action(function (array $arguments): void {
-                /** @var Article $article */
-                $article = Article::query()->find($arguments['id']);
+        if (! $this->articleToDelete) {
+            return;
+        }
 
-                $this->authorize('delete', $article);
+        /** @var Article $article */
+        $article = Article::query()->findOrFail($this->articleToDelete);
 
-                $article->delete();
+        $this->authorize('delete', $article);
 
-                Notification::make()
-                    ->success()
-                    ->title(__('notifications.article.deleted'))
-                    ->send();
-            });
+        $article->delete();
+
+        Flux::toast(
+            text: __('notifications.article.deleted'),
+            variant: 'success',
+        );
+
+        $this->articleToDelete = null;
+
+        Flux::modal('confirm-delete-article')->close();
     }
 
     public function render(): View

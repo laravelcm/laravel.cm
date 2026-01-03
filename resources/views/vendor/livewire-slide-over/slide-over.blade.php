@@ -31,7 +31,7 @@
             x-transition:leave="duration-500 ease-in-out"
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
-            class="fixed inset-0 bg-gray-800/75 backdrop-blur-sm transition-opacity"
+            class="fixed inset-0 bg-gray-800/75 transition-opacity"
         ></div>
 
         <div class="fixed inset-0 overflow-hidden">

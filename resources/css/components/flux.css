@@ -10,3 +10,7 @@
 [data-flux-flyout] {
   @apply p-0;
 }
+
+[data-flux-modal] > dialog[data-flux-flyout]::backdrop {
+  pointer-events: none;
+}

@@ -1,12 +1,13 @@
 <div x-data>
     @can('create', App\Models\Discussion::class)
-        <div class="flex items-center justify-end">
-            <x-buttons.primary
-                type="button"
+        <div class="flex items-center justify-end mt-4">
+            <flux:button
+                variant="primary"
                 wire:click="$dispatch('openPanel', { component: 'components.slideovers.article-form' })"
+                class="border-0"
             >
                 {{ __('global.launch_modal.article_action') }}
-            </x-buttons.primary>
+            </flux:button>
         </div>
     @endcan
 
@@ -16,22 +17,38 @@
                 <div class="flex justify-between gap-3">
                     <div class="flex items-center gap-2 flex-1">
                         @if ($article->isNotPublished())
-                            <x-filament::badge size="lg" color="warning">
+                            <flux:badge size="sm" color="amber">
                                 {{ __('pages/article.draft') }}
-                            </x-filament::badge>
+                            </flux:badge>
                         @endif
 
                         @foreach ($article->tags as $tag)
-                            <x-tag :tag="$tag" />
+                            <x-tag :$tag />
                         @endforeach
                     </div>
                     <div class="flex items-center gap-2">
                         @if ($article->isNotPublished() && Auth::user()->can('update', $article))
-                            {{ $this->editAction()(['id' => $article->id]) }}
+                            <flux:button
+                                size="xs"
+                                variant="ghost"
+                                wire:click="$dispatch(
+                                    'openPanel',
+                                    { component: 'components.slideovers.article-form', arguments: {'article': {{ $article->id }}} },
+                                )"
+                            >
+                                {{ __('actions.edit') }}
+                            </flux:button>
                         @endif
 
                         @can('delete', $article)
-                            {{ $this->deleteAction()(['id' => $article->id]) }}
+                            <flux:button
+                                size="xs"
+                                variant="danger"
+                                class="border-0"
+                                wire:click="confirmDelete({{ $article->id }})"
+                            >
+                                {{ __('actions.delete') }}
+                            </flux:button>
                         @endcan
                     </div>
                 </div>
@@ -82,11 +99,28 @@
         @endforelse
     </div>
 
-    <div class="mt-10">
+    <div class="mt-10 py-10">
         {{ $this->articles->links() }}
     </div>
 
-    <template x-teleport="#main-site">
-        <x-filament-actions::modals />
-    </template>
+    <flux:modal name="confirm-delete-article" class="max-w-md">
+        <div>
+            <flux:heading size="lg">{{ __('actions.confirm_delete_title') }}</flux:heading>
+            <flux:subheading>
+                <p class="mt-2">
+                    {{ __('actions.confirm_delete_article_message') }}
+                </p>
+            </flux:subheading>
+        </div>
+
+        <div class="mt-6 flex gap-2 justify-end">
+            <flux:modal.close>
+                <flux:button variant="ghost">{{ __('actions.cancel') }}</flux:button>
+            </flux:modal.close>
+
+            <flux:button variant="danger" wire:click="delete">
+                {{ __('actions.delete') }}
+            </flux:button>
+        </div>
+    </flux:modal>
 </div>
