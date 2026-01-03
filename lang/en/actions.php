@@ -19,4 +19,6 @@ return [
     'delete_none_description' => 'No banned users were found in the selection.',
     'delete_success' => 'Users successfully deleted.',
     'delete_success_description' => 'Only banned users have been deleted.',
+    'confirm_delete_title' => 'Confirm deletion',
+    'confirm_delete_article_message' => 'Are you sure you want to delete this article? This action is irreversible.',
 ];

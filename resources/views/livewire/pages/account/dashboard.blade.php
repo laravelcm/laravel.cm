@@ -1,66 +1,54 @@
-<x-container class="py-12">
-    <header>
-        <h1 class="text-xl font-bold leading-7 text-gray-900 dark:text-white sm:truncate sm:text-2xl">
-            {{ __('global.navigation.dashboard') }}
-        </h1>
-        <x-user.stats :user="$this->user" />
-    </header>
-    <section x-data="{ activeTab: 'articles' }" class="relative mt-8 lg:flex lg:gap-12">
-        <div class="lg:w-64">
-            <div class="sticky top-10">
-                <x-filament::tabs class="profile-tabs w-full text-nowrap lg:flex-col lg:space-y-2 lg:*:justify-start ">
-                    <x-filament::tabs.item
-                        alpine-active="activeTab === 'articles'"
-                        class="relative"
-                        x-on:click="activeTab = 'articles'"
+<div class="section-gradient">
+    <x-container class="px-0 pt-20 pb-16 lg:pt-28 lg:line-x">
+        <header class="px-4">
+            <h1 class="text-xl font-bold font-heading text-gray-900 dark:text-white sm:text-2xl">
+                {{ __('global.navigation.dashboard') }}
+            </h1>
+            <x-user.stats :user="$this->user" />
+        </header>
+
+        <section class="relative mt-8 lg:border-t lg:border-line lg:flex">
+            <div class="border-y border-line lg:w-64 lg:border-y-0 lg:border-r">
+                <nav class="flex flex-row overflow-x-scroll sticky top-16 lg:flex-col lg:space-y-1">
+                    <x-nav.forum-link
+                        :href="route('dashboard')"
+                        :active="request()->routeIs('dashboard')"
                         icon="untitledui-file-05"
-                        data-slot="tab"
+                        class="border-y-0 lg:border-b"
                     >
                         {{ __('pages/article.my_article') }}
-                        <span class="lg:absolute lg:right-5">
-                            {{ number_format($this->user->articles->count()) }}
-                        </span>
-                    </x-filament::tabs.item>
-
-                    <x-filament::tabs.item
-                        alpine-active="activeTab === 'discussions'"
-                        class="relative"
-                        x-on:click="activeTab = 'discussions'"
+                    </x-nav.forum-link>
+                    <x-nav.forum-link
+                        :href="route('account.password')"
+                        :active="request()->routeIs('dashboard.discussions')"
+                        wire:current="border-line text-gray-900 bg-gray-50 dark:bg-white/10 dark:text-white"
                         icon="untitledui-message-chat-square"
-                        data-slot="tab"
+                        class="border-y-0 lg:border-y"
                     >
                         {{ __('pages/discussion.my_discussion') }}
-                        <span class="lg:absolute right-5">
-                            {{ number_format($this->user->discussions->count()) }}
-                        </span>
-                    </x-filament::tabs.item>
-
-                    <x-filament::tabs.item
-                        alpine-active="activeTab === 'sujets'"
-                        class="relative"
-                        x-on:click="activeTab = 'sujets'"
+                    </x-nav.forum-link>
+                    <x-nav.forum-link
+                        :href="route('account.preferences')"
+                        :active="request()->routeIs('account.preferences')"
+                        wire:current="border-line text-gray-900 bg-gray-50 dark:bg-white/10 dark:text-white"
                         icon="untitledui-file-02"
-                        data-slot="tab"
+                        class="border-y-0 lg:border-y"
                     >
                         {{ __('pages/forum.my_thread') }}
-                        <span class="lg:absolute lg:right-5">
-                            {{ number_format($this->user->threads->count()) }}
-                        </span>
-                    </x-filament::tabs.item>
-                </x-filament::tabs>
+                    </x-nav.forum-link>
+                </nav>
             </div>
-        </div>
 
-        <div class="mt-10 lg:mt-0 lg:flex-1">
-            <div x-show="activeTab === 'articles'">
+            <div class="mt-4 px-4 overflow-hidden line-b lg:mt-0 lg:flex-1">
                 <livewire:components.user.articles />
+
+                {{--<div x-cloak x-show="activeTab === 'discussions'">
+                    <livewire:components.user.discussions />
+                </div>
+                <div x-cloak x-show="activeTab === 'sujets'">
+                    <livewire:components.user.threads />
+                </div>--}}
             </div>
-            <div x-cloak x-show="activeTab === 'discussions'">
-                <livewire:components.user.discussions />
-            </div>
-            <div x-cloak x-show="activeTab === 'sujets'">
-                <livewire:components.user.threads />
-            </div>
-        </div>
-    </section>
-</x-container>
+        </section>
+    </x-container>
+</div>

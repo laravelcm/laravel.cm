@@ -7,11 +7,11 @@
 <form wire:submit="{{ $action }}" class="flex h-full flex-col divide-y divide-gray-200/60 dark:divide-white/20">
     <div class="h-0 flex-1 overflow-y-auto py-6">
         <header class="px-4 sm:px-6">
-            <div class="flex items-start justify-between">
+            <div class="flex items-start gap-3 justify-between">
                 <h2 class="text-lg font-medium text-gray-900 dark:text-white lg:text-xl">
                     {{ $title }}
                 </h2>
-                <div class="ml-3 flex h-7 items-center">
+                <div class="flex h-7 items-center">
                     <button
                         type="button"
                         class="rounded-lg bg-white text-gray-400 hover:text-gray-500 focus:outline-hidden dark:bg-gray-900 dark:text-gray-500 dark:hover:text-gray-300"

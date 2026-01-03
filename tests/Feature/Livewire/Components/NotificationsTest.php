@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Enums\NotificationType;
-use App\Livewire\Components\Notifications;
+use App\Livewire\Components\Slideovers\Notifications;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Notifications\DatabaseNotification;

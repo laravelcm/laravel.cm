@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 return [
-
     'dashboard' => [
         'title' => 'Tableau de bord ~ @:username',
         'stats' => [
-            'discussions' => 'Total Article / Discussion',
+            'articles' => 'Articles',
+            'discussions' => 'Discussions',
             'experience' => 'Total Expérience',
             'thread_reply' => 'Total Réponse',
             'thread_resolved' => 'Sujets Résolus',
@@ -60,5 +60,4 @@ return [
             'second_text' => 'dans la barre latérale. Une fois cliqué, vous recevrez un e-mail chaque fois qu\'une réponse sera publiée.',
         ],
     ],
-
 ];

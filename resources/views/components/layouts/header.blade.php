@@ -54,7 +54,26 @@
                             {{ __('pages/auth.register.page_title') }}
                         </flux:button>
                     @else
-                        <livewire:components.notifications />
+                        @php
+                            $hasNotifications = Auth::user()?->unreadNotifications()->count() > 0;
+                        @endphp
+
+                        <button
+                            type="button"
+                            class="relative inline-flex items-center p-1"
+                            onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.notifications' })"
+                        >
+                            <span class="sr-only">{{ __('global.view_notifications') }}</span>
+                            <x-untitledui-bell class="size-5" aria-hidden="true" />
+                            <span
+                                @class([
+                                    'shadow-solid absolute left-3 -top-1.5 block size-2 rounded-full bg-primary-600 text-white',
+                                    'hidden' => ! $hasNotifications,
+                                    'block' => $hasNotifications,
+                                ])
+                            ></span>
+                        </button>
+
                         <!-- @ToDo: Remove this component after added command palette modal search -->
                         {{--<div class="hidden">
                             <x-launch-content />
