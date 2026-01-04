@@ -997,18 +997,6 @@ parameters:
 			path: app/Livewire/Components/User/Activities.php
 
 		-
-			rawMessage: 'Cannot call method withCount() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Livewire/Components/User/Threads.php
-
-		-
-			rawMessage: 'Cannot call method find() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Livewire/Pages/Account/Dashboard.php
-
-		-
 			rawMessage: 'Method App\Livewire\Pages\Account\Profile::articles() should return Illuminate\Support\Collection but returns mixed.'
 			identifier: return.type
 			count: 1
@@ -1019,6 +1007,12 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: app/Livewire/Pages/Account/Profile.php
+
+		-
+			rawMessage: 'Cannot call method withCount() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Livewire/Pages/Dashboard/Threads.php
 
 		-
 			rawMessage: 'Method App\Livewire\Pages\Account\Profile::threads() should return Illuminate\Support\Collection but returns mixed.'

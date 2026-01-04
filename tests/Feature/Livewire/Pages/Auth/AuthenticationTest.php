@@ -29,7 +29,7 @@ describe('Authentication', function (): void {
 
         $component
             ->assertHasNoErrors()
-            ->assertRedirect(route('dashboard', absolute: false));
+            ->assertRedirect(route('dashboard.index', absolute: false));
 
         $this->assertAuthenticated();
     });

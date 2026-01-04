@@ -6,7 +6,6 @@ Disallow: /account
 Disallow: /account/*
 Disallow: /dashboard
 Disallow: /dashboard/*
-Disallow: /notifications
 
 # Authentification
 Disallow: /auth/*

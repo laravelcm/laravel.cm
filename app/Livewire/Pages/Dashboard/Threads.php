@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire\Components\User;
+namespace App\Livewire\Pages\Dashboard;
 
 use App\Actions\Forum\DeleteThreadAction;
 use App\Models\Thread;
+use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -16,18 +17,25 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Lazy;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
-#[Lazy]
 final class Threads extends Component implements HasActions, HasForms
 {
     use InteractsWithActions;
     use InteractsWithForms;
     use WithoutUrlPagination;
     use WithPagination;
+
+    #[Computed(persist: true)]
+    public function user(): User
+    {
+        /** @var User $user */
+        $user = Auth::user();
+
+        return $user;
+    }
 
     #[Computed]
     public function threads(): LengthAwarePaginator
@@ -38,11 +46,6 @@ final class Threads extends Component implements HasActions, HasForms
             ->where('user_id', Auth::id())
             ->latest()
             ->paginate(10);
-    }
-
-    public function placeholder(): View
-    {
-        return view('components.skeletons.discussions');
     }
 
     public function editAction(): Action
@@ -83,6 +86,6 @@ final class Threads extends Component implements HasActions, HasForms
 
     public function render(): View
     {
-        return view('livewire.components.user.threads');
+        return view('livewire.pages.dashboard.threads');
     }
 }

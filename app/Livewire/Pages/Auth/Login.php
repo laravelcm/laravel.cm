@@ -23,7 +23,7 @@ final class Login extends Component
 
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(default: route('dashboard.index', absolute: false), navigate: true);
     }
 
     public function render(): View
