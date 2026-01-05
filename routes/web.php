@@ -39,7 +39,11 @@ Route::get('sponsors', Pages\Sponsoring::class)->name('sponsors');
 Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');
 
 Route::middleware(['auth', 'checkIfBanned', 'verified'])->group(function (): void {
-    Route::get('/dashboard', Pages\Account\Dashboard::class)->name('dashboard');
+    Route::prefix('dashboard')->as('dashboard.')->group(function (): void {
+        Route::get('/', Pages\Dashboard\Index::class)->name('index');
+        Route::get('/discussions', Pages\Dashboard\Discussions::class)->name('discussions');
+        Route::get('/threads', Pages\Dashboard\Threads::class)->name('threads');
+    });
     Route::prefix('account')->as('account.')->group(function (): void {
         Route::get('/', Pages\Account\Index::class)->name('index');
         Route::get('/password', Pages\Account\Password::class)->name('password');

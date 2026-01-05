@@ -15,14 +15,17 @@ beforeEach(function (): void {
 
 describe(CreateArticleAction::class, function (): void {
     it('return the created article', function (): void {
-        $article = resolve(CreateArticleAction::class)->execute(ArticleData::from([
-            'title' => 'Article title',
-            'slug' => 'Article slug',
-            'published_at' => now(),
-            'canonical_url' => 'Article canonical_url',
-            'body' => 'Article body',
-            'locale' => 'fr',
-        ]));
+        $article = resolve(CreateArticleAction::class)->execute(
+            data: ArticleData::from([
+                'title' => 'Article title',
+                'slug' => 'Article slug',
+                'published_at' => now(),
+                'canonical_url' => 'Article canonical_url',
+                'body' => 'Article body',
+                'locale' => 'fr',
+            ]),
+            user: $this->user
+        );
 
         expect($article)
             ->toBeInstanceOf(Article::class)

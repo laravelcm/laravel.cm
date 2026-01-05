@@ -154,7 +154,7 @@ new class extends Component {
 
         <div class="px-3.5 space-y-1.5 py-1.5" role="menu">
             <x-link
-                :href="route('dashboard')"
+                :href="route('dashboard.index')"
                 class="group flex items-center gap-2 py-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
                 role="menuitem"
                 tabindex="-1"

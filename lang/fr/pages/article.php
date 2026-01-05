@@ -31,6 +31,7 @@ return [
     'not_article_created' => "Vous n'avez pas encore créé d'articles",
     'awaiting_text' => 'En attente d\'approbation',
     'write' => 'Rédigé',
+    'published_on' => 'Publié le :date',
     'tags' => 'Tags',
     'top_authors' => 'Top auteurs',
 ];

@@ -583,36 +583,6 @@ parameters:
 			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithNamePoint.php
 
 		-
-			rawMessage: Cannot access property $id on App\Models\User|null.
-			identifier: property.nonObject
-			count: 1
-			path: app/Actions/Article/CreateArticleAction.php
-
-		-
-			rawMessage: 'Cannot call method isAdmin() on App\Models\User|null.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Actions/Article/CreateArticleAction.php
-
-		-
-			rawMessage: 'Cannot call method isModerator() on App\Models\User|null.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Actions/Article/CreateArticleAction.php
-
-		-
-			rawMessage: 'Parameter $timezone of class Carbon\Carbon constructor expects DateTimeZone|int|string|null, mixed given.'
-			identifier: argument.type
-			count: 5
-			path: app/Actions/Article/CreateArticleAction.php
-
-		-
-			rawMessage: 'Parameter $timezone of class Carbon\Carbon constructor expects DateTimeZone|int|string|null, mixed given.'
-			identifier: argument.type
-			count: 2
-			path: app/Actions/Article/UpdateArticleAction.php
-
-		-
 			rawMessage: 'Parameter #1 $subject of class App\Gamify\Points\ReplyCreated constructor expects App\Models\Reply, Illuminate\Database\Eloquent\Model given.'
 			identifier: argument.type
 			count: 1
@@ -985,28 +955,10 @@ parameters:
 			path: app/Http/Resources/PaginationResourceCollection.php
 
 		-
-			rawMessage: 'Parameter #1 $time of class Carbon\Carbon constructor expects Carbon\Month|Carbon\WeekDay|DateTimeInterface|float|int|string|null, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Livewire/Components/Slideovers/ArticleForm.php
-
-		-
 			rawMessage: 'Method App\Livewire\Components\User\Activities::activities() should return Illuminate\Support\Collection but returns mixed.'
 			identifier: return.type
 			count: 1
 			path: app/Livewire/Components/User/Activities.php
-
-		-
-			rawMessage: 'Cannot call method withCount() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Livewire/Components/User/Threads.php
-
-		-
-			rawMessage: 'Cannot call method find() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Livewire/Pages/Account/Dashboard.php
 
 		-
 			rawMessage: 'Method App\Livewire\Pages\Account\Profile::articles() should return Illuminate\Support\Collection but returns mixed.'
@@ -1019,6 +971,12 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: app/Livewire/Pages/Account/Profile.php
+
+		-
+			rawMessage: 'Cannot call method withCount() on mixed.'
+			identifier: method.nonObject
+			count: 1
+			path: app/Livewire/Pages/Dashboard/Threads.php
 
 		-
 			rawMessage: 'Method App\Livewire\Pages\Account\Profile::threads() should return Illuminate\Support\Collection but returns mixed.'

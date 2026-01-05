@@ -10,18 +10,22 @@
 
             <div class="line-y">
                 <div class="bg-dotted p-2">
-                    <div class="grid gap-6 rounded-lg ring-1 ring-gray-200 dark:ring-white/10 bg-white dark:bg-line-black p-6">
+                    <div
+                        class="grid gap-6 rounded-lg ring-1 ring-gray-200 dark:ring-white/10 bg-white dark:bg-line-black p-6">
                         <flux:field>
                             <flux:label>{{ __('validation.attributes.avatar') }}</flux:label>
                             <flux:description>{{ __('pages/account.settings.avatar_description') }}</flux:description>
 
                             <div class="mt-2 flex items-center gap-4">
                                 @if ($form->avatar)
-                                    <img src="{{ $form->avatar->temporaryUrl() }}" alt="Avatar" class="size-16 rounded-full object-cover">
+                                    <img src="{{ $form->avatar->temporaryUrl() }}" alt="Avatar"
+                                         class="size-16 rounded-full object-cover">
                                 @elseif ($form->user?->getFirstMediaUrl('avatar'))
-                                    <img src="{{ $form->user->getFirstMediaUrl('avatar') }}" alt="Avatar" class="size-16 rounded-full object-cover">
+                                    <img src="{{ $form->user->getFirstMediaUrl('avatar') }}" alt="Avatar"
+                                         class="size-16 rounded-full object-cover">
                                 @else
-                                    <div class="size-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                                    <div
+                                        class="size-16 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
                                         <flux:icon.user class="size-10 text-gray-400 dark:text-gray-500" />
                                     </div>
                                 @endif
@@ -97,7 +101,8 @@
 
             <div class="line-y">
                 <div class="bg-dotted p-2">
-                    <div class="grid gap-6 rounded-lg ring-1 ring-gray-200 dark:ring-white/10 bg-white dark:bg-line-black p-6">
+                    <div
+                        class="grid gap-6 rounded-lg ring-1 ring-gray-200 dark:ring-white/10 bg-white dark:bg-line-black p-6">
                         <flux:input
                             wire:model="form.name"
                             :label="__('validation.attributes.name')"
@@ -117,7 +122,8 @@
                                     @if ($form->user?->hasVerifiedEmail())
                                         <x-heroicon-m-check-circle class="size-5 text-green-500" aria-hidden="true" />
                                     @else
-                                        <x-heroicon-m-exclamation-triangle class="size-5 text-yellow-500" aria-hidden="true" />
+                                        <x-heroicon-m-exclamation-triangle class="size-5 text-yellow-500"
+                                                                           aria-hidden="true" />
                                     @endif
                                 </x-slot>
                             </flux:input>
@@ -158,7 +164,8 @@
 
             <div class="line-y">
                 <div class="bg-dotted p-2">
-                    <div class="grid gap-6 rounded-lg ring-1 ring-gray-200 dark:ring-white/10 bg-white dark:bg-line-black p-6">
+                    <div
+                        class="grid gap-6 rounded-lg ring-1 ring-gray-200 dark:ring-white/10 bg-white dark:bg-line-black p-6">
                         <flux:input
                             wire:model.blur="form.github_profile"
                             label="GitHub"

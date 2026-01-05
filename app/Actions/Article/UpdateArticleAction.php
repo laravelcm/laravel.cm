@@ -7,35 +7,26 @@ namespace App\Actions\Article;
 use App\Data\ArticleData;
 use App\Exceptions\CannotUpdateApprovedArticle;
 use App\Models\Article;
+use App\Models\User;
 use Carbon\Carbon;
 
 final class UpdateArticleAction
 {
-    public function execute(ArticleData $articleData, Article $article): Article
+    public function execute(ArticleData $data, Article $article, User $user): Article
     {
         if ($article->isApproved()) {
             throw new CannotUpdateApprovedArticle(__('notifications.exceptions.approved_article'));
         }
 
-        if (! $articleData->published_at instanceof Carbon) {
-            $articleData->published_at = new Carbon(
-                time: $articleData->published_at,
-                timezone: config('app.timezone')
-            );
+        if ($data->declined_at instanceof Carbon) {
+            $data->declined_at = null;
         }
 
-        if (! $articleData->submitted_at instanceof Carbon) {
-            $articleData->submitted_at = new Carbon(
-                time: $articleData->submitted_at,
-                timezone: config('app.timezone')
-            );
+        if (filled($data->published_at) && ($user->isAdmin() || $user->isModerator())) {
+            $data->approved_at = now();
         }
 
-        if ($articleData->declined_at instanceof Carbon) {
-            $articleData->declined_at = null;
-        }
-
-        $article->update($articleData->toArray());
+        $article->update($data->toArray());
 
         $article->refresh();
 

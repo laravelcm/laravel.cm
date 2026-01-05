@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire\Components\User;
+namespace App\Livewire\Pages\Dashboard;
 
 use App\Models\Article;
+use App\Models\User;
 use Flux\Flux;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;
@@ -14,12 +15,21 @@ use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
-final class Articles extends Component
+final class Index extends Component
 {
     use WithoutUrlPagination;
     use WithPagination;
 
     public ?int $articleToDelete = null;
+
+    #[Computed(persist: true)]
+    public function user(): User
+    {
+        /** @var User $user */
+        $user = Auth::user();
+
+        return $user;
+    }
 
     #[Computed]
     public function articles(): LengthAwarePaginator
@@ -63,6 +73,6 @@ final class Articles extends Component
 
     public function render(): View
     {
-        return view('livewire.components.user.articles');
+        return view('livewire.pages.dashboard.index');
     }
 }

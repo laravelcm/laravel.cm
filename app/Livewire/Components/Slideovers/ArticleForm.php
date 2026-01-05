@@ -7,45 +7,36 @@ namespace App\Livewire\Components\Slideovers;
 use App\Actions\Article\CreateArticleAction;
 use App\Actions\Article\UpdateArticleAction;
 use App\Data\ArticleData;
+use App\Events\ArticleWasSubmittedForApproval;
 use App\Exceptions\UnverifiedUserException;
+use App\Livewire\Forms\ArticleFormObject;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Article;
-use Carbon\Carbon;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Components;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Notifications\Notification;
-use Filament\Schemas\Components\Grid;
-use Filament\Schemas\Components\Group;
-use Filament\Schemas\Components\Utilities;
-use Filament\Schemas\Schema;
+use App\Models\Tag;
+use App\Models\User;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\HtmlString;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
+use Livewire\Attributes\Computed;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Livewire\WithFileUploads;
 
-/**
- * @property-read Schema $form
- */
-final class ArticleForm extends SlideOverComponent implements HasActions, HasForms
+final class ArticleForm extends SlideOverComponent
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
     use WithAuthenticatedUser;
+    use WithFileUploads;
+
+    public ArticleFormObject $form;
 
     public ?Article $article = null;
 
-    public ?array $data = [];
-
     public static function panelMaxWidth(): string
     {
-        return '6xl';
+        return '2xl';
     }
 
     public static function closePanelOnClickAway(): bool
@@ -55,114 +46,36 @@ final class ArticleForm extends SlideOverComponent implements HasActions, HasFor
 
     public function mount(?int $articleId = null): void
     {
-        // @phpstan-ignore-next-line
-        $this->article = filled($articleId)
+        /** @var Article $article */
+        $article = filled($articleId)
             ? Article::with('tags')->findOrFail($articleId)
             : new Article;
 
-        $this->form->fill(array_merge($this->article->toArray(), [
-            'is_draft' => ! $this->article->published_at,
-            'published_at' => $this->article->published_at,
-            'locale' => $this->article->locale ?? app()->getLocale(),
-        ]));
+        $this->article = $article;
+
+        $this->form->setArticle($this->article);
     }
 
-    public function form(Schema $schema): Schema
+    #[Computed]
+    public function availableTags(): Collection
     {
-        return $schema
-            ->components([
-                Group::make()
-                    ->schema([
-                        Components\TextInput::make('title')
-                            ->label(__('validation.attributes.title'))
-                            ->minLength(10)
-                            ->required()
-                            ->live(onBlur: true)
-                            ->afterStateUpdated(fn ($state, Utilities\Set $set): mixed => $set('slug', Str::slug($state))),
-                        Components\Hidden::make('slug'),
-                        Components\TextInput::make('canonical_url')
-                            ->label(__('pages/article.form.canonical_url'))
-                            ->helperText(__('pages/article.canonical_help')),
-                        Grid::make()
-                            ->schema([
-                                Components\Toggle::make('is_draft')
-                                    ->label(__('pages/article.form.draft'))
-                                    ->live()
-                                    ->offIcon('untitledui-check')
-                                    ->onColor('success')
-                                    ->onIcon('untitledui-pencil-line')
-                                    ->helperText(__('pages/article.draft_help')),
-                                Components\DatePicker::make('published_at')
-                                    ->label(__('pages/article.form.published_at'))
-                                    ->closeOnDateSelection()
-                                    ->prefixIcon('untitledui-calendar-date')
-                                    ->native(false)
-                                    ->visible(fn (Utilities\Get $get): bool => $get('is_draft') === false)
-                                    ->required(fn (Utilities\Get $get): bool => $get('is_draft') === false),
-                            ]),
-                    ])
-                    ->columnSpan(2),
-                Group::make()
-                    ->schema([
-                        Components\SpatieMediaLibraryFileUpload::make('media')
-                            ->collection('media')
-                            ->label(__('pages/article.form.cover'))
-                            ->maxSize(1024),
-                        Components\Select::make('tags')
-                            ->multiple()
-                            ->relationship(
-                                name: 'tags',
-                                titleAttribute: 'name',
-                                modifyQueryUsing: fn (Builder $query): Builder => $query->whereJsonContains('concerns', 'post')
-                            )
-                            ->preload()
-                            ->required()
-                            ->minItems(1)
-                            ->maxItems(3),
-                        Components\ToggleButtons::make('locale')
-                            ->label(__('validation.attributes.locale'))
-                            ->options(['en' => 'En', 'fr' => 'Fr'])
-                            ->helperText(__('global.locale_help'))
-                            ->grouped(),
-                    ])
-                    ->columnSpan(1),
-                Group::make()
-                    ->schema([
-                        Components\MarkdownEditor::make('body')
-                            ->toolbarButtons([
-                                'attachFiles',
-                                'blockquote',
-                                'bold',
-                                'bulletList',
-                                'codeBlock',
-                                'italic',
-                                'link',
-                                'orderedList',
-                                'strike',
-                                'table',
-                            ])
-                            ->label(__('validation.attributes.content'))
-                            ->fileAttachmentsDisk('public')
-                            ->minLength(10)
-                            ->maxHeight('20.25rem')
-                            ->required(),
-                        TextEntry::make('placeholder')
-                            ->hiddenLabel()
-                            ->state(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
-                                <x-torchlight />
-                            Blade))),
-                    ])
-                    ->columnSpanFull(),
-            ])
-            ->columns(3)
-            ->statePath('data')
-            ->model($this->article);
+        return Tag::query()
+            ->whereJsonContains('concerns', 'post')
+            ->orderBy('name')
+            ->get();
+    }
+
+    public function updatedFormTitle(string $value): void
+    {
+        $this->form->slug = Str::slug($value);
     }
 
     public function save(): void
     {
-        // @phpstan-ignore-next-line
-        if (! Auth::user()->hasVerifiedEmail()) {
+        /** @var User $user */
+        $user = Auth::user();
+
+        if (! $user->hasVerifiedEmail()) {
             throw new UnverifiedUserException(
                 message: __('notifications.exceptions.unverified_user')
             );
@@ -172,47 +85,59 @@ final class ArticleForm extends SlideOverComponent implements HasActions, HasFor
             $this->authorize('update', $this->article);
         }
 
-        $this->validate();
-
-        $state = $this->form->getState();
+        $this->form->validate();
 
         $publishedFields = [
-            'published_at' => data_get($state, 'published_at')
-                ? new Carbon(data_get($state, 'published_at'))
+            'published_at' => $this->form->published_at
+                ? Date::parse($this->form->published_at)
                 : null,
-            'submitted_at' => data_get($state, 'is_draft') ? null : now(),
+            'submitted_at' => $this->form->is_draft ? null : now(),
         ];
+
+        $articleData = array_merge([
+            'title' => $this->form->title,
+            'slug' => $this->form->slug,
+            'canonical_url' => $this->form->canonical_url,
+            'locale' => $this->form->locale,
+            'body' => $this->form->body,
+        ], $publishedFields);
 
         if ($this->article?->id) {
             $article = resolve(UpdateArticleAction::class)->execute(
-                articleData: ArticleData::from(array_merge($state, $publishedFields)),
-                article: $this->article
+                data: ArticleData::from($articleData),
+                article: $this->article,
+                user: $user
             );
 
-            Notification::make()
-                ->title(
-                    $article->submitted_at
-                        ? __('notifications.article.submitted')
-                        : __('notifications.article.updated'),
-                )
-                ->success()
-                ->send();
+            $this->handleMediaUpload($article);
+            $article->tags()->sync($this->form->tags);
+
+            Flux::toast(
+                text: $article->submitted_at
+                    ? __('notifications.article.submitted')
+                    : __('notifications.article.updated'),
+                variant: 'success'
+            );
         } else {
             $article = resolve(CreateArticleAction::class)->execute(
-                ArticleData::from(array_merge($state, $publishedFields))
+                data: ArticleData::from($articleData),
+                user: $user
             );
 
-            Notification::make()
-                ->title(
-                    data_get($state, 'is_draft') === false
-                        ? __('notifications.article.submitted')
-                        : __('notifications.article.created'),
-                )
-                ->success()
-                ->send();
+            $this->handleMediaUpload($article);
+            $article->tags()->sync($this->form->tags);
+
+            Flux::toast(
+                text: $this->form->is_draft === false
+                    ? __('notifications.article.submitted')
+                    : __('notifications.article.created'),
+                variant: 'success'
+            );
         }
 
-        $this->form->model($article)->saveRelationships();
+        if ($this->form->is_draft === false) {
+            event(new ArticleWasSubmittedForApproval($article));
+        }
 
         $this->redirect(route('articles.show', ['article' => $article]), navigate: true);
     }
@@ -220,5 +145,16 @@ final class ArticleForm extends SlideOverComponent implements HasActions, HasFor
     public function render(): View
     {
         return view('livewire.components.slideovers.article-form');
+    }
+
+    private function handleMediaUpload(Article $article): void
+    {
+        if ($this->form->media instanceof TemporaryUploadedFile) {
+            $article->clearMediaCollection('media');
+
+            $article->addMedia($this->form->media->getRealPath())
+                ->usingFileName($this->form->media->getClientOriginalName())
+                ->toMediaCollection('media');
+        }
     }
 }
