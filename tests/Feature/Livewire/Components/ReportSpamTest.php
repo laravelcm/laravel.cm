@@ -14,7 +14,8 @@ describe(ReportSpam::class, function (): void {
         $thread = Thread::factory()->create();
 
         Livewire::test(ReportSpam::class, ['model' => $thread])
-            ->assertActionHidden('report');
+            ->call('confirmReport')
+            ->assertForbidden();
     });
 
     it('user can report a thread as spam', function (): void {
@@ -24,7 +25,7 @@ describe(ReportSpam::class, function (): void {
         $thread = Thread::factory()->create();
 
         Livewire::test(ReportSpam::class, ['model' => $thread])
-            ->callAction('report');
+            ->call('report');
 
         expect(SpamReport::query()->count())
             ->toBe(1)
@@ -54,7 +55,7 @@ describe(ReportSpam::class, function (): void {
             ->toBeTrue();
 
         Livewire::test(ReportSpam::class, ['model' => $thread])
-            ->callAction('report');
+            ->call('report');
 
         expect($thread->spamReports()->count())
             ->toBe(1);
@@ -66,6 +67,7 @@ describe(ReportSpam::class, function (): void {
         $thread = Thread::factory()->create();
 
         Livewire::test(ReportSpam::class, ['model' => $thread])
-            ->assertActionHidden('report');
+            ->call('confirmReport')
+            ->assertForbidden();
     });
 });

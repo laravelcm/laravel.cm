@@ -50,6 +50,7 @@ return [
         'created' => 'Discussion was successfully created.',
         'updated' => 'Discussion was successfully updated.',
         'deleted' => 'Discussion was successfully deleted.',
+        'converted' => 'Discussion was successfully converted to a thread.',
         'save_comment' => 'Your comment has been saved',
         'delete_comment' => 'Your comment has been deleted',
     ],

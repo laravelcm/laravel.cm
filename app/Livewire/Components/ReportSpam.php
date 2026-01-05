@@ -7,56 +7,52 @@ namespace App\Livewire\Components;
 use App\Actions\ReportSpamAction;
 use App\Contracts\SpamReportableContract;
 use App\Exceptions\CanReportSpamException;
-use Filament\Actions\Action;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
+use App\Models\User;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-final class ReportSpam extends Component implements HasActions, HasForms
+final class ReportSpam extends Component
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
-
     public SpamReportableContract $model;
 
     public ?string $reason = null;
 
-    public function reportAction(): Action
+    public function confirmReport(): void
     {
-        return Action::make('report')
-            ->color('danger')
-            ->badge()
-            ->label(__('pages/forum.report_spam'))
-            ->authorize('report', $this->model) // @phpstan-ignore-line
-            ->requiresConfirmation()
-            ->action(function (): void {
-                try {
-                    resolve(ReportSpamAction::class)->execute(
-                        user: Auth::user(), // @phpstan-ignore-line
-                        model: $this->model,
-                        content: $this->reason,
-                    );
+        $this->authorize('report', $this->model);
 
-                    Notification::make()
-                        ->title(__('notifications.spam_send'))
-                        ->success()
-                        ->duration(3500)
-                        ->send();
+        Flux::modal('confirm-report-spam')->show();
+    }
 
-                    $this->reset('reason');
-                } catch (CanReportSpamException $canReportSpamException) {
-                    Notification::make()
-                        ->title($canReportSpamException->getMessage())
-                        ->danger()
-                        ->duration(3500)
-                        ->send();
-                }
-            });
+    public function report(): void
+    {
+        $this->authorize('report', $this->model);
+        /** @var User $user */
+        $user = Auth::user();
+
+        try {
+            resolve(ReportSpamAction::class)->execute(
+                user: $user,
+                model: $this->model,
+                content: $this->reason,
+            );
+
+            Flux::toast(
+                text: __('notifications.spam_send'),
+                variant: 'success'
+            );
+
+            $this->reset('reason');
+
+            Flux::modal('confirm-report-spam')->close();
+        } catch (CanReportSpamException $canReportSpamException) {
+            Flux::toast(
+                text: $canReportSpamException->getMessage(),
+                variant: 'danger'
+            );
+        }
     }
 
     public function render(): View

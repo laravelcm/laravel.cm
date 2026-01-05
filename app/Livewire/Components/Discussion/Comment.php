@@ -6,7 +6,7 @@ namespace App\Livewire\Components\Discussion;
 
 use App\Actions\Discussion\LikeReplyAction;
 use App\Models\Reply;
-use Filament\Notifications\Notification;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
@@ -20,10 +20,10 @@ final class Comment extends Component
     {
         $this->comment->delete();
 
-        Notification::make()
-            ->title(__('notifications.discussion.delete_comment'))
-            ->success()
-            ->send();
+        Flux::toast(
+            text: __('notifications.discussion.delete_comment'),
+            variant: 'success'
+        );
 
         $this->dispatch('comments.change');
     }

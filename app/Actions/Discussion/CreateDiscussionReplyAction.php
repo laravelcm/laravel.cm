@@ -19,7 +19,7 @@ final class CreateDiscussionReplyAction
         $reply->to($model);
         $reply->save();
 
-        $user->givePoint(new ReplyCreated($model, $user));
+        $user->givePoint(new ReplyCreated($reply, $user));
 
         // On envoie un event pour une nouvelle réponse à tous les abonnés de la discussion
         event(new CommentWasAdded($reply, $model)); // @phpstan-ignore-line

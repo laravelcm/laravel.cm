@@ -1,4 +1,4 @@
-<div>
+<div class="divide-y divide-dotted divide-gray-200 dark:divide-white/20">
     @if ($this->comments->isNotEmpty())
         <ul role="list">
             @foreach ($this->comments as $comment)
@@ -10,11 +10,22 @@
     @endif
 
     @auth
-        <div class="mt-6 relative flex gap-3">
+        <div @class([
+            'p-4 relative flex gap-3',
+        ])>
             <x-user.avatar :user="auth()->user()" />
 
             <form wire:submit="save" class="min-w-0 flex-1">
-                {{ $this->form }}
+                <x-markdown-editor
+                    wire:model.blur="body"
+                    height="200px"
+                    :toolbarItems="[
+                        ['bold', 'italic'],
+                        ['ul', 'ol'],
+                        ['link'],
+                        ['code', 'codeblock'],
+                    ]"
+                />
 
                 <div class="mt-3 flex items-center justify-end">
                     <x-buttons.submit wire:loading.attr="data-loading">

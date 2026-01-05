@@ -64,18 +64,34 @@
                                     />
                                 </div>
 
-                                <div class="mt-6 flex items-center gap-4">
-                                    {{--@can('manage', $discussion)
-                                        <x-filament-actions::group
-                                            icon="untitledui-dots-horizontal"
-                                            color="gray"
-                                            :actions="[
-                                                $this->editAction,
-                                                $this->convertedToThreadAction,
-                                                $this->deleteAction,
-                                            ]"
-                                        />
-                                    @endcan--}}
+                                <div class="py-4 flex items-center gap-4">
+                                    @can('manage', $discussion)
+                                        <flux:dropdown position="top" align="start">
+                                            <flux:button size="xs" variant="ghost" icon="ellipsis-horizontal" />
+
+                                            <flux:menu>
+                                                @can('update', $discussion)
+                                                    <flux:menu.item wire:click="edit" icon="pencil">
+                                                        {{ __('actions.edit') }}
+                                                    </flux:menu.item>
+                                                @endcan
+
+                                                @can('convertedToThread', $discussion)
+                                                    <flux:menu.item wire:click="confirmConvert" icon="arrow-path">
+                                                        {{ __('pages/discussion.convert_to_thread') }}
+                                                    </flux:menu.item>
+                                                @endcan
+
+                                                @can('delete', $discussion)
+                                                    <flux:menu.separator />
+
+                                                    <flux:menu.item wire:click="confirmDelete" icon="trash" variant="danger">
+                                                        {{ __('actions.delete') }}
+                                                    </flux:menu.item>
+                                                @endcan
+                                            </flux:menu>
+                                        </flux:dropdown>
+                                    @endcan
 
                                     @can('report', $discussion)
                                         <livewire:components.report-spam :model="$discussion" />
@@ -107,4 +123,46 @@
             </div>
         </div>
     </div>
+
+    <flux:modal name="confirm-convert-thread" class="max-w-md" wire:model="showConvertModal">
+        <div>
+            <flux:heading size="lg">{{ __('pages/discussion.convert_to_thread') }}</flux:heading>
+            <flux:subheading>
+                <p class="mt-2">
+                    {{ __('pages/discussion.text_confirmation') }}
+                </p>
+            </flux:subheading>
+        </div>
+
+        <div class="mt-6 flex gap-2 justify-end">
+            <flux:modal.close>
+                <flux:button variant="ghost">{{ __('actions.cancel') }}</flux:button>
+            </flux:modal.close>
+
+            <flux:button variant="primary" wire:click="convertToThread" class="border-0">
+                {{ __('actions.confirm') }}
+            </flux:button>
+        </div>
+    </flux:modal>
+
+    <flux:modal name="confirm-delete-discussion" class="max-w-md">
+        <div>
+            <flux:heading size="lg">{{ __('actions.confirm_delete_title') }}</flux:heading>
+            <flux:subheading>
+                <p class="mt-2">
+                    {{ __('actions.confirm_delete_discussion_message') }}
+                </p>
+            </flux:subheading>
+        </div>
+
+        <div class="mt-6 flex gap-2 justify-end">
+            <flux:modal.close>
+                <flux:button variant="ghost">{{ __('actions.cancel') }}</flux:button>
+            </flux:modal.close>
+
+            <flux:button variant="danger" wire:click="delete">
+                {{ __('actions.delete') }}
+            </flux:button>
+        </div>
+    </flux:modal>
 </x-container>

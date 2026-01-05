@@ -7,13 +7,7 @@ namespace App\Livewire\Components\Discussion;
 use App\Actions\Discussion\CreateDiscussionReplyAction;
 use App\Models\Discussion;
 use App\Models\Reply;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
-use Filament\Schemas\Schema;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -21,54 +15,32 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-/**
- * @property Schema $form
- */
-final class Comments extends Component implements HasActions, HasForms
+final class Comments extends Component
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
-
     public Discussion $discussion;
 
-    public ?array $data = [];
-
-    public function mount(): void
-    {
-        $this->form->fill();
-    }
-
-    public function form(Schema $schema): Schema
-    {
-        return $schema
-            ->components([
-                Textarea::make('body')
-                    ->hiddenLabel()
-                    ->placeholder(__('pages/discussion.placeholder'))
-                    ->rows(3)
-                    ->required(),
-            ])
-            ->statePath('data');
-    }
+    public string $body = '';
 
     public function save(): void
     {
-        $this->validate();
+        $this->validate([
+            'body' => ['required', 'string', 'min:1'],
+        ]);
 
         app()->call(CreateDiscussionReplyAction::class, [
-            'body' => data_get($this->form->getState(), 'body'),
+            'body' => $this->body,
             'user' => Auth::user(),
             'model' => $this->discussion,
         ]);
 
-        Notification::make()
-            ->title(__('notifications.discussion.save_comment'))
-            ->success()
-            ->send();
+        Flux::toast(
+            text: __('notifications.discussion.save_comment'),
+            variant: 'success'
+        );
 
         $this->dispatch('comments.change');
 
-        $this->reset('data');
+        $this->js('$wire.body = ""');
     }
 
     #[Computed]

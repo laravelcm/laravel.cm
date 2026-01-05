@@ -15,6 +15,7 @@ return [
     'confirm' => 'Confirmer',
     'start' => 'Démarrer',
     'view' => 'Voir',
+    'manage' => 'Gérer',
     'delete_none' => 'Aucun utilisateur à supprimer',
     'delete_none_description' => 'Aucun utilisateur banni n\'a été trouvé dans la sélection',
     'delete_success' => 'Suppression effectuée',
