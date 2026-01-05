@@ -22,9 +22,9 @@ use Carbon\CarbonInterface;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Database\Factories\DiscussionFactory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Spatie\Sitemap\Contracts\Sitemapable;
@@ -39,7 +39,6 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read bool $is_pinned
  * @property-read ?string $locale
  * @property-read int $user_id
- * @property-read int $count_all_replies_with_child
  * @property-read User $user
  * @property-read CarbonInterface $created_at
  * @property-read CarbonInterface $updated_at

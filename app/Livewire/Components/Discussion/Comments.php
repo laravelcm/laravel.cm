@@ -77,7 +77,6 @@ final class Comments extends Component implements HasActions, HasForms
     {
         $replies = collect();
 
-        // @phpstan-ignore-next-line
         foreach ($this->discussion->replies->load(['allChildReplies', 'user', 'user.media']) as $reply) {
             /** @var Reply $reply */
             if ($reply->allChildReplies->isNotEmpty()) {

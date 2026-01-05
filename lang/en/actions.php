@@ -21,4 +21,5 @@ return [
     'delete_success_description' => 'Only banned users have been deleted.',
     'confirm_delete_title' => 'Confirm deletion',
     'confirm_delete_article_message' => 'Are you sure you want to delete this article? This action is irreversible.',
+    'confirm_delete_discussion_message' => 'Are you sure you want to delete this discussion? This action is irreversible.',
 ];

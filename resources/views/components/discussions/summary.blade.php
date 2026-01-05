@@ -7,7 +7,7 @@
         <div class="flex items-center justify-between gap-4">
             <div class="flex items-center gap-2">
                 @foreach ($discussion->tags as $tag)
-                    <x-tag :tag="$tag" href="#" />
+                    <x-tag :$tag href="#" />
                 @endforeach
             </div>
 
@@ -23,13 +23,13 @@
             </x-link>
         </h2>
     </div>
-    <p class="mt-3 text-gray-500 dark:text-gray-400">
+    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
         {!! $discussion->excerpt(175) !!}
     </p>
-    <p class="mt-6 inline-flex items-center gap-2 text-gray-500 dark:text-gray-400">
+    <p class="mt-4 inline-flex text-sm items-center gap-2 text-gray-500 dark:text-gray-400">
         <x-untitledui-message-dots-square class="size-5" stroke-width="1.5" aria-hidden="true" />
         <span class="text-gray-700 dark:text-gray-300">
-            {{ $discussion->count_all_replies_with_child }}
+            {{ $discussion->replies_count }}
         </span>
         <span class="sr-only">{{ __('global.answers') }}</span>
     </p>

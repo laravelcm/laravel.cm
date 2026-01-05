@@ -21,4 +21,5 @@ return [
     'delete_success_description' => 'Seuls les utilisateurs bannis ont été supprimés.',
     'confirm_delete_title' => 'Confirmer la suppression',
     'confirm_delete_article_message' => 'Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.',
+    'confirm_delete_discussion_message' => 'Êtes-vous sûr de vouloir supprimer cette discussion ? Cette action est irréversible.',
 ];
