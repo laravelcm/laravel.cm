@@ -12,12 +12,10 @@ final class DeleteDiscussionAction
 {
     public function execute(Discussion $discussion): void
     {
-        DB::beginTransaction();
+        DB::transaction(function () use ($discussion): void {
+            undoPoint(new DiscussionCreated($discussion));
 
-        undoPoint(new DiscussionCreated($discussion));
-
-        $discussion->delete();
-
-        DB::commit();
+            $discussion->delete();
+        });
     }
 }

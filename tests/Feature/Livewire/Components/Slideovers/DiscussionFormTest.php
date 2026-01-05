@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-// use App\Exceptions\UnverifiedUserException;
+use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Components\Slideovers\DiscussionForm;
 use App\Models\Discussion;
 use App\Models\Tag;
@@ -24,16 +24,16 @@ describe(DiscussionForm::class, function (): void {
 
     it('user can create a new discussion', function (): void {
         $user = $this->login();
-        $tags = Tag::factory()->count(3)->create();
+        $tags = Tag::factory()->count(3)->create([
+            'concerns' => ['discussion'],
+        ]);
 
         Livewire::test(DiscussionForm::class)
-            ->fillForm([
-                'title' => 'I have a question about laravel Cameroun',
-                'body' => 'this is my kind body',
-                'tags' => $tags->pluck('id')->toArray(),
-            ])
+            ->set('form.title', 'I have a question about laravel Cameroun')
+            ->set('form.body', 'this is my kind body for testing discussions')
+            ->set('form.tags', $tags->pluck('id')->toArray())
             ->call('save')
-            ->assertHasNoFormErrors();
+            ->assertHasNoErrors();
 
         $discussion = Discussion::query()->first();
         $user->refresh();
@@ -43,73 +43,130 @@ describe(DiscussionForm::class, function (): void {
             ->toBeTrue()
             ->and($user->getPoints())
             ->toBe(20);
-    })->skip();
+    });
 
     it('validate forms input', function (): void {
         $this->login();
 
         Livewire::test(DiscussionForm::class)
-            ->fillForm([
-                'title' => '',
-                'body' => '',
-                'tags' => [],
-            ])
+            ->set('form.title', '')
+            ->set('form.body', '')
+            ->set('form.tags', [])
             ->call('save')
-            ->assertHasFormErrors([
-                'title' => ['required'],
-                'body' => ['required'],
+            ->assertHasErrors([
+                'form.title' => 'required',
+                'form.body' => 'required',
+                'form.tags' => 'required',
             ]);
     });
 
-    it('validate tags can extends 3 when create a discussion', function (): void {
+    it('validate tags cannot exceed 3 when create a discussion', function (): void {
         $this->login();
+        $tags = Tag::factory()->count(4)->create([
+            'concerns' => ['discussion'],
+        ]);
 
         Livewire::test(DiscussionForm::class)
-            ->fillForm([
-                'title' => 'I have a question about laravel Cameroun',
-                'body' => 'this is my kind body',
-                'tags' => ['alpinejs', 'php', 'tailwindcss', 'react'],
-            ])
+            ->set('form.title', 'I have a question about laravel Cameroun')
+            ->set('form.body', 'this is my kind body for testing max tags validation')
+            ->set('form.tags', $tags->pluck('id')->toArray())
             ->call('save')
-            ->assertHasFormErrors([
-                'tags' => ['max'],
+            ->assertHasErrors([
+                'form.tags' => 'max',
             ]);
-    })->skip();
+    });
 
-    it('user cannot create discussion with and unverified email address', function (): void {
+    it('user cannot create discussion with an unverified email address', function (): void {
         $user = $this->createUser(['email_verified_at' => null]);
-        $tags = Tag::factory()->count(2)->create();
+        $tags = Tag::factory()->count(2)->create([
+            'concerns' => ['discussion'],
+        ]);
 
         $this->actingAs($user);
 
         Livewire::test(DiscussionForm::class)
-            ->fillForm([
-                'title' => 'I have a question about laravel Cameroun',
-                'body' => 'this is my kind body',
-                'tags' => $tags->pluck('id')->toArray(),
-            ])
+            ->set('form.title', 'I have a question about laravel Cameroun')
+            ->set('form.body', 'this is my kind body for testing unverified user')
+            ->set('form.tags', $tags->pluck('id')->toArray())
             ->call('save');
 
         expect(Discussion::query()->first())
             ->toBeNull();
-        // UnverifiedUserException::class
-    })->skip();
+    })->throws(UnverifiedUserException::class);
 
-    it('user cannot updated a discussion that is not author', function (): void {
+    it('validate minimum title length', function (): void {
+        $this->login();
+        $tags = Tag::factory()->count(2)->create([
+            'concerns' => ['discussion'],
+        ]);
+
+        Livewire::test(DiscussionForm::class)
+            ->set('form.title', 'Short')
+            ->set('form.body', 'this is my kind body for testing minimum title length')
+            ->set('form.tags', $tags->pluck('id')->toArray())
+            ->call('save')
+            ->assertHasErrors([
+                'form.title' => 'min',
+            ]);
+    });
+
+    it('validate minimum body length', function (): void {
+        $this->login();
+        $tags = Tag::factory()->count(2)->create([
+            'concerns' => ['discussion'],
+        ]);
+
+        Livewire::test(DiscussionForm::class)
+            ->set('form.title', 'I have a question about laravel')
+            ->set('form.body', 'Short body')
+            ->set('form.tags', $tags->pluck('id')->toArray())
+            ->call('save')
+            ->assertHasErrors([
+                'form.body' => 'min',
+            ]);
+    });
+
+    it('user cannot update a discussion that is not author', function (): void {
         $this->login();
 
         $author = User::factory()->create();
         $discussion = Discussion::factory()->create(['user_id' => $author->id]);
-        $tags = Tag::factory()->count(3)->create();
+        $tags = Tag::factory()->count(3)->create([
+            'concerns' => ['discussion'],
+        ]);
 
         $discussion->tags()->attach($tags->modelKeys());
 
         Livewire::test(DiscussionForm::class, ['discussionId' => $discussion->id])
-            ->fillForm([
-                'title' => 'Updated discussion topic',
-                'body' => 'this is my kind body updated',
-            ])
+            ->set('form.title', 'Updated discussion topic for testing authorization')
+            ->set('form.body', 'this is my kind body updated for testing authorization')
             ->call('save')
             ->assertStatus(403);
+    });
+
+    it('user can update their own discussion', function (): void {
+        $user = $this->login();
+        $tags = Tag::factory()->count(2)->create([
+            'concerns' => ['discussion'],
+        ]);
+
+        $discussion = Discussion::factory()->create(['user_id' => $user->id]);
+        $discussion->tags()->attach($tags->modelKeys());
+
+        $newTags = Tag::factory()->count(2)->create([
+            'concerns' => ['discussion'],
+        ]);
+
+        Livewire::test(DiscussionForm::class, ['discussionId' => $discussion->id])
+            ->set('form.title', 'Updated discussion topic by author')
+            ->set('form.body', 'this is my updated body for testing author update')
+            ->set('form.tags', $newTags->pluck('id')->toArray())
+            ->call('save')
+            ->assertHasNoErrors();
+
+        $discussion->refresh();
+
+        expect($discussion->title)->toBe('Updated discussion topic by author')
+            ->and($discussion->body)->toContain('this is my updated body');
     });
 })->group('discussion');

@@ -8,22 +8,18 @@ use App\Actions\Discussion\ConvertDiscussionToThreadAction;
 use App\Actions\Discussion\DeleteDiscussionAction;
 use App\Models\Discussion;
 use ArchTech\SEO\SEOManager;
-use Filament\Actions\Action;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Actions\DeleteAction;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
-final class SingleDiscussion extends Component implements HasActions, HasForms
+final class SingleDiscussion extends Component
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
-
     public Discussion $discussion;
+
+    public ?int $discussionToDelete = null;
+
+    public bool $showConvertModal = false;
 
     public function mount(): void
     {
@@ -50,51 +46,69 @@ final class SingleDiscussion extends Component implements HasActions, HasForms
         $this->discussion = $discussion;
     }
 
-    public function editAction(): Action
+    public function edit(): void
     {
-        return Action::make('edit')
-            ->label(__('actions.edit'))
-            ->color('gray')
-            ->authorize('update', $this->discussion)
-            ->action(
-                fn () => $this->dispatch(
-                    'openPanel',
-                    component: 'components.slideovers.discussion-form',
-                    arguments: ['discussionId' => $this->discussion->id]
-                )
-            );
+        $this->authorize('update', $this->discussion);
+
+        $this->dispatch(
+            'openPanel',
+            component: 'components.slideovers.discussion-form',
+            arguments: ['discussionId' => $this->discussion->id]
+        );
     }
 
-    public function convertedToThreadAction(): Action
+    public function confirmConvert(): void
     {
-        return Action::make('convertedToThread')
-            ->label(__('pages/discussion.convert_to_thread'))
-            ->color('primary')
-            ->authorize('convertedToThread', $this->discussion)
-            ->requiresConfirmation()
-            ->modalIcon()
-            ->modalHeading(__('pages/discussion.convert_to_thread'))
-            ->modalDescription(__('pages/discussion.text_confirmation'))
-            ->action(function (): void {
-                $thread = resolve(ConvertDiscussionToThreadAction::class)->execute($this->discussion);
+        $this->authorize('convertedToThread', $this->discussion);
 
-                $this->redirectRoute('forum.show', $thread, navigate: true);
-            });
+        $this->showConvertModal = true;
     }
 
-    public function deleteAction(): DeleteAction
+    public function convertToThread(): void
     {
-        return DeleteAction::make()
-            ->record($this->discussion)
-            ->label(__('actions.delete'))
-            ->authorize('delete', $this->discussion)
-            ->requiresConfirmation()
-            ->successNotificationTitle(__('notifications.discussion.deleted'))
-            ->action(function (): void {
-                resolve(DeleteDiscussionAction::class)->execute($this->discussion);
+        $this->authorize('convertedToThread', $this->discussion);
 
-                $this->redirectRoute('discussions.index',  navigate: true);
-            });
+        $thread = resolve(ConvertDiscussionToThreadAction::class)->execute($this->discussion);
+
+        Flux::toast(
+            text: __('notifications.discussion.converted'),
+            variant: 'success'
+        );
+
+        $this->showConvertModal = false;
+
+        $this->redirectRoute('forum.show', $thread, navigate: true);
+    }
+
+    public function confirmDelete(): void
+    {
+        $this->authorize('delete', $this->discussion);
+
+        $this->discussionToDelete = $this->discussion->id;
+
+        Flux::modal('confirm-delete-discussion')->show();
+    }
+
+    public function delete(): void
+    {
+        if (! $this->discussionToDelete) {
+            return;
+        }
+
+        $this->authorize('delete', $this->discussion);
+
+        resolve(DeleteDiscussionAction::class)->execute($this->discussion);
+
+        Flux::toast(
+            text: __('notifications.discussion.deleted'),
+            variant: 'success'
+        );
+
+        $this->discussionToDelete = null;
+
+        Flux::modal('confirm-delete-discussion')->close();
+
+        $this->redirectRoute('discussions.index', navigate: true);
     }
 
     public function render(): View

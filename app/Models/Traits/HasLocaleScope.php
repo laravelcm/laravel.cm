@@ -17,7 +17,7 @@ trait HasLocaleScope
      * @return Builder<TModel>
      */
     #[Scope]
-    protected function forLocale(Builder $query, ?string $locale): Builder
+    protected function forLocale(Builder $query, ?string $locale = null): Builder
     {
         if (filled($locale)) {
             return $query->where('locale', $locale);

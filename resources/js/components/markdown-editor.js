@@ -10,6 +10,7 @@ import "prismjs/themes/prism.css";
 export default (config = {}) => ({
   editor: null,
   isDark: false,
+  debounceTimeout: null,
 
   init() {
     this.isDark = document.documentElement.classList.contains("dark");
@@ -38,9 +39,14 @@ export default (config = {}) => ({
 
     this.editor = new Editor(defaultConfig);
 
-    // Sync avec Livewire
+    // Sync avec Livewire avec debounce
     this.editor.on("change", () => {
-      this.$wire.$set(config.model, this.editor.getMarkdown());
+      if (this.debounceTimeout) {
+        clearTimeout(this.debounceTimeout);
+      }
+      this.debounceTimeout = setTimeout(() => {
+        this.$wire.$set(config.model, this.editor.getMarkdown());
+      }, 500);
     });
 
     // Écouter les changements depuis Livewire
@@ -48,6 +54,11 @@ export default (config = {}) => ({
       if (this.editor.getMarkdown() !== value) {
         this.editor.setMarkdown(value || "");
       }
+    });
+
+    // Écouter l'événement de reset depuis Livewire
+    Livewire.on("reset-markdown-editor", () => {
+      this.editor.setMarkdown("");
     });
 
     // Observer les changements de dark mode
@@ -69,9 +80,14 @@ export default (config = {}) => ({
 
             this.editor = new Editor(newConfig);
 
-            // Re-synchroniser avec Livewire
+            // Re-synchroniser avec Livewire avec debounce
             this.editor.on("change", () => {
-              this.$wire.$set(config.model, this.editor.getMarkdown());
+              if (this.debounceTimeout) {
+                clearTimeout(this.debounceTimeout);
+              }
+              this.debounceTimeout = setTimeout(() => {
+                this.$wire.$set(config.model, this.editor.getMarkdown());
+              }, 500);
             });
           }
         }
@@ -87,6 +103,10 @@ export default (config = {}) => ({
   },
 
   destroy() {
+    if (this.debounceTimeout) {
+      clearTimeout(this.debounceTimeout);
+    }
+
     if (this.observer) {
       this.observer.disconnect();
     }

@@ -23,7 +23,8 @@ it('delete user action can remove discussion point ', function (): void {
     $discussion = resolve(CreateDiscussionAction::class)->execute($discussionData);
 
     Livewire::test(SingleDiscussion::class, ['discussion' => $discussion])
-        ->callAction('deleteAction')
+        ->call('confirmDelete')
+        ->call('delete')
         ->assertStatus(200);
 
     $user->refresh();

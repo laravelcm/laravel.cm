@@ -23,7 +23,7 @@ final class CreateReplyAction
         $reply->to($model);
         $reply->save();
 
-        givePoint(new ReplyCreated($model, $user));
+        givePoint(new ReplyCreated($reply, $user));
 
         event(new ReplyWasCreated($reply));
     }

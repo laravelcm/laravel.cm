@@ -37,8 +37,9 @@ final class DiscussionResource extends Resource
                     ->label(__('Auteur'))
                     ->sortable()
                     ->searchable(),
-                Columns\TextColumn::make('count_all_replies_with_child')
-                    ->label(__('Commentaires')),
+                Columns\TextColumn::make('replies_count')
+                    ->label(__('Commentaires'))
+                    ->counts('replies'),
                 Columns\IconColumn::make('locked')
                     ->label(__('Vérrouillé'))
                     ->boolean()

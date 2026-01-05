@@ -50,6 +50,7 @@ return [
         'created' => 'Votre discussion à été créée.',
         'updated' => 'Votre discussion à été modifiée.',
         'deleted' => 'Le sujet de discussion a été supprimé.',
+        'converted' => 'La discussion a été convertie en sujet avec succès.',
         'save_comment' => 'Votre commentaire a été enregistré',
         'delete_comment' => 'Votre commentaire a été supprimé.',
     ],

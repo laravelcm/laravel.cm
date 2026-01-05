@@ -7,12 +7,7 @@ namespace App\Livewire\Pages\Dashboard;
 use App\Actions\Discussion\DeleteDiscussionAction;
 use App\Models\Discussion;
 use App\Models\User;
-use Filament\Actions\Action;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
+use Flux\Flux;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -21,12 +16,12 @@ use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
-final class Discussions extends Component implements HasActions, HasForms
+final class Discussions extends Component
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
     use WithoutUrlPagination;
     use WithPagination;
+
+    public ?int $discussionToDelete = null;
 
     #[Computed(persist: true)]
     public function user(): User
@@ -40,47 +35,41 @@ final class Discussions extends Component implements HasActions, HasForms
     #[Computed]
     public function discussions(): LengthAwarePaginator
     {
-        return Discussion::with('tags', 'replies')
+        return Discussion::with('tags')
+            ->withCount('replies')
             ->where('user_id', Auth::id())
             ->latest()
             ->paginate(10);
     }
 
-    public function editAction(): Action
+    public function confirmDelete(int $discussionId): void
     {
-        return Action::make('edit')
-            ->label(__('actions.edit'))
-            ->color('gray')
-            ->badge()
-            ->action(
-                fn (array $arguments) => $this->dispatch(
-                    'openPanel',
-                    component: 'components.slideovers.discussion-form',
-                    arguments: ['discussionId' => $arguments['id']]
-                )
-            );
+        $this->discussionToDelete = $discussionId;
+
+        Flux::modal('confirm-delete-discussion')->show();
     }
 
-    public function deleteAction(): Action
+    public function delete(): void
     {
-        return Action::make('delete')
-            ->label(__('actions.delete'))
-            ->color('danger')
-            ->badge()
-            ->requiresConfirmation()
-            ->action(function (array $arguments): void {
-                /** @var Discussion $discussion */
-                $discussion = Discussion::query()->find($arguments['id']);
+        if (! $this->discussionToDelete) {
+            return;
+        }
 
-                $this->authorize('delete', $discussion);
+        /** @var Discussion $discussion */
+        $discussion = Discussion::query()->findOrFail($this->discussionToDelete);
 
-                resolve(DeleteDiscussionAction::class)->execute($discussion);
+        $this->authorize('delete', $discussion);
 
-                Notification::make()
-                    ->success()
-                    ->title(__('notifications.discussion.deleted'))
-                    ->send();
-            });
+        resolve(DeleteDiscussionAction::class)->execute($discussion);
+
+        Flux::toast(
+            text: __('notifications.discussion.deleted'),
+            variant: 'success',
+        );
+
+        $this->discussionToDelete = null;
+
+        Flux::modal('confirm-delete-discussion')->close();
     }
 
     public function render(): View

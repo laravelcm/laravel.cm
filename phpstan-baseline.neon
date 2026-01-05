@@ -583,18 +583,6 @@ parameters:
 			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithNamePoint.php
 
 		-
-			rawMessage: 'Parameter #1 $subject of class App\Gamify\Points\ReplyCreated constructor expects App\Models\Reply, Illuminate\Database\Eloquent\Model given.'
-			identifier: argument.type
-			count: 1
-			path: app/Actions/Discussion/CreateDiscussionReplyAction.php
-
-		-
-			rawMessage: 'Parameter #1 $subject of class App\Gamify\Points\ReplyCreated constructor expects App\Models\Reply, App\Contracts\ReplyInterface given.'
-			identifier: argument.type
-			count: 1
-			path: app/Actions/Forum/CreateReplyAction.php
-
-		-
 			rawMessage: Property App\Models\Subscribe::$uuid is not writable.
 			identifier: assign.propertyReadOnly
 			count: 1
