@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use App\Enums\UserRole;
 use App\Models\Article;
 use App\Models\User;
 
@@ -31,12 +32,19 @@ trait CreatesUsers
      */
     public function createUser(array $attributes = []): User
     {
-        return User::factory()->create(array_merge([
-            'name' => 'John Doe',
-            'username' => 'johndoe',
-            'email' => 'john@example.com',
-            'password' => bcrypt('password'),
-        ], $attributes));
+        return User::factory()->create($attributes);
+    }
+
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
+    public function createAdmin(array $attributes = []): User
+    {
+        $admin = $this->createUser($attributes);
+
+        $admin->assignRole(UserRole::Admin->value);
+
+        return $admin;
     }
 
     /**

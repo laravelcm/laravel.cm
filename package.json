@@ -10,9 +10,9 @@
   "devDependencies": {
     "@ryangjchandler/alpine-tooltip": "^2.0.1",
     "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/postcss": "^4.1.18",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
-    "@tailwindcss/postcss": "^4.1.18",
     "@tailwindplus/elements": "^1.0.21",
     "autoprefixer": "^10.4.23",
     "concurrently": "^9.2.1",
@@ -27,5 +27,10 @@
     "tailwindcss": "^4.1.18",
     "tippy.js": "^6.3.7",
     "vite": "^7.3.0"
+  },
+  "dependencies": {
+    "@toast-ui/editor": "^3.2.2",
+    "@toast-ui/editor-plugin-code-syntax-highlight": "^3.1.0",
+    "prismjs": "^1.30.0"
   }
 }

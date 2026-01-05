@@ -1,0 +1,22 @@
+/* Toast UI Editor - Taille de police par défaut */
+
+.toastui-editor-contents,
+.toastui-editor .ProseMirror,
+.toastui-editor-md-preview {
+  @apply text-sm font-sans!;
+}
+
+/* Police monospace pour le code */
+.toastui-editor-contents code,
+.toastui-editor-contents pre,
+.toastui-editor .ProseMirror code,
+.toastui-editor .ProseMirror pre,
+.toastui-editor-md-preview code,
+.toastui-editor-md-preview pre {
+  @apply font-mono!;
+}
+
+/* Cacher l'onglet Preview quand preview = false */
+.markdown-editor-no-preview .toastui-editor-tabs {
+  display: none !important;
+}

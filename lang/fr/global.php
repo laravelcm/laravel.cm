@@ -58,6 +58,7 @@ return [
     'read_time' => ':time min de lecture',
     'page_views' => ':number vues',
     'views' => 'vues',
+    'vs_last_month' => 'vs mois dernier',
     'open_navigation' => 'Ouvrir le menu',
     'close_navigation' => 'Fermer le menu',
     'view_notifications' => 'Voir les notifications',

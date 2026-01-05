@@ -16,7 +16,7 @@
                     @else
                         <span class="text-red-500 font-medium">{{ $this->percentChange }}%</span>
                     @endif
-                    <span class="text-gray-400 ml-1 dark:text-gray-500">{{ __('vs last month') }}</span>
+                    <span class="text-gray-400 ml-1 dark:text-gray-500">{{ __('global.vs_last_month') }}</span>
                 </p>
             </div>
 

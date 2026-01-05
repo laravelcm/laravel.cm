@@ -20,8 +20,8 @@ return [
     // both on the page, and you will be responsible for hiding one
     // or the other depending on the dark / light mode via CSS.
     'theme' => [
-        'dark' => 'min-dark',
-        'light' => 'min-light',
+        'dark' => 'slack-theme-dark-mode',
+        'light' => 'olaolu-palenight',
     ],
 
     // Your API token from torchlight.dev.

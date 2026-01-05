@@ -18,16 +18,19 @@ describe(Index::class, function (): void {
             ->assertStatus(200);
     });
 
-    it('user can update profil', function (): void {
+    it('user can update his profil', function (): void {
+        $originalUsername = $this->user->username;
+
         Livewire::test(Index::class)
             ->set('form.name', 'John Doe')
+            ->set('form.username', $originalUsername)
             ->call('save')
             ->assertHasNoErrors();
 
         $this->user->refresh();
 
         expect($this->user->name)->toBe('John Doe')
-            ->and($this->user->email)->toBe($this->user->email);
+            ->and($this->user->username)->toBe($originalUsername);
     });
 
     it("user can't update profil if required information was not send", function (): void {

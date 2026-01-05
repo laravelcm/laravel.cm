@@ -32,10 +32,7 @@
                                 <flux:button
                                     size="xs"
                                     variant="ghost"
-                                    wire:click="$dispatch(
-                                        'openPanel',
-                                        { component: 'components.slideovers.article-form', arguments: {'article': {{ $article->id }}} },
-                                    )"
+                                    wire:click="$dispatch('openPanel', { component: 'components.slideovers.article-form', arguments: {'articleId': {{ $article->id }}} })"
                                 >
                                     {{ __('actions.edit') }}
                                 </flux:button>
@@ -64,14 +61,14 @@
                     </x-link>
 
                     <div class="mt-3 flex items-center justify-between">
-                        <div class="flex text-sm leading-5 text-gray-500 dark:text-gray-400">
+                        <div class="flex gap-1.5 text-sm/4 text-gray-500 dark:text-gray-400">
                             @if ($article->isPublished())
                                 <time datetime="{{ $article->submitted_at->format('Y-m-d') }}">
-                                    {{ __('Publié le :date', ['date' => $article->submitted_at->format('j M, Y')]) }}
+                                    {{ __('pages/article.published_on', ['date' => $article->submitted_at->format('j M, Y')]) }}
                                 </time>
                             @else
                                 @if ($article->isAwaitingApproval())
-                                    <span> {{ __('pages/article.awaiting_text') }} </span>
+                                    <span>{{ __('pages/article.awaiting_text') }}</span>
                                 @else
                                     <time datetime="{{ $article->created_at->format('Y-m-d') }}">
                                         {{ __('pages/article.write') }}
