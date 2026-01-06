@@ -48,17 +48,20 @@
             </div>
 
             <div class="space-y-2">
-                <x-markdown-editor
-                    wire:model="form.body"
-                    :label="__('validation.attributes.content')"
-                    :badge="__('validation.hints.required')"
-                    :toolbarItems="[
-                        ['bold', 'italic'],
-                        ['ul', 'ol'],
-                        ['link'],
-                        ['code', 'codeblock'],
-                    ]"
-                />
+                <flux:field>
+                    <flux:label :badge="__('validation.hints.required')">
+                        {{ __('validation.attributes.content') }}
+                    </flux:label>
+
+                    <livewire:markdown-editor
+                        wire:model="form.body"
+                        :placeholder="__('Démarrer votre discussion...')"
+                        :rows="10"
+                        :show-upload="false"
+                    />
+
+                    <flux:error name="form.body" />
+                </flux:field>
 
                 <x-torchlight />
             </div>

@@ -22,6 +22,7 @@ export default defineConfig({
         "app/Livewire/**",
         "app/Filament/**",
         "app-modules/*/Livewire/**",
+        "app-modules/*/views/**",
         ...refreshPaths
       ],
     }),

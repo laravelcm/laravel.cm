@@ -16,15 +16,11 @@
             <x-user.avatar :user="auth()->user()" />
 
             <form wire:submit="save" class="min-w-0 flex-1">
-                <x-markdown-editor
+                <livewire:markdown-editor
                     wire:model="body"
-                    height="200px"
-                    :toolbarItems="[
-                        ['bold', 'italic'],
-                        ['ul', 'ol'],
-                        ['link'],
-                        ['code', 'codeblock'],
-                    ]"
+                    placeholder="Écrivez votre commentaire..."
+                    :rows="5"
+                    :show-upload="false"
                 />
 
                 <div class="mt-3 flex items-center justify-end">

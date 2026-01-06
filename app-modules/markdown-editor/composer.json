@@ -1,0 +1,27 @@
+{
+  "name": "laravelcm/markdown-editor",
+  "description": "GitHub-style markdown editor for Laravel with Livewire and Alpine.js",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^8.4",
+    "codeat3/blade-phosphor-icons": "^2.3",
+    "laravel/framework": "^11.0|^12.0",
+    "spatie/commonmark-shiki-highlighter": "^2.5",
+    "livewire/livewire": "^3.6",
+    "league/commonmark": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Laravelcm\\MarkdownEditor\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Laravelcm\\MarkdownEditor\\MarkdownEditorServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable"
+}
