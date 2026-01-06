@@ -86,8 +86,7 @@ describe(PointType::class, function (): void {
 
         expect($this->user->getPoint())->toBe(0);
     })
-        ->throws(PointsNotDefinedException::class)
-        ->skip();
+        ->throws(PointsNotDefinedException::class);
 
     it('gives and undo point via helper functions', function (): void {
         $post = $this->createPost(['user_id' => $this->user->id]);

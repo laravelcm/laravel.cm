@@ -41,7 +41,7 @@ describe(Index::class, function (): void {
 
         expect($this->user->email)
             ->toBe($this->user->email);
-    })->skip();
+    });
 
     it('can send notification when user email change', function (): void {
         Event::fake([EmailAddressWasChanged::class]);

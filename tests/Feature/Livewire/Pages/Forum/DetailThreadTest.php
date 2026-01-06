@@ -68,9 +68,11 @@ describe(DetailThread::class, function (): void {
             ->set('body', 'This is a reply body')
             ->call('createReply');
 
+        $thread->fresh();
+
         expect($thread->replies->count())
             ->toBe(1)
             ->and($thread->replies->first()->user->id)
             ->toBe($user->id);
-    })->skip();
+    });
 })->group('forum');

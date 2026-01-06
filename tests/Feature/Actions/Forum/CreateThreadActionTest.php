@@ -11,28 +11,30 @@ use App\Models\Thread;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 
-beforeEach(function (): void {
-    $this->user = $this->login();
-
+it('user can create a thread', function (): void {
     Event::fake();
     Notification::fake();
-});
 
-it('user can create a thread', function (): void {
-    $channels = Channel::factory()->count(2)->create();
+    $this->user = $this->login();
+
+    $channels = Channel::query()->take(2)->get();
 
     $thread = resolve(CreateThreadAction::class)->execute([
         'title' => 'thread title',
         'slug' => 'thread-title',
         'user_id' => $this->user->id,
         'body' => 'This is a test action thread for created or updated thread.',
-        'channels' => [$channels->modelKeys()],
+        'locale' => 'fr',
     ]);
+
+    $thread->channels()->sync($channels->modelKeys());
 
     expect($thread)
         ->toBeInstanceOf(Thread::class)
         ->and($thread->user_id)
-        ->toBe($this->user->id);
+        ->toBe($this->user->id)
+        ->and($thread->channels()->count())
+        ->toBe(2);
 
     Event::assertDispatched(ThreadWasCreated::class);
-})->skip();
+});
