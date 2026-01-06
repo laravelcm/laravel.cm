@@ -6,6 +6,7 @@ namespace App\Livewire\Components\Discussion;
 
 use App\Actions\Discussion\LikeReplyAction;
 use App\Gamify\Points\ReplyCreated;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Models\Reply;
 use App\Models\User;
 use Flux\Flux;
@@ -17,6 +18,8 @@ use Livewire\Component;
 #[Lazy]
 final class Comment extends Component
 {
+    use HandlesAuthorizationExceptions;
+
     public Reply $comment;
 
     public function delete(): void

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Pages\Dashboard;
 
 use App\Actions\Forum\DeleteThreadAction;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Models\Thread;
 use App\Models\User;
 use Flux\Flux;
@@ -18,6 +19,7 @@ use Livewire\WithPagination;
 
 final class Threads extends Component
 {
+    use HandlesAuthorizationExceptions;
     use WithoutUrlPagination;
     use WithPagination;
 

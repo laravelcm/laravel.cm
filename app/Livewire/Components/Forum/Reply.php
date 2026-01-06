@@ -5,79 +5,80 @@ declare(strict_types=1);
 namespace App\Livewire\Components\Forum;
 
 use App\Gamify\Points\BestReply;
+use App\Gamify\Points\ReplyCreated;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Models\Reply as ReplyModel;
 use App\Models\Thread;
-use Filament\Actions\Action;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
+use App\Models\User;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-final class Reply extends Component implements HasActions, HasForms
+final class Reply extends Component
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
+    use HandlesAuthorizationExceptions;
 
     public ReplyModel $reply;
 
     public Thread $thread;
 
-    public function editAction(): Action
+    public function edit(): void
     {
-        return Action::make('edit')
-            ->label(__('actions.edit'))
-            ->color('gray')
-            ->authorize('update', $this->reply)
-            ->action(
-                fn () => $this->dispatch(
-                    'replyForm',
-                    replyId: $this->reply->id
-                )->to(ReplyForm::class)
-            );
+        $this->authorize('update', $this->reply);
+
+        $this->dispatch('replyForm', replyId: $this->reply->id)
+            ->to(ReplyForm::class);
     }
 
-    public function deleteAction(): Action
+    public function confirmDelete(): void
     {
-        return Action::make('delete')
-            ->label(__('actions.delete'))
-            ->color('danger')
-            ->authorize('delete', $this->reply)
-            ->requiresConfirmation()
-            ->action(function (): void {
-                $this->reply->delete();
+        $this->authorize('delete', $this->reply);
 
-                $this->redirectRoute('forum.show', $this->thread, navigate: true);
-            });
+        Flux::modal('confirm-delete-reply-'.$this->reply->id)->show();
     }
 
-    public function solutionAction(): Action
+    public function delete(): void
     {
-        return Action::make('solution')
-            ->label(__('pages/forum.mark_answer'))
-            ->color('success')
-            ->authorize('manage', $this->thread)
-            ->action(function (): void {
-                if ($this->thread->isSolved()) {
-                    undoPoint(new BestReply($this->thread->solutionReply)); // @phpstan-ignore-line
-                }
+        $this->authorize('delete', $this->reply);
 
-                $this->thread->markSolution($this->reply, Auth::user()); // @phpstan-ignore-line
+        DB::transaction(function (): void {
+            /** @var User $replyAuthor */
+            $replyAuthor = $this->reply->user;
 
-                givePoint(new BestReply($this->reply));
+            $this->reply->delete();
 
-                Notification::make()
-                    ->title(__('notifications.thread.best_reply'))
-                    ->success()
-                    ->duration(5000)
-                    ->send();
+            undoPoint(new ReplyCreated($this->reply, $replyAuthor), $replyAuthor);
+        });
 
-                $this->redirect(route('forum.show', $this->thread).$this->reply->getPathUrl(), navigate: true);
-            });
+        Flux::toast(
+            text: __('notifications.reply.deleted'),
+            variant: 'success'
+        );
+
+        $this->redirectRoute('forum.show', $this->thread, navigate: true);
+    }
+
+    public function markAsSolution(): void
+    {
+        $this->authorize('manage', $this->thread);
+
+        if ($this->thread->isSolved()) {
+            undoPoint(new BestReply($this->thread->solutionReply)); // @phpstan-ignore-line
+        }
+
+        $this->thread->markSolution($this->reply, Auth::user()); // @phpstan-ignore-line
+
+        givePoint(new BestReply($this->reply));
+
+        Flux::toast(
+            text: __('notifications.thread.best_reply'),
+            variant: 'success'
+        );
+
+        $this->redirect(route('forum.show', $this->thread).$this->reply->getPathUrl(), navigate: true);
     }
 
     #[On('reply.save.{reply.id}')]

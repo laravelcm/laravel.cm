@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Slideovers;
 
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Policies\NotificationPolicy;
 use Flux\Flux;
 use Illuminate\Contracts\View\View;
@@ -16,6 +17,8 @@ use Livewire\Attributes\Computed;
 
 final class Notifications extends SlideOverComponent
 {
+    use HandlesAuthorizationExceptions;
+
     public static function panelMaxWidth(): string
     {
         return 'xl';

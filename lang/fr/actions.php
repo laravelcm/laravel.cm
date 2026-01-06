@@ -24,4 +24,5 @@ return [
     'confirm_delete_article_message' => 'Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.',
     'confirm_delete_discussion_message' => 'Êtes-vous sûr de vouloir supprimer cette discussion ? Cette action est irréversible.',
     'confirm_delete_thread_message' => 'Êtes-vous sûr de vouloir supprimer ce sujet ? Cette action est irréversible.',
+    'confirm_delete_reply_message' => 'Êtes-vous sûr de vouloir supprimer cette réponse ? Cette action est irréversible.',
 ];

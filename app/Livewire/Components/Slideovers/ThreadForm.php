@@ -8,6 +8,7 @@ use App\Actions\Forum\CreateThreadAction;
 use App\Actions\Forum\UpdateThreadAction;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Forms\ThreadFormObject;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Channel;
 use App\Models\Thread;
@@ -22,6 +23,7 @@ use Livewire\Attributes\Computed;
 
 final class ThreadForm extends SlideOverComponent
 {
+    use HandlesAuthorizationExceptions;
     use WithAuthenticatedUser;
 
     public ThreadFormObject $form;

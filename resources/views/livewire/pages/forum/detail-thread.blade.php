@@ -36,7 +36,7 @@
                                 <x-forum.thread-metadata :$thread class="gap-3 text-xs" vertical />
                             </div>
                         </div>
-                        <div class="group min-w-0 flex-1 rounded-xl bg-white p-5 ring-1 ring-inset text-wrap overflow-hidden ring-gray-200/60 dark:bg-gray-800 dark:ring-white/10 lg:py-6 lg:px-8">
+                        <div class="group min-w-0 flex-1 rounded-xl bg-white p-4 ring-1 ring-inset text-wrap overflow-hidden ring-gray-200 dark:bg-gray-800 dark:ring-white/10 lg:p-5">
                             <div class="flex items-center justify-between gap-4">
                                 <div class="flex items-center gap-2">
                                     <x-user.avatar :user="$thread->user" size="md" />
@@ -70,15 +70,18 @@
 
                             <div class="flex items-center justify-between gap-5">
                                 @can('manage', $thread)
-                                    <div class="mt-5 inline-flex">
-                                        {{--<x-filament-actions::group
-                                            icon="untitledui-dots-horizontal"
-                                            color="gray"
-                                            :actions="[
-                                                $this->editAction,
-                                                $this->deleteAction,
-                                            ]"
-                                        />--}}
+                                    <div class="mt-5 inline-flex gap-2">
+                                        @can('update', $thread)
+                                            <flux:button size="xs" variant="ghost" wire:click="edit">
+                                                {{ __('actions.edit') }}
+                                            </flux:button>
+                                        @endcan
+
+                                        @can('delete', $thread)
+                                            <flux:button size="xs" variant="danger" class="border-0" wire:click="confirmDelete">
+                                                {{ __('actions.delete') }}
+                                            </flux:button>
+                                        @endcan
                                     </div>
                                 @endcan
 
@@ -145,7 +148,24 @@
         @endcan
     </div>
 
-    {{--<template x-teleport="body">
-        <x-filament-actions::modals />
-    </template>--}}
+    <flux:modal name="confirm-delete-thread" class="max-w-md">
+        <div>
+            <flux:heading size="lg">{{ __('actions.confirm_delete_title') }}</flux:heading>
+            <flux:subheading>
+                <p class="mt-2">
+                    {{ __('actions.confirm_delete_thread_message') }}
+                </p>
+            </flux:subheading>
+        </div>
+
+        <div class="mt-6 flex gap-2 justify-end">
+            <flux:modal.close>
+                <flux:button variant="ghost">{{ __('actions.cancel') }}</flux:button>
+            </flux:modal.close>
+
+            <flux:button variant="danger" wire:click="delete">
+                {{ __('actions.delete') }}
+            </flux:button>
+        </div>
+    </flux:modal>
 </div>

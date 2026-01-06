@@ -24,4 +24,5 @@ return [
     'confirm_delete_article_message' => 'Are you sure you want to delete this article? This action is irreversible.',
     'confirm_delete_discussion_message' => 'Are you sure you want to delete this discussion? This action is irreversible.',
     'confirm_delete_thread_message' => 'Are you sure you want to delete this thread? This action is irreversible.',
+    'confirm_delete_reply_message' => 'Are you sure you want to delete this reply? This action is irreversible.',
 ];

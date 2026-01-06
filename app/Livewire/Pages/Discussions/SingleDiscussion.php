@@ -6,6 +6,7 @@ namespace App\Livewire\Pages\Discussions;
 
 use App\Actions\Discussion\ConvertDiscussionToThreadAction;
 use App\Actions\Discussion\DeleteDiscussionAction;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Models\Discussion;
 use ArchTech\SEO\SEOManager;
 use Flux\Flux;
@@ -15,6 +16,8 @@ use Livewire\Component;
 
 final class SingleDiscussion extends Component
 {
+    use HandlesAuthorizationExceptions;
+
     public Discussion $discussion;
 
     public ?int $discussionToDelete = null;

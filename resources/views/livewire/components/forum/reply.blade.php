@@ -10,18 +10,14 @@
         </div>
         <div
             @class([
-                'group min-w-0 flex-1 rounded-xl p-5 ring-1 ring-inset lg:py-6 lg:px-8',
+                'group min-w-0 flex-1 rounded-xl p-4 ring-1 ring-inset lg:p-5',
                 'ring-green-500 bg-green-50 ring-2 dark:bg-green-800/20 dark:ring-primary-600' => $isSolution,
-                'ring-gray-200/60 bg-white dark:bg-gray-800 dark:ring-white/10' => ! $isSolution,
+                'ring-gray-200 bg-white dark:bg-gray-800 dark:ring-white/10' => ! $isSolution,
            ])
         >
             <div class="flex items-start justify-between">
                 <div class="flex items-center gap-2">
-                    <x-user.avatar
-                        :user="$reply->user"
-                        class="size-8 lg:hidden"
-                        span="-right-1 size-3.5 -top-1"
-                    />
+                    <x-user.avatar :user="$reply->user" class="size-8 lg:hidden" />
                     <div>
                         <div class="text-sm flex items-center gap-2">
                             <x-link :href="route('profile', $reply->user->username)" class="font-medium text-gray-900 dark:text-white">
@@ -37,28 +33,43 @@
                         </div>
                     </div>
                 </div>
-                @if($isSolution)
+
+                @if ($isSolution)
                     <div class="inline-flex items-center rounded-full px-4 py-1.5 text-xs font-medium text-white bg-flag-green">
                         {{ __('pages/forum.best_answer') }}
                     </div>
                 @endif
             </div>
             <x-markdown-content
-                class="mt-5 prose prose-green !prose-heading-off max-w-none space-y-3 text-gray-500 dark:text-gray-400 dark:prose-invert"
+                class="mt-2 prose prose-green prose-sm !prose-heading-off max-w-none space-y-3 text-gray-500 dark:text-gray-400 dark:prose-invert"
                 :content="$reply->body"
             />
-            <div class="mt-4 flex items-center justify-between">
-                @if(! $thread->isSolutionReply($reply))
+            <div class="mt-3 flex items-center justify-between">
+                @if (! $thread->isSolutionReply($reply))
                     @can('manage', $reply)
-                        <x-filament-actions::group
-                            icon="untitledui-dots-horizontal"
-                            color="gray"
-                            :actions="[
-                                $this->editAction,
-                                $this->solutionAction,
-                                $this->deleteAction,
-                            ]"
-                        />
+                        <flux:dropdown position="top" align="start">
+                            <flux:button size="xs" variant="ghost" icon="ellipsis-horizontal" inset="top bottom" />
+
+                            <flux:menu class="min-w-32">
+                                @can('update', $reply)
+                                    <flux:menu.item wire:click="edit" icon="pencil">
+                                        {{ __('actions.edit') }}
+                                    </flux:menu.item>
+                                @endcan
+
+                                @can('manage', $thread)
+                                    <flux:menu.item wire:click="markAsSolution" icon="check-circle">
+                                        {{ __('pages/forum.mark_answer') }}
+                                    </flux:menu.item>
+                                @endcan
+
+                                @can('delete', $reply)
+                                    <flux:menu.item wire:click="confirmDelete" icon="trash">
+                                        {{ __('actions.delete') }}
+                                    </flux:menu.item>
+                                @endcan
+                            </flux:menu>
+                        </flux:dropdown>
                     @endcan
 
                     @can('report', $reply)
@@ -69,7 +80,24 @@
         </div>
     </div>
 
-    <template x-teleport="body">
-        <x-filament-actions::modals />
-    </template>
+    <flux:modal name="confirm-delete-reply-{{ $reply->id }}" class="max-w-md">
+        <div>
+            <flux:heading size="lg">{{ __('actions.confirm_delete_title') }}</flux:heading>
+            <flux:subheading>
+                <p class="mt-2">
+                    {{ __('actions.confirm_delete_reply_message') }}
+                </p>
+            </flux:subheading>
+        </div>
+
+        <div class="mt-6 flex gap-2 justify-end">
+            <flux:modal.close>
+                <flux:button variant="ghost">{{ __('actions.cancel') }}</flux:button>
+            </flux:modal.close>
+
+            <flux:button variant="danger" wire:click="delete">
+                {{ __('actions.delete') }}
+            </flux:button>
+        </div>
+    </flux:modal>
 </div>

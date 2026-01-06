@@ -5,22 +5,18 @@ declare(strict_types=1);
 namespace App\Livewire\Pages\Forum;
 
 use App\Actions\Forum\DeleteThreadAction;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Models\Thread;
-use Filament\Actions\Action;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 #[Layout('layouts.forum')]
-final class DetailThread extends Component implements HasActions, HasForms
+final class DetailThread extends Component
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
+    use HandlesAuthorizationExceptions;
 
     public Thread $thread;
 
@@ -34,33 +30,36 @@ final class DetailThread extends Component implements HasActions, HasForms
             ->loadCount('views');
     }
 
-    public function editAction(): Action
+    public function edit(): void
     {
-        return Action::make('edit')
-            ->label(__('actions.edit'))
-            ->color('gray')
-            ->authorize('update', $this->thread)
-            ->action(
-                fn () => $this->dispatch(
-                    'openPanel',
-                    component: 'components.slideovers.thread-form',
-                    arguments: ['threadId' => $this->thread->id]
-                )
-            );
+        $this->authorize('update', $this->thread);
+
+        $this->dispatch(
+            'openPanel',
+            component: 'components.slideovers.thread-form',
+            arguments: ['threadId' => $this->thread->id]
+        );
     }
 
-    public function deleteAction(): Action
+    public function confirmDelete(): void
     {
-        return Action::make('delete')
-            ->label(__('actions.delete'))
-            ->color('danger')
-            ->authorize('delete', $this->thread)
-            ->requiresConfirmation()
-            ->action(function (): void {
-                resolve(DeleteThreadAction::class)->execute($this->thread);
+        $this->authorize('delete', $this->thread);
 
-                $this->redirectRoute('forum.index', navigate: true);
-            });
+        Flux::modal('confirm-delete-thread')->show();
+    }
+
+    public function delete(): void
+    {
+        $this->authorize('delete', $this->thread);
+
+        resolve(DeleteThreadAction::class)->execute($this->thread);
+
+        Flux::toast(
+            text: __('notifications.thread.deleted'),
+            variant: 'success'
+        );
+
+        $this->redirectRoute('forum.index', navigate: true);
     }
 
     #[On('thread.save.{thread.id}')]

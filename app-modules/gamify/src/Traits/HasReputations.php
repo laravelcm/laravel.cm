@@ -13,6 +13,7 @@ use Laravelcm\Gamify\Exceptions\PointsNotDefinedException;
 use Laravelcm\Gamify\Exceptions\PointSubjectNotSetException;
 use Laravelcm\Gamify\Models\Reputation;
 use Laravelcm\Gamify\PointType;
+use Throwable;
 
 /**
  * @property-read Collection<int, Reputation> $reputations
@@ -43,11 +44,15 @@ trait HasReputations
      *
      * @throws InvalidPayeeModelException
      * @throws PointSubjectNotSetException
+     * @throws Throwable
      */
     public function undoPoint(PointType $pointType): bool
     {
-        $reputation = $pointType->firstReputation();
+        if (! $pointType->reputationExists()) {
+            return true;
+        }
 
+        $reputation = $pointType->firstReputation();
         $reputation->undo();
 
         return true;

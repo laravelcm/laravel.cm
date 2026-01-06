@@ -109,7 +109,9 @@ describe(ThreadForm::class, function (): void {
             ->set('form.title', 'Updated thread question')
             ->set('form.body', 'this is my kind body updated')
             ->call('save')
-            ->assertStatus(403);
+            ->assertStatus(200);
+
+        expect($thread->fresh()->title)->not->toBe('Updated thread question');
     });
 
     it('dispatches thread created event when creating a new thread', function (): void {

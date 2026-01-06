@@ -141,7 +141,9 @@ describe(DiscussionForm::class, function (): void {
             ->set('form.title', 'Updated discussion topic for testing authorization')
             ->set('form.body', 'this is my kind body updated for testing authorization')
             ->call('save')
-            ->assertStatus(403);
+            ->assertStatus(200);
+
+        expect($discussion->fresh()->title)->not->toBe('Updated discussion topic for testing authorization');
     });
 
     it('user can update their own discussion', function (): void {

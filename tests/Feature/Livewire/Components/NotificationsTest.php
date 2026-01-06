@@ -101,7 +101,7 @@ describe(Notifications::class, function (): void {
 
         Livewire::test(Notifications::class)
             ->call('markAsRead', $notification->id)
-            ->assertForbidden();
+            ->assertStatus(200);
 
         expect($notification->fresh()->read_at)->toBeNull();
     });

@@ -15,7 +15,7 @@ describe(ReportSpam::class, function (): void {
 
         Livewire::test(ReportSpam::class, ['model' => $thread])
             ->call('confirmReport')
-            ->assertForbidden();
+            ->assertStatus(200);
     });
 
     it('user can report a thread as spam', function (): void {
@@ -68,6 +68,6 @@ describe(ReportSpam::class, function (): void {
 
         Livewire::test(ReportSpam::class, ['model' => $thread])
             ->call('confirmReport')
-            ->assertForbidden();
+            ->assertStatus(200);
     });
 });

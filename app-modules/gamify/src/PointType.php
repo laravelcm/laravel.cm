@@ -116,7 +116,8 @@ abstract class PointType
      */
     public function firstReputation(): Reputation
     {
-        return $this->reputationQuery()->first(); // @phpstan-ignore-line
+        /** @var Reputation */
+        return $this->reputationQuery()->first();
     }
 
     /**
@@ -128,7 +129,7 @@ abstract class PointType
      */
     public function storeReputation(array $meta): Reputation
     {
-        // @phpstan-ignore-next-line
+        /** @var Reputation */
         return $this->payeeReputations()->create([
             'payee_id' => $this->payee()?->id,
             'subject_type' => $this->getSubject()->getMorphClass(),
