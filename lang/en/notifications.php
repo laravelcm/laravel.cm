@@ -28,6 +28,7 @@ return [
     'reply' => [
         'created' => 'Answer successfully added.',
         'updated' => 'Successfully updated answer.',
+        'deleted' => 'Reply successfully deleted.',
     ],
 
     'error' => 'Oops! You\'ve got errors.',

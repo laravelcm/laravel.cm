@@ -11,7 +11,7 @@ trait HasUuid
 {
     public static function findByUuidOrFail(UuidInterface $uuid): self
     {
-        return static::where('uuid', $uuid->toString())->firstOrFail();
+        return static::query()->where('uuid', $uuid->toString())->firstOrFail();
     }
 
     public function uuid(): UuidInterface

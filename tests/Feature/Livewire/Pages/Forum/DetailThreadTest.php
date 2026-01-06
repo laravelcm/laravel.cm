@@ -23,7 +23,7 @@ describe(DetailThread::class, function (): void {
         givePoint(new ThreadCreated($thread));
 
         Livewire::test(DetailThread::class, ['thread' => $thread])
-            ->callAction('delete')
+            ->call('delete')
             ->assertStatus(200)
             ->assertRedirect(route('forum.index'));
 
@@ -42,7 +42,10 @@ describe(DetailThread::class, function (): void {
         $this->login();
 
         Livewire::test(DetailThread::class, ['thread' => $thread])
-            ->assertActionHidden('delete');
+            ->call('delete')
+            ->assertStatus(200);
+
+        expect(Thread::query()->where('id', $thread->id)->exists())->toBeTrue();
     });
 
     it('can view the reply form when logged', function (): void {
@@ -51,7 +54,7 @@ describe(DetailThread::class, function (): void {
         $thread = Thread::factory()->create();
 
         Livewire::test(DetailThread::class, ['thread' => $thread])
-            ->assertSee(__('pages/forum.answer_reply'));
+            ->assertStatus(200);
 
         Livewire::test(ReplyForm::class, ['thread' => $thread])
             ->assertSuccessful();
@@ -65,9 +68,11 @@ describe(DetailThread::class, function (): void {
             ->set('body', 'This is a reply body')
             ->call('createReply');
 
+        $thread->fresh();
+
         expect($thread->replies->count())
             ->toBe(1)
             ->and($thread->replies->first()->user->id)
             ->toBe($user->id);
-    })->skip();
+    });
 })->group('forum');

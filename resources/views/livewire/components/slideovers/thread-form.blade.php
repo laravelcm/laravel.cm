@@ -2,7 +2,7 @@
     :title="$thread->id ? $thread->title : __('pages/forum.new_thread')"
     action="save"
 >
-    <div class="space-y-4">
+    <div class="space-y-6">
         <div class="text-sm leading-6">
             <p class="text-gray-500 dark:text-gray-400">{{ __('global.rule_advise') }}</p>
             <x-link :href="route('rules')" class="inline-flex items-center gap-1.5 text-primary-500 hover:text-primary-600 hover:underline">
@@ -23,6 +23,57 @@
             </p>
         </div>
 
-        {{ $this->form }}
+        <div class="flex flex-col gap-6">
+            <flux:input
+                wire:model.live.debounce="form.title"
+                :label="__('validation.attributes.title')"
+                :placeholder="__('validation.attributes.title')"
+                :description:trailing="__('pages/forum.min_thread_length')"
+                :badge="__('validation.hints.required')"
+                required
+            />
+
+            <flux:pillbox
+                wire:model="form.channels"
+                :placeholder="__('Select channels (1-3)')"
+                :label="__('Channels')"
+                :badge="__('validation.hints.required')"
+                multiple
+            >
+                @foreach ($this->availableChannels as $channel)
+                    <flux:pillbox.option value="{{ $channel->id }}">{{ $channel->name }}</flux:pillbox.option>
+                @endforeach
+            </flux:pillbox>
+
+            <div class="space-y-2">
+                <flux:radio.group
+                    wire:model="form.locale"
+                    :label="__('validation.attributes.locale')"
+                    variant="segmented"
+                    size="sm"
+                    class="w-48"
+                >
+                    <flux:radio value="fr" label="Français" />
+                    <flux:radio value="en" label="English" />
+                </flux:radio.group>
+                <flux:description>{{ __('global.locale_help') }}</flux:description>
+            </div>
+
+            <div class="space-y-2">
+                <x-markdown-editor
+                    wire:model="form.body"
+                    :label="__('validation.attributes.content')"
+                    :badge="__('validation.hints.required')"
+                    :toolbarItems="[
+                        ['bold', 'italic'],
+                        ['ul', 'ol'],
+                        ['link'],
+                        ['code', 'codeblock'],
+                    ]"
+                />
+
+                <x-torchlight />
+            </div>
+        </div>
     </div>
 </x-form-slider-over>

@@ -7,6 +7,7 @@ namespace App\Livewire\Components;
 use App\Actions\ReportSpamAction;
 use App\Contracts\SpamReportableContract;
 use App\Exceptions\CanReportSpamException;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Models\User;
 use Flux\Flux;
 use Illuminate\Contracts\View\View;
@@ -15,15 +16,22 @@ use Livewire\Component;
 
 final class ReportSpam extends Component
 {
+    use HandlesAuthorizationExceptions;
+
     public SpamReportableContract $model;
 
     public ?string $reason = null;
+
+    public function getModalName(): string
+    {
+        return 'confirm-report-spam-'.$this->getId();
+    }
 
     public function confirmReport(): void
     {
         $this->authorize('report', $this->model);
 
-        Flux::modal('confirm-report-spam')->show();
+        Flux::modal($this->getModalName())->show();
     }
 
     public function report(): void
@@ -46,7 +54,7 @@ final class ReportSpam extends Component
 
             $this->reset('reason');
 
-            Flux::modal('confirm-report-spam')->close();
+            Flux::modal($this->getModalName())->close();
         } catch (CanReportSpamException $canReportSpamException) {
             Flux::toast(
                 text: $canReportSpamException->getMessage(),

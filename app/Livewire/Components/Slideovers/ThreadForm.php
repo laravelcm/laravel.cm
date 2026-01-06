@@ -7,36 +7,28 @@ namespace App\Livewire\Components\Slideovers;
 use App\Actions\Forum\CreateThreadAction;
 use App\Actions\Forum\UpdateThreadAction;
 use App\Exceptions\UnverifiedUserException;
+use App\Livewire\Forms\ThreadFormObject;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Livewire\Traits\WithAuthenticatedUser;
+use App\Models\Channel;
 use App\Models\Thread;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Components;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Notifications\Notification;
-use Filament\Schemas\Components\Utilities\Set;
-use Filament\Schemas\Schema;
+use App\Models\User;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Laravelcm\LivewireSlideOvers\SlideOverComponent;
+use Livewire\Attributes\Computed;
 
-/**
- * @property Schema $form
- */
-final class ThreadForm extends SlideOverComponent implements HasActions, HasForms
+final class ThreadForm extends SlideOverComponent
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
+    use HandlesAuthorizationExceptions;
     use WithAuthenticatedUser;
 
-    public ?Thread $thread = null;
+    public ThreadFormObject $form;
 
-    public ?array $data = [];
+    public ?Thread $thread = null;
 
     public static function panelMaxWidth(): string
     {
@@ -50,77 +42,35 @@ final class ThreadForm extends SlideOverComponent implements HasActions, HasForm
 
     public function mount(?int $threadId = null): void
     {
-        $this->thread = filled($threadId)
+        /** @var Thread $thread */
+        $thread = filled($threadId)
             ? Thread::with('channels')->findOrFail($threadId)
             : new Thread;
 
-        if (! $this->thread->exists) {
-            $this->form->fill([
-                'user_id' => Auth::id(),
-                'locale' => app()->getLocale(),
-            ]);
-        }
+        $this->thread = $thread;
+
+        $this->form->setThread($this->thread);
     }
 
-    public function form(Schema $schema): Schema
+    #[Computed]
+    public function availableChannels(): Collection
     {
-        return $schema
-            ->components([
-                Components\Hidden::make('user_id'),
-                Components\TextInput::make('title')
-                    ->label(__('validation.attributes.title'))
-                    ->helperText(__('pages/forum.min_thread_length'))
-                    ->required()
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(function (string $operation, ?string $state, Set $set): void {
-                        if ($state) {
-                            $set('slug', Str::slug($state));
-                        }
-                    })
-                    ->minLength(10),
-                Components\Hidden::make('slug'),
-                Components\Select::make('channels')
-                    ->multiple()
-                    ->relationship(titleAttribute: 'name')
-                    ->preload()
-                    ->required()
-                    ->minItems(1)
-                    ->maxItems(3),
-                Components\ToggleButtons::make('locale')
-                    ->label(__('validation.attributes.locale'))
-                    ->options([
-                        'en' => 'En',
-                        'fr' => 'Fr',
-                    ])
-                    ->helperText(__('global.locale_help'))
-                    ->grouped(),
-                Components\MarkdownEditor::make('body')
-                    ->fileAttachmentsDisk('public')
-                    ->toolbarButtons([
-                        'attachFiles',
-                        'blockquote',
-                        'bold',
-                        'bulletList',
-                        'codeBlock',
-                        'link',
-                    ])
-                    ->label(__('validation.attributes.content'))
-                    ->required()
-                    ->minLength(20),
-                TextEntry::make('placeholder')
-                    ->hiddenLabel()
-                    ->state(fn (): HtmlString => new HtmlString(Blade::render(<<<'Blade'
-                        <x-torchlight />
-                    Blade))),
-            ])
-            ->statePath('data')
-            ->model($this->thread);
+        return Channel::query()
+            ->orderBy('name')
+            ->get();
+    }
+
+    public function updatedFormTitle(string $value): void
+    {
+        $this->form->slug = Str::slug($value);
     }
 
     public function save(): void
     {
-        // @phpstan-ignore-next-line
-        if (! Auth::user()->hasVerifiedEmail()) {
+        /** @var User $user */
+        $user = Auth::user();
+
+        if (! $user->hasVerifiedEmail()) {
             throw new UnverifiedUserException(
                 message: __('notifications.exceptions.unverified_user')
             );
@@ -130,26 +80,30 @@ final class ThreadForm extends SlideOverComponent implements HasActions, HasForm
             $this->authorize('update', $this->thread);
         }
 
-        $this->validate();
+        $this->form->validate();
 
-        $validated = $this->form->getState();
+        $data = [
+            'user_id' => $this->form->user_id,
+            'title' => $this->form->title,
+            'slug' => $this->form->slug,
+            'locale' => $this->form->locale,
+            'body' => $this->form->body,
+        ];
 
         $thread = ($this->thread?->id)
-            ? resolve(UpdateThreadAction::class)->execute($validated, $this->thread)
-            : resolve(CreateThreadAction::class)->execute($validated);
+            ? resolve(UpdateThreadAction::class)->execute($data, $this->thread)
+            : resolve(CreateThreadAction::class)->execute($data);
 
-        $this->form->model($thread)->saveRelationships();
+        $thread->channels()->sync($this->form->channels);
 
-        Notification::make()
-            ->title(
-                $this->thread?->id
-                    ? __('notifications.thread.updated')
-                    : __('notifications.thread.created'),
-            )
-            ->success()
-            ->send();
+        Flux::toast(
+            text: $this->thread?->id
+                ? __('notifications.thread.updated')
+                : __('notifications.thread.created'),
+            variant: 'success'
+        );
 
-        $this->redirect(route('forum.show', ['thread' => $thread]), navigate: true);
+        $this->redirect(route('forum.show', $thread), navigate: true);
     }
 
     public function render(): View

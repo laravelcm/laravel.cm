@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Pages\Dashboard;
 
 use App\Actions\Discussion\DeleteDiscussionAction;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Models\Discussion;
 use App\Models\User;
 use Flux\Flux;
@@ -18,6 +19,7 @@ use Livewire\WithPagination;
 
 final class Discussions extends Component
 {
+    use HandlesAuthorizationExceptions;
     use WithoutUrlPagination;
     use WithPagination;
 

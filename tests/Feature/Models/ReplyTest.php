@@ -16,23 +16,14 @@ describe(Reply::class, function (): void {
         $reply->save();
 
         /** @var Activity $activity */
-        $activity = Activity::query()->latest()->first();
+        $activity = $user->activities()
+            ->where('type', 'created_reply')
+            ->latest()
+            ->first();
 
         expect($activity->subject->id)
             ->toBe($reply->id)
-            ->and(
-                $user->activities()
-                    ->where('type', 'created_reply')
-                    ->get()
-                    ->count()
-            )->toBe(1);
-
-        $this->assertEquals(
-            $user->activities()
-                ->where('type', 'created_reply')
-                ->get()
-                ->count(),
-            1
-        );
-    })->skip();
+            ->and($user->activities()->where('type', 'created_reply')->count())
+            ->toBe(1);
+    });
 });

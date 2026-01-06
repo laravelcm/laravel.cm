@@ -5,26 +5,18 @@ declare(strict_types=1);
 namespace App\Livewire\Components\Forum;
 
 use App\Actions\Forum\CreateReplyAction;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Models\Reply;
 use App\Models\Thread;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
-use Filament\Schemas\Schema;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-/**
- * @property Schema $form
- */
-final class ReplyForm extends Component implements HasActions, HasForms
+final class ReplyForm extends Component
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
+    use HandlesAuthorizationExceptions;
 
     public Thread $thread;
 
@@ -32,19 +24,19 @@ final class ReplyForm extends Component implements HasActions, HasForms
 
     public bool $show = false;
 
+    #[Validate('required|min:10')]
     public ?string $body = null;
-
-    public function mount(): void
-    {
-        $this->form->fill();
-    }
 
     #[On('replyForm')]
     public function open(?int $replyId = null): void
     {
-        $this->reply = Reply::query()->find($replyId);
+        $this->reset('body');
+        $this->resetValidation();
 
-        $this->form->fill(['body' => $this->reply->body ?? '']);
+        if ($replyId) {
+            $this->reply = Reply::query()->find($replyId);
+            $this->body = $this->reply?->body;
+        }
 
         $this->show = true;
     }
@@ -54,25 +46,7 @@ final class ReplyForm extends Component implements HasActions, HasForms
         $this->show = false;
         $this->body = null;
         $this->reply = null;
-    }
-
-    public function form(Schema $schema): Schema
-    {
-        return $schema
-            ->components([
-                MarkdownEditor::make('body')
-                    ->hiddenLabel()
-                    ->fileAttachmentsDisk('public')
-                    ->autofocus()
-                    ->toolbarButtons([
-                        'attachFiles',
-                        'blockquote',
-                        'bold',
-                        'bulletList',
-                        'codeBlock',
-                        'link',
-                    ]),
-            ]);
+        $this->resetValidation();
     }
 
     public function save(): void
@@ -84,6 +58,8 @@ final class ReplyForm extends Component implements HasActions, HasForms
         } else {
             $this->createReply();
         }
+
+        $this->close();
 
         $this->redirectRoute('forum.show', $this->thread, navigate: true);
     }
@@ -97,11 +73,10 @@ final class ReplyForm extends Component implements HasActions, HasForms
             model: $this->thread,
         );
 
-        Notification::make()
-            ->title(__('notifications.reply.created'))
-            ->success()
-            ->duration(5000)
-            ->send();
+        Flux::toast(
+            text: __('notifications.reply.created'),
+            variant: 'success'
+        );
     }
 
     public function updateReply(): void
@@ -110,11 +85,10 @@ final class ReplyForm extends Component implements HasActions, HasForms
 
         $this->reply?->update(['body' => $this->body]);
 
-        Notification::make()
-            ->title(__('notifications.reply.updated'))
-            ->success()
-            ->duration(5000)
-            ->send();
+        Flux::toast(
+            text: __('notifications.reply.updated'),
+            variant: 'success'
+        );
     }
 
     public function render(): View

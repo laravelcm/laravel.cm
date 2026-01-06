@@ -5,14 +5,10 @@ declare(strict_types=1);
 namespace App\Livewire\Pages\Dashboard;
 
 use App\Actions\Forum\DeleteThreadAction;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Models\Thread;
 use App\Models\User;
-use Filament\Actions\Action;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
+use Flux\Flux;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
@@ -21,12 +17,13 @@ use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
-final class Threads extends Component implements HasActions, HasForms
+final class Threads extends Component
 {
-    use InteractsWithActions;
-    use InteractsWithForms;
+    use HandlesAuthorizationExceptions;
     use WithoutUrlPagination;
     use WithPagination;
+
+    public ?int $threadToDelete = null;
 
     #[Computed(persist: true)]
     public function user(): User
@@ -48,40 +45,34 @@ final class Threads extends Component implements HasActions, HasForms
             ->paginate(10);
     }
 
-    public function editAction(): Action
+    public function confirmDelete(int $threadId): void
     {
-        return Action::make('edit')
-            ->label(__('actions.edit'))
-            ->color('gray')
-            ->badge()
-            ->action(
-                fn (array $arguments) => $this->dispatch(
-                    'openPanel',
-                    component: 'components.slideovers.thread-form',
-                    arguments: ['threadId' => $arguments['id']]
-                )
-            );
+        $this->threadToDelete = $threadId;
+
+        Flux::modal('confirm-delete-thread')->show();
     }
 
-    public function deleteAction(): Action
+    public function delete(): void
     {
-        return Action::make('delete')
-            ->label(__('actions.delete'))
-            ->color('danger')
-            ->badge()
-            ->requiresConfirmation()
-            ->action(function (array $arguments): void {
-                /** @var Thread $thread */
-                $thread = Thread::query()->find($arguments['id']);
+        if (! $this->threadToDelete) {
+            return;
+        }
 
-                $this->authorize('delete', $thread);
+        /** @var Thread $thread */
+        $thread = Thread::query()->findOrFail($this->threadToDelete);
 
-                resolve(DeleteThreadAction::class)->execute($thread);
-                Notification::make()
-                    ->success()
-                    ->title(__('notifications.thread.deleted'))
-                    ->send();
-            });
+        $this->authorize('delete', $thread);
+
+        resolve(DeleteThreadAction::class)->execute($thread);
+
+        Flux::toast(
+            text: __('notifications.thread.deleted'),
+            variant: 'success',
+        );
+
+        $this->threadToDelete = null;
+
+        Flux::modal('confirm-delete-thread')->close();
     }
 
     public function render(): View

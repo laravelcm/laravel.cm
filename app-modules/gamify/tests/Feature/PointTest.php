@@ -86,8 +86,7 @@ describe(PointType::class, function (): void {
 
         expect($this->user->getPoint())->toBe(0);
     })
-        ->throws(PointsNotDefinedException::class)
-        ->skip();
+        ->throws(PointsNotDefinedException::class);
 
     it('gives and undo point via helper functions', function (): void {
         $post = $this->createPost(['user_id' => $this->user->id]);
@@ -100,5 +99,16 @@ describe(PointType::class, function (): void {
 
         $this->user->fresh();
         expect($this->user->fresh()->getPoints())->toBe(0);
+    });
+
+    it('can safely undo points that were never given', function (): void {
+        $post = $this->createPost(['user_id' => $this->user->id]);
+
+        expect($this->user->fresh()->getPoints())->toBe(0);
+
+        undoPoint(new Fixtures\FakePayeeFieldPoint($post), $this->user);
+
+        expect($this->user->fresh()->getPoints())->toBe(0)
+            ->and($this->user->reputations)->toHaveCount(0);
     });
 });

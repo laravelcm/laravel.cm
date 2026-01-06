@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages\Dashboard;
 
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Models\Article;
 use App\Models\User;
 use Flux\Flux;
@@ -17,6 +18,7 @@ use Livewire\WithPagination;
 
 final class Index extends Component
 {
+    use HandlesAuthorizationExceptions;
     use WithoutUrlPagination;
     use WithPagination;
 

@@ -28,6 +28,7 @@ return [
     'reply' => [
         'created' => 'Réponse ajoutée avec succès!',
         'updated' => 'Réponse modifiée avec succès.',
+        'deleted' => 'Réponse supprimée avec succès.',
     ],
 
     'error' => 'Oups! Nous avons rencontré des erreurs.',

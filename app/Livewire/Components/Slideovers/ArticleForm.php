@@ -10,6 +10,7 @@ use App\Data\ArticleData;
 use App\Events\ArticleWasSubmittedForApproval;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Forms\ArticleFormObject;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Article;
 use App\Models\Tag;
@@ -27,6 +28,7 @@ use Livewire\WithFileUploads;
 
 final class ArticleForm extends SlideOverComponent
 {
+    use HandlesAuthorizationExceptions;
     use WithAuthenticatedUser;
     use WithFileUploads;
 

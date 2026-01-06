@@ -20,7 +20,7 @@ parameters:
     tmpDir: /tmp/phpstan
 
     excludePaths:
-        - app-modules/*/*/tests/*
+        - app-modules/*/tests/*
         - tests
 
     ignoreErrors:

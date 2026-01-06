@@ -7,6 +7,7 @@ namespace App\Livewire\Components\Slideovers;
 use App\Actions\Discussion\CreateOrUpdateDiscussionAction;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Forms\DiscussionFormObject;
+use App\Livewire\Traits\HandlesAuthorizationExceptions;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Discussion;
 use App\Models\Tag;
@@ -21,6 +22,7 @@ use Livewire\Attributes\Computed;
 
 final class DiscussionForm extends SlideOverComponent
 {
+    use HandlesAuthorizationExceptions;
     use WithAuthenticatedUser;
 
     public DiscussionFormObject $form;

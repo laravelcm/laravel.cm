@@ -17,7 +17,7 @@
 
             <form wire:submit="save" class="min-w-0 flex-1">
                 <x-markdown-editor
-                    wire:model.blur="body"
+                    wire:model="body"
                     height="200px"
                     :toolbarItems="[
                         ['bold', 'italic'],
@@ -28,9 +28,9 @@
                 />
 
                 <div class="mt-3 flex items-center justify-end">
-                    <x-buttons.submit wire:loading.attr="data-loading">
+                    <flux:button type="submit" variant="primary" class="border-0">
                         {{ __('actions.save') }}
-                    </x-buttons.submit>
+                    </flux:button>
                 </div>
             </form>
         </div>

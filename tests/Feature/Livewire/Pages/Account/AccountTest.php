@@ -19,18 +19,18 @@ describe(Index::class, function (): void {
     });
 
     it('user can update his profil', function (): void {
-        $originalUsername = $this->user->username;
+        $newUsername = 'testuser_'.uniqid();
 
         Livewire::test(Index::class)
             ->set('form.name', 'John Doe')
-            ->set('form.username', $originalUsername)
+            ->set('form.username', $newUsername)
             ->call('save')
             ->assertHasNoErrors();
 
         $this->user->refresh();
 
         expect($this->user->name)->toBe('John Doe')
-            ->and($this->user->username)->toBe($originalUsername);
+            ->and($this->user->username)->toBe($newUsername);
     });
 
     it("user can't update profil if required information was not send", function (): void {
@@ -41,7 +41,7 @@ describe(Index::class, function (): void {
 
         expect($this->user->email)
             ->toBe($this->user->email);
-    })->skip();
+    });
 
     it('can send notification when user email change', function (): void {
         Event::fake([EmailAddressWasChanged::class]);

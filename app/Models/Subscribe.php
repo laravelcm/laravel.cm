@@ -25,6 +25,8 @@ final class Subscribe extends Model
 
     use HasUuid;
 
+    protected $guarded = [];
+
     /**
      * @return BelongsTo<User, $this>
      */

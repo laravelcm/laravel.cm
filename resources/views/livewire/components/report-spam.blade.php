@@ -5,7 +5,7 @@
         </flux:button>
     </div>
 
-    <flux:modal name="confirm-report-spam" class="max-w-md">
+    <flux:modal :name="$this->getModalName()" class="max-w-md">
         <div>
             <flux:heading size="lg">{{ __('pages/forum.report_spam') }}</flux:heading>
             <flux:subheading>
