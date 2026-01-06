@@ -53,23 +53,22 @@
                             </code>
                         </div>
                         <div class="h-0 max-h-96 flex-1 overflow-y-auto px-4 py-6 space-y-4">
-                            <x-markdown-editor
-                                wire:key="reply-form-{{ $reply?->id ?? 'new' }}-{{ now()->timestamp }}"
-                                wire:model="body"
-                                height="250px"
-                                :toolbarItems="[
-                                    ['bold', 'ul', 'link'],
-                                    ['code', 'codeblock'],
-                                ]"
-                            />
-                            @error('body')
-                                <flux:error>{{ $message }}</flux:error>
-                            @enderror
+                            <div class="space-y-2">
+                                <livewire:markdown-editor
+                                    wire:key="reply-form-{{ $reply?->id ?? 'new' }}-{{ now()->timestamp }}"
+                                    wire:model="body"
+                                    :placeholder="__('Laissez votre commentaire...')"
+                                    :rows="8"
+                                    :show-upload="false"
+                                />
+
+                                <flux:error name="body" />
+                            </div>
 
                             <x-torchlight />
                         </div>
                         <div class="flex items-center justify-end gap-4 p-4">
-                            <flux:button wire:click="close" type="button" variant="ghost">
+                            <flux:button wire:click="close" type="button">
                                 {{ __('actions.cancel') }}
                             </flux:button>
                             <flux:button type="submit" variant="primary" class="border-0">

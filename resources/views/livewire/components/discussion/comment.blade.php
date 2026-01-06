@@ -34,7 +34,7 @@
 
         <x-markdown-content
             :content="$comment->body"
-            class="prose prose-emerald mt-2 max-w-none prose-sm dark:prose-invert"
+            class="prose prose-emerald text-sm mt-2 max-w-none dark:prose-invert"
         />
 
         <button

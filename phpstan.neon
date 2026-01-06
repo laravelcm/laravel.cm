@@ -26,3 +26,4 @@ parameters:
     ignoreErrors:
         - identifier: missingType.iterableValue
         - identifier: missingType.generics
+        - message: "#Called 'env' outside of the config directory#"
