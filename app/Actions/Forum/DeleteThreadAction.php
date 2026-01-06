@@ -12,12 +12,10 @@ final class DeleteThreadAction
 {
     public function execute(Thread $thread): void
     {
-        DB::beginTransaction();
+        DB::transaction(function () use ($thread): void {
+            undoPoint(new ThreadCreated($thread));
 
-        undoPoint(new ThreadCreated($thread));
-
-        $thread->delete();
-
-        DB::commit();
+            $thread->delete();
+        });
     }
 }

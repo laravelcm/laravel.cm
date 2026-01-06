@@ -169,4 +169,4 @@ describe(DiscussionForm::class, function (): void {
         expect($discussion->title)->toBe('Updated discussion topic by author')
             ->and($discussion->body)->toContain('this is my updated body');
     });
-})->group('discussion');
+})->group('forum', 'discussion');

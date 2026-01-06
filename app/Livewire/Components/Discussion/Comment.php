@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace App\Livewire\Components\Discussion;
 
 use App\Actions\Discussion\LikeReplyAction;
+use App\Gamify\Points\ReplyCreated;
 use App\Models\Reply;
+use App\Models\User;
 use Flux\Flux;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
@@ -18,7 +21,14 @@ final class Comment extends Component
 
     public function delete(): void
     {
-        $this->comment->delete();
+        DB::transaction(function (): void {
+            /** @var User $commentAuthor */
+            $commentAuthor = $this->comment->user;
+
+            $this->comment->delete();
+
+            $commentAuthor->undoPoint(new ReplyCreated($this->comment, $commentAuthor));
+        });
 
         Flux::toast(
             text: __('notifications.discussion.delete_comment'),
