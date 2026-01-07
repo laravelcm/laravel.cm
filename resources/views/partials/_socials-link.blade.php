@@ -5,6 +5,7 @@
         </x-slot>
 
         {{ __('pages/auth.continue_with', ['social' => 'Google']) }}
+        <flux:badge size="sm" class="text-xs ml-2">{{ __('global.soon') }}</flux:badge>
     </flux:button>
 
     <flux:button class="w-full" :href="route('social.auth', ['provider' => 'github'])">

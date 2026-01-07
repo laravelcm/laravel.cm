@@ -2,19 +2,18 @@
     <x-schema.qa-page :$thread />
 
     <x-slot:buttons>
-        <div class="space-y-3 px-4">
-            <flux:button
-                variant="primary"
-                onclick="Livewire.dispatchTo('components.forum.reply-form', 'replyForm')"
-                class="w-full border-0"
-            >
-                {{ __('pages/forum.reply_thread') }}
-            </flux:button>
-
-            @auth
+        @auth
+            <div class="space-y-3 px-4">
+                <flux:button
+                    variant="primary"
+                    onclick="Livewire.dispatchTo('components.forum.reply-form', 'replyForm')"
+                    class="w-full border-0"
+                >
+                    {{ __('pages/forum.reply_thread') }}
+                </flux:button>
                 <livewire:components.forum.subscribe :$thread />
-            @endauth
-        </div>
+            </div>
+        @endauth
     </x-slot:buttons>
 
     <div>
