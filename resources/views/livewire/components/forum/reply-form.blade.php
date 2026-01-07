@@ -59,7 +59,6 @@
                                     wire:model="body"
                                     :placeholder="__('Laissez votre commentaire...')"
                                     :rows="8"
-                                    :show-upload="false"
                                 />
 
                                 <flux:error name="body" />

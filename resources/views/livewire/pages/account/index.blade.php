@@ -190,7 +190,7 @@
                         <flux:field>
                             <flux:input wire:model="form.linkedin_profile" label="LinkedIn" placeholder="laravelcm">
                                 <x-slot name="icon">
-                                    <x-icon.linkedin class="size-5" aria-hidden="true" />
+                                    <x-phosphor-linkedin-logo-fill class="size-5" aria-hidden="true" />
                                 </x-slot>
                             </flux:input>
 

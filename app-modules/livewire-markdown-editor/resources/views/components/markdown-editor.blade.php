@@ -1,9 +1,9 @@
 <div>
     <div
         x-data="{ preview: false }"
-        class="ring-1 ring-gray-300 rounded-lg overflow-hidden dark:ring-white/20 bg-white dark:bg-gray-900"
+        class="ring-1 ring-gray-200 rounded-lg overflow-hidden dark:ring-white/20"
     >
-        <div class="flex gap-4 border-b border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex gap-4 border-b border-gray-200 bg-gray-50 dark:bg-white/6 dark:border-gray-700">
             <!-- Tabs view Mode -->
             <div class="flex">
                 <button
@@ -107,27 +107,26 @@
         </div>
 
         <!-- Textarea (mode Write) -->
-        <div x-show="!preview">
-            <textarea
-                id="markdown-textarea-{{ $this->getId() }}"
-                wire:model.live.debounce.500ms="content"
-                rows="{{ $rows }}"
-                placeholder="{{ $placeholder }}"
-                @class([
-                    'w-full h-auto p-3 border-0 max-h-138 resize-y focus:outline-none focus:ring-0 text-gray-700 bg-white dark:bg-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500',
-                    $class
-                ])
-            ></textarea>
-        </div>
+        <textarea
+            x-show="!preview"
+            id="markdown-textarea-{{ $this->getId() }}"
+            wire:model.live.debounce.500ms="content"
+            rows="{{ $rows }}"
+            placeholder="{{ $placeholder }}"
+            @class([
+                'w-full h-auto p-3 border-0 max-h-138 resize-y focus:outline-none focus:ring-0 text-gray-700 bg-white dark:bg-white/10 dark:text-gray-300 placeholder:text-gray-400 dark:placeholder:text-gray-500',
+                $class
+            ])
+        ></textarea>
 
         <!-- Preview -->
         <div
             x-show="preview"
-            class="p-3 min-h-50"
+            class="p-4 min-h-50"
             wire:loading.class="opacity-50"
         >
             @if (blank($content))
-                <div class="text-gray-500 dark:text-gray-400 italic">
+                <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
                     {{ __('Nothing to preview') }}
                 </div>
             @else

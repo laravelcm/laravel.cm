@@ -20,7 +20,6 @@
                     wire:model="body"
                     placeholder="Écrivez votre commentaire..."
                     :rows="5"
-                    :show-upload="false"
                 />
 
                 <div class="mt-3 flex items-center justify-end">

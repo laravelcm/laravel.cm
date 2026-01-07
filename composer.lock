@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c3465acc66ff43186c3bcb0df1bc3d8",
+    "content-hash": "bfb1f2b123d99b15c3d42a489174d678",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -321,16 +321,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.369.7",
+            "version": "3.369.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "8678ee11ac680d462fabbecb455112a17aa7728d"
+                "reference": "2fa2011e2adc8e70b15b17c50d598fc44fc3106a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/8678ee11ac680d462fabbecb455112a17aa7728d",
-                "reference": "8678ee11ac680d462fabbecb455112a17aa7728d",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2fa2011e2adc8e70b15b17c50d598fc44fc3106a",
+                "reference": "2fa2011e2adc8e70b15b17c50d598fc44fc3106a",
                 "shasum": ""
             },
             "require": {
@@ -412,9 +412,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.369.7"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.369.8"
             },
-            "time": "2026-01-05T19:05:14+00:00"
+            "time": "2026-01-06T19:10:11+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -4496,16 +4496,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v12.45.0",
+            "version": "v12.45.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "9dfd2afc48f2519bfdbe6862dfb9849491c673ad"
+                "reference": "1ca7e2a2ee17ae5bc435af7cb52d2f130148e2fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/9dfd2afc48f2519bfdbe6862dfb9849491c673ad",
-                "reference": "9dfd2afc48f2519bfdbe6862dfb9849491c673ad",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1ca7e2a2ee17ae5bc435af7cb52d2f130148e2fa",
+                "reference": "1ca7e2a2ee17ae5bc435af7cb52d2f130148e2fa",
                 "shasum": ""
             },
             "require": {
@@ -4714,7 +4714,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2026-01-06T15:24:52+00:00"
+            "time": "2026-01-07T00:50:24+00:00"
         },
         {
             "name": "laravel/nightwatch",
@@ -5385,44 +5385,6 @@
                 "source": "https://github.com/laravelcm/livewire-slide-overs/tree/v1.0.8"
             },
             "time": "2024-07-12T23:00:38+00:00"
-        },
-        {
-            "name": "laravelcm/markdown-editor",
-            "version": "dev-feature/create-github-markdown-editor",
-            "dist": {
-                "type": "path",
-                "url": "app-modules/markdown-editor",
-                "reference": "b8a45164eb636ac30104ad1d0578b06a88a40dfe"
-            },
-            "require": {
-                "codeat3/blade-phosphor-icons": "^2.3",
-                "laravel/framework": "^11.0|^12.0",
-                "league/commonmark": "^2.0",
-                "livewire/livewire": "^3.6",
-                "php": "^8.4",
-                "spatie/commonmark-shiki-highlighter": "^2.5"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Laravelcm\\MarkdownEditor\\MarkdownEditorServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravelcm\\MarkdownEditor\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "GitHub-style markdown editor for Laravel with Livewire and Alpine.js",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
         },
         {
             "name": "league/commonmark",
@@ -7105,6 +7067,44 @@
                 }
             ],
             "time": "2025-12-26T12:33:46+00:00"
+        },
+        {
+            "name": "mckenziearts/livewire-markdown-editor",
+            "version": "dev-feature/update-user-profile",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/livewire-markdown-editor",
+                "reference": "12ea0576d1960cdb210c32f3417728e681f303d0"
+            },
+            "require": {
+                "codeat3/blade-phosphor-icons": "^2.3",
+                "laravel/framework": "^11.0|^12.0",
+                "league/commonmark": "^2.0",
+                "livewire/livewire": "^3.6",
+                "php": "^8.4",
+                "spatie/commonmark-shiki-highlighter": "^2.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mckenziearts\\LivewireMarkdownEditor\\LivewireMarkdownEditorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mckenziearts\\LivewireMarkdownEditor\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "GitHub-style markdown editor for Laravel with Livewire and Alpine.js",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -19024,7 +19024,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "laravelcm/markdown-editor": 20
+        "mckenziearts/livewire-markdown-editor": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

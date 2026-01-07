@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Laravelcm\MarkdownEditor\Livewire;
+namespace Mckenziearts\LivewireMarkdownEditor\Livewire;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Storage;
@@ -85,6 +85,6 @@ final class MarkdownEditor extends Component
 
     public function render(): View
     {
-        return view('markdown-editor::components.markdown-editor');
+        return view('livewire-markdown-editor::components.markdown-editor');
     }
 }
