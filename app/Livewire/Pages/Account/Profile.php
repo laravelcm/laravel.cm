@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\Discussion;
 use App\Models\Thread;
 use App\Models\User;
+use ArchTech\SEO\SEOManager;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -18,11 +19,19 @@ final class Profile extends Component
 {
     public User $user;
 
+    public function mount(): void
+    {
+        /** @var SEOManager $seoManager */
+        $seoManager = seo();
+
+        $seoManager->meta('robots', 'noindex, nofollow');
+    }
+
     #[Computed(persist: true)]
     public function articles(): Collection
     {
         return Cache::remember(
-            key: 'articles.'.$this->user->id,
+            key: 'user.'.$this->user->id.'.articles',
             ttl: now()->addDays(3),
             callback: fn () => Article::with('media', 'tags')
                 ->select('id', 'title', 'slug', 'body', 'published_at')
@@ -38,7 +47,7 @@ final class Profile extends Component
     public function threads(): Collection
     {
         return Cache::remember(
-            key: 'threads.'.$this->user->id,
+            key: 'user.'.$this->user->id.'.threads',
             ttl: now()->addDays(3),
             callback: fn () => Thread::with('channels')
                 ->withCount('replies')
@@ -52,7 +61,7 @@ final class Profile extends Component
     public function discussions(): Collection
     {
         return Cache::remember(
-            key: 'discussions.'.$this->user->id,
+            key: 'user.'.$this->user->id.'.discussions',
             ttl: now()->addDays(3),
             callback: fn () => Discussion::with('tags')
                 ->withCount('replies', 'reactions')

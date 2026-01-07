@@ -4,7 +4,7 @@
 ])
 
 @if ($articles->isNotEmpty())
-    <div class="-mt-6 divide-y divide-gray-200 dark:divide-white/20">
+    <div class="-mt-6 divide-y divide-gray-200 divide-dotted dark:divide-white/20">
         @foreach ($articles as $article)
             <div class="py-6">
                 <x-articles.card :article="$article" is-summary />
@@ -41,14 +41,15 @@
             </p>
 
             @if ($user->isLoggedInUser())
-                @can('create', \App\Models\Article::class)
-                    <x-buttons.primary
+                @can('create', App\Models\Article::class)
+                    <flux:button
                         type="button"
+                        variant="primary"
+                        class="border-0"
                         onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form' })"
                     >
-                        <x-untitledui-file-06 class="size-5" aria-hidden="true" />
                         {{ __('global.launch_modal.article_action') }}
-                    </x-buttons.primary>
+                    </flux:button>
                 @endcan
             @endif
         </div>

@@ -4,7 +4,7 @@
 ])
 
 @if ($discussions->isNotEmpty())
-    <div class="relative -mt-6 divide-y divide-gray-200 dark:divide-white/20">
+    <div class="relative -mt-6 divide-y divide-gray-200 divide-dotted dark:divide-white/20">
         @foreach ($discussions as $discussion)
             <x-discussions.overview :discussion="$discussion" :with-author="false" />
         @endforeach
@@ -43,14 +43,15 @@
             </p>
 
             @if ($user->isLoggedInUser())
-                @can('create', \App\Models\Discussion::class)
-                    <x-buttons.primary
+                @can('create', App\Models\Discussion::class)
+                    <flux:button
                         type="button"
-                        onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })"
+                        variant="primary"
+                        class="border-0"
+                        onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.discussion-form' })"
                     >
-                        <x-untitledui-message-text-square class="size-5" aria-hidden="true" />
                         {{ __('global.launch_modal.discussion_action') }}
-                    </x-buttons.primary>
+                    </flux:button>
                 @endcan
             @endif
         </div>

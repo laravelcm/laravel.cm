@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "../../vendor/livewire/flux/dist/flux.css";
-@import "../../app-modules/markdown-editor/resources/css/markdown-editor.css";
+@import "../../app-modules/livewire-markdown-editor/resources/css/markdown-editor.css";
 
 @import "./components/base.css";
 @import "./components/forms.css";

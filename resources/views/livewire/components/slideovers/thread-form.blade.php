@@ -69,7 +69,6 @@
                         wire:model="form.body"
                         :placeholder="__('Poser votre problème...')"
                         :rows="10"
-                        :show-upload="false"
                     />
 
                     <flux:error name="form.body" />

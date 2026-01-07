@@ -7,6 +7,7 @@ namespace App\Traits;
 use App\Models\Activity;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use ReflectionClass;
 
 trait RecordsActivity
@@ -32,6 +33,8 @@ trait RecordsActivity
         }
 
         static::deleting(function ($model): void {
+            Cache::forget('user.'.$model->user_id.'.activities');
+
             $model->activities()->delete();
         });
     }

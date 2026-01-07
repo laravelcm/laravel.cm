@@ -1,25 +1,34 @@
 # Laravel Markdown Editor
 
-GitHub-style markdown editor for Laravel with Livewire and Alpine.js. This module provides a complete, standalone markdown editing experience with full dark mode support.
+GitHub-style Markdown editor for Laravel with Livewire and Alpine.js. This module provides a complete, standalone markdown editing experience with full dark mode support.
+
+## Dependencies
+
+- Laravel 11+
+- Livewire 3.6+
+- Tailwind CSS 4.1
+- League CommonMark
+- GitHub Markdown Toolbar Element
+- GitHub Text Expander Element
 
 ## Features
 
 - 🎨 GitHub-style toolbar with all formatting options
 - 📝 Live markdown preview
 - 🌓 Full dark mode support
-- 📎 File upload with automatic markdown insertion
+- 📎 File upload with automatic Markdown insertion
 - ✨ GitHub Flavored Markdown (GFM) support
+- 🔖 Spatie Shiki Highlight code blocks
 - 📋 Tables, task lists, and more
 - 🔄 Livewire integration with two-way binding
 - 🎯 Multiple editor instances support
 
 ## Installation
 
-### 1. Install NPM dependencies
+Livewire Markdown editor can be installed via composer from your project root:
 
 ```bash
-cd app-modules/markdown-editor
-npm install
+composer require mckenziearts/livewire-markdown-editor
 ```
 
 ### 2. Build assets
@@ -27,7 +36,13 @@ npm install
 Add the module's JavaScript to your main `resources/js/app.js`:
 
 ```javascript
-import '../../app-modules/markdown-editor/resources/js/markdown-editor.js';
+import '../../vendor/mckenziearts/livewire-markdown-editor/resources/js/markdown-editor.js';
+```
+
+And the css file to your main `resources/css/app.css`:
+
+```css
+@import "../../vendor/mckenziearts/livewire-markdown-editor/resources/css/markdown-editor.css";
 ```
 
 Then build:
@@ -95,19 +110,20 @@ class CreatePost extends Component
 
 ## Component Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `content` | string | `''` | The markdown content (use with `wire:model`) |
-| `placeholder` | string | `'Leave a comment...'` | Textarea placeholder text |
-| `rows` | int | `10` | Number of textarea rows |
-| `showToolbar` | bool | `true` | Show/hide the markdown toolbar |
-| `showUpload` | bool | `true` | Show/hide the file upload button |
+| Property      | Type   | Default                | Description                                  |
+|---------------|--------|------------------------|----------------------------------------------|
+| `content`     | string | `null`                 | The markdown content (use with `wire:model`) |
+| `placeholder` | string | `'Leave a comment...'` | Textarea placeholder text                    |
+| `class`       | string | `null`                 | Textarea custom classes                      |
+| `rows`        | int    | `10`                   | Number of textarea rows                      |
+| `showToolbar` | bool   | `true`                 | Show/hide the markdown toolbar               |
+| `showUpload`  | bool   | `true`                 | Show/hide the file upload button             |
 
 ## Toolbar Features
 
+- **Heading** - Insert heading
 - **Bold** - Make text bold
 - **Italic** - Make text italic
-- **Heading** - Insert heading
 - **Quote** - Insert blockquote
 - **Code** - Insert code block
 - **Link** - Insert link
@@ -134,7 +150,6 @@ The editor supports full GitHub Flavored Markdown including:
 - Bold, italic, strikethrough
 - Links and images
 - Code blocks with syntax highlighting
-- Tables
 - Task lists
 - Blockquotes
 - Horizontal rules
@@ -148,28 +163,16 @@ Dark mode is fully supported and automatically follows your Tailwind CSS dark mo
 ### Publishing Views
 
 ```bash
-vendor/bin/sail artisan vendor:publish --tag=markdown-editor-views
+php artisan vendor:publish --tag=livewire-markdown-editor-views
 ```
 
-Views will be published to `resources/views/vendor/markdown-editor/`.
+Views will be published to `resources/views/vendor/livewire-markdown-editor/`.
 
 ### Publishing Assets
 
 ```bash
-vendor/bin/sail artisan vendor:publish --tag=markdown-editor-assets
+php artisan vendor:publish --tag=livewire-markdown-editor-assets
 ```
-
-Assets will be published to `resources/js/vendor/markdown-editor/`.
-
-## Dependencies
-
-- Laravel 11+ or 12+
-- Livewire 3+
-- Alpine.js (included with Livewire)
-- Tailwind CSS
-- League CommonMark
-- GitHub Markdown Toolbar Element
-- GitHub Text Expander Element
 
 ## License
 

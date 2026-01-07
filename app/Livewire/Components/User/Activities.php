@@ -22,7 +22,7 @@ final class Activities extends Component
         return Cache::remember(
             key: 'user.'.$this->user->id.'.activities',
             ttl: now()->addDays(3),
-            callback: fn (): Collection => Activity::latestFeed($this->user)
+            callback: fn (): Collection => Activity::latestFeed($this->user, 7)
         );
     }
 

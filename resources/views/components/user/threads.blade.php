@@ -39,11 +39,15 @@
             </p>
 
             @if ($user->isLoggedInUser())
-                @can('create', \App\Models\Thread::class)
-                    <x-buttons.primary type="button">
-                        <x-untitledui-message-text-square class="size-5" aria-hidden="true" />
+                @can('create', App\Models\Thread::class)
+                    <flux:button
+                        type="button"
+                        variant="primary"
+                        class="border-0"
+                        onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.thread-form' })"
+                    >
                         {{ __('global.launch_modal.discussion_action') }}
-                    </x-buttons.primary>
+                    </flux:button>
                 @endcan
             @endif
         </div>

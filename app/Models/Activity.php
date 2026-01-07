@@ -53,7 +53,7 @@ final class Activity extends Model
             ->where('user_id', $user->id)
             ->with('subject')
             ->latest()
-            ->limit($take)->latest()
+            ->limit($take)
             ->get();
     }
 

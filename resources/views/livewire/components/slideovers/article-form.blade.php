@@ -132,7 +132,6 @@
                         wire:model="form.body"
                         :placeholder="__('Commencez votre article...')"
                         :rows="10"
-                        :show-upload="false"
                     />
 
                     <flux:error name="form.body" />
