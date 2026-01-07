@@ -150,7 +150,6 @@ The editor supports full GitHub Flavored Markdown including:
 - Bold, italic, strikethrough
 - Links and images
 - Code blocks with syntax highlighting
-- Tables
 - Task lists
 - Blockquotes
 - Horizontal rules
@@ -164,7 +163,7 @@ Dark mode is fully supported and automatically follows your Tailwind CSS dark mo
 ### Publishing Views
 
 ```bash
-vendor/bin/sail artisan vendor:publish --tag=markdown-editor-views
+php artisan vendor:publish --tag=livewire-markdown-editor-views
 ```
 
 Views will be published to `resources/views/vendor/livewire-markdown-editor/`.
@@ -172,10 +171,8 @@ Views will be published to `resources/views/vendor/livewire-markdown-editor/`.
 ### Publishing Assets
 
 ```bash
-vendor/bin/sail artisan vendor:publish --tag=markdown-editor-assets
+php artisan vendor:publish --tag=livewire-markdown-editor-assets
 ```
-
-Assets will be published to `resources/js/vendor/livewire-markdown-editor/`.
 
 ## License
 

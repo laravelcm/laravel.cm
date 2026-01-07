@@ -55,7 +55,7 @@ final class MarkdownEditor extends Component
         $environment->addExtension(new GithubFlavoredMarkdownExtension);
         $environment->addExtension(new TableExtension);
         $environment->addExtension(new TaskListExtension);
-        $environment->addExtension(new HighlightCodeExtension(theme: config('markdown-editor.theme'))); // @phpstan-ignore-line
+        $environment->addExtension(new HighlightCodeExtension(theme: config('livewire-markdown-editor.theme'))); // @phpstan-ignore-line
 
         $converter = new MarkdownConverter(environment: $environment);
 
@@ -65,7 +65,7 @@ final class MarkdownEditor extends Component
     public function updatedAttachments(): void
     {
         /** @var string $disk */
-        $disk = config('markdown-editor.disk');
+        $disk = config('livewire-markdown-editor.disk');
 
         foreach ($this->attachments as $attachment) {
             /** @var string $path */
