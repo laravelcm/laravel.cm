@@ -42,6 +42,7 @@ use Spatie\Feed\FeedItem;
 
 /**
  * @property-read int $id
+ * @property-read string $public_id
  * @property-read string $title
  * @property-read string $slug
  * @property-read string $body

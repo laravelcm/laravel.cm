@@ -39,6 +39,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property-read int $id
+ * @property-read string $public_id
  * @property-read string $name
  * @property-read string $email
  * @property-read string $username

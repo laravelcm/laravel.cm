@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Tags\Pages;
+namespace App\Filament\Cpanel\Resources\Tags\Pages;
 
-use App\Filament\Resources\Tags\TagResource;
+use App\Filament\Cpanel\Resources\Tags\TagResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Enums\Width;

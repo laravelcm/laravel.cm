@@ -1,4 +1,4 @@
-@import '../../../../vendor/shopperlabs/pureline-theme/resources/css/theme.css';
+@import "../../../../vendor/shopperlabs/pureline-theme/resources/css/theme.css";
 
 @source '../../../../app/Filament';
 @source '../../../../resources/views/filament';

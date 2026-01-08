@@ -22,10 +22,6 @@ trait RecordsActivity
 
     protected static function bootRecordsActivity(): void
     {
-        if (Auth::guest()) {
-            return;
-        }
-
         foreach (static::getActivitiesToRecord() as $event) {
             static::$event(function ($model) use ($event): void {
                 $model->recordActivity($event);
@@ -52,6 +48,10 @@ trait RecordsActivity
      */
     protected function recordActivity(string $event, bool $useDefaultEvent = true, array $data = []): void
     {
+        if (Auth::guest()) {
+            return;
+        }
+
         $this->activities()->create([
             'user_id' => Auth::id(),
             'type' => $useDefaultEvent ? $this->getActivityType($event) : $event,

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('enterprises', function (Blueprint $table): void {
             $table->id();
-            $table->uuid('public_id');
+            $table->uuid('public_id')->nullable()->index();
             $table->foreignId('user_id')->constrained();
 
             $table->string('name');

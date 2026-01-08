@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
 
 /**
  * @property-read int $id
+ * @property-read string $public_id
  * @property-read string $subject_type
  * @property-read int $subject_id
  * @property-read string $type

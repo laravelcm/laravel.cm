@@ -20,6 +20,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @property-read int $id
+ * @property-read string $public_id
  * @property-read bool $is_public
  * @property-read bool $is_certified
  * @property-read bool $is_featured

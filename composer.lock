@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f71f33939311d4cef860958180039e90",
+    "content-hash": "210eb5ef6717c71502c35e867d1191fe",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -10020,18 +10020,18 @@
         },
         {
             "name": "shopperlabs/pureline-theme",
-            "version": "1.0",
+            "version": "1.1",
             "dist": {
                 "type": "zip",
-                "url": "https://pureline.composer.sh/download/a0c97e82-03a7-4f5e-a2ca-ebf2960c448c/pureline-1.0.zip",
-                "reference": "e06b4f6e4841e68ed3378349981cc10ff423fe86",
-                "shasum": "721f9bfac0d33af068080bc429266dbd84e667c8"
+                "url": "https://pureline.composer.sh/download/a0c9a5c0-67fa-4fd5-b5eb-c7a4350f2661/pureline-1.1.zip",
+                "reference": "12200ca6b11b15ba5a937d2be5fd91e0679c8e7b",
+                "shasum": "5fe4f66aed3f99972c66ce89281593d8f6f42eb6"
             },
             "require": {
-                "codeat3/blade-phosphor-icons": "^2.0",
-                "filament/filament": "^4.1",
+                "codeat3/blade-phosphor-icons": "^2.3",
+                "filament/filament": "^4.5",
                 "filament/spatie-laravel-media-library-plugin": "^4.1",
-                "mckenziearts/blade-untitledui-icons": "^1.3",
+                "mckenziearts/filament-untitledui-icons": "^1.0",
                 "php": "^8.3"
             },
             "require-dev": {
@@ -10066,10 +10066,10 @@
             "keywords": [
                 "Filament",
                 "Laravel",
-                "shopper-labs",
-                "theme"
+                "Theme",
+                "shopper-labs"
             ],
-            "time": "2026-01-08T11:45:14+00:00"
+            "time": "2026-01-08T13:34:57+00:00"
         },
         {
             "name": "spatie/browsershot",

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers\Filament;
 
 use Filament\Http\Middleware\Authenticate;
@@ -22,7 +24,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 use Shopperlabs\Theme\Pureline\PurelineTheme;
 
-class CpanelPanelProvider extends PanelProvider
+final class CpanelPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
@@ -30,7 +32,7 @@ class CpanelPanelProvider extends PanelProvider
             ->id('cpanel')
             ->path('cpanel')
             ->colors([
-                'primary' => '#099170',
+                'primary' => Color::Emerald,
                 'danger' => Color::Red,
                 'info' => Color::Blue,
                 'success' => Color::Green,
@@ -38,7 +40,7 @@ class CpanelPanelProvider extends PanelProvider
             ])
             ->sidebarWidth('18.75rem')
             ->sidebarCollapsibleOnDesktop()
-            ->viteTheme('resources/css/filament/admin/theme.css')
+            ->spa(hasPrefetching: true)
             ->brandLogo(fn (): View => view('filament.brand'))
             ->favicon(asset('images/favicons/favicon-32x32.png'))
             ->discoverResources(in: app_path('Filament/Cpanel/Resources'), for: 'App\Filament\Cpanel\Resources')
@@ -53,7 +55,8 @@ class CpanelPanelProvider extends PanelProvider
             ])
             ->plugins([
                 PurelineTheme::make()
-                    ->primaryColor('#099170'),
+                    // @phpstan-ignore argument.type
+                    ->primaryColor(Color::Emerald),
                 SpatieTranslatablePlugin::make()
                     ->defaultLocales(['fr', 'en']),
             ])

@@ -25,6 +25,7 @@ trait HasPublicId
      */
     public static function findByPublicId(string $publicId, array $columns = ['*']): ?static
     {
+        /** @var static|null */
         return static::query()->select($columns)
             ->where('public_id', $publicId)
             ->first();

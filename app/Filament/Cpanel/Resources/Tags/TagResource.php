@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Tags;
+namespace App\Filament\Cpanel\Resources\Tags;
 
 use App\Models\Tag;
 use BackedEnum;
@@ -19,7 +19,7 @@ final class TagResource extends Resource
 {
     protected static ?string $model = Tag::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'untitledui-tag-03';
+    protected static string|BackedEnum|null $navigationIcon = 'phosphor-bookmarks-duotone';
 
     public static function getNavigationGroup(): string
     {
@@ -31,10 +31,11 @@ final class TagResource extends Resource
         return $schema
             ->components([
                 Components\TextInput::make('name')
+                    ->label(__('Nom'))
                     ->live(onBlur: true)
                     ->required()
                     ->unique(ignoreRecord: true)
-                    ->afterStateUpdated(fn ($state, Set $set): mixed => $set('slug', Str::slug($state)))
+                    ->afterStateUpdated(fn (string $state, Set $set): mixed => $set('slug', Str::slug($state)))
                     ->columnSpanFull(),
                 Components\TextInput::make('slug')
                     ->readOnly()
@@ -57,8 +58,12 @@ final class TagResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->searchable(),
-                TextColumn::make(name: 'concerns'),
+                TextColumn::make('name')
+                    ->label(__('Nom'))
+                    ->searchable(),
+                TextColumn::make(name: 'concerns')
+                    ->label(__('Concerns'))
+                    ->badge(),
             ])
             ->recordActions([
                 Actions\EditAction::make(),

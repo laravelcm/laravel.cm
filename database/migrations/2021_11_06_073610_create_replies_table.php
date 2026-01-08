@@ -12,7 +12,7 @@ return new class extends Migration
     {
         Schema::create('replies', static function (Blueprint $table): void {
             $table->id();
-            $table->uuid('public_id');
+            $table->uuid('public_id')->nullable()->index();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
             $table->morphs('replyable');

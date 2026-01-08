@@ -20,8 +20,13 @@ class DatabaseMigrationService
 
     public function __construct()
     {
-        $this->sourceConnection = config('database-migration.source_connection', 'secondary');
-        $this->targetConnection = config('database-migration.target_connection', 'pgsql');
+        /** @var string $source */
+        $source = config('database-migration.source_connection', 'secondary');
+        /** @var string $target */
+        $target = config('database-migration.target_connection', 'pgsql');
+
+        $this->sourceConnection = $source;
+        $this->targetConnection = $target;
     }
 
     /**
@@ -164,6 +169,7 @@ class DatabaseMigrationService
      */
     private function getExcludedTables(): array
     {
+        /** @var array<string> */
         return config('database-migration.excluded_tables', [
             'migrations',
             'password_resets',

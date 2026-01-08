@@ -23,7 +23,7 @@ final class ChannelResource extends Resource
 
     protected static ?string $model = Channel::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'untitledui-git-branch';
+    protected static string|BackedEnum|null $navigationIcon = 'phosphor-git-branch-duotone';
 
     public static function getNavigationGroup(): string
     {
@@ -35,9 +35,10 @@ final class ChannelResource extends Resource
         return $schema
             ->components([
                 Components\TextInput::make('name')
+                    ->label(__('Nom'))
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(fn ($state, Utilities\Set $set): mixed => $set('slug', Str::slug($state)))
+                    ->afterStateUpdated(fn (string $state, Utilities\Set $set): mixed => $set('slug', Str::slug($state)))
                     ->columnSpanFull(),
                 Components\TextInput::make('slug')
                     ->readOnly()

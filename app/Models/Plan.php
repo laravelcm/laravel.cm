@@ -12,6 +12,7 @@ use Laravelcm\Subscriptions\Models\Plan as Model;
 
 /**
  * @property-read PlanType $type
+ * @property-read string $public_id
  *
  * @mixin Model
  */

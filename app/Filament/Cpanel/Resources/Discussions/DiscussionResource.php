@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Discussions;
+namespace App\Filament\Cpanel\Resources\Discussions;
 
 use App\Models\Discussion;
 use BackedEnum;
@@ -17,7 +17,7 @@ final class DiscussionResource extends Resource
 {
     protected static ?string $model = Discussion::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'untitledui-message-chat-square';
+    protected static string|BackedEnum|null $navigationIcon = 'phosphor-chats-duotone';
 
     public static function getNavigationGroup(): string
     {
@@ -27,19 +27,25 @@ final class DiscussionResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (Builder $query): Builder => $query->latest())
             ->columns([
                 Columns\TextColumn::make('title')
                     ->label(__('Titre'))
                     ->limit(50)
                     ->sortable()
                     ->searchable(),
+                Columns\TextColumn::make('tags.name')
+                    ->badge(),
                 Columns\TextColumn::make('user.name')
                     ->label(__('Auteur'))
                     ->sortable()
                     ->searchable(),
                 Columns\TextColumn::make('replies_count')
                     ->label(__('Commentaires'))
-                    ->counts('replies'),
+                    ->counts('replies')
+                    ->sortable()
+                    ->toggleable()
+                    ->toggledHiddenByDefault(),
                 Columns\IconColumn::make('locked')
                     ->label(__('Vérrouillé'))
                     ->boolean()
@@ -49,7 +55,9 @@ final class DiscussionResource extends Resource
                     ->falseColor('gray'),
                 Columns\TextColumn::make('created_at')
                     ->label(__('Date'))
-                    ->date(),
+                    ->date()
+                    ->toggleable()
+                    ->toggledHiddenByDefault(),
             ])
             ->filters([
                 Filter::make('is_pinned')
@@ -63,10 +71,9 @@ final class DiscussionResource extends Resource
                 Actions\Action::make('show')
                     ->icon('untitledui-eye')
                     ->iconButton()
-                    ->color('gray')
                     ->url(fn (Discussion $record): string => route('discussions.show', $record))
                     ->openUrlInNewTab(),
-                Actions\DeleteAction::make()->iconButton(),
+                Actions\DeleteAction::make(),
             ])
             ->toolbarActions([
                 Actions\BulkActionGroup::make([
