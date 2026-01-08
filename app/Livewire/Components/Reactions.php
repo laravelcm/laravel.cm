@@ -6,7 +6,7 @@ namespace App\Livewire\Components;
 
 use App\Contracts\ReactableInterface;
 use App\Models\Reaction;
-use Filament\Notifications\Notification;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -24,12 +24,11 @@ final class Reactions extends Component
     public function userReacted(string $reaction): void
     {
         if (Auth::guest()) {
-            Notification::make()
-                ->title(__('Oh Oh! Erreur'))
-                ->body(__('Vous devez être connecté pour réagir à ce contenu!'))
-                ->danger()
-                ->duration(5000)
-                ->send();
+            Flux::toast(
+                text: __('Vous devez être connecté pour réagir à ce contenu!'),
+                heading: __('Oh Oh! Erreur'),
+                variant: 'danger',
+            );
         } else {
             /** @var Reaction $react */
             $react = Reaction::query()->where('name', $reaction)->first();

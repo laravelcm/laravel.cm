@@ -9,7 +9,7 @@
                     <x-dynamic-component
                         :component="'feeds.' . $activity->type"
                         :folder="$activity->getTable()"
-                        :activity="$activity"
+                        :$activity
                     />
                 </li>
             @endif

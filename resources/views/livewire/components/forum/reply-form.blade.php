@@ -1,12 +1,8 @@
 <div x-data="{ open: @entangle('show').live }" class="relative py-10">
     <div class="flex items-center justify-center">
         <div class="w-full max-w-3xl mx-auto">
-            <button type="button" @click="open = true" class="relative bg-white rounded-xl px-6 py-5 ring-1 ring-gray-200/60 flex items-center w-full gap-5 hover:ring-gray-300 dark:ring-white/20 dark:hover:ring-white/10 dark:bg-gray-800 dark:hover:bg-white/10 focus:outline-hidden transition duration-200 ease-in-out">
-                <x-user.avatar
-                    :user="\Illuminate\Support\Facades\Auth::user()"
-                    class="size-10 ring-4 ring-white dark:ring-white/20"
-                    span="-right-1 size-3.5 -top-1"
-                />
+            <button type="button" @click="open = true" class="relative bg-white rounded-xl px-6 py-5 ring-1 ring-gray-200 flex items-center w-full gap-5 hover:ring-gray-300 dark:ring-white/20 dark:hover:ring-white/10 dark:bg-gray-800 dark:hover:bg-white/10 focus:outline-hidden transition duration-200 ease-in-out">
+                <x-user.avatar :user="auth()->user()" />
                 <span class="text-sm leading-6 text-gray-500 dark:text-gray-300">
                     {{ __('pages/forum.reply_message') }}
                 </span>

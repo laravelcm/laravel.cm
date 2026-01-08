@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions\Forum;
 
+use App\Actions\Subscription\SubscribeToFeedAction;
 use App\Events\ThreadWasCreated;
 use App\Gamify\Points\ThreadCreated;
 use App\Models\Thread;
@@ -22,7 +23,7 @@ final class CreateThreadAction
         return DB::transaction(function () use ($data) {
             $thread = Thread::query()->create($data);
 
-            resolve(SubscribeToThreadAction::class)->execute($thread);
+            resolve(SubscribeToFeedAction::class)->execute($thread);
 
             givePoint(new ThreadCreated($thread));
             event(new ThreadWasCreated($thread));

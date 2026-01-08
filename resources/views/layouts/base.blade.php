@@ -27,7 +27,7 @@
 
     <x-seo::meta />
 
-    @if (request()->is('account*'))
+    @if (request()->is('account*') || request()->is('dashboard*'))
         <meta name="robots" content="noindex, nofollow">
     @endif
 
@@ -66,7 +66,6 @@
     {{ $slot }}
 
     <x-notify::notify />
-    <livewire:wire-elements-modal />
     <livewire:slide-over-panel />
 
     @persist('toast')
