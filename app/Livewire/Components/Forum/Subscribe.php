@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Livewire\Components\Forum;
 
-use App\Actions\Forum\SubscribeToThreadAction;
+use App\Actions\Subscription\SubscribeToFeedAction;
+use App\Actions\Subscription\UnsubscribeToFeedAction;
 use App\Models\Thread;
-use Filament\Notifications\Notification;
+use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -20,13 +21,12 @@ final class Subscribe extends Component
     {
         $this->authorize('subscribe', $this->thread);
 
-        resolve(SubscribeToThreadAction::class)->execute($this->thread);
+        resolve(SubscribeToFeedAction::class)->execute($this->thread);
 
-        Notification::make()
-            ->title(__('notifications.thread.subscribe'))
-            ->success()
-            ->duration(5000)
-            ->send();
+        Flux::toast(
+            text: __('notifications.thread.subscribe'),
+            variant: 'success',
+        );
 
         $this->dispatch('subscription.update')->self();
     }
@@ -35,15 +35,17 @@ final class Subscribe extends Component
     {
         $this->authorize('unsubscribe', $this->thread);
 
-        $this->thread->subscribes()
+        /** @var string $uuid */
+        $uuid = $this->thread->subscribes()
             ->where('user_id', Auth::id())
-            ->delete();
+            ->firstOrFail()->uuid;
 
-        Notification::make()
-            ->title(__('notifications.thread.unsubscribe'))
-            ->success()
-            ->duration(5000)
-            ->send();
+        resolve(UnsubscribeToFeedAction::class)->execute($uuid);
+
+        Flux::toast(
+            text: __('notifications.thread.unsubscribe'),
+            variant: 'success',
+        );
 
         $this->dispatch('subscription.update')->self();
     }

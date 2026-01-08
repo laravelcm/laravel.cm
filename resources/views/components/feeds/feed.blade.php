@@ -21,8 +21,9 @@
                     {{ $date->diffForHumans() }}
                 </time>
             </div>
-            @if($content)
-                <div class="mt-2 px-2 py-1.5 ring-1 ring-gray-200 dark:ring-white/10 rounded-md bg-white dark:bg-gray-800 text-sm text-gray-500 dark:text-gray-400">
+
+            @if ($content)
+                <div class="mt-2 px-2 py-1.5 ring-1 ring-gray-200 overflow-hidden dark:ring-white/10 rounded-md bg-white dark:bg-gray-800 text-sm text-gray-500 dark:text-gray-400">
                     {!! $content !!}
                 </div>
             @endif

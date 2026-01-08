@@ -29,7 +29,7 @@
                 'rounded-lg bg-white px-3 py-2 shadow hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700' => $withBackground,
             ])
         >
-            @if($direction === 'vertical')
+            @if ($direction === 'vertical')
                 <div class="flex flex-col items-center justify-center gap-y-1">
                     <x-untitledui-heart
                         class="size-5 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300"
@@ -41,7 +41,7 @@
                     </span>
                 </div>
             @else
-                <div class="flex items-center justify-center space-x-2">
+                <div class="flex items-center justify-center gap-x-2">
                     @foreach ($model->reactions as $reaction)
                         <img
                             loading="lazy"
@@ -51,7 +51,7 @@
                         />
                     @endforeach
 
-                    <span class="ml-3 text-sm font-medium text-green-500">
+                    <span class="text-sm font-medium text-primary-500">
                         {{ $model->reactions->count() }}
                     </span>
                 </div>

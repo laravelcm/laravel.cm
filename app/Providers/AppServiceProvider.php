@@ -13,8 +13,6 @@ use App\Policies\NotificationPolicy;
 use ArchTech\SEO\SEOManager;
 use Filament\Actions;
 use Filament\Support\Enums\Width;
-use Filament\Support\Facades\FilamentIcon;
-use Filament\View\PanelsIconAlias;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Notifications\DatabaseNotification;
@@ -77,16 +75,6 @@ final class AppServiceProvider extends ServiceProvider
 
     protected function configureFilament(): void
     {
-        FilamentIcon::register([
-            PanelsIconAlias::PAGES_DASHBOARD_NAVIGATION_ITEM => 'untitledui-home-line',
-            Actions\View\ActionsIconAlias::DELETE_ACTION => 'untitledui-trash-03',
-            Actions\View\ActionsIconAlias::DELETE_ACTION_GROUPED => 'untitledui-trash-03',
-            Actions\View\ActionsIconAlias::DELETE_ACTION_MODAL => 'untitledui-trash-03',
-            Actions\View\ActionsIconAlias::FORCE_DELETE_ACTION_MODAL => 'untitledui-trash-03',
-            Actions\View\ActionsIconAlias::EDIT_ACTION => 'untitledui-edit-03',
-            Actions\View\ActionsIconAlias::EDIT_ACTION_GROUPED => 'untitledui-edit-03',
-        ]);
-
         Actions\CreateAction::configureUsing(
             fn (Actions\Action $action): Actions\Action => $action->iconButton()
                 ->modalWidth(Width::ExtraLarge)

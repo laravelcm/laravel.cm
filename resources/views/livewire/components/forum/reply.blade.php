@@ -41,7 +41,7 @@
                 @endif
             </div>
             <x-markdown-content
-                class="mt-2 prose prose-green prose-sm !prose-heading-off max-w-none space-y-3 text-gray-500 dark:text-gray-400 dark:prose-invert"
+                class="mt-2 prose prose-green !prose-heading-off max-w-none space-y-3 text-gray-500 dark:text-gray-400 dark:prose-invert"
                 :content="$reply->body"
             />
             <div class="mt-3 flex items-center justify-between">

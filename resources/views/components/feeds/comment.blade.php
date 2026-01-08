@@ -1,12 +1,7 @@
 <div class="relative pb-8">
     <div class="relative flex items-start space-x-3">
         <div class="relative">
-            <img
-                loading="lazy"
-                class="flex size-10 items-center justify-center rounded-full bg-white dark:bg-gray-800 ring-4 ring-white dark:ring-white/10"
-                src="{{ $user->profile_photo_url }}"
-                alt="Avatar de {{ $user->username }}"
-            />
+            <x-user.avatar :$user />
             <span class="absolute -bottom-0.5 -right-1 rounded-tl bg-white dark:bg-gray-800 px-0.5 py-px">
                 <svg
                     class="size-5 text-gray-400 dark:text-gray-500"

@@ -51,7 +51,7 @@
                             </div>
                             <div class="mt-4 flex-1 min-w-0">
                                 <x-markdown-content
-                                    class="mx-auto mt-6 text-sm prose prose-emerald max-w-none dark:prose-invert"
+                                    class="mx-auto mt-6 prose prose-emerald max-w-none dark:prose-invert"
                                     :content="$discussion->body"
                                 />
 

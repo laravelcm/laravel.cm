@@ -11,6 +11,7 @@ use App\Contracts\SubscribeInterface;
 use App\Models\Builders\DiscussionQueryBuilder;
 use App\Models\Traits\HasAuthor;
 use App\Models\Traits\HasLocaleScope;
+use App\Models\Traits\HasPublicId;
 use App\Models\Traits\HasReplies;
 use App\Models\Traits\HasSlug;
 use App\Traits\HasSpamReports;
@@ -32,6 +33,7 @@ use Spatie\Sitemap\Tags\Url;
 
 /**
  * @property-read int $id
+ * @property-read string $public_id
  * @property-read string $title
  * @property-read string $slug
  * @property-read string $body
@@ -55,6 +57,7 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     use HasFactory;
 
     use HasLocaleScope;
+    use HasPublicId;
     use HasReplies;
     use HasSlug;
     use HasSpamReports;

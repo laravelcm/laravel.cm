@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Contracts\HasCachedMediaInterface;
 use App\Enums\TransactionStatus;
+use App\Models\Traits\HasPublicId;
 use App\Observers\UserObserver;
 use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
@@ -38,6 +39,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property-read int $id
+ * @property-read string $public_id
  * @property-read string $name
  * @property-read string $email
  * @property-read string $username
@@ -75,6 +77,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     use HasPlanSubscriptions;
     use HasProfilePhoto;
+    use HasPublicId;
     use HasRoles;
     use HasSettings;
     use HasUsername;

@@ -23,7 +23,7 @@
         {{ $activity->subject->replyAble->title }}
     </x-link>
 
-    @if(strlen($activity->subject->excerpt()) > 3)
+    @if (strlen($activity->subject->excerpt()) > 3)
         <x-slot:content>
             {{ $activity->subject->excerpt() }}
         </x-slot:content>

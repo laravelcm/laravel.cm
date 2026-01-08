@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Filters\Enterprise\EnterpriseFilters;
+use App\Models\Traits\HasPublicId;
 use App\Models\Traits\HasSlug;
 use App\Traits\HasSettings;
 use Database\Factories\EnterpriseFactory;
@@ -19,6 +20,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @property-read int $id
+ * @property-read string $public_id
  * @property-read bool $is_public
  * @property-read bool $is_certified
  * @property-read bool $is_featured
@@ -29,6 +31,7 @@ final class Enterprise extends Model implements HasMedia
     /** @use HasFactory<EnterpriseFactory> */
     use HasFactory;
 
+    use HasPublicId;
     use HasSettings;
     use HasSlug;
     use InteractsWithMedia;

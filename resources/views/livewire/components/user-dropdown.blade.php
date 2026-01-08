@@ -44,15 +44,15 @@ new class extends Component {
 
         @if ($user->isAdmin() || $user->isModerator())
             <div class="px-3.5 py-1.5" role="menu">
-                <x-link
-                    :href="route('filament.admin.pages.dashboard')"
+                <a
+                    href="{{ route('filament.cpanel.pages.dashboard') }}"
                     class="group flex items-center gap-2 py-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white"
                     role="menuitem"
                     tabindex="-1"
                 >
                     <img loading="lazy"  class="size-5 object-cover" src="{{ asset('images/filament-icon.png') }}" alt="Filament icon" />
                     {{ __('Administration') }}
-                </x-link>
+                </a>
             </div>
         @endif
 

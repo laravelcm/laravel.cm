@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Pages\Account;
 
+use App\Actions\Subscription\UnsubscribeToFeedAction;
 use App\Models\Discussion;
 use App\Models\Subscribe;
 use App\Models\Thread;
@@ -17,19 +18,17 @@ use Livewire\Component;
 
 final class Alerts extends Component
 {
-    public ?string $subscribeId = null;
-
     public function unsubscribe(string $subscribeId): void
     {
-        Subscribe::query()
-            ->where('uuid', $subscribeId)
-            ->delete();
+        resolve(UnsubscribeToFeedAction::class)->execute($subscribeId);
 
         Flux::toast(
             text: __('Vous êtes maintenant désabonné de cet fil.'),
             heading: __('Désabonnement'),
             variant: 'success',
         );
+
+        $this->redirectRoute('account.alerts', navigate: true);
     }
 
     public function redirectToSubscription(int $id, string $type): void
@@ -52,7 +51,7 @@ final class Alerts extends Component
 
         return view('livewire.pages.account.alerts', [
             'subscriptions' => Cache::remember(
-                key: 'user.'.$user->id.'subscriptions',
+                key: 'user.'.$user->id.'.subscriptions',
                 ttl: now()->addMonth(),
                 callback: fn (): Collection => $user->subscriptions
             ),
