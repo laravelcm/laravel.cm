@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Channels;
+namespace App\Filament\Cpanel\Resources\Channels;
 
 use App\Models\Channel;
 use BackedEnum;

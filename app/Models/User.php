@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Contracts\HasCachedMediaInterface;
 use App\Enums\TransactionStatus;
+use App\Models\Traits\HasPublicId;
 use App\Observers\UserObserver;
 use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
@@ -75,6 +76,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     use HasPlanSubscriptions;
     use HasProfilePhoto;
+    use HasPublicId;
     use HasRoles;
     use HasSettings;
     use HasUsername;

@@ -12,6 +12,7 @@ return new class extends Migration
     {
         Schema::create('users', static function (Blueprint $table): void {
             $table->id();
+            $table->uuid('public_id');
 
             $table->string('name');
             $table->string('email')->unique()->index();

@@ -38,6 +38,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         libevent-openssl-2.1-7 libevent-pthreads-2.1-7 \
         libflite1 flite1-dev libenchant-2-2 libsecret-1-0 \
         libmanette-0.2-0 libgles2-mesa libx264-dev \
+        openssh-client netcat-openbsd \
     && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
     && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_VERSION.x nodistro main" > /etc/apt/sources.list.d/nodesource.list \
     && curl -sS https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | tee /etc/apt/keyrings/pgdg.gpg >/dev/null \
@@ -82,10 +83,14 @@ FROM base AS composer
 
 ARG FLUX_USERNAME
 ARG FLUX_LICENSE_KEY
+ARG PURELINE_USERNAME
+ARG PURELINE_LICENSE_KEY
 
 # Convert ARG to ENV to ensure they're available in RUN commands
 ENV FLUX_USERNAME=${FLUX_USERNAME}
 ENV FLUX_LICENSE_KEY=${FLUX_LICENSE_KEY}
+ENV PURELINE_USERNAME=${PURELINE_USERNAME}
+ENV PURELINE_LICENSE_KEY=${PURELINE_LICENSE_KEY}
 
 WORKDIR /var/www/html
 
@@ -108,6 +113,14 @@ RUN --mount=type=cache,target=/tmp/.composer-cache \
         exit 1; \
     fi && \
     composer config http-basic.composer.fluxui.dev "$FLUX_USERNAME" "$FLUX_LICENSE_KEY"
+
+# Validate and configure Pureline credentials (required for anystack packages)
+RUN --mount=type=cache,target=/tmp/.composer-cache \
+    if [ -z "$PURELINE_USERNAME" ] || [ -z "$PURELINE_LICENSE_KEY" ]; then \
+        echo "ERROR: PURELINE_USERNAME and PURELINE_LICENSE_KEY are required build arguments" >&2; \
+        exit 1; \
+    fi && \
+    composer config http-basic.pureline.composer.sh "$PURELINE_USERNAME" "$PURELINE_LICENSE_KEY"
 
 # Install dependencies with cache mount
 RUN --mount=type=cache,target=/tmp/.composer-cache \

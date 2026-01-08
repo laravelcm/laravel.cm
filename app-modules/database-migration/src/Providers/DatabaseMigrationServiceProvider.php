@@ -23,6 +23,11 @@ final class DatabaseMigrationServiceProvider extends ServiceProvider
             'ssh-tunnel'
         );
 
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/database-migration.php',
+            'database-migration'
+        );
+
         $this->app->singleton(SshTunnelService::class);
         $this->app->singleton(DatabaseMigrationService::class);
     }
@@ -41,6 +46,10 @@ final class DatabaseMigrationServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../../config/ssh-tunnel.php' => config_path('ssh-tunnel.php'),
             ], 'ssh-tunnel-config');
+
+            $this->publishes([
+                __DIR__.'/../../config/database-migration.php' => config_path('database-migration.php'),
+            ], 'database-migration-config');
         }
 
         // Auto-activate tunnel if configured

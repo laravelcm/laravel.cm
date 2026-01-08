@@ -8,6 +8,12 @@ inputs:
   flux-license-key:
     description: "Flux UI Pro license key"
     required: true
+  pureline-username:
+    description: "Pureline Theme username (Anystack)"
+    required: true
+  pureline-license-key:
+    description: "Pureline Theme license key (Anystack)"
+    required: true
 
 runs:
   using: composite
@@ -24,9 +30,12 @@ runs:
       run: |
         echo "::add-matcher::${{ runner.tool_cache }}/php.json"
         echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-    - name: Add Flux Credentials Loaded From ENV
+    - name: 🔑 Add Flux Credentials Loaded From ENV
       shell: sh
       run: composer config http-basic.composer.fluxui.dev "${{ inputs.flux-username }}" "${{ inputs.flux-license-key }}"
+    - name: 🔑 Add Pureline Theme Credentials Loaded From ENV
+      shell: sh
+      run: composer config http-basic.pureline.composer.sh "${{ inputs.pureline-username }}" "${{ inputs.pureline-license-key }}"
     - name: 🗂 Get composer cache directory
       id: composer-cache
       shell: sh

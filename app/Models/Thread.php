@@ -12,6 +12,7 @@ use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Filters\Thread\ThreadFilters;
 use App\Models\Traits\HasAuthor;
 use App\Models\Traits\HasLocaleScope;
+use App\Models\Traits\HasPublicId;
 use App\Models\Traits\HasReplies;
 use App\Models\Traits\HasSlug;
 use App\Traits\HasSpamReports;
@@ -66,6 +67,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     use HasFactory;
 
     use HasLocaleScope;
+    use HasPublicId;
     use HasReplies;
     use HasSlug;
     use HasSpamReports;

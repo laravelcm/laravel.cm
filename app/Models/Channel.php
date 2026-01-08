@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Exceptions\CannotAddChannelToChild;
+use App\Models\Traits\HasPublicId;
 use App\Models\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +30,7 @@ use Spatie\Translatable\HasTranslations;
 final class Channel extends Model
 {
     use HasFactory;
+    use HasPublicId;
     use HasSlug;
     use HasTranslations;
 

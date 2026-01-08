@@ -8,6 +8,7 @@ use App\Contracts\ReactableInterface;
 use App\Models\Builders\ArticleQueryBuilder;
 use App\Models\Traits\HasAuthor;
 use App\Models\Traits\HasLocaleScope;
+use App\Models\Traits\HasPublicId;
 use App\Models\Traits\HasSlug;
 use App\Observers\ArticleObserver;
 use App\Traits\HasTags;
@@ -57,6 +58,7 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
     use HasAuthor;
     use HasFactory;
     use HasLocaleScope;
+    use HasPublicId;
     use HasSlug;
     use HasTags;
     use InteractsWithMedia;

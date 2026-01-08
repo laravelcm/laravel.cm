@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Channels\Pages;
+namespace App\Filament\Cpanel\Resources\Channels\Pages;
 
-use App\Filament\Resources\Channels\ChannelResource;
+use App\Filament\Cpanel\Resources\Channels\ChannelResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Enums\Width;

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "../../vendor/livewire/flux/dist/flux.css";
-@import "../../app-modules/livewire-markdown-editor/resources/css/markdown-editor.css";
+@import "../../vendor/mckenziearts/livewire-markdown-editor/resources/css/markdown-editor.css";
 
 @import "./components/base.css";
 @import "./components/forms.css";
@@ -21,7 +21,7 @@
 @source '../../app-modules/*/resources/**/*.blade.php'
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../vendor/filament/**/*.blade.php';
-@source '../../vendor/mckenziearts/laravel-notify/resources/views/**/*.blade.php';
+@source '../../vendor/mckenziearts/**/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';

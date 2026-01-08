@@ -17,8 +17,8 @@ Disallow: /confirm-password
 Disallow: /verify-email
 
 # Administration
-Disallow: /cp
-Disallow: /cp/*
+Disallow: /cpanel
+Disallow: /cpanel/*
 
 # Utilitaires et redirections
 Disallow: /replyable/*

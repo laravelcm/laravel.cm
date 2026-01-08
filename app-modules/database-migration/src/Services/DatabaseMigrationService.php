@@ -8,12 +8,21 @@ use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class DatabaseMigrationService
 {
-    private string $sourceConnection = 'secondary';
+    private string $sourceConnection;
 
-    private string $targetConnection = 'pgsql';
+    private string $targetConnection;
+
+    private string $currentTable = '';
+
+    public function __construct()
+    {
+        $this->sourceConnection = config('database-migration.source_connection', 'secondary');
+        $this->targetConnection = config('database-migration.target_connection', 'pgsql');
+    }
 
     /**
      * Get all tables from the source database
@@ -45,6 +54,8 @@ class DatabaseMigrationService
         if (! Schema::connection($this->targetConnection)->hasTable($table)) {
             return;
         }
+
+        $this->currentTable = $table;
 
         DB::connection($this->targetConnection)->table($table)->truncate();
 
@@ -153,7 +164,7 @@ class DatabaseMigrationService
      */
     private function getExcludedTables(): array
     {
-        return [
+        return config('database-migration.excluded_tables', [
             'migrations',
             'password_resets',
             'personal_access_tokens',
@@ -161,7 +172,7 @@ class DatabaseMigrationService
             'jobs',
             'job_batches',
             'temporary_uploads',
-        ];
+        ]);
     }
 
     private function hasIdColumn(string $table): bool
@@ -177,6 +188,11 @@ class DatabaseMigrationService
      */
     private function transformRecord(array $record): array
     {
+        // Generate public_id UUID if the table requires it and the column exists in target
+        if ($this->shouldGeneratePublicId() && ! isset($record['public_id'])) {
+            $record['public_id'] = $this->generateOrderedUuid();
+        }
+
         foreach ($record as $key => $value) {
             // Handle MySQL boolean fields (tinyint) to PostgreSQL boolean
             if (is_int($value) && in_array($value, [0, 1]) && preg_match('/^(is_|has_|can_|should_|enabled|active|certified|public|featured|published|pinned|opt_in|sponsored|verified|locked)/', $key)) {
@@ -190,5 +206,31 @@ class DatabaseMigrationService
         }
 
         return $record;
+    }
+
+    /**
+     * Check if the current table should have public_id generated
+     */
+    private function shouldGeneratePublicId(): bool
+    {
+        if (blank($this->currentTable)) {
+            return false;
+        }
+
+        /** @var array<string> $tablesWithPublicId */
+        $tablesWithPublicId = config('database-migration.tables_with_public_id', []);
+
+        if (! in_array($this->currentTable, $tablesWithPublicId)) {
+            return false;
+        }
+
+        // Verify that the target table has the public_id column
+        return Schema::connection($this->targetConnection)
+            ->hasColumn($this->currentTable, 'public_id');
+    }
+
+    private function generateOrderedUuid(): string
+    {
+        return (string) Str::orderedUuid();
     }
 }

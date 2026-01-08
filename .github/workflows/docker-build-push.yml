@@ -83,6 +83,8 @@ jobs:
             NODE_VERSION=22
             FLUX_USERNAME=${{ secrets.FLUX_USERNAME }}
             FLUX_LICENSE_KEY=${{ secrets.FLUX_LICENSE_KEY }}
+            PURELINE_USERNAME=${{ secrets.PURELINE_USERNAME }}
+            PURELINE_LICENSE_KEY=${{ secrets.PURELINE_LICENSE_KEY }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64

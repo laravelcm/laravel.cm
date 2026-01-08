@@ -67,6 +67,8 @@ jobs:
         with:
           flux-username: ${{ secrets.FLUX_USERNAME }}
           flux-license-key: ${{ secrets.FLUX_LICENSE_KEY }}
+          pureline-username: ${{ secrets.PURELINE_USERNAME }}
+          pureline-license-key: ${{ secrets.PURELINE_LICENSE_KEY }}
 
       - name: Install Composer Dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
@@ -130,6 +132,8 @@ jobs:
         with:
           flux-username: ${{ secrets.FLUX_USERNAME }}
           flux-license-key: ${{ secrets.FLUX_LICENSE_KEY }}
+          pureline-username: ${{ secrets.PURELINE_USERNAME }}
+          pureline-license-key: ${{ secrets.PURELINE_LICENSE_KEY }}
 
       - name: Install Composer Dependencies
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader

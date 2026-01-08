@@ -12,6 +12,7 @@ return new class extends Migration
     {
         Schema::create('discussions', static function (Blueprint $table): void {
             $table->id();
+            $table->uuid('public_id');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
             $table->string('title');

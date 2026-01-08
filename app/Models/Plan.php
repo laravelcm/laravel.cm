@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\PlanType;
+use App\Models\Traits\HasPublicId;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Laravelcm\Subscriptions\Models\Plan as Model;
@@ -16,6 +17,8 @@ use Laravelcm\Subscriptions\Models\Plan as Model;
  */
 final class Plan extends Model
 {
+    use HasPublicId;
+
     protected $guarded = [];
 
     protected function casts(): array
