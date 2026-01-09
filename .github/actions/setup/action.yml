@@ -8,6 +8,12 @@ inputs:
   flux-license-key:
     description: "Flux UI Pro license key"
     required: true
+  pureline-username:
+    description: "Pureline Theme username (Anystack)"
+    required: true
+  pureline-license-key:
+    description: "Pureline Theme license key (Anystack)"
+    required: true
 
 runs:
   using: composite
