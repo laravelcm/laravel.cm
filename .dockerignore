@@ -32,6 +32,7 @@ public/storage
 public/build
 public/css
 public/js
+public/fonts
 !public/build/.gitkeep
 
 # IDE
@@ -56,9 +57,6 @@ public/js
 Dockerfile*
 docker-compose*.yml
 .dockerignore
-
-# CI/CD
-.github
 
 # Development files
 art
