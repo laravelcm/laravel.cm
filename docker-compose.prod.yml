@@ -8,8 +8,8 @@ services:
                 PHP_VERSION: 8.4
                 FLUX_USERNAME: ${FLUX_USERNAME}
                 FLUX_LICENSE_KEY: ${FLUX_LICENSE_KEY}
-                PURLINE_USERNAME: ${PURLINE_USERNAME}
-                PURLINE_LICENSE_KEY: ${PURLINE_LICENSE_KEY}
+                PURELINE_USERNAME: ${PURELINE_USERNAME}
+                PURELINE_LICENSE_KEY: ${PURELINE_LICENSE_KEY}
         image: laravelcm/php
         restart: always
         extra_hosts:
