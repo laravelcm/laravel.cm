@@ -27,7 +27,7 @@ $repositories = computed(fn () => app()->call(GetGithubRepositoriesAction::class
                 {{ __('global.community_oss_description') }}
             </p>
         </div>
-        <div class="grid line-t border-x border-line divide-x divide-y divide-dotted divide-gray-300 dark:divide-white/20 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid line-t *:border-b *:border-line sm:[&>*:nth-child(odd)]:border-r sm:grid-cols-2 lg:grid-cols-3 lg:[&>*:not(:nth-child(3n))]:border-r lg:border-l lg:border-line">
             @foreach ($this->repositories->sortByDesc('stargazers_count') as $repository)
                 <x-repository :$repository />
             @endforeach

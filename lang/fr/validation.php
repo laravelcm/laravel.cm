@@ -16,6 +16,7 @@ return [
     */
 
     'accepted' => 'Le champ :attribute doit être accepté.',
+    'accepted_if' => 'Le champ :attribute doit être accepté lorsque :other est :value.',
     'active_url' => 'Le champ :attribute n\'est pas une URL valide.',
     'after' => 'Le champ :attribute doit être une date postérieure au :date.',
     'after_or_equal' => 'Le champ :attribute doit être une date postérieure ou égale au :date.',
@@ -27,10 +28,10 @@ return [
     'before' => 'Le champ :attribute doit être une date antérieure au :date.',
     'before_or_equal' => 'Le champ :attribute doit être une date antérieure ou égale au :date.',
     'between' => [
-        'array' => 'The :attribute must have between :min and :max items.',
-        'file' => 'The :attribute must be between :min and :max kilobytes.',
-        'numeric' => 'The :attribute must be between :min and :max.',
-        'string' => 'The :attribute must be between :min and :max characters.',
+        'array' => 'Le tableau :attribute doit contenir entre :min et :max éléments.',
+        'file' => 'La taille du fichier de :attribute doit être entre :min et :max kilo-octets.',
+        'numeric' => 'La valeur de :attribute doit être entre :min et :max.',
+        'string' => 'Le texte :attribute doit contenir entre :min et :max caractères.',
     ],
     'boolean' => 'Le champ :attribute doit être vrai ou faux.',
     'confirmed' => 'Le champ de confirmation :attribute ne correspond pas.',
@@ -45,6 +46,8 @@ return [
     'digits_between' => 'Le champ :attribute doit contenir entre :min et :max chiffres.',
     'dimensions' => 'La taille de l\'image :attribute n\'est pas conforme.',
     'distinct' => 'Le champ :attribute a une valeur en double.',
+    'doesnt_end_with' => 'Le champ :attribute ne doit pas se terminer par l\'une des valeurs suivantes : :values.',
+    'doesnt_start_with' => 'Le champ :attribute ne doit pas commencer par l\'une des valeurs suivantes : :values.',
     'email' => 'Le champ :attribute doit être une adresse email valide.',
     'ends_with' => 'Le champ :attribute doit se terminer par une des valeurs suivantes : :values',
     'enum' => 'Le champ :attribute sélectionné n\'est pas valide.',
@@ -71,7 +74,7 @@ return [
     'ipv4' => 'Le champ :attribute doit être une adresse IPv4 valide.',
     'ipv6' => 'Le champ :attribute doit être une adresse IPv6 valide.',
     'json' => 'Le champ :attribute doit être un document JSON valide.',
-    'lowercase' => 'The :attribute must be lowercase.',
+    'lowercase' => 'Le champ :attribute doit être en minuscules.',
     'lt' => [
         'array' => 'Le tableau :attribute doit contenir moins de :value éléments.',
         'file' => 'La taille du fichier de :attribute doit être inférieure à :value kilo-octets.',
@@ -84,12 +87,14 @@ return [
         'numeric' => 'La valeur de :attribute doit être inférieure ou égale à :value.',
         'string' => 'Le texte :attribute doit contenir au plus :value caractères.',
     ],
+    'mac_address' => 'Le champ :attribute doit être une adresse MAC valide.',
     'max' => [
         'array' => 'Le tableau :attribute ne peut contenir plus de :max éléments.',
         'file' => 'La taille du fichier de :attribute ne peut pas dépasser :max kilo-octets.',
         'numeric' => 'La valeur de :attribute ne peut être supérieure à :max.',
         'string' => 'Le texte de :attribute ne peut contenir plus de :max caractères.',
     ],
+    'max_digits' => 'Le champ :attribute ne doit pas contenir plus de :max chiffres.',
     'mimes' => 'Le champ :attribute doit être un fichier de type : :values.',
     'mimetypes' => 'Le champ :attribute doit être un fichier de type : :values.',
     'min' => [
@@ -98,6 +103,7 @@ return [
         'numeric' => 'La valeur de :attribute doit être supérieure ou égale à :min.',
         'string' => 'Le texte :attribute doit contenir au moins :min caractères.',
     ],
+    'min_digits' => 'Le champ :attribute doit contenir au moins :min chiffres.',
     'multiple_of' => 'La valeur de :attribute doit être un multiple de :value',
     'not_in' => 'Le champ :attribute sélectionné n\'est pas valide.',
     'not_regex' => 'Le format du champ :attribute n\'est pas valide.',

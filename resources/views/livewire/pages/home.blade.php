@@ -1,4 +1,84 @@
 <div class="overflow-hidden">
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "name": "{{ __('global.site_name') }}",
+                "alternateName": "Laravel.cm",
+                "url": "{{ url('/') }}",
+                "logo": "{{ asset('/images/logo.svg') }}",
+                "description": "{{ __('global.site_description') }}",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "CM",
+                    "addressLocality": "Cameroun"
+                },
+                "sameAs": [
+                    "https://twitter.com/laravelcm",
+                    "https://github.com/laravelcm",
+                    "https://www.youtube.com/@laravelcameroun",
+                    "https://discord.gg/Z52SM4wfPv"
+                ],
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "contactType": "Community Support",
+                    "url": "{{ url('/') }}"
+                }
+            },
+            {
+                "@type": "WebSite",
+                "name": "{{ __('global.site_name') }}",
+                "url": "{{ url('/') }}",
+                "description": "{{ __('global.site_description') }}",
+                "inLanguage": ["fr-CM", "en-CM"],
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "{{ url('/') }}?q={search_term_string}"
+                    },
+                    "query-input": "required name=search_term_string"
+                }
+            },
+            {
+                "@type": "WebPage",
+                "@id": "{{ url('/') }}#webpage",
+                "url": "{{ url('/') }}",
+                "name": "{{ __('global.site_name') }} - Communauté des développeurs PHP & Laravel",
+                "description": "{{ __('global.site_description') }}",
+                "isPartOf": {
+                    "@id": "{{ url('/') }}#website"
+                },
+                "about": {
+                    "@type": "Thing",
+                    "name": "Laravel",
+                    "description": "Framework PHP moderne pour le développement web"
+                },
+                "inLanguage": "{{ app()->getLocale() }}",
+                "potentialAction": [
+                    {
+                        "@type": "ReadAction",
+                        "target": ["{{ url('/') }}"]
+                    }
+                ]
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Accueil",
+                        "item": "{{ url('/') }}"
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+
     <div class="section-gradient isolate pt-16">
         <x-container class="relative border-x border-dotted border-gray-300 dark:border-white/20 px-0">
             <div class="absolute inset-x-0 bottom-0 h-2/3">

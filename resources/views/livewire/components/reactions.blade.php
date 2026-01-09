@@ -1,7 +1,10 @@
 <div @class([
     'relative inline-flex items-center',
     'justify-center' => $direction === 'vertical',
-]) x-data="{ showReactions: false }">
+])
+     x-data="{ showReactions: false }"
+     x-on:liked="showReactions = false"
+>
     @php
         $buttonClasses = 'inline-flex items-center justify-center size-6 rounded-full focus:outline-hidden';
     @endphp
@@ -41,15 +44,24 @@
                     </span>
                 </div>
             @else
-                <div class="flex items-center justify-center gap-x-2">
-                    @foreach ($model->reactions as $reaction)
-                        <img
-                            loading="lazy"
-                            class="size-4"
-                            src="{{ asset("/images/reactions/{$reaction->name}.svg") }}"
-                            alt="{{ $reaction->name }} emoji"
-                        />
-                    @endforeach
+                <div class="flex items-center justify-center gap-4">
+                    <div class="flex gap-2">
+                        @foreach ($model->getReactionsSummary() as $reactionSummary)
+                            <div class="relative inline-flex items-center">
+                                <img
+                                    loading="lazy"
+                                    class="size-4"
+                                    src="{{ asset("/images/reactions/{$reactionSummary['name']}.svg") }}"
+                                    alt="{{ $reactionSummary['name'] }} emoji"
+                                />
+                                @if ($reactionSummary['count'] > 1)
+                                    <span class="absolute -top-1 -right-1 inline-flex items-center justify-center size-3 text-[8px] font-semibold text-white bg-primary-500 rounded-full">
+                                        {{ $reactionSummary['count'] }}
+                                    </span>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
 
                     <span class="text-sm font-medium text-primary-500">
                         {{ $model->reactions->count() }}
@@ -71,7 +83,7 @@
         class="absolute z-30 left-6 w-auto origin-top-left"
         style="display: none"
     >
-        <div class="rounded-full bg-white ring-1 ring-inset ring-gray-100 px-3 py-1.5 dark:bg-gray-800 dark:ring-white/10">
+        <div class="rounded-xl bg-white ring-1 ring-inset ring-gray-100 px-3 py-1.5 dark:bg-gray-800 dark:ring-white/10">
             <div class="reactions flex items-center gap-4">
                 <button type="button" class="{{ $buttonClasses }}" wire:click="userReacted('clap')">
                     <img loading="lazy" src="{{ asset('/images/reactions/clap.svg') }}" class="size-5" alt="clap emoji" />

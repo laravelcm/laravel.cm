@@ -1,40 +1,24 @@
-<div class="py-24 lg:py-32 overflow-hidden section-gradient isolate">
-    <x-container class="relative grid gap-12 lg:grid-cols-4">
+<div class="section-gradient isolate">
+    <x-container class="px-0 line-x py-24 lg:py-32  grid gap-12 lg:grid-cols-4">
         <div class="hidden lg:block">
-            <nav class="space-y-3">
-                <x-link
-                    :href="route('terms')"
-                    @class([
-                        'flex items-center text-sm font-medium hover:underline hover:decoration-1 hover:decoration-dotted',
-                        'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white' => ! request()->routeIs('terms'),
-                        'text-primary-600 dark:text-primary-500' => request()->routeIs('terms'),
-                    ])
-                >
-                    {{ __('global.navigation.terms') }}
-                </x-link>
-                <x-link
-                    :href="route('privacy')"
-                    @class([
-                        'flex items-center text-sm font-medium hover:underline hover:decoration-1 hover:decoration-dotted',
-                        'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white' => ! request()->routeIs('privacy'),
-                        'text-primary-600 dark:text-primary-500' => request()->routeIs('privacy'),
-                    ])
-                >
-                    {{ __('global.navigation.privacy') }}
-                </x-link>
-                <x-link
-                    :href="route('rules')"
-                    @class([
-                        'flex items-center text-sm font-medium hover:underline hover:decoration-1 hover:decoration-dotted',
-                        'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white' => ! request()->routeIs('rules'),
-                        'text-primary-600 dark:text-primary-500' => request()->routeIs('rules'),
-                    ])
-                >
-                    {{ __('global.navigation.rules') }}
-                </x-link>
-            </nav>
+            <x-sticky-content>
+                <nav class="px-4 space-y-2">
+                    @foreach (['terms', 'privacy', 'rules'] as $route)
+                        <x-link
+                            :href="route($route)"
+                            @class([
+                                'flex items-center gap-2 text-sm font-medium hover:underline hover:decoration-1 hover:decoration-dotted',
+                                'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white' => ! request()->routeIs($route),
+                                'text-primary-600 dark:text-primary-500' => request()->routeIs($route),
+                            ])
+                        >
+                            {{ __("global.navigation.{$route}") }}
+                        </x-link>
+                    @endforeach
+                </nav>
+            </x-sticky-content>
         </div>
-        <div class="lg:col-span-3 lg:border-x lg:border-line">
+        <div class="px-4 lg:col-span-3 lg:border-x lg:border-line">
             {{ $slot }}
         </div>
     </x-container>

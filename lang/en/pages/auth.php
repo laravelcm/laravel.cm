@@ -44,6 +44,18 @@ return [
         'go_back' => 'Go back to Log in',
     ],
 
+    'reset' => [
+        'page_title' => 'Reset your password',
+        'submit' => 'Reset password',
+    ],
+
+    'verify' => [
+        'page_title' => 'Email Address Verification',
+        'description' => "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.",
+        'success' => 'A new verification link has been sent to the email address you provided during registration or email modification.',
+        'submit' => 'Resend Verification Email',
+    ],
+
     'continue' => 'Or continue with',
     'continue_with' => 'Continue with :social',
 
