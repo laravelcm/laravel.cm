@@ -34,6 +34,8 @@ final class Reactions extends Component
             $react = Reaction::query()->where('name', $reaction)->first();
 
             Auth::user()->reactTo($this->model, $react); // @phpstan-ignore-line
+
+            $this->dispatch('liked');
         }
     }
 
