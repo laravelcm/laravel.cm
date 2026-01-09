@@ -176,6 +176,9 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 USER www-data
 
 # Copy only necessary files from composer stage
+COPY --from=composer --chown=www-data:www-data /var/www/html/public/css ./public/css
+COPY --from=composer --chown=www-data:www-data /var/www/html/public/js ./public/js
+COPY --from=composer --chown=www-data:www-data /var/www/html/public/fonts ./public/fonts
 COPY --from=composer --chown=www-data:www-data /var/www/html/vendor ./vendor
 
 # Copy built assets from frontend stage
