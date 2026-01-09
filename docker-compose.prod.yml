@@ -125,6 +125,8 @@ services:
             DB_USERNAME_SECOND: "${DB_USERNAME_SECOND:-}"
             DB_PASSWORD_SECOND: "${DB_PASSWORD_SECOND:-}"
             BOOST_BROWSER_LOGS_WATCHER: "${BOOST_BROWSER_LOGS_WATCHER:-false}"
+            PURELINE_USERNAME: "${PURELINE_USERNAME}"
+            PURELINE_LICENSE_KEY: "${PURELINE_LICENSE_KEY}"
             OCTANE_SERVER: "frankenphp"
             CADDY_GLOBAL_OPTIONS: |
                 servers {
