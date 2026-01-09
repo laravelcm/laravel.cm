@@ -16,6 +16,7 @@ export default defineConfig({
       input: [
         "resources/css/app.css",
         "resources/js/app.js",
+        "vendor/shopperlabs/pureline-theme/resources/css/theme.css",
       ],
       refresh: [
         "app/Livewire/**",
