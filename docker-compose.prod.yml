@@ -107,6 +107,7 @@ services:
             UNSPLASH_ACCESS_KEY: ${UNSPLASH_ACCESS_KEY}
             NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
             NIGHTWATCH_REQUEST_SAMPLE_RATE: ${NIGHTWATCH_REQUEST_SAMPLE_RATE}
+            NIGHTWATCH_INGEST_URI: "nightwatch-agent:2407"
             SSH_TUNNEL_USER: "${SSH_TUNNEL_USER:-}"
             SSH_TUNNEL_HOSTNAME: "${SSH_TUNNEL_HOSTNAME:-}"
             SSH_TUNNEL_PORT: "${SSH_TUNNEL_PORT:-22}"
@@ -242,6 +243,7 @@ services:
             UNSPLASH_ACCESS_KEY: ${UNSPLASH_ACCESS_KEY}
             NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
             NIGHTWATCH_REQUEST_SAMPLE_RATE: ${NIGHTWATCH_REQUEST_SAMPLE_RATE}
+            NIGHTWATCH_INGEST_URI: "nightwatch-agent:2407"
             SSH_TUNNEL_USER: "${SSH_TUNNEL_USER:-}"
             SSH_TUNNEL_HOSTNAME: "${SSH_TUNNEL_HOSTNAME:-}"
             SSH_TUNNEL_PORT: "${SSH_TUNNEL_PORT:-22}"
@@ -372,6 +374,7 @@ services:
             UNSPLASH_ACCESS_KEY: ${UNSPLASH_ACCESS_KEY}
             NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
             NIGHTWATCH_REQUEST_SAMPLE_RATE: ${NIGHTWATCH_REQUEST_SAMPLE_RATE}
+            NIGHTWATCH_INGEST_URI: "nightwatch-agent:2407"
             SSH_TUNNEL_USER: "${SSH_TUNNEL_USER:-}"
             SSH_TUNNEL_HOSTNAME: "${SSH_TUNNEL_HOSTNAME:-}"
             SSH_TUNNEL_PORT: "${SSH_TUNNEL_PORT:-22}"
@@ -396,6 +399,20 @@ services:
             - dokploy-network
         depends_on:
             - laravelcm
+
+    nightwatch-agent:
+        image: laravelphp/nightwatch-agent:latest
+        restart: unless-stopped
+        environment:
+            NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
+        healthcheck:
+            test: ["CMD", "php", "nightwatch-status"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 10s
+        networks:
+            - dokploy-network
 
 networks:
     dokploy-network:
