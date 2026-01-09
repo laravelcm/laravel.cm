@@ -24,6 +24,9 @@ storage/baddybugs
 .env.staging
 .env.testing
 
+# MCP configuration (contains sensitive API keys)
+.mcp.json
+
 # Testing
 /.phpunit.cache
 .phpunit.result.cache
