@@ -106,6 +106,14 @@ RUN --mount=type=cache,target=/tmp/.composer-cache \
     fi && \
     composer config http-basic.composer.fluxui.dev "$FLUX_USERNAME" "$FLUX_LICENSE_KEY"
 
+# Validate and configure Pureline credentials (required for anystack packages)
+RUN --mount=type=cache,target=/tmp/.composer-cache \
+    if [ -z "$PURELINE_USERNAME" ] || [ -z "$PURELINE_LICENSE_KEY" ]; then \
+        echo "ERROR: PURELINE_USERNAME and PURELINE_LICENSE_KEY are required build arguments" >&2; \
+        exit 1; \
+    fi && \
+    composer config http-basic.pureline.composer.sh "$PURELINE_USERNAME" "$PURELINE_LICENSE_KEY"
+
 # Install dependencies with cache mount
 RUN --mount=type=cache,target=/tmp/.composer-cache \
     composer install --no-dev --no-interaction --no-scripts --prefer-dist --no-autoloader
