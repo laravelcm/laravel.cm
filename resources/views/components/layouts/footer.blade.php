@@ -107,6 +107,11 @@
                     <x-phosphor-x-logo class="size-5" aria-hidden="true" />
                 </a>
 
+                <a href="{{ url('/rss') }}" target="_blank" class="text-gray-400 hover:text-gray-300">
+                    <span class="sr-only">RSS</span>
+                    <x-phosphor-rss-bold class="size-5" aria-hidden="true" />
+                </a>
+
                 <a href="https://facebook.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">Facebook</span>
                     <x-phosphor-facebook-logo-fill class="size-5" aria-hidden="true" />
