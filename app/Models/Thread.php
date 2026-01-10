@@ -35,6 +35,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection as SupportCollection;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
@@ -188,15 +189,16 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     public function toFeedItem(): FeedItem
     {
-        $updatedAt = \Illuminate\Support\Facades\Date::parse($this->latest_creation); // @phpstan-ignore-line
+        $updatedAt = Date::parse($this->latest_creation); // @phpstan-ignore-line
 
         return FeedItem::create()
             ->id((string) $this->id)
             ->title($this->title)
-            ->summary($this->body)
+            ->summary($this->excerpt(250))
             ->updated($updatedAt)
             ->link(route('forum.show', $this->slug))
-            ->authorName($this->user->name);
+            ->authorName($this->user->name)
+            ->category('Forum');
     }
 
     /**

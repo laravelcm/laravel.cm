@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 
@@ -49,7 +51,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read Collection<int, Tag> $tags
  * @property-read Collection<int, Reaction> $reactions
  */
-final class Discussion extends Model implements ReactableInterface, ReplyInterface, Sitemapable, SpamReportableContract, SubscribeInterface, Viewable
+final class Discussion extends Model implements Feedable, ReactableInterface, ReplyInterface, Sitemapable, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;
 
@@ -70,6 +72,14 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     protected $guarded = [];
 
     protected bool $removeViewsOnDelete = true;
+
+    public static function getFeedItems(): \Illuminate\Support\Collection
+    {
+        return self::with(['user', 'tags', 'replies'])
+            ->latest()
+            ->limit(50)
+            ->get();
+    }
 
     public function newEloquentBuilder($query): DiscussionQueryBuilder
     {
@@ -99,6 +109,18 @@ final class Discussion extends Model implements ReactableInterface, ReplyInterfa
     public function excerpt(int $limit = 110): string
     {
         return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
+    }
+
+    public function toFeedItem(): FeedItem
+    {
+        return FeedItem::create()
+            ->id((string) $this->id)
+            ->title($this->title)
+            ->summary($this->excerpt(250))
+            ->updated($this->updated_at)
+            ->link(route('discussions.show', $this->slug))
+            ->authorName($this->user->name)
+            ->category('Discussion');
     }
 
     public function toSitemapTag(): Url

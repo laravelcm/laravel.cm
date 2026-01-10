@@ -41,6 +41,11 @@ final class Channel extends Model
 
     protected $guarded = [];
 
+    public function getLocale(): string
+    {
+        return app()->getLocale();
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';

@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sitemap\Contracts\Sitemapable;
@@ -54,7 +56,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read Collection<int, Tag> $tags
  */
 #[ObservedBy(ArticleObserver::class)]
-final class Article extends Model implements HasMedia, ReactableInterface, Sitemapable, Viewable
+final class Article extends Model implements Feedable, HasMedia, ReactableInterface, Sitemapable, Viewable
 {
     use HasAuthor;
     use HasFactory;
@@ -87,6 +89,35 @@ final class Article extends Model implements HasMedia, ReactableInterface, Sitem
             ->whereNull('tweet_id')
             ->orderBy('published_at', 'asc')
             ->first();
+    }
+
+    public static function getFeedItems(): \Illuminate\Support\Collection
+    {
+        return self::with(['user', 'tags'])
+            ->published()
+            ->latest('published_at')
+            ->limit(50)
+            ->get();
+    }
+
+    public function toFeedItem(): FeedItem
+    {
+        $feedItem = FeedItem::create()
+            ->id((string) $this->id)
+            ->title($this->title)
+            ->summary($this->excerpt(250))
+            ->updated($this->published_at ?? $this->updated_at)
+            ->link(route('articles.show', $this->slug))
+            ->authorName($this->user->name)
+            ->category('Article');
+
+        $image = $this->getFirstMediaUrl('media');
+
+        if (filled($image)) {
+            $feedItem->image($image);
+        }
+
+        return $feedItem;
     }
 
     public function getRouteKeyName(): string
