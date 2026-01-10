@@ -43,7 +43,7 @@ final class Channel extends Model
 
     public function getLocale(): string
     {
-        return app()->getLocale() ?? config('app.fallback_locale', 'fr');
+        return app()->getLocale();
     }
 
     public function getRouteKeyName(): string
