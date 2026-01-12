@@ -11,4 +11,6 @@ enum NotificationType: string
     case Reply = 'new_reply';
 
     case Comment = 'new_comment';
+
+    case ArticleDeclined = 'article_declined';
 }

@@ -47,16 +47,21 @@
 
                                 <div class="flex-1 flex items-start gap-2 min-w-0">
                                     <div class="flex-1">
-                                        @if ($notification->data['type'] === \App\Enums\NotificationType::Mention->value)
+                                        @if (isset($notification->data['type']) && $notification->data['type'] === \App\Enums\NotificationType::Mention->value)
                                             <flux:text size="sm" class="text-gray-900 dark:text-white">
                                                 <strong>{{ $notification->data['author_name'] }}</strong>
                                                 {{ __('notifications.database.mentioned_in') }}
                                                 <strong>{{ $notification->data['replyable_subject'] }}</strong>
                                             </flux:text>
-                                        @elseif ($notification->data['type'] === \App\Enums\NotificationType::Reply->value)
+                                        @elseif (isset($notification->data['type']) && $notification->data['type'] === \App\Enums\NotificationType::Reply->value)
                                             <flux:text size="sm" class="text-gray-900 dark:text-white">
                                                 {{ __('notifications.database.new_reply_in') }}
                                                 <strong>{{ $notification->data['replyable_subject'] }}</strong>
+                                            </flux:text>
+                                        @elseif (isset($notification->data['type']) && $notification->data['type'] === \App\Enums\NotificationType::ArticleDeclined->value)
+                                            <flux:text size="sm" class="text-gray-900 dark:text-white">
+                                                {{ __('notifications.database.article_declined') }}
+                                                <strong>{{ $notification->data['article']->title ?? '' }}</strong>
                                             </flux:text>
                                         @else
                                             <flux:text size="sm" class="text-gray-900 dark:text-white">
