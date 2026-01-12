@@ -43,7 +43,8 @@ final class Channel extends Model
 
     public function getLocale(): string
     {
-        return app()->getLocale();
+        // @phpstan-ignore-next-line nullCoalesce.expr
+        return app()->getLocale() ?? config('app.fallback_locale', 'fr');
     }
 
     public function getRouteKeyName(): string
