@@ -68,6 +68,7 @@ return [
         'mentioned_in' => 'mentioned you in',
         'new_reply_in' => 'New reply in',
         'new_notification' => 'New notification',
+        'article_declined' => 'Your article was declined:',
         'unauthorized_action' => 'This action is unauthorized.',
     ],
 ];

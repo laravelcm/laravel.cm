@@ -68,6 +68,7 @@ return [
         'mentioned_in' => 'vous a mentionné dans',
         'new_reply_in' => 'Nouvelle réponse dans',
         'new_notification' => 'Nouvelle notification',
+        'article_declined' => 'Votre article a été refusé :',
         'unauthorized_action' => 'Cette action n\'est pas autorisée.',
     ],
 ];
