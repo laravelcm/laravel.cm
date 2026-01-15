@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@github/markdown-toolbar-element": "^2.2.3",
-    "@github/text-expander-element": "^2.9.2",
+    "@github/text-expander-element": "^2.9.4",
     "@ryangjchandler/alpine-tooltip": "^2.0.1",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/postcss": "^4.1.18",
@@ -22,7 +22,7 @@
     "laravel-vite-plugin": "^2.0.1",
     "lodash": "^4.17.21",
     "npm-check-updates": "^19.3.1",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.0",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "shiki": "^3.21.0",
