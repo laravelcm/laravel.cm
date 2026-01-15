@@ -65,20 +65,6 @@ services:
                 watch routes
                 watch composer.lock
                 watch .env
-            SSH_TUNNEL_USER: "${SSH_TUNNEL_USER:-}"
-            SSH_TUNNEL_HOSTNAME: "${SSH_TUNNEL_HOSTNAME:-}"
-            SSH_TUNNEL_PORT: "${SSH_TUNNEL_PORT:-22}"
-            SSH_TUNNEL_PRIVATE_KEY: "${SSH_TUNNEL_PRIVATE_KEY:-}"
-            SSH_TUNNEL_LOCAL_PORT: "${SSH_TUNNEL_LOCAL_PORT:-3307}"
-            SSH_TUNNEL_BIND_ADDRESS: "${SSH_TUNNEL_BIND_ADDRESS:-127.0.0.1}"
-            SSH_TUNNEL_BIND_PORT: "${SSH_TUNNEL_BIND_PORT:-3306}"
-            SSH_TUNNEL_VERIFY_PROCESS: "${SSH_TUNNEL_VERIFY_PROCESS:-bash}"
-            DB_CONNECTION_SECOND: "${DB_CONNECTION_SECOND:-mysql}"
-            DB_HOST_SECOND: "${DB_HOST_SECOND:-127.0.0.1}"
-            DB_PORT_SECOND: "${DB_PORT_SECOND:-3307}"
-            DB_DATABASE_SECOND: "${DB_DATABASE_SECOND:-}"
-            DB_USERNAME_SECOND: "${DB_USERNAME_SECOND:-}"
-            DB_PASSWORD_SECOND: "${DB_PASSWORD_SECOND:-}"
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:${APP_PORT:-8080}/up"]
             timeout: 30s
