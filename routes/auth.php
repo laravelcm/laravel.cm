@@ -27,11 +27,14 @@ Route::middleware(['auth', 'checkIfBanned'])->group(function (): void {
         ->name('verification.verify');
 
     Route::post('email/verification-notification', function (Illuminate\Http\Request $request) {
-        if ($request->user()->hasVerifiedEmail()) {
+        /** @var App\Models\User $user */
+        $user = $request->user();
+
+        if ($user->hasVerifiedEmail()) {
             return redirect()->intended(route('dashboard.index'));
         }
 
-        $request->user()->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
 
         notify()
             ->title(__('pages/auth.verify.success'))

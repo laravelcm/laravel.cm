@@ -1,22 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Livewire\Actions\Logout;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new class extends Component
-{
+new class extends Component {
     public function sendVerification(): void
     {
-        if (Auth::user()->hasVerifiedEmail()) {
+        /** @var User $user */
+        $user = Auth::user();
+
+        if ($user->hasVerifiedEmail()) {
             $this->redirectIntended(default: route('dashboard.index', absolute: false), navigate: true);
 
             return;
         }
 
-        Auth::user()->sendEmailVerificationNotification();
+        $user->sendEmailVerificationNotification();
 
         Session::flash('status', 'verification-link-sent');
     }
