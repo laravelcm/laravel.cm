@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Articles;
+namespace App\Filament\Cpanel\Resources\Articles;
 
 use App\Actions\Article\ApprovedArticleAction;
 use App\Actions\Article\DeclineArticleAction;
 use App\Models\Article;
+use App\Models\Builders\ArticleQueryBuilder;
 use Awcodes\BadgeableColumn\Components\Badge;
 use Awcodes\BadgeableColumn\Components\BadgeableColumn;
 use BackedEnum;
@@ -14,9 +15,7 @@ use Filament\Actions;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
-use Filament\Support\Enums\Width;
 use Filament\Tables\Columns;
-use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,7 +26,7 @@ final class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-newspaper';
+    protected static string|BackedEnum|null $navigationIcon = 'phosphor-pencil-line-duotone';
 
     public static function getNavigationGroup(): string
     {
@@ -41,11 +40,13 @@ final class ArticleResource extends Resource
             ->columns([
                 Columns\SpatieMediaLibraryImageColumn::make('media')
                     ->collection('media')
-                    ->label('Image'),
+                    ->label(__('Image'))
+                    ->circular(),
                 Columns\TextColumn::make('title')
-                    ->label('Titre')
+                    ->label(__('Titre'))
                     ->limit(50)
                     ->tooltip(function (Columns\TextColumn $column): ?string {
+                        /** @var string $state */
                         $state = $column->getState();
 
                         if (mb_strlen($state) <= $column->getCharacterLimit()) {
@@ -57,23 +58,25 @@ final class ArticleResource extends Resource
                     ->sortable()
                     ->searchable(),
                 Columns\TextColumn::make('user.name')
-                    ->label('Auteur')
+                    ->label(__('Auteur'))
                     ->sortable()
                     ->searchable(),
                 Columns\TextColumn::make('created_at')
                     ->label(__('Date de création'))
-                    ->date(),
+                    ->date()
+                    ->toggleable()
+                    ->toggledHiddenByDefault(),
                 Columns\IconColumn::make('published_at')
-                    ->label('Publié')
+                    ->label(__('Publié'))
                     ->getStateUsing(fn (Article $record): bool => $record->isPublished())
                     ->boolean(),
                 Columns\TextColumn::make('submitted_at')
-                    ->label('Soumission')
+                    ->label(__('Soumission'))
                     ->placeholder('N/A')
                     ->date(),
                 BadgeableColumn::make('status')
-                    ->label('Statut')
-                    ->getStateUsing(function ($record): string {
+                    ->label(__('Statut'))
+                    ->getStateUsing(function (Article $record): string {
                         if ($record->approved_at) {
                             return $record->approved_at->format('d/m/Y');
                         }
@@ -84,7 +87,7 @@ final class ArticleResource extends Resource
 
                         return '';
                     })
-                    ->prefixBadges(function ($record): array {
+                    ->prefixBadges(function (Article $record): array {
                         if ($record->approved_at) {
                             return [
                                 Badge::make('Approuvé')->color('success'),
@@ -105,7 +108,7 @@ final class ArticleResource extends Resource
                 Actions\ActionGroup::make([
                     Actions\Action::make('approved')
                         ->visible(fn (Article $record): bool => $record->isAwaitingApproval())
-                        ->label('Approuver')
+                        ->label(__('Approuver'))
                         ->icon('heroicon-s-check')
                         ->color('success')
                         ->modalHeading(__('Voulez vous approuver cet article'))
@@ -119,7 +122,7 @@ final class ArticleResource extends Resource
                         }),
                     Actions\Action::make('declined')
                         ->visible(fn (Article $record): bool => $record->isAwaitingApproval())
-                        ->label('Décliner')
+                        ->label(__('Décliner'))
                         ->icon('heroicon-s-x-mark')
                         ->color('warning')
                         ->schema([
@@ -128,9 +131,9 @@ final class ArticleResource extends Resource
                                 ->maxLength(255)
                                 ->required(),
                         ])
-                        ->modalHeading('Décliner l\'article')
-                        ->modalDescription('Veuillez fournir une raison détaillée pour le refus de cet article. L\'auteur recevra cette explication.')
-                        ->successNotificationTitle('Article décliné avec succès')
+                        ->modalHeading(__('Décliner l\'article'))
+                        ->modalDescription(__('Veuillez fournir une raison détaillée pour le refus de cet article. L\'auteur recevra cette explication.'))
+                        ->successNotificationTitle(__('Article décliné avec succès'))
                         ->requiresConfirmation()
                         ->modalIcon('heroicon-s-x-mark')
                         ->action(function (array $data, Article $record): void {
@@ -139,8 +142,8 @@ final class ArticleResource extends Resource
                             resolve(DeclineArticleAction::class)->execute($data['reason'], $record);
 
                             Notification::make()
-                                ->title('Article décliné')
-                                ->body('L\'auteur a été notifié de la raison du refus.')
+                                ->title(__('Article décliné'))
+                                ->body(__('L\'auteur a été notifié de la raison du refus.'))
                                 ->success()
                                 ->send();
                         }),
@@ -148,39 +151,51 @@ final class ArticleResource extends Resource
                         ->icon('untitledui-eye')
                         ->url(fn (Article $record): string => route('articles.show', $record))
                         ->openUrlInNewTab()
-                        ->label('Afficher'),
+                        ->label(__('Afficher')),
                     Actions\DeleteAction::make(),
                 ]),
             ])
             ->toolbarActions([
                 Actions\BulkActionGroup::make([
                     Actions\BulkAction::make('declined')
-                        ->label('Décliner la sélection')
+                        ->label(__('Décliner la sélection'))
                         ->icon('heroicon-s-x-mark')
                         ->color('warning')
                         ->action(fn (Collection $records) => $records->each->update(['declined_at' => now()]))
                         ->deselectRecordsAfterCompletion()
                         ->requiresConfirmation()
                         ->modalIcon('heroicon-s-x-mark')
-                        ->modalHeading('Décliner')
-                        ->modalDescription('Voulez-vous vraiment décliner ces articles ?')
-                        ->modalSubmitActionLabel('Confirmer'),
+                        ->modalHeading(__('Décliner'))
+                        ->modalDescription(__('Voulez-vous vraiment décliner ces articles ?'))
+                        ->modalSubmitActionLabel(__('Confirmer')),
                     Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->filters([
-                Filters\TernaryFilter::make('submitted_at')
-                    ->label('Soumis')
-                    ->nullable(),
-                Filters\TernaryFilter::make('declined_at')
-                    ->label('Décliner')
-                    ->nullable(),
-                Filters\TernaryFilter::make('approved_at')
-                    ->label('Approuver')
-                    ->nullable(),
-            ], layout: FiltersLayout::AboveContentCollapsible)
-            ->filtersFormColumns(4)
-            ->filtersFormWidth(Width::FourExtraLarge);
+                Filters\SelectFilter::make('status')
+                    ->label(__('Statut'))
+                    ->options([
+                        'pending' => __('En attente'),
+                        'approved' => __('Approuvé'),
+                        'declined' => __('Décliné'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        /** @var ArticleQueryBuilder $query */
+                        return match ($data['value'] ?? null) {
+                            'pending' => $query->awaitingApproval(),
+                            'approved' => $query->published(),
+                            'declined' => $query->declined(),
+                            default => $query,
+                        };
+                    }),
+                Filters\SelectFilter::make('user_id')
+                    ->label(__('Auteur'))
+                    ->relationship('user', 'name', fn (Builder $query) => $query->whereHas('articles'))
+                    ->searchable()
+                    ->multiple()
+                    ->preload()
+                    ->optionsLimit(10),
+            ]);
     }
 
     public static function getPages(): array

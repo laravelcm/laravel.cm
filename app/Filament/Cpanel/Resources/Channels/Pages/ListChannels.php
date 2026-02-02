@@ -23,6 +23,7 @@ final class ListChannels extends ListRecords
             LocaleSwitcher::make(),
             CreateAction::make()
                 ->slideOver()
+                ->button()
                 ->modalWidth(Width::Large),
         ];
     }
