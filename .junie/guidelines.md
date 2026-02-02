@@ -9,7 +9,7 @@ The Laravel Boost guidelines are specifically curated by Laravel maintainers for
 This application is a Laravel application and its main Laravel ecosystems package & versions are below. You are an expert with them all. Ensure you abide by these specific packages & versions.
 
 - php - 8.4.10
-- filament/filament (FILAMENT) - v4
+- filament/filament (FILAMENT) - v5
 - laravel/framework (LARAVEL) - v12
 - laravel/nightwatch (NIGHTWATCH) - v1
 - laravel/octane (OCTANE) - v2
@@ -17,15 +17,15 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - laravel/socialite (SOCIALITE) - v5
 - livewire/flux (FLUXUI_FREE) - v2
 - livewire/flux-pro (FLUXUI_PRO) - v2
-- livewire/livewire (LIVEWIRE) - v3
+- livewire/livewire (LIVEWIRE) - v4
 - livewire/volt (VOLT) - v1
 - larastan/larastan (LARASTAN) - v3
 - laravel/breeze (BREEZE) - v2
 - laravel/mcp (MCP) - v0
 - laravel/pint (PINT) - v1
 - laravel/sail (SAIL) - v1
-- pestphp/pest (PEST) - v3
-- phpunit/phpunit (PHPUNIT) - v11
+- pestphp/pest (PEST) - v4
+- phpunit/phpunit (PHPUNIT) - v12
 - rector/rector (RECTOR) - v2
 - prettier (PRETTIER) - v3
 - tailwindcss (TAILWINDCSS) - v4
@@ -273,41 +273,6 @@ accordion, autocomplete, avatar, badge, brand, breadcrumbs, button, calendar, ca
     ->assertSeeLivewire(CreatePost::class);
 </code-snippet>
 
-=== livewire/v3 rules ===
-
-## Livewire 3
-
-### Key Changes From Livewire 2
-- These things changed in Livewire 3, but may not have been updated in this application. Verify this application's setup to ensure you conform with application conventions.
-    - Use `wire:model.live` for real-time updates, `wire:model` is now deferred by default.
-    - Components now use the `App\Livewire` namespace (not `App\Http\Livewire`).
-    - Use `$this->dispatch()` to dispatch events (not `emit` or `dispatchBrowserEvent`).
-    - Use the `components.layouts.app` view as the typical layout path (not `layouts.app`).
-
-### New Directives
-- `wire:show`, `wire:transition`, `wire:cloak`, `wire:offline`, `wire:target` are available for use. Use the documentation to find usage examples.
-
-### Alpine
-- Alpine is now included with Livewire; don't manually include Alpine.js.
-- Plugins included with Alpine: persist, intersect, collapse, and focus.
-
-### Lifecycle Hooks
-- You can listen for `livewire:init` to hook into Livewire initialization, and `fail.status === 419` for the page expiring:
-
-<code-snippet name="Livewire Init Hook Example" lang="js">
-document.addEventListener('livewire:init', function () {
-    Livewire.hook('request', ({ fail }) => {
-        if (fail && fail.status === 419) {
-            alert('Your session expired');
-        }
-    });
-
-    Livewire.hook('message.failed', (message, component) => {
-        console.error(message);
-    });
-});
-</code-snippet>
-
 === volt/core rules ===
 
 ## Livewire Volt
@@ -493,6 +458,50 @@ it('has emails', function (string $email) {
 ]);
 </code-snippet>
 
+=== pest/v4 rules ===
+
+## Pest 4
+
+- Pest 4 is a huge upgrade to Pest and offers: browser testing, smoke testing, visual regression testing, test sharding, and faster type coverage.
+- Browser testing is incredibly powerful and useful for this project.
+- Browser tests should live in `tests/Browser/`.
+- Use the `search-docs` tool for detailed guidance on utilizing these features.
+
+### Browser Testing
+- You can use Laravel features like `Event::fake()`, `assertAuthenticated()`, and model factories within Pest 4 browser tests, as well as `RefreshDatabase` (when needed) to ensure a clean state for each test.
+- Interact with the page (click, type, scroll, select, submit, drag-and-drop, touch gestures, etc.) when appropriate to complete the test.
+- If requested, test on multiple browsers (Chrome, Firefox, Safari).
+- If requested, test on different devices and viewports (like iPhone 14 Pro, tablets, or custom breakpoints).
+- Switch color schemes (light/dark mode) when appropriate.
+- Take screenshots or pause tests for debugging when appropriate.
+
+### Example Tests
+
+<code-snippet name="Pest Browser Test Example" lang="php">
+it('may reset the password', function () {
+    Notification::fake();
+
+    $this->actingAs(User::factory()->create());
+
+    $page = visit('/sign-in'); // Visit on a real browser...
+
+    $page->assertSee('Sign In')
+        ->assertNoJavascriptErrors() // or ->assertNoConsoleLogs()
+        ->click('Forgot Password?')
+        ->fill('email', 'nuno@laravel.com')
+        ->click('Send Reset Link')
+        ->assertSee('We have emailed your password reset link!')
+
+    Notification::assertSent(ResetPassword::class);
+});
+</code-snippet>
+
+<code-snippet name="Pest Smoke Testing Example" lang="php">
+$pages = visit(['/', '/about', '/contact']);
+
+$pages->assertNoJavascriptErrors()->assertNoConsoleLogs();
+</code-snippet>
+
 === tailwindcss/core rules ===
 
 ## Tailwind CSS
@@ -560,97 +569,135 @@ it('has emails', function (string $email) {
 === filament/filament rules ===
 
 ## Filament
-- Filament is used by this application, check how and where to follow existing application conventions.
-- Filament is a Server-Driven UI (SDUI) framework for Laravel. It allows developers to define user interfaces in PHP using structured configuration objects. It is built on top of Livewire, Alpine.js, and Tailwind CSS.
-- You can use the `search-docs` tool to get information from the official Filament documentation when needed. This is very useful for Artisan command arguments, specific code examples, testing functionality, relationship management, and ensuring you're following idiomatic practices.
-- Utilize static `make()` methods for consistent component initialization.
+
+- Filament is used by this application. Follow existing conventions for how and where it's implemented.
+- Filament is a Server-Driven UI (SDUI) framework for Laravel that lets you define user interfaces in PHP using structured configuration objects. Built on Livewire, Alpine.js, and Tailwind CSS.
+- Use the `search-docs` tool for official documentation on Artisan commands, code examples, testing, relationships, and idiomatic practices.
 
 ### Artisan
-- You must use the Filament specific Artisan commands to create new files or components for Filament. You can find these with the `list-artisan-commands` tool, or with `php artisan` and the `--help` option.
-- Inspect the required options, always pass `--no-interaction`, and valid arguments for other options when applicable.
 
-### Filament's Core Features
-- Actions: Handle doing something within the application, often with a button or link. Actions encapsulate the UI, the interactive modal window, and the logic that should be executed when the modal window is submitted. They can be used anywhere in the UI and are commonly used to perform one-time actions like deleting a record, sending an email, or updating data in the database based on modal form input.
-- Forms: Dynamic forms rendered within other features, such as resources, action modals, table filters, and more.
-- Infolists: Read-only lists of data.
-- Notifications: Flash notifications displayed to users within the application.
-- Panels: The top-level container in Filament that can include all other features like pages, resources, forms, tables, notifications, actions, infolists, and widgets.
-- Resources: Static classes that are used to build CRUD interfaces for Eloquent models. Typically live in `app/Filament/Resources`.
-- Schemas: Represent components that define the structure and behavior of the UI, such as forms, tables, or lists.
-- Tables: Interactive tables with filtering, sorting, pagination, and more.
-- Widgets: Small component included within dashboards, often used for displaying data in charts, tables, or as a stat.
+- Use Filament-specific Artisan commands to create files. Find them with `list-artisan-commands` or `php artisan --help`.
+- Inspect required options and always pass `--no-interaction`.
 
-### Relationships
-- Determine if you can use the `relationship()` method on form components when you need `options` for a select, checkbox, repeater, or when building a `Fieldset`:
+### Patterns
 
-<code-snippet name="Relationship example for Form Select" lang="php">
-Forms\Components\Select::make('user_id')
-    ->label('Author')
-    ->relationship('author')
-    ->required(),
+Use static `make()` methods to initialize components. Most configuration methods accept a `Closure` for dynamic values.
+
+Use `Get $get` to read other form field values for conditional logic:
+
+<code-snippet name="Conditional form field" lang="php">
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Utilities\Get;
+
+Select::make('type')
+    ->options(CompanyType::class)
+    ->required()
+    ->live(),
+
+TextInput::make('company_name')
+    ->required()
+    ->visible(fn (Get $get): bool => $get('type') === 'business'),
+
 </code-snippet>
 
-## Testing
-- It's important to test Filament functionality for user satisfaction.
-- Ensure that you are authenticated to access the application within the test.
-- Filament uses Livewire, so start assertions with `livewire()` or `Livewire::test()`.
+Use `state()` with a `Closure` to compute derived column values:
 
-### Example Tests
+<code-snippet name="Computed table column" lang="php">
+use Filament\Tables\Columns\TextColumn;
+
+TextColumn::make('full_name')
+    ->state(fn (User $record): string => "{$record->first_name} {$record->last_name}"),
+
+</code-snippet>
+
+Actions encapsulate a button with optional modal form and logic:
+
+<code-snippet name="Action with modal form" lang="php">
+use Filament\Actions\Action;
+use Filament\Forms\Components\TextInput;
+
+Action::make('updateEmail')
+    ->form([
+        TextInput::make('email')->email()->required(),
+    ])
+    ->action(fn (array $data, User $record): void => $record->update($data)),
+
+</code-snippet>
+
+### Testing
+
+Authenticate before testing panel functionality. Filament uses Livewire, so use `livewire()` or `Livewire::test()`:
 
 <code-snippet name="Filament Table Test" lang="php">
     livewire(ListUsers::class)
         ->assertCanSeeTableRecords($users)
         ->searchTable($users->first()->name)
         ->assertCanSeeTableRecords($users->take(1))
-        ->assertCanNotSeeTableRecords($users->skip(1))
-        ->searchTable($users->last()->email)
-        ->assertCanSeeTableRecords($users->take(-1))
-        ->assertCanNotSeeTableRecords($users->take($users->count() - 1));
+        ->assertCanNotSeeTableRecords($users->skip(1));
+
 </code-snippet>
 
 <code-snippet name="Filament Create Resource Test" lang="php">
     livewire(CreateUser::class)
         ->fillForm([
-            'name' => 'Howdy',
-            'email' => 'howdy@example.com',
+            'name' => 'Test',
+            'email' => 'test@example.com',
         ])
         ->call('create')
         ->assertNotified()
         ->assertRedirect();
 
     assertDatabaseHas(User::class, [
-        'name' => 'Howdy',
-        'email' => 'howdy@example.com',
+        'name' => 'Test',
+        'email' => 'test@example.com',
     ]);
+
 </code-snippet>
 
-<code-snippet name="Testing Multiple Panels (setup())" lang="php">
-    use Filament\Facades\Filament;
+<code-snippet name="Testing Validation" lang="php">
+    livewire(CreateUser::class)
+        ->fillForm([
+            'name' => null,
+            'email' => 'invalid-email',
+        ])
+        ->call('create')
+        ->assertHasFormErrors([
+            'name' => 'required',
+            'email' => 'email',
+        ])
+        ->assertNotNotified();
 
-    Filament::setCurrentPanel('app');
 </code-snippet>
 
-<code-snippet name="Calling an Action in a Test" lang="php">
-    livewire(EditInvoice::class, [
-        'invoice' => $invoice,
-    ])->callAction('send');
+<code-snippet name="Calling Actions" lang="php">
+    use Filament\Actions\DeleteAction;
+    use Filament\Actions\Testing\TestAction;
 
-    expect($invoice->refresh())->isSent()->toBeTrue();
+    livewire(EditUser::class, ['record' => $user->id])
+        ->callAction(DeleteAction::class)
+        ->assertNotified()
+        ->assertRedirect();
+
+    livewire(ListUsers::class)
+        ->callAction(TestAction::make('promote')->table($user), [
+            'role' => 'admin',
+        ])
+        ->assertNotified();
+
 </code-snippet>
 
-### Important Version 4 Changes
-- File visibility is now `private` by default.
-- The `deferFilters` method from Filament v3 is now the default behavior in Filament v4, so users must click a button before the filters are applied to the table. To disable this behavior, you can use the `deferFilters(false)` method.
-- The `Grid`, `Section`, and `Fieldset` layout components no longer span all columns by default.
-- The `all` pagination page method is not available for tables by default.
-- All action classes extend `Filament\Actions\Action`. No action classes exist in `Filament\Tables\Actions`.
-- The `Form` & `Infolist` layout components have been moved to `Filament\Schemas\Components`, for example `Grid`, `Section`, `Fieldset`, `Tabs`, `Wizard`, etc.
-- A new `Repeater` component for Forms has been added.
-- Icons now use the `Filament\Support\Icons\Heroicon` Enum by default. Other options are available and documented.
+### Common Mistakes
 
-### Organize Component Classes Structure
-- Schema components: `Schemas/Components/`
-- Table columns: `Tables/Columns/`
-- Table filters: `Tables/Filters/`
-- Actions: `Actions/`
+**Commonly Incorrect Namespaces:**
+- Form fields (TextInput, Select, etc.): `Filament\Forms\Components\`
+- Infolist entries (for read-only views) (TextEntry, IconEntry, etc.): `Filament\Infolists\Components\`
+- Layout components (Grid, Section, Fieldset, Tabs, Wizard, etc.): `Filament\Schemas\Components\`
+- Schema utilities (Get, Set, etc.): `Filament\Schemas\Components\Utilities\`
+- Actions: `Filament\Actions\` (no `Filament\Tables\Actions\` etc.)
+- Icons: `Filament\Support\Icons\Heroicon` enum (e.g., `Heroicon::PencilSquare`)
+
+**Recent breaking changes to Filament:**
+- File visibility is `private` by default. Use `->visibility('public')` for public access.
+- `Grid`, `Section`, and `Fieldset` no longer span all columns by default.
 </laravel-boost-guidelines>

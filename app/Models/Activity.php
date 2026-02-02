@@ -6,11 +6,11 @@ namespace App\Models;
 
 use App\Models\Traits\HasPublicId;
 use Carbon\CarbonInterface;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Support\Collection;
 
 /**
  * @property-read int $id
@@ -33,9 +33,9 @@ final class Activity extends Model
     protected $guarded = [];
 
     /**
-     * @return Collection<int, Activity>
+     * @return \Illuminate\Support\Collection<string, Collection<int, Activity>>
      */
-    public static function feed(User $user, int $take = 50): Collection
+    public static function feed(User $user, int $take = 50): \Illuminate\Support\Collection
     {
         return self::query()
             ->where('user_id', $user->id)
@@ -48,7 +48,7 @@ final class Activity extends Model
     }
 
     /**
-     * @return Collection<int, Model>
+     * @return Collection<int, Activity>
      */
     public static function latestFeed(User $user, int $take = 10): Collection
     {
