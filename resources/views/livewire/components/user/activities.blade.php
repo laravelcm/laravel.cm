@@ -3,7 +3,7 @@
         {{ __('pages/account.activities.latest_of', ['name' => $user->name]) }}
     </h3>
     <ul role="list" class="mt-6 -mb-6">
-        @forelse($this->activities as $activity)
+        @forelse ($this->activities as $activity)
             @if ($activity->subject)
                 <li>
                     <x-dynamic-component

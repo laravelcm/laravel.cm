@@ -1,12 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			rawMessage: 'Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''.'
-			identifier: larastan.noEnvCallsOutsideOfConfig
-			count: 23
-			path: app-modules/database-migration/config/ssh-tunnel.php
-
-		-
 			rawMessage: Binary operation "." between mixed and '/' results in an error.
 			identifier: binaryOp.invalid
 			count: 1
@@ -277,132 +271,6 @@ parameters:
 			path: app-modules/database-migration/src/Services/SshTunnelService.php
 
 		-
-			rawMessage: Access to an undefined property PHPUnit\Framework\TestCase::$app.
-			identifier: property.notFound
-			count: 7
-			path: app-modules/database-migration/tests/Feature/MigrateDatabaseCommandTest.php
-
-		-
-			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::artisan().'
-			identifier: method.notFound
-			count: 5
-			path: app-modules/database-migration/tests/Feature/MigrateDatabaseCommandTest.php
-
-		-
-			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::mock().'
-			identifier: method.notFound
-			count: 7
-			path: app-modules/database-migration/tests/Feature/MigrateDatabaseCommandTest.php
-
-		-
-			rawMessage: Access to an undefined property PHPUnit\Framework\TestCase::$app.
-			identifier: property.notFound
-			count: 2
-			path: app-modules/database-migration/tests/Feature/SshTunnelCommandTest.php
-
-		-
-			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::artisan().'
-			identifier: method.notFound
-			count: 3
-			path: app-modules/database-migration/tests/Feature/SshTunnelCommandTest.php
-
-		-
-			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::spy().'
-			identifier: method.notFound
-			count: 2
-			path: app-modules/database-migration/tests/Feature/SshTunnelCommandTest.php
-
-		-
-			rawMessage: Access to an undefined property PHPUnit\Framework\TestCase::$service.
-			identifier: property.notFound
-			count: 2
-			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
-
-		-
-			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::mock().'
-			identifier: method.notFound
-			count: 4
-			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
-
-		-
-			rawMessage: 'Call to method toBe() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 1
-			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
-
-		-
-			rawMessage: 'Call to method toBeArray() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 1
-			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
-
-		-
-			rawMessage: 'Call to method toBeInstanceOf() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 1
-			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
-
-		-
-			rawMessage: 'Call to method toBeTrue() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 4
-			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
-
-		-
-			rawMessage: 'Call to method toContain() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 1
-			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
-
-		-
-			rawMessage: 'Call to method toHaveKey() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 4
-			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
-
-		-
-			rawMessage: Unable to resolve the template type TValue in call to function expect
-			identifier: argument.templateType
-			count: 1
-			path: app-modules/database-migration/tests/Unit/DatabaseMigrationServiceTest.php
-
-		-
-			rawMessage: Access to an undefined property PHPUnit\Framework\TestCase::$service.
-			identifier: property.notFound
-			count: 2
-			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
-
-		-
-			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::mock().'
-			identifier: method.notFound
-			count: 2
-			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
-
-		-
-			rawMessage: 'Call to method toBeFalse() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 1
-			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
-
-		-
-			rawMessage: 'Call to method toBeInstanceOf() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 1
-			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
-
-		-
-			rawMessage: 'Call to method toThrow() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 1
-			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
-
-		-
-			rawMessage: Unable to resolve the template type TValue in call to function expect
-			identifier: argument.templateType
-			count: 1
-			path: app-modules/database-migration/tests/Unit/SshTunnelServiceTest.php
-
-		-
 			rawMessage: 'Call to function property_exists() with $this(Laravelcm\Gamify\PointType) and ''payee'' will always evaluate to true.'
 			identifier: function.alreadyNarrowedType
 			count: 1
@@ -425,162 +293,6 @@ parameters:
 			identifier: missingType.property
 			count: 1
 			path: app-modules/gamify/src/PointType.php
-
-		-
-			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakeCreatePostPoint::$points has no type specified.
-			identifier: missingType.property
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakeCreatePostPoint.php
-
-		-
-			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakePayeeFieldPoint::$points has no type specified.
-			identifier: missingType.property
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakePayeeFieldPoint.php
-
-		-
-			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakePointTypeWithoutPayee::$points has no type specified.
-			identifier: missingType.property
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakePointTypeWithoutPayee.php
-
-		-
-			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakePointTypeWithoutSubject::$point has no type specified.
-			identifier: missingType.property
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakePointTypeWithoutSubject.php
-
-		-
-			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakePointWithoutPoint::$payee has no type specified.
-			identifier: missingType.property
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakePointWithoutPoint.php
-
-		-
-			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakeWelcomeUserWithFalseQualifier::$points has no type specified.
-			identifier: missingType.property
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithFalseQualifier.php
-
-		-
-			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakeWelcomeUserWithNamePoint::$points has no type specified.
-			identifier: missingType.property
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithNamePoint.php
-
-		-
-			rawMessage: Property Laravelcm\Gamify\Tests\Fixtures\FakeWelcomeUserWithNamePoint::$name has no type specified.
-			identifier: missingType.property
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithNamePoint.php
-
-		-
-			rawMessage: Access to an undefined property PHPUnit\Framework\TestCase::$user.
-			identifier: property.notFound
-			count: 30
-			path: app-modules/gamify/tests/Feature/PointTest.php
-
-		-
-			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::createPost().'
-			identifier: method.notFound
-			count: 5
-			path: app-modules/gamify/tests/Feature/PointTest.php
-
-		-
-			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::createUser().'
-			identifier: method.notFound
-			count: 1
-			path: app-modules/gamify/tests/Feature/PointTest.php
-
-		-
-			rawMessage: 'Call to method skip() of internal class Pest\PendingCalls\TestCall from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 1
-			path: app-modules/gamify/tests/Feature/PointTest.php
-
-		-
-			rawMessage: 'Call to method throws() of internal class Pest\PendingCalls\TestCall from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 3
-			path: app-modules/gamify/tests/Feature/PointTest.php
-
-		-
-			rawMessage: 'Call to method toBe() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 11
-			path: app-modules/gamify/tests/Feature/PointTest.php
-
-		-
-			rawMessage: 'Call to method toBeInstanceOf() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 2
-			path: app-modules/gamify/tests/Feature/PointTest.php
-
-		-
-			rawMessage: 'Call to method toHaveCount() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 2
-			path: app-modules/gamify/tests/Feature/PointTest.php
-
-		-
-			rawMessage: 'Call to an undefined method PHPUnit\Framework\TestCase::createUser().'
-			identifier: method.notFound
-			count: 4
-			path: app-modules/gamify/tests/Feature/ReputationTest.php
-
-		-
-			rawMessage: 'Call to method toBe() of internal class Pest\Mixins\Expectation<TValue> from outside its root namespace Pest.'
-			identifier: method.internalClass
-			count: 7
-			path: app-modules/gamify/tests/Feature/ReputationTest.php
-
-		-
-			rawMessage: 'Property Laravelcm\Gamify\PointType::$subject (Illuminate\Database\Eloquent\Model|null) does not accept mixed.'
-			identifier: assign.propertyType
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakeCreatePostPoint.php
-
-		-
-			rawMessage: 'Property Laravelcm\Gamify\PointType::$subject (Illuminate\Database\Eloquent\Model|null) does not accept mixed.'
-			identifier: assign.propertyType
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakePayeeFieldPoint.php
-
-		-
-			rawMessage: 'Property Laravelcm\Gamify\PointType::$subject (Illuminate\Database\Eloquent\Model|null) does not accept mixed.'
-			identifier: assign.propertyType
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakePointTypeWithoutPayee.php
-
-		-
-			rawMessage: 'Method Laravelcm\Gamify\Tests\Fixtures\FakePointTypeWithoutSubject::__construct() has parameter $subject with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakePointTypeWithoutSubject.php
-
-		-
-			rawMessage: 'Method Laravelcm\Gamify\Tests\Fixtures\FakePointWithoutPoint::__construct() has parameter $subject with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakePointWithoutPoint.php
-
-		-
-			rawMessage: Access to an undefined property Illuminate\Database\Eloquent\Model::$user.
-			identifier: property.notFound
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithFalseQualifier.php
-
-		-
-			rawMessage: 'Method Laravelcm\Gamify\Tests\Fixtures\FakeWelcomeUserWithFalseQualifier::__construct() has parameter $subject with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithFalseQualifier.php
-
-		-
-			rawMessage: Constructor of class Laravelcm\Gamify\Tests\Fixtures\FakeWelcomeUserWithNamePoint has an unused parameter $subject.
-			identifier: constructor.unusedParameter
-			count: 1
-			path: app-modules/gamify/tests/Fixtures/FakeWelcomeUserWithNamePoint.php
 
 		-
 			rawMessage: 'Parameter #1 $spamReport of class App\Notifications\ReportedSpamToTelegram constructor expects App\Models\SpamReport, Illuminate\Database\Eloquent\Model given.'
@@ -775,12 +487,6 @@ parameters:
 			path: app/Http/Controllers/Api/Enterprise/PublicController.php
 
 		-
-			rawMessage: 'Cannot call method chunk() on mixed.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Http/Controllers/Api/PremiumController.php
-
-		-
 			rawMessage: 'Parameter $reference of static method NotchPay\Payment::verify() expects string, mixed given.'
 			identifier: argument.type
 			count: 1
@@ -937,34 +643,10 @@ parameters:
 			path: app/Http/Resources/PaginationResourceCollection.php
 
 		-
-			rawMessage: 'Method App\Livewire\Components\User\Activities::activities() should return Illuminate\Support\Collection but returns mixed.'
-			identifier: return.type
-			count: 1
-			path: app/Livewire/Components/User/Activities.php
-
-		-
-			rawMessage: 'Method App\Livewire\Pages\Account\Profile::articles() should return Illuminate\Support\Collection but returns mixed.'
-			identifier: return.type
-			count: 1
-			path: app/Livewire/Pages/Account/Profile.php
-
-		-
-			rawMessage: 'Method App\Livewire\Pages\Account\Profile::discussions() should return Illuminate\Support\Collection but returns mixed.'
-			identifier: return.type
-			count: 1
-			path: app/Livewire/Pages/Account/Profile.php
-
-		-
 			rawMessage: 'Cannot call method withCount() on mixed.'
 			identifier: method.nonObject
 			count: 1
 			path: app/Livewire/Pages/Dashboard/Threads.php
-
-		-
-			rawMessage: 'Method App\Livewire\Pages\Account\Profile::threads() should return Illuminate\Support\Collection but returns mixed.'
-			identifier: return.type
-			count: 1
-			path: app/Livewire/Pages/Account/Profile.php
 
 		-
 			rawMessage: 'Cannot call method withCount() on mixed.'
@@ -1099,18 +781,6 @@ parameters:
 			path: app/Markdown/MarkdownHelper.php
 
 		-
-			rawMessage: 'Method App\Models\Activity::feed() should return Illuminate\Support\Collection<int, App\Models\Activity> but returns Illuminate\Database\Eloquent\Collection<string, Illuminate\Database\Eloquent\Collection<int, App\Models\Activity>>.'
-			identifier: return.type
-			count: 1
-			path: app/Models/Activity.php
-
-		-
-			rawMessage: 'Method App\Models\Activity::latestFeed() should return Illuminate\Support\Collection<int, Illuminate\Database\Eloquent\Model> but returns Illuminate\Database\Eloquent\Collection<int, App\Models\Activity>.'
-			identifier: return.type
-			count: 1
-			path: app/Models/Activity.php
-
-		-
 			rawMessage: 'Method App\Models\Article::findBySlug() should return App\Models\Article but returns Illuminate\Database\Eloquent\Model.'
 			identifier: return.type
 			count: 1
@@ -1127,12 +797,6 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: app/Models/Transaction.php
-
-		-
-			rawMessage: Anonymous function should return string but returns mixed.
-			identifier: return.type
-			count: 1
-			path: app/Models/User.php
 
 		-
 			rawMessage: 'Parameter #1 $string of function ucwords expects string, mixed given.'
@@ -1235,12 +899,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: app/Services/CacheInvalidationService.php
-
-		-
-			rawMessage: 'Method App\Services\MediaCacheService::getCachedMediaUrl() should return string|null but returns mixed.'
-			identifier: return.type
-			count: 1
-			path: app/Services/MediaCacheService.php
 
 		-
 			rawMessage: Cannot cast mixed to string.
