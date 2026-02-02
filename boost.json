@@ -1,17 +1,19 @@
 {
     "agents": [
         "claude_code",
-        "gemini",
-        "phpstorm"
+        "gemini"
     ],
-    "editors": [
-        "claude_code",
-        "gemini",
-        "phpstorm",
-        "vscode"
-    ],
-    "guidelines": [
+    "guidelines": true,
+    "herd_mcp": false,
+    "mcp": true,
+    "packages": [
         "filament/filament"
     ],
-    "sail": true
+    "sail": true,
+    "skills": [
+        "fluxui-development",
+        "volt-development",
+        "pest-testing",
+        "tailwindcss-development"
+    ]
 }

@@ -12,6 +12,15 @@ final class ArticlePolicy
 {
     use HandlesAuthorization;
 
+    public function viewAny(User $user): bool
+    {
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
+    }
+
     public function create(User $user): bool
     {
         return $user->hasVerifiedEmail();

@@ -337,18 +337,6 @@ parameters:
 			path: app/Console/Commands/Sitemap/GenerateDiscussionsSitemapCommand.php
 
 		-
-			rawMessage: Anonymous function should return string|null but returns mixed.
-			identifier: return.type
-			count: 1
-			path: app/Filament/Resources/Articles/ArticleResource.php
-
-		-
-			rawMessage: 'Parameter #1 $string of function mb_strlen expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Filament/Resources/Articles/ArticleResource.php
-
-		-
 			rawMessage: 'Cannot call method filter() on mixed.'
 			identifier: method.nonObject
 			count: 1
