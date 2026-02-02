@@ -45,6 +45,7 @@ public/fonts
 .vscode
 .junie
 .claude
+.gemini
 
 # Git
 .git
