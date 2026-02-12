@@ -1,16 +1,7 @@
 services:
     laravelcm:
-        build:
-            context: .
-            dockerfile: Dockerfile
-            args:
-                NODE_VERSION: 22
-                PHP_VERSION: 8.4
-                FLUX_USERNAME: ${FLUX_USERNAME}
-                FLUX_LICENSE_KEY: ${FLUX_LICENSE_KEY}
-                PURELINE_USERNAME: ${PURELINE_USERNAME}
-                PURELINE_LICENSE_KEY: ${PURELINE_LICENSE_KEY}
-        image: laravelcm/php
+        image: ghcr.io/laravelcm/laravel.cm:main
+        pull_policy: always
         restart: always
         extra_hosts:
             - "host.docker.internal:host-gateway"
@@ -132,7 +123,7 @@ services:
             - dokploy-network
 
     schedule:
-        image: laravelcm/php
+        image: ghcr.io/laravelcm/laravel.cm:main
         restart: always
         command: ["artisan", "schedule:run"]
         stop_signal: SIGTERM
@@ -239,7 +230,7 @@ services:
             - laravelcm
 
     queue:
-        image: laravelcm/php
+        image: ghcr.io/laravelcm/laravel.cm:main
         restart: always
         command:
             - "artisan"
