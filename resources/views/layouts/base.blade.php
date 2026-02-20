@@ -63,6 +63,10 @@
     </script>
 </head>
 <body class="h-full font-sans text-gray-500 antialiased dark:text-gray-400 dark:bg-line-black selection:bg-primary-500 selection:text-white">
+    @persist('bb-banner')
+        <div id="bb-banner-container"></div>
+    @endpersist
+
     {{ $slot }}
 
     <x-notify::notify />
@@ -81,6 +85,11 @@
                 Flux.appearance = Array.isArray(event) ? event[0] : event;
             });
         });
+
+        const bbScript = document.createElement('script');
+        bbScript.async = true;
+        bbScript.src = 'https://media.bitterbrains.com/main.js?from=LARAVELCM&type=top';
+        document.body.appendChild(bbScript);
     </script>
 </body>
 </html>
