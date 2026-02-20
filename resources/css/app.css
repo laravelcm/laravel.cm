@@ -27,6 +27,7 @@
 @source '../**/*.js';
 
 :root {
+  --banner-height: 0px;
   --laravel: #f56857;
   --livewire: #fb70a9;
   --inertia: #8b5cf6;

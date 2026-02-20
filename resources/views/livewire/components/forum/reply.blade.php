@@ -5,7 +5,7 @@
 <div x-data class="relative pb-8" id="reply-{{ $reply->id }}">
     <span class="hidden absolute left-4 top-5 -ml-px h-full w-0.5 bg-gray-100 dark:bg-white/20 lg:block" aria-hidden="true"></span>
     <div class="relative flex items-start gap-6">
-        <div class="hidden sticky top-18 lg:block">
+        <div class="hidden sticky lg:block" style="top: calc(4.5rem + var(--banner-height))">
             <x-user.avatar :user="$reply->user" size="sm" />
         </div>
         <div

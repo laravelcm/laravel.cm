@@ -53,7 +53,7 @@
 
         <section class="relative mt-8 lg:border-t lg:border-line lg:flex">
             <div class="border-y border-line lg:w-64 lg:border-y-0 lg:border-r">
-                <nav class="flex flex-row overflow-x-scroll sticky top-16 lg:flex-col lg:space-y-1">
+                <nav class="flex flex-row overflow-x-scroll sticky lg:flex-col lg:space-y-1" style="top: calc(4rem + var(--banner-height))">
                     <x-nav.forum-link
                         :href="route('dashboard.index')"
                         :active="request()->routeIs('dashboard.index')"
