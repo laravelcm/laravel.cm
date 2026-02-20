@@ -17,7 +17,7 @@
         <div class="aspect-4/2 w-full rounded-lg bg-gray-100 overflow-hidden shadow-xs transition group-hover:opacity-80 dark:bg-gray-800">
             <img
                 loading="lazy"
-                class="rounded-lg object-cover shadow-xs group-hover:opacity-75"
+                class="size-full rounded-lg object-cover shadow-xs group-hover:opacity-75"
                 src="{{ $media }}"
                 alt="{{ $article->title }}"
             />
