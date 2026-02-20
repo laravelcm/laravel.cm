@@ -12,7 +12,7 @@
         </p>
     </x-slot:buttons>
 
-    <div class="p-4 border-b border-line bg-white z-20 mr-px flex items-center gap-x-4 sticky top-16 backdrop-blur-lg dark:bg-gray-950/80">
+    <div class="p-4 border-b border-line bg-white z-20 mr-px flex items-center gap-x-4 sticky backdrop-blur-lg dark:bg-gray-950/80" style="top: calc(4rem + var(--banner-height))">
         <livewire:components.channels-selector :slug="$channel" />
 
         <div class="flex items-center gap-x-4 lg:flex-1">

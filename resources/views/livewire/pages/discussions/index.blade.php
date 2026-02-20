@@ -1,7 +1,7 @@
 <x-container class="px-0 lg:line-x">
     <div class="relative pt-20 pb-16 lg:pt-28 lg:grid lg:grid-cols-7">
         <div class="lg:col-span-5 space-y-10">
-            <div class="flex flex-col bg-white sticky top-16 z-10 dark:bg-gray-950/75 border-y border-l border-line gap-4 sm:flex-row sm:items-stretch sm:justify-between sm:gap-10">
+            <div class="flex flex-col bg-white sticky z-10 dark:bg-gray-950/75 border-y border-l border-line gap-4 sm:flex-row sm:items-stretch sm:justify-between sm:gap-10" style="top: calc(4rem + var(--banner-height))">
                 <x-scrollable-content class="sm:w-2/3 border-r border-line">
                     <nav class="flex items-center space-x-3">
                         @foreach ($tags as $tag)

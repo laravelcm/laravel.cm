@@ -113,7 +113,7 @@
         <div class="py-12 lg:line-x lg:py-12">
             <div class="grid border-t border-line lg:grid-cols-4">
                 <div class="hidden border-gray-300 border-r border-dotted dark:border-white/20 lg:block">
-                    <x-sticky-content class="top-16">
+                    <x-sticky-content offset="4rem">
                         <div>
                             <div class="ml-px flex items-start gap-4 px-4 py-2 bg-gray-50 dark:bg-gray-950/50">
                                 <x-phosphor-bookmarks-duotone

@@ -2,6 +2,10 @@ html,
 body {
   height: 100%;
 }
+
+body {
+  padding-top: var(--banner-height);
+}
 input {
   width: 100%;
 }

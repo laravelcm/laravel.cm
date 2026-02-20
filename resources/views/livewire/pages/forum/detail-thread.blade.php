@@ -22,7 +22,7 @@
                 <div class="relative pb-8">
                     <span class="hidden absolute left-4 top-5 -ml-px h-full w-0.5 bg-gray-100 dark:bg-white/20 lg:block" aria-hidden="true"></span>
                     <div class="relative flex items-start gap-6">
-                        <div class="hidden sticky top-20 flex-col justify-center items-center gap-y-5 lg:flex">
+                        <div class="hidden sticky flex-col justify-center items-center gap-y-5 lg:flex" style="top: calc(5rem + var(--banner-height))">
                             <x-user.avatar :user="$thread->user" size="sm" />
                             <div class="inline-flex flex-col gap-y-3 ring-1 ring-gray-200 bg-white py-3 px-1.5 rounded-full dark:bg-gray-800 dark:ring-white/20">
                                 <livewire:components.reactions

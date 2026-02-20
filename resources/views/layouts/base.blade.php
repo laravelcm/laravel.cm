@@ -64,7 +64,7 @@
 </head>
 <body class="h-full font-sans text-gray-500 antialiased dark:text-gray-400 dark:bg-line-black selection:bg-primary-500 selection:text-white">
     @persist('bb-banner')
-        <div id="bb-banner-container"></div>
+        <div id="bb-banner-container" class="fixed inset-x-0 top-0 z-50"></div>
     @endpersist
 
     {{ $slot }}
@@ -90,6 +90,20 @@
         bbScript.async = true;
         bbScript.src = 'https://media.bitterbrains.com/main.js?from=LARAVELCM&type=top';
         document.body.appendChild(bbScript);
+
+        (function () {
+            const container = document.getElementById('bb-banner-container');
+            const update = () => {
+                const banner = container.querySelector('#bb-banner');
+                const height = banner ? banner.getBoundingClientRect().height : 0;
+                document.documentElement.style.setProperty('--banner-height', height + 'px');
+            };
+
+            const observer = new MutationObserver(update);
+            observer.observe(container, { childList: true, subtree: true });
+
+            document.addEventListener('livewire:navigated', update);
+        })();
     </script>
 </body>
 </html>
