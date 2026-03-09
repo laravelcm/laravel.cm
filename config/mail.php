@@ -38,6 +38,9 @@ return [
     */
 
     'mailers' => [
+        'lettr' => [
+            'transport' => 'lettr',
+        ],
 
         'smtp' => [
             'transport' => 'smtp',

@@ -37,7 +37,7 @@ return new class extends Migration
             $table->foreign('enterprise_id')
                 ->references('id')
                 ->on('enterprises')
-                ->onDelete('CASCADE');
+                ->cascadeOnDelete();
             $table->morphs('model');
         });
     }
