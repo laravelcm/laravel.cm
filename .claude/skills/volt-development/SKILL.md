@@ -1,10 +1,9 @@
 ---
 name: volt-development
-description: >-
-  Develops single-file Livewire components with Volt. Activates when creating Volt components,
-  converting Livewire to Volt, working with @volt directive, functional or class-based Volt APIs;
-  or when the user mentions Volt, single-file components, functional Livewire, or inline component
-  logic in Blade files.
+description: "Develops single-file Livewire components with Volt. Activates when creating Volt components, converting Livewire to Volt, working with @volt directive, functional or class-based Volt APIs; or when the user mentions Volt, single-file components, functional Livewire, or inline component logic in Blade files."
+license: MIT
+metadata:
+  author: laravel
 ---
 
 # Volt Development
@@ -23,14 +22,14 @@ Use `search-docs` for detailed Volt patterns and documentation.
 
 ## Basic Usage
 
-Create components with `php artisan make:volt [name] [--test] [--pest]`.
+Create components with `vendor/bin/sail artisan make:volt [name] [--test] [--pest]`.
 
 Important: Check existing Volt components to determine if they use functional or class-based style before creating new ones.
 
 ### Functional Components
 
-<code-snippet name="Volt Functional Component" lang="php">
-
+<!-- Volt Functional Component -->
+```php
 @@volt
 <?php
 use function Livewire\Volt\{state, computed};
@@ -46,13 +45,12 @@ $double = computed(fn () => $this->count * 2);
     <button wire:click="increment">+</button>
 </div>
 @@endvolt
-
-</code-snippet>
+```
 
 ### Class-Based Components
 
-<code-snippet name="Volt Class-based Component" lang="php">
-
+<!-- Volt Class-based Component -->
+```php
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -68,15 +66,14 @@ new class extends Component {
     <h1>@{{ $count }}</h1>
     <button wire:click="increment">+</button>
 </div>
-
-</code-snippet>
+```
 
 ## Testing
 
 Tests go in existing Volt test directory or `tests/Feature/Volt`:
 
-<code-snippet name="Volt Test Example" lang="php">
-
+<!-- Volt Test Example -->
+```php
 use Livewire\Volt\Volt;
 
 test('counter increments', function () {
@@ -85,8 +82,7 @@ test('counter increments', function () {
         ->call('increment')
         ->assertSee('Count: 1');
 });
-
-</code-snippet>
+```
 
 ## Verification
 
