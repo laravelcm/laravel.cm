@@ -21,14 +21,14 @@ final class SingleTag extends Component
     public function render(): View
     {
         return view('livewire.pages.articles.tag', [
-            'articles' => Article::with(['tags', 'user:id,name,username,avatar_type']) // @phpstan-ignore-line
+            'articles' => Article::with(['tags', 'user:id,name,username,avatar_type'])
                 ->whereHas('tags', function ($query): void {
                     $query->where('id', $this->tag->id);
                 })
                 ->withCount(['views', 'reactions'])
                 ->published()
                 ->orderByDesc('published_at')
-                ->forLocale($this->locale)
+                ->forLocale($this->locale) // @phpstan-ignore-line
                 ->paginate($this->perPage),
         ])->title(__('Tag ~ :name', ['name' => $this->tag->name]));
     }

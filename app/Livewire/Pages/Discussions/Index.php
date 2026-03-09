@@ -54,12 +54,12 @@ final class Index extends Component
     public function render(): View
     {
         /** @var DiscussionQueryBuilder $query */
-        $query = Discussion::with([ // @phpstan-ignore-line
+        $query = Discussion::with([
             'tags',
             'user:id,name,username,avatar_type',
         ])
             ->withCount(['reactions', 'replies'])
-            ->forLocale($this->locale)
+            ->forLocale($this->locale) // @phpstan-ignore-line
             ->notPinned();
 
         /** @var Collection<int, Tag> $tags */

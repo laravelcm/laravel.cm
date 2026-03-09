@@ -48,9 +48,9 @@ final class SponsorSubscription extends Component
     public function sponsors(): Collection
     {
         /** @var Collection<int, Transaction> $transactions */
-        $transactions = Transaction::with(['user', 'user.media']) // @phpstan-ignore-line
+        $transactions = Transaction::with(['user', 'user.media'])
             ->scopes('complete')
-            ->get(['id', 'user_id', 'metadata']);
+            ->get(['id', 'user_id', 'metadata']); // @phpstan-ignore-line
 
         return $transactions->unique(function (Transaction $transaction): string|int {
             /** @var string $email */

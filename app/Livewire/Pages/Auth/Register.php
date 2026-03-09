@@ -44,10 +44,10 @@ final class Register extends Component
         $users = Cache::remember(
             key: 'avatars',
             ttl: now()->addWeek(),
-            callback: fn (): Collection => User::query() // @phpstan-ignore-line
+            callback: fn (): Collection => User::query()
                 ->select('id', 'email_verified_at', 'username', 'avatar_type', 'name')
                 ->scopes('verifiedUsers')
-                ->inRandomOrder()
+                ->inRandomOrder() // @phpstan-ignore-line
                 ->take(10)
                 ->get()
         );

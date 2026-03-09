@@ -69,9 +69,7 @@ final class Notifications extends SlideOverComponent
     public function render(): View
     {
         return view('livewire.components.slideovers.notifications', [
-            // @phpstan-ignore-next-line
-            'notifications' => Auth::user()
-                ->unreadNotifications()
+            'notifications' => Auth::user()?->unreadNotifications()
                 ->take(10)
                 ->get()
                 ->groupBy(
