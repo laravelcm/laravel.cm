@@ -799,12 +799,6 @@ parameters:
 			path: app/Models/User.php
 
 		-
-			rawMessage: 'Parameter #1 $chatId of method NotificationChannels\Telegram\TelegramBase::to() expects int|string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Notifications/ArticleSubmitted.php
-
-		-
 			rawMessage: 'Cannot call method replyAbleSubject() on Illuminate\Database\Eloquent\Model|null.'
 			identifier: method.nonObject
 			count: 1
