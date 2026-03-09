@@ -20,11 +20,11 @@ describe(Discussion::class, function (): void {
         expect($discussion->excerpt(7))->toEqual('This is...');
     });
 
-    test('html in excerpts is markdown converted', function (): void {
+    test('markdown in excerpts is converted to plain text', function (): void {
         /** @var Discussion $discussion */
         $discussion = Discussion::factory()->make(['body' => '### A propos de moi']);
 
-        expect($discussion->excerpt())->toEqual("#A propos de moi\n");
+        expect($discussion->excerpt())->toEqual('A propos de moi');
     });
 
     it('can have many tags', function (): void {

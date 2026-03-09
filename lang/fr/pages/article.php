@@ -15,7 +15,7 @@ return [
         'title' => 'Conseils importants concernant les articles',
         'content' => 'Soumettez votre article au site Laravel.cm. Nous recherchons des articles de haute qualité autour de Laravel, PHP, JavaScript, CSS et autres sujets connexes. Les articles ne peuvent pas être de nature promotionnelle et doivent être éducatifs et informatifs. Nous nous réservons le droit de refuser les articles qui ne répondent pas à nos critères de qualité.',
         'twitter' => 'Chaque article approuvé sera partagé avec nos utilisateurs et sera diffusé sur notre compte Twitter. N\'hésitez pas à soumettre autant d\'articles que vous le souhaitez. Vous pouvez même faire référence à un article sur votre blog avec l\'url d\'origine.',
-        'submission' => "Après avoir été soumis pour approbation, les articles sont examinés avant d'être publiés. <span class='font-semibold text-gray-700 dark:text-gray-300'>Une fois l'article publié, vous ne pouvez plus le modifier. Veuillez donc le relire attentivement avant de le soumettre pour approbation</span>. Si vous soumettez deux fois le même article ou si vous publiez des spams, votre compte sera banni.",
+        'submission' => "Après avoir été soumis pour approbation, les articles sont examinés avant d'être publiés. <span class='font-semibold text-gray-700 dark:text-gray-300'>Vous pouvez modifier votre article même après approbation. Seule l'URL de l'article (le slug) reste fixe une fois publié</span>. Si vous soumettez deux fois le même article ou si vous publiez des spams, votre compte sera banni.",
     ],
     'form' => [
         'cover' => 'Image de couverture',
@@ -32,6 +32,7 @@ return [
     'awaiting_text' => 'En attente d\'approbation',
     'write' => 'Rédigé',
     'published_on' => 'Publié le :date',
+    'updated_on' => 'Mis à jour le :date',
     'tags' => 'Tags',
     'top_authors' => 'Top auteurs',
 ];

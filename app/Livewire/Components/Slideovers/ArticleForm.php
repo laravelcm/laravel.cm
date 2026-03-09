@@ -69,6 +69,10 @@ final class ArticleForm extends SlideOverComponent
 
     public function updatedFormTitle(string $value): void
     {
+        if ($this->article?->isApproved()) {
+            return;
+        }
+
         $this->form->slug = Str::slug($value);
     }
 

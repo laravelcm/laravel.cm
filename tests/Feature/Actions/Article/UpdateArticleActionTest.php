@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Actions\Article\UpdateArticleAction;
 use App\Data\ArticleData;
 use App\Enums\UserRole;
-use App\Exceptions\CannotUpdateApprovedArticle;
 use App\Models\Article;
 use Spatie\TestTime\TestTime;
 
@@ -45,14 +44,15 @@ describe(UpdateArticleAction::class, function (): void {
             ->and($article)->toBe($updatedArticle);
     });
 
-    it('should not update an approved article', function (): void {
+    it('should update an approved article but preserve its slug', function (): void {
         /** @var Article $article */
         $article = Article::factory()->approved()->create(['user_id' => $this->user->id]);
+        $originalSlug = $article->slug;
 
-        resolve(UpdateArticleAction::class)->execute(
+        $updatedArticle = resolve(UpdateArticleAction::class)->execute(
             data: ArticleData::from([
-                'title' => 'Update Article title',
-                'slug' => $article->slug,
+                'title' => 'Updated Approved Article Title',
+                'slug' => 'a-completely-different-slug',
                 'body' => $article->body,
                 'locale' => $article->locale,
                 'published_at' => now()->addDay(),
@@ -64,7 +64,10 @@ describe(UpdateArticleAction::class, function (): void {
             article: $article,
             user: $this->user
         );
-    })->throws(CannotUpdateApprovedArticle::class);
+
+        expect($updatedArticle->title)->toBe('Updated Approved Article Title')
+            ->and($updatedArticle->slug)->toBe($originalSlug);
+    });
 
     it('should auto-approve article when user is admin and published_at is filled', function (): void {
         $admin = $this->createAdmin();

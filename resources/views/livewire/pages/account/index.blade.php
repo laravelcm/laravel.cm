@@ -167,7 +167,7 @@
                     <div
                         class="grid gap-6 rounded-lg ring-1 ring-gray-200 dark:ring-white/10 bg-white dark:bg-line-black p-6">
                         <flux:input
-                            wire:model.blur="form.github_profile"
+                            wire:model.live.blur="form.github_profile"
                             label="GitHub"
                             placeholder="laravelcm"
                         >

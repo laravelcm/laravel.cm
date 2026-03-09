@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Models\Discussion;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Computed;
-use Livewire\Volt\Component;
+use Livewire\Component;
 
 new class extends Component {
     #[Computed(persist: true, seconds: 3600 * 24 * 14, cache: true, key: 'discissions.inactive')]

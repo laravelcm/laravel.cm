@@ -36,6 +36,20 @@ if (! function_exists('md_to_html')) {
     }
 }
 
+if (! function_exists('md_to_text')) {
+    function md_to_text(string $markdown): string
+    {
+        $text = preg_replace('/```[\s\S]*?```/', ' ', $markdown);
+        $text = preg_replace('/`[^`\n]+`/', ' ', (string) $text);
+        $text = preg_replace('/\[([^\]]+)\]\([^\)]+\)/', '$1', (string) $text);
+        $text = preg_replace('/#{1,6}\s+/', '', (string) $text);
+        $text = preg_replace('/[*_]{1,2}([^*_\n]+)[*_]{1,2}/', '$1', (string) $text);
+        $text = preg_replace('/!\[[^\]]*\]\([^\)]+\)/', '', (string) $text);
+
+        return strip_tags(mb_trim((string) $text));
+    }
+}
+
 if (! function_exists('replace_links')) {
     function replace_links(string $markdown): string
     {

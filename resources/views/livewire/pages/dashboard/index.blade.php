@@ -28,7 +28,7 @@
                             @endforeach
                         </div>
                         <div class="flex items-center gap-2">
-                            @if ($article->isNotPublished() && Auth::user()->can('update', $article))
+                            @if (Auth::user()->can('update', $article))
                                 <flux:button
                                     size="xs"
                                     variant="ghost"

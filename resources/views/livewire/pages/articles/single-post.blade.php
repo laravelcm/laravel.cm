@@ -16,25 +16,17 @@
                 <div class="flex flex-col space-y-4 lg:col-span-3">
                     @auth
                         @if ($article->isNotPublished() && $article->isAuthoredBy(auth()->user()))
-                            <div class="border-l-4 border-yellow-400 rounded-lg ring-1 ring-yellow-200 bg-yellow-50 pl-2 py-2 pr-4 dark:bg-yellow-800/20 dark:ring-yellow-800">
-                                <div class="flex">
-                                    <div class="shrink-0">
-                                        <x-heroicon-s-exclamation-triangle class="size-5 text-yellow-400" aria-hidden="true" />
-                                    </div>
-                                    <div class="flex flex-1 items-center justify-between gap-4 ml-3">
-                                        <p class="text-sm text-yellow-700 dark:text-yellow-300">
-                                            {{ __('pages/article.unpublished') }}
-                                        </p>
-                                        <button
-                                            type="button"
-                                            class="font-medium underline text-sm text-yellow-700 hover:text-yellow-600 dark:text-yellow-500 dark:hover:text-yellow-400"
-                                            onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form', arguments: { articleId: {{ $article->id }} }})"
-                                        >
-                                            {{ __('actions.edit') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            <flux:callout icon="exclamation-triangle" variant="warning" inline>
+                                <flux:callout.heading>{{ __('pages/article.draft') }}</flux:callout.heading>
+                                <flux:callout.text>
+                                    {{ __('pages/article.unpublished') }}
+                                </flux:callout.text>
+                                <x-slot name="actions">
+                                    <flux:button size="xs" variant="primary" color="amber" onclick="Livewire.dispatch('openPanel', { component: 'components.slideovers.article-form', arguments: { articleId: {{ $article->id }} }})">
+                                        {{ __('actions.edit') }}
+                                    </flux:button>
+                                </x-slot>
+                            </flux:callout>
                         @endif
                     @endauth
 
@@ -118,7 +110,14 @@
                                     :model="$article"
                                 />
                             </div>
-                            <p class="mt-10 text-sm font-medium text-gray-500 dark:text-gray-400">
+                            @if ($article->updated_at->isAfter($article->published_at->addMinutes(5)))
+                                <div class="mt-6">
+                                    <time class="text-sm text-gray-500 dark:text-gray-400" datetime="{{ $article->updated_at->format('Y-m-d') }}">
+                                        {{ __('pages/article.updated_on', ['date' => $article->updated_at->isoFormat('LL')]) }}
+                                    </time>
+                                </div>
+                            @endif
+                            <p class="mt-6 text-sm font-medium text-gray-500 dark:text-gray-400">
                                 {{ __('pages/article.share_article') }}
                             </p>
                             <div class="mt-4 flex flex-wrap gap-2">
