@@ -144,6 +144,7 @@ final class Article extends Model implements Feedable, HasMedia, ReactableInterf
             ->singleFile()
             ->acceptsMimeTypes([
                 'image/jpg',
+                'image/jpeg',
                 'image/png',
                 'image/webp',
                 'image/avif',
@@ -152,7 +153,7 @@ final class Article extends Model implements Feedable, HasMedia, ReactableInterf
 
     public function excerpt(int $limit = 110): string
     {
-        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
+        return Str::limit(md_to_text($this->body), $limit);
     }
 
     public function canonicalUrl(): string
