@@ -75,7 +75,7 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
 
     public function excerpt(int $limit = 100): string
     {
-        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
+        return Str::limit(md_to_text($this->body), $limit);
     }
 
     public function mentionedUsers(): array

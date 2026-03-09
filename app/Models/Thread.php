@@ -91,12 +91,11 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     public static function resolutionTime(): bool|int
     {
         try {
-            // @phpstan-ignore-next-line
             return self::query()
                 ->join('replies', 'threads.solution_reply_id', '=', 'replies.id')
                 ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
                 ->first()
-                ->duration;
+                ->duration; // @phpstan-ignore-line
         } catch (Exception $exception) {
             return false;
         }
@@ -131,7 +130,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     public function excerpt(int $limit = 200): string
     {
-        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
+        return Str::limit(md_to_text($this->body), $limit);
     }
 
     public function isSolutionReply(Reply $reply): bool

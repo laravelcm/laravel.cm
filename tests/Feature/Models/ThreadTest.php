@@ -21,11 +21,11 @@ describe(Thread::class, function (): void {
         expect($thread->excerpt(7))->toEqual('This is...');
     });
 
-    test('html in excerpts is markdown converted', function (): void {
+    test('markdown in excerpts is converted to plain text', function (): void {
         /** @var Thread $thread */
-        $thread = Thread::factory()->make(['body' => 'Thread body']);
+        $thread = Thread::factory()->make(['body' => '### Thread body']);
 
-        expect($thread->excerpt())->toEqual("Thread body\n");
+        expect($thread->excerpt())->toEqual('Thread body');
     });
 
     it('can have many channels', function (): void {

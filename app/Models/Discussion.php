@@ -108,7 +108,7 @@ final class Discussion extends Model implements Feedable, ReactableInterface, Re
 
     public function excerpt(int $limit = 110): string
     {
-        return Str::limit(strip_tags((string) md_to_html($this->body)), $limit);
+        return Str::limit(md_to_text($this->body), $limit);
     }
 
     public function toFeedItem(): FeedItem
