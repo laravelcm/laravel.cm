@@ -9,6 +9,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramChannel;
+use NotificationChannels\Telegram\TelegramFile;
 use NotificationChannels\Telegram\TelegramMessage;
 
 final class ArticleSubmitted extends Notification implements ShouldQueue
@@ -29,9 +30,18 @@ final class ArticleSubmitted extends Notification implements ShouldQueue
         return [];
     }
 
-    public function toTelegram(): TelegramMessage
+    public function toTelegram(): TelegramFile|TelegramMessage
     {
         $url = route('articles.show', $this->article->slug);
+        $imageUrl = $this->article->getFirstMediaUrl('media');
+
+        if (filled($imageUrl)) {
+            return TelegramFile::create()
+                ->to(config('services.telegram-bot-api.channel'))
+                ->photo($imageUrl)
+                ->content($this->content())
+                ->button("Voir l'article", $url);
+        }
 
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channel'))
@@ -42,8 +52,10 @@ final class ArticleSubmitted extends Notification implements ShouldQueue
     private function content(): string
     {
         $content = "*Nouvel Article Soumis!*\n\n";
-        $content .= 'Titre: '.$this->article->title."\n";
+        $content .= '*'.$this->article->title."*\n";
+        $content .= '_'.$this->article->excerpt(200)."_\n\n";
+        $content .= 'Par: [@'.$this->article->user->username.']('.route('profile', $this->article->user->username).')';
 
-        return $content.('Par: [@'.$this->article->user->username.']('.route('profile', $this->article->user->username).')');
+        return $content;
     }
 }

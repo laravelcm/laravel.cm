@@ -42,6 +42,6 @@ final class PostArticleToTwitter extends Notification
         $author = $this->article->user;
         $author = $author->twitter() ? '@'.$author->twitter() : $author->name;
 
-        return "{$title} par {$author}\n\n{$url}\n\n #CaParleDev";
+        return "{$title} par {$author}\n\n{$url}\n\n #CaParleDev #laravelcm";
     }
 }
