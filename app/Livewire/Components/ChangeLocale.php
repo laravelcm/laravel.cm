@@ -7,10 +7,12 @@ namespace App\Livewire\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 
 final class ChangeLocale extends Component
 {
+    #[Locked]
     public ?string $currentLocale = null;
 
     public function mount(): void
