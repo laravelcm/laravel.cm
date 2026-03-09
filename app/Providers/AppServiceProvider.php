@@ -13,13 +13,16 @@ use App\Policies\NotificationPolicy;
 use ArchTech\SEO\SEOManager;
 use Filament\Actions;
 use Filament\Support\Enums\Width;
+use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -41,6 +44,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureCommands();
         $this->configureUrl();
         $this->configurePolicies();
+        $this->configureRateLimiting();
     }
 
     public function registerBladeDirective(): void
@@ -133,5 +137,18 @@ final class AppServiceProvider extends ServiceProvider
     protected function configurePolicies(): void
     {
         Gate::policy(DatabaseNotification::class, NotificationPolicy::class);
+    }
+
+    protected function configureRateLimiting(): void
+    {
+        RateLimiter::for('api', fn (Request $request): Limit => $request->user()
+                ? Limit::perMinute(60)->by($request->user()->id)
+                : Limit::perMinute(15)->by($request->ip()));
+
+        RateLimiter::for('auth', fn (Request $request): Limit => Limit::perMinute(5)->by($request->ip()));
+
+        RateLimiter::for('content', fn (Request $request): Limit => Limit::perMinute(10)->by(
+            $request->user()->id ?? $request->ip()
+        ));
     }
 }
