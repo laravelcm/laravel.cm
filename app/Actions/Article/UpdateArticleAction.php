@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Actions\Article;
 
 use App\Data\ArticleData;
-use App\Exceptions\CannotUpdateApprovedArticle;
 use App\Models\Article;
 use App\Models\User;
 use Carbon\Carbon;
@@ -15,7 +14,7 @@ final class UpdateArticleAction
     public function execute(ArticleData $data, Article $article, User $user): Article
     {
         if ($article->isApproved()) {
-            throw new CannotUpdateApprovedArticle(__('notifications.exceptions.approved_article'));
+            $data->slug = $article->slug;
         }
 
         if ($data->declined_at instanceof Carbon) {
