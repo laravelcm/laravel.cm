@@ -57,3 +57,6 @@ Route::get('/@{user:username}', Pages\Account\Profile::class)->name('profile');
 require __DIR__.'/auth.php';
 
 Route::feeds();
+
+Route::redirect('/discord', 'https://discord.gg/KNp6brbyVD')->name('discord');
+Route::redirect('/telegram', 'https://t.me/laravelcameroun')->name('telegram');

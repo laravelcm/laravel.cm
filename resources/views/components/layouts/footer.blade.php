@@ -56,11 +56,11 @@
                 </div>
                 <div class="mt-8 space-y-8">
                     <div class="flex items-center text-sm font-medium space-x-4 sm:space-x-6">
-                        <a href="https://discord.gg/KNp6brbyVD?utm_source=laravel.cm" target="_blank" class="inline-flex items-center gap-2 text-gray-400 hover:text-white">
+                        <a href="{{ route('discord') }}" target="_blank" class="inline-flex items-center gap-2 text-gray-400 hover:text-white">
                             <x-icon.discord class="size-5 text-[#5865F2]" aria-hidden="true" />
                             Discord
                         </a>
-                        <a href="https://t.me/laravelcameroun?utm_source=laravel.cm" target="_blank" class="inline-flex items-center gap-2 text-gray-400 hover:text-white">
+                        <a href="{{ route('telegram') }}" target="_blank" class="inline-flex items-center gap-2 text-gray-400 hover:text-white">
                             <x-icon.telegram class="size-5 text-[#34AADF]" aria-hidden="true" />
                             Telegram
                         </a>
