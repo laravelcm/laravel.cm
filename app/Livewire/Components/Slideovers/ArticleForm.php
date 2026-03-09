@@ -141,7 +141,7 @@ final class ArticleForm extends SlideOverComponent
             );
         }
 
-        if ($this->form->is_draft === false) {
+        if ($this->form->is_draft === false && ! $article->isApproved()) {
             event(new ArticleWasSubmittedForApproval($article));
         }
 
