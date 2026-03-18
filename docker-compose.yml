@@ -1,115 +1,8 @@
 services:
-    traefik:
-        image: traefik:v3.6
-        security_opt:
-            - no-new-privileges:true
-        command:
-            - --api.dashboard=true
-            - --api.insecure=true
-            - --providers.docker=true
-            - --providers.docker.exposedbydefault=false
-            - --providers.docker.network=traefik
-            - --providers.file.directory=/etc/traefik/config
-            - --providers.file.watch=true
-            - --entrypoints.web.address=:80
-            - --entrypoints.websecure.address=:443
-            - --entrypoints.devtools.address=:8000
-            - --entrypoints.vite.address=:5173
-            - --entrypoints.minio.address=:9000
-            - --entrypoints.minio-console.address=:9001
-            - -serverstransport.insecureskipverify=true
-        ports:
-            - "80:80"
-            - "443:443"
-            - "5173:5173"
-            - "9000:9000"
-            - "9001:9001"
-            - "8000:8000"
-            - "8080:8080"
-        volumes:
-            - "/var/run/docker.sock:/var/run/docker.sock:ro"
-            - "traefik-letsencrypt:/letsencrypt"
-            - "./.docker/traefik:/etc/traefik/config"
-        networks:
-            - traefik
-            - sail
-        labels:
-            - traefik.enable=true
-            - traefik.http.routers.traefik.rule=Host(`traefik.local`)
-            - traefik.http.services.traefik.loadbalancer.server.port=8080
-
-    laravelcm:
-        build:
-            context: .
-            dockerfile: Dockerfile
-            target: development
-            args:
-                WWWUSER: "${WWWUSER}"
-                WWWGROUP: "${WWWGROUP}"
-                NODE_VERSION: 22
-                PHP_VERSION: 8.4
-        image: laravelcm/php
-        extra_hosts:
-            - "host.docker.internal:host-gateway"
-        environment:
-            LARAVEL_SAIL: 1
-            AUTORUN_ENABLED: true
-            OCTANE_SERVER: "${OCTANE_SERVER:-off}"
-            XDEBUG_MODE: "${SAIL_XDEBUG_MODE:-coverage,debug}"
-            XDEBUG_CONFIG: "${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}"
-            IGNITION_LOCAL_SITES_PATH: "${PWD}"
-            FRANKENPHP_WORKER_CONFIG: |
-                watch app
-                watch bootstrap
-                watch {config,database,public,resources,app-modules}/**/*.php
-                watch routes
-                watch composer.lock
-                watch .env
-        healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:${APP_PORT:-8080}/up"]
-            timeout: 30s
-        volumes:
-            - ".:/var/www/html"
-        networks:
-            - sail
-            - traefik
-        depends_on:
-            traefik:
-                condition: service_started
-            pgsql:
-                condition: service_started
-            redis:
-                condition: service_started
-            typesense:
-                condition: service_started
-            minio:
-                condition: service_started
-            memcached:
-                condition: service_started
-            # soketi
-        labels:
-            - traefik.enable=true
-            - traefik.http.routers.laravelcm.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)
-            - traefik.http.routers.laravelcm.entrypoints=websecure
-            - traefik.http.routers.laravelcm.tls=true
-            - traefik.http.routers.laravelcm.service=laravelcm
-            - traefik.http.services.laravelcm.loadbalancer.server.port=${APP_PORT:-8080}
-            - traefik.http.routers.laravelcm-insecure.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)
-            - traefik.http.routers.laravelcm-insecure.entrypoints=web
-            - traefik.http.routers.laravelcm-insecure.service=laravelcm
-            - traefik.http.routers.laravelcm-insecure.middlewares=redirect-to-https
-            - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
-            - traefik.http.routers.laravelcm-vite.rule=Host(`${APP_DOMAIN}`)
-            - traefik.http.routers.laravelcm-vite.entrypoints=vite
-            - traefik.http.routers.laravelcm-vite.service=laravelcm-vite
-            - traefik.http.routers.laravelcm-vite.tls=true
-            - traefik.http.routers.laravelcm-vite.middlewares=vite-cors@file
-            - traefik.http.services.laravelcm-vite.loadbalancer.server.port=5173
-
     pgsql:
         image: "postgres:17-alpine"
         ports:
-            - "${FORWARD_DB_PORT:-5432}:5432"
+            - "${FORWARD_DB_PORT:-5433}:5432"
         environment:
             PGPASSWORD: "${DB_PASSWORD:-password}"
             POSTGRES_DB: "${DB_DATABASE}"
@@ -117,45 +10,12 @@ services:
             POSTGRES_PASSWORD: "${DB_PASSWORD:-password}"
         volumes:
             - "sail-pgsql:/var/lib/postgresql/data"
-            - "./vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql"
         networks:
             - sail
         healthcheck:
             test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
             retries: 3
             timeout: 5s
-
-    schedule:
-        image: laravelcm/php
-        command: ["artisan", "schedule:work"]
-        stop_signal: SIGTERM
-        healthcheck:
-            test: ["CMD", "healthcheck-schedule"]
-            start_period: 10s
-        volumes:
-            - ".:/var/www/html"
-        networks:
-            - sail
-        depends_on:
-            - laravelcm
-            - pgsql
-            - redis
-
-    queue:
-        image: laravelcm/php
-        command: ["artisan", "queue:listen", "--tries=3", "--verbose"]
-        stop_signal: SIGTERM
-        healthcheck:
-            test: ["CMD", "healthcheck-queue"]
-            start_period: 10s
-        volumes:
-            - ".:/var/www/html"
-        networks:
-            - sail
-        depends_on:
-            - laravelcm
-            - pgsql
-            - redis
 
     redis:
         image: "redis:alpine"
@@ -195,6 +55,9 @@ services:
 
     minio:
         image: "minio/minio:latest"
+        ports:
+            - "${FORWARD_MINIO_PORT:-9100}:9000"
+            - "${FORWARD_MINIO_CONSOLE_PORT:-9001}:9001"
         environment:
             MINIO_ROOT_USER: sail
             MINIO_ROOT_PASSWORD: password
@@ -203,16 +66,6 @@ services:
         networks:
             - sail
         command: 'minio server /data --console-address ":9001"'
-        labels:
-            - traefik.enable=true
-            - traefik.http.routers.minio.rule=Host(`${APP_DOMAIN}`)
-            - traefik.http.routers.minio.entrypoints=minio
-            - traefik.http.routers.minio.service=minio
-            - traefik.http.services.minio.loadbalancer.server.port=9000
-            - traefik.http.routers.minio-console.rule=Host(`${APP_DOMAIN}`)
-            - traefik.http.routers.minio-console.entrypoints=minio-console
-            - traefik.http.routers.minio-console.service=minio-console
-            - traefik.http.services.minio-console.loadbalancer.server.port=9001
         healthcheck:
             test: ["CMD", "mc", "ready", "local"]
             retries: 3
@@ -235,6 +88,8 @@ services:
 
     memcached:
         image: "memcached:alpine"
+        ports:
+            - "${FORWARD_MEMCACHED_PORT:-11211}:11211"
         networks:
             - sail
 
@@ -254,30 +109,23 @@ services:
 
     buggregator:
         image: ghcr.io/buggregator/server:latest
-        labels:
-            - traefik.enable=true
-            - traefik.http.routers.laravelcm-buggregator.rule=Host(`${APP_DOMAIN:-laravelcm.local}`)
-            - traefik.http.routers.laravelcm-buggregator.entrypoints=devtools
-            - traefik.http.routers.laravelcm-buggregator.tls=true
-            - traefik.http.routers.laravelcm-buggregator.service=laravelcm-buggregator
-            - traefik.http.services.laravelcm-buggregator.loadbalancer.server.port=8000
+        ports:
+            - "${FORWARD_BUGGREGATOR_PORT:-8100}:8000"
+            - "${FORWARD_BUGGREGATOR_SMTP_PORT:-9912}:9912"
+            - "${FORWARD_BUGGREGATOR_SOCKET_PORT:-9913}:9913"
         networks:
             - sail
-            - traefik
 
 networks:
     sail:
         driver: bridge
-    traefik:
-        driver: bridge
+
 volumes:
     sail-redis:
         driver: local
     sail-typesense:
         driver: local
     sail-minio:
-        driver: local
-    traefik-letsencrypt:
         driver: local
     sail-pgsql:
         driver: local
