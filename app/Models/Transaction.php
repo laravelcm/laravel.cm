@@ -51,7 +51,7 @@ final class Transaction extends Model
     public function setMetadata(array $revisions, bool $save = true): self
     {
         $this->fill([
-            'metadata' => array_unique(array_merge($this->metadata ?? [], $revisions)),
+            'metadata' => array_merge($this->metadata ?? [], $revisions),
         ]);
 
         if ($save) {

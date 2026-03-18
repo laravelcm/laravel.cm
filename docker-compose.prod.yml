@@ -107,20 +107,6 @@ services:
             BOOST_BROWSER_LOGS_WATCHER: "${BOOST_BROWSER_LOGS_WATCHER:-false}"
             PURELINE_USERNAME: "${PURELINE_USERNAME}"
             PURELINE_LICENSE_KEY: "${PURELINE_LICENSE_KEY}"
-            CADDY_GLOBAL_OPTIONS: |
-                servers {
-                    trusted_proxies static private_ranges
-                }
-            CADDY_SERVER_EXTRA_DIRECTIVES: |
-                @static {
-                    file
-                    path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2
-                }
-                header @static Cache-Control "public, max-age=31536000, s-maxage=31536000"
-            FRANKENPHP_CONFIG: |
-                worker {
-                    file ./public/frankenphp-worker.php
-                }
         volumes:
             - storage:/var/www/html/storage
         networks:

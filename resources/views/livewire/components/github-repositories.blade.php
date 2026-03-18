@@ -3,10 +3,17 @@
 declare(strict_types=1);
 
 use App\Actions\GetGithubRepositoriesAction;
+use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
+use Livewire\Component;
 
-use function Livewire\Volt\{computed};
-
-$repositories = computed(fn () => app()->call(GetGithubRepositoriesAction::class));
+new class extends Component {
+    #[Computed]
+    public function repositories(): Collection
+    {
+        return app()->call(GetGithubRepositoriesAction::class);
+    }
+};
 
 ?>
 
@@ -27,7 +34,8 @@ $repositories = computed(fn () => app()->call(GetGithubRepositoriesAction::class
                 {{ __('global.community_oss_description') }}
             </p>
         </div>
-        <div class="grid line-t *:border-b *:border-line sm:[&>*:nth-child(odd)]:border-r sm:grid-cols-2 lg:grid-cols-3 lg:[&>*:not(:nth-child(3n))]:border-r lg:border-l lg:border-line">
+        <div
+            class="grid line-t *:border-b *:border-line sm:[&>*:nth-child(odd)]:border-r sm:grid-cols-2 lg:grid-cols-3 lg:[&>*:not(:nth-child(3n))]:border-r lg:border-l lg:border-line">
             @foreach ($this->repositories->sortByDesc('stargazers_count') as $repository)
                 <x-repository :$repository />
             @endforeach

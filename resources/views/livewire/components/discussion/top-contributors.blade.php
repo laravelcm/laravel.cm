@@ -4,16 +4,22 @@ declare(strict_types=1);
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\Computed;
+use Livewire\Component;
 
-use function Livewire\Volt\{computed};
-
-$topContributors = computed(fn (): Collection => User::with('media')
-    ->select('id', 'username', 'name', 'avatar_type')
-    ->scopes('topContributors')
-    ->limit(5)
-    ->get()
-    ->filter(fn (User $contributor): bool => $contributor->discussions_count >= 1)
-)->persist(seconds: 3600 * 24 * 30);
+new class extends Component
+{
+    #[Computed(persist: true, seconds: 2592000)]
+    public function topContributors(): Collection
+    {
+        return User::with('media')
+            ->select('id', 'username', 'name', 'avatar_type')
+            ->scopes('topContributors')
+            ->limit(5)
+            ->get()
+            ->filter(fn (User $contributor): bool => $contributor->discussions_count >= 1);
+    }
+};
 
 ?>
 
