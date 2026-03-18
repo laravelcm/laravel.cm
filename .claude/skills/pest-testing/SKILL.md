@@ -1,22 +1,12 @@
 ---
 name: pest-testing
-description: "Tests applications using the Pest 4 PHP framework. Activates when writing tests, creating unit or feature tests, adding assertions, testing Livewire components, browser testing, debugging test failures, working with datasets or mocking; or when the user mentions test, spec, TDD, expects, assertion, coverage, or needs to verify functionality works."
+description: "Use this skill for Pest PHP testing in Laravel projects only. Trigger whenever any test is being written, edited, fixed, or refactored — including fixing tests that broke after a code change, adding assertions, converting PHPUnit to Pest, adding datasets, and TDD workflows. Always activate when the user asks how to write something in Pest, mentions test files or directories (tests/Feature, tests/Unit, tests/Browser), or needs browser testing, smoke testing multiple pages for JS errors, or architecture tests. Covers: it()/expect() syntax, datasets, mocking, browser testing (visit/click/fill), smoke testing, arch(), Livewire component tests, RefreshDatabase, and all Pest 4 features. Do not use for factories, seeders, migrations, controllers, models, or non-test PHP code."
 license: MIT
 metadata:
   author: laravel
 ---
 
 # Pest Testing 4
-
-## When to Apply
-
-Activate this skill when:
-
-- Creating new tests (unit, feature, or browser)
-- Modifying existing tests
-- Debugging test failures
-- Working with browser testing or smoke testing
-- Writing architecture tests or visual regression tests
 
 ## Documentation
 
@@ -26,7 +16,7 @@ Use `search-docs` for detailed Pest 4 patterns and documentation.
 
 ### Creating Tests
 
-All tests must be written using Pest. Use `vendor/bin/sail artisan make:test --pest {name}`.
+All tests must be written using Pest. Use `php artisan make:test --pest {name}`.
 
 ### Test Organization
 
@@ -45,9 +35,9 @@ it('is true', function () {
 
 ### Running Tests
 
-- Run minimal tests with filter before finalizing: `vendor/bin/sail artisan test --compact --filter=testName`.
-- Run all tests: `vendor/bin/sail artisan test --compact`.
-- Run file: `vendor/bin/sail artisan test --compact tests/Feature/ExampleTest.php`.
+- Run minimal tests with filter before finalizing: `php artisan test --compact --filter=testName`.
+- Run all tests: `php artisan test --compact`.
+- Run file: `php artisan test --compact tests/Feature/ExampleTest.php`.
 
 ## Assertions
 

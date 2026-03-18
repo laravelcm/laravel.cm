@@ -201,7 +201,7 @@ class DatabaseMigrationService
 
         foreach ($record as $key => $value) {
             // Handle MySQL boolean fields (tinyint) to PostgreSQL boolean
-            if (is_int($value) && in_array($value, [0, 1]) && preg_match('/^(is_|has_|can_|should_|enabled|active|certified|public|featured|published|pinned|opt_in|sponsored|verified|locked)/', $key)) {
+            if (is_int($value) && in_array($value, [0, 1], true) && preg_match('/^(is_|has_|can_|should_|enabled|active|certified|public|featured|published|pinned|opt_in|sponsored|verified|locked)/', $key)) {
                 $record[$key] = (bool) $value;
             }
 

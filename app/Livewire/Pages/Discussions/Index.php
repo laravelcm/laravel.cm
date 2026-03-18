@@ -29,11 +29,15 @@ final class Index extends Component
 
     public function validSort(string $sort): bool
     {
-        return in_array($sort, [
-            'recent',
-            'popular',
-            'active',
-        ]);
+        return in_array(
+            $sort,
+            [
+                'recent',
+                'popular',
+                'active',
+            ],
+            true
+        );
     }
 
     public function toggleTag(string $tag): void
