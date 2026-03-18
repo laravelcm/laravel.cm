@@ -41,7 +41,6 @@
     "lettr/lettr-laravel": "^1.1",
     "livewire/flux": "^2.13.0",
     "livewire/flux-pro": "^2.13.0",
-    "livewire/volt": "^1.10.4",
     "mckenziearts/filament-untitledui-icons": "^1.2",
     "mckenziearts/laravel-notify": "^3.2.0",
     "mckenziearts/livewire-markdown-editor": "^1.1.0",
@@ -55,7 +54,7 @@
     "spatie/laravel-sitemap": "^7.4.0",
     "stevebauman/location": "^7.6.2",
     "torchlight/torchlight-laravel": "^0.6.2",
-    "yarri/link-finder": "^2.8.0",
+    "yarri/link-finder": "^2.8.1",
     "ysfkaya/filament-phone-input": "^4.1.2"
   },
   "require-dev": {
