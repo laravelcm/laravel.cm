@@ -26,6 +26,7 @@ storage/baddybugs
 
 # MCP configuration (contains sensitive API keys)
 .mcp.json
+.claude/agents/
 
 # Testing
 /.phpunit.cache
@@ -60,5 +61,3 @@ compose.override.yml
 # Octane
 **/caddy
 frankenphp
-frankenphp-worker.php
-/public/frankenphp-worker.php
