@@ -66,4 +66,15 @@ return [
     */
     'support_email' => env('MAIL_SUPPORT', 'support@laravel.cm'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | AI Bot Author
+    |--------------------------------------------------------------------------
+    |
+    | Email of the user account used to publish AI-generated content
+    | (news digests, summaries, etc.). Must match an existing user.
+    |
+    */
+    'ai_author_email' => env('AI_AUTHOR_EMAIL', 'support@laravel.cm'),
+
 ];
