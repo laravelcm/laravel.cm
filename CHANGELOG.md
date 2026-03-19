@@ -4,6 +4,66 @@ All notable changes to `laravel.cm` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.3.0: AI News Digest & Docker Modernization - 2026-03-19
+
+### Highlights
+
+#### AI-Powered News Digest Generation
+
+A new Filament cpanel page allows admins to generate tech news digest articles via AI (OpenAI, Anthropic). An AI agent crawls configured RSS feeds (Laravel News, Reddit, Dev.to, etc.), analyzes the week's content, and writes structured digest articles submitted for editorial review.
+
+The generation UI features a real-time timeline (Redis polling) tracking each step: initialization with provider/model info, source crawling with per-URL status, article saving, and completion.
+
+#### Real-Time Monitoring with Flux Timeline
+
+Generation progress displayed using Flux UI's Timeline component with collapsible steps, provider/model icons, status badges (done/failed), and leader dots. Auto-resets after completion.
+
+#### Docker Compose Modernization
+
+Replaced Laravel Sail with a custom Docker Compose setup. Production stack includes dedicated containers for the app (FrankenPHP/Octane), schedule worker, queue worker, Reverb WebSocket server, and Nightwatch agent.
+
+#### Laravel Reverb & Broadcasting Infrastructure
+
+Installed and configured Laravel Reverb for WebSocket support with dedicated production Docker container and internal HTTP communication for the broadcaster.
+
+### Added
+
+- Filament cpanel page for AI news digest generation with real-time monitoring
+- `GenerateNewsDigestJob` with structured JSON log entries in Redis
+- `SaveAiGeneratedArticlesAction` — unified action for AI article creation
+- `NewsWriter` AI agent with instructions, response parsing, and prompt builder
+- `FetchRssFeed` RSS/Atom parser tool for the agent
+- Telegram notification on generation completion
+- `NewsDigestCacheKey` enum centralizing Redis/Cache keys
+- CLI command `ai:news-digest` for scheduled weekly generation
+- Navigation badge on ArticleResource showing pending article count
+- SVG icons for AI providers (Anthropic, Claude, OpenAI, Gemini, DeepSeek, Ollama, xAI)
+- Predefined model selection per provider
+- Reverb container in production Docker Compose
+- Laravel Echo and Pusher JS client
+- Filament theme CSS with Flux UI and PurelineTheme integration
+
+### Fixed
+
+- Twitter card image showing site default instead of article image (inverted `blank()` condition)
+- Twitter notification self-mentioning `@laravelcm` when author is the platform account
+
+### Changed
+
+- RSS sources externalized to `config/lcm.php`
+- Tag create/edit switched from slideOver to modal
+- Broadcasting uses internal Docker network for server-to-server communication
+- Tag resolution optimized: single query instead of N+1
+- Redis EXPIRE calls reduced in job logging
+- Blade view pre-indexes log entries for polling performance
+
+### Removed
+
+- Laravel Sail dependency
+- Volt package
+- Dead `NewsDigestLogUpdated` broadcast event
+- `phpstan-baseline.neon`
+
 ## v3.2.4: Telegram Notification Polish - 2026-03-09
 
 ### Highlights
@@ -19,6 +79,7 @@ return TelegramFile::create()
     ->to('@laravelcm')
     ->photo($imageUrl)
     ->content("*{$this->article->title}*\n\n_{$this->article->excerpt(200)}_\n\n{$url}");
+
 
 ```
 Articles without a cover still fall back to a `TelegramMessage`.
