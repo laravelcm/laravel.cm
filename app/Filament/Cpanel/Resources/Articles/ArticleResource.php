@@ -33,6 +33,27 @@ final class ArticleResource extends Resource
         return __('Contenu');
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        $count = Article::query()
+            ->whereNotNull('submitted_at')
+            ->whereNull('approved_at')
+            ->whereNull('declined_at')
+            ->count();
+
+        return $count > 0 ? (string) $count : null;
+    }
+
+    public static function getNavigationBadgeColor(): string
+    {
+        return 'warning';
+    }
+
+    public static function getNavigationBadgeTooltip(): string
+    {
+        return __('Articles en attente de validation');
+    }
+
     public static function table(Table $table): Table
     {
         return $table
@@ -152,7 +173,9 @@ final class ArticleResource extends Resource
                         ->url(fn (Article $record): string => route('articles.show', $record))
                         ->openUrlInNewTab()
                         ->label(__('Afficher')),
-                    Actions\DeleteAction::make(),
+                    Actions\DeleteAction::make()
+                        ->button()
+                        ->label(__('Supprimer')),
                 ]),
             ])
             ->toolbarActions([

@@ -1,4 +1,21 @@
 @import "../../../../vendor/shopperlabs/pureline-theme/resources/css/theme.css";
+@import "../../../../vendor/livewire/flux/dist/flux.css";
+@import "../../components/flux.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-accent: var(--color-emerald-600);
+  --color-accent-content: var(--color-emerald-600);
+  --color-accent-foreground: var(--color-white);
+}
+@layer theme {
+  .dark {
+    --color-accent: var(--color-emerald-600);
+    --color-accent-content: var(--color-emerald-400);
+    --color-accent-foreground: var(--color-white);
+  }
+}
 
 @source '../../../../app/Filament';
 @source '../../../../resources/views/filament';

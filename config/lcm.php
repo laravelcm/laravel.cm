@@ -77,4 +77,24 @@ return [
     */
     'ai_author_email' => env('AI_AUTHOR_EMAIL', 'support@laravel.cm'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | News Digest
+    |--------------------------------------------------------------------------
+    |
+    | Default RSS/Atom sources crawled by the AI news digest command.
+    | Admins can override these from the cpanel before each generation.
+    |
+    */
+    'news_digest' => [
+        'default_sources' => [
+            'https://laravel-news.com/feed',
+            'https://laravel.com/feed',
+            'https://reddit.com/r/laravel/.rss',
+            'https://dev.to/feed/tag/laravel',
+            'https://medium.com/feed/tag/laravel',
+            'https://laravel.com/feed',
+        ],
+    ],
+
 ];

@@ -7,8 +7,9 @@ export default defineConfig({
     laravel({
       input: [
         "resources/css/app.css",
+        "resources/css/filament/admin/theme.css",
         "resources/js/app.js",
-        "vendor/shopperlabs/pureline-theme/resources/css/theme.css",
+        "resources/js/echo.js",
       ],
       refresh: [
         "app/Livewire/**",

@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Actions\Article\SaveAiGeneratedArticlesAction;
 use App\Ai\Agents\NewsWriter;
 use App\Models\Article;
-use App\Models\Tag;
-use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Date;
 use Laravel\Ai\Enums\Lab;
@@ -24,17 +23,6 @@ use function Laravel\Prompts\warning;
 
 final class GenerateNewsArticle extends Command
 {
-    /**
-     * @var list<string>
-     */
-    private const array SOURCES = [
-        'https://laravel-news.com/feed',
-        'https://laravel.com/feed',
-        'https://reddit.com/r/laravel/.rss',
-        'https://dev.to/feed/tag/laravel',
-        'https://medium.com/feed/tag/laravel',
-    ];
-
     protected $signature = 'ai:news-digest
         {--dry-run : Preview generated articles without saving to database}
         {--batch=4 : Number of sources to process per pass}
@@ -52,8 +40,8 @@ final class GenerateNewsArticle extends Command
         $delay = (int) $this->option('delay');
         $provider = Lab::from((string) $this->option('provider'));
         $model = (string) $this->option('model');
-        $batches = array_chunk(self::SOURCES, max(1, $batchSize));
-        $totalSources = count(self::SOURCES);
+        $batches = array_chunk($this->sources(), max(1, $batchSize));
+        $totalSources = count($this->sources());
         $today = Date::now()->translatedFormat('l j F Y');
 
         info(sprintf('Veille hebdomadaire — %d sources en ', $totalSources).count($batches).' passes');
@@ -198,6 +186,15 @@ final class GenerateNewsArticle extends Command
     }
 
     /**
+     * @return list<string>
+     */
+    private function sources(): array
+    {
+        /** @var list<string> */
+        return config('lcm.news_digest.default_sources', []);
+    }
+
+    /**
      * @param  list<array{title: string, body: string, tags?: list<string>}>  $articles
      */
     private function previewArticles(array $articles): int
@@ -222,61 +219,21 @@ final class GenerateNewsArticle extends Command
      */
     private function saveArticles(array $articles): int
     {
-        $botUser = $this->resolveBotUser();
-
         info('Sauvegarde des articles...');
 
-        foreach ($articles as $article) {
-            /** @var Article $post */
-            $post = Article::query()->create([
-                'title' => $article['title'],
-                'slug' => $article['title'],
-                'body' => $article['body'],
-                'locale' => 'fr',
-                'show_toc' => true,
-                'submitted_at' => now(),
-                'user_id' => $botUser->id,
-            ]);
-
-            if (isset($article['tags']) && filled($article['tags'])) {
-                $tagIds = $this->resolveTagIds($article['tags']);
-                $post->syncTags($tagIds);
-            }
-
-            $this->components->twoColumnDetail(
-                $post->title,
-                '<fg=yellow>En attente de validation</>',
-            );
-        }
+        $saved = resolve(SaveAiGeneratedArticlesAction::class)->execute(
+            $articles,
+            function (Article $post): void {
+                $this->components->twoColumnDetail(
+                    $post->title,
+                    '<fg=yellow>En attente de validation</>',
+                );
+            },
+        );
 
         $this->newLine();
-        info(count($articles).' article(s) soumis pour validation éditoriale.');
+        info(count($saved).' article(s) soumis pour validation éditoriale.');
 
         return self::SUCCESS;
-    }
-
-    private function resolveBotUser(): User
-    {
-        return User::query()
-            ->where('email', config('lcm.ai_author_email'))
-            ->firstOrFail();
-    }
-
-    /**
-     * @param  list<string>  $tagNames
-     * @return array<int, int>
-     */
-    private function resolveTagIds(array $tagNames): array
-    {
-        return collect($tagNames)
-            ->map(function (string $name): ?int {
-                /** @var int|null */
-                return Tag::query()
-                    ->whereRaw('LOWER(name) = ?', [mb_strtolower($name)])
-                    ->value('id');
-            })
-            ->filter()
-            ->values()
-            ->all();
     }
 }

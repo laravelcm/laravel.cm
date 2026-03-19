@@ -12,6 +12,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Contracts\View\View;
@@ -20,9 +21,9 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
-use Shopperlabs\Theme\Pureline\PurelineTheme;
 
 final class CpanelPanelProvider extends PanelProvider
 {
@@ -53,10 +54,8 @@ final class CpanelPanelProvider extends PanelProvider
                 AccountWidget::class,
                 FilamentInfoWidget::class,
             ])
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->plugins([
-                PurelineTheme::make()
-                    // @phpstan-ignore argument.type
-                    ->primaryColor(Color::Emerald),
                 SpatieTranslatablePlugin::make()
                     ->defaultLocales(['fr', 'en']),
             ])
@@ -73,6 +72,18 @@ final class CpanelPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->renderHook(
+                PanelsRenderHook::BODY_END,
+                fn (): string => Blade::render("@vite('resources/js/echo.js')"),
+            )
+            ->renderHook(
+                PanelsRenderHook::HEAD_END,
+                fn (): string => Blade::render('@fluxAppearance'),
+            )
+            ->renderHook(
+                PanelsRenderHook::BODY_END,
+                fn (): string => Blade::render('@fluxScripts'),
+            );
     }
 }
