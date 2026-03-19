@@ -119,7 +119,7 @@ final class GenerateNewsDigestJob implements ShouldBeUnique, ShouldQueue
                 }
 
                 $elapsed = (int) round(microtime(true) - $batchStartTime);
-                $articles = $this->parseResponse($responseText);
+                $articles = NewsWriter::parseResponse($responseText);
 
                 if ($articles !== []) {
                     $this->log(['type' => 'pass_result', 'pass' => $batchNumber, 'count' => count($articles), 'elapsed' => $elapsed]);
@@ -163,27 +163,6 @@ final class GenerateNewsDigestJob implements ShouldBeUnique, ShouldQueue
 
         Cache::put(self::CACHE_PREFIX.':status', 'failed', now()->addSeconds(10));
         Redis::expire(self::CACHE_PREFIX.':logs', 10);
-    }
-
-    /**
-     * @return list<array{title: string, body: string, tags?: list<string>}>
-     */
-    private function parseResponse(string $responseText): array
-    {
-        $cleanedJson = mb_trim($responseText);
-        $cleanedJson = preg_replace('/^```(?:json)?\s*/i', '', $cleanedJson) ?? $cleanedJson;
-        $cleanedJson = preg_replace('/\s*```\s*$/', '', $cleanedJson) ?? $cleanedJson;
-
-        $decoded = json_decode(mb_trim($cleanedJson), true);
-
-        if (is_array($decoded) && isset($decoded['articles']) && is_array($decoded['articles']) && filled($decoded['articles'])) {
-            /** @var list<array{title: string, body: string, tags?: list<string>}> $articles */
-            $articles = $decoded['articles'];
-
-            return $articles;
-        }
-
-        return [];
     }
 
     /**

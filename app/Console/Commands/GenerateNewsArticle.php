@@ -130,31 +130,19 @@ final class GenerateNewsArticle extends Command
                 $elapsed = (int) round(microtime(true) - $startTime);
                 $this->newLine();
 
-                $cleanedJson = mb_trim($responseText);
-                $cleanedJson = preg_replace('/^```(?:json)?\s*/i', '', $cleanedJson) ?? $cleanedJson;
-                $cleanedJson = preg_replace('/\s*```\s*$/', '', $cleanedJson) ?? $cleanedJson;
+                $batchArticles = NewsWriter::parseResponse($responseText);
 
-                $decoded = json_decode(mb_trim($cleanedJson), true);
-
-                if (is_array($decoded) && isset($decoded['articles']) && is_array($decoded['articles']) && filled($decoded['articles'])) {
-                    $count = count($decoded['articles']);
+                if ($batchArticles !== []) {
                     $this->components->twoColumnDetail(
                         '  Résultat',
-                        sprintf('<fg=green>%d article(s) trouvé(s)</> <fg=gray>(%ds)</>', $count, $elapsed)
+                        sprintf('<fg=green>%d article(s) trouvé(s)</> <fg=gray>(%ds)</>', count($batchArticles), $elapsed)
                     );
-
-                    /** @var list<array{title: string, body: string, tags?: list<string>}> $batchArticles */
-                    $batchArticles = $decoded['articles'];
                     array_push($allArticles, ...$batchArticles);
                 } else {
                     $this->components->twoColumnDetail(
                         '  Résultat',
                         sprintf('<fg=yellow>Rien de nouveau</> <fg=gray>(%ds)</>', $elapsed)
                     );
-
-                    if ($responseText !== '' && $decoded === null) {
-                        $this->line('  <fg=gray>Réponse brute (non-JSON) : '.mb_substr($responseText, 0, 300).'...</>');
-                    }
                 }
             } catch (Throwable $e) {
                 $elapsed = (int) round(microtime(true) - ($startTime ?? microtime(true)));

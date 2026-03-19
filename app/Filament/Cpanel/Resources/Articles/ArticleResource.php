@@ -20,6 +20,7 @@ use Filament\Tables\Filters;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 
 final class ArticleResource extends Resource
@@ -35,11 +36,12 @@ final class ArticleResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        $count = Article::query()
+        /** @var int $count */
+        $count = Cache::remember('articles:pending_count', now()->addMinutes(5), fn (): int => Article::query()
             ->whereNotNull('submitted_at')
             ->whereNull('approved_at')
             ->whereNull('declined_at')
-            ->count();
+            ->count());
 
         return $count > 0 ? (string) $count : null;
     }

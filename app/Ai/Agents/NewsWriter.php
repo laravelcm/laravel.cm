@@ -14,6 +14,27 @@ final class NewsWriter implements Agent, HasTools
     use Promptable;
 
     /**
+     * @return list<array{title: string, body: string, tags?: list<string>}>
+     */
+    public static function parseResponse(string $responseText): array
+    {
+        $cleanedJson = mb_trim($responseText);
+        $cleanedJson = preg_replace('/^```(?:json)?\s*/i', '', $cleanedJson) ?? $cleanedJson;
+        $cleanedJson = preg_replace('/\s*```\s*$/', '', $cleanedJson) ?? $cleanedJson;
+
+        $decoded = json_decode(mb_trim($cleanedJson), true);
+
+        if (is_array($decoded) && isset($decoded['articles']) && is_array($decoded['articles']) && filled($decoded['articles'])) {
+            /** @var list<array{title: string, body: string, tags?: list<string>}> $articles */
+            $articles = $decoded['articles'];
+
+            return $articles;
+        }
+
+        return [];
+    }
+
+    /**
      * Get the instructions that the agent should follow.
      */
     public function instructions(): string
