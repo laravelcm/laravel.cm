@@ -20,6 +20,7 @@ use Filament\Tables\Filters;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 
 final class ArticleResource extends Resource
@@ -31,6 +32,28 @@ final class ArticleResource extends Resource
     public static function getNavigationGroup(): string
     {
         return __('Contenu');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        /** @var int $count */
+        $count = Cache::remember('articles:pending_count', now()->addMinutes(5), fn (): int => Article::query()
+            ->whereNotNull('submitted_at')
+            ->whereNull('approved_at')
+            ->whereNull('declined_at')
+            ->count());
+
+        return $count > 0 ? (string) $count : null;
+    }
+
+    public static function getNavigationBadgeColor(): string
+    {
+        return 'warning';
+    }
+
+    public static function getNavigationBadgeTooltip(): string
+    {
+        return __('Articles en attente de validation');
     }
 
     public static function table(Table $table): Table
@@ -152,7 +175,9 @@ final class ArticleResource extends Resource
                         ->url(fn (Article $record): string => route('articles.show', $record))
                         ->openUrlInNewTab()
                         ->label(__('Afficher')),
-                    Actions\DeleteAction::make(),
+                    Actions\DeleteAction::make()
+                        ->button()
+                        ->label(__('Supprimer')),
                 ]),
             ])
             ->toolbarActions([

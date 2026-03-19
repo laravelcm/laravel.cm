@@ -24,7 +24,7 @@ final class SinglePost extends Component
 
         /** @var Article $article */
         $article = Cache::rememberForever(
-            key: 'article.'.$this->article->id,
+            key: 'article.'.$this->article->id.'.'.$this->article->created_at->timestamp,
             callback: fn (): Article => $this->article
                 ->load('user:id,name,username,avatar_type', 'tags', 'media')
                 ->loadCount('views'),
@@ -39,9 +39,8 @@ final class SinglePost extends Component
             views($article)->cooldown(now()->addHours(2))->record();
         }
 
-        $image = blank($article->getFirstMediaUrl('media'))
-            ? $article->getFirstMediaUrl('media')
-            : asset('/images/socialcard.png');
+        $mediaUrl = $article->getFirstMediaUrl('media');
+        $image = filled($mediaUrl) ? $mediaUrl : asset('/images/socialcard.png');
 
         /** @var SEOManager $seoManager */
         $seoManager = seo();

@@ -66,4 +66,38 @@ return [
     */
     'support_email' => env('MAIL_SUPPORT', 'support@laravel.cm'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | AI Bot Author
+    |--------------------------------------------------------------------------
+    |
+    | Email of the user account used to publish AI-generated content
+    | (news digests, summaries, etc.). Must match an existing user.
+    |
+    */
+    'ai_author_email' => env('AI_AUTHOR_EMAIL', 'support@laravel.cm'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | News Digest
+    |--------------------------------------------------------------------------
+    |
+    | Default RSS/Atom sources crawled by the AI news digest command.
+    | Admins can override these from the cpanel before each generation.
+    |
+    */
+    'news_digest' => [
+        'default_sources' => [
+            'https://laravel-news.com/feed',
+            'https://laravel.com/feed',
+            'https://reddit.com/r/laravel/.rss',
+            'https://dev.to/feed/tag/laravel',
+            'https://medium.com/feed/tag/laravel',
+            'https://stitcher.io/feed',
+            'https://freek.dev/feed',
+            'https://ashallendesign.co.uk/rss/blog',
+            'https://benjamincrozat.com/feed',
+        ],
+    ],
+
 ];

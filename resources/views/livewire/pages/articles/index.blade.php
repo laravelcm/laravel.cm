@@ -11,7 +11,7 @@
                 <div class="mt-4 flex items-center gap-2">
                     <x-locale-selector :$locale />
                     <span wire:loading>
-                        <x-loader class="text-flag-green" />
+                        <x-loader class="text-flag-green" aria-hidden="true" />
                     </span>
                 </div>
             </div>

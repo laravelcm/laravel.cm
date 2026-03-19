@@ -1,20 +1,11 @@
-<div class="flex flex-col h-full">
+<div class="flex flex-col h-full overflow-hidden rounded-xl bg-white shadow-xl ring-1 ring-gray-200 dark:bg-gray-900 dark:ring-white/10">
     <div class="p-6 space-y-1">
         <div class="flex items-start justify-between gap-3">
             <flux:heading size="lg">
                 {{ __('global.navigation.notifications') }}
                 <flux:badge size="sm" class="ml-2">{{ $this->unreadNotificationsCount }}</flux:badge>
             </flux:heading>
-            <div class="flex h-7 items-center">
-                <button
-                    type="button"
-                    class="rounded-lg bg-white text-gray-400 hover:text-gray-500 focus:outline-hidden dark:bg-gray-900 dark:text-gray-500 dark:hover:text-gray-300"
-                    wire:click="$dispatch('closePanel')"
-                >
-                    <span class="sr-only">{{ __('global.close_navigation') }}</span>
-                    <x-untitledui-x class="size-6" stroke-width="1.5" aria-hidden="true" />
-                </button>
-            </div>
+            <x-livewire-slide-over::close-icon />
         </div>
 
         @if ($notifications->isNotEmpty())

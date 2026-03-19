@@ -11,6 +11,7 @@ use App\Models\Thread;
 use App\Models\User;
 use App\Policies\NotificationPolicy;
 use ArchTech\SEO\SEOManager;
+use BladeUI\Icons\Factory;
 use Filament\Actions;
 use Filament\Support\Enums\Width;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -33,6 +34,7 @@ final class AppServiceProvider extends ServiceProvider
     {
         $this->registerBladeDirective();
         $this->registerLocaleDate();
+        $this->registerIcon();
     }
 
     public function boot(): void
@@ -61,6 +63,16 @@ final class AppServiceProvider extends ServiceProvider
             $minutesToRead = round($totalWords / 200);
 
             return (int) max(1, $minutesToRead);
+        });
+    }
+
+    protected function registerIcon(): void
+    {
+        $this->callAfterResolving(Factory::class, function (Factory $factory): void {
+            $factory->add('app', [
+                'path' => resource_path('svg'),
+                'prefix' => 'app',
+            ]);
         });
     }
 

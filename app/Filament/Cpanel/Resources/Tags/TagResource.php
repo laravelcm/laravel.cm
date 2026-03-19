@@ -11,6 +11,7 @@ use Filament\Forms\Components;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
+use Filament\Support\Enums\Width;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
@@ -38,7 +39,6 @@ final class TagResource extends Resource
                     ->afterStateUpdated(fn (string $state, Set $set): mixed => $set('slug', Str::slug($state)))
                     ->columnSpanFull(),
                 Components\TextInput::make('slug')
-                    ->readOnly()
                     ->required()
                     ->columnSpanFull(),
                 Components\Select::make('concerns')
@@ -66,7 +66,9 @@ final class TagResource extends Resource
                     ->badge(),
             ])
             ->recordActions([
-                Actions\EditAction::make(),
+                Actions\EditAction::make()
+                    ->slideOver(false)
+                    ->modalWidth(Width::Large),
                 Actions\DeleteAction::make(),
             ])
             ->toolbarActions([
