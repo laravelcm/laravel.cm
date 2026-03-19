@@ -35,6 +35,27 @@ final class NewsWriter implements Agent, HasTools
     }
 
     /**
+     * @param  list<string>  $sources
+     */
+    public static function buildPrompt(array $sources, string $date): string
+    {
+        $sourcesList = implode("\n", array_map(
+            fn (string $url): string => '- '.$url,
+            $sources,
+        ));
+
+        return <<<PROMPT
+        Effectue ta veille hebdomadaire. Voici les sources à consulter pour cette passe :
+
+        {$sourcesList}
+
+        Parcours chaque source, identifie les actualités récentes (dernière semaine) concernant Laravel, PHP et leur écosystème, puis rédige le ou les articles correspondants.
+
+        Date du jour : {$date}
+        PROMPT;
+    }
+
+    /**
      * Get the instructions that the agent should follow.
      */
     public function instructions(): string

@@ -6,6 +6,7 @@ namespace App\Jobs;
 
 use App\Actions\Article\SaveAiGeneratedArticlesAction;
 use App\Ai\Agents\NewsWriter;
+use App\Enums\NewsDigestCacheKey;
 use App\Models\Article;
 use App\Notifications\NewsDigestCompletedNotification;
 use Illuminate\Bus\Queueable;
@@ -32,8 +33,6 @@ final class GenerateNewsDigestJob implements ShouldBeUnique, ShouldQueue
     use InteractsWithQueue;
     use Queueable;
     use SerializesModels;
-
-    private const string CACHE_PREFIX = 'news-digest';
 
     public int $timeout = 600;
 
@@ -76,20 +75,7 @@ final class GenerateNewsDigestJob implements ShouldBeUnique, ShouldQueue
 
             $this->log(['type' => 'pass_start', 'pass' => $batchNumber, 'total' => count($batches), 'sources' => $batchSources]);
 
-            $sourcesList = implode("\n", array_map(
-                fn (string $url): string => '- '.$url,
-                $batchSources,
-            ));
-
-            $prompt = <<<PROMPT
-            Effectue ta veille hebdomadaire. Voici les sources a consulter pour cette passe :
-
-            {$sourcesList}
-
-            Parcours chaque source, identifie les actualites recentes (derniere semaine) concernant Laravel, PHP et leur ecosysteme, puis redige le ou les articles correspondants.
-
-            Date du jour : {$today}
-            PROMPT;
+            $prompt = NewsWriter::buildPrompt($batchSources, $today);
 
             try {
                 $batchStartTime = microtime(true);
@@ -161,8 +147,8 @@ final class GenerateNewsDigestJob implements ShouldBeUnique, ShouldQueue
     {
         $this->log(['type' => 'fatal', 'message' => mb_substr($exception->getMessage(), 0, 200)]);
 
-        Cache::put(self::CACHE_PREFIX.':status', 'failed', now()->addSeconds(10));
-        Redis::expire(self::CACHE_PREFIX.':logs', 10);
+        Cache::put(NewsDigestCacheKey::Status->value, 'failed', now()->addSeconds(10));
+        Redis::expire(NewsDigestCacheKey::Logs->value, 10);
     }
 
     /**
@@ -172,33 +158,33 @@ final class GenerateNewsDigestJob implements ShouldBeUnique, ShouldQueue
      */
     private function log(array $entry): void
     {
-        Redis::rpush(self::CACHE_PREFIX.':logs', json_encode($entry, JSON_THROW_ON_ERROR));
-        Redis::expire(self::CACHE_PREFIX.':logs', 3600);
+        Redis::rpush(NewsDigestCacheKey::Logs->value, json_encode($entry, JSON_THROW_ON_ERROR));
+        Redis::expire(NewsDigestCacheKey::Logs->value, 3600);
     }
 
     private function complete(int $count, int $duration): void
     {
         $this->log(['type' => 'complete', 'count' => $count, 'duration' => $duration]);
 
-        Cache::put(self::CACHE_PREFIX.':status', 'completed', now()->addSeconds(10));
-        Cache::put(self::CACHE_PREFIX.':result', [
+        Cache::put(NewsDigestCacheKey::Status->value, 'completed', now()->addSeconds(10));
+        Cache::put(NewsDigestCacheKey::Result->value, [
             'count' => $count,
             'duration' => $duration,
             'provider' => $this->provider,
             'model' => $this->model,
         ], now()->addSeconds(10));
-        Redis::expire(self::CACHE_PREFIX.':logs', 10);
+        Redis::expire(NewsDigestCacheKey::Logs->value, 10);
     }
 
     private function setStatus(string $status): void
     {
-        Cache::put(self::CACHE_PREFIX.':status', $status, now()->addHour());
+        Cache::put(NewsDigestCacheKey::Status->value, $status, now()->addHour());
     }
 
     private function reset(): void
     {
-        Redis::del(self::CACHE_PREFIX.':logs');
-        Cache::forget(self::CACHE_PREFIX.':status');
-        Cache::forget(self::CACHE_PREFIX.':result');
+        Redis::del(NewsDigestCacheKey::Logs->value);
+        Cache::forget(NewsDigestCacheKey::Status->value);
+        Cache::forget(NewsDigestCacheKey::Result->value);
     }
 }

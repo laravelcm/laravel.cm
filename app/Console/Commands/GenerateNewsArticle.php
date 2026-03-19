@@ -79,20 +79,7 @@ final class GenerateNewsArticle extends Command
 
             $this->newLine();
 
-            $sourcesList = implode("\n", array_map(
-                fn (string $url): string => '- '.$url,
-                $batchSources,
-            ));
-
-            $prompt = <<<PROMPT
-            Effectue ta veille hebdomadaire. Voici les sources à consulter pour cette passe :
-
-            {$sourcesList}
-
-            Parcours chaque source, identifie les actualités récentes (dernière semaine) concernant Laravel, PHP et leur écosystème, puis rédige le ou les articles correspondants.
-
-            Date du jour : {$today}
-            PROMPT;
+            $prompt = NewsWriter::buildPrompt($batchSources, $today);
 
             try {
                 $startTime = microtime(true);

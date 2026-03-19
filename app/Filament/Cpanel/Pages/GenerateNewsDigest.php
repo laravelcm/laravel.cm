@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Filament\Cpanel\Pages;
 
+use App\Enums\NewsDigestCacheKey;
 use App\Jobs\GenerateNewsDigestJob;
 use App\Models\User;
 use BackedEnum;
@@ -112,10 +113,10 @@ final class GenerateNewsDigest extends Page
             'aiModel' => ['required', 'string'],
             'batchSize' => ['required', 'integer', 'min:1', 'max:10'],
             'sources' => ['required', 'array', 'min:1'],
-            'sources.*' => ['required', 'url'],
+            'sources.*' => ['required', 'url', 'distinct'],
         ]);
 
-        Cache::put('news-digest:status', 'running', now()->addHour());
+        Cache::put(NewsDigestCacheKey::Status->value, 'running', now()->addHour());
 
         dispatch(new GenerateNewsDigestJob(provider: $this->provider, model: $this->aiModel, batchSize: $this->batchSize, sources: $this->sources));
 
@@ -143,7 +144,7 @@ final class GenerateNewsDigest extends Page
     public function getStatus(): string
     {
         /** @var string */
-        return Cache::get('news-digest:status', 'idle');
+        return Cache::get(NewsDigestCacheKey::Status->value, 'idle');
     }
 
     /**
@@ -152,7 +153,7 @@ final class GenerateNewsDigest extends Page
     public function getLogEntries(): array
     {
         /** @var list<string> $raw */
-        $raw = Redis::lrange('news-digest:logs', 0, -1) ?: [];
+        $raw = Redis::lrange(NewsDigestCacheKey::Logs->value, 0, -1) ?: [];
 
         return array_map(
             fn (string $json): array => (array) json_decode($json, true),
@@ -186,7 +187,7 @@ final class GenerateNewsDigest extends Page
     public function getResult(): ?array
     {
         /** @var array{count?: int, duration?: int, provider?: string, model?: string}|null */
-        return Cache::get('news-digest:result');
+        return Cache::get(NewsDigestCacheKey::Result->value);
     }
 
     public function getProviderIcon(?string $key = null): ?string
@@ -201,8 +202,8 @@ final class GenerateNewsDigest extends Page
 
     public function resetDigest(): void
     {
-        Redis::del('news-digest:logs');
-        Cache::forget('news-digest:status');
-        Cache::forget('news-digest:result');
+        Redis::del(NewsDigestCacheKey::Logs->value);
+        Cache::forget(NewsDigestCacheKey::Status->value);
+        Cache::forget(NewsDigestCacheKey::Result->value);
     }
 }

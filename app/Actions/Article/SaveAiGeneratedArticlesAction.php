@@ -60,7 +60,7 @@ final class SaveAiGeneratedArticlesAction
             ->map(function (string $name): ?int {
                 /** @var int|null */
                 return Tag::query()
-                    ->whereRaw('LOWER(name) = ?', [mb_strtolower($name)])
+                    ->where('name', 'ilike', $name)
                     ->value('id');
             })
             ->filter()
