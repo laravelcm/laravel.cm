@@ -11,9 +11,9 @@ use Filament\Forms\Components;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
+use Filament\Support\Enums\Width;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Support\Enums\Width;
 use Illuminate\Support\Str;
 
 final class TagResource extends Resource

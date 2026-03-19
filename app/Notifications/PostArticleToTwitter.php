@@ -42,10 +42,12 @@ final class PostArticleToTwitter extends Notification
         $twitterHandle = $this->article->user->twitter();
         $isOwnAccount = $twitterHandle && mb_strtolower($twitterHandle) === 'laravelcm';
 
-        $tweet = $isOwnAccount
-            ? "{$title}\n\n{$url}"
-            : "{$title} par ".($twitterHandle ? '@'.$twitterHandle : $this->article->user->name)."\n\n{$url}";
+        $author = $twitterHandle ? '@'.$twitterHandle : $this->article->user->name;
 
-        return "{$tweet}\n\n#CaParleDev #laravelcm";
+        $tweet = $isOwnAccount
+            ? $title."\n\n".$url
+            : $title.' par '.$author."\n\n".$url;
+
+        return $tweet."\n\n#CaParleDev #laravelcm";
     }
 }

@@ -100,14 +100,17 @@ describe(SinglePost::class, function (): void {
     it('caches article data on first load', function (): void {
         Cache::flush();
 
-        expect(Cache::has('article.'.$this->article->id))->toBeFalse();
+        $cacheKey = 'article.'.$this->article->id.'.'.$this->article->created_at->timestamp;
+
+        expect(Cache::has($cacheKey))->toBeFalse();
 
         Livewire::test(SinglePost::class, ['article' => $this->article])
             ->assertStatus(200);
 
-        expect(Cache::has('article.'.$this->article->id))->toBeTrue();
+        expect(Cache::has($cacheKey))->toBeTrue();
 
-        $cachedArticle = Cache::get('article.'.$this->article->id);
+        $cachedArticle = Cache::get($cacheKey);
+
         expect($cachedArticle->id)->toBe($this->article->id)
             ->and($cachedArticle->relationLoaded('user'))->toBeTrue()
             ->and($cachedArticle->relationLoaded('tags'))->toBeTrue()
@@ -117,13 +120,15 @@ describe(SinglePost::class, function (): void {
     it('uses cached article data on subsequent loads', function (): void {
         Cache::flush();
 
-        expect(Cache::has('article.'.$this->article->id))->toBeFalse();
+        $cacheKey = 'article.'.$this->article->id.'.'.$this->article->created_at->timestamp;
+
+        expect(Cache::has($cacheKey))->toBeFalse();
 
         Livewire::test(SinglePost::class, ['article' => $this->article]);
 
-        expect(Cache::has('article.'.$this->article->id))->toBeTrue();
+        expect(Cache::has($cacheKey))->toBeTrue();
 
-        $cachedArticle = Cache::get('article.'.$this->article->id);
+        $cachedArticle = Cache::get($cacheKey);
         expect($cachedArticle)->not->toBeNull()
             ->and($cachedArticle->title)->toBe('Test Article Title');
     });
@@ -165,18 +170,21 @@ describe(SinglePost::class, function (): void {
 
     it('invalidates cache when article is updated', function (): void {
         Livewire::test(SinglePost::class, ['article' => $this->article]);
-        expect(Cache::has('article.'.$this->article->id))->toBeTrue();
 
-        Cache::forget('article.'.$this->article->id);
+        $cacheKey = 'article.'.$this->article->id.'.'.$this->article->created_at->timestamp;
+
+        expect(Cache::has($cacheKey))->toBeTrue();
+
+        Cache::forget($cacheKey);
 
         $this->article->update(['title' => 'Updated Title']);
 
-        expect(Cache::has('article.'.$this->article->id))->toBeFalse();
+        expect(Cache::has($cacheKey))->toBeFalse();
 
         Livewire::test(SinglePost::class, ['article' => $this->article->fresh()])
             ->assertStatus(200)
             ->assertSee('Updated Title');
 
-        expect(Cache::has('article.'.$this->article->id))->toBeTrue();
+        expect(Cache::has($cacheKey))->toBeTrue();
     });
 })->group('articles');
