@@ -1,21 +1,22 @@
 {
-    "agents": [
-        "claude_code"
-    ],
-    "guidelines": true,
-    "herd_mcp": false,
-    "mcp": true,
-    "nightwatch_mcp": false,
-    "packages": [
-        "filament/filament",
-        "internachi/modular"
-    ],
-    "sail": false,
-    "skills": [
-        "socialite-development",
-        "fluxui-development",
-        "pest-testing",
-        "tailwindcss-development",
-        "modular"
-    ]
+  "agents": ["claude_code"],
+  "guidelines": true,
+  "herd_mcp": false,
+  "mcp": true,
+  "nightwatch_mcp": false,
+  "packages": [
+    "filament/filament",
+    "internachi/modular",
+    "laravel/ai"
+  ],
+  "sail": false,
+  "skills": [
+    "socialite-development",
+    "fluxui-development",
+    "pest-testing",
+    "echo-development",
+    "tailwindcss-development",
+    "modular",
+    "ai-sdk-development"
+  ]
 }

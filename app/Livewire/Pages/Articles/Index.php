@@ -30,7 +30,7 @@ final class Index extends Component
         /** @var Collection<int, User> */
         return Cache::remember(
             key: 'top_authors',
-            ttl: now()->addWeeks(2),
+            ttl: now()->addWeek(),
             callback: fn (): Collection => User::query()
                 ->select(['id', 'name', 'username', 'avatar_type'])
                 ->whereHas('articles', function ($query): void {

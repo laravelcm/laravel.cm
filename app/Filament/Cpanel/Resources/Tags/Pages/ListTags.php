@@ -17,7 +17,8 @@ final class ListTags extends ListRecords
     {
         return [
             CreateAction::make()
-                ->slideOver()
+                ->button()
+                ->slideOver(false)
                 ->modalWidth(Width::Large),
         ];
     }

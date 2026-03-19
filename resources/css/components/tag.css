@@ -98,6 +98,10 @@
   color: var(--astuces);
 }
 
+.brand-ia {
+  color: var(--ia);
+}
+
 .is-channel {
   @apply dark:border-white/20 dark:text-(--channel-color) [&_svg]:dark:hover:fill-white dark:hover:text-white;
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
 
-    'title' => 'Laravel Cameroon Blog',
+    'title' => 'Blog',
     'blog' => 'The Laravel Cameroon Blog',
     'blog_summary' => 'All the latest articles, tips and tutorials published just for you.',
     'about_author' => 'About author',

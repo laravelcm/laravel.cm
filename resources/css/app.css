@@ -19,12 +19,14 @@
 
 @source '../../app/Livewire/**/*.php';
 @source '../../app-modules/*/resources/**/*.blade.php'
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../vendor/filament/**/*.blade.php';
-@source '../../vendor/mckenziearts/**/*.blade.php';
 @source '../../storage/framework/views/*.php';
+@source '../../vendor/filament/**/*.blade.php';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source "../../vendor/laravelcm/livewire-slide-overs/resources/views";
+@source '../../vendor/mckenziearts/**/*.blade.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+@source inline("max-w-{sm,md,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl}");
 
 :root {
   --banner-height: 0px;
@@ -56,6 +58,7 @@
   --tutoriel: #164e63;
   --communaute: #dd2590;
   --astuces: #d6bbfb;
+  --ia: #f130f5;
 }
 
 @theme {

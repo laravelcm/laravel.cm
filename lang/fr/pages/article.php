@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 return [
 
-    'title' => 'Blog Laravel Cameroun',
+    'title' => 'Blog',
     'blog' => 'Le Blog de Laravel Cameroun',
     'blog_summary' => 'Tous les articles, tips et tutoriels récemment publiés juste pour vous.',
     'about_author' => 'À propos de l’auteur',
