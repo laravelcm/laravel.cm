@@ -56,15 +56,12 @@ final class SaveAiGeneratedArticlesAction
      */
     private function resolveTagIds(array $tagNames): array
     {
-        return collect($tagNames)
-            ->map(function (string $name): ?int {
-                /** @var int|null */
-                return Tag::query()
-                    ->where('name', 'ilike', $name)
-                    ->value('id');
-            })
-            ->filter()
-            ->values()
+        $normalized = array_map('mb_strtolower', $tagNames);
+
+        /** @var array<int, int> */
+        return Tag::query()
+            ->whereRaw('LOWER(name) IN ('.implode(',', array_fill(0, count($normalized), '?')).')', $normalized)
+            ->pluck('id')
             ->all();
     }
 }

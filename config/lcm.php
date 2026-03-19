@@ -93,7 +93,10 @@ return [
             'https://reddit.com/r/laravel/.rss',
             'https://dev.to/feed/tag/laravel',
             'https://medium.com/feed/tag/laravel',
-            'https://laravel.com/feed',
+            'https://stitcher.io/feed',
+            'https://freek.dev/feed',
+            'https://ashallendesign.co.uk/rss/blog',
+            'https://benjamincrozat.com/feed',
         ],
     ],
 

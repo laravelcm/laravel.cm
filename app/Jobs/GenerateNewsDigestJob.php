@@ -159,7 +159,6 @@ final class GenerateNewsDigestJob implements ShouldBeUnique, ShouldQueue
     private function log(array $entry): void
     {
         Redis::rpush(NewsDigestCacheKey::Logs->value, json_encode($entry, JSON_THROW_ON_ERROR));
-        Redis::expire(NewsDigestCacheKey::Logs->value, 3600);
     }
 
     private function complete(int $count, int $duration): void
@@ -179,6 +178,7 @@ final class GenerateNewsDigestJob implements ShouldBeUnique, ShouldQueue
     private function setStatus(string $status): void
     {
         Cache::put(NewsDigestCacheKey::Status->value, $status, now()->addHour());
+        Redis::expire(NewsDigestCacheKey::Logs->value, 3600);
     }
 
     private function reset(): void

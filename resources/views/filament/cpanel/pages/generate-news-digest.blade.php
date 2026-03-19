@@ -8,7 +8,12 @@
         $entries = $this->getLogEntries();
         $result = $this->getResult();
         $hasEntries = count($entries) > 0;
-        $initEntry = collect($entries)->firstWhere('type', 'init');
+
+        $entriesCollection = collect($entries);
+        $initEntry = $entriesCollection->firstWhere('type', 'init');
+        $passResults = $entriesCollection->where('type', 'pass_result')->keyBy('pass');
+        $sourceResults = $entriesCollection->where('type', 'source_result')->keyBy('url');
+        $articleEntries = $entriesCollection->where('type', 'article_saved');
     @endphp
 
     <div
@@ -213,9 +218,7 @@
                                         $passNum = $entry['pass'] ?? 1;
                                         $totalPasses = $entry['total'] ?? 1;
                                         $passSources = $entry['sources'] ?? [];
-                                        $passResultEntry = collect($entries)->first(fn ($e) =>
-                                            ($e['type'] ?? '') === 'pass_result' && ($e['pass'] ?? 0) === $passNum
-                                        );
+                                        $passResultEntry = $passResults->get($passNum);
                                         $passIsDone = $passResultEntry !== null;
                                         $passIsActive = ! $passIsDone && $isRunning;
                                     @endphp
@@ -246,9 +249,7 @@
                                                 <div x-show="open" x-collapse class="mt-2 rounded-lg bg-gray-50 py-2 px-4 space-y-1 dark:bg-gray-800">
                                                     @foreach ($passSources as $sourceUrl)
                                                         @php
-                                                            $sourceResult = collect($entries)->first(fn ($e) =>
-                                                                ($e['type'] ?? '') === 'source_result' && ($e['url'] ?? '') === $sourceUrl
-                                                            );
+                                                            $sourceResult = $sourceResults->get($sourceUrl);
                                                             $sourceSuccess = $sourceResult ? ($sourceResult['success'] ?? false) : null;
                                                             $sourceDomain = parse_url($sourceUrl, PHP_URL_HOST) ?: $sourceUrl;
                                                             $sourcePath = parse_url($sourceUrl, PHP_URL_PATH) ?: '';
@@ -295,9 +296,6 @@
                                     </flux:timeline.item>
 
                                 @elseif ($type === 'saving')
-                                    @php
-                                        $articleEntries = collect($entries)->where('type', 'article_saved');
-                                    @endphp
                                     <flux:timeline.item status="complete">
                                         <flux:timeline.indicator color="green">
                                             <flux:icon.check variant="micro" />
