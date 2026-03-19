@@ -337,7 +337,7 @@
                                     </flux:timeline.item>
 
                                 @elseif ($type === 'error')
-                                    <flux:timeline.item status="complete">
+                                    <flux:timeline.item status="current">
                                         <flux:timeline.indicator color="red">
                                             <flux:icon.exclamation-triangle variant="micro" />
                                         </flux:timeline.indicator>
@@ -352,7 +352,7 @@
                                     </flux:timeline.item>
 
                                 @elseif ($type === 'fatal')
-                                    <flux:timeline.item status="complete">
+                                    <flux:timeline.item status="current">
                                         <flux:timeline.indicator color="red">
                                             <flux:icon.x-mark variant="micro" />
                                         </flux:timeline.indicator>

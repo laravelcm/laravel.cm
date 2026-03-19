@@ -41,7 +41,7 @@ final class GenerateNewsDigest extends Page
         ],
         'anthropic' => [
             'claude-haiku-4-5-20251001' => 'Claude Haiku 4.5',
-            'claude-sonnet-4-5-20250514' => 'Claude Sonnet 4.5',
+            'claude-sonnet-4-6' => 'Claude Sonnet 4.6',
         ],
     ];
 
