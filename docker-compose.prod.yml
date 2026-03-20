@@ -145,7 +145,7 @@ services:
             - "--tries=3"
             - "--quiet"
             - "--force"
-            - "--queue=default,media"
+            - "--queue=default,media,search"
         stop_signal: SIGTERM
         healthcheck:
             test: ["CMD", "healthcheck-queue"]

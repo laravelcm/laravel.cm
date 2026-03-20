@@ -86,12 +86,12 @@
             });
         });
 
-        const bbScript = document.createElement('script');
-        bbScript.async = true;
-        bbScript.src = 'https://media.bitterbrains.com/main.js?from=LARAVELCM&type=top';
-        document.body.appendChild(bbScript);
-
         (function () {
+            const bbScript = document.createElement('script');
+            bbScript.async = true;
+            bbScript.src = 'https://media.bitterbrains.com/main.js?from=LARAVELCM&type=top';
+            document.body.appendChild(bbScript);
+
             const container = document.getElementById('bb-banner-container');
             const update = () => {
                 const banner = container.querySelector('#bb-banner');

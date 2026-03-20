@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Spatie\MediaLibrary\HasMedia;
@@ -68,6 +69,7 @@ final class Article extends Model implements Feedable, HasMedia, ReactableInterf
     use InteractsWithViews;
     use Reactable;
     use RecordsActivity;
+    use Searchable;
 
     protected $guarded = [];
 
@@ -98,6 +100,27 @@ final class Article extends Model implements Feedable, HasMedia, ReactableInterf
             ->latest('published_at')
             ->limit(50)
             ->get();
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => (string) $this->id,
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'body' => mb_substr(md_to_text($this->body), 0, 5000),
+            'tags' => $this->tags->pluck('name')->toArray(),
+            'author' => $this->user?->name,
+            'published_at' => ($this->published_at ?? $this->created_at)->timestamp,
+        ];
+    }
+
+    public function shouldBeSearchable(): bool
+    {
+        return $this->isPublished();
     }
 
     public function toFeedItem(): FeedItem

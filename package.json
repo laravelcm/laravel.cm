@@ -26,7 +26,7 @@
     "prettier": "^3.8.1",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "pusher-js": "^8.4.2",
+    "pusher-js": "^8.4.3",
     "shiki": "^4.0.2",
     "tailwindcss": "^4.2.2",
     "tippy.js": "^6.3.7",
