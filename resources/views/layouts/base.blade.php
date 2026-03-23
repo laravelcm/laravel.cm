@@ -71,6 +71,7 @@
 
     <x-notify::notify />
     <livewire:slide-over-panel />
+    <livewire:components.spotlight />
 
     @persist('toast')
         <flux:toast position="top end" />
@@ -82,7 +83,10 @@
     <script>
         document.addEventListener('livewire:init', () => {
             Livewire.on('theme-changed', (event) => {
-                Flux.appearance = Array.isArray(event) ? event[0] : event;
+                const value = Array.isArray(event) ? event[0] : event;
+                Flux.appearance = value === 'toggle'
+                    ? (Flux.appearance === 'dark' ? 'light' : 'dark')
+                    : value;
             });
         });
 

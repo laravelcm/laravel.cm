@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use App\Livewire\Components\Spotlight;
+use App\Spotlight\Commands;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -47,6 +49,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureUrl();
         $this->configurePolicies();
         $this->configureRateLimiting();
+        $this->configureSpotlight();
     }
 
     public function registerBladeDirective(): void
@@ -162,5 +165,16 @@ final class AppServiceProvider extends ServiceProvider
         RateLimiter::for('content', fn (Request $request): Limit => Limit::perMinute(10)->by(
             $request->user()->id ?? $request->ip()
         ));
+    }
+
+    protected function configureSpotlight(): void
+    {
+        Spotlight::registerCommand(Commands\GoToArticles::class);
+        Spotlight::registerCommand(Commands\GoToForum::class);
+        Spotlight::registerCommand(Commands\GoToDiscussions::class);
+        Spotlight::registerCommand(Commands\ToggleTheme::class);
+        Spotlight::registerCommand(Commands\GoToHome::class);
+        Spotlight::registerCommand(Commands\GoToAbout::class);
+        Spotlight::registerCommand(Commands\GoToRules::class);
     }
 }
