@@ -4,6 +4,72 @@ All notable changes to `laravel.cm` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.4.0: Spotlight Command Palette & Typesense Search - 2026-03-23
+
+### Highlights
+
+#### Typesense Full-Text Search
+
+Laravel Scout is now configured with the Typesense driver. Four models are indexed and searchable: Article (133 docs), Thread (89), Discussion (32), and User (634). Each model defines a `toSearchableArray()` with the relevant fields and a `shouldBeSearchable()` guard — only published articles and verified, non-banned users are indexed.
+
+Typesense collection schemas are defined in `config/scout.php` with typed fields, facets on tags/channels, and `query_by` configuration. Search indexing runs asynchronously via a dedicated Redis queue (`search`), and the Docker production queue worker has been updated to listen on `default,media,search`.
+
+#### Spotlight Command Palette (Cmd+K)
+
+A custom command palette inspired by wire-elements/spotlight is now available across the entire site. Press `Cmd+K` (Mac) or `Ctrl+K` (Windows/Linux) to open it.
+
+The palette has two layers: Fuse.js handles instant client-side fuzzy filtering of registered commands (navigation, actions), while Typesense powers the content search commands that drill into Articles, Forum Threads, Discussions, and Users with a breadcrumb UI.
+
+Commands are PHP classes extending `SpotlightCommand`. Each declares its name, icon, group, synonyms, and an `execute()` method. Search commands define `dependencies()` for drill-down and `search{Name}()` methods that query Typesense.
+
+#### SpotlightManager — Octane-Compatible Command Registry
+
+Commands are managed by a `SpotlightManager` class registered as a `scoped` singleton in the container — safe for Laravel Octane. Commands are registered in `AppServiceProvider` with `register()`, `registerIf()`, or `registerUnless()`. Lookup by ID is O(1) via an indexed array.
+
+#### Security Hardening
+
+The Spotlight Livewire component enforces three layers of protection on search:
+
+1. **Query sanitization** — `strip_tags()` + `mb_substr()` capped at 100 characters
+2. **Rate limiting** — 30 requests/minute keyed by authenticated user ID or IP
+3. **Dependency validation** — only dependency IDs declared by the command are accepted
+
+Theme toggling validates against an allowlist and uses the existing `HasSettings` trait for persistence.
+
+### Added
+
+- Laravel Scout with Typesense driver, `toSearchableArray` and `shouldBeSearchable` on Article, Thread, Discussion, User
+- Typesense collection schemas with facets, sorting fields, and query_by config in `config/scout.php`
+- `SpotlightCommand` abstract class with kebab-case ID generation, `closesAfterExecute()`, grouped commands
+- `SpotlightManager` with `register()`, `registerIf()`, `registerUnless()`, `getCommandById()`, `getVisibleCommands()`
+- `SpotlightSearchResult` DTO with image and `SpotlightResultOptions` (badge label + color)
+- `SpotlightCommandDependencies` and `SpotlightCommandDependency` for drill-down search flow
+- Navigation commands: GoToArticles, GoToForum, GoToDiscussions, GoToHome, GoToAbout, GoToRules
+- Search commands: SearchArticles, SearchThreads, SearchDiscussions, SearchUsers (with avatar + XP badge)
+- ToggleTheme command with `closesAfterExecute: false` and user settings persistence
+- Fuse.js dependency for client-side command filtering
+- `spotlight.js` Alpine component with keyboard navigation, scroll-to-selected, dependency mode
+- Search trigger button in header with `⌘K` hint (desktop) and magnifying glass icon (mobile)
+- Translation files `lang/fr/command-palette.php` and `lang/en/command-palette.php`
+- 22 Pest tests covering SpotlightManager and Spotlight Livewire component
+- AI coding guidelines in `.ai/guidelines/` (question handling + coding rules)
+- Fuse.js npm dependency
+
+### Fixed
+
+- `ReferrerPolicy` changed from `no-referrer` to `strict-origin-when-cross-origin` — fixes YouTube embed Error 153 caused by missing Referer header
+- `CacheHeaders` middleware now only sets public cache headers on successful (2xx) responses — 404 pages were cached for 60s by browsers/CDN, causing published articles to remain inaccessible
+- `ArticleObserver` cache invalidation key aligned with `SinglePost` cache key format (`article.{id}.{created_at_timestamp}`)
+- Scout queue connection reads `QUEUE_CONNECTION` from environment instead of hardcoded `redis`
+
+### Changed
+
+- Docker production queue worker updated to listen on `default,media,search`
+- `phpunit.xml` DB_HOST and DB_PORT removed — delegated to `.env.testing` for local/CI flexibility
+- Removed `Searchable` trait from Reply and Enterprise models (not relevant for search)
+- Old Spotlight stub files removed (`app/Spotlight/*.stub`)
+- `/docs` directory added to `.gitignore`
+
 ## v3.3.0: AI News Digest & Docker Modernization - 2026-03-19
 
 ### Highlights
@@ -79,6 +145,7 @@ return TelegramFile::create()
     ->to('@laravelcm')
     ->photo($imageUrl)
     ->content("*{$this->article->title}*\n\n_{$this->article->excerpt(200)}_\n\n{$url}");
+
 
 
 ```
