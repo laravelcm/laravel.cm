@@ -5,90 +5,81 @@ declare(strict_types=1);
 namespace App\Livewire\Components;
 
 use App\Spotlight\SpotlightCommand;
+use App\Spotlight\SpotlightManager;
 use App\Spotlight\SpotlightSearchResult;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
 final class Spotlight extends Component
 {
-    /** @var array<class-string<SpotlightCommand>> */
-    public static array $commands = [];
+    private const int MAX_QUERY_LENGTH = 100;
 
-    /** @var array<int, array{id: mixed, name: string, description: ?string, synonyms: string[]}> */
+    private const int SEARCH_RATE_LIMIT = 30;
+
+    /** @var array<int, array{id: int|string, name: string, description: ?string, synonyms: array<string>, image: ?string, options: ?array{badge_label: ?string, badge_color: ?string}}> */
     public array $dependencyQueryResults = [];
-
-    public static function registerCommand(string $command): void
-    {
-        self::$commands[] = $command;
-    }
-
-    public static function registerCommandIf(bool $condition, string $command): void
-    {
-        if ($condition) {
-            self::registerCommand($command);
-        }
-    }
-
-    public static function registerCommandUnless(bool $condition, string $command): void
-    {
-        if (! $condition) {
-            self::registerCommand($command);
-        }
-    }
 
     public function executeCommand(string $commandId): void
     {
-        $command = $this->getCommandById($commandId);
+        $command = resolve(SpotlightManager::class)->getCommandById($commandId);
 
-        if (! $command) {
+        if (! $command || ! method_exists($command, 'execute')) {
             return;
         }
 
-        if (method_exists($command, 'execute')) {
-            $params = ['spotlight' => $this];
-            app()->call([$command, 'execute'], $params);
-
-            return;
-        }
-
-        $url = $command->getUrl();
-
-        if ($url !== '') {
-            $this->dispatch('close-spotlight');
-            $this->redirect($url, navigate: true);
-        }
+        app()->call([$command, 'execute'], ['spotlight' => $this]);
     }
 
     public function searchDependency(string $commandId, string $dependency, string $query, array $resolvedDependencies = []): void
     {
-        $command = $this->getCommandById($commandId);
+        $query = $this->sanitizeQuery($query);
+
+        if ($query === '') {
+            $this->dependencyQueryResults = [];
+
+            return;
+        }
+
+        if ($this->isRateLimited()) {
+            return;
+        }
+
+        $command = resolve(SpotlightManager::class)->getCommandById($commandId);
 
         if (! $command) {
+            return;
+        }
+
+        if (! $this->isValidDependency($command, $dependency)) {
             return;
         }
 
         $method = Str::camel('search '.$dependency);
 
-        if (! method_exists($command, $method)) {
-            return;
-        }
-
         $params = array_merge(['query' => $query], $resolvedDependencies);
 
-        $this->dependencyQueryResults = collect(app()->call([$command, $method], $params))
+        /** @var Collection<int, SpotlightSearchResult> $results */
+        $results = app()->call([$command, $method], $params); // @phpstan-ignore argument.type
+
+        $this->dependencyQueryResults = $results
             ->map(fn (SpotlightSearchResult $result): array => [
                 'id' => $result->getId(),
                 'name' => $result->getName(),
                 'description' => $result->getDescription(),
                 'synonyms' => $result->getSynonyms(),
+                'image' => $result->getImage(),
+                'options' => $result->getOptions()?->toArray(),
             ])
-            ->toArray();
+            ->values()
+            ->all();
     }
 
     public function execute(string $commandId, array $dependencies = []): void
     {
-        $command = $this->getCommandById($commandId);
+        $command = resolve(SpotlightManager::class)->getCommandById($commandId);
 
         if (! $command || ! method_exists($command, 'execute')) {
             return;
@@ -101,23 +92,39 @@ final class Spotlight extends Component
 
     public function render(): View
     {
-        $commands = collect(self::$commands)
-            ->map(fn (string $class): SpotlightCommand => app($class))
-            ->filter(fn (SpotlightCommand $cmd): bool => $cmd->shouldBeShown(request()))
-            ->map(fn (SpotlightCommand $cmd): array => $cmd->toArray())
-            ->values()
-            ->all();
-
         return view('livewire.components.spotlight', [
-            'commands' => $commands,
+            'commands' => resolve(SpotlightManager::class)->getVisibleCommands(request()),
         ]);
     }
 
-    private function getCommandById(string $id): ?SpotlightCommand
+    private function sanitizeQuery(string $query): string
     {
-        /** @var SpotlightCommand|null */
-        return collect(self::$commands)
-            ->map(fn (string $class): SpotlightCommand => app($class))
-            ->first(fn (SpotlightCommand $cmd): bool => $cmd->getId() === $id);
+        return mb_substr(mb_trim(strip_tags($query)), 0, self::MAX_QUERY_LENGTH);
+    }
+
+    private function isRateLimited(): bool
+    {
+        $key = 'spotlight-search:'.(auth()->id() ?? request()->ip());
+
+        if (RateLimiter::tooManyAttempts($key, self::SEARCH_RATE_LIMIT)) {
+            return true;
+        }
+
+        RateLimiter::hit($key);
+
+        return false;
+    }
+
+    private function isValidDependency(SpotlightCommand $command, string $dependency): bool
+    {
+        $dependencies = $command->dependencies();
+
+        if (! $dependencies instanceof \App\Spotlight\SpotlightCommandDependencies) {
+            return false;
+        }
+
+        $validIds = collect($dependencies->toArray())->pluck('id')->all();
+
+        return in_array($dependency, $validIds, true);
     }
 }

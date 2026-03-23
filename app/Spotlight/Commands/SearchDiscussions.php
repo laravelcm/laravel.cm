@@ -14,22 +14,23 @@ use Illuminate\Support\Collection;
 
 final class SearchDiscussions extends SpotlightCommand
 {
-    protected string $name = 'Rechercher une discussion';
+    protected ?string $icon = 'phosphor-chat-circle-dots';
 
-    protected string $description = '';
+    protected ?string $group = null;
 
-    protected ?string $icon = 'phosphor-chat-circle-dots-duotone';
+    protected array $synonyms = ['discussion', 'débat', 'échange', 'search'];
 
-    protected ?string $group = 'search';
-
-    protected array $synonyms = ['search discussion', 'chercher discussion'];
+    public function getName(): string
+    {
+        return __('global.navigation.discussions');
+    }
 
     public function dependencies(): SpotlightCommandDependencies
     {
         return SpotlightCommandDependencies::collection()
             ->add(
                 SpotlightCommandDependency::make('discussion')
-                    ->setPlaceholder(__('global.search').'...')
+                    ->setPlaceholder(__('command-palette.placeholder'))
             );
     }
 
@@ -39,25 +40,24 @@ final class SearchDiscussions extends SpotlightCommand
     public function searchDiscussion(string $query): Collection
     {
         return Discussion::search($query)
+            ->take(10)
             ->query(fn ($q) => $q->with('user'))
             ->get()
-            ->take(10)
             ->map(fn (Discussion $discussion): SpotlightSearchResult => new SpotlightSearchResult(
                 id: $discussion->id,
                 name: $discussion->title,
-                description: $discussion->user?->name,
+                description: $discussion->user->name,
             ));
     }
 
     public function execute(Spotlight $spotlight, int|string $discussion): void
     {
-        $model = Discussion::query()->findOrFail($discussion);
+        $model = Discussion::query()->find($discussion);
+
+        if (! $model instanceof Discussion) {
+            return;
+        }
 
         $spotlight->redirect(route('discussions.show', $model->slug), navigate: true);
-    }
-
-    public function getUrl(): string
-    {
-        return route('discussions.index');
     }
 }

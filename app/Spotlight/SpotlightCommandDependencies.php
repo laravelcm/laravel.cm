@@ -33,8 +33,10 @@ final class SpotlightCommandDependencies
      */
     public function toArray(): array
     {
-        return array_reverse(
-            $this->dependencies->map(fn (SpotlightCommandDependency $dep): array => $dep->toArray())->toArray()
-        );
+        return $this->dependencies
+            ->map(fn (SpotlightCommandDependency $dep): array => $dep->toArray())
+            ->reverse()
+            ->values()
+            ->all();
     }
 }

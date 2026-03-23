@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Spotlight\Commands;
 
+use App\Livewire\Components\Spotlight;
 use App\Spotlight\SpotlightCommand;
 
 final class GoToHome extends SpotlightCommand
@@ -19,8 +20,8 @@ final class GoToHome extends SpotlightCommand
         return __('global.navigation.home');
     }
 
-    public function getUrl(): string
+    public function execute(Spotlight $spotlight): void
     {
-        return route('home');
+        $spotlight->redirect(route('home'), navigate: true);
     }
 }

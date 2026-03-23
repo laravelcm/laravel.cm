@@ -75,6 +75,14 @@ final class Discussion extends Model implements Feedable, ReactableInterface, Re
 
     protected bool $removeViewsOnDelete = true;
 
+    public static function getFeedItems(): \Illuminate\Support\Collection
+    {
+        return self::with(['user', 'tags', 'replies'])
+            ->latest()
+            ->limit(50)
+            ->get();
+    }
+
     /**
      * @return array<string, mixed>
      */
@@ -86,17 +94,9 @@ final class Discussion extends Model implements Feedable, ReactableInterface, Re
             'slug' => $this->slug,
             'body' => mb_substr(md_to_text($this->body), 0, 5000),
             'tags' => $this->tags->pluck('name')->toArray(),
-            'author' => $this->user?->name,
-            'created_at' => $this->created_at?->timestamp,
+            'author' => $this->user->name,
+            'created_at' => $this->created_at->timestamp,
         ];
-    }
-
-    public static function getFeedItems(): \Illuminate\Support\Collection
-    {
-        return self::with(['user', 'tags', 'replies'])
-            ->latest()
-            ->limit(50)
-            ->get();
     }
 
     public function newEloquentBuilder($query): DiscussionQueryBuilder

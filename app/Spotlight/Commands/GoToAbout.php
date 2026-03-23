@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Spotlight\Commands;
 
+use App\Livewire\Components\Spotlight;
 use App\Spotlight\SpotlightCommand;
 
 final class GoToAbout extends SpotlightCommand
@@ -19,8 +20,8 @@ final class GoToAbout extends SpotlightCommand
         return __('global.navigation.about');
     }
 
-    public function getUrl(): string
+    public function execute(Spotlight $spotlight): void
     {
-        return route('about');
+        $spotlight->redirect(route('about'), navigate: true);
     }
 }

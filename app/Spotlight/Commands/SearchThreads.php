@@ -14,22 +14,23 @@ use Illuminate\Support\Collection;
 
 final class SearchThreads extends SpotlightCommand
 {
-    protected string $name = 'Rechercher dans le forum';
+    protected ?string $icon = 'phosphor-chats';
 
-    protected string $description = '';
+    protected ?string $group = null;
 
-    protected ?string $icon = 'phosphor-chats-duotone';
+    protected array $synonyms = ['thread', 'question', 'sujet', 'forum', 'search'];
 
-    protected ?string $group = 'search';
-
-    protected array $synonyms = ['search thread', 'chercher thread', 'chercher forum'];
+    public function getName(): string
+    {
+        return __('global.navigation.questions');
+    }
 
     public function dependencies(): SpotlightCommandDependencies
     {
         return SpotlightCommandDependencies::collection()
             ->add(
                 SpotlightCommandDependency::make('thread')
-                    ->setPlaceholder(__('global.search').'...')
+                    ->setPlaceholder(__('command-palette.placeholder'))
             );
     }
 
@@ -39,25 +40,24 @@ final class SearchThreads extends SpotlightCommand
     public function searchThread(string $query): Collection
     {
         return Thread::search($query)
+            ->take(10)
             ->query(fn ($q) => $q->with('user'))
             ->get()
-            ->take(10)
             ->map(fn (Thread $thread): SpotlightSearchResult => new SpotlightSearchResult(
                 id: $thread->id,
                 name: $thread->title,
-                description: $thread->user?->name,
+                description: $thread->user->name,
             ));
     }
 
     public function execute(Spotlight $spotlight, int|string $thread): void
     {
-        $model = Thread::query()->findOrFail($thread);
+        $model = Thread::query()->find($thread);
+
+        if (! $model instanceof Thread) {
+            return;
+        }
 
         $spotlight->redirect(route('forum.show', $model->slug), navigate: true);
-    }
-
-    public function getUrl(): string
-    {
-        return route('forum.index');
     }
 }

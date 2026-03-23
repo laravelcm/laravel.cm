@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Spotlight\Commands;
 
+use App\Livewire\Components\Spotlight;
 use App\Spotlight\SpotlightCommand;
 
 final class GoToArticles extends SpotlightCommand
@@ -24,8 +25,8 @@ final class GoToArticles extends SpotlightCommand
         return __('global.articles_description');
     }
 
-    public function getUrl(): string
+    public function execute(Spotlight $spotlight): void
     {
-        return route('articles.index');
+        $spotlight->redirect(route('articles.index'), navigate: true);
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Spotlight\Commands;
 
+use App\Livewire\Components\Spotlight;
 use App\Spotlight\SpotlightCommand;
 
 final class GoToRules extends SpotlightCommand
@@ -19,8 +20,8 @@ final class GoToRules extends SpotlightCommand
         return __('global.navigation.rules');
     }
 
-    public function getUrl(): string
+    public function execute(Spotlight $spotlight): void
     {
-        return route('rules');
+        $spotlight->redirect(route('rules'), navigate: true);
     }
 }

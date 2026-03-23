@@ -5,7 +5,6 @@
 <div
     x-data="SpotlightComponent({
         commands: @js($commands),
-        componentId: '{{ $this->getId() }}',
     })"
     x-init="init()"
     x-on:keydown.window.prevent.cmd.k="toggleOpen()"
@@ -47,8 +46,8 @@
                         <div class="flex items-center">
                             <template x-if="isInDependencyMode">
                                 <div class="flex items-center pl-4 gap-2 shrink-0">
-                                    <button type="button" @click="goBack()" class="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300">
-                                        <x-heroicon-o-x-circle class="size-5" />
+                                    <button type="button" @click="goBack()" class="flex items-center justify-center size-5 rounded border border-gray-300 text-gray-400 hover:text-gray-600 dark:border-white/20 dark:text-gray-500 dark:hover:text-gray-300">
+                                        <x-heroicon-m-arrow-uturn-left class="size-3" aria-hidden="true" />
                                     </button>
                                     <span class="text-sm font-medium text-gray-900 dark:text-white" x-text="selectedCommand.name"></span>
                                     <span class="text-gray-300 dark:text-gray-600">/</span>
@@ -73,8 +72,8 @@
                             />
                             <div class="flex items-center pr-4 shrink-0" wire:loading.delay>
                                 <svg class="animate-spin size-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                                 </svg>
                             </div>
                         </div>
@@ -82,10 +81,12 @@
                         <div x-show="!isInDependencyMode && visibleIds().length > 0" x-ref="commandResults" class="flex max-h-80 scroll-py-10 scroll-pb-2 flex-col gap-4 overflow-y-auto p-4 pb-2">
                             @foreach ($grouped as $group => $items)
                                 <div x-show="groupHasVisibleItems('{{ $group }}')">
-                                    <h2 class="text-xs font-semibold text-gray-900 dark:text-white">
-                                        {{ __('command-palette.groups.' . $group, [], app()->getLocale()) !== 'command-palette.groups.' . $group ? __('command-palette.groups.' . $group) : ucfirst($group) }}
-                                    </h2>
-                                    <div class="-mx-4 mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                    @if ($group !== null && $group !== '')
+                                        <h2 class="text-xs font-semibold text-gray-900 dark:text-white">
+                                            {{ __('command-palette.groups.' . $group, [], app()->getLocale()) !== 'command-palette.groups.' . $group ? __('command-palette.groups.' . $group) : ucfirst($group) }}
+                                        </h2>
+                                    @endif
+                                    <div class="-mx-4 {{ $group !== null && $group !== '' ? 'mt-2' : '' }} text-sm text-gray-700 dark:text-gray-300">
                                         @foreach ($items as $cmd)
                                             <button
                                                 type="button"
@@ -123,7 +124,7 @@
                         </div>
 
                         <div x-show="isInDependencyMode && dependencyResults().length > 0" x-ref="dependencyResultsList" class="max-h-80 scroll-py-2 overflow-y-auto p-4 pb-2">
-                            <h2 class="text-xs font-semibold text-gray-900 dark:text-white" x-text="selectedCommand.name"></h2>
+                            <h2 class="text-xs font-semibold text-gray-900 dark:text-white" x-text="selectedCommand?.name"></h2>
                             <div class="-mx-4 mt-2 text-sm text-gray-700 dark:text-gray-300">
                                 <template x-for="([result, i]) in dependencyResults()" :key="result.item.id">
                                     <button
@@ -135,9 +136,29 @@
                                             ? 'bg-primary-600 text-white dark:bg-primary-500'
                                             : 'hover:bg-gray-100 dark:hover:bg-white/5'"
                                     >
-                                        <span class="flex-auto truncate" x-text="result.item.name"></span>
+                                        <template x-if="result.item.image">
+                                            <img :src="result.item.image" alt="" class="size-6 flex-none rounded-full bg-gray-100 dark:bg-gray-800" />
+                                        </template>
+                                        <span class="flex-auto truncate" :class="result.item.image ? 'ml-3' : ''" x-text="result.item.name"></span>
+                                        <template x-if="result.item.options?.badge_label">
+                                            <span
+                                                class="ml-3 flex-none inline-flex items-center font-medium whitespace-nowrap rounded-md px-2 py-1 text-xs"
+                                                :class="{
+                                                    'text-zinc-700 bg-zinc-400/15 dark:text-zinc-200 dark:bg-zinc-400/40': !result.item.options.badge_color || result.item.options.badge_color === 'zinc',
+                                                    'text-green-800 bg-green-400/20 dark:text-green-200 dark:bg-green-400/40': result.item.options.badge_color === 'green',
+                                                    'text-emerald-800 bg-emerald-400/20 dark:text-emerald-200 dark:bg-emerald-400/40': result.item.options.badge_color === 'emerald',
+                                                    'text-amber-700 bg-amber-400/25 dark:text-amber-200 dark:bg-amber-400/40': result.item.options.badge_color === 'amber',
+                                                    'text-red-700 bg-red-400/20 dark:text-red-200 dark:bg-red-400/40': result.item.options.badge_color === 'red',
+                                                    'text-blue-700 bg-blue-400/20 dark:text-blue-200 dark:bg-blue-400/40': result.item.options.badge_color === 'blue',
+                                                    'text-indigo-700 bg-indigo-400/20 dark:text-indigo-200 dark:bg-indigo-400/40': result.item.options.badge_color === 'indigo',
+                                                    'text-purple-700 bg-purple-400/20 dark:text-purple-200 dark:bg-purple-400/40': result.item.options.badge_color === 'purple',
+                                                    'text-lime-800 bg-lime-400/20 dark:text-lime-200 dark:bg-lime-400/40': result.item.options.badge_color === 'lime',
+                                                }"
+                                                x-text="result.item.options.badge_label"
+                                            ></span>
+                                        </template>
                                         <span
-                                            x-show="result.item.description"
+                                            x-show="result.item.description && !result.item.options?.badge_label"
                                             x-text="result.item.description"
                                             class="ml-3 flex-none text-xs"
                                             :class="i === selected ? 'text-white/70' : 'text-gray-400 dark:text-gray-500'"

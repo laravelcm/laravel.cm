@@ -10,6 +10,8 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use App\Policies\NotificationPolicy;
+use App\Spotlight\Commands;
+use App\Spotlight\SpotlightManager;
 use ArchTech\SEO\SEOManager;
 use BladeUI\Icons\Factory;
 use Filament\Actions;
@@ -27,13 +29,13 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use App\Livewire\Components\Spotlight;
-use App\Spotlight\Commands;
 
 final class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->app->scoped(SpotlightManager::class);
+
         $this->registerBladeDirective();
         $this->registerLocaleDate();
         $this->registerIcon();
@@ -169,12 +171,19 @@ final class AppServiceProvider extends ServiceProvider
 
     protected function configureSpotlight(): void
     {
-        Spotlight::registerCommand(Commands\GoToArticles::class);
-        Spotlight::registerCommand(Commands\GoToForum::class);
-        Spotlight::registerCommand(Commands\GoToDiscussions::class);
-        Spotlight::registerCommand(Commands\ToggleTheme::class);
-        Spotlight::registerCommand(Commands\GoToHome::class);
-        Spotlight::registerCommand(Commands\GoToAbout::class);
-        Spotlight::registerCommand(Commands\GoToRules::class);
+        /** @var SpotlightManager $manager */
+        $manager = $this->app->make(SpotlightManager::class);
+
+        $manager->register(Commands\SearchArticles::class);
+        $manager->register(Commands\SearchThreads::class);
+        $manager->register(Commands\SearchDiscussions::class);
+        $manager->register(Commands\SearchUsers::class);
+        $manager->register(Commands\GoToArticles::class);
+        $manager->register(Commands\GoToForum::class);
+        $manager->register(Commands\GoToDiscussions::class);
+        $manager->register(Commands\ToggleTheme::class);
+        $manager->register(Commands\GoToHome::class);
+        $manager->register(Commands\GoToAbout::class);
+        $manager->register(Commands\GoToRules::class);
     }
 }

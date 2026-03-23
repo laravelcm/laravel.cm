@@ -121,9 +121,9 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
             'slug' => $this->slug,
             'body' => mb_substr(md_to_text($this->body), 0, 5000),
             'channels' => $this->channels->pluck('name')->toArray(),
-            'author' => $this->user?->name,
+            'author' => $this->user->name,
             'is_solved' => $this->isSolved(),
-            'created_at' => $this->created_at?->timestamp,
+            'created_at' => $this->created_at->timestamp,
         ];
     }
 

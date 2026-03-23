@@ -14,22 +14,23 @@ use Illuminate\Support\Collection;
 
 final class SearchArticles extends SpotlightCommand
 {
-    protected string $name = 'Rechercher un article';
+    protected ?string $icon = 'phosphor-books';
 
-    protected string $description = '';
+    protected ?string $group = null;
 
-    protected ?string $icon = 'phosphor-books-duotone';
+    protected array $synonyms = ['article', 'blog', 'post', 'tuto', 'search'];
 
-    protected ?string $group = 'search';
-
-    protected array $synonyms = ['search article', 'chercher article'];
+    public function getName(): string
+    {
+        return __('global.navigation.articles');
+    }
 
     public function dependencies(): SpotlightCommandDependencies
     {
         return SpotlightCommandDependencies::collection()
             ->add(
                 SpotlightCommandDependency::make('article')
-                    ->setPlaceholder(__('global.search').'...')
+                    ->setPlaceholder(__('command-palette.placeholder'))
             );
     }
 
@@ -39,25 +40,24 @@ final class SearchArticles extends SpotlightCommand
     public function searchArticle(string $query): Collection
     {
         return Article::search($query)
+            ->take(10)
             ->query(fn ($q) => $q->with('user'))
             ->get()
-            ->take(10)
             ->map(fn (Article $article): SpotlightSearchResult => new SpotlightSearchResult(
                 id: $article->id,
                 name: $article->title,
-                description: $article->user?->name,
+                description: $article->user->name,
             ));
     }
 
     public function execute(Spotlight $spotlight, int|string $article): void
     {
-        $model = Article::query()->findOrFail($article);
+        $model = Article::query()->find($article);
+
+        if (! $model instanceof Article) {
+            return;
+        }
 
         $spotlight->redirect(route('articles.show', $model->slug), navigate: true);
-    }
-
-    public function getUrl(): string
-    {
-        return route('articles.index');
     }
 }
