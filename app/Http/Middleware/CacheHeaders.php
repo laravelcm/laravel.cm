@@ -27,7 +27,7 @@ final class CacheHeaders
                     'no_store' => true,
                 ],
             );
-        } else {
+        } elseif ($response->isSuccessful()) {
             $response->setCache(
                 options: [
                     'public' => true,
