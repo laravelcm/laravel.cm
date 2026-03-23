@@ -45,7 +45,7 @@ return [
     */
 
     'queue' => [
-        'connection' => 'redis',
+        'connection' => env('QUEUE_CONNECTION', 'redis'),
         'queue' => 'search',
     ],
 
