@@ -11,6 +11,11 @@
     <div class="p-6 relative flex-1 flex items-center justify-center lg:col-span-4 lg:py-10">
         <div class="inline-flex flex-wrap items-center justify-center">
             <div class="flex items-center justify-center px-4 py-2.5 lg:px-6">
+                <a href="https://certificationforlaravel.com" target="_blank" class="flex items-center">
+                    <x-icon.certification-for-laravel class="h-10 w-auto text-gray-900 dark:text-white lg:h-14" aria-hidden="true" />
+                </a>
+            </div>
+            <div class="flex items-center justify-center px-4 py-2.5 lg:px-6">
                 <a href="https://shopperlabs.co" target="_blank" class="flex items-center">
                     <x-icon.shopper-labs class="h-6 w-auto text-gray-900 dark:text-white" aria-hidden="true" />
                 </a>
@@ -23,12 +28,6 @@
             <div class="flex items-center justify-center px-4 py-2.5 lg:px-6">
                 <a href="https://notchpay.co" class="flex items-center" target="_blank">
                     <x-icon.notchpay class="h-6 w-auto text-gray-900 dark:text-white" aria-hidden="true" />
-                </a>
-            </div>
-            <div class="flex items-center justify-center px-4 py-2.5 lg:px-6">
-                <a href="https://sharuco.lndev.me" class="flex items-center" target="_blank">
-                    <x-icon.sharuco class="h-6 w-auto text-gray-900 dark:text-white" aria-hidden="true" />
-                    <span class="ml-1 text-xl font-mono font-bold text-gray-900 dark:text-white">Sharuco</span>
                 </a>
             </div>
         </div>
