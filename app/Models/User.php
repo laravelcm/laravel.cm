@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Scout\Searchable;
 use Laravel\Socialite\Contracts\User as SocialUser;
 use Laravelcm\Gamify\Traits\Gamify;
 use Laravelcm\Subscriptions\Traits\HasPlanSubscriptions;
@@ -84,6 +85,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     use InteractsWithMedia;
     use Notifiable;
     use Reacts;
+    use Searchable;
 
     protected $guarded = [];
 
@@ -121,6 +123,25 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         }
 
         return $user;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => (string) $this->id,
+            'name' => $this->name,
+            'username' => $this->username,
+            'bio' => $this->bio,
+            'location' => $this->location,
+        ];
+    }
+
+    public function shouldBeSearchable(): bool
+    {
+        return $this->email_verified_at !== null && $this->notBanned();
     }
 
     public function hasProvider(string $provider): bool

@@ -38,6 +38,7 @@ use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
@@ -78,6 +79,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
     use Notifiable;
     use Reactable;
     use RecordsActivity;
+    use Searchable;
 
     public const int FEED_PAGE_SIZE = 20;
 
@@ -106,6 +108,23 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
         return self::with(['reactions'])->feedQuery()
             ->paginate(self::FEED_PAGE_SIZE)
             ->getCollection();
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => (string) $this->id,
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'body' => mb_substr(md_to_text($this->body), 0, 5000),
+            'channels' => $this->channels->pluck('name')->toArray(),
+            'author' => $this->user->name,
+            'is_solved' => $this->isSolved(),
+            'created_at' => $this->created_at->timestamp,
+        ];
     }
 
     public function getRouteKeyName(): string

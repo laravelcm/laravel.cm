@@ -10,6 +10,8 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use App\Policies\NotificationPolicy;
+use App\Spotlight\Commands;
+use App\Spotlight\SpotlightManager;
 use ArchTech\SEO\SEOManager;
 use BladeUI\Icons\Factory;
 use Filament\Actions;
@@ -32,6 +34,8 @@ final class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->app->scoped(SpotlightManager::class);
+
         $this->registerBladeDirective();
         $this->registerLocaleDate();
         $this->registerIcon();
@@ -47,6 +51,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureUrl();
         $this->configurePolicies();
         $this->configureRateLimiting();
+        $this->configureSpotlight();
     }
 
     public function registerBladeDirective(): void
@@ -162,5 +167,23 @@ final class AppServiceProvider extends ServiceProvider
         RateLimiter::for('content', fn (Request $request): Limit => Limit::perMinute(10)->by(
             $request->user()->id ?? $request->ip()
         ));
+    }
+
+    protected function configureSpotlight(): void
+    {
+        /** @var SpotlightManager $manager */
+        $manager = $this->app->make(SpotlightManager::class);
+
+        $manager->register(Commands\SearchArticles::class);
+        $manager->register(Commands\SearchThreads::class);
+        $manager->register(Commands\SearchDiscussions::class);
+        $manager->register(Commands\SearchUsers::class);
+        $manager->register(Commands\GoToArticles::class);
+        $manager->register(Commands\GoToForum::class);
+        $manager->register(Commands\GoToDiscussions::class);
+        $manager->register(Commands\ToggleTheme::class);
+        $manager->register(Commands\GoToHome::class);
+        $manager->register(Commands\GoToAbout::class);
+        $manager->register(Commands\GoToRules::class);
     }
 }

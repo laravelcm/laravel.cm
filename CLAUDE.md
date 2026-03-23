@@ -1,4 +1,70 @@
 <laravel-boost-guidelines>
+=== .ai/coding-rules rules ===
+
+# Coding Rules
+
+These rules take PRIORITY over all other guidelines and must be followed at all times.
+
+## Git
+
+- When asked to commit, commit ALL modified files — whether they were in scope or not, whether touched by Claude or not. Every single modified, staged, or untracked file must be committed. No exceptions.
+- Always follow commitlint conventions: `feat`, `chore`, `hotfix`, `fix`, `refactor`, `docs`, `style`, `test`, `ci`, `perf` — based on what was actually done.
+- Never push code while there are still uncommitted files. If multiple commits are needed, create them all first, then push once everything is committed.
+- Never ask to push when there are still modified files pending. Commit everything first.
+
+## Features & Code Replacement
+
+- Never delete code or files before the replacement is written, tested, and functional.
+- When updating a feature that replaces another: first build the new version completely, then once it is working and validated, switch over to it and only then delete the old files.
+- If a code change requires deleting files, finish the new implementation first. Deletion happens last, after validation.
+- The only exception is when modifying a file directly in place (editing the same file) — that is fine.
+
+## Answering Project Questions
+
+- Before answering any question about the project (features, files, code, configuration), re-read the relevant files and code in the project first.
+- Never rely on conversation history alone to answer questions about the current state of the project. The user modifies files independently — the conversation history may be outdated.
+- If a question is about whether a file exists, a feature is implemented, or a configuration is set — scan the project before responding.
+- Never say "this file doesn't exist" without first checking with Glob or Grep.
+- The project state at the time of the question is the source of truth, not the history of past exchanges.
+
+=== .ai/question rules ===
+
+# Question Handling
+
+When the user asks a question, respond with an answer. Do not write, modify, or delete code in response to a question.
+
+## Rules
+
+- A question requires a response, not an action.
+- Only write or modify code when explicitly asked to do so (e.g., "do it", "fix it", "add this", "remove that").
+- When unsure whether the user wants an answer or an action, ask: "Do you want me to make this change?"
+- Never delete files or code without explicit confirmation from the user.
+- When a refactoring involves deleting code, explain what will be deleted and why, then wait for approval before proceeding.
+
+## Using Specialized Agents
+
+When a question involves code or architecture, use the appropriate agent/skill before answering:
+
+- Architecture questions → `laravelcm-architect`
+- Community features → `laravelcm-community`
+- Security concerns → `laravelcm-security`
+- Performance questions → `laravelcm-performance`
+- Test coverage → `laravelcm-test-coverage`
+- Product vision → `laravelcm-founder`
+- Existing code questions → use Explore agents to read the code first
+
+## Iterative Workflow
+
+- Never code everything at once. Complete the current step, wait for feedback, then proceed.
+- When the user says "start with X", do only X.
+- Do not silently code future steps.
+
+## Reference Code
+
+- When asked to analyze external code (GitHub, packages), use an agent to read the full source code.
+- Never guess or assume the content of a file that has not been read.
+- When reference code is provided (HTML, package source), follow it directly instead of reinventing.
+
 === foundation rules ===
 
 # Laravel Boost Guidelines
@@ -17,6 +83,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - laravel/octane (OCTANE) - v2
 - laravel/prompts (PROMPTS) - v0
 - laravel/reverb (REVERB) - v1
+- laravel/scout (SCOUT) - v11
 - laravel/socialite (SOCIALITE) - v5
 - livewire/flux (FLUXUI_FREE) - v2
 - livewire/flux-pro (FLUXUI_PRO) - v2
@@ -38,6 +105,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 
 This project has domain-specific skills available. You MUST activate the relevant skill whenever you work in that domain—don't wait until you're stuck.
 
+- `scout-development` — Develops full-text search with Laravel Scout. Activates when installing or configuring Scout; choosing a search engine (Algolia, Meilisearch, Typesense, Database, Collection); adding the Searchable trait to models; customizing toSearchableArray or searchableAs; importing or flushing search indexes; writing search queries with where clauses, pagination, or soft deletes; configuring index settings; troubleshooting search results; or when the user mentions Scout, full-text search, search indexing, or search engines in a Laravel project. Make sure to use this skill whenever the user works with search functionality in Laravel, even if they don't explicitly mention Scout.
 - `socialite-development` — Manages OAuth social authentication with Laravel Socialite. Activate when adding social login providers; configuring OAuth redirect/callback flows; retrieving authenticated user details; customizing scopes or parameters; setting up community providers; testing with Socialite fakes; or when the user mentions social login, OAuth, Socialite, or third-party authentication.
 - `fluxui-development` — Use this skill for Flux UI development in Livewire applications only. Trigger when working with <flux:*> components, building or customizing Livewire component UIs, creating forms, modals, tables, or other interactive elements. Covers: flux: components (buttons, inputs, modals, forms, tables, date-pickers, kanban, badges, tooltips, etc.), component composition, Tailwind CSS styling, Heroicons/Lucide icon integration, validation patterns, responsive design, and theming. Do not use for non-Livewire frameworks or non-component styling.
 - `pest-testing` — Use this skill for Pest PHP testing in Laravel projects only. Trigger whenever any test is being written, edited, fixed, or refactored — including fixing tests that broke after a code change, adding assertions, converting PHPUnit to Pest, adding datasets, and TDD workflows. Always activate when the user asks how to write something in Pest, mentions test files or directories (tests/Feature, tests/Unit, tests/Browser), or needs browser testing, smoke testing multiple pages for JS errors, or architecture tests. Covers: it()/expect() syntax, datasets, mocking, browser testing (visit/click/fill), smoke testing, arch(), Livewire component tests, RefreshDatabase, and all Pest 4 features. Do not use for factories, seeders, migrations, controllers, models, or non-test PHP code.

@@ -71,6 +71,7 @@
 
     <x-notify::notify />
     <livewire:slide-over-panel />
+    <livewire:components.spotlight />
 
     @persist('toast')
         <flux:toast position="top end" />
@@ -82,16 +83,19 @@
     <script>
         document.addEventListener('livewire:init', () => {
             Livewire.on('theme-changed', (event) => {
-                Flux.appearance = Array.isArray(event) ? event[0] : event;
+                const value = Array.isArray(event) ? event[0] : event;
+                Flux.appearance = value === 'toggle'
+                    ? (Flux.appearance === 'dark' ? 'light' : 'dark')
+                    : value;
             });
         });
 
-        const bbScript = document.createElement('script');
-        bbScript.async = true;
-        bbScript.src = 'https://media.bitterbrains.com/main.js?from=LARAVELCM&type=top';
-        document.body.appendChild(bbScript);
-
         (function () {
+            const bbScript = document.createElement('script');
+            bbScript.async = true;
+            bbScript.src = 'https://media.bitterbrains.com/main.js?from=LARAVELCM&type=top';
+            document.body.appendChild(bbScript);
+
             const container = document.getElementById('bb-banner-container');
             const update = () => {
                 const banner = container.querySelector('#bb-banner');

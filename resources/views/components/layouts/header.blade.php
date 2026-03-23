@@ -39,10 +39,24 @@
             </div>
 
             <div x-data="{ open: false }" class="flex items-center gap-6">
-                <!-- @ToDo: Replace with the command palette modal search -->
-                <div class="hidden">
-                    @include('partials._search')
-                </div>
+                <button
+                    type="button"
+                    x-data
+                    @click="window.dispatchEvent(new CustomEvent('open-spotlight'))"
+                    class="hidden lg:flex items-center gap-2 rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition"
+                >
+                    <x-heroicon-m-magnifying-glass class="size-4" />
+                    <span>{{ __('command-palette.placeholder') }}</span>
+                    <kbd class="ml-4 rounded border border-gray-300 dark:border-white/10 bg-gray-50 dark:bg-gray-900 px-1.5 py-0.5 text-[10px] font-mono">⌘K</kbd>
+                </button>
+                <button
+                    type="button"
+                    x-data
+                    @click="window.dispatchEvent(new CustomEvent('open-spotlight'))"
+                    class="lg:hidden inline-flex items-center p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                >
+                    <x-heroicon-m-magnifying-glass class="size-5" aria-hidden="true" />
+                </button>
 
                 <!-- Large screen authenticate links -->
                 <div class="hidden items-center gap-6 lg:flex">
@@ -74,11 +88,6 @@
                                 ])
                             ></span>
                         </button>
-
-                        <!-- @ToDo: Remove this component after added command palette modal search -->
-                        {{--<div class="hidden">
-                            <x-launch-content />
-                        </div>--}}
 
                         <livewire:components.user-dropdown />
                     @endguest

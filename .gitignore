@@ -58,6 +58,9 @@ compose.override.yml
 .composer-packages
 .docker/traefik/certs
 
+# Internal docs
+/docs
+
 # Octane
 **/caddy
 frankenphp

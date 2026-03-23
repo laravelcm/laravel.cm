@@ -18,7 +18,7 @@ final class ReferrerPolicy
         $response = $next($request);
 
         $response->headers->add([
-            'Referrer-Policy' => 'no-referrer',
+            'Referrer-Policy' => 'strict-origin-when-cross-origin',
         ]);
 
         return $response;

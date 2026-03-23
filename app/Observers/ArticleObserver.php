@@ -29,7 +29,7 @@ class ArticleObserver
     {
         $cacheService = resolve(CacheInvalidationService::class);
 
-        Cache::forget('article.'.$article->id);
+        Cache::forget('article.'.$article->id.'.'.$article->created_at->timestamp);
 
         $cacheService->invalidateByPattern('articles.blog.');
         $cacheService->invalidateByPattern('article.'.$article->id);
