@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
+use Laravelcm\Sentinel\Contracts\Scannable;
+use Laravelcm\Sentinel\Traits\HasContentIssues;
 
 /**
  * @property-read int $id
@@ -38,9 +40,10 @@ use Illuminate\Support\Str;
  * @property-read Collection<int, SpamReport> $spamReports
  * @property-read ?Thread $solutionTo
  */
-final class Reply extends Model implements ReactableInterface, ReplyInterface, SpamReportableContract
+final class Reply extends Model implements ReactableInterface, ReplyInterface, Scannable, SpamReportableContract
 {
     use HasAuthor;
+    use HasContentIssues;
 
     /** @use HasFactory<ReplyFactory> */
     use HasFactory;

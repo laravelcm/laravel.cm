@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
+use Laravelcm\Sentinel\Contracts\Scannable;
+use Laravelcm\Sentinel\Traits\HasContentIssues;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Spatie\Sitemap\Contracts\Sitemapable;
@@ -52,9 +54,10 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read Collection<int, Tag> $tags
  * @property-read Collection<int, Reaction> $reactions
  */
-final class Discussion extends Model implements Feedable, ReactableInterface, ReplyInterface, Sitemapable, SpamReportableContract, SubscribeInterface, Viewable
+final class Discussion extends Model implements Feedable, ReactableInterface, ReplyInterface, Scannable, Sitemapable, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;
+    use HasContentIssues;
 
     /** @use HasFactory<DiscussionFactory> */
     use HasFactory;
