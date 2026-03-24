@@ -4,6 +4,60 @@ All notable changes to `laravel.cm` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.4.2: SEO Audit Fixes & Sentinel Module - 2026-03-24
+
+### Highlights
+
+#### SEO Audit Fixes (Ahrefs)
+
+Health score was 5/100 with 2,108 issues. This release addresses the critical ones:
+
+- **Double title tags (248 pages)** — Removed duplicate `<title>` from base layout. All pages now use a single title via `archtechx/laravel-seo` manager.
+- **Broken images (222 references)** — Created `app:clean-broken-images` command to remove orphaned `/storage/images/` markdown references from articles, threads, discussions, and replies (pre-S3 migration leftovers).
+- **Broken links (10 pages)** — Fixed markdown links missing `https://` prefix, dead `/slack` route replaced with `/discord`, and broken canonical URLs reset to null. Applied via data migration.
+- **Non-canonical pages in sitemap (20)** — Articles with external canonical URLs are now excluded from sitemap generation.
+
+#### Sentinel Module
+
+New `app-modules/sentinel/` module for automated content quality monitoring. Scans content weekly for SEO issues, notifies authors by email, and auto-fixes after a 30-day deadline.
+
+**Issue types detected:** missing `https://` in links, failed upload placeholders (`Uploading...`), broken external canonical URLs (via HTTP HEAD check with GET fallback).
+
+**Lifecycle:** `Detected → Notified (email + 30-day deadline) → Resolved (author fixed) | AutoFixed (deadline passed)`
+
+**Commands:**
+
+- `sentinel:scan` — Scan content for quality issues
+- `sentinel:check-canonicals` — HTTP check external canonical URLs
+- `sentinel:notify` — Email authors grouped by user
+- `sentinel:auto-fix` — Fix expired issues past deadline
+
+Scheduled weekly on Mondays at 18:00 (WAT). Models implementing `Scannable`: Article, Thread, Discussion, Reply.
+
+25 Pest tests, PHPStan level 9, fr/en translations included.
+
+### Added
+
+- Sentinel module with `Scannable` interface, `HasContentIssues` trait, `ContentIssue` morphable model
+- `ScanContentAction` and `AutoFixContentAction` for detection and correction logic
+- `ContentIssuesDetectedNotification` queued mail notification with translations
+- `CleanBrokenImageReferences` command with `--dry-run` mode
+- Data migration to fix broken links, dead routes, and invalid canonical URLs in existing content
+
+### Changed
+
+- Base layout delegates title to SEO manager instead of manual `<title>` tag
+- `GenerateArticlesSitemapCommand` excludes articles with external canonical URLs
+- Rector fixes applied to Job classes (queue traits modernization)
+- PHPStan baseline updated for sitemap command signature change
+
+### Fixed
+
+- 248 pages with duplicate `<title>` tags
+- 222 broken `/storage/images/` markdown image references
+- 10 internal links returning 404 (missing https, dead routes, broken canonicals)
+- 20 non-canonical pages included in sitemap
+
 ## v3.4.1: Plausible Analytics - 2026-03-24
 
 ### Highlights
@@ -160,6 +214,7 @@ return TelegramFile::create()
     ->to('@laravelcm')
     ->photo($imageUrl)
     ->content("*{$this->article->title}*\n\n_{$this->article->excerpt(200)}_\n\n{$url}");
+
 
 
 
