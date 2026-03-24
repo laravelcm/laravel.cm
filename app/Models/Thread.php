@@ -39,6 +39,8 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
+use Laravelcm\Sentinel\Contracts\Scannable;
+use Laravelcm\Sentinel\Traits\HasContentIssues;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
@@ -62,9 +64,10 @@ use Spatie\Feed\FeedItem;
  * @property-read Collection<int, Channel> $channels
  * @property-read Collection<int, Reply> $replies
  */
-final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, SpamReportableContract, SubscribeInterface, Viewable
+final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, Scannable, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;
+    use HasContentIssues;
 
     /** @use HasFactory<ThreadFactory> */
     use HasFactory;

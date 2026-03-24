@@ -24,6 +24,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
+use Laravelcm\Sentinel\Contracts\Scannable;
+use Laravelcm\Sentinel\Traits\HasContentIssues;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Spatie\MediaLibrary\HasMedia;
@@ -57,9 +59,10 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read Collection<int, Tag> $tags
  */
 #[ObservedBy(ArticleObserver::class)]
-final class Article extends Model implements Feedable, HasMedia, ReactableInterface, Sitemapable, Viewable
+final class Article extends Model implements Feedable, HasMedia, ReactableInterface, Scannable, Sitemapable, Viewable
 {
     use HasAuthor;
+    use HasContentIssues;
     use HasFactory;
     use HasLocaleScope;
     use HasPublicId;
@@ -100,6 +103,11 @@ final class Article extends Model implements Feedable, HasMedia, ReactableInterf
             ->latest('published_at')
             ->limit(50)
             ->get();
+    }
+
+    public function sentinelCanonicalUrl(): ?string
+    {
+        return $this->canonical_url;
     }
 
     /**

@@ -58,12 +58,6 @@ parameters:
 			rawMessage: 'Parameter #1 $callback of method Illuminate\Database\Eloquent\Builder<Illuminate\Database\Eloquent\Model>::each() expects callable(Illuminate\Database\Eloquent\Model, int): mixed, Closure(iterable|Spatie\Sitemap\Contracts\Sitemapable|Spatie\Sitemap\Tags\Url|string): void given.'
 			identifier: argument.type
 			count: 1
-			path: app/Console/Commands/Sitemap/GenerateArticlesSitemapCommand.php
-
-		-
-			rawMessage: 'Parameter #1 $callback of method Illuminate\Database\Eloquent\Builder<Illuminate\Database\Eloquent\Model>::each() expects callable(Illuminate\Database\Eloquent\Model, int): mixed, Closure(iterable|Spatie\Sitemap\Contracts\Sitemapable|Spatie\Sitemap\Tags\Url|string): void given.'
-			identifier: argument.type
-			count: 1
 			path: app/Console/Commands/Sitemap/GenerateDiscussionsSitemapCommand.php
 
 		-

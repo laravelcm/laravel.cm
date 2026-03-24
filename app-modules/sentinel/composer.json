@@ -1,0 +1,26 @@
+{
+  "name": "laravelcm/sentinel",
+  "description": "Module laravelcm/sentinel for Laravel.cm",
+  "type": "library",
+  "version": "1.0",
+  "license": "proprietary",
+  "require": {
+    "php": "^8.4",
+    "spatie/laravel-package-tools": "^1.93"
+  },
+  "autoload": {
+    "psr-4": {
+      "Laravelcm\\Sentinel\\": "src/",
+      "Laravelcm\\Sentinel\\Tests\\": "tests/",
+      "Laravelcm\\Sentinel\\Database\\Factories\\": "database/factories/"
+    }
+  },
+  "minimum-stability": "stable",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Laravelcm\\Sentinel\\Providers\\SentinelServiceProvider"
+      ]
+    }
+  }
+}

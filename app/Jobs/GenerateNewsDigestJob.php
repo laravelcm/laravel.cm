@@ -9,13 +9,9 @@ use App\Ai\Agents\NewsWriter;
 use App\Enums\NewsDigestCacheKey;
 use App\Models\Article;
 use App\Notifications\NewsDigestCompletedNotification;
-use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Notifications\AnonymousNotifiable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Redis;
@@ -29,10 +25,7 @@ use Throwable;
 
 final class GenerateNewsDigestJob implements ShouldBeUnique, ShouldQueue
 {
-    use Dispatchable;
-    use InteractsWithQueue;
-    use Queueable;
-    use SerializesModels;
+    use \Illuminate\Foundation\Queue\Queueable;
 
     public int $timeout = 600;
 

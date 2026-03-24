@@ -14,4 +14,9 @@ if (app()->environment('production')) {
     Schedule::command('sitemap:discussion-generate')->dailyAt('01:10');
     Schedule::command('sitemap:generate')->dailyAt('02:00');
     Schedule::command('ai:news-digest --provider=openai --model=gpt-4.1-mini --batch=5')->weeklyOn(5, '08:00');
+
+    Schedule::command('sentinel:scan')->weeklyOn(1, '18:00');
+    Schedule::command('sentinel:check-canonicals')->weeklyOn(1, '18:10');
+    Schedule::command('sentinel:notify')->weeklyOn(1, '18:30');
+    Schedule::command('sentinel:auto-fix')->weeklyOn(1, '19:00');
 }

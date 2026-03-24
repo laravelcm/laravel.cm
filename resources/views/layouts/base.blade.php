@@ -19,10 +19,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     @if ($title)
-        <title>
-            {{ $title }} | {{ __('global.site_name') }}
-            {{ is_active('home') ? '- '. __('pages/home.title') : '' }}
-        </title>
+        @php(seo()->title($title))
     @endif
 
     <x-seo::meta />
