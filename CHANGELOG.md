@@ -4,6 +4,21 @@ All notable changes to `laravel.cm` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.4.1: Plausible Analytics - 2026-03-24
+
+### Highlights
+
+#### Plausible Analytics (Self-Hosted)
+
+Plausible Analytics is now integrated alongside Google Analytics for privacy-friendly traffic tracking. The self-hosted instance runs on `analytics.universy.app` and is loaded only in production via the `@production` directive.
+
+Optional measurements enabled: **outbound link tracking** and **custom events** — useful for monitoring external clicks and user interactions for future sponsor media kits.
+
+### Added
+
+- Plausible Analytics self-hosted script in `base.blade.php` with `outbound-links` and `tagged-events` extensions
+- Plausible queue helper (`window.plausible`) for deferred custom event calls
+
 ## v3.4.0: Spotlight Command Palette & Typesense Search - 2026-03-23
 
 ### Highlights
@@ -145,6 +160,7 @@ return TelegramFile::create()
     ->to('@laravelcm')
     ->photo($imageUrl)
     ->content("*{$this->article->title}*\n\n_{$this->article->excerpt(200)}_\n\n{$url}");
+
 
 
 
