@@ -97,12 +97,12 @@
                 {{ __('global.footer.copyright', ['date' => date('Y')]) }}
             </p>
             <div class="mt-4 flex items-center justify-center space-x-4 sm:mt-0 lg:justify-start">
-                <a href="https://github.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
+                <a href="https://github.com/laravelcm" target="_blank" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">GitHub</span>
                     <x-icon.github class="size-5" aria-hidden="true" />
                 </a>
 
-                <a href="https://twitter.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
+                <a href="https://twitter.com/laravelcm" target="_blank" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">Twitter</span>
                     <x-phosphor-x-logo class="size-5" aria-hidden="true" />
                 </a>
@@ -112,17 +112,17 @@
                     <x-phosphor-rss-bold class="size-5" aria-hidden="true" />
                 </a>
 
-                <a href="https://facebook.com/laravelcm?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
+                <a href="https://facebook.com/laravelcm" target="_blank" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">Facebook</span>
                     <x-phosphor-facebook-logo-fill class="size-5" aria-hidden="true" />
                 </a>
 
-                <a href="https://www.linkedin.com/company/laravel-cameroun?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
+                <a href="https://www.linkedin.com/company/laravel-cameroun" target="_blank" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">LinkedIn</span>
                     <x-phosphor-linkedin-logo-fill class="size-5" aria-hidden="true" />
                 </a>
 
-                <a href="https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw?utm_source=laravel.cm" target="_blank" class="text-gray-400 hover:text-gray-300">
+                <a href="https://www.youtube.com/channel/UCbQPQ8q31uQmuKtyRnATLSw" target="_blank" class="text-gray-400 hover:text-gray-300">
                     <span class="sr-only">YouTube</span>
                     <x-phosphor-youtube-logo-fill class="size-5" aria-hidden="true" />
                 </a>

@@ -20,6 +20,7 @@ final class SentinelServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasMigration('2026_03_24_130000_create_content_issues_table')
             ->hasTranslations()
+            ->hasViews()
             ->hasCommands([
                 ScanContentQualityCommand::class,
                 NotifyContentIssuesCommand::class,

@@ -8,18 +8,19 @@
     "nightwatch_mcp": false,
     "packages": [
         "filament/filament",
-        "internachi/modular",
-        "laravel/ai"
+        "internachi/modular"
     ],
     "sail": false,
     "skills": [
+        "ai-sdk-development",
+        "laravel-best-practices",
+        "configure-nightwatch",
         "scout-development",
         "socialite-development",
         "fluxui-development",
         "pest-testing",
         "echo-development",
         "tailwindcss-development",
-        "modular",
-        "ai-sdk-development"
+        "modular"
     ]
 }
