@@ -13,12 +13,11 @@
 @import "./components/flux.css";
 
 @plugin '@tailwindcss/typography';
-@plugin '@tailwindcss/forms';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @source '../../app/Livewire/**/*.php';
-@source '../../app-modules/*/resources/**/*.blade.php'
+@source '../../app-modules/*/resources/**/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../../vendor/filament/**/*.blade.php';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
