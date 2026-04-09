@@ -18,21 +18,21 @@
     "@tailwindplus/elements": "^1.0.22",
     "autoprefixer": "^10.4.27",
     "concurrently": "^9.2.1",
-    "dotenv": "^17.3.1",
-    "laravel-echo": "^2.3.1",
-    "laravel-vite-plugin": "^3.0.0",
-    "lodash": "^4.17.23",
-    "npm-check-updates": "^19.6.5",
+    "dotenv": "^17.4.1",
+    "laravel-echo": "^2.3.4",
+    "laravel-vite-plugin": "^3.0.1",
+    "lodash": "^4.18.1",
+    "npm-check-updates": "^20.0.0",
     "prettier": "^3.8.1",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "pusher-js": "^8.4.3",
+    "pusher-js": "^8.5.0",
     "shiki": "^4.0.2",
     "tailwindcss": "^4.2.2",
     "tippy.js": "^6.3.7",
-    "vite": "^8.0.2"
+    "vite": "^8.0.8"
   },
   "dependencies": {
-    "fuse.js": "^7.1.0"
+    "fuse.js": "^7.3.0"
   }
 }
