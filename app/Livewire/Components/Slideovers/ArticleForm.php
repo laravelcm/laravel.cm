@@ -121,7 +121,7 @@ final class ArticleForm extends SlideOverComponent
             $article->tags()->sync($this->form->tags);
 
             Flux::toast(
-                text: $article->submitted_at
+                text: ! $wasAlreadySubmitted && $article->submitted_at
                     ? __('notifications.article.submitted')
                     : __('notifications.article.updated'),
                 variant: 'success'
