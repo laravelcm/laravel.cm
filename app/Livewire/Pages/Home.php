@@ -23,8 +23,9 @@ final class Home extends Component
                 key: 'home.articles',
                 ttl: $ttl,
                 callback: fn (): Collection => Article::with(['tags', 'media'])
-                    ->latest('published_at')
                     ->published()
+                    ->sponsoredFirst()
+                    ->latest('published_at')
                     ->limit(4)
                     ->get()
             ),

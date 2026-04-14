@@ -37,11 +37,15 @@ final class ArticleResource extends Resource
     public static function getNavigationBadge(): ?string
     {
         /** @var int $count */
-        $count = Cache::remember('articles:pending_count', now()->addMinutes(5), fn (): int => Article::query()
-            ->whereNotNull('submitted_at')
-            ->whereNull('approved_at')
-            ->whereNull('declined_at')
-            ->count());
+        $count = Cache::remember(
+            key: 'articles:pending_count',
+            ttl: now()->addMinutes(5),
+            callback: fn (): int => Article::query()
+                ->whereNotNull('submitted_at')
+                ->whereNull('approved_at')
+                ->whereNull('declined_at')
+                ->count()
+        );
 
         return $count > 0 ? (string) $count : null;
     }
@@ -126,6 +130,10 @@ final class ArticleResource extends Resource
                         return [];
                     })
                     ->sortable(),
+                Columns\IconColumn::make('is_sponsored')
+                    ->label(__('Sponsorisé'))
+                    ->boolean()
+                    ->sortable(),
             ])
             ->recordActions([
                 Actions\ActionGroup::make([
@@ -170,6 +178,51 @@ final class ArticleResource extends Resource
                                 ->success()
                                 ->send();
                         }),
+                    Actions\Action::make('sponsor')
+                        ->visible(fn (Article $record): bool => $record->isPublished() && ! $record->isActivelySponsored())
+                        ->label(__('Sponsoriser'))
+                        ->icon('heroicon-s-star')
+                        ->color('warning')
+                        ->modalHeading(__('Sponsoriser cet article'))
+                        ->modalDescription(__("L'article sera mis en avant sur la page d'accueil."))
+                        ->requiresConfirmation()
+                        ->modalIcon('heroicon-s-star')
+                        ->action(function (Article $record): void {
+                            Gate::authorize('sponsor', $record);
+
+                            $record->update([
+                                'is_sponsored' => true,
+                                'sponsored_at' => $record->sponsored_at ?? now(),
+                            ]);
+
+                            Cache::tags(['home', 'articles'])->flush();
+
+                            Notification::make()
+                                ->title(__('Article sponsorisé'))
+                                ->success()
+                                ->send();
+                        }),
+                    Actions\Action::make('unsponsor')
+                        ->visible(fn (Article $record): bool => $record->isActivelySponsored())
+                        ->label(__('Retirer le sponsoring'))
+                        ->icon('heroicon-s-x-circle')
+                        ->color('gray')
+                        ->modalHeading(__('Retirer le sponsoring'))
+                        ->modalDescription(__('L\'article ne sera plus mis en avant mais conservera son badge sponsorisé.'))
+                        ->requiresConfirmation()
+                        ->modalIcon('heroicon-s-x-circle')
+                        ->action(function (Article $record): void {
+                            Gate::authorize('sponsor', $record);
+
+                            $record->update(['is_sponsored' => false]);
+
+                            Cache::tags(['home', 'articles'])->flush();
+
+                            Notification::make()
+                                ->title(__('Sponsoring retiré'))
+                                ->success()
+                                ->send();
+                        }),
                     Actions\Action::make('show')
                         ->icon('untitledui-eye')
                         ->url(fn (Article $record): string => route('articles.show', $record))
@@ -177,7 +230,8 @@ final class ArticleResource extends Resource
                         ->label(__('Afficher')),
                     Actions\DeleteAction::make()
                         ->button()
-                        ->label(__('Supprimer')),
+                        ->label(__('Supprimer'))
+                        ->after(fn () => Cache::tags(['home', 'articles'])->flush()),
                 ]),
             ])
             ->toolbarActions([

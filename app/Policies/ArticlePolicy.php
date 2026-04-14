@@ -78,4 +78,13 @@ final class ArticlePolicy
 
         return $user->isAdmin();
     }
+
+    public function sponsor(User $user): bool
+    {
+        if ($user->isModerator()) {
+            return true;
+        }
+
+        return $user->isAdmin();
+    }
 }
