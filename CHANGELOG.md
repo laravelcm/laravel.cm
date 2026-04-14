@@ -4,6 +4,44 @@ All notable changes to `laravel.cm` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.5.0: Article Sponsoring & Telegram Fix - 2026-04-14
+
+### Highlights
+
+#### Article Sponsoring System
+
+Admins and moderators can now sponsor articles directly from the Filament admin panel. Sponsored articles are highlighted on the homepage and display a golden "Sponsorisé" badge.
+
+**How it works:**
+
+- **Sponsor** — Sets `is_sponsored = true` and records the sponsoring date. The article appears first on the homepage.
+- **Unsponsor** — Removes the article from homepage priority but preserves the sponsoring date and badge for historical reference.
+- Homepage cache is invalidated only on specific admin actions (approve, sponsor, unsponsor, delete) — not on every article edit.
+
+#### Telegram Notification Fix
+
+Fixed a bug where the Telegram notification for submitted articles was sent 4-5 times. The notification is now dispatched only on the first submission — editing an already-submitted article no longer re-triggers it. The toast message also correctly shows "Article updated" instead of "Thank you for submitting" when editing a published article.
+
+### Added
+
+- Sponsor/unsponsor actions in Filament admin panel with confirmation modals (#524)
+- `sponsor()` method in `ArticlePolicy` for admin/moderator authorization (#524)
+- `isActivelySponsored()`, `activelySponsored()`, `sponsoredFirst()` query scopes (#524)
+- "Sponsorisé" badge on article cards (homepage, listing, single post) (#524)
+- `is_sponsored` column in Filament articles table (#524)
+- Targeted home cache invalidation on approve, sponsor, unsponsor, and delete actions (#524)
+
+### Fixed
+
+- Duplicate Telegram notification sent 4-5 times on article submission (#523)
+- Wrong toast message shown when updating an already-submitted article (#523)
+- Sentinel email formatting issues (#522)
+
+### Changed
+
+- Homepage articles sorted by sponsoring status first, then by publication date (#524)
+- Repository setup improvements (#522)
+
 ## v3.4.2: SEO Audit Fixes & Sentinel Module - 2026-03-24
 
 ### Highlights
@@ -214,6 +252,7 @@ return TelegramFile::create()
     ->to('@laravelcm')
     ->photo($imageUrl)
     ->content("*{$this->article->title}*\n\n_{$this->article->excerpt(200)}_\n\n{$url}");
+
 
 
 
