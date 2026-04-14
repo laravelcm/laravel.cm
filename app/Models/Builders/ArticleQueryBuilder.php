@@ -74,6 +74,16 @@ final class ArticleQueryBuilder extends Builder
         return $this->whereNotNull('sponsored_at');
     }
 
+    public function activelySponsored(): self
+    {
+        return $this->where('is_sponsored', true);
+    }
+
+    public function sponsoredFirst(): self
+    {
+        return $this->orderByDesc('is_sponsored');
+    }
+
     public function notDeclined(): self
     {
         return $this->whereNull('declined_at');

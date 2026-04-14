@@ -97,7 +97,6 @@ return [
             'https://freek.dev/feed',
             'https://ashallendesign.co.uk/rss/blog',
             'https://benjamincrozat.com/feed',
-            'https://laravel-france.com/rss',
         ],
     ],
 

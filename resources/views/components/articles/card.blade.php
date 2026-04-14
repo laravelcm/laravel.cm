@@ -30,13 +30,13 @@
             'justify-between gap-4' => ! $isSummary,
             'flex-col justify-between gap-2' => $isSummary,
         ])>
-            @if ($article->tags->isNotEmpty())
-                <div class="flex items-center gap-2">
-                    @foreach ($article->tags as $tag)
-                        <x-tag :$tag />
-                    @endforeach
-                </div>
-            @endif
+            <div class="flex items-center gap-2">
+                @foreach ($article->tags as $tag)
+                    <x-tag :$tag />
+                @endforeach
+
+                <x-articles.sponsored :isSponsored="$article->isSponsored()" />
+            </div>
 
             <time
                 datetime="{{ $article->published_at->format('Y-m-d') }}"

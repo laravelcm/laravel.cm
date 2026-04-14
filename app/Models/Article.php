@@ -41,7 +41,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read string $body
  * @property-read bool $show_toc
  * @property-read bool $is_pinned
- * @property-read int $is_sponsored
+ * @property-read bool $is_sponsored
  * @property-read ?string $canonical_url
  * @property-read ?string $reason
  * @property-read ?int $tweet_id
@@ -229,12 +229,12 @@ final class Article extends Model implements Feedable, HasMedia, ReactableInterf
 
     public function isSponsored(): bool
     {
-        return ! $this->isNotSponsored();
+        return $this->sponsored_at !== null;
     }
 
-    public function isNotSponsored(): bool
+    public function isActivelySponsored(): bool
     {
-        return $this->sponsored_at === null;
+        return $this->is_sponsored;
     }
 
     public function isDeclined(): bool
@@ -314,6 +314,7 @@ final class Article extends Model implements Feedable, HasMedia, ReactableInterf
             'published_at' => 'datetime',
             'show_toc' => 'boolean',
             'is_pinned' => 'boolean',
+            'is_sponsored' => 'boolean',
         ];
     }
 }

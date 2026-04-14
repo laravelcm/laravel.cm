@@ -53,6 +53,8 @@
                                     @foreach ($article->tags as $tag)
                                         <x-tag :$tag />
                                     @endforeach
+
+                                    <x-articles.sponsored :isSponsored="$article->isSponsored()" />
                                 </div>
                             @endif
 
