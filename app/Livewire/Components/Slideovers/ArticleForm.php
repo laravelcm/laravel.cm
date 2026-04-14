@@ -93,6 +93,8 @@ final class ArticleForm extends SlideOverComponent
 
         $this->form->validate();
 
+        $wasAlreadySubmitted = $this->article?->id && $this->article->isSubmitted();
+
         $publishedFields = [
             'published_at' => $this->form->published_at
                 ? Date::parse($this->form->published_at)
@@ -119,7 +121,7 @@ final class ArticleForm extends SlideOverComponent
             $article->tags()->sync($this->form->tags);
 
             Flux::toast(
-                text: $article->submitted_at
+                text: ! $wasAlreadySubmitted && $article->submitted_at
                     ? __('notifications.article.submitted')
                     : __('notifications.article.updated'),
                 variant: 'success'
@@ -141,7 +143,7 @@ final class ArticleForm extends SlideOverComponent
             );
         }
 
-        if ($this->form->is_draft === false && ! $article->isApproved()) {
+        if (! $wasAlreadySubmitted && $this->form->is_draft === false && ! $article->isApproved()) {
             event(new ArticleWasSubmittedForApproval($article));
         }
 
