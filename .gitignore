@@ -26,7 +26,10 @@ storage/baddybugs
 
 # MCP configuration (contains sensitive API keys)
 .mcp.json
-.claude/agents/
+
+# AI dev tooling (local only)
+.claude/
+.junie/
 
 # Testing
 /.phpunit.cache
