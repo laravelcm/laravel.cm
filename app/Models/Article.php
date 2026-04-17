@@ -199,9 +199,11 @@ final class Article extends Model implements Feedable, HasMedia, ReactableInterf
             return '';
         }
 
-        $webpUrl = $media->getUrl('webp');
+        if ($media->hasGeneratedConversion('webp')) {
+            return $media->getUrl('webp');
+        }
 
-        return $webpUrl !== '' ? $webpUrl : $media->getUrl();
+        return $media->getUrl();
     }
 
     public function excerpt(int $limit = 110): string
