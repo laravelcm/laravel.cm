@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace App\Gamify\Points;
 
+use Illuminate\Database\Eloquent\Model;
 use Laravelcm\Gamify\PointType;
 
 final class AddPhone extends PointType
 {
-    /** @var int */
-    public $points = 10;
+    public ?int $points = 10;
 
-    /** @var string */
-    public $payee = 'user';
+    public ?string $payee = 'user';
 
-    public function __construct(mixed $subject)
+    public function __construct(Model $subject)
     {
         $this->subject = $subject;
     }

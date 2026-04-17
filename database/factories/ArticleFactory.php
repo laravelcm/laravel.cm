@@ -18,7 +18,7 @@ final class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $attributes['user_id'] ?? User::factory(),
+            'user_id' => User::factory(),
             'title' => fake()->sentence(),
             'body' => fake()->paragraphs(3, true),
             'slug' => fake()->unique()->slug(),

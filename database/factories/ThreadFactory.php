@@ -21,7 +21,7 @@ final class ThreadFactory extends Factory
             'title' => fake()->text(20),
             'body' => fake()->text(),
             'slug' => fake()->unique()->slug(),
-            'user_id' => $attributes['user_id'] ?? User::factory(),
+            'user_id' => User::factory(),
         ];
     }
 

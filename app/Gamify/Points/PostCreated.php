@@ -9,11 +9,9 @@ use Laravelcm\Gamify\PointType;
 
 final class PostCreated extends PointType
 {
-    /** @var int */
-    public $points = 50;
+    public ?int $points = 50;
 
-    /** @var string */
-    public $payee = 'user';
+    public ?string $payee = 'user';
 
     public function __construct(Article $subject)
     {

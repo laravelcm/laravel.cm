@@ -9,7 +9,7 @@ use Laravelcm\Gamify\PointType;
 
 final class FakeCreatePostPoint extends PointType
 {
-    public $points = 10;
+    public ?int $points = 10;
 
     public ?User $author;
 

@@ -20,7 +20,7 @@ final class ReplyFactory extends Factory
     {
         return [
             'body' => fake()->text(),
-            'user_id' => $attributes['user_id'] ?? User::factory(),
+            'user_id' => User::factory(),
             'replyable_id' => Thread::factory(),
             'replyable_type' => Thread::class,
         ];

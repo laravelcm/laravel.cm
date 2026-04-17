@@ -9,11 +9,9 @@ use Laravelcm\Gamify\PointType;
 
 final class BestReply extends PointType
 {
-    /** @var int */
-    public $points = 20;
+    public ?int $points = 20;
 
-    /** @var string */
-    public $payee = 'user';
+    public ?string $payee = 'user';
 
     public function __construct(Reply $subject)
     {

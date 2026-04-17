@@ -52,8 +52,9 @@ final class TorchlightExtension extends BaseExtension implements ExtensionInterf
     /**
      * Get the string content from a V2 node.
      */
-    protected function getLiteralContent($node): string
+    protected function getLiteralContent(Node $node): string
     {
+        /** @var FencedCode|IndentedCode $node */
         return $node->getLiteral();
     }
 }

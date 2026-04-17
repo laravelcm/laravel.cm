@@ -9,9 +9,9 @@ use Laravelcm\Gamify\PointType;
 
 final class FakeWelcomeUserWithNamePoint extends PointType
 {
-    public $points = 30;
+    public ?int $points = 30;
 
-    public $name = 'FakeName';
+    public ?string $name = 'FakeName';
 
     public function __construct(mixed $subject, public ?User $author = null) {}
 
