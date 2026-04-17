@@ -120,16 +120,6 @@ if (! function_exists('isHolidayWeek')) {
 }
 
 if (! function_exists('safe_previous_url')) {
-    /**
-     * Return the previous URL only when it belongs to the application host.
-     *
-     * `url()->previous()` falls back to the Referer header, which is client
-     * controlled. A crafted Referer could redirect users to an attacker site
-     * after an internal action (locale switch, form submit, ...). This helper
-     * guards against open-redirect attacks by enforcing a same-origin check,
-     * falling back to a safe URL when the previous location is off-site or
-     * unparseable.
-     */
     function safe_previous_url(?string $fallback = null): string
     {
         $previous = url()->previous();
