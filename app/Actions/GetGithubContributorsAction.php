@@ -80,7 +80,8 @@ final class GetGithubContributorsAction
         $payload = $response->json();
 
         return collect($payload)
-            ->filter(fn (array $contributor): bool => isset($contributor['login'])
+            ->filter(
+                fn (array $contributor): bool => isset($contributor['login'])
                 && $contributor['login'] !== ''
                 && ! in_array(mb_strtolower($contributor['login']), self::EXCLUDED_CONTRIBUTORS, true),
             )
