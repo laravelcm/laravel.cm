@@ -62,7 +62,7 @@
             <div class="space-y-2">
                 <flux:file-upload
                     wire:model="form.media"
-                    accept="image/jpeg,image/png,image/jpg,image/gif,image/svg+xml,image/avif"
+                    accept="image/jpeg,image/png,image/jpg,image/gif,image/svg+xml,image/webp,image/avif"
                     :label="__('pages/article.form.cover')"
                 >
                     <flux:file-upload.dropzone

@@ -3,7 +3,7 @@
         $next = $article->nextArticle();
         $previous = $article->previousArticle();
         $user = $article->user;
-        $media = $article->getFirstMediaUrl('media');
+        $media = $article->getCoverImageUrl();
     @endphp
 
     <x-schema.article :$article />

@@ -9,7 +9,7 @@ use Laravelcm\Gamify\PointType;
 
 final class FakePointTypeWithoutPayee extends PointType
 {
-    public $points = 24;
+    public ?int $points = 24;
 
     public function __construct(mixed $subject = null)
     {

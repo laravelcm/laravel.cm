@@ -8,10 +8,9 @@ use Laravelcm\Gamify\PointType;
 
 final class FakePayeeFieldPoint extends PointType
 {
-    public $points = 10;
+    public ?int $points = 10;
 
-    /** @var string */
-    public $payee = 'user';
+    public ?string $payee = 'user';
 
     public function __construct(mixed $subject)
     {

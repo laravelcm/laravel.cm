@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Laravelcm\Sentinel\Models;
 
 use Carbon\CarbonInterface;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,21 +29,20 @@ use Laravelcm\Sentinel\Enums\IssueType;
  * @property-read CarbonInterface $updated_at
  * @property-read Model $issueable
  */
+#[Fillable([
+    'issueable_id',
+    'issueable_type',
+    'type',
+    'status',
+    'details',
+    'detected_at',
+    'notified_at',
+    'resolved_at',
+    'deadline_at',
+])]
 final class ContentIssue extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'issueable_id',
-        'issueable_type',
-        'type',
-        'status',
-        'details',
-        'detected_at',
-        'notified_at',
-        'resolved_at',
-        'deadline_at',
-    ];
 
     public function issueable(): MorphTo
     {

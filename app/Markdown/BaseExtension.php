@@ -6,7 +6,9 @@ namespace App\Markdown;
 
 use Closure;
 use Illuminate\Support\Str;
+use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Event\DocumentParsedEvent;
+use League\CommonMark\Node\Node;
 use League\CommonMark\Util\Xml;
 use Torchlight\Block;
 use Torchlight\Torchlight;
@@ -20,9 +22,12 @@ abstract class BaseExtension
      */
     protected $customBlockRenderer;
 
+    /**
+     * @return array<class-string<Node>>
+     */
     abstract protected function codeNodes(): array;
 
-    abstract protected function getLiteralContent($node): string;
+    abstract protected function getLiteralContent(Node $node): string;
 
     public function onDocumentParsed(DocumentParsedEvent $event): void
     {
@@ -81,7 +86,7 @@ abstract class BaseExtension
     /**
      * Bind into a Commonmark V1 or V2 environment.
      */
-    protected function bind($environment, string $renderMethod): void
+    protected function bind(EnvironmentBuilderInterface $environment, string $renderMethod): void
     {
         // We start by walking the document immediately after it's parsed
         // to gather all the code blocks and send off our requests.
@@ -95,12 +100,12 @@ abstract class BaseExtension
         }
     }
 
-    protected function isCodeNode($node): bool
+    protected function isCodeNode(Node $node): bool
     {
-        return in_array(get_class($node), $this->codeNodes());
+        return in_array(get_class($node), $this->codeNodes(), true);
     }
 
-    protected function makeTorchlightBlock($node): Block
+    protected function makeTorchlightBlock(Node $node): Block
     {
         return Block::make()
             ->language($this->getLanguage($node))
@@ -108,7 +113,7 @@ abstract class BaseExtension
             ->code($this->getContent($node));
     }
 
-    protected function renderNode($node): mixed
+    protected function renderNode(Node $node): mixed
     {
         $hash = $this->makeTorchlightBlock($node)->hash();
 
@@ -121,7 +126,7 @@ abstract class BaseExtension
         return null;
     }
 
-    protected function getContent($node): string
+    protected function getContent(Node $node): string
     {
         $content = $this->getLiteralContent($node);
 
@@ -146,7 +151,7 @@ abstract class BaseExtension
     /**
      * @return array|mixed|null
      */
-    protected function getInfo($node): mixed
+    protected function getInfo(Node $node): mixed
     {
         if (! $this->isCodeNode($node)) {
             return [];
@@ -161,7 +166,7 @@ abstract class BaseExtension
         return blank($infoWords) ? [] : $infoWords;
     }
 
-    protected function getLanguage($node): ?string
+    protected function getLanguage(Node $node): ?string
     {
         $info = $this->getInfo($node);
 
@@ -177,7 +182,7 @@ abstract class BaseExtension
     /**
      * @return string|mixed
      */
-    protected function getTheme($node): mixed
+    protected function getTheme(Node $node): mixed
     {
         foreach ($this->getInfo($node) as $item) {
             if (Str::startsWith($item, 'theme:')) {

@@ -6,11 +6,11 @@
   "license": "proprietary",
   "require": {
     "php": "^8.4",
-    "Illuminate/Support": "^11.0|^12.0"
+    "Illuminate/Support": "^11.0|^12.0|^13.0"
   },
   "require-dev": {
-    "pestphp/pest": "^3.8",
-    "pestphp/pest-plugin-laravel": "^3.0"
+    "pestphp/pest": "^3.8|^4.0",
+    "pestphp/pest-plugin-laravel": "^3.0|^4.0"
   },
   "autoload": {
     "psr-4": {

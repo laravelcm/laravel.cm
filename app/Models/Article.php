@@ -30,6 +30,7 @@ use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 
@@ -180,6 +181,27 @@ final class Article extends Model implements Feedable, HasMedia, ReactableInterf
                 'image/webp',
                 'image/avif',
             ]);
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('webp')
+            ->performOnCollections('media')
+            ->format('webp')
+            ->quality(85);
+    }
+
+    public function getCoverImageUrl(): string
+    {
+        $media = $this->getFirstMedia('media');
+
+        if (! $media instanceof Media) {
+            return '';
+        }
+
+        $webpUrl = $media->getUrl('webp');
+
+        return $webpUrl !== '' ? $webpUrl : $media->getUrl();
     }
 
     public function excerpt(int $limit = 110): string

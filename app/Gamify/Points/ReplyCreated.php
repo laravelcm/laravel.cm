@@ -10,8 +10,7 @@ use Laravelcm\Gamify\PointType;
 
 final class ReplyCreated extends PointType
 {
-    /** @var int */
-    public $points = 10;
+    public ?int $points = 10;
 
     public function __construct(Reply $subject, public ?User $author = null)
     {

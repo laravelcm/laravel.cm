@@ -1,6 +1,0 @@
-{
-  "enableAllProjectMcpServers": true,
-  "enabledMcpjsonServers": [
-    "laravel-boost"
-  ]
-}

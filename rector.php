@@ -7,15 +7,12 @@ use Rector\Config\RectorConfig;
 use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
 use RectorLaravel\Rector\Empty_\EmptyToBlankAndFilledFuncRector;
 use RectorLaravel\Rector\MethodCall\AssertStatusToAssertMethodRector;
-use RectorLaravel\Rector\StaticCall\EloquentMagicMethodToQueryBuilderRector;
-use RectorLaravel\Set\LaravelLevelSetList;
 use RectorLaravel\Set\LaravelSetList;
 use RectorLaravel\Set\LaravelSetProvider;
 
 return RectorConfig::configure()
     ->withSetProviders(LaravelSetProvider::class)
     ->withSets([
-        LaravelLevelSetList::UP_TO_LARAVEL_120,
         LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,
         LaravelSetList::LARAVEL_CODE_QUALITY,
         LaravelSetList::LARAVEL_COLLECTION,
@@ -43,7 +40,6 @@ return RectorConfig::configure()
     ->withRules([
         AddGenericReturnTypeToRelationsRector::class,
         AssertStatusToAssertMethodRector::class,
-        EloquentMagicMethodToQueryBuilderRector::class,
         EmptyToBlankAndFilledFuncRector::class,
     ])
     ->withPreparedSets(

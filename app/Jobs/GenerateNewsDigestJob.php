@@ -11,10 +11,14 @@ use App\Models\Article;
 use App\Notifications\NewsDigestCompletedNotification;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Notifications\AnonymousNotifiable;
+use Illuminate\Queue\Attributes\Timeout;
+use Illuminate\Queue\Attributes\UniqueFor;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Sleep;
 use JsonException;
 use Laravel\Ai\Enums\Lab;
 use Laravel\Ai\Streaming\Events\StreamEnd;
@@ -23,13 +27,11 @@ use Laravel\Ai\Streaming\Events\ToolCall;
 use Laravel\Ai\Streaming\Events\ToolResult;
 use Throwable;
 
+#[Timeout(600)]
+#[UniqueFor(900)]
 final class GenerateNewsDigestJob implements ShouldBeUnique, ShouldQueue
 {
-    use \Illuminate\Foundation\Queue\Queueable;
-
-    public int $timeout = 600;
-
-    public int $uniqueFor = 900;
+    use Queueable;
 
     /**
      * @param  array<int, string>  $sources
@@ -63,7 +65,7 @@ final class GenerateNewsDigestJob implements ShouldBeUnique, ShouldQueue
 
             if (! $isFirstBatch) {
                 $this->log(['type' => 'pause', 'seconds' => 60]);
-                \Illuminate\Support\Sleep::sleep(60);
+                Sleep::sleep(60);
             }
 
             $this->log(['type' => 'pass_start', 'pass' => $batchNumber, 'total' => count($batches), 'sources' => $batchSources]);

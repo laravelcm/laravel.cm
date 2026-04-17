@@ -8,9 +8,8 @@
     'lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0' => $isSummary
 ])>
     @php
-        $media = ! empty($article->getFirstMediaUrl('media'))
-            ? $article->getFirstMediaUrl('media')
-            : asset('images/socialcard.png')
+        $coverUrl = $article->getCoverImageUrl();
+        $media = $coverUrl !== '' ? $coverUrl : asset('images/socialcard.png');
     @endphp
 
     @if (! $isSummary)

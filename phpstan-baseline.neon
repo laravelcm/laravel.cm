@@ -1,30 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			rawMessage: 'Call to function property_exists() with $this(Laravelcm\Gamify\PointType) and ''payee'' will always evaluate to true.'
-			identifier: function.alreadyNarrowedType
-			count: 1
-			path: app-modules/gamify/src/PointType.php
-
-		-
-			rawMessage: Property Laravelcm\Gamify\PointType::$name has no type specified.
-			identifier: missingType.property
-			count: 1
-			path: app-modules/gamify/src/PointType.php
-
-		-
-			rawMessage: Property Laravelcm\Gamify\PointType::$payee has no type specified.
-			identifier: missingType.property
-			count: 1
-			path: app-modules/gamify/src/PointType.php
-
-		-
-			rawMessage: Property Laravelcm\Gamify\PointType::$points has no type specified.
-			identifier: missingType.property
-			count: 1
-			path: app-modules/gamify/src/PointType.php
-
-		-
 			rawMessage: 'Parameter #1 $spamReport of class App\Notifications\ReportedSpamToTelegram constructor expects App\Models\SpamReport, Illuminate\Database\Eloquent\Model given.'
 			identifier: argument.type
 			count: 1
@@ -71,18 +47,6 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: app/Filters/Thread/SortByFilter.php
-
-		-
-			rawMessage: 'Property Laravelcm\Gamify\PointType::$subject (Illuminate\Database\Eloquent\Model|null) does not accept mixed.'
-			identifier: assign.propertyType
-			count: 1
-			path: app/Gamify/Points/AddPhone.php
-
-		-
-			rawMessage: 'Property Laravelcm\Gamify\PointType::$subject (Illuminate\Database\Eloquent\Model|null) does not accept mixed.'
-			identifier: assign.propertyType
-			count: 1
-			path: app/Gamify/Points/AddSocialLinks.php
 
 		-
 			rawMessage: 'Call to an undefined method App\Models\User::createToken().'
@@ -385,66 +349,6 @@ parameters:
 			path: app/Markdown/BaseExtension.php
 
 		-
-			rawMessage: 'Cannot call method getInfoWords() on class-string|object.'
-			identifier: method.nonObject
-			count: 1
-			path: app/Markdown/BaseExtension.php
-
-		-
-			rawMessage: 'Method App\Markdown\BaseExtension::bind() has parameter $environment with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app/Markdown/BaseExtension.php
-
-		-
-			rawMessage: 'Method App\Markdown\BaseExtension::getContent() has parameter $node with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app/Markdown/BaseExtension.php
-
-		-
-			rawMessage: 'Method App\Markdown\BaseExtension::getInfo() has parameter $node with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app/Markdown/BaseExtension.php
-
-		-
-			rawMessage: 'Method App\Markdown\BaseExtension::getLanguage() has parameter $node with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app/Markdown/BaseExtension.php
-
-		-
-			rawMessage: 'Method App\Markdown\BaseExtension::getLiteralContent() has parameter $node with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app/Markdown/BaseExtension.php
-
-		-
-			rawMessage: 'Method App\Markdown\BaseExtension::getTheme() has parameter $node with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app/Markdown/BaseExtension.php
-
-		-
-			rawMessage: 'Method App\Markdown\BaseExtension::isCodeNode() has parameter $node with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app/Markdown/BaseExtension.php
-
-		-
-			rawMessage: 'Method App\Markdown\BaseExtension::makeTorchlightBlock() has parameter $node with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app/Markdown/BaseExtension.php
-
-		-
-			rawMessage: 'Method App\Markdown\BaseExtension::renderNode() has parameter $node with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app/Markdown/BaseExtension.php
-
-		-
 			rawMessage: 'Parameter #1 $haystack of static method Illuminate\Support\Str::startsWith() expects string, mixed given.'
 			identifier: argument.type
 			count: 1
@@ -461,12 +365,6 @@ parameters:
 			identifier: nullCoalesce.property
 			count: 1
 			path: app/Markdown/BaseExtension.php
-
-		-
-			rawMessage: 'Method App\Markdown\Extensions\TorchlightExtension::getLiteralContent() has parameter $node with no type specified.'
-			identifier: missingType.parameter
-			count: 1
-			path: app/Markdown/Extensions/TorchlightExtension.php
 
 		-
 			rawMessage: 'Offset 2 on array<string, mixed> in isset() does not exist.'
@@ -589,12 +487,6 @@ parameters:
 			path: app/Notifications/PostThreadToTelegram.php
 
 		-
-			rawMessage: Using nullsafe property access on non-nullable type App\Models\User. Use -> instead.
-			identifier: nullsafe.neverNull
-			count: 4
-			path: app/Notifications/YouWereMentioned.php
-
-		-
 			rawMessage: 'Parameter #1 $name of static method Illuminate\Redis\RedisManager::connection() expects string|UnitEnum|null, mixed given.'
 			identifier: argument.type
 			count: 2
@@ -619,52 +511,10 @@ parameters:
 			path: app/helpers.php
 
 		-
-			rawMessage: 'Parameter #2 $string of function explode expects string, bool|string given.'
-			identifier: argument.type
-			count: 1
-			path: config/app.php
-
-		-
-			rawMessage: 'Parameter #1 $title of static method Illuminate\Support\Str::slug() expects string, bool|string given.'
-			identifier: argument.type
-			count: 1
-			path: config/database.php
-
-		-
 			rawMessage: Binary operation "." between mixed and '/@%%s' results in an error.
 			identifier: binaryOp.invalid
 			count: 1
 			path: config/markdown.php
-
-		-
-			rawMessage: 'Parameter #1 $title of static method Illuminate\Support\Str::slug() expects string, bool|string given.'
-			identifier: argument.type
-			count: 1
-			path: config/session.php
-
-		-
-			rawMessage: Variable $attributes on left side of ?? is never defined.
-			identifier: nullCoalesce.variable
-			count: 1
-			path: database/factories/ArticleFactory.php
-
-		-
-			rawMessage: Variable $attributes on left side of ?? is never defined.
-			identifier: nullCoalesce.variable
-			count: 1
-			path: database/factories/DiscussionFactory.php
-
-		-
-			rawMessage: Variable $attributes on left side of ?? is never defined.
-			identifier: nullCoalesce.variable
-			count: 1
-			path: database/factories/ReplyFactory.php
-
-		-
-			rawMessage: Variable $attributes on left side of ?? is never defined.
-			identifier: nullCoalesce.variable
-			count: 1
-			path: database/factories/ThreadFactory.php
 
 		-
 			rawMessage: Cannot access offset 'model_morph_key' on mixed.
@@ -709,13 +559,13 @@ parameters:
 			path: database/migrations/2021_09_14_172248_create_permission_tables.php
 
 		-
-			rawMessage: 'Parameter #1 $key of method Illuminate\Contracts\Cache\Repository::forget() expects string, mixed given.'
+			rawMessage: 'Parameter #1 $key of method Illuminate\Contracts\Cache\Repository::forget() expects string|UnitEnum, mixed given.'
 			identifier: argument.type
 			count: 1
 			path: database/migrations/2021_09_14_172248_create_permission_tables.php
 
 		-
-			rawMessage: 'Parameter #1 $name of method Illuminate\Cache\CacheManager::store() expects string|null, mixed given.'
+			rawMessage: 'Parameter #1 $name of method Illuminate\Cache\CacheManager::store() expects string|UnitEnum|null, mixed given.'
 			identifier: argument.type
 			count: 1
 			path: database/migrations/2021_09_14_172248_create_permission_tables.php

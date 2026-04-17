@@ -15,22 +15,17 @@ use Laravelcm\Gamify\Models\Reputation;
 use Throwable;
 
 /**
- * @property ?string $name
- * @property int $points
  * @property Authenticatable|string|null $payer
  */
 abstract class PointType
 {
-    public $payee;
+    public ?string $payee = null;
 
-    public $name;
+    public ?string $name = null;
 
-    public $points;
+    public ?int $points = null;
 
-    /**
-     * @var Model|null
-     */
-    protected $subject;
+    protected ?Model $subject = null;
 
     /**
      * Check qualification to give this point
@@ -47,11 +42,11 @@ abstract class PointType
      */
     public function payee(): ?User
     {
-        if (property_exists($this, 'payee')) {
-            return $this->getSubject()->{$this->payee};
+        if (blank($this->payee)) {
+            return null;
         }
 
-        return null;
+        return $this->getSubject()->{$this->payee};
     }
 
     /**
