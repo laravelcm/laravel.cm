@@ -195,7 +195,7 @@ final class Article extends Model implements Feedable, HasMedia, ReactableInterf
     {
         $media = $this->getFirstMedia('media');
 
-        if ($media === null) {
+        if (! $media instanceof Media) {
             return '';
         }
 

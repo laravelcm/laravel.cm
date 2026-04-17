@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Laravelcm\Gamify\Tests\Fixtures;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Laravelcm\Gamify\PointType;
 
 final class FakeWelcomeUserWithFalseQualifier extends PointType
 {
     public ?int $points = 10;
 
-    public function __construct($subject)
+    public function __construct(?Model $subject)
     {
         $this->subject = $subject;
     }
