@@ -32,7 +32,7 @@ final class ChangeLocale extends Component
         app()->setLocale($locale);
         session()->put('locale', $locale);
 
-        $this->redirect(url()->previous(), navigate: true);
+        $this->redirect(safe_previous_url(), navigate: true);
     }
 
     #[Computed]

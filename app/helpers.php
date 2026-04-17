@@ -118,3 +118,26 @@ if (! function_exists('isHolidayWeek')) {
         return $now->between($holidayStart, $holidayEnd);
     }
 }
+
+if (! function_exists('safe_previous_url')) {
+    function safe_previous_url(?string $fallback = null): string
+    {
+        $previous = url()->previous();
+        $fallback ??= route('home');
+
+        $appUrl = config('app.url');
+
+        if (! is_string($appUrl)) {
+            return $fallback;
+        }
+
+        $previousHost = parse_url($previous, PHP_URL_HOST);
+        $expectedHost = parse_url($appUrl, PHP_URL_HOST);
+
+        if (! is_string($previousHost) || ! is_string($expectedHost)) {
+            return $fallback;
+        }
+
+        return $previousHost === $expectedHost ? $previous : $fallback;
+    }
+}

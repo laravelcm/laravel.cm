@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Actions\GetGithubReleasesAction;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\SitemapIndex;
@@ -15,8 +16,13 @@ final class GenerateSitemap extends Command
 
     protected $description = 'Generate the sitemap';
 
-    public function handle(): void
+    public function handle(GetGithubReleasesAction $getReleases): void
     {
+        $latestRelease = $getReleases()->first();
+        $changelogLastMod = $latestRelease !== null
+            ? $latestRelease->published_at
+            : now()->subMinutes(10);
+
         Sitemap::create()
             ->add(
                 Url::create(route('home'))
@@ -35,6 +41,12 @@ final class GenerateSitemap extends Command
                     ->setLastModificationDate(now()->subMinutes(10))
                     ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
                     ->setPriority(0.5)
+            )
+            ->add(
+                Url::create(route('changelog'))
+                    ->setLastModificationDate($changelogLastMod)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+                    ->setPriority(0.3)
             )
             ->writeToFile(public_path('sitemaps/base_sitemap.xml'));
 

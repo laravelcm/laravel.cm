@@ -12,6 +12,7 @@ return [
 
     'commands' => [
         'toggle_theme' => 'Changer le thème',
+        'toggle_locale' => 'Changer la langue',
     ],
 
     'no_results' => 'Aucun résultat trouvé',

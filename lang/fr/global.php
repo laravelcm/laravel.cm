@@ -16,6 +16,7 @@ return [
         'discussions' => 'Discussions',
         'community' => 'Communauté',
         'about' => 'A propos',
+        'changelog' => 'Changelog',
         'podcasts' => 'Podcasts',
         'jobs' => 'Offres',
         'sponsors' => 'Sponsors',
