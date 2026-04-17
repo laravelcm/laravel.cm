@@ -50,7 +50,7 @@ final class ArticleFormObject extends Form
         $this->body = $article->body ?? '';
 
         if ($article->hasMedia('media')) {
-            $this->currentMediaUrl = $article->getFirstMediaUrl('media');
+            $this->currentMediaUrl = $article->getCoverImageUrl();
         }
     }
 
@@ -71,7 +71,7 @@ final class ArticleFormObject extends Form
                 'nullable',
                 'date',
             ],
-            'media' => ['nullable', 'image', 'max:1024'],
+            'media' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif,webp,avif', 'max:1024'],
             'tags' => ['required', 'array', 'min:1', 'max:3'],
             'tags.*' => ['required', 'integer', 'exists:tags,id'],
             'locale' => ['required', 'string', Rule::in(['en', 'fr'])],
