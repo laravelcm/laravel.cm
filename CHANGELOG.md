@@ -4,6 +4,60 @@ All notable changes to `laravel.cm` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.7.0: Public Changelog & Spotlight Improvements - 2026-04-17
+
+### Highlights
+
+#### Public Changelog Page
+
+A new `/changelog` page is now live on the site. It lists the 10 most recent GitHub releases in a Linear-inspired vertical timeline, with each release date sticky on the left while scrolling through a release body, and a page-level sticky sidebar on the right listing **every contributor** to the project since day one.
+
+**Why this matters** — in most open source projects, contributors become invisible once their PR is merged. On laravel.cm, anyone who has ever contributed to the code base now gets their avatar and GitHub handle displayed on a permanent wall of fame. For early-career developers in the francophone African ecosystem, the page is a living CV backed by code.
+
+The page auto-syncs with GitHub releases (3-to-5-day cache with stale-while-revalidate) and with project contributors (7-to-14-day cache), so each new release automatically updates the page with zero maintenance.
+
+Accessible from:
+
+- Footer → Resources → Changelog
+- Spotlight command palette (`Cmd+K`) → type "changelog", "release", "mises à jour"
+
+#### Language Switcher in the Spotlight
+
+The command palette now exposes a **Switch language** command next to Toggle theme. Toggling the language:
+
+- Persists the choice in user settings when authenticated — follows you across all your devices
+- Falls back to session storage for guests
+
+Both entry points (spotlight and the existing sidebar toggle) now share the same sanitisation logic.
+
+#### Security Hardening
+
+Fixed a latent **open-redirect vulnerability** in the locale switch handlers. `url()->previous()` falls back to the `Referer` header which is client controlled — a crafted request could have redirected visitors to an attacker-controlled domain after switching language. A new `safe_previous_url()` helper now enforces a strict same-origin check across every redirect target.
+
+### Added
+
+- Public `/changelog` page with Linear-inspired timeline (#529)
+- `GetGithubReleasesAction` and `GetGithubContributorsAction` with `Cache::flexible` SWR (#529)
+- `ReleaseBodyRenderer` service that hardens release bodies against XSS (strips `javascript:`, `data:`, `vbscript:` schemes, enforces `target="_blank" rel="noopener noreferrer nofollow"` on external links, linkifies PR references) (#529)
+- Per-release contributors block with stacked avatars and translated counter (#529)
+- Sticky page-level "All contributors" sidebar with `flux:tooltip` on hover (#529)
+- `GoToChangelog` Spotlight command (navigation group, synonyms in fr/en) (#529)
+- `ToggleLocale` Spotlight command (commands group, persists in user settings) (#529)
+- Footer link to the changelog under Resources (#529)
+- `/changelog` entry in `sitemap.xml` with `lastmod` pulled from the latest release, `priority 0.3`, `changefreq monthly` (#529)
+- `safe_previous_url()` helper in `app/helpers.php`, inline-documented, covered by 6 tests (#529)
+
+### Changed
+
+- Extracted shared GitHub API logic into `AbstractGithubApiAction` to remove ~60% of duplicated HTTP + error-handling code between the two actions (#529)
+- Contributor avatars now use the native `avatar_url` returned by the GitHub API (`avatars.githubusercontent.com`) instead of proxying through `unavatar.io` — one less external dependency (#529)
+- `ReleaseData::$published_at` typed as `CarbonInterface` instead of the concrete `Carbon` class, matching the rest of the codebase (#529)
+- Route `/changelog` rate-limited to 60 requests per minute (#529)
+
+### Fixed
+
+- Open-redirect through `url()->previous()` in `ChangeLocale` and `ToggleLocale`: the previous URL is now validated against the app host before being used as a redirect target (#529)
+
 ## v3.6.0: Laravel 13 Upgrade & WebP Support - 2026-04-17
 
 ### Highlights
@@ -52,6 +106,7 @@ After deploy, regenerate WebP variants for existing articles:
 
 ```bash
 docker compose -f docker-compose.prod.yml exec laravelcm artisan media-library:regenerate --only=webp
+
 
 ```
 ### Added
@@ -324,6 +379,7 @@ return TelegramFile::create()
     ->to('@laravelcm')
     ->photo($imageUrl)
     ->content("*{$this->article->title}*\n\n_{$this->article->excerpt(200)}_\n\n{$url}");
+
 
 
 
