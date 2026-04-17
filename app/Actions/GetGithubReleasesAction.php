@@ -7,20 +7,13 @@ namespace App\Actions;
 use App\Data\ContributorData;
 use App\Data\ReleaseAuthorData;
 use App\Data\ReleaseData;
-use Illuminate\Http\Client\ConnectionException;
-use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
-use Throwable;
 
-final class GetGithubReleasesAction
+final class GetGithubReleasesAction extends AbstractGithubApiAction
 {
-    private const string CACHE_KEY = 'github-releases';
-
-    private const string ENDPOINT = 'https://api.github.com/repos/laravelcm/laravel.cm/releases';
+    private const string CACHE_KEY = 'github-releases.v2';
 
     private const int MAX_RELEASES = 10;
 
@@ -39,46 +32,38 @@ final class GetGithubReleasesAction
         return Cache::flexible(
             key: self::CACHE_KEY,
             ttl: [now()->addDays(3), now()->addDays(5)],
-            callback: fn (): Collection => $this->fetch(),
+            callback: fn (): Collection => $this->collect(),
         );
+    }
+
+    protected function endpoint(): string
+    {
+        return 'https://api.github.com/repos/laravelcm/laravel.cm/releases';
+    }
+
+    /**
+     * @return array<string, int|string>
+     */
+    protected function queryParameters(): array
+    {
+        return ['per_page' => self::MAX_RELEASES];
+    }
+
+    protected function errorLogPrefix(): string
+    {
+        return 'Github releases fetch failed';
     }
 
     /**
      * @return Collection<int, ReleaseData>
      */
-    private function fetch(): Collection
+    private function collect(): Collection
     {
-        /** @var string|null $token */
-        $token = config('services.github.token');
+        $payload = $this->fetch();
 
-        try {
-            /** @var Response $response */
-            $response = Http::when(
-                filled($token),
-                fn ($http) => $http->withToken($token), // @phpstan-ignore-line
-            )
-                ->acceptJson()
-                ->timeout(5)
-                ->retry(2, 200, throw: false)
-                ->get(self::ENDPOINT, ['per_page' => self::MAX_RELEASES]);
-        } catch (ConnectionException) {
-            Log::warning('Github releases fetch failed: connection error');
-
-            return collect();
-        } catch (Throwable $exception) {
-            Log::warning('Github releases fetch failed', ['class' => $exception::class]);
-
+        if ($payload === null) {
             return collect();
         }
-
-        if ($response->failed()) {
-            Log::warning('Github releases fetch returned non-2xx', ['status' => $response->status()]);
-
-            return collect();
-        }
-
-        /** @var array<int, array<string, mixed>> $payload */
-        $payload = $response->json();
 
         return collect($payload)
             ->reject(fn (array $release): bool => (bool) ($release['draft'] ?? false))
@@ -118,7 +103,7 @@ final class GetGithubReleasesAction
         $contributors = collect([
             new ContributorData(
                 login: $author->login,
-                avatar: 'https://unavatar.io/github/'.$author->login,
+                avatar: $author->avatar_url,
             ),
         ]);
 
@@ -140,7 +125,7 @@ final class GetGithubReleasesAction
             $seen[] = $lower;
             $contributors->push(new ContributorData(
                 login: $login,
-                avatar: 'https://unavatar.io/github/'.$login,
+                avatar: "https://github.com/{$login}.png",
             ));
         }
 

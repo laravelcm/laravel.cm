@@ -8,6 +8,7 @@ use App\Actions\GetGithubContributorsAction;
 use App\Actions\GetGithubReleasesAction;
 use App\Data\ContributorData;
 use App\Data\ReleaseData;
+use App\Services\ReleaseBodyRenderer;
 use ArchTech\SEO\SEOManager;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -21,10 +22,13 @@ final class Changelog extends Component
 
     private GetGithubContributorsAction $getContributors;
 
+    private ReleaseBodyRenderer $bodyRenderer;
+
     public function boot(GetGithubReleasesAction $getReleases, GetGithubContributorsAction $getContributors): void
     {
         $this->getReleases = $getReleases;
         $this->getContributors = $getContributors;
+        $this->bodyRenderer = new ReleaseBodyRenderer(self::REPOSITORY_URL);
     }
 
     public function mount(): void
@@ -55,36 +59,6 @@ final class Changelog extends Component
 
     public function renderBody(string $markdown): string
     {
-        $html = (string) md_to_html($markdown);
-
-        $html = (string) preg_replace(
-            '/href=(["\'])\s*(?:javascript|data|vbscript):[^"\']*\1/i',
-            'href=$1#$1',
-            $html,
-        );
-
-        $html = (string) preg_replace_callback(
-            '/<a\s+([^>]*?)>/i',
-            static function (array $match): string {
-                $attributes = $match[1];
-
-                if (preg_match('/href=(["\'])(https?:\/\/[^"\']+)\1/i', $attributes) !== 1) {
-                    return $match[0];
-                }
-
-                if (preg_match('/\btarget=/i', $attributes) === 1 || preg_match('/\brel=/i', $attributes) === 1) {
-                    return $match[0];
-                }
-
-                return '<a '.mb_rtrim($attributes).' target="_blank" rel="noopener noreferrer nofollow">';
-            },
-            $html,
-        );
-
-        return (string) preg_replace(
-            '/(?<![\w\/])#(\d+)\b/',
-            '<a href="'.self::REPOSITORY_URL.'/pull/$1" target="_blank" rel="noopener noreferrer nofollow">#$1</a>',
-            $html,
-        );
+        return $this->bodyRenderer->render($markdown);
     }
 }

@@ -84,50 +84,6 @@ describe(Changelog::class, function (): void {
             ->assertSee('https://github.com/contributortwo');
     });
 
-    it('transforms pr references in release body into github links', function (): void {
-        $component = new Changelog;
-
-        $html = $component->renderBody('Shipped in #527 and #528.');
-
-        expect($html)
-            ->toContain('href="https://github.com/laravelcm/laravel.cm/pull/527"')
-            ->and($html)->toContain('>#527</a>')
-            ->and($html)->toContain('href="https://github.com/laravelcm/laravel.cm/pull/528"');
-    });
-
-    it('strips unsafe url schemes from release body links', function (): void {
-        $component = new Changelog;
-
-        $html = $component->renderBody('[click me](javascript:alert(1)) and [data](data:text/html,<script>alert(1)</script>)');
-
-        expect($html)
-            ->not->toContain('javascript:')
-            ->and($html)->not->toContain('data:text/html');
-    });
-
-    it('adds noopener, noreferrer and nofollow on external links from release body', function (): void {
-        $component = new Changelog;
-
-        $html = $component->renderBody('Visit [laravel.cm](https://laravel.cm) for more.');
-
-        expect($html)
-            ->toContain('target="_blank"')
-            ->and($html)->toContain('noopener')
-            ->and($html)->toContain('noreferrer')
-            ->and($html)->toContain('nofollow');
-    });
-
-    it('does not double-wrap anchors that already have target or rel attributes', function (): void {
-        $component = new Changelog;
-
-        $html = $component->renderBody('See #527 and #528.');
-
-        // PR references generate their own <a> with target/rel; the
-        // enrichment pass must not double-insert those attributes.
-        expect(mb_substr_count($html, 'target="_blank"'))->toBe(2)
-            ->and(mb_substr_count($html, 'noreferrer'))->toBe(2);
-    });
-
     it('is reachable via the named route', function (): void {
         Http::fake([
             'api.github.com/*' => Http::response([]),

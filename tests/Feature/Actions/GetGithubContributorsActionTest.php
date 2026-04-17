@@ -25,7 +25,7 @@ describe(GetGithubContributorsAction::class, function (): void {
         expect($contributors)->toHaveCount(2)
             ->and($contributors->first())->toBeInstanceOf(ContributorData::class)
             ->and($contributors->first()->login)->toBe('mckenziearts')
-            ->and($contributors->first()->avatar)->toBe('https://unavatar.io/github/mckenziearts');
+            ->and($contributors->first()->avatar)->toBe('https://avatars.githubusercontent.com/u/1?v=4');
     });
 
     it('filters out bots', function (): void {
