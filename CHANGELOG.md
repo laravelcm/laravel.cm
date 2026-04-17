@@ -4,6 +4,78 @@ All notable changes to `laravel.cm` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.6.0: Laravel 13 Upgrade & WebP Support - 2026-04-17
+
+### Highlights
+
+#### Laravel 13 Upgrade
+
+The application now runs on Laravel 13.5.0, bringing modern framework features and security patches.
+
+**Framework & dependencies:**
+
+- `laravel/framework` → `^13.0`
+- `laravel/tinker` → `^3.0`
+- `barryvdh/laravel-debugbar` → `^4.2.6` (v3 incompatible with L13)
+- `laravelcm/laravel-subscriptions` → `^1.8.0`
+- `laravel-notification-channels/telegram` → `^7.0`
+- `laravelcm/gamify` widened to `^11|^12|^13`
+
+**Laravel 13 modernization:**
+
+- New eloquent attributes: `#[Fillable]`, `#[Hidden]` replace property declarations on `User` and `ContentIssue`
+- New queue attributes: `#[Timeout]`, `#[UniqueFor]` replace property declarations on `GenerateNewsDigestJob`
+- Middleware rename: `VerifyCsrfToken` → `PreventRequestForgery`
+
+#### WebP Support for Article Covers
+
+Article cover images are now automatically converted to WebP on upload via Spatie Media Library conversions. The WebP variant is served on article pages, listing cards, and editor previews — while the original format is preserved for external contexts (Telegram, email, RSS, Open Graph, Schema.org) where compatibility matters.
+
+**Benefits:**
+
+- 25–35% lighter than JPEG at equivalent visual quality
+- Core Web Vitals (LCP) improvement → better SEO ranking signals
+- Lower S3 bandwidth consumption
+
+**Safe rollout:** `Article::getCoverImageUrl()` helper falls back to the original format when the WebP conversion hasn't been generated yet, so existing articles continue to display normally during and after deployment.
+
+### ⚠️ Deployment notes
+
+Laravel 13 changes default cache key prefix and session cookie name fallbacks:
+
+- Cache prefix: `laravelcm_cache_` → `laravelcm-cache-`
+- Session cookie: `Str::slug` → `Str::snake`
+
+If `CACHE_PREFIX` and `SESSION_COOKIE` are not explicitly set in production `.env`, the cache will be invalidated and active sessions logged out at deploy.
+
+After deploy, regenerate WebP variants for existing articles:
+
+```bash
+docker compose -f docker-compose.prod.yml exec laravelcm artisan media-library:regenerate --only=webp
+
+```
+### Added
+
+- WebP conversion for article cover images via Spatie Media Library (#527)
+- `Article::getCoverImageUrl()` helper with WebP-first fallback (#527)
+- Explicit WebP acceptance in article form validation and file input (#527)
+
+### Changed
+
+- Upgraded to Laravel 13.5.0 with all related dependency bumps (#527)
+- Rector config now uses `withComposerBased(laravel: true)` for auto-loaded version sets (#527)
+- Migrated `User`, `ContentIssue` to `#[Hidden]` / `#[Fillable]` attributes (#527)
+- Migrated `GenerateNewsDigestJob` to `#[Timeout]` / `#[UniqueFor]` attributes (#527)
+- Typed `PointType` and all gamify point subclasses properties (preserves optional payee semantics) (#527)
+- Typed `BaseExtension` / `TorchlightExtension` node parameters with `League\CommonMark\Node` (#527)
+- Factories cleaned of phantom `$attributes ??` fallbacks (#527)
+
+### Fixed
+
+- Unnecessary nullsafe operators removed on non-nullable `User` relation in `YouWereMentioned` notification (#527)
+- Config files now cast `env()` return values to `string` for `Str::slug` and `explode` (#527)
+- 25+ entries removed from PHPStan baseline thanks to proper type hints
+
 ## v3.5.0: Article Sponsoring & Telegram Fix - 2026-04-14
 
 ### Highlights
@@ -252,6 +324,7 @@ return TelegramFile::create()
     ->to('@laravelcm')
     ->photo($imageUrl)
     ->content("*{$this->article->title}*\n\n_{$this->article->excerpt(200)}_\n\n{$url}");
+
 
 
 
