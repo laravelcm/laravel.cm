@@ -36,6 +36,6 @@ final class ToggleLocale extends SpotlightCommand
         Auth::user()?->settings(['locale' => $newLocale]);
         session()->put('locale', $newLocale);
 
-        $spotlight->redirect(url()->previous(), navigate: true);
+        $spotlight->redirect(safe_previous_url(), navigate: true);
     }
 }

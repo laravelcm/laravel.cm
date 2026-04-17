@@ -125,7 +125,7 @@ final class GetGithubReleasesAction extends AbstractGithubApiAction
             $seen[] = $lower;
             $contributors->push(new ContributorData(
                 login: $login,
-                avatar: "https://github.com/{$login}.png",
+                avatar: sprintf('https://github.com/%s.png', $login),
             ));
         }
 

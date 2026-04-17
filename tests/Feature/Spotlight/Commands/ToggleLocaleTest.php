@@ -37,4 +37,14 @@ describe(ToggleLocale::class, function (): void {
 
         expect(session('locale'))->toBe('fr');
     });
+
+    it('refuses to redirect to an external url when the referer is hostile', function (): void {
+        config(['app.url' => 'https://laravel.cm']);
+        app()->setLocale('fr');
+
+        Livewire::withHeaders(['Referer' => 'https://evil.com/phishing'])
+            ->test(Spotlight::class)
+            ->call('executeCommand', (new ToggleLocale)->getId())
+            ->assertRedirect(route('home'));
+    });
 });
