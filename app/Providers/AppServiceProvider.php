@@ -182,8 +182,10 @@ final class AppServiceProvider extends ServiceProvider
         $manager->register(Commands\GoToForum::class);
         $manager->register(Commands\GoToDiscussions::class);
         $manager->register(Commands\ToggleTheme::class);
+        $manager->register(Commands\ToggleLocale::class);
         $manager->register(Commands\GoToHome::class);
         $manager->register(Commands\GoToAbout::class);
+        $manager->register(Commands\GoToChangelog::class);
         $manager->register(Commands\GoToRules::class);
     }
 }

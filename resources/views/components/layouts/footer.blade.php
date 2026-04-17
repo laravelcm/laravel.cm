@@ -27,6 +27,7 @@
                     </h3>
                     <ul class="mt-6 space-y-3">
                         <x-footer-link :title="__('global.navigation.about')" :href="route('about')" />
+                        <x-footer-link :title="__('global.navigation.changelog')" :href="route('changelog')" />
                         <x-footer-link :title="__('global.navigation.sponsors')" :href="route('sponsors')" />
                         <x-footer-link
                             :title="__('global.navigation.branding')"

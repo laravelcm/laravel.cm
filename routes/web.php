@@ -36,6 +36,9 @@ Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::
 Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
 
 Route::get('sponsors', Pages\Sponsoring::class)->name('sponsors');
+Route::get('changelog', Pages\Changelog::class)
+    ->middleware('throttle:60,1')
+    ->name('changelog');
 Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');
 
 Route::middleware(['auth', 'checkIfBanned', 'verified'])->group(function (): void {
