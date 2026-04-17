@@ -19,6 +19,7 @@ use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
@@ -69,6 +70,13 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read Collection<int, SocialAccount> $providers
  */
 #[ObservedBy(UserObserver::class)]
+#[Hidden([
+    'password',
+    'remember_token',
+    'two_factor_recovery_codes',
+    'two_factor_secret',
+    'last_active_at',
+])]
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasCachedMediaInterface, HasMedia, HasName, MustVerifyEmail
 {
     use Gamify;
@@ -88,14 +96,6 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     use Searchable;
 
     protected $guarded = [];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
-        'last_active_at',
-    ];
 
     public static function findByEmailAddress(string $emailAddress): ?self
     {
