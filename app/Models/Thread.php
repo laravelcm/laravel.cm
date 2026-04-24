@@ -10,6 +10,7 @@ use App\Contracts\SpamReportableContract;
 use App\Contracts\SubscribeInterface;
 use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Filters\Thread\ThreadFilters;
+use App\Models\Concerns\HasRenderedBody;
 use App\Models\Traits\HasAuthor;
 use App\Models\Traits\HasLocaleScope;
 use App\Models\Traits\HasPublicId;
@@ -74,6 +75,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
 
     use HasLocaleScope;
     use HasPublicId;
+    use HasRenderedBody;
     use HasReplies;
     use HasSlug;
     use HasSpamReports;

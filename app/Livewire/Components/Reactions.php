@@ -6,9 +6,11 @@ namespace App\Livewire\Components;
 
 use App\Contracts\ReactableInterface;
 use App\Models\Reaction;
+use App\Models\User;
 use Flux\Flux;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Component;
 
 final class Reactions extends Component
@@ -29,14 +31,52 @@ final class Reactions extends Component
                 heading: __('Oh Oh! Erreur'),
                 variant: 'danger',
             );
-        } else {
-            /** @var Reaction $react */
-            $react = Reaction::query()->where('name', $reaction)->first();
 
-            Auth::user()->reactTo($this->model, $react); // @phpstan-ignore-line
-
-            $this->dispatch('liked');
+            return;
         }
+
+        /** @var User $user */
+        $user = Auth::user();
+
+        if ($user->banned()) {
+            Flux::toast(
+                text: __('Votre compte est suspendu.'),
+                heading: __('Oh Oh! Erreur'),
+                variant: 'danger',
+            );
+
+            return;
+        }
+
+        /** @var int|string $userKey */
+        $userKey = $user->getKey();
+        $rateLimitKey = 'reactions:'.$userKey;
+
+        if (RateLimiter::tooManyAttempts($rateLimitKey, maxAttempts: 30)) {
+            Flux::toast(
+                text: __('Trop de réactions envoyées, veuillez réessayer plus tard.'),
+                variant: 'danger',
+            );
+
+            return;
+        }
+
+        $react = Reaction::query()->where('name', $reaction)->first();
+
+        if (! $react instanceof Reaction) {
+            Flux::toast(
+                text: __('Type de réaction invalide.'),
+                variant: 'danger',
+            );
+
+            return;
+        }
+
+        RateLimiter::hit($rateLimitKey, decaySeconds: 60);
+
+        $user->reactTo($this->model, $react);
+
+        $this->dispatch('liked');
     }
 
     public function render(): View

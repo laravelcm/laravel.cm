@@ -1,7 +1,12 @@
 @props([
-    'content',
+    'content' => null,
+    'model' => null,
 ])
 
 <div {{ $attributes }}>
-    {!! replace_links(\App\Markdown\MarkdownHelper::parseLiquidTags(\GrahamCampbell\Markdown\Facades\Markdown::convert($content))) !!}
+    @if ($model && method_exists($model, 'renderedBody'))
+        {!! $model->renderedBody() !!}
+    @else
+        {!! md_render((string) $content) !!}
+    @endif
 </div>

@@ -6,6 +6,7 @@ namespace App\Livewire\Components\Forum;
 
 use App\Actions\Forum\CreateReplyAction;
 use App\Livewire\Traits\HandlesAuthorizationExceptions;
+use App\Livewire\Traits\RateLimitsContentCreation;
 use App\Models\Reply;
 use App\Models\Thread;
 use Flux\Flux;
@@ -17,6 +18,7 @@ use Livewire\Component;
 final class ReplyForm extends Component
 {
     use HandlesAuthorizationExceptions;
+    use RateLimitsContentCreation;
 
     public Thread $thread;
 
@@ -67,6 +69,8 @@ final class ReplyForm extends Component
     public function createReply(): void
     {
         $this->authorize('create', Reply::class);
+        $this->ensureIsNotSpammingContent(bucket: 'reply', maxAttempts: 10, decaySeconds: 300);
+        $this->rejectIfContentIsSuspicious((string) $this->body);
 
         resolve(CreateReplyAction::class)->execute(
             body: (string) $this->body,

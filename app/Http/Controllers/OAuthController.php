@@ -51,7 +51,9 @@ final class OAuthController extends Controller
 
     private function userFound(User $user): RedirectResponse
     {
-        Auth::login($user);
+        Auth::login($user, remember: true);
+
+        request()->session()->regenerate();
 
         return redirect('/dashboard');
     }
@@ -72,11 +74,15 @@ final class OAuthController extends Controller
                 'token' => $socialiteUser->token,
                 'avatar' => $socialiteUser->avatar,
             ]));
+
+            return;
         }
 
-        $user->providers()->update([
-            'token' => $socialiteUser->token,
-            'avatar' => $socialiteUser->avatar,
-        ]);
+        $user->providers()
+            ->where('provider', $provider)
+            ->update([
+                'token' => $socialiteUser->token,
+                'avatar' => $socialiteUser->avatar,
+            ]);
     }
 }

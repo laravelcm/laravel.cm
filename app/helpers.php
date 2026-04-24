@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Markdown\MarkdownRenderer;
 use App\Models\Discussion;
 use App\Models\Thread;
 use GrahamCampbell\Markdown\Facades\Markdown;
@@ -33,6 +34,13 @@ if (! function_exists('md_to_html')) {
     function md_to_html(string $markdown): RenderedContentInterface
     {
         return Markdown::convert($markdown);
+    }
+}
+
+if (! function_exists('md_render')) {
+    function md_render(string $markdown): string
+    {
+        return resolve(MarkdownRenderer::class)->render($markdown);
     }
 }
 

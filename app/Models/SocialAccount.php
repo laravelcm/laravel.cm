@@ -32,4 +32,14 @@ final class SocialAccount extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'token' => 'encrypted',
+        ];
+    }
 }

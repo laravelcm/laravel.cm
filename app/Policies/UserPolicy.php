@@ -8,8 +8,16 @@ use App\Models\User;
 
 final class UserPolicy
 {
-    public function ban(User $user): bool
+    public function ban(User $user, User $target): bool
     {
+        if ($user->getKey() === $target->getKey()) {
+            return false;
+        }
+
+        if ($target->isAdmin() && ! $user->isAdmin()) {
+            return false;
+        }
+
         if ($user->isModerator()) {
             return true;
         }
@@ -17,8 +25,12 @@ final class UserPolicy
         return $user->isAdmin();
     }
 
-    public function unban(User $user): bool
+    public function unban(User $user, User $target): bool
     {
+        if ($user->getKey() === $target->getKey()) {
+            return false;
+        }
+
         if ($user->isModerator()) {
             return true;
         }

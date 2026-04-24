@@ -32,6 +32,7 @@ Route::prefix('forum')->as('forum.')->group(function (): void {
 
 Route::get('replyable/{id}/{type}', ReplyAbleController::class)->name('replyable');
 Route::get('subscriptions/{subscription}/unsubscribe', [SubscriptionController::class, 'unsubscribe'])
+    ->middleware('signed')
     ->name('subscriptions.unsubscribe');
 Route::get('subscribeable/{id}/{type}', [SubscriptionController::class, 'redirect'])->name('subscriptions.redirect');
 
@@ -39,7 +40,9 @@ Route::get('sponsors', Pages\Sponsoring::class)->name('sponsors');
 Route::get('changelog', Pages\Changelog::class)
     ->middleware('throttle:60,1')
     ->name('changelog');
-Route::get('callback-payment', NotchPayCallBackController::class)->name('notchpay-callback');
+Route::get('callback-payment', NotchPayCallBackController::class)
+    ->middleware('throttle:20,1')
+    ->name('notchpay-callback');
 
 Route::middleware(['auth', 'checkIfBanned', 'verified'])->group(function (): void {
     Route::prefix('dashboard')->as('dashboard.')->group(function (): void {

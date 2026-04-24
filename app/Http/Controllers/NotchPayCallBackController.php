@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use NotchPay\NotchPay;
 use NotchPay\Payment;
@@ -19,28 +20,59 @@ final class NotchPayCallBackController extends Controller
 {
     public function __invoke(Request $request): RedirectResponse
     {
+        $reference = $request->string('reference')->toString();
+
+        if ($reference === '') {
+            return redirect(route('sponsors'));
+        }
+
         /** @var Transaction $transaction */
         $transaction = Transaction::query()
-            ->where('transaction_reference', $request->get('reference'))
+            ->where('transaction_reference', $reference)
             ->firstOrFail();
+
+        if ($transaction->status === TransactionStatus::COMPLETE) {
+            return redirect(route('sponsors'));
+        }
+
         /** @var string $apiKey */
         $apiKey = config('lcm.notch-pay-public-token');
-
         NotchPay::setApiKey($apiKey);
 
         try {
-            $verifyTransaction = Payment::verify(reference: $request->get('reference'));
-            $transaction->update(['status' => $verifyTransaction->transaction->status]); // @phpstan-ignore-line
+            $verifyTransaction = Payment::verify(reference: $reference);
+            /** @var string $remoteStatus */
+            $remoteStatus = $verifyTransaction->transaction->status; // @phpstan-ignore-line
 
-            // @phpstan-ignore-next-line
-            if ($verifyTransaction->transaction->status === TransactionStatus::CANCELED->value) {
+            $shouldDispatchPayment = DB::transaction(function () use ($transaction, $remoteStatus): bool {
+                /** @var Transaction $fresh */
+                $fresh = Transaction::query()
+                    ->lockForUpdate()
+                    ->findOrFail($transaction->id);
+
+                if ($fresh->status === TransactionStatus::COMPLETE) {
+                    return false;
+                }
+
+                $fresh->update(['status' => $remoteStatus]);
+
+                return $remoteStatus === TransactionStatus::COMPLETE->value;
+            });
+
+            if ($remoteStatus === TransactionStatus::CANCELED->value) {
                 notify()
                     ->error()
                     ->title(__('pages/sponsoring.payment.failed_title'))
                     ->message(__('pages/sponsoring.payment.failed_message'))
                     ->send();
-            } else {
-                event(new SponsoringPaymentInitialize($transaction));
+
+                return redirect(route('sponsors'));
+            }
+
+            if ($shouldDispatchPayment) {
+                /** @var Transaction $refreshed */
+                $refreshed = $transaction->fresh();
+                event(new SponsoringPaymentInitialize($refreshed));
 
                 Cache::forget(key: 'sponsors');
 
@@ -50,9 +82,11 @@ final class NotchPayCallBackController extends Controller
                     ->message(__('pages/sponsoring.payment.success_message'))
                     ->send();
             }
-
         } catch (Exception $exception) {
-            Log::error($exception->getMessage());
+            Log::error('NotchPay verification failed', [
+                'reference' => $reference,
+                'message' => $exception->getMessage(),
+            ]);
 
             notify()
                 ->error()

@@ -9,6 +9,7 @@ use App\Contracts\ReplyInterface;
 use App\Contracts\SpamReportableContract;
 use App\Contracts\SubscribeInterface;
 use App\Models\Builders\DiscussionQueryBuilder;
+use App\Models\Concerns\HasRenderedBody;
 use App\Models\Traits\HasAuthor;
 use App\Models\Traits\HasLocaleScope;
 use App\Models\Traits\HasPublicId;
@@ -64,6 +65,7 @@ final class Discussion extends Model implements Feedable, ReactableInterface, Re
 
     use HasLocaleScope;
     use HasPublicId;
+    use HasRenderedBody;
     use HasReplies;
     use HasSlug;
     use HasSpamReports;
