@@ -4,6 +4,99 @@ All notable changes to `laravel.cm` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.8.0: Security Hardening & Markdown Pipeline Overhaul - 2026-04-24
+
+### Highlights
+
+#### Security Hardening After Malicious Upload Incident
+
+On 2026-01-09 an attacker abused an upload flaw in `mckenziearts/livewire-markdown-editor` v1.2 to drop a PHP webshell and a JPEG/PHP polyglot on our Scaleway S3 bucket. Although S3 itself does not execute PHP (so there was no direct RCE), the files were publicly servable under our storage domain — a phishing and malware-distribution vector. Both files have been identified, archived for forensics, and permanently removed from the bucket.
+
+This release closes that attack surface **and** fixes 14 additional vulnerabilities found during the follow-up audit. Read the PR description for the full technical breakdown (#531).
+
+#### New Markdown Rendering Pipeline
+
+Every article, thread, discussion, and reply now goes through a hardened rendering pipeline:
+
+1. **CommonMark** parse with `allow_unsafe_links: false` and `max_nesting_level: 32`
+2. **HTMLPurifier** sanitize with a strict whitelist (no `<script>`, no `<iframe>`, no inline event handlers)
+3. **MarkdownHelper** liquid tag expansion (YouTube, CodePen, CodeSandbox, Giphy — from trusted PHP code, not user input)
+4. **LinkFinder** enrichment (external links get `rel="nofollow"` and `target="_blank"`)
+5. **Redis cache** (7 days, keyed by SHA-256 of the markdown source)
+
+Every model (Article, Thread, Discussion, Reply) now exposes `$model->renderedBody()` which reads from the new `body_html` column if available, or falls back to live rendering otherwise. The `RenderMarkdownJob` keeps the cache warm via the `HasRenderedBody` trait.
+
+#### Content Moderation Commands
+
+Two new Artisan commands give moderators a systematic way to scan, clean, and act on malicious content:
+
+- `php artisan content:audit-malicious` — scans all four content tables for dangerous URL extensions and accepts an optional `--filenames=` list for incident-specific forensics.
+- `php artisan content:rerender` — regenerates `body_html` for every record after a sanitiser update, keeping historical content protected by the latest rules.
+
+Both commands are dry-run by default and gated behind a double confirmation prompt before any destructive operation.
+
+#### Content Security Policy Enabled
+
+The CSP middleware was previously commented out in `bootstrap/app.php`. It is now active with a strict allow-list covering our S3 bucket, analytics, fonts, and permitted embed providers. `object-src 'none'`, `frame-ancestors 'none'`, `base-uri 'self'`, and `form-action 'self'` are enforced globally.
+
+### Added
+
+- `MarkdownSanitizer` service wrapping HTMLPurifier with a strict tag/attribute allow-list
+- `MarkdownRenderer` service with 7-day Redis SWR cache
+- `SuspiciousContentDetector` heuristic detector (shorteners, IP hosts, .onion, homograph lookalikes, dangerous extensions)
+- `RateLimitsContentCreation` trait applied to ArticleForm, ThreadForm, DiscussionForm, ReplyForm, Comments
+- `HasRenderedBody` model trait + `RenderMarkdownJob` async renderer
+- `body_html` and `body_rendered_at` columns on Article, Thread, Discussion, Reply
+- `content:rerender` and `content:audit-malicious` Artisan commands
+- `ContentSecurityPolicy` middleware enabled
+- 35 Pest tests (90 assertions) covering upload attacks, sanitiser, phishing detector, CSP, token hygiene
+
+### Changed
+
+- Bumped `mckenziearts/livewire-markdown-editor` to `^1.3` with strict MIME/extension/image validation
+- `allow_unsafe_links` set to `false` and `max_nesting_level` capped at 32 in markdown config
+- `UserPolicy::ban` and `::unban` now receive the target user (self-ban prevention, admin protection)
+- OAuth flow now regenerates the session and scopes provider updates to the correct provider
+- Default `SESSION_ENCRYPT` and `SESSION_SECURE_COOKIE` flipped to `true` in `.env.example`
+- `UserResource` exposes `public_id` instead of the internal `id`
+
+### Fixed
+
+- Arbitrary file upload through the markdown editor on all five content entry points (CWE-434)
+- XSS through `javascript:` and `data:text/html` URIs in rendered markdown (CWE-79)
+- XSS through `{!! excerpt() !!}` in eight Blade views (CWE-79)
+- OAuth token stored in clear text on `social_accounts` (CWE-312)
+- Session fixation on OAuth callback (CWE-384)
+- NotchPay callback not idempotent — duplicate event dispatch on retry (CWE-362)
+- Unsubscribe URL not signed — forwarded emails could unsubscribe arbitrary users (CWE-639)
+- Reactions component missing authorisation, rate limit, and banned-user check
+- Internal user `id` exposed through `UserResource`
+
+### Security
+
+- CVSS 8.8 (CWE-434): closes arbitrary file upload via markdown editor
+- CVSS 6.1 (CWE-79): closes stored XSS vectors in excerpt rendering
+- Encrypted OAuth tokens at rest via Eloquent `encrypted` cast
+- Signed unsubscribe URLs with 6-month validity
+- Content Security Policy enforced globally with strict allow-list
+- Added `X-Content-Type-Options: nosniff`
+
+### Breaking changes
+
+None. All additions are backwards-compatible. Legacy `SocialAccount` tokens remain readable (tokens are never read at runtime); new logins will persist encrypted tokens automatically.
+
+### Deployment notes
+
+See the PR description for the full post-deploy checklist (#531). Critical steps:
+
+1. Run `php artisan migrate --force` for the new columns
+2. Rotate AWS Scaleway access keys
+3. Run `php artisan content:audit-malicious --filenames=1iuZviz0Bxpb3F9ZdyYmXuCobSO9XHax1AQbP8Xf,72F15MzGP8TgCTT89TLZnxeO70aSfb2c8iDUErLv` to verify the database is clean of the incident payloads
+4. Run `php artisan content:rerender` to backfill `body_html`
+5. Add `SESSION_ENCRYPT=true` and `SESSION_SECURE_COOKIE=true` to production `.env`
+
+**Full Changelog**: https://github.com/laravelcm/laravel.cm/compare/v3.7.0...v3.8.0
+
 ## v3.7.0: Public Changelog & Spotlight Improvements - 2026-04-17
 
 ### Highlights
@@ -106,6 +199,7 @@ After deploy, regenerate WebP variants for existing articles:
 
 ```bash
 docker compose -f docker-compose.prod.yml exec laravelcm artisan media-library:regenerate --only=webp
+
 
 
 ```
@@ -379,6 +473,7 @@ return TelegramFile::create()
     ->to('@laravelcm')
     ->photo($imageUrl)
     ->content("*{$this->article->title}*\n\n_{$this->article->excerpt(200)}_\n\n{$url}");
+
 
 
 
