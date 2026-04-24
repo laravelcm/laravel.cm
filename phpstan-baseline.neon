@@ -57,30 +57,18 @@ parameters:
 		-
 			rawMessage: 'Call to an undefined method App\Models\User::tokens().'
 			identifier: method.notFound
-			count: 2
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			rawMessage: 'Cannot call method currentAccessToken() on App\Models\User|null.'
-			identifier: method.nonObject
-			count: 2
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			rawMessage: Negated boolean expression is always false.
-			identifier: booleanNot.alwaysFalse
 			count: 1
 			path: app/Http/Controllers/Api/Auth/LoginController.php
 
 		-
-			rawMessage: 'Parameter #1 $string of function mb_strtolower expects string, mixed given.'
-			identifier: argument.type
-			count: 2
+			rawMessage: 'Call to an undefined method App\Models\User::currentAccessToken().'
+			identifier: method.notFound
+			count: 1
 			path: app/Http/Controllers/Api/Auth/LoginController.php
 
 		-
-			rawMessage: Property App\Models\User::$last_login_at is not writable.
-			identifier: assign.propertyReadOnly
+			rawMessage: 'Cannot call method delete() on class-string|object.'
+			identifier: method.nonObject
 			count: 1
 			path: app/Http/Controllers/Api/Auth/LoginController.php
 
@@ -161,12 +149,6 @@ parameters:
 			identifier: method.nonObject
 			count: 1
 			path: app/Http/Controllers/Api/Enterprise/PublicController.php
-
-		-
-			rawMessage: 'Parameter $reference of static method NotchPay\Payment::verify() expects string, mixed given.'
-			identifier: argument.type
-			count: 1
-			path: app/Http/Controllers/NotchPayCallBackController.php
 
 		-
 			rawMessage: Access to an undefined property Laravel\Socialite\Contracts\User::$avatar.

@@ -25,7 +25,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             AppMiddleware\LocaleMiddleware::class,
             AppMiddleware\CacheHeaders::class,
-            // AppMiddleware\Security\ContentSecurityPolicy::class,
+            AppMiddleware\Security\ContentSecurityPolicy::class,
             AppMiddleware\Security\PermissionsPolicy::class,
             AppMiddleware\Security\ReferrerPolicy::class,
             AppMiddleware\Security\StrictTransportSecurity::class,

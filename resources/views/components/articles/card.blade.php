@@ -51,7 +51,7 @@
             <span class="absolute inset-0"></span>
         </x-link>
         <p class="mt-3 line-clamp-4 text-gray-500 dark:text-gray-400">
-            {!! $article->excerpt(200) !!}
+            {{ $article->excerpt(200) }}
         </p>
     </div>
 </div>

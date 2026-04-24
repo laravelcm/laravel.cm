@@ -11,6 +11,7 @@ use App\Events\ArticleWasSubmittedForApproval;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Forms\ArticleFormObject;
 use App\Livewire\Traits\HandlesAuthorizationExceptions;
+use App\Livewire\Traits\RateLimitsContentCreation;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Article;
 use App\Models\Tag;
@@ -29,6 +30,7 @@ use Livewire\WithFileUploads;
 final class ArticleForm extends SlideOverComponent
 {
     use HandlesAuthorizationExceptions;
+    use RateLimitsContentCreation;
     use WithAuthenticatedUser;
     use WithFileUploads;
 
@@ -89,17 +91,22 @@ final class ArticleForm extends SlideOverComponent
 
         if ($this->article?->id) {
             $this->authorize('update', $this->article);
+        } else {
+            $this->ensureIsNotSpammingContent(bucket: 'article', maxAttempts: 3, decaySeconds: 900);
         }
 
         $this->form->validate();
 
         $wasAlreadySubmitted = $this->article?->id && $this->article->isSubmitted();
 
+        $suspiciousReasons = $this->detectSuspiciousContent($this->form->body, $this->form->title);
+        $forceModeration = $suspiciousReasons !== [];
+
         $publishedFields = [
-            'published_at' => $this->form->published_at
+            'published_at' => $forceModeration ? null : ($this->form->published_at
                 ? Date::parse($this->form->published_at)
-                : null,
-            'submitted_at' => $this->form->is_draft ? null : now(),
+                : null),
+            'submitted_at' => $forceModeration || $this->form->is_draft ? null : now(),
         ];
 
         $articleData = array_merge([

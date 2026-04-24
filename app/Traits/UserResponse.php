@@ -8,6 +8,7 @@ use App\Http\Resources\AuthenticateUserResource;
 use App\Http\Resources\EnterpriseResource;
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Date;
 
 /**
  * @phpstan-ignore trait.unused
@@ -21,7 +22,11 @@ trait UserResponse
     {
         return [
             'user' => new AuthenticateUserResource($user),
-            'token' => $user->createToken($user->email)->plainTextToken,
+            'token' => $user->createToken(
+                name: 'api-session',
+                abilities: ['*'],
+                expiresAt: Date::now()->addDays(30),
+            )->plainTextToken,
             'roles' => $user->roles()->pluck('name'),
             'permissions' => $user->permissions()->pluck('name'),
             'enterprise' => $user->enterprise ? new EnterpriseResource($user->enterprise) : null,

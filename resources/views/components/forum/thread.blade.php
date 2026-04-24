@@ -25,7 +25,7 @@
     </div>
 
     <div class="mt-2 text-sm text-gray-700 line-clamp-2 dark:text-gray-300">
-        <x-link :href="route('forum.show', $thread)">{!! $thread->excerpt() !!}</x-link>
+        <x-link :href="route('forum.show', $thread)">{{ $thread->excerpt() }}</x-link>
     </div>
 
     <div class="mt-6 flex justify-between space-x-8">

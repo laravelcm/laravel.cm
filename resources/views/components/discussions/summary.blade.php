@@ -24,7 +24,7 @@
         </h2>
     </div>
     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-        {!! $discussion->excerpt(175) !!}
+        {{ $discussion->excerpt(175) }}
     </p>
     <p class="mt-4 inline-flex text-sm items-center gap-2 text-gray-500 dark:text-gray-400">
         <x-untitledui-message-dots-square class="size-5" stroke-width="1.5" aria-hidden="true" />

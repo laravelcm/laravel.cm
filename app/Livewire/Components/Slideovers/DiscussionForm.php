@@ -8,6 +8,7 @@ use App\Actions\Discussion\CreateOrUpdateDiscussionAction;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Forms\DiscussionFormObject;
 use App\Livewire\Traits\HandlesAuthorizationExceptions;
+use App\Livewire\Traits\RateLimitsContentCreation;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Discussion;
 use App\Models\Tag;
@@ -23,6 +24,7 @@ use Livewire\Attributes\Computed;
 final class DiscussionForm extends SlideOverComponent
 {
     use HandlesAuthorizationExceptions;
+    use RateLimitsContentCreation;
     use WithAuthenticatedUser;
 
     public DiscussionFormObject $form;
@@ -78,9 +80,13 @@ final class DiscussionForm extends SlideOverComponent
 
         if ($this->discussion?->id) {
             $this->authorize('update', $this->discussion);
+        } else {
+            $this->ensureIsNotSpammingContent(bucket: 'discussion', maxAttempts: 5, decaySeconds: 600);
         }
 
         $this->form->validate();
+
+        $this->rejectIfContentIsSuspicious($this->form->body, $this->form->title);
 
         $discussion = resolve(CreateOrUpdateDiscussionAction::class)->handle(
             data: [

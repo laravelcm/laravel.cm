@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Contracts\ReactableInterface;
 use App\Models\Builders\ArticleQueryBuilder;
+use App\Models\Concerns\HasRenderedBody;
 use App\Models\Traits\HasAuthor;
 use App\Models\Traits\HasLocaleScope;
 use App\Models\Traits\HasPublicId;
@@ -67,6 +68,7 @@ final class Article extends Model implements Feedable, HasMedia, ReactableInterf
     use HasFactory;
     use HasLocaleScope;
     use HasPublicId;
+    use HasRenderedBody;
     use HasSlug;
     use HasTags;
     use InteractsWithMedia;

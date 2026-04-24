@@ -15,7 +15,7 @@ final class SubscriptionController extends Controller
         /** @var Thread $thread */
         $thread = $subscription->subscribeAble;
 
-        $thread->subscribes()->where('user_id', $subscription->user->id)->delete();
+        $subscription->delete();
 
         session()->flash('status', __('Vous êtes maintenant désabonné de ce sujet.'));
 

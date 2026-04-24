@@ -209,7 +209,7 @@
                                         <span class="absolute inset-0"></span>
                                     </x-link>
                                     <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
-                                        {!! $thread->excerpt() !!}
+                                        {{ $thread->excerpt() }}
                                     </p>
                                 </div>
                             </div>
@@ -252,7 +252,7 @@
                                             {{ $discussion->title }}
                                         </x-link>
                                         <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
-                                            {!! $discussion->excerpt() !!}
+                                            {{ $discussion->excerpt() }}
                                         </p>
                                     </div>
                                 </div>

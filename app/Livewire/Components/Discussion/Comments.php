@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Components\Discussion;
 
 use App\Actions\Discussion\CreateDiscussionReplyAction;
+use App\Livewire\Traits\RateLimitsContentCreation;
 use App\Models\Discussion;
 use App\Models\Reply;
 use Flux\Flux;
@@ -17,6 +18,8 @@ use Livewire\Component;
 
 final class Comments extends Component
 {
+    use RateLimitsContentCreation;
+
     public Discussion $discussion;
 
     public string $body = '';
@@ -26,6 +29,9 @@ final class Comments extends Component
         $this->validate([
             'body' => ['required', 'string', 'min:1'],
         ]);
+
+        $this->ensureIsNotSpammingContent(bucket: 'comment', maxAttempts: 10, decaySeconds: 300);
+        $this->rejectIfContentIsSuspicious($this->body);
 
         app()->call(CreateDiscussionReplyAction::class, [
             'body' => $this->body,

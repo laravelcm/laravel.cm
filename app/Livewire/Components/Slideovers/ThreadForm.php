@@ -9,6 +9,7 @@ use App\Actions\Forum\UpdateThreadAction;
 use App\Exceptions\UnverifiedUserException;
 use App\Livewire\Forms\ThreadFormObject;
 use App\Livewire\Traits\HandlesAuthorizationExceptions;
+use App\Livewire\Traits\RateLimitsContentCreation;
 use App\Livewire\Traits\WithAuthenticatedUser;
 use App\Models\Channel;
 use App\Models\Thread;
@@ -24,6 +25,7 @@ use Livewire\Attributes\Computed;
 final class ThreadForm extends SlideOverComponent
 {
     use HandlesAuthorizationExceptions;
+    use RateLimitsContentCreation;
     use WithAuthenticatedUser;
 
     public ThreadFormObject $form;
@@ -78,9 +80,13 @@ final class ThreadForm extends SlideOverComponent
 
         if ($this->thread?->id) {
             $this->authorize('update', $this->thread);
+        } else {
+            $this->ensureIsNotSpammingContent(bucket: 'thread', maxAttempts: 5, decaySeconds: 600);
         }
 
         $this->form->validate();
+
+        $this->rejectIfContentIsSuspicious($this->form->body, $this->form->title);
 
         $data = [
             'user_id' => $this->form->user_id,

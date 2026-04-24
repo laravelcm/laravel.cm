@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Contracts\ReactableInterface;
 use App\Contracts\ReplyInterface;
 use App\Contracts\SpamReportableContract;
+use App\Models\Concerns\HasRenderedBody;
 use App\Models\Traits\HasAuthor;
 use App\Models\Traits\HasPublicId;
 use App\Models\Traits\HasReplies;
@@ -49,6 +50,7 @@ final class Reply extends Model implements ReactableInterface, ReplyInterface, S
     use HasFactory;
 
     use HasPublicId;
+    use HasRenderedBody;
     use HasReplies;
     use HasSpamReports;
     use Reactable;

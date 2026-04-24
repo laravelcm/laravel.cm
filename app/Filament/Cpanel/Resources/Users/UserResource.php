@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Resources\Users;
+namespace App\Filament\Cpanel\Resources\Users;
 
 use App\Actions\User\BanUserAction;
 use App\Actions\User\UnBanUserAction;
@@ -18,6 +18,7 @@ use Filament\Tables\Columns;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Gate;
 
 final class UserResource extends Resource
 {
@@ -77,7 +78,7 @@ final class UserResource extends Resource
                     ->visible(fn (User $record): bool => $record->banned_at === null)
                     ->modalHeading(__('user.ban.heading'))
                     ->modalDescription(__('user.ban.description'))
-                    ->authorize('ban', User::class)
+                    ->authorize(fn (User $record): bool => Gate::allows('ban', $record))
                     ->schema([
                         TextInput::make('banned_reason')
                             ->label(__('user.ban.reason'))
@@ -99,7 +100,7 @@ final class UserResource extends Resource
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
                     ->visible(fn (User $record): bool => $record->banned_at !== null)
-                    ->authorize('unban', User::class)
+                    ->authorize(fn (User $record): bool => Gate::allows('unban', $record))
                     ->action(function (User $record): void {
                         resolve(UnBanUserAction::class)->execute($record);
 

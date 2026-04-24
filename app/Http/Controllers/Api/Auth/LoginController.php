@@ -11,6 +11,7 @@ use App\Traits\UserResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Validation\ValidationException;
 
 final class LoginController extends Controller
@@ -19,40 +20,51 @@ final class LoginController extends Controller
 
     public function login(LoginRequest $request): JsonResponse
     {
-        /** @var User $user */
+        $email = $request->string('email')->lower()->toString();
+
+        /** @var User|null $user */
         $user = User::query()
             ->with(['roles', 'permissions'])
-            ->where('email', mb_strtolower($request->input('email')))
+            ->where('email', $email)
             ->first();
 
-        $sanitized = [
-            'email' => mb_strtolower($request->input('email')),
-            'password' => $request->input('password'),
-        ];
-
-        if (! $user || ! Auth::attempt($sanitized)) {
+        if (! $user instanceof User || ! Auth::attempt(['email' => $email, 'password' => $request->input('password')])) {
             throw ValidationException::withMessages([
                 'email' => __("Les informations d'identification fournies sont incorrectes."),
             ]);
         }
 
-        if (! $user->tokens()) {
-            $user->tokens()->delete();
+        if (! $user->hasVerifiedEmail()) {
+            throw ValidationException::withMessages([
+                'email' => __("Votre adresse email n'a pas été vérifiée."),
+            ]);
         }
 
-        $user->last_login_at = \Illuminate\Support\Facades\Date::now();
-        $user->last_login_ip = $request->ip();
-        $user->save();
+        if ($user->banned()) {
+            throw ValidationException::withMessages([
+                'email' => __('Votre compte est suspendu.'),
+            ]);
+        }
+
+        $user->tokens()->delete();
+
+        $user->forceFill([
+            'last_login_at' => Date::now(),
+            'last_login_ip' => $request->ip(),
+        ])->save();
 
         return response()->json($this->userMetaData($user));
     }
 
     public function logout(Request $request): JsonResponse
     {
+        /** @var User $user */
         $user = $request->user();
 
-        if ($user->currentAccessToken()) {
-            $user->currentAccessToken()->delete();
+        $token = $user->currentAccessToken();
+
+        if ($token !== null && method_exists($token, 'delete')) {
+            $token->delete();
         }
 
         return response()->json(['message' => __('Déconnecté avec succès')]);

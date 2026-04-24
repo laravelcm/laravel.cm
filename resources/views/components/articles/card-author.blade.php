@@ -23,7 +23,7 @@
                 </x-link>
             </h3>
             <p class="mt-5 line-clamp-3 text-gray-500 dark:text-gray-300">
-                {!! $article->excerpt(175) !!}
+                {{ $article->excerpt(175) }}
             </p>
         </div>
     </div>
