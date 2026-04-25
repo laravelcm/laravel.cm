@@ -24,7 +24,7 @@ final class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static string|BackedEnum|null $navigationIcon = 'untitledui-users-02';
+    protected static string|BackedEnum|null $navigationIcon = 'phosphor-users-duotone';
 
     public static function getNavigationGroup(): string
     {
