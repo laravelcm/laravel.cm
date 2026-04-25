@@ -92,3 +92,83 @@ it('strips object and embed tags', function (): void {
         ->not->toContain('<object')
         ->not->toContain('<embed');
 });
+
+it('preserves torchlight code blocks intact when using purifyPreservingCodeBlocks', function (): void {
+    $torchlight = '<pre><code class="torchlight" style="background-color: #292d3e;">'
+        .'<div class="line"><span class="line-number" style="color: #676e95;">1</span>'
+        .'<span style="color: #c792ea;">"scripts"</span>'
+        .'<span style="color: #89ddff;">: {</span></div>'
+        .'</code></pre>';
+
+    $html = '<p>Before</p>'.$torchlight.'<p>After</p>';
+
+    $purified = $this->sanitizer->purifyPreservingCodeBlocks($html);
+
+    expect($purified)
+        ->toContain($torchlight)
+        ->toContain('<p>Before</p>')
+        ->toContain('<p>After</p>')
+        ->toContain('background-color: #292d3e')
+        ->toContain('color: #c792ea');
+});
+
+it('preserves torchlight blocks with dual themes (multiple <code> nodes)', function (): void {
+    $torchlight = '<pre>'
+        .'<code class="torchlight dark" style="background-color: #1f1f1f;">'
+        .'<div class="line"><span style="color: #fff;">dark</span></div>'
+        .'</code>'
+        .'<code class="torchlight light" style="background-color: #fff;">'
+        .'<div class="line"><span style="color: #000;">light</span></div>'
+        .'</code>'
+        .'</pre>';
+
+    $purified = $this->sanitizer->purifyPreservingCodeBlocks($torchlight);
+
+    expect($purified)
+        ->toContain('class="torchlight dark"')
+        ->toContain('class="torchlight light"')
+        ->toContain('background-color: #1f1f1f')
+        ->toContain('background-color: #fff');
+});
+
+it('preserves multiple torchlight blocks in the same document', function (): void {
+    $first = '<pre><code class="torchlight" style="color:#aaa;"><div class="line">A</div></code></pre>';
+    $second = '<pre><code class="torchlight" style="color:#bbb;"><div class="line">B</div></code></pre>';
+
+    $purified = $this->sanitizer->purifyPreservingCodeBlocks(
+        '<p>one</p>'.$first.'<p>two</p>'.$second.'<p>three</p>'
+    );
+
+    expect($purified)
+        ->toContain($first)
+        ->toContain($second)
+        ->toContain('<p>one</p>')
+        ->toContain('<p>three</p>');
+});
+
+it('still sanitizes content around preserved torchlight blocks', function (): void {
+    $torchlight = '<pre><code class="torchlight"><div class="line">safe</div></code></pre>';
+
+    $html = '<p>before</p><script>alert(1)</script>'.$torchlight.'<img src="x" onerror="alert(2)" />';
+
+    $purified = $this->sanitizer->purifyPreservingCodeBlocks($html);
+
+    expect($purified)
+        ->toContain($torchlight)
+        ->not->toContain('<script>')
+        ->not->toContain('alert(1)')
+        ->not->toContain('onerror')
+        ->not->toContain('alert(2)');
+});
+
+it('does not preserve a non-torchlight pre block (still goes through sanitizer)', function (): void {
+    $html = '<pre><code class="hljs"><span style="color: red" onclick="alert(1)">evil</span></code></pre>';
+
+    $purified = $this->sanitizer->purifyPreservingCodeBlocks($html);
+
+    expect($purified)
+        ->not->toContain('onclick')
+        ->not->toContain('alert(1)')
+        ->not->toContain('style="color: red"')
+        ->toContain('evil');
+});

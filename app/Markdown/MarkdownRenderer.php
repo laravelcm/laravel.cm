@@ -34,7 +34,7 @@ final class MarkdownRenderer
     public function renderWithoutCache(string $markdown): string
     {
         $html = (string) Markdown::convert($markdown);
-        $html = $this->sanitizer->purify($html);
+        $html = $this->sanitizer->purifyPreservingCodeBlocks($html);
         $html = MarkdownHelper::parseLiquidTags($html);
 
         return (new LinkFinder([
