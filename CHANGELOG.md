@@ -4,6 +4,42 @@ All notable changes to `laravel.cm` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.8.1: Torchlight Rendering Restored & CSP Local Dev Fix - 2026-04-25
+
+Patch release fixing three regressions introduced by v3.8.0 (Security Hardening). No new features, no breaking changes.
+
+### Fixed
+
+- **Torchlight code blocks rendered as raw text with visible backticks**. The new `MarkdownSanitizer` was stripping all inline styles and `data-*` attributes from Torchlight output, killing the syntax highlighting markup. Fixed by routing Torchlight `<pre>` blocks around HTMLPurifier verbatim through a new `purifyPreservingCodeBlocks()` method, while keeping the strict policy intact for everything else. (#532)
+- **Local dev environment fully broken after v3.8.0**. The `ContentSecurityPolicy` middleware emitted CSP headers in every environment, but `script-src 'self'` does not cover `laravel.cm.test:5173` (Vite dev server runs on a different port = different origin in CSP). Result: `app.js` and `app.css` blocked, no styles, Alpine `ReferenceError` cascade. CSP is now skipped in the `local` environment only — staging and production behavior unchanged. (#532)
+- **User avatars from `ui-avatars.com` blocked in production** by the new CSP. Domain added to `img-src`. (#532)
+
+### Changed
+
+- User resource navigation icon switched to `phosphor-users-duotone` for visual consistency.
+
+### Tests
+
+7 new Pest tests in `MarkdownSanitizerTest` covering single block preservation, dual-theme blocks, multiple blocks per document, surrounding-content sanitization (script + onerror still stripped), and non-Torchlight `<pre>` defense in depth. All existing security tests still pass.
+
+### Post-deploy actions
+
+After deploying v3.8.1 to production, regenerate the cached HTML so existing content picks up the new sanitizer behavior:
+
+```bash
+php artisan cache:clear
+php artisan content:rerender
+
+```
+The rerender is queue-based by default; add `--sync` if you prefer it blocking.
+
+### Trust but verify
+
+- Torchlight blocks are now passed verbatim around HTMLPurifier. This is safe because (a) Torchlight escapes user input server-side via `Xml::escape`, (b) `html_input => 'strip'` in the markdown config prevents users from smuggling fake `<pre><code class="torchlight">` through Markdown — only Torchlight itself can produce this output, and (c) any `<pre>` block that is **not** Torchlight still goes through the full sanitizer.
+- CSP remains strict in staging and production. The `local` skip is a dev ergonomics fix, not a security concession.
+
+**Full changelog**: https://github.com/laravelcm/laravel.cm/compare/v3.8.0...v3.8.1
+
 ## v3.8.0: Security Hardening & Markdown Pipeline Overhaul - 2026-04-24
 
 ### Highlights
@@ -199,6 +235,7 @@ After deploy, regenerate WebP variants for existing articles:
 
 ```bash
 docker compose -f docker-compose.prod.yml exec laravelcm artisan media-library:regenerate --only=webp
+
 
 
 
@@ -473,6 +510,7 @@ return TelegramFile::create()
     ->to('@laravelcm')
     ->photo($imageUrl)
     ->content("*{$this->article->title}*\n\n_{$this->article->excerpt(200)}_\n\n{$url}");
+
 
 
 
