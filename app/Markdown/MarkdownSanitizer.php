@@ -6,6 +6,7 @@ namespace App\Markdown;
 
 use HTMLPurifier;
 use HTMLPurifier_Config;
+use Illuminate\Support\Facades\Log;
 
 final class MarkdownSanitizer
 {
@@ -23,11 +24,54 @@ final class MarkdownSanitizer
         .'img[src|alt|title|width|height|class],br,hr,'
         .'div[class],span[class]';
 
+    private const string TORCHLIGHT_BLOCK_PATTERN = '#<pre>\s*<code\b[^>]*\bclass\s*=\s*[\'"][^\'"]*\btorchlight\b[^\'"]*[\'"][^>]*>.*?</pre>#is';
+
+    private const string PLACEHOLDER_FORMAT = '___TORCHLIGHT_BLOCK_%s___';
+
     private ?HTMLPurifier $purifier = null;
 
     public function purify(string $html): string
     {
         return $this->purifier()->purify($html);
+    }
+
+    /**
+     * Sanitize HTML while routing Torchlight code blocks around HTMLPurifier
+     * to preserve their inline styles and syntax-highlighting markup.
+     */
+    public function purifyPreservingCodeBlocks(string $html): string
+    {
+        $blocks = [];
+
+        $protected = preg_replace_callback(
+            pattern: self::TORCHLIGHT_BLOCK_PATTERN,
+            callback: function (array $match) use (&$blocks): string {
+                $token = sprintf(self::PLACEHOLDER_FORMAT, hash('sha256', $match[0]));
+                $blocks[$token] = $match[0];
+
+                return $token;
+            },
+            subject: $html,
+        );
+
+        if (! is_string($protected)) {
+            return $this->purify($html);
+        }
+
+        $purified = $this->purify($protected);
+
+        foreach ($blocks as $token => $original) {
+            $count = 0;
+            $purified = str_replace($token, $original, $purified, $count);
+
+            if ($count === 0) {
+                Log::warning('Torchlight code block placeholder lost during sanitization.', [
+                    'token' => $token,
+                ]);
+            }
+        }
+
+        return $purified;
     }
 
     private function purifier(): HTMLPurifier
