@@ -9,12 +9,10 @@ use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 
+#[\Illuminate\Console\Attributes\Description('Send mails to unverified users to prevent from a deletion account.')]
+#[\Illuminate\Console\Attributes\Signature('lcm:send-unverified-mails')]
 final class SendUnVerifiedMails extends Command
 {
-    protected $signature = 'lcm:send-unverified-mails';
-
-    protected $description = 'Send mails to unverified users to prevent from a deletion account.';
-
     public function handle(): void
     {
         foreach (User::query()->scopes('unVerifiedUsers')->get() as $user) {

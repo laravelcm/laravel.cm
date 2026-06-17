@@ -9,12 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 use Laravelcm\Sentinel\Actions\ScanContentAction;
 use Laravelcm\Sentinel\Contracts\Scannable;
 
+#[\Illuminate\Console\Attributes\Description('Scan content for quality issues (broken links, missing https, failed uploads)')]
+#[\Illuminate\Console\Attributes\Signature('sentinel:scan')]
 final class ScanContentQualityCommand extends Command
 {
-    protected $signature = 'sentinel:scan';
-
-    protected $description = 'Scan content for quality issues (broken links, missing https, failed uploads)';
-
     public function handle(ScanContentAction $action): int
     {
         $totalIssues = 0;

@@ -22,6 +22,7 @@ use Illuminate\Support\Collection;
  * @property-read array<string, mixed> $concerns
  * @property-read Collection<int, Article> $articles
  */
+#[\Illuminate\Database\Eloquent\Attributes\WithoutTimestamps]
 final class Tag extends Model
 {
     /** @use HasFactory<TagFactory> */
@@ -29,8 +30,6 @@ final class Tag extends Model
 
     use HasPublicId;
     use HasSlug;
-
-    public $timestamps = false;
 
     protected $guarded = [];
 

@@ -9,12 +9,10 @@ use Laravelcm\Sentinel\Actions\AutoFixContentAction;
 use Laravelcm\Sentinel\Enums\IssueStatus;
 use Laravelcm\Sentinel\Models\ContentIssue;
 
+#[\Illuminate\Console\Attributes\Description('Auto-fix content issues past their deadline')]
+#[\Illuminate\Console\Attributes\Signature('sentinel:auto-fix')]
 final class AutoFixExpiredIssuesCommand extends Command
 {
-    protected $signature = 'sentinel:auto-fix';
-
-    protected $description = 'Auto-fix content issues past their deadline';
-
     public function handle(AutoFixContentAction $action): int
     {
         $issues = ContentIssue::query()

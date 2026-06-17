@@ -6,22 +6,10 @@ namespace Laravelcm\Gamify\Console;
 
 use Illuminate\Console\GeneratorCommand;
 
+#[\Illuminate\Console\Attributes\Description('Create a Gamify point type class.')]
+#[\Illuminate\Console\Attributes\Signature('gamify:point {name}')]
 final class MakePointCommand extends GeneratorCommand
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'gamify:point {name}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a Gamify point type class.';
-
     /**
      * The type of class being generated.
      *

@@ -9,12 +9,10 @@ use App\Notifications\PostArticleToTelegram as PostArticleToTelegramNotification
 use Illuminate\Console\Command;
 use Illuminate\Notifications\AnonymousNotifiable;
 
+#[\Illuminate\Console\Attributes\Description('Posts the latest shared article to Telegram')]
+#[\Illuminate\Console\Attributes\Signature('lcm:post-article-to-telegram')]
 final class PostArticleToTelegram extends Command
 {
-    protected $signature = 'lcm:post-article-to-telegram';
-
-    protected $description = 'Posts the latest shared article to Telegram';
-
     public function handle(AnonymousNotifiable $notifiable): void
     {
         $article = Article::nexForSharingToTelegram();

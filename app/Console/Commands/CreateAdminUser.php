@@ -10,12 +10,10 @@ use Illuminate\Console\Command;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
 
+#[\Illuminate\Console\Attributes\Description('Create user with admin role and all permissions.')]
+#[\Illuminate\Console\Attributes\Signature('lcm:admin')]
 final class CreateAdminUser extends Command
 {
-    protected $signature = 'lcm:admin';
-
-    protected $description = 'Create user with admin role and all permissions.';
-
     public function handle(): void
     {
         $this->info('Create Admin User.');

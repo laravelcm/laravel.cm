@@ -13,12 +13,10 @@ use Laravelcm\Sentinel\Enums\IssueType;
 use Laravelcm\Sentinel\Models\ContentIssue;
 use Throwable;
 
+#[\Illuminate\Console\Attributes\Description('Check that canonical URLs on articles are still accessible')]
+#[\Illuminate\Console\Attributes\Signature('sentinel:check-canonicals')]
 final class CheckCanonicalUrlsCommand extends Command
 {
-    protected $signature = 'sentinel:check-canonicals';
-
-    protected $description = 'Check that canonical URLs on articles are still accessible';
-
     public function handle(): int
     {
         $appUrl = config('app.url');

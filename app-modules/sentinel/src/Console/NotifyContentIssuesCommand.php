@@ -10,12 +10,10 @@ use Laravelcm\Sentinel\Enums\IssueStatus;
 use Laravelcm\Sentinel\Models\ContentIssue;
 use Laravelcm\Sentinel\Notifications\ContentIssuesDetectedNotification;
 
+#[\Illuminate\Console\Attributes\Description('Notify authors about detected content issues')]
+#[\Illuminate\Console\Attributes\Signature('sentinel:notify')]
 final class NotifyContentIssuesCommand extends Command
 {
-    protected $signature = 'sentinel:notify';
-
-    protected $description = 'Notify authors about detected content issues';
-
     public function handle(): int
     {
         /** @var int $deadlineDays */

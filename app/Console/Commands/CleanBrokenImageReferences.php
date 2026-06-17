@@ -11,12 +11,10 @@ use App\Models\Thread;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
 
+#[\Illuminate\Console\Attributes\Description('Remove broken /storage/images/ markdown references from content')]
+#[\Illuminate\Console\Attributes\Signature('app:clean-broken-images {--dry-run : Show what would be cleaned without making changes}')]
 final class CleanBrokenImageReferences extends Command
 {
-    protected $signature = 'app:clean-broken-images {--dry-run : Show what would be cleaned without making changes}';
-
-    protected $description = 'Remove broken /storage/images/ markdown references from content';
-
     /** @var array<class-string<Model>> */
     private array $models = [
         Article::class,

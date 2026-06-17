@@ -10,12 +10,10 @@ use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\SitemapIndex;
 use Spatie\Sitemap\Tags\Url;
 
+#[\Illuminate\Console\Attributes\Description('Generate the sitemap')]
+#[\Illuminate\Console\Attributes\Signature('sitemap:generate')]
 final class GenerateSitemap extends Command
 {
-    protected $signature = 'sitemap:generate';
-
-    protected $description = 'Generate the sitemap';
-
     public function handle(GetGithubReleasesAction $getReleases): void
     {
         $latestRelease = $getReleases()->first();

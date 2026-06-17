@@ -10,12 +10,10 @@ use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 
+#[\Illuminate\Console\Attributes\Description('Generate the discussions sitemaps.')]
+#[\Illuminate\Console\Attributes\Signature('sitemap:discussion-generate')]
 final class GenerateDiscussionsSitemapCommand extends Command
 {
-    protected $signature = 'sitemap:discussion-generate';
-
-    protected $description = 'Generate the discussions sitemaps.';
-
     public function handle(): void
     {
         $sitemap = Sitemap::create();
