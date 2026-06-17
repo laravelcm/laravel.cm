@@ -2,6 +2,7 @@
     "agents": [
         "claude_code"
     ],
+    "cloud": false,
     "guidelines": true,
     "herd_mcp": false,
     "mcp": true,
@@ -15,6 +16,7 @@
         "ai-sdk-development",
         "laravel-best-practices",
         "configure-nightwatch",
+        "octane-development",
         "scout-development",
         "socialite-development",
         "fluxui-development",
