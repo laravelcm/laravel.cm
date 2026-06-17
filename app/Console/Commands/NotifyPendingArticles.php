@@ -9,12 +9,10 @@ use App\Notifications\PendingArticlesNotification;
 use Illuminate\Console\Command;
 use Illuminate\Notifications\AnonymousNotifiable;
 
+#[\Illuminate\Console\Attributes\Description('Send a Telegram notification for articles that are submitted but neither approved nor declined')]
+#[\Illuminate\Console\Attributes\Signature('lcm:notify-pending-articles')]
 final class NotifyPendingArticles extends Command
 {
-    protected $signature = 'lcm:notify-pending-articles';
-
-    protected $description = 'Send a Telegram notification for articles that are submitted but neither approved nor declined';
-
     public function handle(AnonymousNotifiable $notifiable): void
     {
         $pendingArticles = Article::awaitingApproval()->get();

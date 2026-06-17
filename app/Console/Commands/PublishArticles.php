@@ -7,12 +7,10 @@ namespace App\Console\Commands;
 use App\Models\Article;
 use Illuminate\Console\Command;
 
+#[\Illuminate\Console\Attributes\Description('Published all articles already submitted and approved')]
+#[\Illuminate\Console\Attributes\Signature('lcm:publish-articles')]
 final class PublishArticles extends Command
 {
-    protected $signature = 'lcm:publish-articles';
-
-    protected $description = 'Published all articles already submitted and approved';
-
     public function handle(): void
     {
         $this->info('Published all submitted articles...');

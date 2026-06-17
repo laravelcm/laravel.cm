@@ -29,6 +29,13 @@ use Illuminate\Support\Facades\DB;
  * 72F15MzGP8TgCTT89TLZnxeO70aSfb2c8iDUErLv), passe-les via --filenames :
  *   php artisan content:audit-malicious --filenames=1iuZviz0Bxpb...,72F15MzGP8...
  */
+#[\Illuminate\Console\Attributes\Description('Scanne articles/threads/discussions/replies pour liens malveillants vers S3 et liste les users attaquants')]
+#[\Illuminate\Console\Attributes\Signature('content:audit-malicious
+        {--fix : Nettoie les liens malveillants dans le body (destructif, en transaction)}
+        {--ban : Bannit automatiquement les users auteurs de contenu malveillant}
+        {--extensions= : Liste CSV des extensions à flagger (override la liste par défaut)}
+        {--filenames= : Liste CSV de filenames spécifiques à chercher en plus (ex: pendant un incident)}
+        {--domain=laravelcm.s3 : Domaine S3 à surveiller (partial match)}')]
 final class AuditMaliciousContentCommand extends Command
 {
     /**
@@ -55,15 +62,6 @@ final class AuditMaliciousContentCommand extends Command
     ];
 
     private const string BAN_REASON = 'Upload de contenu malveillant';
-
-    protected $signature = 'content:audit-malicious
-        {--fix : Nettoie les liens malveillants dans le body (destructif, en transaction)}
-        {--ban : Bannit automatiquement les users auteurs de contenu malveillant}
-        {--extensions= : Liste CSV des extensions à flagger (override la liste par défaut)}
-        {--filenames= : Liste CSV de filenames spécifiques à chercher en plus (ex: pendant un incident)}
-        {--domain=laravelcm.s3 : Domaine S3 à surveiller (partial match)}';
-
-    protected $description = 'Scanne articles/threads/discussions/replies pour liens malveillants vers S3 et liste les users attaquants';
 
     public function handle(): int
     {

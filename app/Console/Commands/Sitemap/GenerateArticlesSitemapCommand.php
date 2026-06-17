@@ -8,12 +8,10 @@ use App\Models\Article;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
 
+#[\Illuminate\Console\Attributes\Description('Generate the articles sitemaps.')]
+#[\Illuminate\Console\Attributes\Signature('sitemap:blog-generate')]
 final class GenerateArticlesSitemapCommand extends Command
 {
-    protected $signature = 'sitemap:blog-generate';
-
-    protected $description = 'Generate the articles sitemaps.';
-
     public function handle(): void
     {
         $sitemap = Sitemap::create();

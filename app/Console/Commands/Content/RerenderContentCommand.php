@@ -13,6 +13,11 @@ use App\Models\Thread;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
 
+#[\Illuminate\Console\Attributes\Description('Rerender body_html for all markdown content (passes each record through the sanitizer).')]
+#[\Illuminate\Console\Attributes\Signature('content:rerender
+        {--model= : Only rerender a specific model (article|thread|discussion|reply)}
+        {--sync : Run the renderer synchronously instead of dispatching to the queue}
+        {--limit= : Limit the number of records to rerender}')]
 final class RerenderContentCommand extends Command
 {
     /**
@@ -24,13 +29,6 @@ final class RerenderContentCommand extends Command
         'discussion' => Discussion::class,
         'reply' => Reply::class,
     ];
-
-    protected $signature = 'content:rerender
-        {--model= : Only rerender a specific model (article|thread|discussion|reply)}
-        {--sync : Run the renderer synchronously instead of dispatching to the queue}
-        {--limit= : Limit the number of records to rerender}';
-
-    protected $description = 'Rerender body_html for all markdown content (passes each record through the sanitizer).';
 
     public function handle(): int
     {

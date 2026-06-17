@@ -359,7 +359,7 @@ final class Thread extends Model implements Feedable, ReactableInterface, ReplyI
                 $join->on('threads.id', 'replies.replyable_id')
                     ->where('replies.replyable_type', self::class);
             })
-            ->orderBy('latest_creation', 'DESC')
+            ->orderBy('latest_creation', 'desc')
             ->groupBy('threads.id')
             ->select('threads.*', DB::raw('
                 CASE WHEN COALESCE(MAX(replies.created_at), threads.created_at) > threads.created_at

@@ -21,18 +21,16 @@ use function Laravel\Prompts\note;
 use function Laravel\Prompts\spin;
 use function Laravel\Prompts\warning;
 
-final class GenerateNewsArticle extends Command
-{
-    protected $signature = 'ai:news-digest
+#[\Illuminate\Console\Attributes\Description('Crawl configured tech sources and generate weekly news articles for editorial review')]
+#[\Illuminate\Console\Attributes\Signature('ai:news-digest
         {--dry-run : Preview generated articles without saving to database}
         {--batch=4 : Number of sources to process per pass}
         {--timeout=300 : Timeout in seconds per batch}
         {--delay=60 : Delay in seconds between batches to avoid rate limiting}
         {--provider=anthropic : AI provider (anthropic, openai)}
-        {--model=claude-haiku-4-5-20251001 : AI model to use}';
-
-    protected $description = 'Crawl configured tech sources and generate weekly news articles for editorial review';
-
+        {--model=claude-haiku-4-5-20251001 : AI model to use}')]
+final class GenerateNewsArticle extends Command
+{
     public function handle(): int
     {
         $batchSize = (int) $this->option('batch');

@@ -99,7 +99,11 @@ final class ArticleForm extends SlideOverComponent
 
         $wasAlreadySubmitted = $this->article?->id && $this->article->isSubmitted();
 
-        $suspiciousReasons = $this->detectSuspiciousContent($this->form->body, $this->form->title);
+        $isTrustedModerator = $user->isAdmin() || $user->isModerator();
+
+        $suspiciousReasons = $isTrustedModerator
+            ? []
+            : $this->detectSuspiciousContent($this->form->body, $this->form->title);
         $forceModeration = $suspiciousReasons !== [];
 
         $publishedFields = [
@@ -150,7 +154,7 @@ final class ArticleForm extends SlideOverComponent
             );
         }
 
-        if (! $wasAlreadySubmitted && $this->form->is_draft === false && ! $article->isApproved()) {
+        if (! $isTrustedModerator && ! $wasAlreadySubmitted && $this->form->is_draft === false && ! $article->isApproved()) {
             event(new ArticleWasSubmittedForApproval($article));
         }
 

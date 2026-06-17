@@ -6,12 +6,10 @@ namespace App\Console\Commands\Benchmark;
 
 use Illuminate\Console\Command;
 
+#[\Illuminate\Console\Attributes\Description('Benchmark performance comparison between blank() and empty() functions')]
+#[\Illuminate\Console\Attributes\Signature('benchmark:blank-vs-empty')]
 final class BenchmarkCommand extends Command
 {
-    protected $signature = 'benchmark:blank-vs-empty';
-
-    protected $description = 'Benchmark performance comparison between blank() and empty() functions';
-
     public function handle(): int
     {
         $this->displayHeader();

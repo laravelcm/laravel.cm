@@ -8,12 +8,10 @@ use App\Models\User;
 use App\Notifications\SendEMailToDeletedUser;
 use Illuminate\Console\Command;
 
+#[\Illuminate\Console\Attributes\Description('Removed all unverified users.')]
+#[\Illuminate\Console\Attributes\Signature('lcm:delete-old-unverified-users')]
 final class DeleteOldUnverifiedUsers extends Command
 {
-    protected $signature = 'lcm:delete-old-unverified-users';
-
-    protected $description = 'Removed all unverified users.';
-
     public function handle(): void
     {
         $this->info('Deleting old unverified users...');
