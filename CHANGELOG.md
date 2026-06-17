@@ -4,6 +4,29 @@ All notable changes to `laravel.cm` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.8.2: Moderator Publishing Fix & Security Dependency Patch - 2026-06-17
+
+Patch release fixing a long-standing moderator publishing bug and patching all dependency security advisories reported by `composer audit`. No breaking changes.
+
+### Fixed
+
+- **Moderators could not publish articles directly**. AI-generated articles assigned to the support account (`support@laravel.cm`) stay awaiting approval. When a moderator edited one to set a publication date, the suspicious-content detector — triggered by the many links typical of technical articles (more than 10 URLs, or links ending in `.html`/`.js`) — forced moderation: `published_at` and `submitted_at` were silently wiped, so the date never saved, **and** a Telegram "article submitted" notification was dispatched to the moderation channel. Moderators and admins are the approval authority, so the suspicious-content gate and the `ArticleWasSubmittedForApproval` event are now skipped for them: they publish directly, with no notification. Regular users keep the full moderation flow unchanged. (#541)
+
+### Security
+
+- **Patched all dependency security advisories reported by `composer audit`** (27 advisories across 15 packages at time of release). `composer update` pulled patched versions of the Symfony components (including the YAML parser, html-sanitizer, routing, mime and http-kernel), `laravel/framework`, `guzzlehttp/psr7`, `phpseclib/phpseclib`, `composer/composer`, and others. `composer audit` now reports **zero** vulnerabilities.
+
+### Changed
+
+- Console commands and Eloquent models migrated to native PHP attributes (`#[Signature]`, `#[Description]`, `#[WithoutTimestamps]`) via Rector, aligning with Laravel 13 conventions. (#541)
+- PHPStan level 9 type fixes: `Thread` ordering now uses the framework's `'asc'|'desc'` direction type; `SpotlightCommand::toArray` PHPDoc shape completed. (#541)
+
+### Dependencies
+
+- Bumped 12 JS dependencies (Tailwind v4.3, Vite, shiki, fuse.js, laravel-echo, concurrently, …). (#540, #534)
+
+**Full changelog**: https://github.com/laravelcm/laravel.cm/compare/v3.8.1...v3.8.2
+
 ## v3.8.1: Torchlight Rendering Restored & CSP Local Dev Fix - 2026-04-25
 
 Patch release fixing three regressions introduced by v3.8.0 (Security Hardening). No new features, no breaking changes.
@@ -29,6 +52,7 @@ After deploying v3.8.1 to production, regenerate the cached HTML so existing con
 ```bash
 php artisan cache:clear
 php artisan content:rerender
+
 
 ```
 The rerender is queue-based by default; add `--sync` if you prefer it blocking.
@@ -235,6 +259,7 @@ After deploy, regenerate WebP variants for existing articles:
 
 ```bash
 docker compose -f docker-compose.prod.yml exec laravelcm artisan media-library:regenerate --only=webp
+
 
 
 
@@ -510,6 +535,7 @@ return TelegramFile::create()
     ->to('@laravelcm')
     ->photo($imageUrl)
     ->content("*{$this->article->title}*\n\n_{$this->article->excerpt(200)}_\n\n{$url}");
+
 
 
 
