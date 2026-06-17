@@ -67,7 +67,7 @@ abstract class SpotlightCommand
     }
 
     /**
-     * @return array{id: string, name: string, description: string, icon: ?string, group: ?string, synonyms: string[], dependencies: array}
+     * @return array{id: string, name: string, description: string, icon: ?string, group: ?string, synonyms: string[], dependencies: array<int, array{id: string, placeholder: string, type: string}>, closesAfterExecute: bool}
      */
     public function toArray(): array
     {
