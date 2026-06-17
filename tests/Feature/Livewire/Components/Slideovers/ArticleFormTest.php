@@ -14,7 +14,7 @@ use Livewire\Livewire;
 function suspiciousArticleBody(): string
 {
     $links = collect(range(1, 12))
-        ->map(fn (int $index): string => "Lien numéro {$index} : https://example.com/page-{$index}")
+        ->map(fn (int $index): string => sprintf('Lien numéro %d : https://example.com/page-%d', $index, $index))
         ->implode("\n");
 
     return "Contenu suffisamment long contenant de nombreux liens externes.\n".$links;
@@ -77,6 +77,7 @@ describe(ArticleForm::class, function (): void {
 
         $moderator = User::factory()->create(['email_verified_at' => now()]);
         $moderator->assignRole(UserRole::Moderator->value);
+
         $tag = Tag::factory()->create(['concerns' => ['post']]);
 
         $article = Article::factory()->create([
