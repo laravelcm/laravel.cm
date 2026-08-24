@@ -11,7 +11,7 @@ final class MarkdownHelper
         $matches = [];
 
         // If we find at least one liquid tag
-        if (preg_match_all('/{% .* %}/', $html, $matches) && $matches[0]) {
+        if (preg_match_all('/{% .* %}/', $html, $matches)) {
             // loop through each of the liquid tags
             foreach ($matches[0] as $match) {
                 // replace multiple spaces with single space

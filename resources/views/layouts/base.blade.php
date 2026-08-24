@@ -35,6 +35,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 
     @fluxAppearance
+    <script>window.__reverbConfig = @js(config('broadcasting.connections.reverb.frontend'));</script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @production

@@ -15,6 +15,7 @@ use App\Models\Traits\HasLocaleScope;
 use App\Models\Traits\HasPublicId;
 use App\Models\Traits\HasReplies;
 use App\Models\Traits\HasSlug;
+use App\Policies\DiscussionPolicy;
 use App\Traits\HasSpamReports;
 use App\Traits\HasSubscribers;
 use App\Traits\HasTags;
@@ -24,6 +25,7 @@ use Carbon\CarbonInterface;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Database\Factories\DiscussionFactory;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -55,6 +57,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read Collection<int, Tag> $tags
  * @property-read Collection<int, Reaction> $reactions
  */
+#[UsePolicy(DiscussionPolicy::class)]
 final class Discussion extends Model implements Feedable, ReactableInterface, ReplyInterface, Scannable, Sitemapable, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;

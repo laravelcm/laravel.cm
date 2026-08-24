@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Date;
 uses(Tests\TestCase::class, RefreshDatabase::class)
     ->in('Feature', '../app-modules/*/tests');
 
+pest()->tia()
+    ->locally()
+    ->filtered();
+
 /**
  * @return Thread|Collection<int, Thread>
  */

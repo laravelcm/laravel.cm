@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 final class ToggleTheme extends SpotlightCommand
 {
-    private const array ALLOWED_THEMES = ['light', 'dark'];
-
     protected ?string $icon = 'heroicon-o-sun';
 
     protected ?string $group = 'commands';
@@ -35,10 +33,6 @@ final class ToggleTheme extends SpotlightCommand
         if ($user) {
             $currentTheme = $user->setting('theme', 'light');
             $newTheme = $currentTheme === 'dark' ? 'light' : 'dark';
-
-            if (! in_array($newTheme, self::ALLOWED_THEMES, true)) {
-                return;
-            }
 
             $user->settings(['theme' => $newTheme]);
 

@@ -8,6 +8,7 @@ use App\Contracts\HasCachedMediaInterface;
 use App\Enums\TransactionStatus;
 use App\Models\Traits\HasPublicId;
 use App\Observers\UserObserver;
+use App\Policies\UserPolicy;
 use App\Traits\HasProfilePhoto;
 use App\Traits\HasSettings;
 use App\Traits\HasUsername;
@@ -22,6 +23,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
@@ -77,6 +79,7 @@ use Spatie\Permission\Traits\HasRoles;
     'two_factor_secret',
     'last_active_at',
 ])]
+#[UsePolicy(UserPolicy::class)]
 final class User extends Authenticatable implements FilamentUser, HasAvatar, HasCachedMediaInterface, HasMedia, HasName, MustVerifyEmail
 {
     use Gamify;

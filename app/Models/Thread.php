@@ -16,6 +16,7 @@ use App\Models\Traits\HasLocaleScope;
 use App\Models\Traits\HasPublicId;
 use App\Models\Traits\HasReplies;
 use App\Models\Traits\HasSlug;
+use App\Policies\ThreadPolicy;
 use App\Traits\HasSpamReports;
 use App\Traits\HasSubscribers;
 use App\Traits\Reactable;
@@ -26,6 +27,7 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Database\Factories\ThreadFactory;
 use Exception;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -65,6 +67,7 @@ use Spatie\Feed\FeedItem;
  * @property-read Collection<int, Channel> $channels
  * @property-read Collection<int, Reply> $replies
  */
+#[UsePolicy(ThreadPolicy::class)]
 final class Thread extends Model implements Feedable, ReactableInterface, ReplyInterface, Scannable, SpamReportableContract, SubscribeInterface, Viewable
 {
     use HasAuthor;

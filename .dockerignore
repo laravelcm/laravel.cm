@@ -1,3 +1,6 @@
+# Dependencies (rebuilt inside the image)
+vendor
+
 # Node modules
 node_modules
 npm-debug.log*
@@ -19,6 +22,13 @@ tests
 stubs
 app-modules/**/tests
 .phpunit.cache
+bootstrap/cache/*.php
+storage/*.key
+storage/*.pem
+storage/app/keys
+storage/app/private/*
+storage/app/public/*
+storage/app/livewire-tmp/*
 storage/logs/*
 storage/baddybugs/*
 storage/framework/cache/*
@@ -29,6 +39,8 @@ storage/framework/views/*
 # Build artifacts
 public/hot
 public/storage
+public/sitemap.xml
+public/sitemaps/*.xml
 public/build
 public/css
 public/js

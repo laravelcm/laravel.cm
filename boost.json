@@ -13,9 +13,10 @@
     ],
     "sail": false,
     "skills": [
+        "infer-conventions",
         "ai-sdk-development",
         "laravel-best-practices",
-        "configure-nightwatch",
+        "configuring-horizon",
         "octane-development",
         "scout-development",
         "socialite-development",
