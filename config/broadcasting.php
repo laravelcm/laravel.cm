@@ -46,6 +46,12 @@ return [
             'client_options' => [
                 'verify' => env('REVERB_VERIFY_SSL', true),
             ],
+            'frontend' => [
+                'key' => env('REVERB_APP_KEY'),
+                'host' => env('REVERB_CLIENT_HOST', env('REVERB_HOST')),
+                'port' => (int) env('REVERB_CLIENT_PORT', env('REVERB_PORT', 443)),
+                'scheme' => env('REVERB_CLIENT_SCHEME', env('REVERB_SCHEME', 'https')),
+            ],
         ],
 
         'pusher' => [
