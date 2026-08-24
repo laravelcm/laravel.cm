@@ -53,6 +53,6 @@ final class GenerateSitemap extends Command
             ->add('/sitemaps/discussion_sitemap.xml')
             ->add('/sitemaps/blog_sitemap.xml');
 
-        $sitemap->writeToFile(public_path('sitemap.xml'));
+        $sitemap->writeToFile(public_path('sitemaps/sitemap.xml'));
     }
 }

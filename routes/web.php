@@ -9,6 +9,13 @@ use App\Livewire\Pages;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Pages\Home::class)->name('home');
+Route::get('sitemap.xml', function () {
+    $path = public_path('sitemaps/sitemap.xml');
+
+    abort_unless(file_exists($path), 404);
+
+    return response()->file($path, ['Content-Type' => 'application/xml']);
+})->name('sitemap');
 Route::view('a-propos', 'pages.about')->name('about');
 Route::view('privacy', 'pages.privacy')->name('privacy');
 Route::view('rules', 'pages.rules')->name('rules');
