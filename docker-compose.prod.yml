@@ -39,7 +39,6 @@ x-environment: &common-env
     QUEUE_CONNECTION: ${QUEUE_CONNECTION}
     CACHE_STORE: ${CACHE_STORE}
     CACHE_PREFIX: ${CACHE_PREFIX}
-    MEMCACHED_HOST: ${MEMCACHED_HOST}
     REDIS_CLIENT: "phpredis"
     REDIS_HOST: ${REDIS_HOST}
     REDIS_PASSWORD: ${REDIS_PASSWORD}
@@ -93,9 +92,6 @@ x-environment: &common-env
     GITHUB_FINE_GRAINED_TOKEN: ${GITHUB_FINE_GRAINED_TOKEN}
     UNSPLASH_ACCESS_KEY: ${UNSPLASH_ACCESS_KEY}
     LETTR_API_KEY: ${LETTR_API_KEY}
-    NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
-    NIGHTWATCH_REQUEST_SAMPLE_RATE: ${NIGHTWATCH_REQUEST_SAMPLE_RATE}
-    NIGHTWATCH_INGEST_URI: "nightwatch-agent:2407"
     OCTANE_SERVER: "frankenphp"
 
 services:
@@ -103,18 +99,25 @@ services:
         image: ghcr.io/laravelcm/laravel.cm:main
         pull_policy: always
         restart: always
+        command:
+            - "artisan"
+            - "octane:frankenphp"
+            - "--host=0.0.0.0"
+            - "--port=8080"
+            - "--max-requests=500"
         extra_hosts:
             - "host.docker.internal:host-gateway"
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:${APP_PORT:-8080}/up"]
-            timeout: 30s
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 60s
         environment:
             <<: *common-env
-            BOOST_BROWSER_LOGS_WATCHER: "${BOOST_BROWSER_LOGS_WATCHER:-false}"
-            PURELINE_USERNAME: "${PURELINE_USERNAME}"
-            PURELINE_LICENSE_KEY: "${PURELINE_LICENSE_KEY}"
         volumes:
             - storage:/var/www/html/storage
+            - sitemaps:/var/www/html/public/sitemaps
         networks:
             - dokploy-network
 
@@ -128,36 +131,35 @@ services:
             start_period: 10s
         environment:
             <<: *common-env
+            AUTORUN_ENABLED: "false"
         volumes:
             - storage:/var/www/html/storage
+            - sitemaps:/var/www/html/public/sitemaps
         networks:
             - dokploy-network
         depends_on:
-            - laravelcm
+            laravelcm:
+                condition: service_healthy
 
-    queue:
+    horizon:
         image: ghcr.io/laravelcm/laravel.cm:main
         restart: always
-        command:
-            - "artisan"
-            - "queue:work"
-            - "--sleep=3"
-            - "--tries=3"
-            - "--quiet"
-            - "--force"
-            - "--queue=default,media,search"
+        command: ["artisan", "horizon"]
         stop_signal: SIGTERM
+        stop_grace_period: 310s
         healthcheck:
-            test: ["CMD", "healthcheck-queue"]
+            test: ["CMD", "healthcheck-horizon"]
             start_period: 10s
         environment:
             <<: *common-env
+            AUTORUN_ENABLED: "false"
         volumes:
             - storage:/var/www/html/storage
         networks:
             - dokploy-network
         depends_on:
-            - laravelcm
+            laravelcm:
+                condition: service_healthy
 
     reverb:
         image: ghcr.io/laravelcm/laravel.cm:main
@@ -172,6 +174,7 @@ services:
             start_period: 10s
         environment:
             <<: *common-env
+            AUTORUN_ENABLED: "false"
             REVERB_SERVER_HOST: "0.0.0.0"
             REVERB_SERVER_PORT: 8080
         volumes:
@@ -179,25 +182,14 @@ services:
         networks:
             - dokploy-network
         depends_on:
-            - laravelcm
-
-    nightwatch-agent:
-        image: laravelphp/nightwatch-agent:latest
-        restart: unless-stopped
-        environment:
-            NIGHTWATCH_TOKEN: ${NIGHTWATCH_TOKEN}
-        healthcheck:
-            test: ["CMD", "php", "nightwatch-status"]
-            interval: 30s
-            timeout: 10s
-            retries: 3
-            start_period: 10s
-        networks:
-            - dokploy-network
+            laravelcm:
+                condition: service_healthy
 
 networks:
     dokploy-network:
         external: true
 volumes:
     storage:
+        driver: local
+    sitemaps:
         driver: local

@@ -1,6 +1,6 @@
-# syntax=docker/dockerfile:1.4
+# syntax=docker/dockerfile:1
 ARG PHP_VERSION=8.4
-ARG NODE_VERSION=22
+ARG NODE_VERSION=24
 
 #---------------------------------
 # Base Image
@@ -16,7 +16,7 @@ FROM base AS development
 
 ARG WWWUSER
 ARG WWWGROUP
-ARG NODE_VERSION=22
+ARG NODE_VERSION=24
 ARG MYSQL_CLIENT="mysql-client"
 ARG POSTGRES_VERSION=17
 
@@ -81,14 +81,9 @@ RUN install-php-extensions xdebug sockets
 #---------------------------------
 FROM base AS composer
 
-ARG FLUX_USERNAME
-ARG FLUX_LICENSE_KEY
-ARG PURELINE_USERNAME
-ARG PURELINE_LICENSE_KEY
-
 WORKDIR /var/www/html
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Copy only composer files first for better caching
 COPY --chown=www-data:www-data composer.json composer.lock* ./
@@ -97,34 +92,32 @@ COPY --chown=www-data:www-data composer.json composer.lock* ./
 COPY --chown=www-data:www-data app-modules/ ./app-modules/
 
 # Configure composer cache directory
-RUN --mount=type=cache,target=/tmp/.composer-cache \
+RUN --mount=type=cache,target=/tmp/.composer-cache,uid=33,gid=33 \
     composer config cache-dir /tmp/.composer-cache
 
-# Validate and configure Flux credentials (required for Flux Pro packages)
-RUN --mount=type=cache,target=/tmp/.composer-cache \
+# Install dependencies; private registry credentials are passed as build secrets
+# (never written to a layer) and validated before composer runs
+RUN --mount=type=cache,target=/tmp/.composer-cache,uid=33,gid=33 \
+    --mount=type=secret,id=FLUX_USERNAME,env=FLUX_USERNAME \
+    --mount=type=secret,id=FLUX_LICENSE_KEY,env=FLUX_LICENSE_KEY \
+    --mount=type=secret,id=PURELINE_USERNAME,env=PURELINE_USERNAME \
+    --mount=type=secret,id=PURELINE_LICENSE_KEY,env=PURELINE_LICENSE_KEY \
     if [ -z "$FLUX_USERNAME" ] || [ -z "$FLUX_LICENSE_KEY" ]; then \
-        echo "ERROR: FLUX_USERNAME and FLUX_LICENSE_KEY are required build arguments" >&2; \
+        echo "ERROR: FLUX_USERNAME and FLUX_LICENSE_KEY build secrets are required" >&2; \
         exit 1; \
-    fi && \
-    composer config http-basic.composer.fluxui.dev "$FLUX_USERNAME" "$FLUX_LICENSE_KEY"
-
-# Validate and configure Pureline credentials (required for anystack packages)
-RUN --mount=type=cache,target=/tmp/.composer-cache \
-    if [ -z "$PURELINE_USERNAME" ] || [ -z "$PURELINE_LICENSE_KEY" ]; then \
-        echo "ERROR: PURELINE_USERNAME and PURELINE_LICENSE_KEY are required build arguments" >&2; \
+    fi \
+    && if [ -z "$PURELINE_USERNAME" ] || [ -z "$PURELINE_LICENSE_KEY" ]; then \
+        echo "ERROR: PURELINE_USERNAME and PURELINE_LICENSE_KEY build secrets are required" >&2; \
         exit 1; \
-    fi && \
-    composer config http-basic.pureline.composer.sh "$PURELINE_USERNAME" "$PURELINE_LICENSE_KEY"
-
-# Install dependencies with cache mount
-RUN --mount=type=cache,target=/tmp/.composer-cache \
-    composer install --no-dev --no-interaction --no-scripts --prefer-dist --no-autoloader
+    fi \
+    && export COMPOSER_AUTH="{\"http-basic\":{\"composer.fluxui.dev\":{\"username\":\"$FLUX_USERNAME\",\"password\":\"$FLUX_LICENSE_KEY\"},\"pureline.composer.sh\":{\"username\":\"$PURELINE_USERNAME\",\"password\":\"$PURELINE_LICENSE_KEY\"}}}" \
+    && composer install --no-dev --no-interaction --no-scripts --prefer-dist --no-autoloader
 
 # Copy application code (needed for autoloader generation)
 COPY --chown=www-data:www-data . .
 
 # Generate optimized autoloader
-RUN --mount=type=cache,target=/tmp/.composer-cache \
+RUN --mount=type=cache,target=/tmp/.composer-cache,uid=33,gid=33 \
     composer dump-autoload --classmap-authoritative --no-dev --optimize
 
 #---------------------------------
@@ -142,6 +135,7 @@ RUN --mount=type=cache,target=/root/.npm \
     npm ci --prefer-offline --no-audit
 
 # Copy application files needed for build
+COPY app/ ./app
 COPY public/ ./public
 COPY resources/ ./resources
 COPY app-modules/ ./app-modules
@@ -160,7 +154,6 @@ ENV \
     SSL_MODE=off \
     PHP_OPCACHE_ENABLE=1 \
     PHP_MEMORY_LIMIT=512M \
-    OCTANE_SERVER=frankenphp \
     HEALTHCHECK_PATH="/up"
 
 USER root
@@ -180,6 +173,7 @@ COPY --from=composer --chown=www-data:www-data /var/www/html/public/css ./public
 COPY --from=composer --chown=www-data:www-data /var/www/html/public/js ./public/js
 COPY --from=composer --chown=www-data:www-data /var/www/html/public/fonts ./public/fonts
 COPY --from=composer --chown=www-data:www-data /var/www/html/vendor ./vendor
+COPY --from=composer --chown=www-data:www-data /var/www/html/bootstrap/cache ./bootstrap/cache
 
 # Copy built assets from frontend stage
 COPY --from=frontend --chown=www-data:www-data /app/public/build ./public/build
