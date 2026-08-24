@@ -11,12 +11,14 @@ use App\Models\Concerns\HasRenderedBody;
 use App\Models\Traits\HasAuthor;
 use App\Models\Traits\HasPublicId;
 use App\Models\Traits\HasReplies;
+use App\Policies\ReplyPolicy;
 use App\Traits\HasSpamReports;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
 use Carbon\CarbonInterface;
 use Database\Factories\ReplyFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -41,6 +43,7 @@ use Laravelcm\Sentinel\Traits\HasContentIssues;
  * @property-read Collection<int, SpamReport> $spamReports
  * @property-read ?Thread $solutionTo
  */
+#[UsePolicy(ReplyPolicy::class)]
 final class Reply extends Model implements ReactableInterface, ReplyInterface, Scannable, SpamReportableContract
 {
     use HasAuthor;

@@ -17,7 +17,9 @@ use BladeUI\Icons\Factory;
 use Filament\Actions;
 use Filament\Support\Enums\Width;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Foundation\DevCommands;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Notifications\DatabaseNotification;
@@ -52,6 +54,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->configurePolicies();
         $this->configureRateLimiting();
         $this->configureSpotlight();
+        $this->configureDevCommands();
     }
 
     public function registerBladeDirective(): void
@@ -85,7 +88,9 @@ final class AppServiceProvider extends ServiceProvider
     {
         JsonResource::withoutWrapping();
 
-        Relation::morphMap([
+        Model::automaticallyEagerLoadRelationships();
+
+        Relation::enforceMorphMap([
             'article' => Article::class,
             'discussion' => Discussion::class,
             'thread' => Thread::class,
@@ -154,6 +159,17 @@ final class AppServiceProvider extends ServiceProvider
     protected function configurePolicies(): void
     {
         Gate::policy(DatabaseNotification::class, NotificationPolicy::class);
+    }
+
+    protected function configureDevCommands(): void
+    {
+        if ($this->app->environment('local')) {
+            DevCommands::artisan('pail --timeout=0', 'logs');
+            DevCommands::artisan('reverb:start --host=0.0.0.0 --port=8080', 'reverb');
+            DevCommands::artisan('horizon', 'horizon');
+            DevCommands::node('dev', 'vite');
+            DevCommands::except('server');
+        }
     }
 
     protected function configureRateLimiting(): void

@@ -12,6 +12,7 @@ use App\Models\Traits\HasLocaleScope;
 use App\Models\Traits\HasPublicId;
 use App\Models\Traits\HasSlug;
 use App\Observers\ArticleObserver;
+use App\Policies\ArticlePolicy;
 use App\Traits\HasTags;
 use App\Traits\Reactable;
 use App\Traits\RecordsActivity;
@@ -19,6 +20,7 @@ use Carbon\CarbonInterface;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -61,6 +63,7 @@ use Spatie\Sitemap\Tags\Url;
  * @property-read Collection<int, Tag> $tags
  */
 #[ObservedBy(ArticleObserver::class)]
+#[UsePolicy(ArticlePolicy::class)]
 final class Article extends Model implements Feedable, HasMedia, ReactableInterface, Scannable, Sitemapable, Viewable
 {
     use HasAuthor;
