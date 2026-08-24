@@ -83,6 +83,7 @@ return [
         ],
 
         RequestTerminated::class => [
+            App\Listeners\FlushTorchlightBlocks::class,
             // FlushUploadedFiles::class,
         ],
 
@@ -222,5 +223,36 @@ return [
     */
 
     'max_execution_time' => 30,
+
+    /*
+    |--------------------------------------------------------------------------
+    | FrankenPHP Caddy Overrides
+    |--------------------------------------------------------------------------
+    |
+    | These environment variables override the defaults injected into the
+    | Caddyfile used by the octane:frankenphp command. The application runs
+    | behind the Dokploy Traefik proxy, which terminates TLS and forwards
+    | requests from private network ranges.
+    |
+    */
+
+    'caddy' => [
+        'env' => [
+            'CADDY_GLOBAL_OPTIONS' => <<<'CADDY'
+                auto_https disable_redirects
+                servers {
+                    trusted_proxies static private_ranges
+                }
+                CADDY,
+            'CADDY_SERVER_EXTRA_DIRECTIVES' => <<<'CADDY'
+                @static {
+                    file
+                    path *.ico *.css *.js *.gif *.webp *.avif *.jpg *.jpeg *.png *.svg *.woff *.woff2
+                }
+                header @static Cache-Control "public, max-age=31536000, s-maxage=31536000"
+                header @static Access-Control-Allow-Origin "*"
+                CADDY,
+        ],
+    ],
 
 ];
