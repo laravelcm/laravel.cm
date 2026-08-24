@@ -75,7 +75,7 @@ jobs:
 
       - name: Cache Node.js dependencies
         if: matrix.needs-node == 'true'
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
@@ -87,7 +87,7 @@ jobs:
 
       - name: Cache Tool
         if: matrix.cache-path != ''
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ matrix.cache-path }}
           key: ${{ runner.os }}-${{ matrix.cache-key }}-${{ hashFiles('composer.lock') }}
@@ -139,7 +139,7 @@ jobs:
         run: composer install --no-progress --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Cache Node.js dependencies
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
@@ -152,14 +152,14 @@ jobs:
         run: npm run build
 
       - name: Cache Rector
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: /tmp/rector
           key: ${{ runner.os }}-rector-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-rector-
 
       - name: Cache PHPStan
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: /tmp/phpstan
           key: ${{ runner.os }}-phpstan-${{ hashFiles('composer.lock') }}
